@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Model\Admin\Nouveau;
+use App\Model\User\Nouveau;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use App\Model\Admin\Departement;
@@ -48,6 +48,7 @@ class NouveauController extends Controller
             'phone' => 'required|unique:nouveaus|numeric',
             'commune' => 'required|numeric',
             'extrait' => 'required|mimes:pdf,PDF',
+            'relever' => 'required|mimes:pdf,PDF',
             'attestation' => 'required|mimes:pdf,PDF',
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
             'photocopie' => 'required|mimes:pdf,PDF',
@@ -59,6 +60,7 @@ class NouveauController extends Controller
         $imageName = '';
         $photocopieName = '';
         $attestationName = '';
+        $releverName = '';
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Nouveau');
         }
@@ -71,6 +73,9 @@ class NouveauController extends Controller
         if ($request->hasFile('photocopie')) {
             $photocopieName = $request->photocopie->store('public/Nouveau');
         }
+        if ($request->hasFile('relever')) {
+            $releverName = $request->relever->store('public/Nouveau');
+        }
         $add_nouveau->nom = $request->nom;
         $add_nouveau->prenom = $request->prenom;
         $add_nouveau->email = $request->email;
@@ -79,6 +84,7 @@ class NouveauController extends Controller
         $add_nouveau->extrait = $extraitName;
         $add_nouveau->attestation = $attestationName;
         $add_nouveau->photocopie = $photocopieName;
+        $add_nouveau->relever = $releverName;
         $add_nouveau->commune_id = $request->commune;
         $add_nouveau->immeuble_id =  $immeuble->id;
         $add_nouveau->status = 0;

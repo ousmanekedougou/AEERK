@@ -4,7 +4,7 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Option extends Model
 {
     //
 }

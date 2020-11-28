@@ -18,31 +18,30 @@
 <!-- Profile Image -->
 <div class="box box-primary">
   <div class="box-body box-profile">
-    <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($show_ancien->image) }}" alt="User profile picture">
+    <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($show_nouveau->image) }}" alt="User profile picture">
 
-    <h3 class="profile-username text-center">{{ $show_ancien->prenom.' '.$show_ancien->nom }}</h3>
+    <h3 class="profile-username text-center">{{ $show_nouveau->prenom.' '.$show_nouveau->nom }}</h3>
 
-    <p class="text-muted text-center">Ancien</p>
+    <p class="text-muted text-center">Etudiant</p>
 
     <ul class="list-group list-group-unbordered">
       <li class="list-group-item">
-        <b><i class="fa fa-envelope-o"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_ancien->email }}</a>
+        <b><i class="fa fa-envelope-o"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_nouveau->email }}</a>
       </li>
       <li class="list-group-item">
-      <b><i class="fa fa-phone"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_ancien->phone }}</a>
+      <b><i class="fa fa-phone"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_nouveau->phone }}</a>
       </li>
       <li class="list-group-item">
-      <b><i class="fa fa-map-marker"></i></b>  <a class="pull-center text-muted text-bold tex-italic">{{ $show_ancien->commune->name }}</a>
       </li>
       <li class="list-group-item">
-      <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $show_ancien->immeuble->name }}</a>
+      <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $show_nouveau->immeuble->name }}</a>
       </li>
       <li class="list-group-item">
       <b><i class="fa fa-thumbs-up"></i></b>  <a class="pull-center text-muted text-bold tex-italic">
-      @if($show_ancien->status == 1)
-      <span class="text-success">Valider</span>
+      @if($show_nouveau->status == 0)
+      <span class="text-success">Codifier</span>
        @else 
-       <span class="text-danger">Pas Valider</span>
+       <span class="text-danger">Pas Codifier</span>
        @endif
        </a>
       </li>
@@ -51,46 +50,6 @@
   <!-- /.box-body -->
 </div>
 <!-- /.box -->
-
-<!-- About Me Box -->
-<!-- <div class="box box-primary">
-  <div class="box-body">
-    <strong><i class="fa  fa-institution margin-r-5"></i> Etablissement</strong>
-
-    <p class="text-muted">
-       AFI L'UE (Universite de L'entreprise)
-    </p>
-
-    <hr>
-
-    <strong><i class="fa  fa-education margin-r-5"></i> Filliere</strong>
-
-    <p class="text-muted">
-      Informatique et reseau 
-    </p>
-
-    <hr>
-
-    <strong><i class="fa fa-graduation-cap margin-r-5"></i> Niveau</strong>
-
-    <p class="text-muted">Master I</p>
-
-    <hr>
-
-    <strong><i class="fa fa-file-text-o margin-r-5"></i> Obtention du Bac</strong>
-
-    <p class="text-muted">
-      Le 29/03/2020
-    </p>
-
-    <hr>
-
-    <strong><i class="fa fa-map-marker margin-r-5"></i> Commune</strong>
-
-    <p>fongolimbi</p>
-  </div>
-</div> -->
-
 </div>
         <!-- /.col debut du col 9-->
         <div class="col-md-9">
@@ -107,18 +66,18 @@
           <div class="row">
             <!-- debut du col 6 -->
             <div class="col-md-9">
-            <h1>Recasement</h1>
               <!-- remplissage de l'immeuble 39 -->
                   @foreach($immeubles as $imb)  
-                    <form action="{{ route('admin.recasement.update',$show_ancien->id) }}" method="post">
+                    <form action="{{ route('admin.recasement.update',$show_nouveau->id) }}" method="post">
                       @csrf 
                       {{ method_field('PUT') }}
                     
                       <h3 class="text-center">{{ $imb->name }}</h3>
+                      <input type="hidden" value="1" name="distinct">
                         <div class="form-group">
                           <label>Chambres</label>
                           <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                            <option >Choisir la chambre</option>
+                            <option selected>Choisir la chambre</option>
                             @foreach($imb->chambres  as $chm)
                               <option value="{{$chm->id}}">{{$chm->nom}}</option>
                             @endforeach
@@ -130,10 +89,8 @@
                             </span>
                           @enderror
                         </div>
-                        <input type="hidden" value="2" name="distinct">
-                     
-                        <input type="submit" value="submit" class="btn btn-warning">
-                        <input type="reset" value="annuller" class="btn btn-info">
+                        <input type="submit" value="Recaser" class="btn btn-primary">
+                        <a class="btn btn-warning" href="{{ route('admin.recasement.index') }}">Retoure</a>
                     </form>
                     @endforeach
                 <!-- fin du remplissage de l'immeuble 39 -->

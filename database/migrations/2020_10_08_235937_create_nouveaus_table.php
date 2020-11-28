@@ -23,14 +23,13 @@ class CreateNouveausTable extends Migration
             $table->string('attestation');
             $table->string('image');
             $table->string('photocopie');
-            $table->integer('immeuble_id');
-            $table->integer('commune_id');
+            $table->string('relever');
+            $table->integer('immeuble_id')->default(null);
+            $table->integer('chambre_id')->default(null);
+            $table->integer('commune_id')->default(null);
+            $table->integer('prix')->default(null);
             $table->boolean('status')->default(false);
             $table->boolean('codifier')->default(false);
-            $table->integer('prix');
-            $table->integer('chambre_id');
-            $table->integer('immeuble_rec')->default(false);
-            $table->integer('recasement')->default(false);
             $table->timestamps();
         });
     }

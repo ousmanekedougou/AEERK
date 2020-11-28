@@ -9,50 +9,30 @@
           <!-- Content Wrapper. Contains page content -->
           <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-    </section>
+   
 
     <!-- Main content -->
     <section class="content">
 
       <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
+      <div class="">
+        <div class="">
           <h3 class="box-title">Categories</h3>
-          <a  data-toggle="modal" data-id="#category" data-name="category" data-target="#modal-category-add" class="col-lg-offset-5 btn btn-success" href="">Add New Categories</a>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
+          <a  data-toggle="modal" data-id="#category" data-name="category" data-target="#modal-category-add" class="col-lg-offset-5 btn btn-success" href="">Ajouter Une Categorie</a>
+         
         </div>
         <div class="box-body">
                     <!-- debut de la table -->
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
-            </div>
-            <!-- /.box-header -->
+          <div class="">
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>S.No</th>
-                  <th>Categories</th>
-                  <th>Slug</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Num</th>
+                  <th>Categorie</th>
+                  <th>Etiquete</th>
+                  <th>Modifier</th>
+                  <th class="text-center">Supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,13 +42,13 @@
                   <th>{{ $category->name }}</th>
                   <th>{{ $category->slug }}</th>
                   <th><a data-toggle="modal" data-id="{{$category->id}}" data-name="{{$category->name}}" data-target="#modal-default-update-category-{{ $category->id }}"><i class="glyphicon glyphicon-edit"></i></a></th>
-                  <th>
+                  <th class="text-center">
                     <form id="delete-form-{{$category->id}}" method="post" action="{{ route('admin.category.destroy',$category->id) }}" style="display:none">
                     {{csrf_field()}}
                     {{method_field('delete')}}
                     </form>
                   <a href="" onclick="
-                    if(confirm('Are you sure , You want to delete this ?')){
+                    if(confirm('Etes Vous Sur De Supprimer Cette Categorie ?')){
 
                     event.preventDefault();document.getElementById('delete-form-{{$category->id}}').submit();
 
@@ -85,24 +65,22 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>S.No</th>
+                  <th>Num</th>
                   <th>Categorie</th>
-                  <th>Slug</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Etiquete</th>
+                  <th>Modifier</th>
+                  <th class="text-center">Supprimer</th>
                 </tr>
                 </tfoot>
               </table>
+              {{ $categorys->links() }}
             </div>
             <!-- /.box-body -->
           </div>
             <!-- fin de la table -->
         </div>
         <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
-        <!-- /.box-footer-->
+       
       </div>
       <!-- /.box -->
 
@@ -157,7 +135,7 @@
     <!-- Debut du modal des edition  -->
 
     <!-- Fin du modal des edtions -->
-    @foreach($categorys as $modal_category)
+      @foreach($categorys as $modal_category)
         <div class="modal fade" id="modal-default-update-category-{{ $modal_category->id }}">
           <div class="modal-dialog">
             <div class="modal-content">

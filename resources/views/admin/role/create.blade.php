@@ -5,31 +5,17 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Text Editors
-        <small>Advanced form element</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">Editors</li>
-      </ol>
-    </section>
+   
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="col-md-12">
-                
-        
-        
         <!-- les inputs -->
 
              <!-- general form elements -->
-             <div class="box box-primary">
+             <div class="">
             <div class="box-header with-border">
-              <h3 class="box-title">Titles</h3>
             </div>
             @include('includes.message')
             <!-- /.box-header -->
@@ -47,7 +33,7 @@
                     <div class="row">
 
                     <div class="col-lg-4">
-                      <label for="name">Permission des article</label>
+                      <label for="name">Permission Codification</label>
                       @foreach($permissions as $permission)
                         @if($permission->for == 'Medecin')
                           <div class="checkbox">
@@ -57,7 +43,7 @@
                       @endforeach
                     </div>
                     <div class="col-lg-4">
-                      <label for="name">Permission des administrateur</label>
+                      <label for="name">Permission Evenement</label>
                       @foreach($permissions as $permission)
                         @if($permission->for == 'Article')
                           <div class="checkbox">
@@ -68,7 +54,7 @@
                     </div>
 
                     <div class="col-lg-4">
-                      <label for="name">Permission pour les autres</label>
+                      <label for="name">Permission Article</label>
                       @foreach($permissions as $permission)
                         @if($permission->for == 'Autre')
                           <div class="checkbox">
@@ -82,8 +68,8 @@
                     <!-- /.box-body -->
       
                     <div class=" form-group">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                      <a  href="{{ route('admin.role.index') }}" class="btn btn-warning">Back</a>
+                      <button type="submit" class="btn btn-primary">Enregistre</button>
+                      <a  href="{{ route('admin.role.index') }}" class="btn btn-warning">Retoure</a>
                     </div>
                 </div>
 

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\Ancien;
+use App\Model\User\Ancien;
+use App\Model\User\Nouveau;
 use App\Model\Admin\Chambre;
-use App\Model\Admin\Nouveau;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Codification_ancien;
+use App\Model\User\Codification_nouveau;
 
 class CodificationController extends Controller
 {
@@ -24,7 +26,10 @@ class CodificationController extends Controller
     
     public function index()
     {
-        //
+        // Les Etudiant qui ont codifier
+        $immeubles = Immeuble::where('status',false)->first();
+        $nouveau_bac = Nouveau::where(['status'=>1, 'codifier'=>1])->paginate(10);
+        return view('admin.codification.index',compact('nouveau_bac','immeubles'));
     }
 
     /**
@@ -34,7 +39,10 @@ class CodificationController extends Controller
      */
     public function create()
     {
-        //
+          // Les Etudiant qui n'ont pas codifier
+        $immeubles = Immeuble::where('status',true)->get();
+        $ancien_bac = Ancien::where(['status'=>1,'codifier'=>1])->paginate(10);
+        return view('admin.codification.index1',compact('ancien_bac','immeubles'));
     }
 
     /**
@@ -56,9 +64,7 @@ class CodificationController extends Controller
      */
     public function show($id)
     {
-        $immeubles = Immeuble::all();
-        $show_nouveau = Nouveau::find($id);
-        return view('admin.codification.index',compact('immeubles','show_nouveau'));
+     
     }
 
     /**
@@ -69,9 +75,7 @@ class CodificationController extends Controller
      */
     public function edit($id)
     {
-        $immeubles = Immeuble::where('status',true)->get();
-        $show_ancien = Ancien::find($id);
-        return view('admin.codification.index1',compact('immeubles','show_ancien'));
+        
     }
 
     /**
@@ -83,35 +87,11 @@ class CodificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = $this->validate($request , [
-            'chambre_id' => 'required|string',
-            'prix' => 'required|numeric',
-        ]);
-        // dd($request->chambre);
-        $codifier_nouveau = Nouveau::find($id);
-        $codifier_nouveau->chambre_id = $request->chambre_id;
-        $codifier_nouveau->prix = $request->prix;
-        $codifier_nouveau->codifier = 1;
-        $codifier_nouveau->save();
-        Flashy::success('Votre etudiant a ete codifier');
-        return redirect()->route('admin.nouveau.index');
+       
 
     }
 
-    public function codifier_ancien(Request $request, $id){
-        $validator = $this->validate($request , [
-            'chambre_id' => 'required|string',
-            'prix' => 'required|numeric',
-        ]);
-        // dd($request->chambre);
-        $codifier_ancien = Ancien::find($id);
-        $codifier_ancien->chambre_id = $request->chambre_id;
-        $codifier_ancien->prix = $request->prix;
-        $codifier_ancien->codifier = 1;
-        $codifier_ancien->save();
-        Flashy::success('Votre etudiant a ete codifier');
-        return redirect()->route('admin.ancien.index');
-    }
+   
 
     /**
      * Remove the specified resource from storage.

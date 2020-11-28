@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Admin\Document;
+use MercurySeries\Flashy\Flashy;
+use App\Http\Controllers\Controller;
 
 class DocumentController extends Controller
 {
@@ -19,7 +21,8 @@ class DocumentController extends Controller
     }
 
     public function index() {
-        return view('admin.document.index');
+        $document_all = Document::all();
+        return view('admin.document.index',compact('document_all'));
     }
     
     public function create()
@@ -35,7 +38,28 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $this->validate($request,[
+            'libele' => 'required|string',
+            'type' => 'required|string',
+            'image' => 'required|mimes:pdf,PDF',
+            'resume' => 'required|string',
+        ]);
+
+        $add_doc = new Document();
+        if ($request->hasFile('image')) {
+            $imageName = $request->image->store('public/Document');
+        }
+
+        $add_doc->libele = $request->libele;
+        $add_doc->type = $request->type;
+        $add_doc->resume = $request->resume;
+        $add_doc->status = $request->status;
+        $add_doc->image = $imageName;
+        $add_doc->save();
+        Flashy::success('Votre Document a ete ajoute');
+        return redirect()->route('admin.document.index');
+
+
     }
 
     /**
@@ -57,7 +81,8 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_doc = Document::find($id);
+        return view('admin.document.edite',compact('edit_doc'));
     }
 
     /**
@@ -69,7 +94,20 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_doc = Document::find($id);
+        if ($request->hasFile('image')) {
+            $imageName = $request->image->store('public/Document');
+        }elseif ($request->image == Null){
+            $imageName = $update_doc->image;
+        }
+        $update_doc->libele = $request->libele;
+        $update_doc->type = $request->type;
+        $update_doc->resume = $request->resume;
+        $update_doc->status = $request->status;
+        $update_doc->image = $imageName;
+        $update_doc->save();
+        Flashy::success('Votre Document a ete modifier');
+        return redirect()->route('admin.document.index');
     }
 
     /**
@@ -80,7 +118,9 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Document::find($id)->delete();
+        Flashy::success('Votre document a ete supprimer');
+        return back();
     }
 
 

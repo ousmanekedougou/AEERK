@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Model\User\Contact;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
+use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {
@@ -13,7 +15,8 @@ class ContactController extends Controller
     }
     
     public function index() {
-        return view('admin.contact.index');
+        $contact_all = Contact::All();
+        return view('admin.contact.index',compact('contact_all'));
     }
 
       /**
@@ -34,7 +37,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -45,7 +48,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_contact =  Contact::find($id);
+        return view('admin.contact.show',compact('show_contact'));
     }
 
     /**
@@ -56,7 +60,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $create_message = Contact::find($id);
+        return view('admin.contact.compose',compact('create_message'));
     }
 
     /**
@@ -68,7 +73,11 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_contact = Contact::find($id);
+        $update_contact->status = 1;
+        $update_contact->save();
+        return redirect()->route('admin.contact.show',$update_contact->id);
+
     }
 
     /**
@@ -79,6 +88,8 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Contact::find($id)->delete();
+        Flashy::success('Le Message a ete supprimer');
+        return redirect()->route('admin.contact.index');
     }
 }

@@ -2,26 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Admin\Option;
 use Illuminate\Http\Request;
-use App\Model\Admin\Commission;
 use App\Http\Controllers\Controller;
 
-class PersonnelController extends Controller
+class OptionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-    
     public function index()
     {
-        $commission = Commission::all();
-        return view('admin.personnel.index',compact('commission'));
+            
+            return view('admin.option.index');
+     
     }
 
     /**
@@ -42,9 +38,7 @@ class PersonnelController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $this->validate($request,[
-
-        ]);
+        //
     }
 
     /**

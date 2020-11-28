@@ -5,17 +5,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Text Editors
-        <small>Advanced form element</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">Editors</li>
-      </ol>
-    </section>
+
 
     <!-- Main content -->
     <section class="content">
@@ -27,7 +17,7 @@
         <!-- les inputs -->
 
              <!-- general form elements -->
-             <div class="box box-primary">
+             <div class="">
             <div class="box-header with-border">
               <h3 class="box-title">Permissions</h3>
             </div>
@@ -42,13 +32,13 @@
               <div class="col-lg-6  col-lg-offset-3">
                 
                   <div class="form-group">
-                      <label for="name">Permission Name</label>
+                  <label for="name">Nom De La Permission</label>
                       <input type="text" class="form-control" value="{{ $permission->name }}" id="name" name="name" placeholder="">
                     </div>
 
 
                     <div class="form-group">
-                      <label for="for">Permission For</label>
+                      <label for="for">Permission Pour</label>
                       <select name="for" id="for" class="form-control" >
                           <option selected disable > Select Permission For </option>
                           <option value="user">User</option>
@@ -60,8 +50,8 @@
                     <!-- /.box-body -->
       
                     <div class=" form-group">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                      <a  href="{{ route('admin.permission.index') }}" class="btn btn-warning">Back</a>
+                      <button type="submit" class="btn btn-primary">Modifier</button>
+                      <a  href="{{ route('admin.permission.index') }}" class="btn btn-warning">Retoure</a>
                     </div>
                 </div>
 

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Model\Admin\Ancien;
-use App\Model\Admin\Nouveau;
+use App\Model\User\Ancien;
+use App\Model\User\Nouveau;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
+use App\Model\User\Recasement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Recasement_ancien;
+use App\Model\User\Recasement_nouveau;
 
 class RecasementController extends Controller
 {
@@ -49,22 +52,46 @@ class RecasementController extends Controller
         ]);
         if ($request->status == 1) {
             $nouveaux = Nouveau::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1])->first();
-                  
-            $nouveaux->recasement = 1;
-            $nouveaux->immeuble_rec = $request->immeuble;
-            $nouveaux->save();
-            Flashy::success('Votre Inscription a ete valider');
-            return back();
-                
             
+            if ($nouveaux) {
+                // dd($request->all());
+                $nouveaux_recaser = new Recasement;
+                $nouveaux_recaser->nom = $nouveaux->nom;
+                $nouveaux_recaser->prenom = $nouveaux->prenom;
+                $nouveaux_recaser->email = $nouveaux->email;
+                $nouveaux_recaser->phone = $nouveaux->phone;
+                $nouveaux_recaser->image = $nouveaux->image;
+                $nouveaux_recaser->immeuble_id = $request->immeuble;
+                $nouveaux_recaser->status = 0;
+                $nouveaux_recaser->recaser = 0;
+                $nouveaux_recaser->save();
+                Flashy::success('Votre Inscription a ete valider');
+                return back();
+            } else {
+                Flashy::error('Vous n\'aviez pas codifier');
+                return back();
+            }
+
         }elseif ($request->status == 2) {
             $anciens = Ancien::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1])->first();
-                  
-            $anciens->recasement = 1;
-            $anciens->immeuble_rec = $request->immeuble;
-            $anciens->save();
-            Flashy::success('Votre Inscription a ete valider');
-            return back();
+            if ($anciens) {
+                dd($request->all());
+                $anciens_recaser = new Recasement;
+                $anciens_recaser->nom = $anciens->nom;
+                $anciens_recaser->prenom = $anciens->prenom;
+                $anciens_recaser->email = $anciens->email;
+                $anciens_recaser->phone = $anciens->phone;
+                $anciens_recaser->image = $anciens->image;
+                $anciens_recaser->immeuble_id = $request->immeuble;
+                $anciens_recaser->status = 0;
+                $anciens_recaser->recaser = 0;
+                $anciens_recaser->save();
+                Flashy::success('Votre Inscription a ete valider');
+                return back();
+            } else {
+                Flashy::error('Vous n\'aviez pas codifier');
+                return back();
+            }
         }
     }
 

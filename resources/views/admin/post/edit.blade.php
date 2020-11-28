@@ -29,16 +29,13 @@
         <!-- les inputs -->
 
              <!-- general form elements -->
-             <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Titles</h3>
-            </div>
-            @include('includes.message')
+             <div class="">
+            <!-- @include('includes.message') -->
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" action="{{route('admin.post.update',$post->id)}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
-              {{ method_field('PATCH') }}
+              {{ method_field('PUT') }}
               
               <div class="box-body">
 
@@ -46,17 +43,17 @@
 
                   
                   <div class="form-group">
-                      <label for="title">Post Title</label>
+                      <label for="title">Titre De L'article</label>
                       <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" placeholder="">
                     </div>
                     
                     <div class="form-group">
-                        <label for="subtitle">SubTitle</label>
+                        <label for="subtitle">Sous Titre De L'article</label>
                         <input type="text" class="form-control" value="{{ $post->subtitle }}"  id="subtitle" name="subtitle" placeholder="">
                     </div>
                     
                     <div class="form-group">
-                        <label for="slug">Post Slug</label>
+                        <label for="slug">Slug De L'article</label>
                         <input type="text" class="form-control" value="{{$post->slug}}" id="slug" name="slug" placeholder="">
                     </div>
 
@@ -69,7 +66,7 @@
                 <div class="form-group">
                     <br>
                   <div class="pull-right">
-                        <label for="image">File input</label>
+                        <label for="image">Image De L'article</label>
                         <input type="file"  id="image" value="" name="image" >
                     </div>
                  
@@ -79,15 +76,39 @@
                             <input type="checkbox" value="1"  name="status"  
                             @if ($post->status == 1) {{ 'checked' }} @endif > 
                             
-                            Publish
+                            Publier
                         </label>
                     </div>
                   </div>
+
+
+                        <!-- debut des categories  -->
+                        <br><br>
+                <div class="form-group">
+                <label>Selectioner La Categorie De L'article</label>
+                <select class="form-control select2" name="category[]" multiple="multiple" data-placeholder="Select a State"
+                  style="width: 100%;">
+                  @foreach($categorys as $category)
+                  <option 
+                  
+                  @foreach($post->categories as $postCat)
+
+                    @if($postCat->id == $category->id)
+                        selected
+                    @endif
+
+                    @endforeach
+                  
+                  value="{{ $category->id }}"> {{ $category->name }} </option>
+                  @endforeach
+                </select>
+              </div>
+                <!-- fin des categories -->
                   <!-- debut des tag  -->
-                  <br><br>
+                
                   <div class="form-group"  >
                     
-                <label>Select Tag</label>
+                <label>Selectioner Le Tag De L'article</label>
                 <select class="form-control select2" name="tags[]" multiple="multiple" data-placeholder="Select a State"
                   style="width: 100%;">
                   <!-- boucle d'affichage de tegs -->
@@ -111,28 +132,6 @@
               </div>
                 <!-- fin des tag -->
 
-                        <!-- debut des categories  -->
-                        
-                <div class="form-group">
-                <label>Select Tag</label>
-                <select class="form-control select2" name="category[]" multiple="multiple" data-placeholder="Select a State"
-                  style="width: 100%;">
-                  @foreach($categorys as $category)
-                  <option 
-                  
-                  @foreach($post->categories as $postCat)
-
-                    @if($postCat->id == $category->id)
-                        selected
-                    @endif
-
-                    @endforeach
-                  
-                  value="{{ $category->id }}"> {{ $category->name }} </option>
-                  @endforeach
-                </select>
-              </div>
-                <!-- fin des categories -->
                 </div>
               </div>
 
@@ -141,24 +140,15 @@
 
                 <!-- le textarea -->
 
-                <div class="box">
+                <div class="">
             <div class="box-header">
-              <h3 class="box-title">Writw Post Body here
-                <small>Simple and fast</small>
+              <h3 class="box-title">Description de Votre Article
               </h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                  <i class="fa fa-minus"></i></button>
-              
-              </div>
-              <!-- /. tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
             
-                <textarea id="editor1"name="body" placeholder="Place some text here"
+                <textarea id="editor1"name="body" class="textarea" placeholder="Place some text here"
                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->body }}</textarea>
           
             </div>
@@ -170,9 +160,9 @@
 
               <!-- /.box-body -->
 
-              <div class="box-footer form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Back</a>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Modifier</button>
+                <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Retoure</a>
               </div>
             </form>
           </div>

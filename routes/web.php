@@ -16,8 +16,13 @@ Route::group(['namespace' => 'User'],function(){
     Route::resource('/formation','FormationController');
 
     Route::resource('/service','ServiceController');
+   
 
     Route::resource('/about','AboutController');
+    Route::resource('/article','ArticleController');
+    Route::resource('/comment','CommentController');
+    Route::get('/category/{id}','ArticleController@category')->name('article.category');
+    Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
 
     Route::resource('/realisation','RealisationController');
 });
@@ -34,10 +39,12 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/tag', 'Admin\TagController');
         Route::resource('/permission','Admin\PermissionController');
         Route::resource('/role','Admin\RoleController');
+        Route::resource('/option','Admin\OptionController');
         // Fin de tout ce qui est blog
 
         // Tout ce qui est Parametre
         Route::resource('/info', 'Admin\InfoController');
+        Route::resource('/team', 'Admin\TeamController');
         Route::resource('/partener', 'Admin\PartenerController');
         Route::resource('/gallery', 'Admin\GalleryController');
         Route::resource('/social', 'Admin\SocialController');
@@ -63,9 +70,10 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/chambre', 'Admin\ChambreController');
         Route::resource('/departement', 'Admin\DepartementController');
         Route::resource('/localite', 'Admin\LocaliteController');
-        Route::resource('/admission', 'Admin\AdmissionController');
+        Route::resource('/inscription', 'Admin\InscriptionController');
         Route::resource('/codification', 'Admin\CodificationController');
-        Route::put('/codification/{id}/codifier_ancien', 'Admin\CodificationController@codifier_ancien')->name('codifier_ancien');
+        Route::put('/ancien/{id}/codifier_ancien', 'Admin\AncienController@codifier_ancien')->name('codifier_ancien');
+        Route::put('/nouveau/{id}/codifier_nouveau', 'Admin\NouveauController@codifier_nouveau')->name('codifier_nouveau');
         Route::resource('/recasement', 'Admin\RecasementController');
         Route::resource('/comission', 'Admin\ComissionController');
         Route::resource('/posteCommission', 'Admin\PosteCommissionController');

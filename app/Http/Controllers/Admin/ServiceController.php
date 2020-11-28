@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Admin\Service;
+use MercurySeries\Flashy\Flashy;
+use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
 {
@@ -19,7 +21,8 @@ class ServiceController extends Controller
     
     public function index()
     {
-        return view('admin.service.index');
+        $service_all = Service::all();
+        return view('admin.service.index',compact('service_all'));
     }
 
     /**
@@ -40,8 +43,27 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $this->validate($request,[
+            'libele' => 'required|string',
+            'icon' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+            'resume' => 'required|string',
+        ]);
+
+        $add_service = new Service();
+        if ($request->hasFile('icon')) {
+            $imageName = $request->icon->store('public/service');
+        }
+
+        $add_service->libele = $request->libele;
+        $add_service->description = $request->resume;
+        $add_service->status = $request->status;
+        $add_service->icon = $imageName;
+        $add_service->save();
+        Flashy::success('Votre service a ete ajoute');
+        return redirect()->route('admin.service.index');
     }
+
+   
 
     /**
      * Display the specified resource.
@@ -62,8 +84,10 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_service = Service::find($id);
+        return view('admin.service.edite',compact('edit_service'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -74,7 +98,19 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_service = Service::find($id);
+        if ($request->hasFile('icon')) {
+            $imageName = $request->icon->store('public/service');
+        }elseif ($request->icon == Null){
+            $imageName = $update_service->icon;
+        }
+        $update_service->libele = $request->libele;
+        $update_service->description = $request->resume;
+        $update_service->status = $request->status;
+        $update_service->icon = $imageName;
+        $update_service->save();
+        Flashy::success('Votre Service a ete modifier');
+        return redirect()->route('admin.service.index');
     }
 
     /**
@@ -85,6 +121,8 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Service::find($id)->delete();
+        Flashy::success('Votre service a ete supprimer');
+        return back();
     }
 }

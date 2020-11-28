@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model\User;
 
 use App\Model\Admin\Chambre;
 use App\Model\Admin\Commune;
@@ -20,4 +20,5 @@ class Ancien extends Model
     public function chambre(){
         return $this->belongsTo(Chambre::class);
     }
+
 }

@@ -17,7 +17,7 @@ class CreateRealisationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nom');
             $table->date('date');
-            $table->string('contenu');
+            $table->text('contenu');
             $table->string('image');
             $table->boolean('status')->default(true);
             $table->timestamps();

@@ -19,18 +19,16 @@ class CreateAnciensTable extends Migration
             $table->string('prenom');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->string('extrait');
+            $table->string('bac');
             $table->string('certificat');
             $table->string('image');
             $table->string('photocopie');
-            $table->integer('commune_id');
-            $table->integer('immeuble_id');
+            $table->integer('commune_id')->default(null);
+            $table->integer('immeuble_id')->default(null);
             $table->boolean('status')->default(false);
             $table->boolean('codifier')->default(false);
-            $table->integer('prix');
-            $table->integer('chambre_id');
-            $table->integer('immeuble_rec')->default(false);
-            $table->integer('recasement')->default(false);
+            $table->integer('prix')->default(null);
+            $table->integer('chambre_id')->default(null);
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Model\Admin\Ancien;
+use App\Model\User\Ancien;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use App\Model\Admin\Departement;
@@ -48,10 +48,10 @@ class AncienController extends Controller
             'phone' => 'required|unique:anciens|numeric',
             'commune' => 'required|numeric',
             'immeuble' => 'required|numeric',
-            'extrait' => 'required|mimes:docx,pdf,PDF,DOCx',
-            'certificat' => 'required|mimes:docx,pdf,PDF,DOCx',
+            'extrait' => 'required|mimes:PDF,pdf',
+            'certificat' => 'required|mimes:pdf,PDF',
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
-            'photocopie' => 'required|mimes:docx,pdf,PDF,DOCx',
+            'photocopie' => 'required|mimes:pdf,PDF',
         ]);
         // dd($request->all());
         $add_ancien = new Ancien;
@@ -76,7 +76,7 @@ class AncienController extends Controller
         $add_ancien->email = $request->email;
         $add_ancien->phone = $request->phone;
         $add_ancien->image = $imageName;
-        $add_ancien->extrait = $extraitName;
+        $add_ancien->bac = $extraitName;
         $add_ancien->certificat = $certificatName;
         $add_ancien->photocopie = $photocopieName;
         $add_ancien->commune_id = $request->commune;

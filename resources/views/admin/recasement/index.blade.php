@@ -15,7 +15,7 @@
       <!-- Default box -->
       <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Liste Des Nouveaux Bacheliers</h3>
+              <h3 class="box-title">Liste Des Inscriptions De recasement</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -25,12 +25,7 @@
                   <th>Image</th>
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
-                  <th>Recaser A</th>
-                  @foreach($nouveau_bac as $ancien)
-                  @if($ancien->immeuble_rec > 0)
                   <th>Immeuble Choisi</th>
-                  @endif
-                  @endforeach
                   <th>Options</th>
                 </tr>
                 </thead>
@@ -40,27 +35,31 @@
                     <td><img src="{{ Storage::url($nouveau->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
                     <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                     <td>{{ $nouveau->phone }}</td>
-                    <td>@foreach($nouveau->chambre->immeubles as $chmb)
-                    {{ $chmb->name }}
-                    @endforeach
-                    : <span>{{ $nouveau->chambre->nom }}</span>
+                    <td>{{ $nouveau->immeuble->name }}</td>
                     </td>
-                    @if($nouveau->immeuble_rec > 0)
                     <td>
-                      @foreach($immeubles as $immb)
-                        @if($immb->id == $nouveau->immeuble_rec)
-                        {{ $immb->name }}
-                        @endif
-                      @endforeach
+                     
+                      <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.recasement.show',$nouveau->id) }}">Recaser <i class="fa fa-edit"></i></a></span>
+                   
+                      <form id="delete-form-{{$nouveau->id}}" method="post" action="{{ route('admin.recasement.destroy',$nouveau->id) }}" style="display:none">
+                      {{csrf_field()}}
+                      {{method_field('delete')}}
+                      </form>
+                      <span class=""><a class="btn btn-danger btn-xs text-center" 
+                      onclick="
+                      if(confirm('Etes Vous Sur De Supprimer Cet Etudiant ?')){
+
+                      event.preventDefault();document.getElementById('delete-form-{{$nouveau->id}}').submit();
+
+                      }else{
+
+                        event.preventDefault();
+
+                      }
+                      
+                      "><i class="fa fa-trash"> Supprimer</i></a></span>
+                  
                     </td>
-                    @endif
-                    <td class="text-center">
-                    @if($nouveau->codifier == 1 && $nouveau->recasement == 2)
-                      <span class="text-success">Deja Recaser</span> 
-                      @elseif($nouveau->codifier == 1 && $nouveau->recasement == 1)
-                      <span class="pull-right"><a class="btn btn-success btn-xs text-center mr-3" href="{{ route ('admin.recasement.show',$nouveau->id) }}">Recaser <i class="fa fa-edit"></i></a></span>
-                    </td>
-                    @endif
                   </tr>
                 @endforeach
                 </tbody>
@@ -69,16 +68,12 @@
                   <th>Image</th>
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
-                  <th>Recaser A</th>
-                  @foreach($nouveau_bac as $ancien)
-                  @if($ancien->immeuble_rec > 0)
                   <th>Immeuble Choisi</th>
-                  @endif
-                  @endforeach
                   <th>Options</th>
                 </tr>
                 </tfoot>
               </table>
+              {{ $nouveau_bac->links() }}
             </div>
             <!-- /.box-body -->
           </div>
@@ -88,6 +83,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
 
 
 @endsection

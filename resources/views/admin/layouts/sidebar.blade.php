@@ -36,6 +36,7 @@
           <ul class="treeview-menu">
           <li><a href="{{ route ('admin.info.index') }}"><i class="fa fa-circle-o text-red"></i> <span>Infos_part_reseau</span></a></li>
         <li><a href="{{ route ('admin.gallery.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Galleries_slider</span></a></li>
+        <li><a href="{{ route ('admin.option.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>option</span></a></li>
           </ul>
         </li>
 
@@ -48,7 +49,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-        <li><a href="{{ route ('admin.personnel.index') }}"><i class="fa fa-circle-o text-red"></i> <span>Personnele</span></a></li>
+        <li><a href="{{ route ('admin.team.index') }}"><i class="fa fa-circle-o"></i> <span>Personnelle</span></a></li>
             <li><a href="{{ route ('admin.admin.index') }}"><i class="fa fa-circle-o"></i>Admins</a></li>
             <li class=""><a href="{{route('admin.role.index')}}"><i class="fa fa-circle-o"></i> Roles</a></li>
             <li class=""><a href="{{route('admin.permission.index')}}"><i class="fa fa-circle-o"></i> Permissions</a></li>
@@ -89,29 +90,44 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Codifications</span>
+            <i class="fa fa-edit"></i> <span>Inscription Codification</span>
             <span class="pull-right-container">
             <span class="label label-warning pull-right">4</span>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route ('admin.nouveau.index') }}"><i class="fa fa-circle-o"></i> Nouveaux</a></li>
-            <li><a href="{{ route ('admin.ancien.index') }}"><i class="fa fa-circle-o"></i> Anciens</a></li>
+            <li><a href="{{ route ('admin.ancien.index') }}"><i class="fa fa-circle-o"></i> Anciens </a></li>
           </ul>
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Recasements</span>
+            <i class="fa fa-edit"></i> <span>Etudiant Codifier</span>
             <span class="pull-right-container">
             <span class="label label-warning pull-right">4</span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route ('admin.recasement.index') }}"><i class="fa fa-circle-o"></i> Nouveaux</a></li>
-            <li><a href="{{ route ('admin.recasement.create') }}"><i class="fa fa-circle-o"></i> Anciens</a></li>
+            <li><a href="{{ route ('admin.codification.index') }}"><i class="fa fa-circle-o"></i>Nouveaux</a></li>
+            <li><a href="{{ route ('admin.codification.create') }}"><i class="fa fa-circle-o"></i> Anciens </a></li>
           </ul>
         </li>
+
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Recasement</span>
+            <span class="pull-right-container">
+            <span class="label label-warning pull-right">4</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.recasement.index') }}"><i class="fa fa-circle-o"></i> Etudiant Incrits</a></li>
+            <li><a href="{{ route ('admin.recasement.create') }}"><i class="fa fa-circle-o"></i> Etudiant Recaser</a></li>
+          </ul>
+        </li>
+
 
         <li class="treeview">
           <a href="#">

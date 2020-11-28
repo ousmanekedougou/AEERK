@@ -1,25 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Model\User\Comment;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
+use App\Http\Controllers\Controller;
 
-class AdmissionController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-    
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -29,9 +26,8 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('admin.admission.create');
+        //
     }
-    
 
     /**
      * Store a newly created resource in storage.
@@ -41,7 +37,20 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $validator = $this->validate($request,[
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'comment' => 'required|string',
+        ]);
+
+        $comment = new Comment;
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->comment = $request->comment;
+        $comment->post_id = $request->post_id;
+        $comment->save();
+        Flashy::success('Votre commentaire a ete ajouter');
+        return back();
     }
 
     /**
@@ -52,7 +61,7 @@ class AdmissionController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

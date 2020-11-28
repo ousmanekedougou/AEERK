@@ -106,7 +106,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_post = Post::find($id);
+        return view('admin.post.show',compact('show_post'));
     }
 
     /**
@@ -137,35 +138,20 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'title' => 'required',
-            'subtitle' => 'required',
-            'slug' => 'required',
-            'image' => 'required',
-            'body' => 'required'
-        ]);
+     
         $post = Post::find($id);
         $imgdel = $post->image;
-        if($request->has('image')){
-            //On enregistre l'image dans un dossier
-            $image = $request->file('image');
-            //Nous allons definir le nom de notre image en combinant le nom du produit et un timestamp
-            $image_name = Str::slug($request->input('name')).'_'.time();
-            //Nous enregistrerons nos fichiers dans /uploads/images dans public
-            $folder = '/uploads/Post/';
-            //Nous allons enregistrer le chemin complet de l'image dans la BD
-            $post->image = $folder.$image_name.'.'.$image->getClientOriginalExtension();
-            //Maintenant nous pouvons enregistrer l'image dans le dossier en utilisant la methode uploadImage();
-            $this->uploadImage($image, $folder, 'public', $image_name);
+   
+        if($request->hasFile('image'))
+        {
+           $imageName = $request->image->store('public/Article');
         }
-        // if($request->hasFile('image'))
-        // {
-        //    $imageName = $request->image->store('public');
-        // }
+        else{ $imageName = $post->image; }
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->status = $request->status;
+        $post->image = $imageName;
         $post->body = $request->body;
         $post->save();
         $post->tags()->sync($request->tags);

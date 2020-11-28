@@ -16,10 +16,7 @@
         <!-- les inputs -->
 
              <!-- general form elements -->
-             <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Titles</h3>
-            </div>
+             <div class="">
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" action="{{route('admin.post.store')}}" method="post" enctype="multipart/form-data">
@@ -31,17 +28,17 @@
 
                   
                   <div class="form-group">
-                      <label for="title">Post Title</label>
+                      <label for="title">Titre De L'article</label>
                       <input type="text" class="form-control" id="title" name="title" placeholder="">
                     </div>
                     
                     <div class="form-group">
-                        <label for="subtitle">SubTitle</label>
+                        <label for="subtitle">Sous Titre De L'article</label>
                         <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="">
                     </div>
-                    
+                   
                     <div class="form-group">
-                        <label for="slug">Post Slug</label>
+                        <label for="slug">Slug De L'article</label>
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="">
                     </div>
                     
@@ -52,22 +49,34 @@
                 <div class="form-group">
                     <br>
                   <div class="pull-right">
-                        <label for="image">File input</label>
+                        <label for="image">Image De L'article</label>
                         <input type="file" id="image" value="" name=image>
                     </div>
                  
                     <div class="checkbox pull-left">
                         <label>
                           
-                            <input type="checkbox" value="1" name="status"> Publish
+                            <input type="checkbox" value="1" name="status"> Publier
                         </label>
                     </div>
                   </div>
+                            <!-- debut des categories  -->
+                            <br><br>
+                <div class="form-group">
+                <label>Category De L'article</label>
+                <select class="form-control select2" name="category[]" multiple="multiple" data-placeholder="Select a State"
+                  style="width: 100%;">
+                  @foreach($categorys as $category)
+                  <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                  @endforeach
+                </select>
+              </div>
+                <!-- fin des categories -->
                   <!-- debut des tag  -->
-                  <br><br>
+              
                   <div class="form-group"  >
                     
-                <label>Select Tag</label>
+                <label>Etiquete De L'article</label>
                 <select class="form-control select2"  name="tags[]" multiple="multiple" data-placeholder="Select a State"
                   style="width: 100%;">
                   @foreach($tags as $tag)
@@ -77,18 +86,7 @@
               </div>
                 <!-- fin des tag -->
 
-                        <!-- debut des categories  -->
-                        
-                <div class="form-group">
-                <label>Select Tag</label>
-                <select class="form-control select2" name="category[]" multiple="multiple" data-placeholder="Select a State"
-                  style="width: 100%;">
-                  @foreach($categorys as $category)
-                  <option value="{{ $category->id }}"> {{ $category->name }} </option>
-                  @endforeach
-                </select>
-              </div>
-                <!-- fin des categories -->
+              
               </div>
               </div>
 
@@ -96,12 +94,12 @@
 
               
             <div class="box-header">
-                <small>Descriptin de votre article</small>
+                <h3>Description de votre article</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
             
-                <textarea id="editor1" name="body" placeholder="Place some text here"
+                <textarea id="editor1" name="body" placeholder=""
                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           
             </div>

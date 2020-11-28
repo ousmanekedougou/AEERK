@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\Ancien;
+use App\Model\User\Ancien;
 use Illuminate\Http\Request;
+use App\Model\Admin\Immeuble;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Codification_ancien;
+use Illuminate\Support\Facades\Storage;
 
 class AncienController extends Controller
 {
@@ -21,8 +24,8 @@ class AncienController extends Controller
      */
     public function index()
     {
-        $anciens = Ancien::all();
-        return view('admin.ancien.index',compact('anciens'));
+        $ancien_bac = Ancien::where('codifier',0)->paginate(10);
+        return view('admin.ancien.index',compact('ancien_bac'));
     }
 
     /**
@@ -67,7 +70,9 @@ class AncienController extends Controller
      */
     public function edit($id)
     {
-        //
+        $immeubles = Immeuble::where('status',true)->get();
+        $show_ancien = Ancien::find($id);
+        return view('admin.ancien.create',compact('immeubles','show_ancien'));
     }
 
     /**
@@ -85,6 +90,7 @@ class AncienController extends Controller
         $photocopieName = '';
         $certificatName = '';
         $statusValide = '';
+        $imgdel = $update_ancien->image;
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Nouveau');
         }else{
@@ -93,7 +99,7 @@ class AncienController extends Controller
         if ($request->hasFile('extrait')) {
             $extraitName = $request->extrait->store('public/Ancien');
         }else{
-            $extraitName = $update_ancien->extrait;
+            $extraitName = $update_ancien->bac;
         }
         if ($request->hasFile('certificat')) {
             $certificatName = $request->certificat->store('public/Ancien');
@@ -111,11 +117,12 @@ class AncienController extends Controller
            $statusValide = 0;
         }
         $update_ancien->image = $imageName;
-        $update_ancien->extrait = $extraitName;
+        $update_ancien->bac = $extraitName;
         $update_ancien->certificat = $certificatName;
         $update_ancien->photocopie = $photocopieName;
         $update_ancien->status = $statusValide;
         $update_ancien->save();
+        // Storage::disk('public/Ancien')->delete($imgdel); 
         Flashy::success('Votre etudaint a ete consulter');
         return back();
     }
@@ -133,6 +140,20 @@ class AncienController extends Controller
         Flashy::success('Votre etudaint a ete consulter');
         return back();
     }
+    public function codifier_ancien(Request $request, $id){
+        // dd($request->all());
+        $validator = $this->validate($request , [
+            'chambre_id' => 'required|string',
+            'prix' => 'required|numeric',
+        ]);
+        $codifier_ancien = Ancien::where('id',$id)->first();
+        $codifier_ancien->chambre_id = $request->chambre_id;
+        $codifier_ancien->prix = $request->prix;
+        $codifier_ancien->codifier = 1;
+        $codifier_ancien->save();
+        Flashy::success('Votre etudiant a ete codifier');
+        return redirect()->route('admin.ancien.index');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -141,6 +162,8 @@ class AncienController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ancien::find($id)->delete();
+        Flashy::success('Votre Etudiant a ete Supprimer');
+        return back();
     }
 }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\Nouveau;
+use App\Model\User\Nouveau;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Codification_nouveau;
 
 class NouveauController extends Controller
 {
@@ -22,7 +23,7 @@ class NouveauController extends Controller
      */
     public function index()
     {
-        $nouveau_bac = Nouveau::all();
+        $nouveau_bac = Nouveau::where('codifier',0)->paginate(10);
         return view('admin.nouveau.index',compact('nouveau_bac'));
     }
 
@@ -68,7 +69,9 @@ class NouveauController extends Controller
      */
     public function edit($id)
     {
-        //
+        $immeubles = Immeuble::where('status',false)->first();
+        $show_nouveau = Nouveau::find($id);
+        return view('admin.nouveau.create',compact('immeubles','show_nouveau'));
     }
 
     /**
@@ -92,6 +95,7 @@ class NouveauController extends Controller
         $imageName = '';
         $photocopieName = '';
         $attestationName = '';
+        $releverName = '';
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Nouveau');
         }else{
@@ -111,6 +115,11 @@ class NouveauController extends Controller
             $photocopieName = $request->photocopie->store('public/Nouveau');
         }else{
             $photocopieName = $update_nouveau->photocopie;
+        }
+        if ($request->hasFile('relever')) {
+            $releverName = $request->relever->store('public/Nouveau');
+        }else{
+            $releverName = $update_nouveau->relever;
         }
         if ($request->status != Null) {
             $statusValide = $request->status;
@@ -142,6 +151,20 @@ class NouveauController extends Controller
         return back();
     }
 
+    public function codifier_nouveau(Request $request, $id){
+        $validator = $this->validate($request , [
+            'chambre_id' => 'required|string',
+            'prix' => 'required|numeric',
+        ]);
+        $codifier_nouveau = Nouveau::where('id',$id)->first();
+        $codifier_nouveau->chambre_id = $request->chambre_id;
+        $codifier_nouveau->prix = $request->prix;
+        $codifier_nouveau->codifier = 1;
+        $codifier_nouveau->save();
+        Flashy::success('Votre etudiant a ete codifier');
+        return redirect()->route('admin.nouveau.index');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -150,6 +173,8 @@ class NouveauController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Nouveau::find($id)->delete();
+        Flashy::success('Votre Etudiant a ete Supprimer');
+        return back();
     }
 }

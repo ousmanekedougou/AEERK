@@ -11,120 +11,119 @@
           <!-- Content Wrapper. Contains page content -->
           <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-    </section>
+ 
 
     <!-- Main content -->
     <section class="content">
-
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Posts</h3>
-          <a class="col-lg-offset-5 btn btn-success" href="{{ route('admin.post.create') }}">Add New Post</a>
-     
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body">
-                     <!-- debut de la table -->
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
-            </div>
-            <!-- /.box-header -->
+    <div class="">
+      <a class=" btn btn-success" href="{{ route('admin.post.create') }}">Ajouter Un Article</a>
+    </div>
+   
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr class="bg-black">
-                  <th>S.No</th>
-                  <th>Title</th>
-                  <th>Subtitle</th>
-                  <!-- <th>Slug</th> -->
-                  <th>Image</th>
-                  <th>Status</th>
-                  <th>Created At</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach($posts as $post)
-                  <tr>
-                  <th>{{ $loop->index +1 }}</th>
-                  <th>{{ $post->title }}</th>
-                  <th>{{ $post->subtitle }}</th>
-                  <th>{{ $post->image }}</th>
-                  <th>{{ $post->status }}</th>
-                  <th>{{ $post->created_at }}</th>
-                  <th><a href="{{ route('admin.post.edit',$post->id) }}"><i class="glyphicon glyphicon-edit"></i></a></th>
-              
-                  <th>
-                    <form id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}" style="display:none">
-                    {{csrf_field()}}
-                    {{method_field('delete')}}
-                    </form>
-                  <a href="" onclick="
-                    if(confirm('Are you sure , You want to delete this ?')){
+            <div class="row">
+                @foreach($posts as $post)
+                  <div class="col-lg-4">
+                    <!-- Attachment -->
+                      <div class="attachment-block clearfix">
+                        <img class="attachment-img" style="width:100%;auto;" src="{{ Storage::url($post->image) }}" alt="Attachment Image">
 
-                    event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
+                        <div class="attachment-pushed">
+                          <h5 class="attachment-heading">{{ $post->title }}</h5>
 
-                    }else{
+                          <div class="attachment-text">
+                            <p> <span>Sous Titre</span> <span>{{ $post->subtitle }}</span></p>
+                            <p> <span></span> <span>{{ $post->created_at }}</span></p>
+                          </div>
+                          <!-- /.attachment-text -->
+                        </div>
+                        <!-- /.attachment-pushed -->
+                      
+                      <div class="text-center">
+                        <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}"><i class="fa fa-eye btn btn-warning btn-xs"> Voire</i></a>
+                        <a href="{{ route('admin.post.edit',$post->id) }}"><i class="fa fa-edit btn btn-primary btn-xs"> Modifier</i></a>
+                          <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
+                              {{csrf_field()}}
+                              {{method_field('delete')}}
+                              </form>
+                            <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
 
-                      event.preventDefault();
-
-                    }
-                    
-                    "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                    </th>
-                  </tr>
-                  @endforeach
-                </tbody>
-                <tfoot>
-                <tr class="bg-black">
-                  <th>S.No</th>
-                  <th>Title</th>
-                  <th>Subtitle</th>
-                  <!-- <th>Slug</th> -->
-                  <th>Image</th>
-                  <th>Status</th>
-                  <th>Created At</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                </tfoot>
-              </table>
+                              }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger btn-xs"> Supprimer</i></a>
+                      </div>
+                      </div>
+                    <!-- /.attachment-block -->
+                  </div>
+                @endforeach
+              </div>
+             
             </div>
             <!-- /.box-body -->
-          </div>
-            <!-- fin de la table -->
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
 
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+
+          @foreach($posts as $post)
+            
+        <div class="modal fade" id="modal-default-chambre-{{ $post->id }}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Les Details De L'article {{ $post->title }}</h4>
+              </div>
+             
+                <div class="modal-body">
+                  <p>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <!-- Box Comment -->
+                        <div class="box box-widget">
+                          <div class="box-body">
+                            <img class="img-responsive pad" style="width:100%;auto;" src="{{ Storage::url($post->image) }}" alt="Photo">
+                            <!-- 
+                            <p>I took this photo this morning. What do you guys think?</p>
+                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->
+                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+
+                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-down"></i> Dislike</button>
+                            <span class="pull-right text-muted">127 likes - 3 comments</span>
+                          </div>
+                          <!-- /.box-body -->
+                          <div class="box-footer box-comments">
+                            <div class="box-comment">
+                              <div class="comment-text">
+                                    <span class="username">
+                                      Description
+                                      <span class="text-muted pull-right">  Publiere le : {{ $post->created_at->toFormattedDateString() }}</span>
+                                    </span>
+                                    <br>
+                                    {!! $post->body !!}
+                              </div>
+                              <!-- /.comment-text -->
+                            </div>
+                            <!-- /.box-comment -->
+                           
+                        
+                          </div>
+                     
+                        </div>
+                        <!-- /.box -->
+                      </div>
+                    </div>
+                  </p>
+                </div>
+            
+            </div>
+            
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+          @endforeach
 
 @endsection
 

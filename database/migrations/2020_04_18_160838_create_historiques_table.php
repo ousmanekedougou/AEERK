@@ -19,7 +19,7 @@ class CreateHistoriquesTable extends Migration
             $table->string('image');
             $table->date('date');
             $table->longText('description');
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

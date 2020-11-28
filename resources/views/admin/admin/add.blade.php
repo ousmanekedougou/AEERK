@@ -68,7 +68,7 @@
                       <div class="form-group">
                           <label class="col-form-label text-md-right" for="phone">Telephone</label>
                           <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
-                          @error('phone')
+                            @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong class="text-danger">{{ $message }}</strong>
                                 </span>

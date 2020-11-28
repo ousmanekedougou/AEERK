@@ -33,6 +33,48 @@
 				<div class="container">
 					<div class="section-top-border">
 						<div class="row">
+
+						<div class="col-lg-3 col-md-4 mt-sm-30 element-wrap">
+								<div class="single-element-widget">
+									<h3 class="mb-30">Switches</h3>
+									<div class="switch-wrap d-flex justify-content-between">
+										<p>01. Sample Switch</p>
+										<div class="primary-switch">
+											<input type="checkbox" id="default-switch">
+											<label for="default-switch"></label>
+										</div>
+									</div>
+									<div class="switch-wrap d-flex justify-content-between">
+										<p>02. Primary Color Switch</p>
+										<div class="primary-switch">
+											<input type="checkbox" id="primary-switch" checked>
+											<label for="primary-switch"></label>
+										</div>
+									</div>
+									<div class="switch-wrap d-flex justify-content-between">
+										<p>03. Confirm Color Switch</p>
+										<div class="confirm-switch">
+											<input type="checkbox" id="confirm-switch" checked>
+											<label for="confirm-switch"></label>
+										</div>
+									</div>
+								</div>
+								<div class="single-element-widget">
+									<h3 class="mb-30">Selectboxes</h3>
+									<div class="default-select" id="default-select">
+										<select>
+											<option value="1">English</option>
+											<option value="1">Spanish</option>
+											<option value="1">Arabic</option>
+											<option value="1">Portuguise</option>
+											<option value="1">Bengali</option>
+										</select>
+									</div>
+                				</div>
+                
+							</div>
+
+							
 							<div class="col-lg-8 col-md-8">
 								<h3 class="mb-30">S'inscrire Pour la codifications</h3>
 								<form action="{{ route('ancien.store') }}" method="POST" enctype="multipart/form-data">
@@ -40,6 +82,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
+											<label for="nom">Votre Nom</label>
 												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Votre Nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
 												@error('nom')
 													<span class="invalid-feedback" role="alert">
@@ -50,6 +93,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="mt-10">
+											<label for="prenom">Votre Prenom</label>
 												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="Votre Prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Prenom'" required class="single-input">
 												@error('prenom')
 													<span class="invalid-feedback" role="alert">
@@ -64,6 +108,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
+											<label for="email">Votre Adresse E-mail</label>
 												<input type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Votre Adresse E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Adresse Email'" required class="single-input">
 												@error('email')
 													<span class="invalid-feedback" role="alert">
@@ -74,6 +119,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="mt-10">
+											<label for="phone">Votre Numero De Telephone</label>
 												<input type="number" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Numero de telephone'" required class="single-input">
 												@error('phone')
 													<span class="invalid-feedback" role="alert">
@@ -87,8 +133,9 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="input-group-icon mt-10">
-													<div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+													<!-- <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div> -->
 												<div class="form-select" id="default-select">
+												<label for="commune">Votre Commune</label>
 													<select value="{{ old('commune') }}" class="form-control @error('commune') is-invalid @enderror" name="commune">
 														<option desable>Votre Commune</option>
 														@foreach($departement as $dep)
@@ -108,8 +155,9 @@
 										</div>
 										<div class="col-md-6">
 											<div class="input-group-icon mt-10">
-												<div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+												<!-- <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div> -->
 													<div class="form-select" id="default-select">
+													<label for="immeuble">Votre Immeuble De Choix</label>
 														<select value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" name="immeuble">
 															<option desable>Votre Immeuble</option>
 															@foreach($immeuble as $imb)
@@ -131,7 +179,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
-												<label for="">Charger Votre Extrait de Naissance</label>
+												<label for="">Votre Attestation Du Baccalaureat</label>
 												<input type="file" value="{{ old('extrait') }}" class="form-control @error('extrait') is-invalid @enderror" name="extrait" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('extrait')
 													<span class="invalid-feedback" role="alert">
@@ -183,45 +231,7 @@
 								</form>
 							</div>
 
-							<div class="col-lg-3 col-md-4 mt-sm-30 element-wrap">
-								<div class="single-element-widget">
-									<h3 class="mb-30">Switches</h3>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>01. Sample Switch</p>
-										<div class="primary-switch">
-											<input type="checkbox" id="default-switch">
-											<label for="default-switch"></label>
-										</div>
-									</div>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>02. Primary Color Switch</p>
-										<div class="primary-switch">
-											<input type="checkbox" id="primary-switch" checked>
-											<label for="primary-switch"></label>
-										</div>
-									</div>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>03. Confirm Color Switch</p>
-										<div class="confirm-switch">
-											<input type="checkbox" id="confirm-switch" checked>
-											<label for="confirm-switch"></label>
-										</div>
-									</div>
-								</div>
-								<div class="single-element-widget">
-									<h3 class="mb-30">Selectboxes</h3>
-									<div class="default-select" id="default-select">
-										<select>
-											<option value="1">English</option>
-											<option value="1">Spanish</option>
-											<option value="1">Arabic</option>
-											<option value="1">Portuguise</option>
-											<option value="1">Bengali</option>
-										</select>
-									</div>
-                				</div>
-                
-							</div>
+							
 
 						</div>
 					</div>

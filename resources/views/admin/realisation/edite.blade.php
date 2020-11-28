@@ -27,61 +27,63 @@
         
           <!-- general form elements -->
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Information des vos realisation</h3>
-            </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
-              <div class="box-body">
-
+            <div class="box-body">
+            
+              
               <!-- debu du row -->
               <div class="row">
-              <div class="col-lg-6">
+                  <form  method="Post" action="{{ route('admin.realisation.update',$edit_realisation->id) }}" enctype="multipart/form-data">
+              @csrf
+              {{method_field('PUT')}}
+                  <div class="col-lg-5">
+
                 <div class="form-group">
                     <label for="libele">Nom de la realisation</label>
-                    <input type="text" name='libale' class="form-control" id="exampleInputEmail1" placeholder="Le nom de votre service">
+                    <input type="text" name='libele'  value="{{ old('libele') ?? $edit_realisation->nom  }}" class="form-control @error('libele') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
+                    @error('libele')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
 
                   <div class="form-group">
-                    <label for="date">Categorie</label>
-                        <select name="" id="" class="form-control">
-                          <option value="">Culture</option>
-                          <option value="">Politique</option>
-                          <option value="">Sport</option>
-                        </select>
+                    <label for="date">Date de la realisation</label>
+                    <input type="date" name='date'  value="{{ old('date') ?? $edit_realisation->date }}" class="form-control @error('date') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
+                    @error('date')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
 
                   <div class="form-group">
-                    <label for="heure">Tags</label>
-                    <select name="" id="" class="form-control">
-                          <option value="">Danse</option>
-                          <option value="">Campagne</option>
-                          <option value="">Combat de lutte</option>
-                        </select>
-                  </div>
+                      <label for="image">Votre Image</label>
+                      <input type="file" name="image" value="{{ old('image')  }}" class="@error('image') is-invalid @enderror" id="exampleInputFile">
+                      @error('image')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                    @enderror
+                    </div>
+
+                  <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="1" name="status" 
+                            @if($edit_realisation->status == 1)
+                            checked
+                            @endif
+                        > Publier
+                      </label>
+                    </div>
 
                </div>
 
-                <div class="col-lg-6">
-                    <div class="form-group">
-                      <label for="image">Votre Image</label>
-                      <input type="file" name="icon" id="exampleInputFile">
-                    </div>
-                <br><br>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" name="status"> Publier
-                      </label>
-                    </div>
-                  </div>
-              </div>
-              <!-- fin du row -->
-
-              </div>
-              <!-- /.box-body -->
-
-          <div class="">
+                <div class="col-lg-7">
+                  
+                <div class="">
             <div class="box-header">
               <h3 class="box-title">Description
                 <small>Simple et bref</small>
@@ -89,16 +91,36 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
-              <form>
-                <textarea class="textarea" name="description" placeholder=""
-                          style="width: 100%; height: 280px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-              </form>
-            </div>
+             
+                    <textarea class="textarea" name="contenu" placeholder="" value="{{ old('contenu') ?? $edit_realisation->contenu }}" class="@error('contenu') is-invalid @enderror"
+                       style="width: 100%; height: 130px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                       {{ $edit_realisation->contenu }}
+                      </textarea>
+
+                      @error('contenu')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                    @enderror
+          
+                </div>
           </div>
+                  
+
+                  </div>
+
+              </div>
+              <!-- fin du row -->
+
+              </div>
+              <!-- /.box-body -->
+
+        
 
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-warning">Enregistrer</button>
+                <a href="{{ route('admin.realisation.index') }}" class="btn btn-warning">Retoure</a>
+                <button type="submit" class="btn btn-success">Enregistrer</button>
               </div>
             </form>
           </div>

@@ -18,6 +18,7 @@ class CreateServicesTable extends Migration
             $table->string('libele');
             $table->string('icon');
             $table->text('description');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

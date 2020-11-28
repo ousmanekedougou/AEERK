@@ -17,12 +17,13 @@ class CreateDocumentTable extends Migration
             $table->bigIncrements('id');
             $table->string('libele');
             $table->string('type');
-            $table->string('resume');
+            $table->text('resume');
             $table->string('image');
-            $table->boolean('status');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

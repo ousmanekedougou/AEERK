@@ -18,7 +18,11 @@ class CreateActivitesTable extends Migration
             $table->string('libele');
             $table->string('image');
             $table->text('description');
-            $table->string('status');
+            $table->dateTime('date');
+            $table->dateTime('date_fin');
+            $table->string('ville');
+            $table->string('adresse');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

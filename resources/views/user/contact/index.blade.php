@@ -65,21 +65,48 @@
 							</div>														
 						</div>
 						<div class="col-lg-8">
-							<form class="form-area contact-form text-right" id="myForm" action="mail.php" method="post">
+							<form class="form-area contact-form text-right"  action="{{ route('contact.store') }}" method="post">
+								@csrf
 								<div class="row">	
 									<div class="col-lg-6 form-group">
-										<input name="name" placeholder="Prenom & Nom" onfocus="this.placeholder = 'Prenom & Nom'" onblur="this.placeholder = 'Prenom & Nom'" class="common-input mb-20 form-control" required="" type="text">
+									<div class="form-group">
+										<input name="name" placeholder="Prenom & Nom" value="{{ old('name') }}"  onfocus="this.placeholder = 'Prenom & Nom'" onblur="this.placeholder = 'Prenom & Nom'" class="common-input mb-20 form-control  @error('name') is-invalid @enderror" required="" type="text">
+										@error('name')
+											<span class="invalid-feedback" role="alert">
+												<strong class="text-danger">{{ $message }}</strong>
+											</span>
+										@enderror
+									</div>
 									
-										<input name="email" placeholder="Votre adresse E-mail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre adresse E-mail'" class="common-input mb-20 form-control" required="" type="email">
+									<div class="form-group">
+									<input name="email" placeholder="Votre adresse E-mail"  value="{{ old('email') }}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre adresse E-mail'" class="common-input mb-20 form-control @error('email') is-invalid @enderror" required="" type="email">
+										@error('email')
+											<span class="invalid-feedback" role="alert">
+												<strong class="text-danger">{{ $message }}</strong>
+											</span>
+										@enderror
+									</div>
 
-										<input name="subject" placeholder="Votre Objet" onfocus="this.placeholder = 'Votre Objet'" onblur="this.placeholder = 'Votre Objet'" class="common-input mb-20 form-control" required="" type="text">
+									<div class="form-group">
+									<input name="subject" placeholder="Votre Objet" value="{{ old('subject') }}" onfocus="this.placeholder = 'Votre Objet'" onblur="this.placeholder = 'Votre Objet'" class="common-input mb-20 form-control @error('subject') is-invalid @enderror" required="" type="text">
+										@error('subject')
+											<span class="invalid-feedback" role="alert">
+												<strong class="text-danger">{{ $message }}</strong>
+											</span>
+										@enderror
+									</div>
 									</div>
 									<div class="col-lg-6 form-group">
-										<textarea class="common-textarea form-control" name="message" placeholder="Votre Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Messege'" required=""></textarea>				
+										<textarea class="common-textarea form-control @error('message') is-invalid @enderror" value="{{ old('message') }}" name="message" placeholder="Votre Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Messege'" required=""></textarea>				
+										@error('message')
+											<span class="invalid-feedback" role="alert">
+												<strong class="text-danger">{{ $message }}</strong>
+											</span>
+										@enderror
 									</div>
 									<div class="col-lg-12">
 										<div class="alert-msg" style="text-align: left;"></div>
-										<button class="genric-btn primary" style="float: right;">Envoyer Le Message</button>											
+										<button type="submit" class="genric-btn primary" style="float: right;">Envoyer Le Message</button>											
 									</div>
 								</div>
 							</form>	

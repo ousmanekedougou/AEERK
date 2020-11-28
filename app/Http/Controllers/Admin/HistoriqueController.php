@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Admin\Historique;
+use MercurySeries\Flashy\Flashy;
+use App\Http\Controllers\Controller;
 
 class HistoriqueController extends Controller
 {
-    
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -18,10 +19,17 @@ class HistoriqueController extends Controller
         $this->middleware('auth:admin');
     }
     
-    public function index() {
-        return view('admin.historique.index');
+    public function index()
+    {
+        $historique_all = Historique::all();
+        return view('admin.historique.index',compact('historique_all'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('admin.historique.add');
@@ -35,8 +43,29 @@ class HistoriqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $this->validate($request,[
+            'libele' => 'required|string',
+            'date' => 'required',
+            'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+            'resume' => 'required|string',
+        ]);
+
+        $add_historique = new Historique();
+        if ($request->hasFile('image')) {
+            $imageName = $request->image->store('public/historique');
+        }
+
+        $add_historique->nom = $request->libele;
+        $add_historique->date = $request->date;
+        $add_historique->description = $request->resume;
+        $add_historique->status = $request->status;
+        $add_historique->image = $imageName;
+        $add_historique->save();
+        Flashy::success('Votre historique a ete ajoute');
+        return redirect()->route('admin.historique.index');
     }
+
+   
 
     /**
      * Display the specified resource.
@@ -57,7 +86,8 @@ class HistoriqueController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_historique = Historique::find($id);
+        return view('admin.historique.edite',compact('edit_historique'));
     }
 
     /**
@@ -69,7 +99,20 @@ class HistoriqueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_historique = Historique::find($id);
+        if ($request->hasFile('image')) {
+            $imageName = $request->image->store('public/historique');
+        }elseif ($request->image == Null){
+            $imageName = $update_historique->image;
+        }
+        $update_historique->nom = $request->libele;
+        $update_historique->date = $request->date;
+        $update_historique->description = $request->resume;
+        $update_historique->status = $request->status;
+        $update_historique->image = $imageName;
+        $update_historique->save();
+        Flashy::success('Votre historique a ete modifier');
+        return redirect()->route('admin.historique.index');
     }
 
     /**
@@ -80,7 +123,8 @@ class HistoriqueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Historique::find($id)->delete();
+        Flashy::success('Votre historique a ete supprimer');
+        return back();
     }
-
 }

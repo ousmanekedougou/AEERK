@@ -9,50 +9,31 @@
           <!-- Content Wrapper. Contains page content -->
           <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-    </section>
+ 
 
     <!-- Main content -->
     <section class="content">
 
       <!-- Default box -->
-      <div class="box">
+      <div class="">
         <div class="box-header with-border">
-          <h3 class="box-title">Tags</h3>
-          <a  data-toggle="modal" data-id="#tag" data-name="tag" data-target="#modal-tag-add" class="col-lg-offset-5 btn btn-success" href="">Add New Tags</a>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
+          <h3 class="box-title">Etiquettes</h3>
+          <a  data-toggle="modal" data-id="#tag" data-name="tag" data-target="#modal-tag-add" class="col-lg-offset-5 btn btn-success" href="">Ajouter Une Etiquette</a>
+   
         </div>
         <div class="box-body">
                     <!-- debut de la table -->
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
-            </div>
+          <div class="">
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>S.No</th>
-                  <th>Tag Name</th>
+                <th>Num</th>
+                  <th>Etiquette</th>
                   <th>Slug</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Modifier</th>
+                  <th>Supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -85,23 +66,22 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>S.No</th>
-                  <th>Tag Name</th>
+                  <th>Num</th>
+                  <th>Etiquette</th>
                   <th>Slug</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Modifier</th>
+                  <th>Supprimer</th>
                 </tr>
                 </tfoot>
               </table>
+              {{ $tags->links() }}
             </div>
             <!-- /.box-body -->
           </div>
             <!-- fin de la table -->
         </div>
         <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
+       
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->

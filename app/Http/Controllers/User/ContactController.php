@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Model\User\Contact;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
@@ -36,23 +37,23 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-         $validator = $this->validate($request,[
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email|unique:admissions',
-            'subject' => 'required',
-            'message' => 'required',
+        
+        $validator = $this->validate($request,[
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'subject' => 'required|string',
+            'message' => 'required|string'
         ]);
-
         $contact = new Contact;
-        $contact->nom = $request->firstname;
-        $contact->prenom = $request->lastname;
+        $contact->nom = $request->name;
         $contact->email = $request->email;
         $contact->subject = $request->subject;
         $contact->message = $request->message;
         $contact->save();
-        return redirect(route('contact.index'))->with('message','Votre message a ete poster');
+        Flashy::success('Votre Message a ete Poster');
+        return redirect()->route('contact.index');
     }
+
 
     /**
      * Display the specified resource.

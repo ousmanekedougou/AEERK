@@ -192,7 +192,7 @@
                   <div class="pull-left">
                   <a style="margin-right:5px;" href="{{ route('admin.nouveau.index') }}" class="btn btn-warning btn-xs"><i class="fa fa-share"></i> Retoure</a>
                       @if($show_nouveau->status == 1)
-                      <a style="margin-right:5px;"  class="btn btn-success btn-xs" href="{{ route ('admin.codification.edit',$show_nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a>
+                      <a style="margin-right:5px;"  class="btn btn-success btn-xs" href="{{ route ('admin.nouveau.edit',$show_nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a>
                       @endif
                   </div>
                       <!-- <a href="#"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>

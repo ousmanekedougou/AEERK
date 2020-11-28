@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\Ancien;
-use App\Model\Admin\Nouveau;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
+use App\Model\User\Recasement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Recasement_ancien;
+use App\Model\User\Recasement_nouveau;
 
 class RecasementController extends Controller
 {
@@ -24,7 +25,7 @@ class RecasementController extends Controller
     public function index()
     {
         $immeubles = Immeuble::all();
-        $nouveau_bac = Nouveau::where(['recasement'=>1,'recasement'=>2])->get();
+        $nouveau_bac = Recasement::where('status', '=', 0)->where('recaser','=',0)->paginate(10);
         return view('admin.recasement.index',compact('nouveau_bac','immeubles'));
     }
 
@@ -36,8 +37,8 @@ class RecasementController extends Controller
     public function create()
     {
         $immeubles = Immeuble::all();
-        $ancien_bac = Ancien::where(['recasement'=>1,'recasement'=>2])->get();
-        return view('admin.recasement.index1',compact('ancien_bac','immeubles'));
+        $recaser = Recasement::where('status', '=', 1)->where('recaser','=',1)->paginate(10);
+        return view('admin.recasement.recaser',compact('recaser','immeubles'));
     }
 
     /**
@@ -60,8 +61,8 @@ class RecasementController extends Controller
     public function show($id)
     {
         $immeubles = Immeuble::all();
-        $show_nouveau = Nouveau::find($id);
-        return view('admin.recasement.show_nouveau',compact('show_nouveau','immeubles'));
+        $show_nouveau = Recasement::find($id);
+        return view('admin.recasement.create',compact('show_nouveau','immeubles'));
     }
 
     /**
@@ -72,9 +73,6 @@ class RecasementController extends Controller
      */
     public function edit($id)
     {
-        $immeubles = Immeuble::all();
-        $show_ancien = Nouveau::find($id);
-        return view('admin.recasement.show_ancien',compact('show_ancien','immeubles'));
     }
 
     /**
@@ -89,23 +87,14 @@ class RecasementController extends Controller
         $validator = $this->validate($request,[
             'chambre_id' => 'required|numeric'
         ]);
-        if ($request->distinct == 1) {
-            $recasement_nouveau = Nouveau::find($id);
+            // dd($request->chambre_id);
+            $recasement_nouveau = Recasement::find($id);
             $recasement_nouveau->chambre_id = $request->chambre_id;
-            $recasement_nouveau->recasement = 2;
+            $recasement_nouveau->recaser = 1;
+            $recasement_nouveau->status = 1;
             $recasement_nouveau->save();
             Flashy::success('Votre etudiant a ete Recaser');
-            return redirect()->route('admin.recasement.index');
-        }
-        // dd($request->chambre_id);
-        else if ($request->distinct == 2) {
-            $recasement_ancien = Ancien::find($id);
-            $recasement_ancien->chambre_id = $request->chambre_id;
-            $recasement_ancien->recasement = 2;
-            $recasement_ancien->save();
-            Flashy::success('Votre etudiant a ete Recaser');
             return redirect()->route('admin.recasement.create');
-        }
     }
 
     /**

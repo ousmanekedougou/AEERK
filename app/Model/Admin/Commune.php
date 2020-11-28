@@ -2,8 +2,8 @@
 
 namespace App\Model\Admin;
 
-use App\Model\Admin\Ancien;
-use App\Model\Admin\Nouveau;
+use App\Model\User\Ancien;
+use App\Model\User\Nouveau;
 use App\Model\Admin\Departement;
 use Illuminate\Database\Eloquent\Model;
 
