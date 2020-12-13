@@ -13,7 +13,7 @@
  @section('main-content')
 
  	<!-- start banner Area -->
-   <section class="banner-area relative about-banner" id="home">	
+   			<!-- <section class="banner-area relative about-banner" id="home">	
 				<div class="overlay overlay-bg"></div>
 				<div class="container">				
 					<div class="row d-flex align-items-center justify-content-center">
@@ -25,14 +25,17 @@
 						</div>	
 					</div>
 				</div>
+			</section> -->
+			<section>
+			<div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
 			</section>
       <!-- End banner Area -->	
 
 			<!-- Start contact-page Area -->
-			<section class="contact-page-area section-gap" style="margin-top:-40em;">
+			<section class="contact-page-area section-gap" style="margin-top-30px;margin-bottom:-30px;">
 				<div class="container">
 					<div class="row">
-						<div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
+						
 						<div class="col-lg-4 d-flex flex-column address-wrap">
 							<div class="single-contact-address d-flex flex-row">
 								<div class="icon">
@@ -114,6 +117,7 @@
 					</div>
 				</div>	
 			</section>
+		
 			<!-- End contact-page Area -->
  
  @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\User\Ancien;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
+use App\Model\Admin\Solde;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
@@ -24,8 +25,9 @@ class AncienController extends Controller
      */
     public function index()
     {
+        $immeubles = Immeuble::where('status',true)->get();
         $ancien_bac = Ancien::where('codifier',0)->paginate(10);
-        return view('admin.ancien.index',compact('ancien_bac'));
+        return view('admin.ancien.index',compact('ancien_bac','immeubles'));
     }
 
     /**
@@ -57,9 +59,10 @@ class AncienController extends Controller
      */
     public function show($id)
     {
+        $immeubles = Immeuble::where('status',true)->get();
         $departement = Departement::all();
         $show_ancien = Ancien::find($id);
-        return view('admin.ancien.show',compact('show_ancien','departement'));
+        return view('admin.ancien.show',compact('show_ancien','departement','immeubles'));
     }
 
     /**
@@ -85,7 +88,7 @@ class AncienController extends Controller
     public function update(Request $request, $id)
     {
         $update_ancien = Ancien::find($id);
-        $extraitName = '';
+        $extraitBac = '';
         $imageName = '';
         $photocopieName = '';
         $certificatName = '';
@@ -96,10 +99,10 @@ class AncienController extends Controller
         }else{
             $imageName = $update_ancien->image;
         }
-        if ($request->hasFile('extrait')) {
-            $extraitName = $request->extrait->store('public/Ancien');
+        if ($request->hasFile('bac')) {
+            $extraitBac = $request->bac->store('public/Ancien');
         }else{
-            $extraitName = $update_ancien->bac;
+            $extraitBac = $update_ancien->bac;
         }
         if ($request->hasFile('certificat')) {
             $certificatName = $request->certificat->store('public/Ancien');
@@ -117,7 +120,7 @@ class AncienController extends Controller
            $statusValide = 0;
         }
         $update_ancien->image = $imageName;
-        $update_ancien->bac = $extraitName;
+        $update_ancien->bac = $extraitBac;
         $update_ancien->certificat = $certificatName;
         $update_ancien->photocopie = $photocopieName;
         $update_ancien->status = $statusValide;
@@ -141,18 +144,48 @@ class AncienController extends Controller
         return back();
     }
     public function codifier_ancien(Request $request, $id){
-        // dd($request->all());
         $validator = $this->validate($request , [
             'chambre_id' => 'required|string',
-            'prix' => 'required|numeric',
         ]);
-        $codifier_ancien = Ancien::where('id',$id)->first();
-        $codifier_ancien->chambre_id = $request->chambre_id;
-        $codifier_ancien->prix = $request->prix;
-        $codifier_ancien->codifier = 1;
-        $codifier_ancien->save();
-        Flashy::success('Votre etudiant a ete codifier');
-        return redirect()->route('admin.ancien.index');
+        // dd($request->chambre_id);
+        $prix = Solde::select('prix_ancien')->first();
+        $chambre_ancien = Ancien::select('chambre_id')->get();
+        foreach($chambre_ancien as $chambres){
+            if ($chambres->chambre_id == $request->chambre_id) {
+                if($chambre_ancien->count() < $chambres->chambre->nombre){
+                    $codifier_ancien = Ancien::where('id',$id)->first();
+                    $codifier_ancien->chambre_id = $request->chambre_id;
+                    $codifier_ancien->prix = $prix->prix_ancien;
+                    $codifier_ancien->codifier = 1;
+                    $codifier_ancien->save();
+                    Flashy::success('Votre etudiant a ete codifier');
+                    return redirect()->route('admin.ancien.index');
+                }else{
+                    Flashy::error('Cette Chambre est pleine');
+                    return redirect()->route('admin.ancien.index');
+                }
+            }
+            else if ($chambres->chambre_id == 0){
+                $chambre_null = Ancien::where('chambre_id',0)->first();
+                if ($chambre_null) {
+                    $codifier_ancien = Ancien::where('id',$id)->first();
+                    $codifier_ancien->chambre_id = $request->chambre_id;
+                    $codifier_ancien->prix = $prix->prix_ancien;
+                    $codifier_ancien->codifier = 1;
+                    $codifier_ancien->save();
+                    Flashy::success('Votre etudiant a ete codifier');
+                    return redirect()->route('admin.ancien.index');
+                }
+                
+            }
+        }
+        // $codifier_ancien = Ancien::where('id',$id)->first();
+        // $codifier_ancien->chambre_id = $request->chambre_id;
+        // $codifier_ancien->prix = $request->prix;
+        // $codifier_ancien->codifier = 1;
+        // $codifier_ancien->save();
+        // Flashy::success('Votre etudiant a ete codifier');
+        // return redirect()->route('admin.ancien.index');
     }
     /**
      * Remove the specified resource from storage.

@@ -19,7 +19,7 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($show_ancien->image) }}" alt="User profile picture">
+              <img class="profile-user-img img-responsive" src="{{ Storage::url($show_ancien->image) }}" alt="User profile picture">
 
               <h3 class="profile-username text-center">{{ $show_ancien->prenom.' '.$show_ancien->nom }}</h3>
 
@@ -46,43 +46,6 @@
 
           <!-- About Me Box -->
 
-          <!-- <div class="box box-primary">
-            <div class="box-body">
-              <strong><i class="fa  fa-institution margin-r-5"></i> Etablissement</strong>
-
-              <p class="text-muted">
-                 AFI L'UE (Universite de L'entreprise)
-              </p>
-
-              <hr>
-
-              <strong><i class="fa  fa-education margin-r-5"></i> Filliere</strong>
-
-              <p class="text-muted">
-                Informatique et reseau 
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-graduation-cap margin-r-5"></i> Niveau</strong>
-
-              <p class="text-muted">Master I</p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Obtention du Bac</strong>
-
-              <p class="text-muted">
-                Le 29/03/2020
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Commune</strong>
-
-              <p>fongolimbi</p>
-            </div>
-          </div> -->
 
         </div>
         <!-- /.col -->
@@ -106,13 +69,13 @@
                       <ul class="mailbox-attachments clearfix">
 
                         <li>
-                            <a href="{{ Storage::url($show_ancien->extrait) }}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
+                            <a href="{{ Storage::url($show_ancien->bac) }}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
                           <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
                           </a>
                           <div class="mailbox-attachment-info">
                                 <span class="mailbox-attachment-size">
-                                  Extrait de naissance
-                                  <a data-toggle="modal" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->extrait}}" data-target="#modal-default-update-extrait" class="btn btn-default btn-xs pull-right btn-info"><i class="fa fa-edit"></i></a>
+                                  Attestation Du Bac
+                                  <a data-toggle="modal" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->bac}}" data-target="#modal-default-update-bac" class="btn btn-default btn-xs pull-right btn-info"><i class="fa fa-edit"></i></a>
                                 </span>
                           </div>
                         </li>
@@ -123,7 +86,7 @@
                           </a>
                           <div class="mailbox-attachment-info">
                                 <span class="mailbox-attachment-size">
-                                  Attestation Du Bac
+                                  Certificat D'inscription
                                   <a data-toggle="modal" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->certificat}}" data-target="#modal-default-update-attestation" class="btn btn-default btn-xs pull-right btn-info"><i class="fa fa-edit"></i></a>
                                 </span>
                           </div>
@@ -147,7 +110,7 @@
                           </a>
                           <div class="mailbox-attachment-info">
                                 <span class="mailbox-attachment-size">
-                                  Image Format CNI
+                                   Image Format CNI
                                   <a data-toggle="modal" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->image}}" data-target="#modal-default-update-image" class="btn btn-default btn-xs pull-right btn-info"><i class="fa fa-edit"></i></a>
                                 </span>
                           </div>
@@ -192,7 +155,8 @@
                     <div class="pull-left">
                     <a style="margin-right:5px;" href="{{ route('admin.ancien.index') }}" class="btn btn-warning btn-xs"><i class="fa fa-share"></i> Retoure</a>
                       @if($show_ancien->status == 1)
-                      <a style="margin-right:5px;" class="btn btn-success btn-xs" href="{{ route ('admin.ancien.edit',$show_ancien->id) }}">Codifier <i class="fa fa-edit"></i></a>
+                      <!-- <a style="margin-right:5px;" class="btn btn-success btn-xs" href="{{ route ('admin.ancien.edit',$show_ancien->id) }}">Codifier <i class="fa fa-edit"></i></a> -->
+                      <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->name}}" data-target="#modal-default-edit-show_ancien{{ $show_ancien->id }}">Codifier <i class="fa fa-edit"></i></a></a>
                       @endif
                     </div>
                       <!-- <a href="#"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
@@ -308,7 +272,7 @@
 
 <!-- Debut du modal pour l'eddition de l'extrait -->
       
-        <div class="modal fade" id="modal-default-update-extrait">
+        <div class="modal fade" id="modal-default-update-bac">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -321,8 +285,8 @@
               {{ method_field('PUT') }}
               <div class="modal-body">
                 <p>
-                <input type="file"  value="{{ old('extrait')}}" class="form-control @error('extrait') is-invalid @enderror" id="extrait" name="extrait" placeholder="">
-                  @error('extrait')
+                <input type="file"  value="{{ old('bac')}}" class="form-control @error('bac') is-invalid @enderror" id="bac" name="bac" placeholder="">
+                  @error('bac')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
                     </span>
@@ -448,6 +412,73 @@
           <!-- /.modal-dialog -->
         </div>
 <!-- Fin du modal de l'eddition de l'image -->
+
+
+
+<!-- Modal pour la codification des anciens -->
+
+      <div class="modal fade" id="modal-default-edit-show_ancien{{ $show_ancien->id }}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Codifier Cette Etudiant</h4>
+              </div>
+              <div class="row">
+                      <div class="col-sm-4 p-5">
+                      <img class="profile-user-img img-responsive" style="width:100%;100%;margin-top:10px;margin-left:1px;" src="{{ Storage::url($show_ancien->image) }}" alt="User profile picture">
+                      </div>
+                      <div class="col-sm-8 text-justify">
+                        <h3 class="profile-username">{{ $show_ancien->prenom.' '.$show_ancien->nom }}</h3>
+                        <p><b><i class="fa fa-envelope-o"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_ancien->email }}</a></p>
+                        <p><b><i class="fa fa-phone"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_ancien->phone }}</a></p>
+                        <p> <b><i class="fa fa-map-marker"></i></b>  <a class="pull-center text-muted text-bold tex-italic">{{ $show_ancien->commune->name }}</a></p>
+                        <p>  <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $show_ancien->immeuble->name }}</a></p>
+                      </div>
+              </div>
+              @foreach($immeubles as $imb) 
+              <form action="{{ route('admin.codifier_ancien',$show_ancien->id) }}" method="post">
+              @csrf
+              {{method_field('PUT')}}
+              <div class="modal-body">
+                <p>
+                <h3 class="text-center">{{ $imb->name }}</h3>
+                        <div class="form-group">
+                          <label>Chambres</label>
+                          <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
+                            <option selected>Choisir la chambre</option>
+                            @foreach($imb->chambres  as $chm)
+                              @if($show_ancien->genre == $chm->genre)
+                                <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                              @endif
+                            @endforeach
+                          
+                          </select>
+                          @error('chambre_id')
+                            <span class="invalid-feedback" role="alert">
+                              <strong class="message_error text-danger">{{ $message }}</strong>
+                            </span>
+                          @enderror
+                        </div>
+                </p>
+
+              <button type="submit" class="btn btn-primary">Codifier</button>
+              </div>
+              </form>
+              @endforeach
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
+             
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+   
+<!-- Fin du modal pour la codification des anciens -->
 
 @endsection
 

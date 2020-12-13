@@ -119,7 +119,7 @@
                    
 
                       <div class="form-group col-lg-12">
-                        <label class="col-form-label text-md-right">Assign Roles</label>
+                        <label class="col-form-label text-md-right">Assigne un Role</label>
                         <div class="row">
                           @foreach($roles as $role)
                             <div class="checkbox">

@@ -65,9 +65,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route ('admin.post.index') }}"><i class="fa fa-circle-o"></i>post</a></li>
-            <li><a href="{{ route ('admin.category.index') }}"><i class="fa fa-circle-o"></i>Categorie</a></li>
-            <li><a href="{{ route ('admin.tag.index') }}"><i class="fa fa-circle-o"></i>tags</a></li>
+            <li><a href="{{ route ('admin.post.index') }}"><i class="fa fa-circle-o"></i>Artcles</a></li>
+            <li><a href="{{ route ('admin.category.index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
+            <li><a href="{{ route ('admin.tag.index') }}"><i class="fa fa-circle-o"></i>Etiquettes</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -146,3 +146,4 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+

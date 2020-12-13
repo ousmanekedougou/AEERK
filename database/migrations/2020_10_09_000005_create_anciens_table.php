@@ -15,6 +15,7 @@ class CreateAnciensTable extends Migration
     {
         Schema::create('anciens', function (Blueprint $table) {
             $table->id();
+            $table->integer('genre')->default(0);
             $table->string('nom');
             $table->string('prenom');
             $table->string('email')->unique();
@@ -23,12 +24,12 @@ class CreateAnciensTable extends Migration
             $table->string('certificat');
             $table->string('image');
             $table->string('photocopie');
-            $table->integer('commune_id')->default(null);
-            $table->integer('immeuble_id')->default(null);
+            $table->integer('commune_id')->nullable();
+            $table->integer('immeuble_id')->nullable();
+            $table->integer('chambre_id')->nullable();
+            $table->integer('prix')->nullable();
             $table->boolean('status')->default(false);
             $table->boolean('codifier')->default(false);
-            $table->integer('prix')->default(null);
-            $table->integer('chambre_id')->default(null);
             $table->timestamps();
         });
     }

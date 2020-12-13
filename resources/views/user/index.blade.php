@@ -6,6 +6,12 @@
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-between">
 						<div class="banner-content col-lg-9 col-md-12">
+							<div class="row">
+								<div class="col-lg-4"></div>
+								<div class="col-lg-8">
+									@include('user.message.index')
+								</div>
+							</div>
 							<h1 class="text-uppercase">
 								We Ensure better education
 								for a better world			
@@ -14,6 +20,7 @@
 								In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
 							</p>
 							<a href="#" class="primary-btn text-uppercase">Get Started</a>
+							
 						</div>										
 					</div>
 				</div>					
@@ -634,6 +641,8 @@
 				</div>	
 			</section>
 			<!-- End blog Area -->			
+
+
 			
 
 @endsection

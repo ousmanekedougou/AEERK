@@ -47,7 +47,8 @@
                     </td>
                     <td>
                       @if($nouveau->status == 1)
-                      <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.nouveau.edit',$nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a></span>
+                      <!-- <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.nouveau.edit',$nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a></span> -->
+                      <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$nouveau->id}}" data-name="{{$nouveau->name}}" data-target="#modal-default-edit-nouveau{{ $nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
                       @else 
                       <span class=""><form id="delete-form-{{$nouveau->id}}" method="post" action="{{ route('admin.nouveau.destroy',$nouveau->id) }}" style="display:none">
                       {{csrf_field()}}
@@ -93,6 +94,67 @@
   </div>
   <!-- /.content-wrapper -->
 
+
+<!-- Modal du update des soldes -->
+    @foreach($nouveau_bac as $nouveau)
+      <div class="modal fade" id="modal-default-edit-nouveau{{ $nouveau->id }}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Codifier Cette Etudiant</h4>
+              </div>
+              <div class="row">
+                      <div class="col-sm-4">
+                      <img class="profile-user-img img-responsive" style="width:100%;100%;margin-top:10px;margin-left:10px;" src="{{ Storage::url($nouveau->image) }}" alt="User profile picture">
+                      </div>
+                      <div class="col-sm-8">
+                        <h3 class="profile-username">{{ $nouveau->prenom.' '.$nouveau->nom }}</h3>
+                        <p><b><i class="fa fa-envelope-o"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $nouveau->email }}</a></p>
+                        <p><b><i class="fa fa-phone"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $nouveau->phone }}</a></p>
+                        <p> <b><i class="fa fa-map-marker"></i></b>  <a class="pull-center text-muted text-bold tex-italic">{{ $nouveau->commune->name }}</a></p>
+                      </div>
+              </div>
+              <form action="{{ route('admin.codifier_nouveau',$nouveau->id) }}" method="post">
+              @csrf
+              {{method_field('PUT')}}
+              <div class="modal-body">
+
+                <p>
+                  <h3 class="text-center">{{ $immeubles->name }}</h3>
+                  <div class="form-group">
+                    <label>Chambres</label>
+                    <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
+                    <option selected>Choisir la chambre</option>
+                      @foreach($immeubles->chambres  as $chm)
+                        @if($nouveau->genre == $chm->genre)
+                          <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                        @endif
+                      @endforeach
+                    
+                    </select>
+                    @error('chambre_id')
+                      <span class="invalid-feedback" role="alert">
+                        <strong class="message_error text-danger">{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Codifier</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+    @endforeach
+<!-- Fin du modal update  des soldes -->
 
 
 @endsection

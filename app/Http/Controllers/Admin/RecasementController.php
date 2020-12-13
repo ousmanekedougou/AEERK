@@ -37,7 +37,7 @@ class RecasementController extends Controller
     public function create()
     {
         $immeubles = Immeuble::all();
-        $recaser = Recasement::where('status', '=', 1)->where('recaser','=',1)->paginate(10);
+        $recaser = Recasement::where('recaser','=',1)->paginate(10);
         return view('admin.recasement.recaser',compact('recaser','immeubles'));
     }
 
@@ -87,14 +87,46 @@ class RecasementController extends Controller
         $validator = $this->validate($request,[
             'chambre_id' => 'required|numeric'
         ]);
+
+
+        $chambre_ancien = Recasement::select('chambre_id')->get();
+        foreach($chambre_ancien as $chambres){
+            if ($chambres->chambre_id == $request->chambre_id) {
+                if($chambre_ancien->count() < $chambres->chambre->nombre){
+                    $recaser_ancien = Recasement::where('id',$id)->first();
+                    $recaser_ancien->chambre_id = $request->chambre_id;
+                    $recaser_ancien->recaser = 1;
+                    $recaser_ancien->save();
+                    Flashy::success('Votre etudiant a ete codifier');
+                    return redirect()->route('admin.ancien.index');
+                }else{
+                    Flashy::error('Cette Chambre est pleine');
+                    return redirect()->route('admin.recasement.create');
+                }
+            }
+            else if ($chambres->chambre_id == 0){
+                $chambre_null = Recasement::where('chambre_id',0)->first();
+                if ($chambre_null) {
+                    $recaser_ancien = Recasement::where('id',$id)->first();
+                    $recaser_ancien->chambre_id = $request->chambre_id;
+                    $recaser_ancien->recaser = 1;
+                    $recaser_ancien->save();
+                    Flashy::success('Votre etudiant a ete codifier');
+                    return redirect()->route('admin.recasement.create');
+                }
+                
+            }
+        }
+
+
             // dd($request->chambre_id);
-            $recasement_nouveau = Recasement::find($id);
-            $recasement_nouveau->chambre_id = $request->chambre_id;
-            $recasement_nouveau->recaser = 1;
-            $recasement_nouveau->status = 1;
-            $recasement_nouveau->save();
-            Flashy::success('Votre etudiant a ete Recaser');
-            return redirect()->route('admin.recasement.create');
+            // $recasement_nouveau = Recasement::find($id);
+            // $recasement_nouveau->chambre_id = $request->chambre_id;
+            // $recasement_nouveau->recaser = 1;
+            // $recasement_nouveau->status = 1;
+            // $recasement_nouveau->save();
+            // Flashy::success('Votre etudiant a ete Recaser');
+            // return redirect()->route('admin.recasement.create');
     }
 
     /**

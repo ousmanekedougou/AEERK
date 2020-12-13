@@ -15,6 +15,7 @@ class CreateNouveausTable extends Migration
     {
         Schema::create('nouveaus', function (Blueprint $table) {
             $table->id();
+            $table->integer('genre')->default(0);
             $table->string('nom');
             $table->string('prenom');
             $table->string('email')->unique();
@@ -24,10 +25,10 @@ class CreateNouveausTable extends Migration
             $table->string('image');
             $table->string('photocopie');
             $table->string('relever');
-            $table->integer('immeuble_id')->default(null);
-            $table->integer('chambre_id')->default(null);
-            $table->integer('commune_id')->default(null);
-            $table->integer('prix')->default(null);
+            $table->integer('immeuble_id')->nullable();
+            $table->integer('chambre_id')->nullable();
+            $table->integer('commune_id')->nullable();
+            $table->integer('prix')->nullable();
             $table->boolean('status')->default(false);
             $table->boolean('codifier')->default(false);
             $table->timestamps();

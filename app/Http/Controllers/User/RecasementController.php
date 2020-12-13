@@ -46,16 +46,16 @@ class RecasementController extends Controller
     {
         $validator = $this->validate($request,[
             'status' => 'required|numeric',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
+            'email' => 'required|email|unique:recasements',
+            'phone' => 'required|numeric|unique:recasements',
             'immeuble' => 'required|numeric',
         ]);
         if ($request->status == 1) {
             $nouveaux = Nouveau::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1])->first();
             
             if ($nouveaux) {
-                // dd($request->all());
                 $nouveaux_recaser = new Recasement;
+                $nouveaux_recaser->genre = $nouveaux->genre;
                 $nouveaux_recaser->nom = $nouveaux->nom;
                 $nouveaux_recaser->prenom = $nouveaux->prenom;
                 $nouveaux_recaser->email = $nouveaux->email;
@@ -77,6 +77,7 @@ class RecasementController extends Controller
             if ($anciens) {
                 dd($request->all());
                 $anciens_recaser = new Recasement;
+                $anciens_recaser->genre = $anciens->genre;
                 $anciens_recaser->nom = $anciens->nom;
                 $anciens_recaser->prenom = $anciens->prenom;
                 $anciens_recaser->email = $anciens->email;

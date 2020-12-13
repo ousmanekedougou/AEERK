@@ -4,18 +4,13 @@
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 @endsection
 
-@section('main-content')
+  @section('main-content')
 
-          <!-- Content Wrapper. Contains page content -->
-                        <div class="content-wrapper">
-                  <!-- Content Header (Page header) -->
-                  <section class="content-header">
-                      <!-- /.col -->
-        <div class="">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header">
+
           <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">{{ $immeubles->name }}</a></li>
-            </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
                 <table id="example1" class="table text-center table-bordered table-striped">
@@ -61,15 +56,15 @@
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
-        </div>
+
         <!-- /.col -->
 
-                  </section>
+      </section>
                   <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    </div>
+    <!-- /.content-wrapper -->
 
-@endsection
+  @endsection
 
 
 @section('footersection')

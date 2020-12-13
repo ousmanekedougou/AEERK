@@ -15,7 +15,7 @@ class Poste extends Model
 
     public function admins()
     {
-        return $this->belongsToMany(Admin::class,'admin_postes');
+        return $this->hasMany(Admin::class);
     }
 
     public function teams()

@@ -20,7 +20,7 @@ class NouveauController extends Controller
     {
         $departement = Departement::all();
     
-        return view('user.nouveau.index',compact('departement','immeuble'));
+        return view('user.nouveau.index',compact('departement'));
     }
 
     /**
@@ -42,6 +42,7 @@ class NouveauController extends Controller
     public function store(Request $request)
     {
         $validator = $this->validate($request , [
+            'genre' => 'required',
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:nouveaus',
@@ -76,6 +77,7 @@ class NouveauController extends Controller
         if ($request->hasFile('relever')) {
             $releverName = $request->relever->store('public/Nouveau');
         }
+        $add_nouveau->genre = $request->genre;
         $add_nouveau->nom = $request->nom;
         $add_nouveau->prenom = $request->prenom;
         $add_nouveau->email = $request->email;
@@ -90,7 +92,15 @@ class NouveauController extends Controller
         $add_nouveau->status = 0;
         $add_nouveau->save();
         Flashy::success('Votre Inscription a ete Valider');
-        return back();
+        return redirect()->route('index',$add_nouveau)->with([
+            "existe" => "existe",
+            "name" => "$add_nouveau->prenom $add_nouveau->nom",
+            "remercie" => "Votre inscription a ete enregistre et L'AEERK vous en remercie.",
+            "sms" => "Nous vous informons que vous serez notifier apres la verification de vos documents.",
+            "info" => "Si toute fois vos document ont ete valide la codification en ligne est dispnoble 
+            un lien vous sera envoyer.
+            "
+        ]);
     }
 
     /**

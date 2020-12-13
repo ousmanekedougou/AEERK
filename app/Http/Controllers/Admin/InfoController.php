@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\Info;
 use App\Model\Admin\Social;
+use App\Model\User\Option;
+use App\Model\Admin\Solde;
 use Illuminate\Http\Request;
 use App\Model\Admin\Partenaire;
 use MercurySeries\Flashy\Flashy;
@@ -24,7 +26,9 @@ class InfoController extends Controller
         $infos = Info::all();
         $partener = Partenaire::all();
         $social_reseau = Social::all();
-        return view('admin.info.index',compact('infos','social_reseau','partener'));
+        $soldes = Solde::all();
+        $options = Option::all();
+        return view('admin.info.index',compact('infos','social_reseau','partener','soldes','options'));
     }
 
     /**
@@ -34,6 +38,24 @@ class InfoController extends Controller
      */
     public function create()
     {
+     
+    }
+
+    public function add_prix(Request $request){
+        $validator = $this->validate($request,[
+            'prix_n' => 'required|numeric',
+            'prix_a' => 'required|numeric',
+            'numero_n' => 'required|numeric',
+            'numero_a' => 'required|numeric',
+        ]);
+        $add_solde = new Solde;
+        $add_solde->prix_nouveau = $request->prix_n;
+        $add_solde->prix_ancien = $request->prix_a;
+        $add_solde->numero_nouveau = $request->numero_n;
+        $add_solde->numero_ancien = $request->numero_a;
+        $add_solde->save();
+        Flashy::success('Vos Prix ont ete mise a joure');
+        return back();
     }
 
     /**
@@ -69,10 +91,103 @@ class InfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function solde(Request $request ,$id)
     {
-        //
+        $validator = $this->validate($request,[
+            'prix_n' => 'required|numeric',
+            'prix_a' => 'required|numeric',
+            'numero_n' => 'required|numeric',
+            'numero_a' => 'required|numeric',
+        ]);
+        // dd($request);
+        $update_solde = Solde::find($id);
+        $update_solde->prix_nouveau = $request->prix_n;
+        $update_solde->prix_ancien = $request->prix_a;
+        $update_solde->numero_nouveau = $request->numero_n;
+        $update_solde->numero_ancien = $request->numero_a;
+        $update_solde->save();
+        Flashy::success('Vos Prix ont ete mise a joure');
+        return back();
     }
+
+    public function register(Request $request ,$id){
+        $update_lien = Option::find($id);
+        // dd($request->recasement_etudiant);
+        
+        if($request->register == 0){
+            $update_lien->register = 0;
+        }elseif($request->register == 1){
+            $update_lien->register = 1;
+        }
+        $update_lien->save();
+        Flashy::success('Votre lien a ete modifier');
+        return back();
+    }
+
+    public function register_etudiant(Request $request ,$id){
+        $update_lien = Option::find($id);
+        if($request->inscription_etudiant == 0){
+            $update_lien->register_nouveau = 0;
+            $update_lien->register_ancien = 0;
+        }elseif($request->inscription_etudiant == 1){
+            $update_lien->register_nouveau = 1;
+            $update_lien->register_ancien = 1;
+        }
+        $update_lien->save();
+        Flashy::success('Votre lien a ete modifier');
+        return back();
+    }
+
+    public function register_recasement(Request $request ,$id){
+        $update_lien = Option::find($id);
+        if($request->register_recasement == 0){
+            $update_lien->register_recasement = 0;
+        }elseif($request->register_recasement == 1){
+            $update_lien->register_recasement = 1;
+        }
+        $update_lien->save();
+        Flashy::success('Votre lien a ete modifier');
+        return back();
+    }
+
+    public function codification(Request $request ,$id){
+        $update_lien = Option::find($id);
+        if($request->codification == 0){
+            $update_lien->codification = 0;
+        }elseif($request->codification == 1){
+            $update_lien->codification = 1;
+        }
+        $update_lien->save();
+        Flashy::success('Votre lien a ete modifier');
+        return back();
+    }
+
+    public function codification_etudiant(Request $request ,$id){
+        $update_lien = Option::find($id);
+        if($request->codification_etudiant == 0){
+            $update_lien->codification_nouveau = 0;
+            $update_lien->codification_ancien = 0;
+        }elseif($request->codification_etudiant == 1){
+            $update_lien->codification_nouveau = 1;
+            $update_lien->codification_ancien = 1;
+        }
+        $update_lien->save();
+        Flashy::success('Votre lien a ete modifier');
+        return back();
+    }
+
+    public function recasement_etudiant(Request $request ,$id){
+        $update_lien = Option::find($id);
+        if($request->recasement_etudiant == 0){
+            $update_lien->recasement = 0;
+        }elseif($request->recasement_etudiant == 1){
+            $update_lien->recasement = 1;
+        }
+        $update_lien->save();
+        Flashy::success('Votre lien a ete modifier');
+        return back();
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -95,6 +210,7 @@ class InfoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $info_update = Info::find($id);
         $info_update->email = $request->email;
         $info_update->phone = $request->phone;

@@ -30,7 +30,7 @@ class AncienController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -42,6 +42,7 @@ class AncienController extends Controller
     public function store(Request $request)
     {
         $validator = $this->validate($request , [
+            'genre' => 'required',
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:anciens',
@@ -71,6 +72,7 @@ class AncienController extends Controller
         if ($request->hasFile('photocopie')) {
             $photocopieName = $request->photocopie->store('public/Ancien');
         }
+        $add_ancien->genre = $request->genre;
         $add_ancien->nom = $request->nom;
         $add_ancien->prenom = $request->prenom;
         $add_ancien->email = $request->email;
@@ -84,7 +86,15 @@ class AncienController extends Controller
         $add_ancien->status = false;
         $add_ancien->save();
         Flashy::success('Votre Inscription a ete Valider');
-        return back();
+        return redirect()->route('index',$add_ancien)->with([
+            "existe" => "existe",
+            "name" => "$add_ancien->prenom $add_ancien->nom",
+            "remercie" => "Votre inscription a ete enregistre et L'AEERK vous en remercie .",
+            "sms" => "Nous vous informons que vous serez notifier apres la verification de vos documents .",
+            "info" => "Si toute fois vos document ont ete valide la codification en ligne est dispnoble 
+            un lien vous sera envoyer .
+            "
+        ]);
     }
 
     /**

@@ -19,7 +19,7 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($show_nouveau->image) }}" alt="User profile picture">
+              <img class="profile-user-img img-responsive" src="{{ Storage::url($show_nouveau->image) }}" alt="User profile picture">
 
               <h3 class="profile-username text-center">{{ $show_nouveau->prenom.' '.$show_nouveau->nom }}</h3>
 
@@ -46,43 +46,7 @@
 
           <!-- About Me Box -->
 
-          <!-- <div class="box box-primary">
-            <div class="box-body">
-              <strong><i class="fa  fa-institution margin-r-5"></i> Etablissement</strong>
-
-              <p class="text-muted">
-                 AFI L'UE (Universite de L'entreprise)
-              </p>
-
-              <hr>
-
-              <strong><i class="fa  fa-education margin-r-5"></i> Filliere</strong>
-
-              <p class="text-muted">
-                Informatique et reseau 
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-graduation-cap margin-r-5"></i> Niveau</strong>
-
-              <p class="text-muted">Master I</p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Obtention du Bac</strong>
-
-              <p class="text-muted">
-                Le 29/03/2020
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Commune</strong>
-
-              <p>fongolimbi</p>
-            </div>
-          </div> -->
+        
 
         </div>
         <!-- /.col -->
@@ -192,7 +156,8 @@
                   <div class="pull-left">
                   <a style="margin-right:5px;" href="{{ route('admin.nouveau.index') }}" class="btn btn-warning btn-xs"><i class="fa fa-share"></i> Retoure</a>
                       @if($show_nouveau->status == 1)
-                      <a style="margin-right:5px;"  class="btn btn-success btn-xs" href="{{ route ('admin.nouveau.edit',$show_nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a>
+                      <!-- <a style="margin-right:5px;"  class="btn btn-success btn-xs" href="{{ route ('admin.nouveau.edit',$show_nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a> -->
+                      <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-default-edit-nouveau{{ $show_nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
                       @endif
                   </div>
                       <!-- <a href="#"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
@@ -448,6 +413,58 @@
           <!-- /.modal-dialog -->
         </div>
 <!-- Fin du modal de l'eddition de l'image -->
+
+<!-- Modal Pour les Codification -->
+
+
+      <div class="modal fade" id="modal-default-edit-nouveau{{ $show_nouveau->id }}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Codifier Cette Etudiant</h4>
+              </div>
+         
+              <form action="{{ route('admin.codifier_nouveau',$show_nouveau->id) }}" method="post">
+              @csrf
+              {{method_field('PUT')}}
+              <div class="modal-body">
+
+                <p>
+                  <h3 class="text-center">{{ $immeubles->name }}</h3>
+                  <div class="form-group">
+                    <label>Chambres</label>
+                    <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
+                    <option selected>Choisir la chambre</option>
+                      @foreach($immeubles->chambres  as $chm)
+                        @if($show_nouveau->genre == $chm->genre)
+                          <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                        @endif
+                      @endforeach
+                    
+                    </select>
+                    @error('chambre_id')
+                      <span class="invalid-feedback" role="alert">
+                        <strong class="message_error text-danger">{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Codifier</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+   
+<!-- Fin Des Modal Pour Les Codification -->
 
 @endsection
 

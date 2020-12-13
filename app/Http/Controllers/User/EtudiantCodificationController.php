@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
+use App\Model\User\Ancien;
+use App\Model\User\Nouveau;
+use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AboutController extends Controller
+class EtudiantCodificationController extends Controller
 {
-  
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +16,9 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('user.about.index');
+        $nouveau = 1;
+        $ancien = 2;
+        return view('user.codification.index',compact('nouveau','ancien'));
     }
 
     /**
@@ -36,7 +39,34 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatore = $this->validate($request,[
+            'email' => 'required',
+            'phone' => 'required',
+            'status' => 'required'
+        ]);
+// dd($request->status);
+        if($request->status == 1){
+            $status = $request->status;
+            $nouveau = Nouveau::where(['email' => $request->email,'phone' => $request->phone,'codifier' => 0,'status' => 1,'prix' => 0])->first();
+            if($nouveau){
+                return 'yes';
+                // return view('user.codification.show',compact('nouveau'));
+            }else{
+                return back();
+                Flashy::error('Vous n\'est pas en mesure de codifier');
+            }
+
+        }else if($request->status == 2){
+            $status = $request->status;
+            // dd($request->status);
+            $ancien = Ancien::where(['email' => $request->email,'phone' => $request->phone ,'codifier' => 0,'status' => 1,'prix' => 0])->first();
+            if($ancien){
+                return view('user.codification.show',compact('ancien'));
+            }else{
+                return back();
+                Flashy::error('Vous n\'est pas en mesure de codifier');
+            }
+        }
     }
 
     /**

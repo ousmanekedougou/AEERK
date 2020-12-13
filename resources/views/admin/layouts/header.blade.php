@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="{{ route('admin.home') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>K</b>DG</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><img src="{{ asset('admin/dist/img/admin.png') }}" alt="" srcset=""></span>
     </a>
@@ -246,7 +246,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route('admin.profile.show',Auth::user()->id) }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}"

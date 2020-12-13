@@ -14,13 +14,11 @@ Route::group(['namespace' => 'User'],function(){
     Route::resource('/ancien','AncienController');
     Route::resource('/recasement', 'RecasementController');
     Route::resource('/formation','FormationController');
-
     Route::resource('/service','ServiceController');
-   
-
     Route::resource('/about','AboutController');
     Route::resource('/article','ArticleController');
     Route::resource('/comment','CommentController');
+    Route::resource('/codification','EtudiantCodificationController');
     Route::get('/category/{id}','ArticleController@category')->name('article.category');
     Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
 
@@ -44,6 +42,15 @@ Route::group(['namespace' => 'User'],function(){
 
         // Tout ce qui est Parametre
         Route::resource('/info', 'Admin\InfoController');
+        Route::put('/info/{id}/solde','Admin\InfoController@solde')->name('solde');
+        Route::put('/info/{id}/register','Admin\InfoController@register')->name('register');
+        Route::put('/info/{id}/register_etudiant','Admin\InfoController@register_etudiant')->name('register_etudiant');
+        Route::put('/info/{id}/register_recasement','Admin\InfoController@register_recasement')->name('register_recasement');
+        Route::put('/info/{id}/codification','Admin\InfoController@codification')->name('codification');
+        Route::put('/info/{id}/codification_etudiant','Admin\InfoController@codification_etudiant')->name('codification_etudiant');
+        Route::put('/info/{id}/recasement_etudiant','Admin\InfoController@recasement_etudiant')->name('recasement_etudiant');
+        
+        Route::post('/info/ajouter','Admin\InfoController@add_prix')->name('add_prix');
         Route::resource('/team', 'Admin\TeamController');
         Route::resource('/partener', 'Admin\PartenerController');
         Route::resource('/gallery', 'Admin\GalleryController');
@@ -66,6 +73,7 @@ Route::group(['namespace' => 'User'],function(){
         // La partie des logements
         Route::resource('/logement', 'Admin\LogementController');
         Route::resource('/commune', 'Admin\CommuneController');
+        Route::resource('/profile', 'Admin\ProfilAdminController');
         Route::resource('/immeuble', 'Admin\ImmeubleController');
         Route::resource('/chambre', 'Admin\ChambreController');
         Route::resource('/departement', 'Admin\DepartementController');

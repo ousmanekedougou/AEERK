@@ -4,21 +4,16 @@
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 @endsection
 
-@section('main-content')
+  @section('main-content')
 
-          <!-- Content Wrapper. Contains page content -->
-                        <div class="content-wrapper">
-                  <!-- Content Header (Page header) -->
-                  <section class="content-header">
-                      <!-- /.col -->
-        <div class="">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header">
+
           <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab"></a></li>
-            </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
-              <table id="example1" class="table text-center table-bordered table-striped">
+                <table id="example1" class="table text-center table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Image</th>
@@ -28,8 +23,8 @@
                     <th>Prix</th>
                   </tr>
                   </thead>
-                @foreach($ancien_bac as $ancien)
                   <tbody>
+                  @foreach($ancien_bac as $ancien)
                     <tr>
                       <td><img src="{{ Storage::url($ancien->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
                       <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
@@ -42,8 +37,8 @@
                         {{$ancien->chambre->nom }}</td>
                       <td>{{ $ancien->prix }}</td>
                     </tr>
-                  </tbody>
                   @endforeach
+                  </tbody>
                   <tfoot>
                   <tr>
                     <th>Image</th>
@@ -54,24 +49,22 @@
                   </tr>
                   </tfoot>
                 </table>
-                  {{ $ancien_bac->links() }}
-                
+               <span class="pull-rigth"> {{ $ancien_bac->links() }}</span>
               </div>
-              <!-- /.tab-pane -->
 
             </div>
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
-        </div>
+
         <!-- /.col -->
 
-                  </section>
+      </section>
                   <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    </div>
+    <!-- /.content-wrapper -->
 
-@endsection
+  @endsection
 
 
 @section('footersection')

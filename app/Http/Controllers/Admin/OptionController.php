@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\Option;
+use App\Model\Admin\Solde;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,8 +16,8 @@ class OptionController extends Controller
      */
     public function index()
     {
-            
-            return view('admin.option.index');
+            $soldes = Solde::all();
+            return view('admin.option.index',compact('soldes'));
      
     }
 

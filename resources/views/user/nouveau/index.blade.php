@@ -34,7 +34,7 @@
 					<div class="section-top-border">
 						<div class="row">
 
-							<div class="col-lg-3 col-md-4 mt-sm-30 element-wrap">
+							<div class="col-lg-3 col-md-3 mt-sm-30 element-wrap">
 								<div class="single-element-widget">
 									<h3 class="mb-30">Switches</h3>
 									<div class="switch-wrap d-flex justify-content-between">
@@ -78,6 +78,29 @@
 								<h3 class="mb-30">S'inscrire Pour la codifications</h3>
 								<form action="{{ route('nouveau.store') }}" method="POST" enctype="multipart/form-data">
 									@csrf
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="switch-wrap d-flex justify-content-between">
+												<p>Femme</p>
+												<div class="primary-switch">
+													<input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class=" @error('genre') is-invalid @enderror" id="success-switch">
+													<label for="success-switch"></label>
+												</div>
+											</div>
+											<div class="switch-wrap d-flex justify-content-between">
+												<p>Homme</p>
+												<div class="confirm-switch">
+													<input type="radio" value="{{ old('genre') ?? 2 }}" class=" @error('genre') is-invalid @enderror" name="genre" id="info-switch">
+													<label for="info-switch"></label>
+													@error('genre')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error">{{ $message }}</strong>
+													</span>
+													@enderror
+												</div>
+											</div>
+										</div>
+									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">

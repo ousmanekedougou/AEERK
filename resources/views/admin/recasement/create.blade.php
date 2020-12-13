@@ -79,7 +79,9 @@
                           <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
                             <option selected>Choisir la chambre</option>
                             @foreach($imb->chambres  as $chm)
-                              <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                              @if($show_nouveau->genre == $chm->genre)
+                                <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                              @endif
                             @endforeach
                           
                           </select>

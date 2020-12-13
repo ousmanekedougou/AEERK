@@ -28,7 +28,7 @@ class CodificationController extends Controller
     {
         // Les Etudiant qui ont codifier
         $immeubles = Immeuble::where('status',false)->first();
-        $nouveau_bac = Nouveau::where(['status'=>1, 'codifier'=>1])->paginate(10);
+        $nouveau_bac = Nouveau::where(['status'=>1, 'codifier'=>1])->paginate(5);
         return view('admin.codification.index',compact('nouveau_bac','immeubles'));
     }
 
@@ -40,9 +40,9 @@ class CodificationController extends Controller
     public function create()
     {
           // Les Etudiant qui n'ont pas codifier
-        $immeubles = Immeuble::where('status',true)->get();
-        $ancien_bac = Ancien::where(['status'=>1,'codifier'=>1])->paginate(10);
-        return view('admin.codification.index1',compact('ancien_bac','immeubles'));
+        // $immeubles = Immeuble::where('status',true)->get();
+        $ancien_bac = Ancien::where(['status'=>1,'codifier'=>1])->paginate(5);
+        return view('admin.codification.index_ancien',compact('ancien_bac'));
     }
 
     /**

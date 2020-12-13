@@ -30,14 +30,48 @@
 			          <li><a href="{{ route('about.index') }}">A Propos</a></li>
 			          <!-- <li><a href="courses.html"></a></li>
 			          <li><a href="events.html"></a></li> -->
+					  <!-- gestion de l'inscription -->
                       <li><a href="">Gallery</a></li>
-                      <li class="menu-has-children text-white"><a href="#">Inscription</a>
-			            <ul style="z-index:2;border-radius:5px;">
-			              <li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Nouveau</a></li>
-			              <li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Anciens</a></li>
-			              <li><a href="{{ route('recasement.index') }}"> <i class="fa fa-chevron-right"></i> Recasement</a></li>
-			            </ul>
-					  </li>	
+						@if(all_option()->register == 1)
+							<li class="menu-has-children text-white"><a href="#">Inscription</a>
+							@if(all_option()->register == 1 && all_option()->register_nouveau == 1 && all_option()->register_ancien == 1)
+								<ul style="z-index:2;border-radius:5px;">
+								@elseif(all_option()->register == 1 && all_option()->register_recasement == 1)
+								<ul style="z-index:2;border-radius:5px;">
+								@else
+								<ul style="opacity:0;">
+								@endif
+								@if(all_option()->register == 1 && all_option()->register_nouveau == 1 && all_option()->register_ancien == 1)
+								<li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes Nouveau</a></li>
+								<li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes  Anciens</a></li>
+								@elseif(all_option()->register == 1 && all_option()->register_recasement == 1)
+								<li><a href="{{ route('recasement.index') }}"> <i class="fa fa-chevron-right"></i>Inscription Recasement</a></li>
+								@endif
+								</ul>
+							</li>	
+						@endif
+						<!-- Fin de la gestion de l'inscription -->
+			
+						<!-- Gestion de la codification  -->
+						@if(all_option()->codification == 1)
+						<li class="menu-has-children text-white"><a href="#">Codifications</a>
+							@if(all_option()->codification == 1 && all_option()->codification_nouveau == 1 && all_option()->codification_ancien == 1)
+								<ul style="z-index:2;border-radius:5px;">
+							@elseif(all_option()->codification == 1 && all_option()->recasement == 1)
+								<ul style="z-index:2;border-radius:5px;">
+							@else
+								<ul style="opacity:0;">
+							@endif
+							@if(all_option()->codification == 1 && all_option()->codification_nouveau == 1 && all_option()->codification_ancien == 1)
+								<li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes Nouveau</a></li>
+								<li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes  Anciens</a></li>
+							@elseif(all_option()->codification == 1 && all_option()->recasement == 1)
+								<li><a href="{{ route('recasement.index') }}"> <i class="fa fa-chevron-right"></i> Recasement</a></li>
+							@endif
+								</ul>
+						</li>	
+						@endif
+						<!-- Fin de la gestion de la codification -->
 					  <li><a href="{{ route('article.index') }}">Articles</a></li> 
 			          <!-- <li class="menu-has-children"><a href="">Articles</a>
 			            <ul>

@@ -28,4 +28,8 @@ class Chambre extends Model
     public function anciens(){
         return $this->hasMany(Ancien::class);
     }
+
+    public function nouveaus(){
+        return $this->hasMany(Nouveau::class);
+    }
 }

@@ -15,42 +15,39 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table text-center table-bordered table-striped">
                 <thead>
                 <tr class="bg-warning">
                   <th>S.No</th>
                   <th>Image</th>
                   <th>Nom</th>
                   <th>Adresse</th>
-                  <th>Status</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Reserve</th>
+                  <th>Options</th>
                 </tr>
                 </thead>
+                {{ $i = '' }}
                   <tbody>
                   @foreach($immeuble as $all_immeuble)
                           <tr>
-                          <td>1</td>
-                          <td><img style="width:70px; height:auto;" class="img-circle" src="{{ Storage::url($all_immeuble->image) }}" alt="" srcset=""></td>
+                          <td>{{ ++$i }}</td>
+                          <td><img style="width:70px; height:auto;" class="" src="{{ Storage::url($all_immeuble->image) }}" alt="" srcset=""></td>
                             <td>{{ $all_immeuble->name }}</td>
                             <td>{{ $all_immeuble->address }}</td>
                             <td>
                               @if($all_immeuble->status == 1)
-                                Codifiable
+                              Pour les anciens
                                 @else 
-                                Non Codifiable
+                                Pour les nouveaux
                               @endif
                             </td>
                             <td>
-                              <a data-toggle="modal" data-id="{{$all_immeuble->id}}" data-name="{{$all_immeuble->name}}" data-target="#modal-default-{{ $all_immeuble->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                           
-                            </td>
-                            <td>
+                              <a style="margin-right:5px;" data-toggle="modal" data-id="{{$all_immeuble->id}}" data-name="{{$all_immeuble->name}}" data-target="#modal-default-{{ $all_immeuble->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                               <form id="delete-form-{{$all_immeuble->id}}" method="post" action="{{ route('admin.departement.destroy',$all_immeuble->id) }}" style="display:none">
                               {{csrf_field()}}
                               {{method_field('delete')}}
                               </form>
-                            <a href="" onclick="
+                            <a style="margin-left:8px;" href="" onclick="
                               if(confirm('Are you sure , You want to delete this ?')){
 
                               event.preventDefault();document.getElementById('delete-form-{{$all_immeuble->id}}').submit();
@@ -72,9 +69,8 @@
                   <th>Image</th>
                   <th>Nom</th>
                   <th>Adresse</th>
-                  <th>Status</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Reserve</th>
+                  <th>Options</th>
                 </tr>
                 </tfoot>
               </table>
@@ -94,7 +90,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table text-center table-bordered table-striped">
                 <thead>
                 <tr class="bg-warning">
                   <th>S.No</th>
@@ -102,52 +98,49 @@
                   <th>Immeuble</th>
                   <th>Nombre</th>
                   <th>Status</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Options</th>
                 </tr>
                 </thead>
+                {{ $i = '' }}
                   <tbody>
-                        @foreach($chambre as $chm)
-                          <tr>
-                          <td>N</td>
-                          <td>{{ $chm->nom }}</td>
-                          <td>
-                                @foreach($chm->immeubles as $chm_imb)
-                                {{ $chm_imb->name }}
-                                @endforeach
-                          </td>
-                          <td>{{ $chm->nombre }}</td>
-                              <td>
-                                @if($chm->status == 1)
-                                  Codifiable
-                                  @else 
-                                  Non Codifiable
-                                  @endif
-                              </td>
-                              <td>
-                              <a data-toggle="modal" data-id="{{$chm->id}}" data-name="{{$chm->name}}" data-target="#modal-default-chambre-{{ $chm->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                           
-                            </td>
-                              <td>
-                              <form id="delete-form-{{$chm->id}}" method="post" action="{{ route('admin.departement.destroy',$chm->id) }}" style="display:none">
-                              {{csrf_field()}}
-                              {{method_field('delete')}}
-                              </form>
-                            <a href="" onclick="
-                              if(confirm('Are you sure , You want to delete this ?')){
+                    @foreach($chambre as $chm)
+                      <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $chm->nom }}</td>
+                        <td>
+                              @foreach($chm->immeubles as $chm_imb)
+                              {{ $chm_imb->name }}
+                              @endforeach
+                        </td>
+                        <td >{{ $chm->nombre }}</td>
+                        <td>
+                          @if($chm->status == 1)
+                            Codifiable
+                            @else 
+                            Non Codifiable
+                            @endif
+                        </td>
+                        <td>
+                        <a style="margin-right:5px;" data-toggle="modal" data-id="{{$chm->id}}" data-name="{{$chm->name}}" data-target="#modal-default-chambre-{{ $chm->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                        <form id="delete-form-{{$chm->id}}" method="post" action="{{ route('admin.departement.destroy',$chm->id) }}" style="display:none">
+                        {{csrf_field()}}
+                        {{method_field('delete')}}
+                        </form>
+                        <a style="margin-left:8px;" href="" onclick="
+                        if(confirm('Are you sure , You want to delete this ?')){
 
-                              event.preventDefault();document.getElementById('delete-form-{{$chm->id}}').submit();
+                        event.preventDefault();document.getElementById('delete-form-{{$chm->id}}').submit();
 
-                              }else{
+                        }else{
 
-                                event.preventDefault();
+                          event.preventDefault();
 
-                              }
-                              
-                              "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              </td>
-                          </tr>
-                        @endforeach
+                        }
+                        
+                        "><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                        </td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 <tfoot>
                 <tr class="bg-warning">
@@ -156,8 +149,7 @@
                   <th>Immeuble</th>
                   <th>Nombre</th>
                   <th>Status</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Options</th>
                 </tr>
                 </tfoot>
               </table>
@@ -182,7 +174,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Ajouter Une Immeuble</h4>
+                <h4 class="modal-title">Ajouter Un Immeuble</h4>
               </div>
               <form action="{{ route('admin.immeuble.store') }}" method="post" enctype="multipart/form-data">
               @csrf
@@ -268,7 +260,7 @@
                     <label>
                       
                         <input type="checkbox" value="1"  name="status"  
-                        @if ($modal_immeuble->status == 1) {{ 'checked' }} @endif > 
+                        @if ($modal_immeuble->status == 0) {{ 'checked' }} @endif > 
                         
                         Publier
                     </label>
@@ -315,17 +307,20 @@
                   @enderror
                 </p>
                 <p>
-                  <label for="slug">Immeuble de la chambre</label>
-                    <select value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" id="immeuble" name="immeuble">
-                      @foreach($immeuble as $imb)
-                      <option value="{{ $imb->id }}">{{ $imb->name }}</option>
-                      @endforeach
-                      @error('immeuble')
-                      <span class="invalid-feedback" role="alert">
-                          <strong class="message_error text-danger">{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </select>
+                <label for="slug">Immeubles</label>
+                  <div class="row" style="margin-bottom:15px;">
+                    @foreach($immeuble as $imb)
+                      <div class="col-lg-3">
+                        <label class="col-form-label text-md-right " for="role"> <input type="radio" name="immeuble" value="{{ old('immeuble') ?? $imb->id }}" class="@error('immeuble') is-invalid @enderror" id="" 
+                        > <span style="font-size:12px;">{{ $imb->name }}</span> </label>
+                        @error('immeuble')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </div>
+                    @endforeach
+                  </div>
                 <p>
                 <label for="slug">Nombre de place</label>
                 <input type="number"  value="{{ old('nombre')}}" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="">
@@ -334,7 +329,28 @@
                         <strong class="message_error">{{ $message }}</strong>
                     </span>
                   @enderror
-                </p>
+                  </p>
+                    <div class="row">
+                      <div class="radio">
+                            <div class="col-lg-2">
+                              <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id=""> Femme </label>
+                              @error('genre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong class="message_error">{{ $message }}</strong>
+                                </span>
+                              @enderror
+                             </div>
+                            <div class="col-lg-2">
+                              <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id=""> Homme </label>
+                              @error('genre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong class="message_error">{{ $message }}</strong>
+                                </span>
+                              @enderror
+                            </div>
+                        </div>
+                    </div>
+                  </p>
               </div>
               <div class="modal-footer">
                 <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
@@ -373,17 +389,23 @@
                   @enderror
                 </p>
                 <p>
-                  <label for="slug">Immeuble de la chambre</label>
-                    <select value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" id="immeuble" name="immeuble">
-                      @foreach($immeuble as $imb)
-                      <option value="{{ $imb->id }}">{{ $imb->name }}</option>
-                      @endforeach
-                      @error('immeuble')
-                      <span class="invalid-feedback" role="alert">
-                          <strong class="message_error text-danger">{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </select>
+                  <label for="slug">Immeubles</label>
+                  <div class="row" style="margin-bottom:15px;">
+                    @foreach($immeuble as $imb)
+                      <div class="col-lg-3">
+                        <label class="col-form-label text-md-right" for="role"> <input type="radio" name="immeuble" value="{{ old('immeuble') ?? $imb->id }}" class="@error('immeuble') is-invalid @enderror" id="" 
+                        @foreach($modal_chambre->immeubles as $imb_chm)
+                        @if ($imb->id == $imb_chm->id) {{ 'checked' }} @endif
+                        @endforeach
+                        > <span style="font-size:12px;">{{ $imb->name }}</span> </label>
+                        @error('immeuble')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </div>
+                    @endforeach
+                  </div>
                 <p>
                 <label for="slug">Nombre de place</label>
                 <input type="number"  value="{{ old('nombre') ?? $modal_chambre->nombre }}" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="">
@@ -393,20 +415,47 @@
                     </span>
                   @enderror
                 </p>
+                </p>
+                    <div class="row">
+                      <div class="radio">
+                            <div class="col-lg-2">
+                              <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 1) {{ 'checked' }} @endif> Femme </label>
+                              @error('genre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong class="message_error">{{ $message }}</strong>
+                                </span>
+                              @enderror
+                             </div>
+                            <div class="col-lg-2">
+                              <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 2) {{ 'checked' }} @endif> Homme </label>
+                              @error('genre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong class="message_error">{{ $message }}</strong>
+                                </span>
+                              @enderror
+                            </div>
+                        </div>
+                    </div>
+                  </p>
                 <p>
-                  <div class="checkbox pull-left">
-                    <label>
+                  <div class="radio pull-left">
+                    <label style="margin-right:5px;">
                       
-                        <input type="checkbox" value="1"  name="status"  
-                        @if ($modal_chambre->status == 1) {{ 'checked' }} @endif > 
-                        
-                        Publier
+                        <input type="radio" value="0"  name="status"  
+                        @if ($modal_chambre->status == 0) {{ 'checked' }} @endif > 
+                          Non Codifiable
                     </label>
+                    <label style="margin-left:5px;">
+                      
+                      <input type="radio" value="1"  name="status"  
+                      @if ($modal_chambre->status == 1) {{ 'checked' }} @endif > 
+                        Codifiable
+                  </label>
                   </div>
                 </p>
               </div>
               <div class="modal-footer">
-                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <!-- <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button> -->
                 <button type="submit" class="btn btn-primary">Modifier</button>
               </div>
             </div>

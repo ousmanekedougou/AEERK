@@ -43,15 +43,25 @@
 									<div class="switch-wrap d-flex justify-content-between">
 										<p class="text-white">Cochez cette Case Si Vous Etes un Nouveau</p>
 										<div class="primary-switch">
-											<input type="radio" name="status" value="1" id="default-switch">
+											<input type="radio" name="status" value="{{ old('status') ?? 1 }}" class=" @error('status') is-invalid @enderror" id="default-switch">
 											<label for="default-switch"></label>
+											@error('status')
+											<span class="invalid-feedback" role="alert">
+												<strong class="message_error">{{ $message }}</strong>
+											</span>
+											@enderror
 										</div>
 									</div>
 									<div class="switch-wrap d-flex justify-content-between">
 										<p  class="text-white">Cochez cette Case Si Vous Etes Un Ancien</p>
 										<div class="primary-switch">
-											<input type="radio" value="2" name="status" id="primary-switch" >
+											<input type="radio" value="{{ old('status') ?? 2 }}" class=" @error('status') is-invalid @enderror"  name="status" id="primary-switch" >
 											<label for="primary-switch"></label>
+											@error('status')
+												<span class="invalid-feedback" role="alert">
+													<strong class="message_error">{{ $message }}</strong>
+												</span>
+											@enderror
 										</div>
 									</div>
 								</div>

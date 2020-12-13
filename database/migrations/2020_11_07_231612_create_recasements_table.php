@@ -15,12 +15,14 @@ class CreateRecasementsTable extends Migration
     {
         Schema::create('recasements', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('genre')->default(0);
             $table->string('nom');
             $table->string('prenom');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('image');
-            $table->integer('chambre_id')->default(null);
+            $table->integer('chambre_id')->default(0);
+            $table->integer('immeuble_id')->default(0);
             $table->boolean('recaser')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();

@@ -6,160 +6,499 @@
 
 
      <!-- Content Wrapper. Contains page content -->
-     <div class="content-wrapper">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
     <!-- Main content -->
     <section class="content">
-    <section class="content-header">
-      <div class="box-header">
-        Vos infos
-        @if($infos->count() < 1)
-        <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-infos">Ajouter Vos Infos</a>
-          <!-- Default box -->
-          @endif
+      <section class="content-header">
+        <div class="box-header">
+          Vos infos
+          @if($infos->count() < 1)
+          <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-infos">Ajouter Vos Infos</a>
+            <!-- Default box -->
+            @endif
+        </div>
+      </section><br>
+      <div class="box-body">
+        <table id="example2" class="table text-center table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Adresse</th>
+            <th>Boite Postal</th>
+            <th>Fax</th>
+            <th class="text-success">Option</th>
+          </tr>
+          </thead>
+          <tbody>
+            @foreach($infos as $info)
+              <tr>
+                <td>{{ $info->email }}</td>
+                <td>{{ $info->phone }}</td>
+                <td>{{ $info->adresse }}</td>
+                <td>{{ $info->bp }}</td>
+                <td>{{ $info->fax }}</td>
+                <td class="">   
+                  <a data-toggle="modal" data-id="{{$info->id}}" data-name="{{$info->name}}" data-target="#modal-default-edit-info{{ $info->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+          <tfoot>
+          <tr>
+          <tr>
+          <th>Email</th>
+            <th>Phone</th>
+            <th>Adresse</th>
+            <th>Boite Postal</th>
+            <th>Fax</th>
+            <th class="text-success">Option</th>
+          </tr>
+          </tfoot>
+        </table>
       </div>
-    </section><br>
-            <div class="box-body">
-              <table id="example2" class="table text-center table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Adresse</th>
-                  <th>Boite Postal</th>
-                  <th>Fax</th>
-                  <th class="text-success">Option</th>
-                </tr>
-                </thead>
-                <tbody>
-              @foreach($infos as $info)
-                <tr>
-                  <td>{{ $info->email }}</td>
-                  <td>{{ $info->phone }}</td>
-                  <td>{{ $info->adresse }}</td>
-                  <td>{{ $info->bp }}</td>
-                  <td>{{ $info->fax }}</td>
-                  <td class="">   
-                    <a data-toggle="modal" data-id="{{$info->id}}" data-name="{{$info->name}}" data-target="#modal-default-edit-info{{ $info->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                  </td>
-                </tr>
-              @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                <tr>
-                <th>Email</th>
-                  <th>Phone</th>
-                  <th>Adresse</th>
-                  <th>Boite Postal</th>
-                  <th>Fax</th>
-                  <th class="text-success">Option</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
 
 
 
 
-           <div class="box-body">
-            <section class="content-header">
-              <div class="box-header">
+      <div class="box-body">
+        <section class="content-header">
+          <div class="box-header">
             <a class="col-lg-offset-5 pull-right btn btn-warning" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-reaseu-add">Ajouter un Reseau</a>
-                Reseaux Sociaux
-            </div>
-            </section><br>
-              <table id="example2" class="table text-center  table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Image</th>
-                  <th>Nom</th>
-                  <th>Lien</th>
-                  <th class="text-success">Option</th>
-                </tr>
-                </thead>
-                <tbody>
-              @foreach($social_reseau as $social)
-                <tr>
-                  <td>
-                  @if( $social->name == 'facebook' )
-                  <span > <i style="font-size:30px;color:blue;"class=" fa fa-facebook"></i> </span>
-                  @elseif($social->name == 'whatsapp')
-                  <span> <i style="font-size:30px;color:green;" class=" fa fa-whatsapp"></i> </span>
-                  @elseif($social->name == 'youtube')
-                  <span> <i style="font-size:30px;color:red;" class=" fa fa-youtube-play"></i> </span>
-                  @elseif($social->name == 'twitter')
-                  <span> <i style="font-size:30px;color:blue;" class=" fa fa-twitter"></i> </span>
-                  @elseif($social->name == 'instagram')
-                  <span> <i style="font-size:30px;color:red ;" class=" fa fa-instagram"></i> </span>
-                  @endif
-                  </td> 
-                  <td>{{ $social->name }}</td>
-                  <td><a href="{{ $social->lien }}">{{ $social->lien }}</a></td>
-                  <td class="">   
-                  <form id="delete-form-{{$social->id}}" action="{{ route('admin.social.destroy',$social->id) }}" method="post" style="display:none;">
-                      @csrf
-                      {{ method_field('DELETE') }}
-                    </form>
-                    <a data-toggle="modal" data-id="{{$social->id}}" data-name="{{$social->name}}" data-target="#modal-default-social-update{{ $social->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce reseau')){ event.preventDefault();document.getElementById('delete-form-{{$social->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.social.update',$social->id) }}" style="margin-right:20px;"><i class=" glyphicon glyphicon-trash"></i></a>
-                  </td>
-                </tr>
-              @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                <tr>
-                <th>Image</th>
-                  <th>Nom</th>
-                  <th>Lien</th>
-                  <th class="text-success">Option</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
+            Reseaux Sociaux
+          </div>
+        </section><br>
+        <table id="example2" class="table text-center  table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Lien</th>
+            <th class="text-success">Option</th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach($social_reseau as $social)
+          <tr>
+            <td>
+            @if( $social->name == 'facebook' )
+            <span > <i style="font-size:30px;color:blue;"class=" fa fa-facebook"></i> </span>
+            @elseif($social->name == 'whatsapp')
+            <span> <i style="font-size:30px;color:green;" class=" fa fa-whatsapp"></i> </span>
+            @elseif($social->name == 'youtube')
+            <span> <i style="font-size:30px;color:red;" class=" fa fa-youtube-play"></i> </span>
+            @elseif($social->name == 'twitter')
+            <span> <i style="font-size:30px;color:blue;" class=" fa fa-twitter"></i> </span>
+            @elseif($social->name == 'instagram')
+            <span> <i style="font-size:30px;color:red ;" class=" fa fa-instagram"></i> </span>
+            @endif
+            </td> 
+            <td>{{ $social->name }}</td>
+            <td><a href="{{ $social->lien }}">{{ $social->lien }}</a></td>
+            <td class="">   
+            <form id="delete-form-{{$social->id}}" action="{{ route('admin.social.destroy',$social->id) }}" method="post" style="display:none;">
+                @csrf
+                {{ method_field('DELETE') }}
+              </form>
+              <a data-toggle="modal" data-id="{{$social->id}}" data-name="{{$social->name}}" data-target="#modal-default-social-update{{ $social->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+              <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce reseau')){ event.preventDefault();document.getElementById('delete-form-{{$social->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.social.update',$social->id) }}" style="margin-right:20px;"><i class=" glyphicon glyphicon-trash"></i></a>
+            </td>
+          </tr>
+          @endforeach
+          </tbody>
+          <tfoot>
+          <tr>
+          <tr>
+          <th>Image</th>
+            <th>Nom</th>
+            <th>Lien</th>
+            <th class="text-success">Option</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
 
-            <div class="row">
-            <section class="content-header">
-              <div class="box-header">
-                <a class="col-lg-offset-5 pull-right btn btn-warning" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-add-partener">Ajouter un Partenaire</a>
-                <h3>Vos Partenaires</h3>
-              </div>
-              </section>
-              <br>
-                @foreach($partener as $part)
-                  <div class="col-lg-4">
-                    <!-- Attachment -->
-                    <div class="attachment-block clearfix">
-                      <img class="attachment-img" src="{{ Storage::url($part->image) }}" alt="Attachment Image">
+      <div class="row">
+        <section class="content-header">
+          <div class="box-header">
+            <a class="col-lg-offset-5 pull-right btn btn-warning" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-add-partener">Ajouter un Partenaire</a>
+            <h3>Vos Partenaires</h3>
+          </div>
+        </section>
+        <br>
+          @foreach($partener as $part)
+            <div class="col-lg-4">
+              <!-- Attachment -->
+              <div class="attachment-block clearfix">
+                <img class="attachment-img" src="{{ Storage::url($part->image) }}" alt="Attachment Image">
 
-                      <div class="attachment-pushed">
-                        <h4 class="attachment-heading"><a href="http://www.lipsum.com/">{{ $part->nom }}</a></h4>
+                <div class="attachment-pushed">
+                  <h4 class="attachment-heading"><a href="http://www.lipsum.com/">{{ $part->nom }}</a></h4>
 
-                        <div class="attachment-text">
-                          <p><a href="{{ $part->lien }}">{{ $part->lien }}</a></p>
-                          <p>
-                          <form id="delete-form-{{$part->id}}" action="{{ route('admin.partener.destroy',$part->id) }}" method="post" style="display:none;">
-                      @csrf
-                      {{ method_field('DELETE') }}
-                    </form>
-                    <a data-toggle="modal" data-id="{{$part->id}}" data-name="{{$part->name}}" data-target="#modal-default-update-partener-{{$part->id}}"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce Partenaire')){ event.preventDefault();document.getElementById('delete-form-{{$part->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.partener.update',$part->id) }}" style="margin-right:20px;"><i class=" glyphicon glyphicon-trash"></i></a>
-                          </p>
-                        </div>
-                        <!-- /.attachment-text -->
-                      </div>
-                      <!-- /.attachment-pushed -->
-                    </div>
-                    <!-- /.attachment-block -->
+                  <div class="attachment-text">
+                    <p><a href="{{ $part->lien }}">{{ $part->lien }}</a></p>
+                    <p>
+                    <form id="delete-form-{{$part->id}}" action="{{ route('admin.partener.destroy',$part->id) }}" method="post" style="display:none;">
+                @csrf
+                {{ method_field('DELETE') }}
+              </form>
+              <a data-toggle="modal" data-id="{{$part->id}}" data-name="{{$part->name}}" data-target="#modal-default-update-partener-{{$part->id}}"><i class="glyphicon glyphicon-edit"></i></a>
+              <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce Partenaire')){ event.preventDefault();document.getElementById('delete-form-{{$part->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.partener.update',$part->id) }}" style="margin-right:20px;"><i class=" glyphicon glyphicon-trash"></i></a>
+                    </p>
                   </div>
-                @endforeach
+                  <!-- /.attachment-text -->
+                </div>
+                <!-- /.attachment-pushed -->
+              </div>
+              <!-- /.attachment-block -->
             </div>
+          @endforeach
+      </div>
+
+
+      <div class="box-body">
+        <section class="content-header">
+            <h1>Vos Prix Et Numero De Codification</h1>
+          <div class="box-header">
+            @if($soldes->count() < 1)
+            <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+              <!-- Default box -->
+              @endif
+          </div>
+        </section><br>
+        <table id="example2" class="table text-center table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>Pix Codification Nouveau</th>
+            <th>Pix Codification Ancien</th>
+            <th>Numero Codification Ancien</th>
+            <th>Numero Codification Ancien</th>
+            <th class="text-success">Option</th>
+          </tr>
+          </thead>
+          <tbody>
+            @foreach($soldes as $solde)
+              <tr>
+                <td>{{ $solde->prix_nouveau }} f</td>
+                <td>{{ $solde->prix_ancien }} f</td>
+                <td>{{ $solde->numero_nouveau }} </td>
+                <td>{{ $solde->numero_ancien }} </td>
+                <td class="">   
+                  <a data-toggle="modal" data-id="{{$solde->id}}" data-name="{{$solde->name}}" data-target="#modal-default-edit-solde{{ $solde->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+         
+        </table>
+      </div>
+
+
+
+      <div class="box-body">
+    <section class="content-header">
+        <h1>Gestion de vos liens</h1>
+        <div class="box-header">
+        @if($soldes->count() < 1)
+        <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+            <!-- Default box -->
+            @endif
+        </div>
+    </section><br>
+    <table id="example2" class="table text-center table-bordered table-hover">
+        <thead>
+        <tr>
+        <th>Inscription</th>
+        <th> Liens Inscription </th>
+        <th>Inscription Recasement</th>
+        <th>Codification</th>
+        <th> Liens Codification </th>
+        <th>Recasement</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($options as $option)
+            <tr>
+            <!-- Le td du register -->
+              <td>
+              @if($option->register == 1)
+                <form id="register_etudiant_1" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="0" name="register">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                event.preventDefault();document.getElementById('register_etudiant_1').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                @elseif($option->register == 0)
+                <form id="register_etudiant_2" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="1" name="register">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                event.preventDefault();document.getElementById('register_etudiant_2').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                @endif
+              </td>
+              <!-- Fin du td du register -->
+                <!-- td des liens inscription des nouveaux et ancien -->
+              <td>
+              @if($option->register_nouveau == 1 && $option->register_ancien == 1)
+                <form id="update_register" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="0" name="inscription_etudiant">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                event.preventDefault();document.getElementById('update_register').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                @elseif($option->register_nouveau == 0 && $option->register_ancien == 0)
+                <form id="update_liens" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="1" name="inscription_etudiant">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                event.preventDefault();document.getElementById('update_liens').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                @endif
+              </td>
+              <!-- Fin du td inscription des nouveaux et anciens -->
+
+              <!-- td du lien inscription des recasements -->
+              <td>
+              @if($option->register_recasement == 1)
+                <form id="inscription_recasement_1" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="0" name="register_recasement">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                event.preventDefault();document.getElementById('inscription_recasement_1').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                @elseif($option->register_recasement == 0)
+                <form id="inscription_recasement_2" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="1" name="register_recasement">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                event.preventDefault();document.getElementById('inscription_recasement_2').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                @endif
+              </td>
+              <!-- Fin du td lien inscription des recasements -->
+
+                 <!-- Le td de la codification -->
+                 <td>
+              @if($option->codification == 1)
+                <form id="codification" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="0" name="codification">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                event.preventDefault();document.getElementById('codification').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                @elseif($option->codification == 0)
+                <form id="codification_2" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="1" name="codification">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                event.preventDefault();document.getElementById('codification_2').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                @endif
+              </td>
+              <!-- Fin du td de la codification -->
+
+                 <!-- td des liens codification des nouveaux et ancien -->
+                 <td>
+              @if($option->codification_nouveau == 1 && $option->codification_ancien == 1)
+                <form id="codification_etudiant_1" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="0" name="codification_etudiant">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                event.preventDefault();document.getElementById('codification_etudiant_1').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                @elseif($option->codification_nouveau == 0 && $option->codification_ancien == 0)
+                <form id="codification_etudiant_2" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="1" name="codification_etudiant">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                event.preventDefault();document.getElementById('codification_etudiant_2').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                @endif
+              </td>
+              <!-- Fin du td codification des nouveaux et anciens -->
+
+
+              <!-- td du lien  des recasements -->
+              <td>
+              @if($option->recasement == 1)
+                <form id="recasement_1" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="0" name="recasement_etudiant">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                event.preventDefault();document.getElementById('recasement_1').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                @elseif($option->recasement == 0)
+                <form id="recasement_2" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                <input type="hidden" value="1" name="recasement_etudiant">
+                </form>
+                <a href="" onclick="
+                if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                event.preventDefault();document.getElementById('recasement_2').submit();
+
+                }else{
+
+                    event.preventDefault();
+
+                }
+                
+                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                @endif
+              </td>
+              <!-- Fin du td lien  des recasements -->
+
+            </tr>
+        @endforeach
+    
+    </table>
+  </div>
+
+
+
+
+
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+  
+
+
+  
 
 
 <!-- Modal de l'ajout  des infos -->
@@ -317,7 +656,7 @@
 
 <!-- Modal de l'ajout et de l'eddition des reseau -->
 
-<div class="modal fade" id="modal-default-reaseu-add">
+        <div class="modal fade" id="modal-default-reaseu-add">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -361,7 +700,7 @@
       </div>
 
 
-@foreach($social_reseau as $social_modal)
+    @foreach($social_reseau as $social_modal)
       <div class="modal fade" id="modal-default-social-update{{ $social_modal->id }}">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -410,8 +749,8 @@
 
 
 
-<!-- Modal D'ajout et d'eddition des partenaires -->
-<div class="modal fade" id="modal-default-add-partener">
+      <!-- Modal D'ajout et d'eddition des partenaires -->
+      <div class="modal fade" id="modal-default-add-partener">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -465,7 +804,7 @@
 
 
 
-      @foreach($partener as $part_modal)
+    @foreach($partener as $part_modal)
       <div class="modal fade" id="modal-default-update-partener-{{$part_modal->id}}">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -517,7 +856,147 @@
           </div>
           <!-- /.modal-dialog -->
       </div>
-      @endforeach
+    @endforeach
 <!-- Fin des ajouts et des edditions dea partenaires -->
+
+
+
+        <!-- Modal d'ajout des soldes -->
+        <div class="modal fade" id="modal-default-ajouter-solde">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Editer vos Solde</h4>
+              </div>
+              <form action="{{ route('admin.add_prix') }}" method="post">
+              @csrf
+              <div class="modal-body">
+
+                <p>
+                <label for="prix_n">Prix Nouveau</label>
+                <input type="number"  value="old('prix_n')" class="form-control @error('prix_n') is-invalid @enderror" id="prix_n" name="prix_n" placeholder="">
+                  @error('prix_n')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+
+                <p>
+                <label for="prix_a">Prix Ancien</label>
+                <input type="number"  value="old('prix_a') " class="form-control @error('prix_a') is-invalid @enderror" id="prix_a" name="prix_a" placeholder="">
+                  @error('prix_a')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+
+
+                <p>
+                <label for="numero_n">Numero de Codification Nouveau</label>
+                <input type="number"  value="old('numero_n') " class="form-control @error('numero_n') is-invalid @enderror" id="numero_n" name="numero_n" placeholder="">
+                  @error('numero_n')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+
+
+                <p>
+                <label for="numero_a">Numero de Codification Ancien</label>
+                <input type="number"  value="old('numero_a') " class="form-control @error('numero_a') is-invalid @enderror" id="numero_a" name="numero_a" placeholder="">
+                  @error('numero_a')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- Fin du modal d'ajout des solde -->
+
+
+
+<!-- Modal du update des soldes -->
+    @foreach($soldes as $solde)
+      <div class="modal fade" id="modal-default-edit-solde{{ $solde->id }}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Editer vos Solde</h4>
+              </div>
+              <form action="{{ route('admin.solde',$solde->id) }}" method="post">
+              @csrf
+              {{method_field('PUT')}}
+              <div class="modal-body">
+
+                <p>
+                <label for="prix_n">Prix Nouveau</label>
+                <input type="number"  value="{{ old('prix_n') ?? $solde->prix_nouveau }}" class="form-control @error('prix_n') is-invalid @enderror" id="prix_n" name="prix_n" placeholder="">
+                  @error('prix_n')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+
+                <p>
+                <label for="prix_a">Prix Ancien</label>
+                <input type="number"  value="{{ old('prix_a') ?? $solde->prix_ancien }}" class="form-control @error('prix_a') is-invalid @enderror" id="prix_a" name="prix_a" placeholder="">
+                  @error('prix_a')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+
+                <p>
+                <label for="numero_n">Numero De Codification Nouveau</label>
+                <input type="number"  value="{{ old('numero_n') ?? $solde->numero_nouveau }}" class="form-control @error('numero_n') is-invalid @enderror" id="numero_n" name="numero_n" placeholder="">
+                  @error('numero_n')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+
+                <p>
+                <label for="numero_a">Numero De Codification Ancien</label>
+                <input type="number"  value="{{ old('numero_a') ?? $solde->numero_ancien }}" class="form-control @error('numero_a') is-invalid @enderror" id="numero_a" name="numero_a" placeholder="">
+                  @error('numero_a')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+    @endforeach
+<!-- Fin du modal update  des soldes -->
 
 @endsection

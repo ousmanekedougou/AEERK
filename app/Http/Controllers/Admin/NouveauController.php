@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\User\Nouveau;
+use App\Model\Admin\Solde;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use App\Model\Admin\Departement;
@@ -23,8 +24,9 @@ class NouveauController extends Controller
      */
     public function index()
     {
+        $immeubles = Immeuble::where('status',false)->first();
         $nouveau_bac = Nouveau::where('codifier',0)->paginate(10);
-        return view('admin.nouveau.index',compact('nouveau_bac'));
+        return view('admin.nouveau.index',compact('nouveau_bac','immeubles'));
     }
 
     /**
@@ -56,9 +58,10 @@ class NouveauController extends Controller
      */
     public function show($id)
     {
+        $immeubles = Immeuble::where('status',false)->first();
         $departement = Departement::all();
         $show_nouveau = Nouveau::find($id);
-        return view('admin.nouveau.show',compact('show_nouveau','departement'));
+        return view('admin.nouveau.show',compact('show_nouveau','departement','immeubles'));
     }
 
     /**
@@ -154,15 +157,45 @@ class NouveauController extends Controller
     public function codifier_nouveau(Request $request, $id){
         $validator = $this->validate($request , [
             'chambre_id' => 'required|string',
-            'prix' => 'required|numeric',
         ]);
-        $codifier_nouveau = Nouveau::where('id',$id)->first();
-        $codifier_nouveau->chambre_id = $request->chambre_id;
-        $codifier_nouveau->prix = $request->prix;
-        $codifier_nouveau->codifier = 1;
-        $codifier_nouveau->save();
-        Flashy::success('Votre etudiant a ete codifier');
-        return redirect()->route('admin.nouveau.index');
+        $prix = Solde::select('prix_nouveau')->first();
+        $chambre_nouveau = Nouveau::select('chambre_id')->get();
+        foreach($chambre_nouveau as $chambres){
+            if ($chambres->chambre_id == $request->chambre_id) {
+                if($chambre_nouveau->count() < $chambres->chambre->nombre){
+                    $codifier_nouveau = Nouveau::where('id',$id)->first();
+                    $codifier_nouveau->chambre_id = $request->chambre_id;
+                    $codifier_nouveau->prix = $prix->prix_nouveau;
+                    $codifier_nouveau->codifier = 1;
+                    $codifier_nouveau->save();
+                    Flashy::success('Votre etudiant a ete codifier');
+                    return redirect()->route('admin.nouveau.index');
+                }else{
+                    Flashy::error('Cette Chambre est pleine');
+                    return redirect()->route('admin.nouveau.index');
+                }
+            }
+            else if ($chambres->chambre_id == 0){
+                $chambre_null = Nouveau::where('chambre_id',0)->first();
+                if ($chambre_null) {
+                    $codifier_nouveau = Nouveau::where('id',$id)->first();
+                    $codifier_nouveau->chambre_id = $request->chambre_id;
+                    $codifier_nouveau->prix = $prix->prix_nouveau;
+                    $codifier_nouveau->codifier = 1;
+                    $codifier_nouveau->save();
+                    Flashy::success('Votre etudiant a ete codifier');
+                    return redirect()->route('admin.nouveau.index');
+                }
+                
+            }
+        }
+        // $codifier_nouveau = Nouveau::where('id',$id)->first();
+        // $codifier_nouveau->chambre_id = $request->chambre_id;
+        // $codifier_nouveau->prix = $request->prix;
+        // $codifier_nouveau->codifier = 1;
+        // $codifier_nouveau->save();
+        // Flashy::success('Votre etudiant a ete codifier');
+        // return redirect()->route('admin.nouveau.index');
     }
 
     /**

@@ -142,7 +142,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $imgdel = $post->image;
    
-        if($request->hasFile('image'))
+        if($request->image != Null)
         {
            $imageName = $request->image->store('public/Article');
         }

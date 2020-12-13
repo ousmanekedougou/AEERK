@@ -94,7 +94,7 @@
   <!-- ____________________________________________________________________________________ -->
     <!-- ajouter un personnelle -->
 
-    <div class="modal modal-info fade" id="add_personnel">
+    <div class="modal modal-default fade" id="add_personnel">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -198,7 +198,7 @@
 
     @foreach($teams as $team)
 
-    <div class="modal modal-info fade" id="edit_personnel-{{ $team->id }}">
+    <div class="modal modal-default fade" id="edit_personnel-{{ $team->id }}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -270,9 +270,11 @@
                       <br>  
                     @foreach($com->postes as $com_poste)
                       <label class="" for="poste"> <input type="radio" name="poste" class="@error('poste') is-invalid @enderror" value="{{$com_poste->id ?? old('image') }}" id=""  
-                        @if($team->poste != Null )
+                       
+                        @if($team->poste->id == $com_poste->id )
                           checked 
                         @endif
+                        
                       > {{ $com_poste->name }} </label>
                       @error('poste')
                         <span class="invalid-feedback" role="alert">

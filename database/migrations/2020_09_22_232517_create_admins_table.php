@@ -17,10 +17,11 @@ class CreateAdminsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',100);
             $table->string('email')->unique();
-            $table->string('phone');
+            $table->string('phone')->unique();;
             $table->string('password');
             $table->string('image')->nullable();
             $table->boolean('status')->default(false);
+            $table->integer('poste_id')->default(0);
             $table->timestamps();
         });
     }

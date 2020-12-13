@@ -22,8 +22,8 @@ class Admin extends Authenticatable
         return $this->belongsToMany(Role::class,'role_admins');
     }
 
-    public function postes()
+    public function poste()
     {
-        return $this->belongsToMany(Poste::class,'admin_postes');
+        return $this->belongsTo(Poste::class);
     }
 }
