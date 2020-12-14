@@ -6,7 +6,8 @@ use App\Model\User\Nouveau;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Model\Admin\Immeuble;
+use App\Model\Admin\Solde;
 class EtudiantCodificationController extends Controller
 {
     /**
@@ -44,16 +45,16 @@ class EtudiantCodificationController extends Controller
             'phone' => 'required',
             'status' => 'required'
         ]);
-// dd($request->status);
+        // dd($request->status);
         if($request->status == 1){
             $status = $request->status;
             $nouveau = Nouveau::where(['email' => $request->email,'phone' => $request->phone,'codifier' => 0,'status' => 1,'prix' => 0])->first();
             if($nouveau){
-                return 'yes';
-                // return view('user.codification.show',compact('nouveau'));
+                $immeubles = Immeuble::where('status',false)->first();
+                return view('user.codification.nouveau',compact('nouveau','immeubles'));
             }else{
-                return back();
                 Flashy::error('Vous n\'est pas en mesure de codifier');
+                return back();
             }
 
         }else if($request->status == 2){
@@ -61,10 +62,11 @@ class EtudiantCodificationController extends Controller
             // dd($request->status);
             $ancien = Ancien::where(['email' => $request->email,'phone' => $request->phone ,'codifier' => 0,'status' => 1,'prix' => 0])->first();
             if($ancien){
-                return view('user.codification.show',compact('ancien'));
+                $immeubles = Immeuble::where('status',true)->get();
+                return view('user.codification.ancien',compact('ancien','immeubles'));
             }else{
-                return back();
                 Flashy::error('Vous n\'est pas en mesure de codifier');
+                return back();
             }
         }
     }
@@ -75,10 +77,12 @@ class EtudiantCodificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+
+    public function show($id){
         //
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -100,7 +104,79 @@ class EtudiantCodificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = $this->validate($request , [
+            'chambre_id' => 'required|string',
+        ]);
+        $prix = Solde::select('prix_nouveau')->first();
+        $chambre_nouveau = Nouveau::select('chambre_id')->get();
+        foreach($chambre_nouveau as $chambres){
+            if ($chambres->chambre_id == $request->chambre_id) {
+                if($chambre_nouveau->count() < $chambres->chambre->nombre){
+                    $codifier_nouveau = Nouveau::where('id',$id)->first();
+                    $codifier_nouveau->chambre_id = $request->chambre_id;
+                    $codifier_nouveau->prix = $prix->prix_nouveau;
+                    $codifier_nouveau->codifier = 1;
+                    $codifier_nouveau->save();
+                    Flashy::success('Vous avez ete codifier');
+                    return redirect()->route('index');
+                }else{
+                    Flashy::error('Cette Chambre est pleine');
+                    return back();
+                }
+            }
+            else if ($chambres->chambre_id == 0){
+                $chambre_null = Nouveau::where('chambre_id',0)->first();
+                if ($chambre_null) {
+                    $codifier_nouveau = Nouveau::where('id',$id)->first();
+                    $codifier_nouveau->chambre_id = $request->chambre_id;
+                    $codifier_nouveau->prix = $prix->prix_nouveau;
+                    $codifier_nouveau->codifier = 1;
+                    $codifier_nouveau->save();
+                    Flashy::success('Vous avez ete codifier');
+                    return redirect()->route('index');
+                }
+                
+            }
+        }
+    }
+
+    public function codifier_ancien(Request $request,$id)
+    {
+        $validator = $this->validate($request , [
+            'chambre_id' => 'required|string',
+        ]);
+        // dd($request->chambre_id);
+        $prix = Solde::select('prix_ancien')->first();
+        $chambre_ancien = Ancien::select('chambre_id')->get();
+        foreach($chambre_ancien as $chambres){
+            if ($chambres->chambre_id == $request->chambre_id) {
+                if($chambre_ancien->count() < $chambres->chambre->nombre){
+                    $codifier_ancien = Ancien::where('id',$id)->first();
+                    $codifier_ancien->chambre_id = $request->chambre_id;
+                    $codifier_ancien->prix = $prix->prix_ancien;
+                    $codifier_ancien->codifier = 1;
+                    $codifier_ancien->save();
+                    Flashy::success('Vous avez ete codifier');
+                    return redirect()->route('index');
+                }else{
+                    Flashy::error('Cette Chambre est pleine');
+                    return redirect()->route('index');
+                }
+            }
+            else if ($chambres->chambre_id == 0){
+                $chambre_null = Ancien::where('chambre_id',0)->first();
+                if ($chambre_null) {
+                    $codifier_ancien = Ancien::where('id',$id)->first();
+                    $codifier_ancien->chambre_id = $request->chambre_id;
+                    $codifier_ancien->prix = $prix->prix_ancien;
+                    $codifier_ancien->codifier = 1;
+                    $codifier_ancien->save();
+                    Flashy::success('Vous avez ete codifier');
+                    return redirect()->route('index');
+                }
+                
+            }
+        }
     }
 
     /**

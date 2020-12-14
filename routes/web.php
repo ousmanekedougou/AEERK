@@ -19,6 +19,7 @@ Route::group(['namespace' => 'User'],function(){
     Route::resource('/article','ArticleController');
     Route::resource('/comment','CommentController');
     Route::resource('/codification','EtudiantCodificationController');
+    Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
     Route::get('/category/{id}','ArticleController@category')->name('article.category');
     Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
 

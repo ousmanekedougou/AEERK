@@ -26,14 +26,14 @@
 			      </div>
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
-			          <li><a href="/">Home</a></li>
-			          <li><a href="{{ route('about.index') }}">A Propos</a></li>
+			          <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+			          <li><a href="{{ route('about.index') }}"><i class="fa fa-eject"></i> A Propos</a></li>
 			          <!-- <li><a href="courses.html"></a></li>
 			          <li><a href="events.html"></a></li> -->
 					  <!-- gestion de l'inscription -->
-                      <li><a href="">Gallery</a></li>
+                      <li><a href=""><i class="fa fa-image"></i> Gallery</a></li>
 						@if(all_option()->register == 1)
-							<li class="menu-has-children text-white"><a href="#">Inscription</a>
+							<li class="menu-has-children text-white"><a href="#"><i class="fa fa-user-plus"></i> Inscription</a>
 							@if(all_option()->register == 1 && all_option()->register_nouveau == 1 && all_option()->register_ancien == 1)
 								<ul style="z-index:2;border-radius:5px;">
 								@elseif(all_option()->register == 1 && all_option()->register_recasement == 1)
@@ -45,7 +45,7 @@
 								<li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes Nouveau</a></li>
 								<li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes  Anciens</a></li>
 								@elseif(all_option()->register == 1 && all_option()->register_recasement == 1)
-								<li><a href="{{ route('recasement.index') }}"> <i class="fa fa-chevron-right"></i>Inscription Recasement</a></li>
+								<li><a href="{{ route('recasement.index') }}"><i class="fa fa-chevron-right"></i>Inscription Recasement</a></li>
 								@endif
 								</ul>
 							</li>	
@@ -54,7 +54,7 @@
 			
 						<!-- Gestion de la codification  -->
 						@if(all_option()->codification == 1)
-						<li class="menu-has-children text-white"><a href="#">Codifications</a>
+						<li class="menu-has-children text-white"><a href="#"><i class="fa fa-user-plus"></i> Codifications</a>
 							@if(all_option()->codification == 1 && all_option()->codification_nouveau == 1 && all_option()->codification_ancien == 1)
 								<ul style="z-index:2;border-radius:5px;">
 							@elseif(all_option()->codification == 1 && all_option()->recasement == 1)
@@ -72,14 +72,14 @@
 						</li>	
 						@endif
 						<!-- Fin de la gestion de la codification -->
-					  <li><a href="{{ route('article.index') }}">Articles</a></li> 
+					  <li><a href="{{ route('article.index') }}"><i class="fa fa-blog"></i>Articles</a></li> 
 			          <!-- <li class="menu-has-children"><a href="">Articles</a>
 			            <ul>
 			              <li><a href="">Article Video</a></li>
 			              <li><a href="">Article Image</a></li>
 			            </ul>
 			          </li>	 -->
-			          <li class="menu-has-children"><a href="">Pages</a>
+			          <li class="menu-has-children"><a href=""><i class="fa fa-pager"></i> Pages</a>
 			            <ul>
 		              		<li><a href=""> <i class="fa fa-chevron-right"></i> Documentation</a></li>		
 		              		<li><a href=""> <i class="fa fa-chevron-right"></i> Activite</a></li>		
@@ -94,7 +94,7 @@
 					          </li>					                		 -->
 			            </ul>
 					  </li>		
-					  <li class="menu-has-children"><a href="">Orientation</a>
+					  <li class="menu-has-children"><a href=""><i class="fa fa-graduation-cap"></i> Orientation</a>
 			            <ul>
 					          <li class="menu-has-children"><a href="">UCAD </a>
 					            <ul>
@@ -128,7 +128,7 @@
 					          </li>					                							                		
 			            </ul>
 			          </li>				          					          		          
-			          <li><a href="{{ route('contact.index') }}">Contact</a></li>
+			          <li><a href="{{ route('contact.index') }}"><i class="fa fa-address-book"></i> Contact</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		
 		    	</div>
