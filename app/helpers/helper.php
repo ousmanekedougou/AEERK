@@ -38,3 +38,23 @@ if(! function_exists('all_tag')){
         return $tag;
     }
 }
+
+
+if(! function_exists('page_title')){
+    function page_title($title)
+    {
+        $base_title = 'AEERK';
+        if($title === ''){
+            return  $base_title;
+        }else{
+            return $title . ' | ' . $base_title;
+        }
+    }
+}
+
+if(! function_exists('set_active_roote')){
+    function set_active_roote($route)
+    {
+        return Route::is($route) ? 'active' : '';
+    }
+}

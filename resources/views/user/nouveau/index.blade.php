@@ -194,7 +194,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
-												<label for="">Extrait de Naissance D'un De Vos Parents</label>
+												<label for="">Photocopie CNI ou Extrait D'un De Vos Parents</label>
 												<input type="file" value="{{ old('extrait') }}" class="form-control @error('extrait') is-invalid @enderror" name="extrait" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('extrait')
 													<span class="invalid-feedback" role="alert">

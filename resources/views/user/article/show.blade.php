@@ -1,4 +1,4 @@
- @extends('user.layouts.app')
+ @extends('user.layouts.app',['title' => 'detail'])
  @section('bg-img',asset('user/img/home-bg.jpg'))
  @section('title','Clean Blog')
 @section('sub-heding','Bootstrap Template')

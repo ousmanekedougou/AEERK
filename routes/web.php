@@ -41,6 +41,8 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/option','Admin\OptionController');
         // Fin de tout ce qui est blog
 
+      
+
         // Tout ce qui est Parametre
         Route::resource('/info', 'Admin\InfoController');
         Route::put('/info/{id}/solde','Admin\InfoController@solde')->name('solde');

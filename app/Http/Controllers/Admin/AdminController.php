@@ -7,6 +7,7 @@ use App\Model\Admin\Admin;
 use Illuminate\Http\Request;
 use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -55,7 +56,7 @@ class AdminController extends Controller
             'image' => 'required|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
        
-        $request['password'] = bcrypt($request->password);
+        $request['password'] = Hash::make($request->password);
         $admin = Admin::create($request->all());
         if($request->hasFile('image')){
             $imageName = $request->image->store('public/Admin');

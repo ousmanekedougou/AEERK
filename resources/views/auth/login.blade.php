@@ -32,51 +32,61 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>Login</a>
+    <a href=""><b class="text-primary">Bureau AEERK</b> </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Ajouter vos informations</p>
 
     @include('includes.message')
 
     <form action="{{ route('admin.admin.login') }}" method="post">
         {{ csrf_field() }}
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" name="email" placeholder="Email">
+        <input type="email" id="email" class="form-control  @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" required autocomplete="email" autofocus placeholder="Adresse E-mail">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </span>
+        @enderror
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Mot de passe">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </span>
+        @enderror
       </div>
       <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-7">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Remember Me
+              <input type="checkbox"> Se Souvenir De Moi
             </label>
           </div>
         </div>
         <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        <div class="col-xs-5">
+          <button type="submit" class="btn btn-primary btn-block">Connexion</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
 
     <div class="social-auth-links text-center">
-      <p>- OR -</p>
+      <!-- <p>- OR -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
+        Google+</a> -->
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <a href="{{ route('password.request') }}" class="btn btn-danger btn-block">Mot de passe oublier</a><br>
+    <!-- <a href="#" class="text-center">Register a new membership</a> -->
 
   </div>
   <!-- /.login-box-body -->

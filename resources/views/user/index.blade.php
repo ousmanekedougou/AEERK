@@ -1,4 +1,4 @@
-@extends('user.layouts.app')
+@extends('user.layouts.app',['title' => 'acceuil'])
 @section('main-content')
     <!-- start banner Area -->
             <section class="banner-area relative" id="home">

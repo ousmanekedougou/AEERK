@@ -5,6 +5,7 @@ use App\Model\Admin\Admin;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ProfilAdminController extends Controller
@@ -92,7 +93,7 @@ class ProfilAdminController extends Controller
         if($request->password == Null){
             $password_actuel = $admin_update->password;
         }else{
-            $password_actuel = bcrypt($request->password);
+            $password_actuel = Hash::make($request->password);
         }
         $admin_update->password = $password_actuel;
         if($request->image == Null){
