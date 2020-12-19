@@ -1,15 +1,13 @@
 <?php
+use App\Mail\ContactMessageCreated;
 
-
-// Route::get('/', function () {
-//     return view('user/welcome');
-// });
+Route::get('/test-mail', function () {
+    return new ContactMessageCreated('Ousmane Diallo','ousmane@gmail.com','objet','mon message');
+});
 
 Route::group(['namespace' => 'User'],function(){
     Route::resource('/','HomeController');
-
     Route::resource('/contact','ContactController');
-
     Route::resource('/nouveau','NouveauController');
     Route::resource('/ancien','AncienController');
     Route::resource('/recasement', 'RecasementController');
@@ -22,16 +20,13 @@ Route::group(['namespace' => 'User'],function(){
     Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
     Route::get('/category/{id}','ArticleController@category')->name('article.category');
     Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
-
     Route::resource('/realisation','RealisationController');
 });
 
 
     Route::prefix('/admin')->name('admin.')->group(function() 
     {
-    
-    Route::get('/home', 'Admin\HomeController@index')->name('home');
-    
+        Route::get('/home', 'Admin\HomeController@index')->name('home');
         // Tout ce qui est blog
         Route::resource('/post', 'Admin\PostController');
         Route::resource('/category', 'Admin\CategoryController');
@@ -83,14 +78,19 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/localite', 'Admin\LocaliteController');
         Route::resource('/inscription', 'Admin\InscriptionController');
         Route::resource('/codification', 'Admin\CodificationController');
+
         Route::put('/ancien/{id}/codifier_ancien', 'Admin\AncienController@codifier_ancien')->name('codifier_ancien');
         Route::put('/nouveau/{id}/codifier_nouveau', 'Admin\NouveauController@codifier_nouveau')->name('codifier_nouveau');
+        
         Route::resource('/recasement', 'Admin\RecasementController');
         Route::resource('/comission', 'Admin\ComissionController');
         Route::resource('/posteCommission', 'Admin\PosteCommissionController');
         Route::resource('/admin', 'Admin\AdminController');
         Route::resource('/ancien', 'Admin\AncienController');
-        Route::get('/ancien/{id}/update_ancien', 'Admin\NouveauController@update_ancien')->name('update_ancien');
+
+        Route::get('/ancien/{id}/update_ancien', 'Admin\AncienController@update_ancien')->name('update_ancien');
+        Route::put('/ancien/{id}/valider', 'Admin\AncienController@valider')->name('valider');
+
         Route::resource('/nouveau', 'Admin\NouveauController');
         Route::get('/nouveau/{id}/update_nouveau', 'Admin\NouveauController@update_nouveau')->name('update_nouveau');
         // fin des option de uesr
@@ -102,5 +102,6 @@ Route::group(['namespace' => 'User'],function(){
         // fin des login admin
     });
 
+ 
 
 Auth::routes();

@@ -11,23 +11,12 @@
     <!-- Main content -->
     <section class="content">
                 
-        
-        
-        <!-- les inputs -->
-
-             <!-- general form elements -->
-             <div class="">
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" action="{{route('admin.post.store')}}" method="post" enctype="multipart/form-data">
-              <!-- {{ csrf_field() }} -->
+          <div class="" style="margin:20px 100px">
+            <form role="form" style="padding:30px;" action="{{route('admin.post.store')}}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="box-body">
-
-              <div class="col-lg-6">
-
-                  
-                  <div class="form-group">
+                  <div class="col-lg-6">
+                    <div class="form-group">
                       <label for="title">Titre De L'article</label>
                       <input type="text" class="form-control" id="title" name="title" placeholder="">
                     </div>
@@ -42,78 +31,55 @@
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="">
                     </div>
                     
-                </div>
-
-                <div class="col-lg-6">
-                  
-                <div class="form-group">
-                    <br>
-                  <div class="pull-right">
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <br>
+                      <div class="pull-right">
                         <label for="image">Image De L'article</label>
                         <input type="file" id="image" value="" name=image>
-                    </div>
-                 
-                    <div class="checkbox pull-left">
+                      </div>
+                  
+                      <div class="checkbox pull-left">
                         <label>
                           
                             <input type="checkbox" value="1" name="status"> Publier
                         </label>
+                      </div>
+                    </div>
+                        <br><br>
+                    <div class="form-group">
+                      <label>Category De L'article</label>
+                      <select class="form-control select2" name="category[]" multiple="multiple" data-placeholder="Select a State"
+                        style="width: 100%;">
+                        @foreach($categorys as $category)
+                        <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group"  >
+                      <label>Etiquete De L'article</label>
+                      <select class="form-control select2"  name="tags[]" multiple="multiple" data-placeholder="Select a State"
+                        style="width: 100%;">
+                        @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}"> {{ $tag->name }} </option>
+                        @endforeach
+                      </select>
                     </div>
                   </div>
-                            <!-- debut des categories  -->
-                            <br><br>
-                <div class="form-group">
-                <label>Category De L'article</label>
-                <select class="form-control select2" name="category[]" multiple="multiple" data-placeholder="Select a State"
-                  style="width: 100%;">
-                  @foreach($categorys as $category)
-                  <option value="{{ $category->id }}"> {{ $category->name }} </option>
-                  @endforeach
-                </select>
               </div>
-                <!-- fin des categories -->
-                  <!-- debut des tag  -->
-              
-                  <div class="form-group"  >
-                    
-                <label>Etiquete De L'article</label>
-                <select class="form-control select2"  name="tags[]" multiple="multiple" data-placeholder="Select a State"
-                  style="width: 100%;">
-                  @foreach($tags as $tag)
-                  <option value="{{ $tag->id }}"> {{ $tag->name }} </option>
-                  @endforeach
-                </select>
+              <div class="box-header">
+                  <h3>Description de votre article</h3>
               </div>
-                <!-- fin des tag -->
-
-              
-              </div>
+              <div class="box-body pad">
+                  <textarea id="editor1" name="body" placeholder=""
+                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
               </div>
 
-                <!-- le textarea -->
-
-              
-            <div class="box-header">
-                <h3>Description de votre article</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body pad">
-            
-                <textarea id="editor1" name="body" placeholder=""
-                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-          
-            </div>
-       
-
-                <!-- fin du textarea -->
-
-
-              <!-- /.box-body -->
-
-              <div class="box-footer form-group">
-                <button type="submit" class="btn btn-primary">Enregistre</button>
-                <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Retoure</a>
-              </div>
+                <div class=" form-group" style="margin-left:10px;">
+                  <button type="submit" class="btn btn-primary">Enregistre</button>
+                  <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Retoure</a>
+                </div>
             </form>
           </div>
           <!-- /.box -->

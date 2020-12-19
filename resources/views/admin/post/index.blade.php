@@ -25,8 +25,8 @@
                   <div class="col-lg-4">
                     <!-- Attachment -->
                       <div class="attachment-block clearfix">
-                        <img class="attachment-img" style="width:100%;auto;" src="{{ Storage::url($post->image) }}" alt="Attachment Image">
-
+                        <img class="attachment-img" style="width:100%;100%;" src="{{ Storage::url($post->image) }}" alt="Attachment Image">
+                            
                         <div class="attachment-pushed">
                           <h5 class="attachment-heading">{{ $post->title }}</h5>
 
@@ -35,20 +35,21 @@
                             <p> <span></span> <span>{{ $post->created_at }}</span></p>
                           </div>
                           <!-- /.attachment-text -->
+                          <div class="text-center">
+                            <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning  btn-xs"> </i></a>
+                            <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="fa fa-edit btn btn-primary btn-xs"> </i></a>
+                              <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
+                                  {{csrf_field()}}
+                                  {{method_field('delete')}}
+                                  </form>
+                                <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
+
+                                  }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger btn-xs"> </i></a>
+                          </div>
                         </div>
                         <!-- /.attachment-pushed -->
                       
-                      <div class="text-center">
-                        <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}"><i class="fa fa-eye btn btn-warning btn-xs"> Voire</i></a>
-                        <a href="{{ route('admin.post.edit',$post->id) }}"><i class="fa fa-edit btn btn-primary btn-xs"> Modifier</i></a>
-                          <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
-                              {{csrf_field()}}
-                              {{method_field('delete')}}
-                              </form>
-                            <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
-
-                              }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger btn-xs"> Supprimer</i></a>
-                      </div>
+                    
                       </div>
                     <!-- /.attachment-block -->
                   </div>

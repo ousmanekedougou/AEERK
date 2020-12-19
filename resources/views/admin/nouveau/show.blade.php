@@ -122,7 +122,7 @@
                     <div class="box-footer">
                     @if($show_nouveau->codifier == 0)
                       <div class="pull-right">
-                      <form action="{{ route('admin.nouveau.update',$show_nouveau->id) }}" method="post">
+                      <form id="delete-form-{{$show_nouveau->id}}" action="{{ route('admin.nouveau.update',$show_nouveau->id) }}" method="post">
                         @csrf 
                         {{ method_field('PUT') }}
                       <label>
@@ -149,7 +149,16 @@
                           <span class="text-warning">Ommetre</span>
                           @endif
                         </label>
-                        <button type="submit"> Appliquer</button>
+                        <button  onclick="
+                      if(confirm('Etes Vous Sur de cette option ?')){
+
+                      event.preventDefault();document.getElementById('delete-form-{{$show_nouveau->id}}').submit();
+
+                      }else{
+
+                        event.preventDefault();
+
+                      }" type="submit"> Appliquer</button>
                       </form>
                       </div>
                       @endif

@@ -11,6 +11,8 @@ use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use App\Model\User\Codification_ancien;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\MessageAdmin;
+use Illuminate\Support\Facades\Mail;
 
 class AncienController extends Controller
 {
@@ -92,7 +94,6 @@ class AncienController extends Controller
         $imageName = '';
         $photocopieName = '';
         $certificatName = '';
-        $statusValide = '';
         $imgdel = $update_ancien->image;
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Nouveau');
@@ -114,21 +115,39 @@ class AncienController extends Controller
         }else{
             $photocopieName = $update_ancien->photocopie;
         }
-        if ($request->status != Null) {
-            $statusValide = $request->status;
-        }else{
-           $statusValide = 0;
-        }
         $update_ancien->image = $imageName;
         $update_ancien->bac = $extraitBac;
         $update_ancien->certificat = $certificatName;
         $update_ancien->photocopie = $photocopieName;
-        $update_ancien->status = $statusValide;
         $update_ancien->save();
         // Storage::disk('public/Ancien')->delete($imgdel); 
         Flashy::success('Votre etudaint a ete consulter');
         return back();
     }
+
+    public function valider(Request $request,$id){
+        
+       $validator = $this->validate($request,[
+            'status' => 'required'
+        ]);
+        $validate = Ancien::find($id);
+        if($request->status == 1){
+            $validate->status = $request->status;
+            $validate->save();
+            Mail::to(config('aeerk.admin_support_email'))
+            ->send(new MessageAdmin($validate));
+            Flashy::success('Votre etudiant a ete valide');
+            return back();
+        }elseif($request->status == 2){
+            $validate->status = $request->status;
+            $validate->save();
+            Mail::to(config('aeerk.admin_support_email'))
+            ->send(new MessageAdmin($validate));
+            Flashy::error('Votre etudiant a ete ommis');
+            return back();
+        }
+    }
+
     public function update_ancien(Request $request, $id){
         $update_ancien = Ancien::find($id);
         $immeuble = Immeuble::where('status',true)->first();

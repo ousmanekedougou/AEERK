@@ -121,7 +121,7 @@
                     <div class="box-footer">
                     @if($show_ancien->codifier == 0 )
                       <div class="pull-right">
-                      <form action="{{ route('admin.ancien.update',$show_ancien->id) }}" method="post">
+                      <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider',$show_ancien->id) }}" method="post">
                         @csrf 
                         {{ method_field('PUT') }}
                       <label>
@@ -131,24 +131,34 @@
                             @endif
                           >
                           @if($show_ancien->status == 1)
-                          <span class="text-success"> Deja Valider</span>
+                          <span class="text-success"> A ete Valider</span>
                           @else 
                           <span class="text-warning"> Valider</span>
                           @endif
                         </label>
                         <label>
-                          <input type="radio" value="2" name="status" class="flat-red"
+                          <input type="radio" value="2" name="status" class="flat-red" style="margin-left:20px;" 
                           @if($show_ancien->status == 2)
                             checked
                             @endif
                           >
                           @if($show_ancien->status == 2)
-                          <span class="text-success">Deja Ommis</span>
+                          <span class="text-success">A ete Ommis</span>
                           @else 
                           <span class="text-warning">Ommetre</span>
                           @endif
                         </label>
-                        <button type="submit" class="btn btn-success btn-xs"> Appliquer</button>
+                        <button  onclick="
+                      if(confirm('Etes Vous Sur de cette option ?')){
+
+                      event.preventDefault();document.getElementById('delete-form-{{$show_ancien->id}}').submit();
+
+                      }else{
+
+                        event.preventDefault();
+
+                      }"
+                      type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
                       </form>
                       </div>
                       @endif

@@ -12,24 +12,22 @@
 @endsection
  @section('main-content')
 
- 	<!-- start banner Area -->
-   			<!-- <section class="banner-area relative about-banner" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								Contactez Nous
-							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="elements.html"> Contact</a></p>
-						</div>	
+			<!-- start banner Area -->
+				<section class="banner-area relative about-banner" id="home">	
+					<div class="overlay overlay-bg"></div>
+					<div class="container">				
+						<div class="row d-flex align-items-center justify-content-center">
+							<div class="about-content col-lg-12">
+								<h1 class="text-white">
+									Contactez Nous
+								</h1>	
+								<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="elements.html"> Contact</a></p>
+							</div>	
+						</div>
 					</div>
-				</div>
-			</section> -->
-			<section>
-			<div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
-			</section>
-      <!-- End banner Area -->	
+				</section>
+			
+			<!-- End banner Area -->	
 
 			<!-- Start contact-page Area -->
 			<section class="contact-page-area section-gap" style="margin-top-30px;margin-bottom:-30px;">
@@ -73,8 +71,8 @@
 								<div class="row">	
 									<div class="col-lg-6 form-group">
 									<div class="form-group">
-										<input name="name" placeholder="Prenom & Nom" value="{{ old('name') }}"  onfocus="this.placeholder = 'Prenom & Nom'" onblur="this.placeholder = 'Prenom & Nom'" class="common-input mb-20 form-control  @error('name') is-invalid @enderror" required="" type="text">
-										@error('name')
+										<input name="nom" placeholder="Prenom & Nom" value="{{ old('nom') }}"  onfocus="this.placeholder = 'Prenom & Nom'" onblur="this.placeholder = 'Prenom & Nom'" class="common-input mb-20 form-control  @error('nom') is-invalid @enderror" required="" type="text">
+										@error('nom')
 											<span class="invalid-feedback" role="alert">
 												<strong class="text-danger">{{ $message }}</strong>
 											</span>
@@ -119,7 +117,11 @@
 			</section>
 		
 			<!-- End contact-page Area -->
- 
+
+			<section style="margin-bottom:-10px;">
+				<!-- <div class="map-wrap" style="width:100%; height: 445px;" id="map"></div> -->
+				<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6261.6732654896405!2d-17.454947698431745!3d14.683017213132251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1smedina%2039x32%20dakar!5e1!3m2!1sfr!2ssn!4v1608340244285!5m2!1sfr!2ssn" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+				</section>
  @endsection
 
  @section('js')

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
+use App\Mail\ContactMessageCreated;
 use App\Model\User\Contact;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Mail;
 class ContactController extends Controller
 {
     /**
@@ -26,7 +26,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+         //
     }
 
     /**
@@ -37,21 +37,20 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $validator = $this->validate($request,[
-            'name' => 'required|string',
+             $validator = $this->validate($request,[
+            'nom' => 'required|string',
             'email' => 'required|email',
             'subject' => 'required|string',
             'message' => 'required|string'
         ]);
-        $contact = new Contact;
-        $contact->nom = $request->name;
-        $contact->email = $request->email;
-        $contact->subject = $request->subject;
-        $contact->message = $request->message;
-        $contact->save();
+        $contact = Contact::create($request->only('nom','email','subject','message'));
+
+        Mail::to(config('aeerk.admin_support_email'))
+            ->send(new ContactMessageCreated($contact));
+
         Flashy::success('Votre Message a ete Poster');
-        return redirect()->route('contact.index');
+        return redirect()->route('index');
+        
     }
 
 
