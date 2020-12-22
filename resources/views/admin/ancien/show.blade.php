@@ -121,7 +121,7 @@
                     <div class="box-footer">
                     @if($show_ancien->codifier == 0 )
                       <div class="pull-right">
-                      <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider',$show_ancien->id) }}" method="post">
+                      <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post">
                         @csrf 
                         {{ method_field('PUT') }}
                       <label>

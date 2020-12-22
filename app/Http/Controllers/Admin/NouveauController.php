@@ -10,6 +10,8 @@ use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use App\Model\User\Codification_nouveau;
+use App\Mail\AeerkEmailMessage;
+use Illuminate\Support\Facades\Mail;
 
 class NouveauController extends Controller
 {
@@ -86,12 +88,13 @@ class NouveauController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $validator = $this->validate($request , [
-        //     'extrait' => 'mimes:.pdf,.PDF',
-        //     'attestation' => 'mimes:.pdf,.PDF',
-        //     'image' => 'dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
-        //     'photocopie' => 'mimes:.pdf,.PDF',
-        // ]);
+        $validator = $this->validate($request , [
+            'extrait' => 'mimes:.pdf,.PDF',
+            'attestation' => 'mimes:.pdf,.PDF',
+            'relever' => 'mimes:.pdf,.PDF',
+            'image' => 'dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+            'photocopie' => 'mimes:.pdf,.PDF',
+        ]);
         // dd($request->extrait);
         $update_nouveau = Nouveau::find($id);
         $extraitName = '';
@@ -124,16 +127,10 @@ class NouveauController extends Controller
         }else{
             $releverName = $update_nouveau->relever;
         }
-        if ($request->status != Null) {
-            $statusValide = $request->status;
-        }else{
-           $statusValide = 0;
-        }
         $update_nouveau->image = $imageName;
         $update_nouveau->extrait = $extraitName;
         $update_nouveau->attestation = $attestationName;
         $update_nouveau->photocopie = $photocopieName;
-        $update_nouveau->status = $statusValide;
         $update_nouveau->save();
         Flashy::success('Votre etudaint a ete consulter');
         return back();
@@ -153,6 +150,29 @@ class NouveauController extends Controller
         Flashy::success('Votre etudaint a ete consulter');
         return back();
     }
+
+    public function valider_nouveau(Request $request,$id){
+        
+        $validator = $this->validate($request,[
+             'status' => 'required'
+         ]);
+         $nouveau = Nouveau::find($id);
+         if($request->status == 1){
+             $nouveau->status = $request->status;
+             $nouveau->save();
+             Mail::to($nouveau->email)
+             ->send(new AeerkEmailMessage($nouveau));
+             Flashy::success('Votre etudiant a ete valide');
+             return back();
+         }elseif($request->status == 2){
+             $nouveau->status = $request->status;
+             $nouveau->save();
+             Mail::to($nouveau->email)
+             ->send(new AeerkEmailMessage($nouveau));
+             Flashy::error('Votre etudiant a ete ommis');
+             return back();
+         }
+     }
 
     public function codifier_nouveau(Request $request, $id){
         $validator = $this->validate($request , [

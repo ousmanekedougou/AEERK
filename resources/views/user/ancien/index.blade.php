@@ -36,27 +36,28 @@
 						<div class="row">
 
 							<div class="col-lg-3 col-md-3 col-sm-3 mt-sm-30 element-wrap">
-								<div class="single-element-widget">
+
+								{{-- <div class="single-element-widget">
 									<h3 class="mb-30">Switches</h3>
 									<div class="switch-wrap d-flex justify-content-between">
 										<p>01. Sample Switch</p>
 										<div class="primary-switch">
 											<input type="checkbox" id="default-switch">
-											<label for="default-switch"></label>
+											<label class="label_form" for="default-switch"></label>
 										</div>
 									</div>
 									<div class="switch-wrap d-flex justify-content-between">
 										<p>02. Primary Color Switch</p>
 										<div class="primary-switch">
 											<input type="checkbox" id="primary-switch" checked>
-											<label for="primary-switch"></label>
+											<label class="label_form" for="primary-switch"></label>
 										</div>
 									</div>
 									<div class="switch-wrap d-flex justify-content-between">
 										<p>03. Confirm Color Switch</p>
 										<div class="confirm-switch">
 											<input type="checkbox" id="confirm-switch" checked>
-											<label for="confirm-switch"></label>
+											<label class="label_form" for="confirm-switch"></label>
 										</div>
 									</div>
 								</div>
@@ -71,7 +72,7 @@
 											<option value="1">Bengali</option>
 										</select>
 									</div>
-                				</div>
+                				</div> --}}
                 
 							</div>
 
@@ -82,12 +83,12 @@
 									@csrf
 							
 									<div class="row">
-										<div class="col-sm-4">
+										<div class="col-sm-6 d-flex justify-content-between">
 											<div class="switch-wrap d-flex justify-content-between">
-												<p>Femme</p>
-												<div class="primary-switch">
+												<p class="label_form ">Femme</p>
+												<div class="primary-switch ml-1 mt-1">
 													<input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class=" @error('genre') is-invalid @enderror" value="1" id="success-switch">
-													<label for="success-switch"></label>
+													<label class="label_form" for="success-switch"></label>
 													@error('genre')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
@@ -96,10 +97,10 @@
 												</div>
 											</div>
 											<div class="switch-wrap d-flex justify-content-between">
-												<p>Homme</p>
-												<div class="confirm-switch">
+												<p class="label_form mr-1">Homme</p>
+												<div class="confirm-switch mt-1">
 													<input type="radio" value="{{ old('genre') ?? 2 }}" class=" @error('genre') is-invalid @enderror" name="genre" value ="2" id="info-switch">
-													<label for="info-switch"></label>
+													<label class="label_form" for="info-switch"></label>
 													@error('genre')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
@@ -113,7 +114,7 @@
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-												<label for="nom">Votre Nom</label>
+												<label class="label_form" for="nom">Votre Nom</label>
 												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Votre Nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
 												@error('nom')
 													<span class="invalid-feedback" role="alert">
@@ -124,7 +125,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label for="prenom">Votre Prenom</label>
+											<label class="label_form" for="prenom">Votre Prenom</label>
 												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="Votre Prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Prenom'" required class="single-input">
 												@error('prenom')
 													<span class="invalid-feedback" role="alert">
@@ -139,7 +140,7 @@
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label for="email">Votre Adresse E-mail</label>
+											<label class="label_form" for="email">Votre Adresse E-mail</label>
 												<input type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Votre Adresse E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Adresse Email'" required class="single-input">
 												@error('email')
 													<span class="invalid-feedback" role="alert">
@@ -150,7 +151,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label for="phone">Votre Numero De Telephone</label>
+											<label class="label_form" for="phone">Votre Numero De Telephone</label>
 												<input type="number" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Numero de telephone'" required class="single-input">
 												@error('phone')
 													<span class="invalid-feedback" role="alert">
@@ -165,7 +166,7 @@
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="input-group-icon mt-10">
 												<div class="form-select" id="default-select">
-													<label for="commune">Votre Commune</label>
+													<label class="label_form" for="commune">Votre Commune</label>
 													<select value="{{ old('commune') }}" class="form-control @error('commune') is-invalid @enderror" name="commune">
 														<option desable>Votre Commune</option>
 														@foreach($departement as $dep)
@@ -186,7 +187,7 @@
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="input-group-icon mt-10">
 												<div class="form-select" id="default-select">
-													<label for="immeuble">Votre Immeuble De Choix</label>
+													<label class="label_form" for="immeuble">Votre Immeuble De Choix</label>
 													<select value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" name="immeuble">
 														<option desable>Votre Immeuble</option>
 														@foreach($immeuble as $imb)
@@ -209,7 +210,7 @@
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-												<label for="">Votre Attestation Du Baccalaureat</label>
+												<label class="label_form" for="">Votre Attestation Du Baccalaureat</label>
 												<input type="file" value="{{ old('extrait') }}" class="form-control @error('extrait') is-invalid @enderror" name="extrait" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('extrait')
 													<span class="invalid-feedback" role="alert">
@@ -220,7 +221,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-												<label for="">Votre Certificat D'inscription</label>
+												<label class="label_form" for="">Votre Certificat D'inscription</label>
 												<input type="file" name="certificat" value="{{ old('certificat') }}" class="form-control @error('certificat') is-invalid @enderror"  placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('certificat')
 													<span class="invalid-feedback" role="alert">
@@ -234,7 +235,7 @@
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label for="">Votre Photo Format (CNI)</label>
+											<label class="label_form" for="">Votre Photo Format (CNI)</label>
 												<input type="file" name="image" value="{{ old('image') }}" class="form-control @error('image') is-invalid @enderror" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('image')
 													<span class="invalid-feedback" role="alert">
@@ -245,7 +246,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label for="">Votre Photocopie de CNI</label>
+											<label class="label_form" for="">Votre Photocopie de CNI</label>
 												<input type="file" name="photocopie" value="{{ old('photocopie') }}" class="form-control @error('photocopie') is-invalid @enderror" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('photocopie')
 													<span class="invalid-feedback" role="alert">
@@ -257,7 +258,7 @@
 									</div>
 
 									<div class="mt-10">
-										<input type="submit" value="Enregistre" class="btn btn-success">
+										<input type="submit" value="Enregistrez l'inscription" class="btn btn-primary btn-block ">
 									</div>
 								</form>
 							</div>

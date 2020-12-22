@@ -11,7 +11,7 @@ use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use App\Model\User\Codification_ancien;
 use Illuminate\Support\Facades\Storage;
-use App\Mail\MessageAdmin;
+use App\Mail\MessageEmailAeerk;
 use Illuminate\Support\Facades\Mail;
 
 class AncienController extends Controller
@@ -125,24 +125,24 @@ class AncienController extends Controller
         return back();
     }
 
-    public function valider(Request $request,$id){
+    public function valider_ancien(Request $request,$id){
         
        $validator = $this->validate($request,[
             'status' => 'required'
         ]);
-        $validate = Ancien::find($id);
+        $ancien = Ancien::find($id);
         if($request->status == 1){
-            $validate->status = $request->status;
-            $validate->save();
-            Mail::to(config('aeerk.admin_support_email'))
-            ->send(new MessageAdmin($validate));
+            $ancien->status = $request->status;
+            $ancien->save();
+            Mail::to($ancien->email)
+            ->send(new MessageEmailAeerk($ancien));
             Flashy::success('Votre etudiant a ete valide');
             return back();
         }elseif($request->status == 2){
-            $validate->status = $request->status;
-            $validate->save();
-            Mail::to(config('aeerk.admin_support_email'))
-            ->send(new MessageAdmin($validate));
+            $ancien->status = $request->status;
+            $ancien->save();
+            Mail::to($ancien->email)
+            ->send(new MessageEmailAeerk($ancien));
             Flashy::error('Votre etudiant a ete ommis');
             return back();
         }

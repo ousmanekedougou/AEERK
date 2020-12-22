@@ -51,8 +51,8 @@ class NouveauController extends Controller
             'extrait' => 'required|mimes:pdf,PDF',
             'relever' => 'required|mimes:pdf,PDF',
             'attestation' => 'required|mimes:pdf,PDF',
-            'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
             'photocopie' => 'required|mimes:pdf,PDF',
+            'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
         // dd($request->all());
         $immeuble = Immeuble::where('status',false)->first();

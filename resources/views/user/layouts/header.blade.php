@@ -11,9 +11,9 @@
 			  				</ul>			
 			  			</div>
 			  			<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-			  				<a href=""><span class="lnr lnr-phone-handset"></span> <span class="text">{{ all_info()->phone  ?? '+953 012 3654 896' }}</span></a>
-			  				<a href=""><span class="lnr lnr-envelope"></span> <span class="text">{{ all_info()->email ?? 'support@colorlib.com'}}</span></a>			
-			  				<a href=""><span class="lnr lnr-location"></span> <span class="text">{{ all_info()->adresse ?? 'support@colorlib.com'}}</span></a>			
+			  				<a href=""><span class="lnr lnr-phone-handset"></span> <span class="text">{{ all_info()->phone  ?? '+221 78 287 59 71' }}</span></a>
+			  				<a href=""><span class="lnr lnr-envelope"></span> <span class="text">{{ all_info()->email ?? 'ousmanelaravel@gmail.com'}}</span></a>			
+			  				<a href=""><span class="lnr lnr-location"></span> <span class="text">{{ all_info()->adresse ?? 'Medina-(Dakar),30x32'}}</span></a>			
 			  			</div>
 			  		</div>			  					
 	  			</div>
@@ -42,8 +42,8 @@
 								<ul style="opacity:0;">
 								@endif
 								@if(all_option()->register == 1 && all_option()->register_nouveau == 1 && all_option()->register_ancien == 1)
-								<li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes Nouveau</a></li>
-								<li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes  Anciens</a></li>
+								<li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Nouveau Etudiants</a></li>
+								<li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Ancien Etudiants</a></li>
 								@elseif(all_option()->register == 1 && all_option()->register_recasement == 1)
 								<li><a href="{{ route('recasement.index') }}"><i class="fa fa-chevron-right"></i>Inscription Recasement</a></li>
 								@endif

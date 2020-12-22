@@ -11,11 +11,21 @@
 			background-color: rgba(0, 0, 0, 0.034);
 		}
 	</style>
+	{{-- @extends('user/layouts/app') --}}
 		<body>	
+			@include('flashy::message')
 			<!-- Start contact-page Area -->
 			<section class="contact-page-area section-gap">
 				<div class="container">
-				
+					{{-- <div class="pull-right">
+						<a href="{{ route('logout') }}"
+						onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+						 class="btn btn-default btn-flat">Se Deconnecter</a>
+	  
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+					  </div> --}}
 					<div class="row">
 					<div class="col-lg-4"></div>
 						<div class="col-lg-4 form_content">
@@ -82,7 +92,18 @@
 			</section>
 			<!-- End contact-page Area -->
 
-		
+			@if(Session::has('flashy_notification.message'))
+			<script id="flashy-template" type="text/template">
+				<div class="flashy flashy--{{ Session::get('flashy_notification.type') }}">
+					<i class="material-icons">speaker_notes</i>
+					<a href="#" class="flashy__body" target="_blank"></a>
+				</div>
+			</script>
+			
+			<script>
+				flashy("{{ Session::get('flashy_notification.message') }}", "{{ Session::get('flashy_notification.link') }}");
+			</script>
+			@endif
 
 
 			<script src="{{asset('user/js/vendor/jquery-2.2.4.min.js')}}"></script>

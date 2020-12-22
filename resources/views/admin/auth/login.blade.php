@@ -32,17 +32,15 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b class="text-primary">Codification</b> </a>
-    <p class="text-xs"> {{ $user->email }} </p>
-    <p>  </p>
+    <a href=""><b class="text-primary">Bureau AEERK</b> </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    {{-- <p class="login-box-msg">Ajouter vos informations</p> --}}
+    <p class="login-box-msg">Ajouter vos informations</p>
 
     @include('includes.message')
 
-    <form action="{{ route('login') }}" method="post">
+    <form action="{{ route('admin.admin.login') }}" method="post">
         {{ csrf_field() }}
       <div class="form-group has-feedback">
         <input type="email" id="email" class="form-control  @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" required autocomplete="email" autofocus placeholder="Adresse E-mail">
@@ -54,7 +52,7 @@
         @enderror
       </div>
       <div class="form-group has-feedback">
-        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="new-password" placeholder="Mot de passe">
+        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Mot de passe">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         @error('password')
             <span class="invalid-feedback" role="alert">
@@ -66,7 +64,7 @@
         <div class="col-xs-7">
           <div class="checkbox icheck">
             <label>
-              {{-- <input type="checkbox"> Se Souvenir De Moi --}}
+              <input type="checkbox"> Se Souvenir De Moi
             </label>
           </div>
         </div>
@@ -87,7 +85,7 @@
     </div>
     <!-- /.social-auth-links -->
 
-    
+    <a href="{{ route('password.request') }}" class="btn btn-danger btn-block">Mot de passe oublier</a><br>
     <!-- <a href="#" class="text-center">Register a new membership</a> -->
 
   </div>

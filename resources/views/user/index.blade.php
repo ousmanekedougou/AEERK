@@ -643,6 +643,5 @@
 			<!-- End blog Area -->			
 
 
-			
 
 @endsection

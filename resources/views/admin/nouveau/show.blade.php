@@ -122,7 +122,7 @@
                     <div class="box-footer">
                     @if($show_nouveau->codifier == 0)
                       <div class="pull-right">
-                      <form id="delete-form-{{$show_nouveau->id}}" action="{{ route('admin.nouveau.update',$show_nouveau->id) }}" method="post">
+                      <form id="delete-form-{{$show_nouveau->id}}" action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post">
                         @csrf 
                         {{ method_field('PUT') }}
                       <label>

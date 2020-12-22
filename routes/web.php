@@ -1,9 +1,6 @@
 <?php
 use App\Mail\ContactMessageCreated;
 
-Route::get('/test-mail', function () {
-    return new ContactMessageCreated('Ousmane Diallo','ousmane@gmail.com','objet','mon message');
-});
 
 Route::group(['namespace' => 'User'],function(){
     Route::resource('/','HomeController');
@@ -89,10 +86,11 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/ancien', 'Admin\AncienController');
 
         Route::get('/ancien/{id}/update_ancien', 'Admin\AncienController@update_ancien')->name('update_ancien');
-        Route::put('/ancien/{id}/valider', 'Admin\AncienController@valider')->name('valider');
+        Route::put('/ancien/{id}/valider', 'Admin\AncienController@valider_ancien')->name('valider_ancien');
 
         Route::resource('/nouveau', 'Admin\NouveauController');
         Route::get('/nouveau/{id}/update_nouveau', 'Admin\NouveauController@update_nouveau')->name('update_nouveau');
+        Route::put('/nouveau/{id}/valider', 'Admin\NouveauController@valider_nouveau')->name('valider_nouveau');
         // fin des option de uesr
 
         // login admin

@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Mail;
-use App\Model\User\Ancien;
+use App\Model\User\Nouveau;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageAdmin extends Mailable
+class AeerkEmailMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +19,7 @@ class MessageAdmin extends Mailable
 
     public $msg;
 
-    public function __construct(Ancien $msg)
+    public function __construct(Nouveau $msg)
     {
         $this->msg = $msg;
     }
@@ -31,6 +31,6 @@ class MessageAdmin extends Mailable
      */
     public function build()
     {
-        return $this->from($this->msg->email)->markdown('emails.admins.created');
+        return $this->from(config('aeerk.admin_support_email'))->markdown('emails.admins.created');
     }
 }

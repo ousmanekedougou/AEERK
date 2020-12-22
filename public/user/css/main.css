@@ -7,23 +7,45 @@
     site color #3753db
 */
 
+.btn-primary{
+  width: 100px auto;
+  color:white;
+  background-color: #3753db;
+  outline: none;
+  font-size: 20px;   
+  font-weight: 900;
+  border:1px solid  #3753db; 
+  margin-top: 1.5em;
+}
+
+.btn-primary:hover{
+  width: 100px auto;
+  color: #3753db;
+  background-color:transparent;
+  outline: none;
+  font-size: 20px;    
+  font-weight: 900;
+  border:1px solid  #3753db;
+
+}
+
 .btn-success{
     width: 100px auto;
-    padding: 12px;
     color:white;
     background-color: #4fa463;
     outline: none;
     font-size: 20px;
+    font-weight: 900;
     border:1px solid #4fa463;    
 }
 
 .btn-success:hover{
     width: 100px auto;
-    padding: 12px;
     color: #4fa463;
     background-color:transparent;
     outline: none;
-    font-size: 20px;  
+    font-size: 20px; 
+    font-weight: 900; 
     border:1px solid #4fa463;      
 }
 
@@ -31,21 +53,21 @@
 
 .btn-warning{
     width: 100px auto;
-    padding: 12px;
     color:white;
     background-color: #e9e760;
     outline: none;
-    font-size: 20px;   
+    font-size: 20px; 
+    font-weight: 900;  
     border:1px solid  #e9e760; 
 }
 
 .btn-warning:hover{
     width: 100px auto;
-    padding: 12px;
     color: #e9e760;
     background-color:transparent;
     outline: none;
-    font-size: 20px;    
+    font-size: 20px; 
+    font-weight: 900;   
     border:1px solid  #e9e760;
   
 }
@@ -60,3 +82,63 @@
     color: #fff;
 }
 
+.cta-two-area{
+    background-color: #fff;
+}
+
+.footer_carousel .slider{
+    max-width: 100%;
+    display: flex;
+    margin-bottom: -5em;
+    margin-top: -3.6em;
+  }
+  .footer_carousel .slider .card{
+      width:70%;
+    flex: 1;
+    background-color:#fff;
+  }
+  .footer_carousel .slider .card .img img{ 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .footer_carousel .slider .card .content{
+    padding: 10px 20px;
+    text-align:center;
+  }
+  .footer_carousel .slider .card .content .title{
+    font-size: 25;
+    font-weight: 600;
+  }
+ /* .footer_carousel .slider .card .content .subtitle{
+    font-size: 20;
+    font-weight: 600;
+    color: #e74c3c;
+    line-height: 20px;
+  } */
+ .footer_carousel .slider .card .content .btn{
+    display: block;
+    text-align: left;
+    margin: 10px 0;
+  }
+ .footer_carousel .slider .card .content .btn button{
+    width:100%;
+    border:1px solid  #3753db;
+    background-color: #3753db;
+    color:#fff;
+    outline: none;
+    font-size: 17px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+  }
+ .footer_carousel .slider .card .content .btn button:hover{
+    transform: scale(.9);
+    background-color:transparent;
+    color: #3753db;
+  }
+.label_form{
+  color:black;
+  font-weight: 900;
+}

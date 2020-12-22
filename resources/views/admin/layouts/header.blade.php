@@ -249,11 +249,11 @@
                   <a href="{{ route('admin.profile.show',Auth::user()->id) }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ route('logout') }}"
+                  <a href="{{ route('admin.admin.logout') }}"
                   onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                    class="btn btn-default btn-flat">Se Deconnecter</a>
 
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  <form id="logout-form" action="{{ route('admin.admin.logout') }}" method="POST" style="display: none;">
                       @csrf
                   </form>
                 </div>

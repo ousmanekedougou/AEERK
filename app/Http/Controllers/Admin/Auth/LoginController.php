@@ -43,7 +43,7 @@ class LoginController extends Controller
 
      public function showLoginForm()
      {
-         return view('admin.login.index');
+         return view('admin.auth.login');
      }
 
      public function login(Request $request)
@@ -67,7 +67,7 @@ class LoginController extends Controller
 
              if($admin->status == 0)
              {
-                 return ['email' => 'inactive','password' => 'Votre Compte n\'est pas actif veillez contacter le President '];
+                 return ['email' => 'inactive','password' => 'Votre Compte n\'est pas actif veillez contacter le President de l\'AEERK  '];
              }
              else
                 {

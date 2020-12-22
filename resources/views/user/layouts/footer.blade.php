@@ -3,8 +3,68 @@
 	<section class="cta-two-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 cta-left">
-					<h1>Nos Partenaires Ici</h1>
+				<div class="col-lg-8 cta-left footer_carousel">
+					<div class="slider owl-carousel">
+
+						<div class="card">
+						<div class="img">
+							<img src="{{asset('user/img/b1.jpg')}}" alt="">
+							<div class="content">
+							<div class="title">Partenaire 1</div>
+							<div class="btn">
+								<button class="">Visitez</button>
+							</div>
+							</div>
+						</div>
+						</div>
+						<div class="card">
+						<div class="img">
+							<img src="{{asset('user/img/b2.jpg')}}" alt="">
+							<div class="content">
+							<div class="title">Partenaire 2</div>
+							<div class="btn">
+								<button class="">Visitez</button>
+							</div>
+							</div>
+						</div>
+						</div>
+					
+						<div class="card">
+						<div class="img">
+							<img src="{{asset('user/img/b3.jpg')}}" alt="">
+							<div class="content">
+							<div class="title">Partenaire 3</div>
+							<div class="btn">
+								<button class="">Visitez</button>
+							</div>
+							</div>
+						</div>
+						</div>
+					
+						<div class="card">
+						<div class="img">
+							<img src="{{asset('user/img/b4.jpg')}}" alt="">
+							<div class="content">
+							<div class="title">Partenaire 4</div>
+							<div class="btn">
+								<button class="">Visitez</button>
+							</div>
+							</div>
+						</div>
+						</div>
+					
+						<div class="card">
+						<div class="img">
+							<img src="{{asset('/user/img/b1.jpg')}}" alt="">
+							<div class="content">
+							<div class="title">Partenaire 5</div>
+							<div class="btn">
+								<button class="">Visitez</button>
+							</div>
+							</div>
+						</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-lg-4 cta-right">
 					<a class="primary-btn wh" href="#">view our blog</a>
@@ -85,7 +145,7 @@
 					</div>
 					<div class="footer-bottom row align-items-center justify-content-between">
 						<p class="footer-text m-0 col-lg-6 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} Version Beta & | Vitrine <i class="fa fa-heart-o" aria-hidden="true"></i> De <a href="{{ route('login') }}" target="_blank">L'AEERK</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 						<div class="col-lg-6 col-sm-12 footer-social">
 							<a href="#"><i class="fa fa-facebook"></i></a>
@@ -97,6 +157,16 @@ Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} All rights reserved | Thi
 				</div>
 			</footer>	
 			<!-- End footer Area -->	
+
+			<script>
+				// alert('jdjjdf');
+				$('.slider').owlCarousel({
+				  loop:true,
+				  autoplay:true,
+				  autoplayTimeout:3000,//200ms = 2s;
+				  autoplayHoverPause:true
+				});
+			  </script>
 
 
 			<script src="{{asset('user/js/vendor/jquery-2.2.4.min.js')}}"></script>
