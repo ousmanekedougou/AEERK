@@ -44,6 +44,9 @@ Route::group(['namespace' => 'User'],function(){
         Route::put('/info/{id}/codification','Admin\InfoController@codification')->name('codification');
         Route::put('/info/{id}/codification_etudiant','Admin\InfoController@codification_etudiant')->name('codification_etudiant');
         Route::put('/info/{id}/recasement_etudiant','Admin\InfoController@recasement_etudiant')->name('recasement_etudiant');
+
+        Route::put('/info/{id}/autorisation','Admin\InfoController@autorisation')->name('autorisation');
+
         
         Route::post('/info/ajouter','Admin\InfoController@add_prix')->name('add_prix');
         Route::resource('/team', 'Admin\TeamController');

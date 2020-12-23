@@ -15,7 +15,13 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
-        "mercuryseries/flashy": "^1.0"
+        "mercuryseries/flashy": "^1.0",
+        "nexmo/client-core": "^2.7",
+        "nexmo/laravel": "^2.4",
+        "nyholm/psr7": "^1.3",
+        "php-http/httplug": "^2.2",
+        "php-http/message-factory": "^1.0",
+        "symfony/http-client": "^5.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

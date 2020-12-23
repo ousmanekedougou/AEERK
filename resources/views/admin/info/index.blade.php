@@ -33,18 +33,16 @@
           </tr>
           </thead>
           <tbody>
-            @foreach($infos as $info)
               <tr>
-                <td>{{ $info->email }}</td>
-                <td>{{ $info->phone }}</td>
-                <td>{{ $info->adresse }}</td>
-                <td>{{ $info->bp }}</td>
-                <td>{{ $info->fax }}</td>
+                <td>{{ $infos->email }}</td>
+                <td>{{ $infos->phone }}</td>
+                <td>{{ $infos->adresse }}</td>
+                <td>{{ $infos->bp }}</td>
+                <td>{{ $infos->fax }}</td>
                 <td class="">   
-                  <a data-toggle="modal" data-id="{{$info->id}}" data-name="{{$info->name}}" data-target="#modal-default-edit-info{{ $info->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                  <a data-toggle="modal" data-id="{{$infos->id}}" data-name="{{$infos->name}}" data-target="#modal-default-edit-infos{{ $infos->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                 </td>
               </tr>
-            @endforeach
           </tbody>
           <tfoot>
           <tr>
@@ -157,7 +155,7 @@
           @endforeach
       </div>
 
-
+{{-- la partie des numero et prix de codification --}}
       <div class="box-body">
         <section class="content-header">
             <h1>Vos Prix Et Numero De Codification</h1>
@@ -179,312 +177,345 @@
           </tr>
           </thead>
           <tbody>
-            @foreach($soldes as $solde)
               <tr>
-                <td>{{ $solde->prix_nouveau }} f</td>
-                <td>{{ $solde->prix_ancien }} f</td>
-                <td>{{ $solde->numero_nouveau }} </td>
-                <td>{{ $solde->numero_ancien }} </td>
+                <td>{{ $soldes->prix_nouveau }} f</td>
+                <td>{{ $soldes->prix_ancien }} f</td>
+                <td>{{ $soldes->numero_nouveau }} </td>
+                <td>{{ $soldes->numero_ancien }} </td>
                 <td class="">   
-                  <a data-toggle="modal" data-id="{{$solde->id}}" data-name="{{$solde->name}}" data-target="#modal-default-edit-solde{{ $solde->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                  <a data-toggle="modal" data-id="{{$soldes->id}}" data-name="{{$soldes->name}}" data-target="#modal-default-edit-soldes{{ $soldes->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                 </td>
               </tr>
-            @endforeach
           </tbody>
          
         </table>
       </div>
+{{-- Fin de la partie des numeros et prix de codifications --}}
 
 
-
-      <div class="box-body">
-    <section class="content-header">
-        <h1>Gestion de vos liens</h1>
-        <div class="box-header">
-        @if($soldes->count() < 1)
-        <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
-            <!-- Default box -->
-            @endif
-        </div>
-    </section><br>
-    <table id="example2" class="table text-center table-bordered table-hover">
-        <thead>
+{{-- La partie des autorisation de la page codification --}}
+<div class="box-body">
+  <section class="content-header">
+      <h1>Le Mail et Mot de passe Pour la codification</h1>
+    <div class="box-header">
+      @if($soldes->count() < 1)
+      <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+        <!-- Default box -->
+        @endif
+    </div>
+  </section><br>
+  <table id="example2" class="table text-center table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>Utilite</th>
+      <th class="text-success">Option</th>
+    </tr>
+    </thead>
+    <tbody>
         <tr>
-        <th>Inscription</th>
-        <th> Liens Inscription </th>
-        <th>Inscription Recasement</th>
-        <th>Codification</th>
-        <th> Liens Codification </th>
-        <th>Recasement</th>
+          <td>{{ $autorisation->email }} f</td>
+          <td> text</td>
+          <td class="">   
+            <a data-toggle="modal" data-id="{{$autorisation->id}}" data-name="{{$autorisation->name}}" data-target="#modal-default-edit-autorisation-{{ $autorisation->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+          </td>
         </tr>
-        </thead>
-        <tbody>
-        @foreach($options as $option)
-            <tr>
-            <!-- Le td du register -->
-              <td>
-              @if($option->register == 1)
-                <form id="register_etudiant_1" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="0" name="register">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                event.preventDefault();document.getElementById('register_etudiant_1').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
-
-                @elseif($option->register == 0)
-                <form id="register_etudiant_2" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="1" name="register">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                event.preventDefault();document.getElementById('register_etudiant_2').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                @endif
-              </td>
-              <!-- Fin du td du register -->
-                <!-- td des liens inscription des nouveaux et ancien -->
-              <td>
-              @if($option->register_nouveau == 1 && $option->register_ancien == 1)
-                <form id="update_register" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="0" name="inscription_etudiant">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                event.preventDefault();document.getElementById('update_register').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
-
-                @elseif($option->register_nouveau == 0 && $option->register_ancien == 0)
-                <form id="update_liens" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="1" name="inscription_etudiant">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                event.preventDefault();document.getElementById('update_liens').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                @endif
-              </td>
-              <!-- Fin du td inscription des nouveaux et anciens -->
-
-              <!-- td du lien inscription des recasements -->
-              <td>
-              @if($option->register_recasement == 1)
-                <form id="inscription_recasement_1" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="0" name="register_recasement">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                event.preventDefault();document.getElementById('inscription_recasement_1').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
-
-                @elseif($option->register_recasement == 0)
-                <form id="inscription_recasement_2" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="1" name="register_recasement">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                event.preventDefault();document.getElementById('inscription_recasement_2').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                @endif
-              </td>
-              <!-- Fin du td lien inscription des recasements -->
-
-                 <!-- Le td de la codification -->
-                 <td>
-              @if($option->codification == 1)
-                <form id="codification" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="0" name="codification">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                event.preventDefault();document.getElementById('codification').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
-
-                @elseif($option->codification == 0)
-                <form id="codification_2" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="1" name="codification">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                event.preventDefault();document.getElementById('codification_2').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                @endif
-              </td>
-              <!-- Fin du td de la codification -->
-
-                 <!-- td des liens codification des nouveaux et ancien -->
-                 <td>
-              @if($option->codification_nouveau == 1 && $option->codification_ancien == 1)
-                <form id="codification_etudiant_1" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="0" name="codification_etudiant">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                event.preventDefault();document.getElementById('codification_etudiant_1').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
-
-                @elseif($option->codification_nouveau == 0 && $option->codification_ancien == 0)
-                <form id="codification_etudiant_2" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="1" name="codification_etudiant">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                event.preventDefault();document.getElementById('codification_etudiant_2').submit();
-
-                }else{
-
-                    event.preventDefault();
-
-                }
-                
-                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                @endif
-              </td>
-              <!-- Fin du td codification des nouveaux et anciens -->
+    </tbody>
+   
+  </table>
+</div>
+{{-- Fin de la partie de la page codification --}}
 
 
-              <!-- td du lien  des recasements -->
-              <td>
-              @if($option->recasement == 1)
-                <form id="recasement_1" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="0" name="recasement_etudiant">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure de cacher ce lien ?')){
+{{-- La parite des lies d'affichage pour la page d'acceuil --}}
+    <div class="box-body">
+      <section class="content-header">
+          <h1>Gestion de vos liens</h1>
+          <div class="box-header">
+          @if($soldes->count() < 1)
+          <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+              <!-- Default box -->
+              @endif
+          </div>
+      </section><br>
+      <table id="example2" class="table text-center table-bordered table-hover">
+          <thead>
+          <tr>
+          <th>Inscription</th>
+          <th> Liens Inscription </th>
+          <th>Inscription Recasement</th>
+          <th>Codification</th>
+          <th> Liens Codification </th>
+          <th>Recasement</th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach($options as $option)
+              <tr>
+              <!-- Le td du register -->
+                <td>
+                @if($option->register == 1)
+                  <form id="register_etudiant_1" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="0" name="register">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure de cacher ce lien ?')){
 
-                event.preventDefault();document.getElementById('recasement_1').submit();
+                  event.preventDefault();document.getElementById('register_etudiant_1').submit();
 
-                }else{
+                  }else{
 
-                    event.preventDefault();
+                      event.preventDefault();
 
-                }
-                
-                " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+                  }
+                  
+                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
 
-                @elseif($option->recasement == 0)
-                <form id="recasement_2" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input type="hidden" value="1" name="recasement_etudiant">
-                </form>
-                <a href="" onclick="
-                if(confirm('Etes vous sure d\'afficher ce lien ?')){
+                  @elseif($option->register == 0)
+                  <form id="register_etudiant_2" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="1" name="register">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
 
-                event.preventDefault();document.getElementById('recasement_2').submit();
+                  event.preventDefault();document.getElementById('register_etudiant_2').submit();
 
-                }else{
+                  }else{
 
-                    event.preventDefault();
+                      event.preventDefault();
 
-                }
-                
-                " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                @endif
-              </td>
-              <!-- Fin du td lien  des recasements -->
+                  }
+                  
+                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                  @endif
+                </td>
+                <!-- Fin du td du register -->
+                  <!-- td des liens inscription des nouveaux et ancien -->
+                <td>
+                @if($option->register_nouveau == 1 && $option->register_ancien == 1)
+                  <form id="update_register" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="0" name="inscription_etudiant">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure de cacher ce lien ?')){
 
-            </tr>
-        @endforeach
-    
-    </table>
-  </div>
+                  event.preventDefault();document.getElementById('update_register').submit();
 
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                  @elseif($option->register_nouveau == 0 && $option->register_ancien == 0)
+                  <form id="update_liens" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="1" name="inscription_etudiant">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('update_liens').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                  @endif
+                </td>
+                <!-- Fin du td inscription des nouveaux et anciens -->
+
+                <!-- td du lien inscription des recasements -->
+                <td>
+                @if($option->register_recasement == 1)
+                  <form id="inscription_recasement_1" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="0" name="register_recasement">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('inscription_recasement_1').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                  @elseif($option->register_recasement == 0)
+                  <form id="inscription_recasement_2" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="1" name="register_recasement">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('inscription_recasement_2').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                  @endif
+                </td>
+                <!-- Fin du td lien inscription des recasements -->
+
+                  <!-- Le td de la codification -->
+                  <td>
+                @if($option->codification == 1)
+                  <form id="codification" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="0" name="codification">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('codification').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                  @elseif($option->codification == 0)
+                  <form id="codification_2" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="1" name="codification">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('codification_2').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                  @endif
+                </td>
+                <!-- Fin du td de la codification -->
+
+                  <!-- td des liens codification des nouveaux et ancien -->
+                  <td>
+                @if($option->codification_nouveau == 1 && $option->codification_ancien == 1)
+                  <form id="codification_etudiant_1" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="0" name="codification_etudiant">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('codification_etudiant_1').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                  @elseif($option->codification_nouveau == 0 && $option->codification_ancien == 0)
+                  <form id="codification_etudiant_2" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="1" name="codification_etudiant">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('codification_etudiant_2').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                  @endif
+                </td>
+                <!-- Fin du td codification des nouveaux et anciens -->
+
+
+                <!-- td du lien  des recasements -->
+                <td>
+                @if($option->recasement == 1)
+                  <form id="recasement_1" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="0" name="recasement_etudiant">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('recasement_1').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                  @elseif($option->recasement == 0)
+                  <form id="recasement_2" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
+                  {{csrf_field()}}
+                  {{method_field('PUT')}}
+                  <input type="hidden" value="1" name="recasement_etudiant">
+                  </form>
+                  <a href="" onclick="
+                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                  event.preventDefault();document.getElementById('recasement_2').submit();
+
+                  }else{
+
+                      event.preventDefault();
+
+                  }
+                  
+                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                  @endif
+                </td>
+                <!-- Fin du td lien  des recasements -->
+
+              </tr>
+          @endforeach
+      
+      </table>
+    </div>
+{{-- Fin des liens d'affichage pour la page d'acceuil --}}
 
 
 
@@ -577,8 +608,7 @@
 
 
 <!-- Modal de l'eddition des infos -->
-    @foreach($infos as $info_modal)
-      <div class="modal fade" id="modal-default-edit-info{{ $info_modal->id }}">
+      <div class="modal fade" id="modal-default-edit-infos{{ $infos->id }}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -586,14 +616,14 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Editer votre info</h4>
               </div>
-              <form action="{{ route('admin.info.update',$info_modal->id) }}" method="post">
+              <form action="{{ route('admin.info.update',$infos->id) }}" method="post">
               @csrf
               {{method_field('PUT')}}
               <div class="modal-body">
 
                 <p>
                 <label for="name">email</label>
-                <input type="email"  value="{{ old('email') ?? $info_modal->email }}" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="">
+                <input type="email"  value="{{ old('email') ?? $infos->email }}" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="">
                   @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -603,7 +633,7 @@
 
                 <p>
                 <label for="addresse">Phone</label>
-                <input type="number"  value="{{ old('phone') ?? $info_modal->phone }}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="">
+                <input type="number"  value="{{ old('phone') ?? $infos->phone }}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="">
                   @error('phone')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -613,7 +643,7 @@
 
                 <p>
                 <label for="addresse">Addresse </label>
-                <input type="text"  value="{{ old('adresse') ?? $info_modal->adresse}}" class="form-control @error('adresse') is-invalid @enderror" id="adresse" name="adresse" placeholder="">
+                <input type="text"  value="{{ old('adresse') ?? $infos->adresse}}" class="form-control @error('adresse') is-invalid @enderror" id="adresse" name="adresse" placeholder="">
                   @error('adresse')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -622,7 +652,7 @@
                 </p>
                 <p>
                 <label for="bp">Boite Postale</label>
-                <input type="text"  value="{{ old('bp') ?? $info_modal->bp}}" class=" form-control @error('bp') is-invalid @enderror" id="bp" name="bp" placeholder="">
+                <input type="text"  value="{{ old('bp') ?? $infos->bp}}" class=" form-control @error('bp') is-invalid @enderror" id="bp" name="bp" placeholder="">
                   @error('bp')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -632,7 +662,7 @@
 
                 <p>
                 <label for="fax">Fax</label>
-                <input type="text"  value="{{ old('fax') ?? $info_modal->fax}}" class=" form-control @error('fax') is-invalid @enderror" id="fax" name="fax" placeholder="">
+                <input type="text"  value="{{ old('fax') ?? $infos->fax}}" class=" form-control @error('fax') is-invalid @enderror" id="fax" name="fax" placeholder="">
                   @error('fax')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -650,7 +680,6 @@
           </div>
           <!-- /.modal-dialog -->
       </div>
-    @endforeach
 <!-- fin del'eddition des infos -->
 
 
@@ -931,23 +960,22 @@
 
 
 <!-- Modal du update des soldes -->
-    @foreach($soldes as $solde)
-      <div class="modal fade" id="modal-default-edit-solde{{ $solde->id }}">
+      <div class="modal fade" id="modal-default-edit-soldes{{ $soldes->id }}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Editer vos Solde</h4>
+                <h4 class="modal-title">Editer vos Soldes</h4>
               </div>
-              <form action="{{ route('admin.solde',$solde->id) }}" method="post">
+              <form action="{{ route('admin.solde',$soldes->id) }}" method="post">
               @csrf
               {{method_field('PUT')}}
               <div class="modal-body">
 
                 <p>
                 <label for="prix_n">Prix Nouveau</label>
-                <input type="number"  value="{{ old('prix_n') ?? $solde->prix_nouveau }}" class="form-control @error('prix_n') is-invalid @enderror" id="prix_n" name="prix_n" placeholder="">
+                <input type="number"  value="{{ old('prix_n') ?? $soldes->prix_nouveau }}" class="form-control @error('prix_n') is-invalid @enderror" id="prix_n" name="prix_n" placeholder="">
                   @error('prix_n')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -957,7 +985,7 @@
 
                 <p>
                 <label for="prix_a">Prix Ancien</label>
-                <input type="number"  value="{{ old('prix_a') ?? $solde->prix_ancien }}" class="form-control @error('prix_a') is-invalid @enderror" id="prix_a" name="prix_a" placeholder="">
+                <input type="number"  value="{{ old('prix_a') ?? $soldes->prix_ancien }}" class="form-control @error('prix_a') is-invalid @enderror" id="prix_a" name="prix_a" placeholder="">
                   @error('prix_a')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -967,7 +995,7 @@
 
                 <p>
                 <label for="numero_n">Numero De Codification Nouveau</label>
-                <input type="number"  value="{{ old('numero_n') ?? $solde->numero_nouveau }}" class="form-control @error('numero_n') is-invalid @enderror" id="numero_n" name="numero_n" placeholder="">
+                <input type="number"  value="{{ old('numero_n') ?? $soldes->numero_nouveau }}" class="form-control @error('numero_n') is-invalid @enderror" id="numero_n" name="numero_n" placeholder="">
                   @error('numero_n')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -977,7 +1005,7 @@
 
                 <p>
                 <label for="numero_a">Numero De Codification Ancien</label>
-                <input type="number"  value="{{ old('numero_a') ?? $solde->numero_ancien }}" class="form-control @error('numero_a') is-invalid @enderror" id="numero_a" name="numero_a" placeholder="">
+                <input type="number"  value="{{ old('numero_a') ?? $soldes->numero_ancien }}" class="form-control @error('numero_a') is-invalid @enderror" id="numero_a" name="numero_a" placeholder="">
                   @error('numero_a')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
@@ -996,7 +1024,59 @@
           </div>
           <!-- /.modal-dialog -->
       </div>
-    @endforeach
 <!-- Fin du modal update  des soldes -->
+
+
+{{-- la partie des autorisation de codification --}}
+<div class="modal fade" id="modal-default-edit-autorisation-{{ $autorisation->id }}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Editer l'autorisation</h4>
+      </div>
+      <form action="{{ route('admin.autorisation',$autorisation->id) }}" method="post">
+      @csrf
+      {{method_field('PUT')}}
+      <div class="modal-body">
+
+        <p>
+        <label for="name">email</label>
+        <input type="email"  value="{{ old('email') ?? $autorisation->email }}" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="">
+          @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </span>
+          @enderror
+        </p>
+
+        <p>
+          <label for="bp">Mot de passe</label>
+          <input type="password"  value="{{ old('password') }}" class=" form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="">
+            @error('password')
+              <span class="invalid-feedback" role="alert">
+                  <strong class="text-danger">{{ $message }}</strong>
+              </span>
+            @enderror
+          </p>
+
+          <p>
+            <label for="bp">Confirmer votre mot de passe</label>
+            <input type="password"  value="{{ old('password') }}" class=" form-control @error('password') is-invalid @enderror" id="password" name="password_confirmation" placeholder="">
+            </p>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </div>
+    </div>
+    </form>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+{{-- Fin de la partie des codification --}}
 
 @endsection

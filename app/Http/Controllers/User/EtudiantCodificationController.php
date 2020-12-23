@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\User;
+use App\Model\Admin\Solde;
 use App\Model\User\Ancien;
 use App\Model\User\Nouveau;
-use MercurySeries\Flashy\Flashy;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
-use App\Model\Admin\Solde;
+use MercurySeries\Flashy\Flashy;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 class EtudiantCodificationController extends Controller
 {
     public function __construct()
@@ -123,6 +125,7 @@ class EtudiantCodificationController extends Controller
                     $codifier_nouveau->codifier = 1;
                     $codifier_nouveau->save();
                     Flashy::success('Vous avez ete codifier');
+                    Auth::logout();
                     return redirect()->route('index');
                 }else{
                     Flashy::error('Cette Chambre est pleine');
@@ -137,6 +140,7 @@ class EtudiantCodificationController extends Controller
                     $codifier_nouveau->prix = $prix->prix_nouveau;
                     $codifier_nouveau->codifier = 1;
                     $codifier_nouveau->save();
+                    Auth::logout();
                     Flashy::success('Vous avez ete codifier');
                     return redirect()->route('index');
                 }
@@ -162,6 +166,7 @@ class EtudiantCodificationController extends Controller
                     $codifier_ancien->codifier = 1;
                     $codifier_ancien->save();
                     Flashy::success('Vous avez ete codifier');
+                    Auth::logout();
                     return redirect()->route('index');
                 }else{
                     Flashy::error('Cette Chambre est pleine');
@@ -176,6 +181,7 @@ class EtudiantCodificationController extends Controller
                     $codifier_ancien->prix = $prix->prix_ancien;
                     $codifier_ancien->codifier = 1;
                     $codifier_ancien->save();
+                    Auth::logout();
                     Flashy::success('Vous avez ete codifier');
                     return redirect()->route('index');
                 }

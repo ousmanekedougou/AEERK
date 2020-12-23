@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Model\Admin\Info;
-use App\Model\Admin\Social;
-use App\Model\User\Option;
 use App\Model\Admin\Solde;
+use App\Model\User\Option;
+use App\Model\Admin\Social;
 use Illuminate\Http\Request;
 use App\Model\Admin\Partenaire;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class InfoController extends Controller
 {
@@ -23,12 +25,13 @@ class InfoController extends Controller
      }
     public function index()
     {
-        $infos = Info::all();
+        $infos = Info::first();
         $partener = Partenaire::all();
         $social_reseau = Social::all();
-        $soldes = Solde::all();
+        $soldes = Solde::first();
         $options = Option::all();
-        return view('admin.info.index',compact('infos','social_reseau','partener','soldes','options'));
+        $autorisation = User::first();
+        return view('admin.info.index',compact('infos','social_reseau','partener','soldes','options','autorisation'));
     }
 
     /**
@@ -221,6 +224,21 @@ class InfoController extends Controller
         Flashy::success('Vos infos ont ete modifier');
         return redirect()->route('admin.info.index');
     }
+
+
+    public function autorisation(Request $request ,$id){
+        $this->validate($request,[
+            'email' => 'required|email|string',
+            'password' => 'required|confirmed'
+        ]);
+       $update_autorisation = User::where('id',$id)->first();
+       $update_autorisation->email = $request->email;
+       $update_autorisation->password = Hash::make($request->password);
+       $update_autorisation->save();
+        Flashy::success('Vos informations de codifications ont ete modifier');
+        return back();
+    }
+   
 
     /**
      * Remove the specified resource from storage.
