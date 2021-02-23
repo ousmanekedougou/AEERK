@@ -14,14 +14,14 @@
           <div class="">
             <div class="col-lg-6 col-lg-offset-5">
             <div class="form-group pull-right">
-            <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-add-commission" class="col-lg-offset-5 btn btn-warning" href="">Ajouter une commission</a>
+            <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-add-commission" class="col-lg-offset-5 btn btn-primary" href="">Ajouter une commission</a>
               </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center table-bordered table-striped">
                 <thead>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Commission</th>
                   <th>Modifier</th>
@@ -59,7 +59,7 @@
                           @endforeach
                   </tbody>
                 <tfoot>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Commission</th>
                   <th>Modifier</th>
@@ -79,14 +79,14 @@
           <div class="">
           <div class="col-lg-6 col-lg-offset-5">
             <div class="form-group pull-right">
-            <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-poste-add" class="col-lg-offset-5 btn btn-warning" href="">Ajouter un Poste</a>
+            <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-poste-add" class="col-lg-offset-5 btn btn-primary" href="">Ajouter un Poste</a>
               </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center table-bordered table-striped">
                 <thead>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Postes</th>
                   <th>Commission</th>
@@ -130,7 +130,7 @@
                           @endforeach
                   </tbody>
                 <tfoot>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Postes</th>
                   <th>Commission</th>

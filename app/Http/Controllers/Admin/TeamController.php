@@ -99,8 +99,6 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
-
         $update_personnel = Team::find($id);
         $update_personnel->nom = $request->nom;
         $update_personnel->email = $request->email;

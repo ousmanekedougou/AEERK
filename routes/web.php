@@ -18,6 +18,8 @@ Route::group(['namespace' => 'User'],function(){
     Route::get('/category/{id}','ArticleController@category')->name('article.category');
     Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
     Route::resource('/realisation','RealisationController');
+    Route::resource('/education','EducationController');
+    Route::resource('/systeme','SystemeController');
 });
 
 
@@ -66,6 +68,8 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/historique', 'Admin\HistoriqueController');
         Route::resource('/contact', 'Admin\ContactController');
         Route::resource('/document', 'Admin\DocumentController');
+        Route::resource('/education','Admin\EducationController');
+        Route::resource('/systeme','Admin\SystemeController');
         // fin des options des document
 
         // La partie des logements
@@ -73,7 +77,11 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/commune', 'Admin\CommuneController');
         Route::resource('/profile', 'Admin\ProfilAdminController');
         Route::resource('/immeuble', 'Admin\ImmeubleController');
+
         Route::resource('/chambre', 'Admin\ChambreController');
+        Route::delete('/chambre/{id}/chambre_immeuble_43','Admin\ChambreController@chambre_immeuble_43')->name('chambre_immeuble_43');
+        Route::delete('/chambre/{id}/chambre_immeuble_zoneA','Admin\ChambreController@chambre_immeuble_zoneA')->name('chambre_immeuble_zoneA');
+
         Route::resource('/departement', 'Admin\DepartementController');
         Route::resource('/localite', 'Admin\LocaliteController');
         Route::resource('/inscription', 'Admin\InscriptionController');

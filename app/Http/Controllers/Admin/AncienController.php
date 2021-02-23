@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Admin\Solde;
 use App\Model\User\Ancien;
+use App\Model\Admin\Chambre;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
-use App\Model\Admin\Solde;
+use App\Mail\MessageEmailAeerk;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Model\User\Codification_ancien;
 use Illuminate\Support\Facades\Storage;
-use App\Mail\MessageEmailAeerk;
-use Illuminate\Support\Facades\Mail;
 
 class AncienController extends Controller
 {
@@ -27,7 +28,7 @@ class AncienController extends Controller
      */
     public function index()
     {
-        $immeubles = Immeuble::where('status',true)->get();
+        $immeubles = Immeuble::where('status',2)->get();
         $ancien_bac = Ancien::where('codifier',0)->paginate(10);
         return view('admin.ancien.index',compact('ancien_bac','immeubles'));
     }
@@ -61,7 +62,7 @@ class AncienController extends Controller
      */
     public function show($id)
     {
-        $immeubles = Immeuble::where('status',true)->get();
+        $immeubles = Immeuble::where('status',2)->get();
         $departement = Departement::all();
         $show_ancien = Ancien::find($id);
         return view('admin.ancien.show',compact('show_ancien','departement','immeubles'));
@@ -75,7 +76,7 @@ class AncienController extends Controller
      */
     public function edit($id)
     {
-        $immeubles = Immeuble::where('status',true)->get();
+        $immeubles = Immeuble::where('status',2)->get();
         $show_ancien = Ancien::find($id);
         return view('admin.ancien.create',compact('immeubles','show_ancien'));
     }
@@ -155,7 +156,6 @@ class AncienController extends Controller
         $update_ancien->prenom = $request->prenom;
         $update_ancien->email = $request->email;
         $update_ancien->phone = $request->phone;
-        $update_ancien->status = $request->status;
         $update_ancien->commune_id = $request->commune;
         $update_ancien->immeuble_id = $immeuble ->id;
         $update_ancien->save();
@@ -166,32 +166,40 @@ class AncienController extends Controller
         $validator = $this->validate($request , [
             'chambre_id' => 'required|string',
         ]);
-        // dd($request->chambre_id);
         $prix = Solde::select('prix_ancien')->first();
-        $chambre_ancien = Ancien::select('chambre_id')->get();
+        $chambre_ancien = Ancien::all();
         foreach($chambre_ancien as $chambres){
+            // dd($request->chambre_id);
+            $ancien = Ancien::where('chambre_id',$request->chambre_id)->get();
             if ($chambres->chambre_id == $request->chambre_id) {
-                if($chambre_ancien->count() < $chambres->chambre->nombre){
+                if($ancien->count() < $chambres->chambre->nombre){
                     $codifier_ancien = Ancien::where('id',$id)->first();
                     $codifier_ancien->chambre_id = $request->chambre_id;
                     $codifier_ancien->prix = $prix->prix_ancien;
                     $codifier_ancien->codifier = 1;
                     $codifier_ancien->save();
+                    Mail::to($codifier_ancien->email)
+                    ->send(new MessageEmailAeerk($codifier_ancien));
                     Flashy::success('Votre etudiant a ete codifier');
                     return redirect()->route('admin.ancien.index');
                 }else{
+                    $is_pleine = Chambre::where('id',$request->chambre_id)->first();
+                    $is_pleine->is_pleine = 1;
+                    $is_pleine->save();
                     Flashy::error('Cette Chambre est pleine');
                     return redirect()->route('admin.ancien.index');
                 }
             }
-            else if ($chambres->chambre_id == 0){
-                $chambre_null = Ancien::where('chambre_id',0)->first();
+            else if ($chambres->chambre_id == !$request->chambre_id){
+                $chambre_null = Ancien::where('chambre_id',!$request->chambre_id)->first();
                 if ($chambre_null) {
                     $codifier_ancien = Ancien::where('id',$id)->first();
                     $codifier_ancien->chambre_id = $request->chambre_id;
                     $codifier_ancien->prix = $prix->prix_ancien;
                     $codifier_ancien->codifier = 1;
                     $codifier_ancien->save();
+                    Mail::to($codifier_ancien->email)
+                    ->send(new MessageEmailAeerk($codifier_ancien));
                     Flashy::success('Votre etudiant a ete codifier');
                     return redirect()->route('admin.ancien.index');
                 }

@@ -27,36 +27,33 @@
 									<h3 class="pull-left" style="margin-bottom:10px;">Mme {{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@endif
 								</div>
-								@foreach($immeubles as $imb) 
-								<h5 class="pull-left" style="margin-bottom:10px;">Choisissez Votre Chambre a {{ $imb->name }}</h5>
-							<form class="form-area contact-form text-right" action="{{ route('codifier_ancien',$ancien->id) }}" method="post">
-							@csrf
-								{{method_field('PUT')}}
-								<div class="input-group-icon mt-10">
-									<!-- <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div> -->
-									<div class="form-select" id="default-select">
-									<label for="" class="pull-right"></label>
-										<select value="{{ old('chambre_id') }}" name="chambre_id" class="common-input mb-20 form-control @error('chambre_id') is-invalid @enderror">
-										@foreach($imb->chambres  as $chm)
-											@if($ancien->genre == $chm->genre)
-												<option value="{{$chm->id}}">{{$chm->nom}}</option>
-											@endif
-										@endforeach
-										</select>
-										@error('chambre_id')
-										<span class="invalid-feedback" role="alert">
-											<strong class="message_error">{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
-								</div>
+									<h5 class="pull-left" style="margin-bottom:10px;">Choisissez Votre Immeuble</h5>
+									<form class="form-area contact-form text-right" action="{{ route('codifier_ancien',$ancien->id) }}" method="post">
+										@csrf
+										{{method_field('PUT')}}
+										<div class="input-group-icon mt-10">
+											<!-- <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div> -->
+											<div class="form-select" id="default-select">
+											<label for="" class="pull-right"></label>
+											<input type="hidden" value="{{ $ancien->genre }}" name="genre">
+												<select value="{{ old('immeuble') }}" name="immeuble" class="common-input mb-20 form-control @error('immeuble') is-invalid @enderror">
+												@foreach($immeubles as $imb)
+														<option value="{{$imb->id}}">{{$imb->name}}</option>
+												@endforeach
+												</select>
+												@error('immeuble')
+												<span class="invalid-feedback" role="alert">
+													<strong class="message_error">{{ $message }}</strong>
+												</span>
+												@enderror
+											</div>
+										</div>
 
-								<div class="">
-									<!-- <div class="alert-msg" style="text-align: left;"></div> -->
-									<button class="genric-btn primary my-4" type="submit">Codifier</button>											
-								</div>
-							</form>	
-							@endforeach
+										<div class="">
+											{{-- <div class="alert-msg" style="text-align: left;"></div>  --}}
+											<button class="genric-btn primary my-4" type="submit">Codifier</button>											
+										</div>
+									</form>	
 						</div>
 					<div class="col-lg-3"></div>
 					</div>

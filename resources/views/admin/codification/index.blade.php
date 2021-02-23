@@ -33,7 +33,6 @@
                         @foreach($nouveau->chambre->immeubles as $ac_imb)
                         {{$ac_imb->name}} : 
                         @endforeach
-                        
                         {{$nouveau->chambre->nom }}</td>
                       <td>{{ $nouveau->prix }}</td>
                     </tr>
@@ -49,7 +48,7 @@
                   </tr>
                   </tfoot>
                 </table>
-               <span class="pull-rigth"> {{ $nouveau_bac->links() }}</span>
+               {{-- <span class="pull-rigth"> {{ $nouveau_bac->links() }}</span> --}}
               </div>
 
             </div>
@@ -68,11 +67,19 @@
 
 
 @section('footersection')
-<script src="admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
-  $(function () {
+ $(function () {
     $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    })
   })
 </script>
 

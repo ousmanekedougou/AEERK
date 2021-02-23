@@ -23,27 +23,26 @@
         </div>
         <div class="box-body">
                     <!-- debut de la table -->
-          <div class="">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+        <div class="nav-tabs-custom">
+          <div class="tab-content">
+            <div class="active tab-pane" id="activity">
+              <table id="example1" class="table text-center table-bordered table-striped">
                 <thead>
                 <tr>
-                <th>Num</th>
-                  <th>Etiquette</th>
-                  <th>Slug</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                <th class="text-center">Num</th>
+                  <th class="text-center">Etiquette</th>
+                  <th class="text-center">Slug</th> 
+                  <th class="text-center">Options</th>
                 </tr>
                 </thead>
                 <tbody>
                   @foreach($tags as $tag)
                   <tr>
-                  <th>{{ $loop->index +1 }}</th>
-                  <th>{{ $tag->name }}</th>
-                  <th>{{ $tag->slug }}</th>
-                  <th><a data-toggle="modal" data-id="{{$tag->id}}" data-name="{{$tag->name}}" data-target="#modal-default-update-tag-{{ $tag->id }}"><i class="glyphicon glyphicon-edit"></i></a></th>
-                  <th>
+                  <td class="text-center">{{ $loop->index +1 }}</td>
+                  <td class="text-center">{{ $tag->name }}</td>
+                  <td class="text-center">{{ $tag->slug }}</td>
+                  <td class="text-center"><a data-toggle="modal" data-id="{{$tag->id}}" data-name="{{$tag->name}}" data-target="#modal-default-update-tag-{{ $tag->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                  
                     <form id="delete-form-{{$tag->id}}" method="post" action="{{ route('admin.tag.destroy',$tag->id) }}" style="display:none">
                     {{csrf_field()}}
                     {{method_field('delete')}}
@@ -60,17 +59,16 @@
                     }
                     
                     "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                    </th>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Num</th>
-                  <th>Etiquette</th>
-                  <th>Slug</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th class="text-center">Num</th>
+                  <th class="text-center">Etiquette</th>
+                  <th class="text-center">Slug</th>
+                  <th class="text-center">Options</th>
                 </tr>
                 </tfoot>
               </table>
@@ -192,11 +190,19 @@
 
 
 @section('footersection')
-<script src="admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
-  $(function () {
+ $(function () {
     $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
   })
 </script>
 

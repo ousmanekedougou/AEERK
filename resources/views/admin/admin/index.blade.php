@@ -29,14 +29,14 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Image</th>
                   <th>Prenom & Nom</th>
-                  <th>Assigned Role</th>
+                  <th>Assigner un Role</th>
                   <th>Status</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Modifier</th>
+                  <th>Supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,14 +74,14 @@
                   @endforeach
                 </tbody>
                 <tfoot>
-                <tr>
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Image</th>
                   <th>Prenom & Nom</th>
-                  <th>Assigned Role</th>
+                  <th>Assigner un Role</th>
                   <th>Status</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Modifier</th>
+                  <th>Supprimer</th>
                 </tr>
                 </tfoot>
               </table>
@@ -91,9 +91,7 @@
             <!-- fin de la table -->
         </div>
         <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
+       
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->

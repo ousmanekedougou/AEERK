@@ -25,10 +25,10 @@ class CreateNouveausTable extends Migration
             $table->string('image');
             $table->string('photocopie');
             $table->string('relever');
-            $table->integer('immeuble_id')->nullable();
-            $table->integer('chambre_id')->nullable();
-            $table->integer('commune_id')->nullable();
-            $table->integer('prix')->nullable();
+            $table->integer('immeuble_id')->default(0);
+            $table->integer('chambre_id')->default(0);
+            $table->integer('commune_id')->default(0);
+            $table->integer('prix')->default(0);
             $table->boolean('status')->default(false);
             $table->boolean('codifier')->default(false);
             $table->timestamps();

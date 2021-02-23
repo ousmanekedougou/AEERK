@@ -24,10 +24,10 @@ class CreateAnciensTable extends Migration
             $table->string('certificat');
             $table->string('image');
             $table->string('photocopie');
-            $table->integer('commune_id')->nullable();
-            $table->integer('immeuble_id')->nullable();
-            $table->integer('chambre_id')->nullable();
-            $table->integer('prix')->nullable();
+            $table->integer('commune_id')->default(0);
+            $table->integer('immeuble_id')->default(0);
+            $table->integer('chambre_id')->default(0);
+            $table->integer('prix')->default(0);
             $table->boolean('status')->default(false);
             $table->boolean('codifier')->default(false);
             $table->timestamps();

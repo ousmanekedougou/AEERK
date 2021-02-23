@@ -46,6 +46,7 @@ class ImmeubleController extends Controller
             'name' => 'required|string',
             'address' => 'required|string',
             'image' => 'required|image',
+            'status' => 'required'
         ]);
         $add_immeuble = new Immeuble;
         $add_immeuble->name = $request->name;
@@ -54,7 +55,7 @@ class ImmeubleController extends Controller
             $imageName = $request->image->store('public/Immeuble');
         }
         $add_immeuble->image = $imageName;
-        $add_immeuble->status = 1;
+        $add_immeuble->status = $request->status;
         $add_immeuble->save();
         Flashy::success('Votre immeuble a ete ajouter');
         return redirect()->route('admin.logement.index');
@@ -100,7 +101,7 @@ class ImmeubleController extends Controller
         $imageName = '';
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Immeuble');
-        }elseif ($request->hasFile('')) {
+        }else{
             $imageName = $update_immeuble->image;
         }
         $update_immeuble->name = $request->name;
@@ -120,6 +121,8 @@ class ImmeubleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Immeuble::find($id)->delete();
+        Flashy::success('Votre immeuble a ete supprimer');
+        return back();
     }
 }

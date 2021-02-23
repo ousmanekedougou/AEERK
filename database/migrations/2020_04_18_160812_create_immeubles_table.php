@@ -18,7 +18,7 @@ class CreateImmeublesTable extends Migration
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('status')->default(false);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

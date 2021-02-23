@@ -23,26 +23,26 @@
         </div>
         <div class="box-body">
                     <!-- debut de la table -->
-          <div class="">
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+        <div class="nav-tabs-custom">
+          <div class="tab-content">
+            <div class="active tab-pane" id="activity">
+              <table id="example1" class="table text-center table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Num</th>
-                  <th>Categorie</th>
-                  <th>Etiquete</th>
-                  <th>Modifier</th>
-                  <th class="text-center">Supprimer</th>
+                  <th class="text-center">Num</th>
+                  <th class="text-center">Categorie</th>
+                  <th class="text-center">Etiquete</th>
+                  <th class="text-center">Options</th>
                 </tr>
                 </thead>
                 <tbody>
                   @foreach($categorys as $category)
                   <tr>
-                  <th>{{ $loop->index +1 }}</th>
-                  <th>{{ $category->name }}</th>
-                  <th>{{ $category->slug }}</th>
-                  <th><a data-toggle="modal" data-id="{{$category->id}}" data-name="{{$category->name}}" data-target="#modal-default-update-category-{{ $category->id }}"><i class="glyphicon glyphicon-edit"></i></a></th>
-                  <th class="text-center">
+                  <td class="text-center">{{ $loop->index +1 }}</td>
+                  <td class="text-center">{{ $category->name }}</td>
+                  <td class="text-center">{{ $category->slug }}</td>
+                  <td class="text-center"><a data-toggle="modal" data-id="{{$category->id}}" data-name="{{$category->name}}" data-target="#modal-default-update-category-{{ $category->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+              
                     <form id="delete-form-{{$category->id}}" method="post" action="{{ route('admin.category.destroy',$category->id) }}" style="display:none">
                     {{csrf_field()}}
                     {{method_field('delete')}}
@@ -59,17 +59,16 @@
                     }
                     
                     "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                    </th>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Num</th>
-                  <th>Categorie</th>
-                  <th>Etiquete</th>
-                  <th>Modifier</th>
-                  <th class="text-center">Supprimer</th>
+                  <th class="text-center">Num</th>
+                  <th class="text-center">Categorie</th>
+                  <th class="text-center">Etiquete</th>
+                  <th class="text-center">Options</th>
                 </tr>
                 </tfoot>
               </table>
@@ -129,7 +128,7 @@
           </div>
           <!-- /.modal-dialog -->
         </div>
-  <!-- Fin du modal Departement -->
+      <!-- Fin du modal Departement -->
       <!-- Fin du modal des ajouts -->
 
     <!-- Debut du modal des edition  -->
@@ -190,11 +189,19 @@
 
 
 @section('footersection')
-<script src="admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
-  $(function () {
+ $(function () {
     $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
   })
 </script>
 

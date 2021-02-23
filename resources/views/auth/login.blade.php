@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Favicon-->
   <link rel="shortcut icon" href="{{asset('user/img/3ccs.jpg')}}">
-  <title>AEERK</title>
+  <title>AEERK|Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -19,22 +19,14 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset('admin/plugins/iCheck/square/blue.css')}}">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b class="text-primary">Codification</b> </a>
-    <p class="text-xs"> {{ $user->email }} </p>
-    <p>  </p>
+    <b class="text-primary"><img src="{{asset('user/img/accueil.png')}}" alt="" title="" style="width:100%;height:auto;" /></b>
+    {{-- <p class="text-xs"> {{ $user->email }} </p> --}}
+    <p style="font-size: 2rem;"> Salut cheres etudiants veillez entre l'addresse email et le mot de passe que vous avez recue sur votre page email </p>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -63,28 +55,22 @@
         @enderror
       </div>
       <div class="row">
-        <div class="col-xs-7">
-          <div class="checkbox icheck">
-            <label>
-              {{-- <input type="checkbox"> Se Souvenir De Moi --}}
-            </label>
-          </div>
-        </div>
+    
         <!-- /.col -->
-        <div class="col-xs-5">
+        <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block">Connexion</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
-      <!-- <p>- OR -</p>
+    {{-- <div class="social-auth-links text-center">
+      <p>- OR -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a> -->
-    </div>
+        Google+</a>
+    </div> --}}
     <!-- /.social-auth-links -->
 
     

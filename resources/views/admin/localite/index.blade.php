@@ -14,28 +14,27 @@
           <div class="">
             
             <div class="form-group pull-right">
-               <a data-toggle="modal" data-id="add_dep" data-name="add_dep" data-target="#modal-default-add-dep" class="btn btn-warning">Ajouter un departement</a>
+               <a data-toggle="modal" data-id="add_dep" data-name="add_dep" data-target="#modal-default-add-dep" class="btn btn-primary">Ajouter un departement</a>
               
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center table-bordered table-striped">
                 <thead>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Departement</th>
                   <th>Modifier</th>
                   <th>Supprimer</th>
                 </tr>
+                {{ $i = '' }}
                 </thead>
-                  <tbody>
+                  <tbody class="text-center">
                           @foreach($departement as $dep)
                           <tr>
-                          <td>1</td>
+                          <td>{{ ++$i }}</td>
                             <td>{{ $dep->name }}</td>
-                            <td>
-                              <a data-toggle="modal" data-id="{{$dep->id}}" data-name="{{$dep->name}}" data-target="#modal-default-{{ $dep->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                           
+                            <td> <a data-toggle="modal" data-id="{{$dep->id}}" data-name="{{$dep->name}}" data-target="#modal-default-{{ $dep->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                             </td>
                             <td>
                               <form id="delete-form-{{$dep->id}}" method="post" action="{{ route('admin.departement.destroy',$dep->id) }}" style="display:none">
@@ -59,7 +58,7 @@
                           @endforeach
                   </tbody>
                 <tfoot>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Nom</th>
                   <th>Modifier</th>
@@ -80,24 +79,25 @@
            <div class="box-body">
           <div class="">
           <div class="form-group pull-right">
-          <a data-toggle="modal" data-id="add_commune" data-name="add_commune" data-target="#modal-default-add-commune" class="btn btn-warning">Ajouter une Commune</a>
+          <a data-toggle="modal" data-id="add_commune" data-name="add_commune" data-target="#modal-default-add-commune" class="btn btn-primary">Ajouter une Commune</a>
                               </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered text-center table-striped">
                 <thead>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
-                  <th>Commune</th>
-                  <th>Departement</th>
+                  <th>Communes</th>
+                  <th>Departements</th>
                   <th>Modifier</th>
                   <th>Supprimer</th>
                 </tr>
+                {{ $i = '' }}
                 </thead>
                   <tbody>
                   @foreach($commune as $com)
                           <tr>
-                          <td>1</td>
+                          <td>{{ ++$i }}</td>
                             <td>{{ $com->name }}</td>
                             <td>
                                 {{$com->departement->name}}
@@ -128,7 +128,7 @@
                           @endforeach
                   </tbody>
                 <tfoot>
-                <tr class="bg-warning">
+                <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Commune</th>
                   <th>Departement</th>

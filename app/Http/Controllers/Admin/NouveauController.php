@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\User\Nouveau;
 use App\Model\Admin\Solde;
+use App\Model\User\Nouveau;
+use App\Model\Admin\Chambre;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
+use App\Mail\AeerkEmailMessage;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-use App\Model\User\Codification_nouveau;
-use App\Mail\AeerkEmailMessage;
 use Illuminate\Support\Facades\Mail;
+use App\Model\User\Codification_nouveau;
 
 class NouveauController extends Controller
 {
@@ -26,7 +27,7 @@ class NouveauController extends Controller
      */
     public function index()
     {
-        $immeubles = Immeuble::where('status',false)->first();
+        $immeubles = Immeuble::where('status',1)->first();
         $nouveau_bac = Nouveau::where('codifier',0)->paginate(10);
         return view('admin.nouveau.index',compact('nouveau_bac','immeubles'));
     }
@@ -60,7 +61,7 @@ class NouveauController extends Controller
      */
     public function show($id)
     {
-        $immeubles = Immeuble::where('status',false)->first();
+        $immeubles = Immeuble::where('status',1)->first();
         $departement = Departement::all();
         $show_nouveau = Nouveau::find($id);
         return view('admin.nouveau.show',compact('show_nouveau','departement','immeubles'));
@@ -74,7 +75,7 @@ class NouveauController extends Controller
      */
     public function edit($id)
     {
-        $immeubles = Immeuble::where('status',false)->first();
+        $immeubles = Immeuble::where('status',1)->first();
         $show_nouveau = Nouveau::find($id);
         return view('admin.nouveau.create',compact('immeubles','show_nouveau'));
     }
@@ -138,12 +139,11 @@ class NouveauController extends Controller
 
     public function update_nouveau(Request $request, $id){
         $update_nouveau = Nouveau::find($id);
-        $immeuble = Immeuble::where('status',false)->first();
+        $immeuble = Immeuble::where('status',1)->first();
         $update_nouveau->nom = $request->nom;
         $update_nouveau->prenom = $request->prenom;
         $update_nouveau->email = $request->email;
         $update_nouveau->phone = $request->phone;
-        $update_nouveau->status = $request->status;
         $update_nouveau->commune_id = $request->commune;
         $update_nouveau->immeuble_id = $immeuble ->id;
         $update_nouveau->save();
@@ -179,18 +179,25 @@ class NouveauController extends Controller
             'chambre_id' => 'required|string',
         ]);
         $prix = Solde::select('prix_nouveau')->first();
-        $chambre_nouveau = Nouveau::select('chambre_id')->get();
+        $chambre_nouveau = Nouveau::all();
+        // dd($chambre_nouveau->count());
         foreach($chambre_nouveau as $chambres){
+            $nouveau = Nouveau::where('chambre_id',$request->chambre_id)->get();
             if ($chambres->chambre_id == $request->chambre_id) {
-                if($chambre_nouveau->count() < $chambres->chambre->nombre){
+                if($nouveau->count() < $chambres->chambre->nombre){
                     $codifier_nouveau = Nouveau::where('id',$id)->first();
                     $codifier_nouveau->chambre_id = $request->chambre_id;
                     $codifier_nouveau->prix = $prix->prix_nouveau;
                     $codifier_nouveau->codifier = 1;
                     $codifier_nouveau->save();
+                    Mail::to($codifier_nouveau->email)
+                    ->send(new AeerkEmailMessage($codifier_nouveau));
                     Flashy::success('Votre etudiant a ete codifier');
                     return redirect()->route('admin.nouveau.index');
                 }else{
+                    $is_pleine = Chambre::where('id',$request->chambre_id)->first();
+                    $is_pleine->is_pleine = 1;
+                    $is_pleine->save();
                     Flashy::error('Cette Chambre est pleine');
                     return redirect()->route('admin.nouveau.index');
                 }
@@ -203,6 +210,8 @@ class NouveauController extends Controller
                     $codifier_nouveau->prix = $prix->prix_nouveau;
                     $codifier_nouveau->codifier = 1;
                     $codifier_nouveau->save();
+                    Mail::to($codifier_nouveau->email)
+                    ->send(new AeerkEmailMessage($codifier_nouveau));
                     Flashy::success('Votre etudiant a ete codifier');
                     return redirect()->route('admin.nouveau.index');
                 }

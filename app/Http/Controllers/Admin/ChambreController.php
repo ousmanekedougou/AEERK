@@ -51,15 +51,15 @@ class ChambreController extends Controller
             'nombre' => 'required|numeric',
             'genre' => 'required',
         ]);
-        $add_chambre = new Chambre;
-        $add_chambre->nom = $request->name;
-        $add_chambre->nombre = $request->nombre;
-        $add_chambre->status = 1;
-        $add_chambre->genre = $request->genre;
-        $add_chambre->save();
-        $add_chambre->immeubles()->sync($request->immeuble);
-        Flashy::success('Votre chambre a ete ajoute');
-        return redirect()->route('admin.logement.index');
+            $add_chambre = new Chambre;
+            $add_chambre->nom = $request->name;
+            $add_chambre->nombre = $request->nombre;
+            $add_chambre->status = 1;
+            $add_chambre->genre = $request->genre;
+            $add_chambre->save();
+            $add_chambre->immeubles()->sync($request->immeuble);
+            Flashy::success('Votre chambre a ete ajoute');
+            return redirect()->route('admin.logement.index');
     }
 
     /**
@@ -95,21 +95,19 @@ class ChambreController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            'immeuble' => 'required',
             'nombre' => 'required|numeric',
             'genre' => 'required',
         ]);
-        // dd($request->immeuble);
-        $statusNumber = '';
-        $update_chambre = Chambre::find($id);
-        $update_chambre->nom = $request->name;
-        $update_chambre->nombre = $request->nombre;
-        $update_chambre->status = $request->status;
-        $update_chambre->genre = $request->genre;
-        $update_chambre->save();
-        $update_chambre->immeubles()->sync($request->immeuble);
-        Flashy::success('Votre chambre a ete ajoute');
-        return redirect()->route('admin.logement.index');
+            $statusNumber = '';
+            $update_chambre = Chambre::find($id);
+            $update_chambre->nom = $request->name;
+            $update_chambre->nombre = $request->nombre;
+            $update_chambre->status = $request->status;
+            $update_chambre->genre = $request->genre;
+            $update_chambre->save();
+            $update_chambre->immeubles()->sync($request->immeuble);
+            Flashy::success('Votre chambre a ete ajoute');
+            return redirect()->route('admin.logement.index');
     }
 
     /**
@@ -120,6 +118,8 @@ class ChambreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chambre::find($id)->delete();
+        Flashy::success('Votre Chambre a ete Supprimer');
+        return back();
     }
 }

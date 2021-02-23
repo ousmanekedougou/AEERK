@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Admin\Chambre;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
+use App\Model\Admin\Chambre39;
+use App\Model\Admin\Chambre43;
+use App\Model\Admin\Chambrezone;
 use App\Http\Controllers\Controller;
 
 class LogementController extends Controller

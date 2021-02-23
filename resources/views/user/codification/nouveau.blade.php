@@ -30,28 +30,15 @@
 								@endif
 								</div>
 								<div class="input-group-icon mt-10">
-								<h5 class="pull-left" style="margin-bottom:10px;">Choisissez Votre Chambre a {{ $immeubles->name }}</h5>
+								<h5 class="text-center" style="margin-bottom:30px;margin-top:10px">{{ $immeubles->name }}</h5>
 									<!-- <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div> -->
-									<div class="form-select" id="default-select">
-									<label for="" class="pull-right"></label>
-										<select value="{{ old('chambre_id') }}" name="chambre_id" class="common-input mb-20 form-control @error('chambre_id') is-invalid @enderror">
-										@foreach($immeubles->chambres  as $chm)
-											@if($nouveau->genre == $chm->genre)
-											<option value="{{$chm->id}}">{{$chm->nom}}</option>
-											@endif
-										@endforeach
-										</select>
-										@error('chambre_id')
-										<span class="invalid-feedback" role="alert">
-											<strong class="message_error">{{ $message }}</strong>
-										</span>
-										@enderror
-									</div>
+									<input type="hidden" value="{{ $nouveau->genre }}" name="genre">
+									<input type="hidden" value="{{ $immeubles->id }}" name="immeuble">
+								
 								</div>
 
-								<div class="col-lg-12">
-									<div class="alert-msg" style="text-align: left;"></div>
-									<button class="genric-btn primary" style="float: right;margin-right:-13px;" type="submit">Codifier</button>											
+								<div class="col-lg-12 text-center">
+									<button class="genric-btn primary btn-block" type="submit">Codifier</button>											
 								</div>
 							</form>	
 						</div>

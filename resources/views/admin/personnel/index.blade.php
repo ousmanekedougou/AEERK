@@ -11,81 +11,55 @@
       <h1>
         Enregistrer Vos Personnelles
         <!-- <small>Votre lieu de travail</small> -->
+        <button type="button" class="btn pull-right btn-info" data-toggle="modal" data-target="#add_personnel">Ajouter un personnelle</button>
       </h1>
-      <div class="pull-right">
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#add_personnel">Ajouter un personnelle</button>
-              </div>
+            
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-md-12">
-
-        <!-- Debut des Personnel de l'aeerk -->
-
-
-
-        <div class="">
-            <div class="box-header with-border">
-            <div class="pull-left">
-              <h3>Commission Pedagogique</h3>
-              </div>
-            
-            </div>
-            <!-- /.box-header -->
-            <!-- debut du body -->
-            <div class="box-body">
+              {{-- card normale --}}
               <div class="row">
                 @foreach($teams as $team)
-                  <div class="col-lg-4">
-                    <!-- Attachment -->
-                      <div class="attachment-block clearfix">
-                        <img class="attachment-img" src="{{ Storage::url($team->image) }}" alt="Attachment Image">
-
-                        <div class="attachment-pushed">
-                          <h5 class="attachment-heading">{{ $team->nom }}</h5>
-
-                          <div class="attachment-text">
-                            <p> <span>E-mail</span> <span>{{ $team->email }}</span></p>
-                            <p> <span>Phone</span> <span>{{ $team->phone }}</span></p>
-                            <p> <span>Poste</span>  <span>{{ $team->poste->name }}</span></p>
-                          </div>
-                          <!-- /.attachment-text -->
-                        </div>
-                        <!-- /.attachment-pushed -->
-                        <div class="pull-left">
-                        <a href="" data-toggle="modal" data-id="{{$team->id}}" data-name="{{$team->nom}}" data-target="#edit_personnel-{{ $team->id }}"><i class="fa fa-edit btn btn-info btn-xs"> Modifier</i></a>
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card" style="width:100%;height:auto;border:1px solid silver;border-radius:5px;padding:2px">
+                      <img src="{{ Storage::url($team->image) }}" style="width: 100%;height:auto;" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title text-bold text-capitalize text-center">{{ $team->nom }}</h5>
                       </div>
-                      <div class="pull-right">
-                      <form id="delete-form-{{$team->id}}" method="post" action="{{ route('admin.team.destroy',$team->id) }}" style="display:none">
-                              {{csrf_field()}}
-                              {{method_field('delete')}}
-                              </form>
-                      <a  href="" onclick="
-                              if(confirm('Etes Vous sure de supprimer ce personnelle ?')){
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          @foreach($team->poste->commissions as $team_com)
+                            Commission :  {{ $team_com->name }}
+                          @endforeach
+                        </li>
+                        <li class="list-group-item">Poste : {{ $team->poste->name }}</li>
+                        <li class="list-group-item">Telephone : {{$team->phone}}</li>
+                      </ul>
+                      <div class="card-body text-center">
+                        <a href="" data-toggle="modal" data-id="{{$team->id}}" data-name="{{$team->nom}}" data-target="#edit_personnel-{{ $team->id }}" class="card-link"><i class="fa fa-edit btn btn-info  btn-xs"> Modifier</i></a>
+                        <form id="delete-form-{{$team->id}}" method="post" action="{{ route('admin.team.destroy',$team->id) }}" style="display:none">
+                          {{csrf_field()}}
+                          {{method_field('delete')}}
+                          </form>
+                  <a  href="" onclick="
+                          if(confirm('Etes Vous sure de supprimer ce personnelle ?')){
 
-                              event.preventDefault();document.getElementById('delete-form-{{$team->id}}').submit();
+                          event.preventDefault();document.getElementById('delete-form-{{$team->id}}').submit();
 
-                              }else{
+                          }else{
 
-                                event.preventDefault();
+                            event.preventDefault();
 
-                              }
-                              
-                              "><i class="fa fa-trash btn btn-danger btn-xs"> Supprimer</i></a>
+                          }
+                          
+                          " class="card-link"><i class="fa fa-trash btn btn-danger btn-xs"> Supprimer</i></a>
                       </div>
-                      </div>
-                    <!-- /.attachment-block -->
+                    </div>
                   </div>
                 @endforeach
               </div>
-            </div>
-              <!-- fin du ody -->
-
-
-          </div>
-
+              {{-- card normale --}}
 
         <!-- Fin des Personnel de l'Aeerk -->
 
@@ -182,8 +156,8 @@
                 </p>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-outline pull-left">Enregistrer</button>
-                <button type="reset" class="btn btn-outline">Annuller</button>
+                <button type="submit" class="btn btn-primary pull-left">Enregistrer</button>
+                <button type="reset" class="btn btn-default">Annuller</button>
               </div>
             </form>
             </div>
@@ -293,8 +267,8 @@
                 </p>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-outline pull-left">Modifier</button>
-                <button type="reset" class="btn btn-outline">Annuller</button>
+                <button type="submit" class="btn btn-primary pull-left">Modifier</button>
+                <button type="reset" class="btn btn-default">Annuller</button>
               </div>
             </form>
             </div>

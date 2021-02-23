@@ -19,7 +19,7 @@ class AncienController extends Controller
     public function index()
     {
         $departement = Departement::all();
-        $immeuble = Immeuble::where('status',true)->get();
+        $immeuble = Immeuble::where('status',2)->get();
         return view('user.ancien.index',compact('departement','immeuble'));
     }
 

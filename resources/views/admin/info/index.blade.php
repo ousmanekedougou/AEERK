@@ -15,7 +15,7 @@
         <div class="box-header">
           Vos infos
           @if($infos->count() < 1)
-          <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-infos">Ajouter Vos Infos</a>
+          <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-infos">Ajouter Vos Infos</a>
             <!-- Default box -->
             @endif
         </div>
@@ -23,13 +23,13 @@
       <div class="box-body">
         <table id="example2" class="table text-center table-bordered table-hover">
           <thead>
-          <tr>
+          <tr class="bg-primary">
             <th>Email</th>
             <th>Phone</th>
             <th>Adresse</th>
             <th>Boite Postal</th>
             <th>Fax</th>
-            <th class="text-success">Option</th>
+            <th>Option</th>
           </tr>
           </thead>
           <tbody>
@@ -46,13 +46,13 @@
           </tbody>
           <tfoot>
           <tr>
-          <tr>
+          <tr class="bg-primary"> 
           <th>Email</th>
             <th>Phone</th>
             <th>Adresse</th>
             <th>Boite Postal</th>
             <th>Fax</th>
-            <th class="text-success">Option</th>
+            <th>Option</th>
           </tr>
           </tfoot>
         </table>
@@ -64,17 +64,17 @@
       <div class="box-body">
         <section class="content-header">
           <div class="box-header">
-            <a class="col-lg-offset-5 pull-right btn btn-warning" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-reaseu-add">Ajouter un Reseau</a>
+            <a class="col-lg-offset-5 pull-right btn btn-primary" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-reaseu-add">Ajouter un Reseau</a>
             Reseaux Sociaux
           </div>
         </section><br>
         <table id="example2" class="table text-center  table-bordered table-hover">
           <thead>
-          <tr>
+          <tr class="bg-primary">
             <th>Image</th>
             <th>Nom</th>
             <th>Lien</th>
-            <th class="text-success">Option</th>
+            <th>Option</th>
           </tr>
           </thead>
           <tbody>
@@ -108,11 +108,11 @@
           </tbody>
           <tfoot>
           <tr>
-          <tr>
+          <tr class="bg-primary">
           <th>Image</th>
             <th>Nom</th>
             <th>Lien</th>
-            <th class="text-success">Option</th>
+            <th>Option</th>
           </tr>
           </tfoot>
         </table>
@@ -121,7 +121,7 @@
       <div class="row">
         <section class="content-header">
           <div class="box-header">
-            <a class="col-lg-offset-5 pull-right btn btn-warning" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-add-partener">Ajouter un Partenaire</a>
+            <a class="col-lg-offset-5 pull-right btn btn-primary" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-add-partener">Ajouter un Partenaire</a>
             <h3>Vos Partenaires</h3>
           </div>
         </section>
@@ -161,19 +161,19 @@
             <h1>Vos Prix Et Numero De Codification</h1>
           <div class="box-header">
             @if($soldes->count() < 1)
-            <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+            <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
               <!-- Default box -->
               @endif
           </div>
         </section><br>
         <table id="example2" class="table text-center table-bordered table-hover">
           <thead>
-          <tr>
+          <tr class="bg-primary">
             <th>Pix Codification Nouveau</th>
             <th>Pix Codification Ancien</th>
             <th>Numero Codification Ancien</th>
             <th>Numero Codification Ancien</th>
-            <th class="text-success">Option</th>
+            <th>Option</th>
           </tr>
           </thead>
           <tbody>
@@ -199,17 +199,17 @@
       <h1>Le Mail et Mot de passe Pour la codification</h1>
     <div class="box-header">
       @if($soldes->count() < 1)
-      <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+      <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
         <!-- Default box -->
         @endif
     </div>
   </section><br>
   <table id="example2" class="table text-center table-bordered table-hover">
     <thead>
-    <tr>
+    <tr class="bg-primary">
       <th>Email</th>
       <th>Utilite</th>
-      <th class="text-success">Option</th>
+      <th>Option</th>
     </tr>
     </thead>
     <tbody>
@@ -233,14 +233,14 @@
           <h1>Gestion de vos liens</h1>
           <div class="box-header">
           @if($soldes->count() < 1)
-          <a class="col-lg-offset-5 btn btn-warning pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+          <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
               <!-- Default box -->
               @endif
           </div>
       </section><br>
       <table id="example2" class="table text-center table-bordered table-hover">
           <thead>
-          <tr>
+          <tr class="bg-primary">
           <th>Inscription</th>
           <th> Liens Inscription </th>
           <th>Inscription Recasement</th>

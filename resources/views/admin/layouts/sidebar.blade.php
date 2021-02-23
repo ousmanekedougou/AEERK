@@ -27,7 +27,7 @@
         <li class="header">PARAMETRES</li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-folder"></i>
+            <i class="fa fa-cog"></i>
             <span>Paramettres</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">5</span>
@@ -42,8 +42,8 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-folder"></i>
-            <span>Admins</span>
+            <i class="fa fa-group"></i>
+            <span>Administration</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">2</span>
             </span>
@@ -58,8 +58,8 @@
        
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-folder"></i>
-            <span>Blog</span>
+            <i class="fa fa-rss"></i>
+            <span>Articles</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">3</span>
             </span>
@@ -72,8 +72,8 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>Informations Utile</span>
+            <i class="fa fa-align-justify"></i>
+            <span>Pages</span>
             <span class="pull-right-container">
             <span class="label label-danger pull-right">6</span>
             </span>
@@ -90,7 +90,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Inscription Codification</span>
+            <i class="fa fa-user-plus"></i> <span>Inscription Codification</span>
             <span class="pull-right-container">
             <span class="label label-warning pull-right">4</span>
             </span>
@@ -103,7 +103,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Etudiant Codifier</span>
+            <i class="fa fa-graduation-cap"></i> <span>Etudiant Codifier</span>
             <span class="pull-right-container">
             <span class="label label-warning pull-right">4</span>
             </span>
@@ -117,7 +117,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Recasement</span>
+            <i class="fa fa-user-plus"></i> <span>Recasement</span>
             <span class="pull-right-container">
             <span class="label label-warning pull-right">4</span>
             </span>
@@ -131,7 +131,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Etudes</span>
+            <i class="fa fa-building"></i> <span>Poste & Habitat</span>
             <span class="pull-right-container">
             <span class="label label-warning pull-right">4</span>
             </span>
@@ -142,6 +142,25 @@
         <li><a href="{{ route ('admin.logement.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Logements</span></a></li>
           </ul>
         </li>
+
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-building"></i> <span>Education</span>
+            <span class="pull-right-container">
+            <span class="label label-warning pull-right">4</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.systeme.index') }}"><i class="fa fa-circle-o"></i> Syeteme Educatif</a></li>
+            <li><a href="{{ route ('admin.education.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Examen & Concours</span></a></li>
+            <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
+            <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Emploi & Stage</span></a></li>
+          </ul>
+        </li>
+
+
+
       </ul>
     </section>
     <!-- /.sidebar -->

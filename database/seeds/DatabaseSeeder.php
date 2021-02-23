@@ -36,6 +36,16 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Creer'
             ]);
             // fin des role
+
+            Role::create(
+            [
+                'email' => 'aeerk@gmail.com',
+                'phone' => '77000000',
+                'adresse' => 'Medina',
+                'fax' => '000000',
+                'bp' => 'boite poste',
+            ]);
+                
     
     
             Permission::create(

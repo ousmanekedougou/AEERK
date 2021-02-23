@@ -1,75 +1,16 @@
 
 	<!-- Start cta-two Area -->
 	<section class="cta-two-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 cta-left footer_carousel">
-					<div class="slider owl-carousel">
-
-						<div class="card">
-						<div class="img">
-							<img src="{{asset('user/img/b1.jpg')}}" alt="">
-							<div class="content">
-							<div class="title">Partenaire 1</div>
-							<div class="btn">
-								<button class="">Visitez</button>
-							</div>
-							</div>
-						</div>
-						</div>
-						<div class="card">
-						<div class="img">
-							<img src="{{asset('user/img/b2.jpg')}}" alt="">
-							<div class="content">
-							<div class="title">Partenaire 2</div>
-							<div class="btn">
-								<button class="">Visitez</button>
-							</div>
-							</div>
-						</div>
-						</div>
-					
-						<div class="card">
-						<div class="img">
-							<img src="{{asset('user/img/b3.jpg')}}" alt="">
-							<div class="content">
-							<div class="title">Partenaire 3</div>
-							<div class="btn">
-								<button class="">Visitez</button>
-							</div>
-							</div>
-						</div>
-						</div>
-					
-						<div class="card">
-						<div class="img">
-							<img src="{{asset('user/img/b4.jpg')}}" alt="">
-							<div class="content">
-							<div class="title">Partenaire 4</div>
-							<div class="btn">
-								<button class="">Visitez</button>
-							</div>
-							</div>
-						</div>
-						</div>
-					
-						<div class="card">
-						<div class="img">
-							<img src="{{asset('/user/img/b1.jpg')}}" alt="">
-							<div class="content">
-							<div class="title">Partenaire 5</div>
-							<div class="btn">
-								<button class="">Visitez</button>
-							</div>
-							</div>
-						</div>
-						</div>
-					</div>
+		<div class="slider_container">
+				<h1 class="slider_h1">Nos Partenaires</h1>
+				<div class="logo-slider">
+					<div class="item"><a href=""><img src="{{ asset('user/img/part/1.png') }}" alt=""></a></div>
+					<div class="item"><a href=""><img src="{{ asset('user/img/part/2.png') }}" alt=""></a></div>
+					<div class="item"><a href=""><img src="{{ asset('user/img/part/3.png') }}" alt=""></a></div>
+					<div class="item"><a href=""><img src="{{ asset('user/img/part/5.png') }}" alt=""></a></div>
+					<div class="item"><a href=""><img src="{{ asset('user/img/part/6.png') }}" alt=""></a></div>
+					<div class="item"><a href=""><img src="{{ asset('user/img/part/7.png') }}" alt=""></a></div>
 				</div>
-				<div class="col-lg-4 cta-right">
-					<a class="primary-btn wh" href="#">view our blog</a>
-				</div>
-			</div>
 		</div>	
 	</section>
 			<!-- End cta-two Area -->
@@ -158,15 +99,19 @@ Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} Version Beta & | Vitrine 
 			</footer>	
 			<!-- End footer Area -->	
 
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 			<script>
-				// alert('jdjjdf');
-				$('.slider').owlCarousel({
-				  loop:true,
-				  autoplay:true,
-				  autoplayTimeout:3000,//200ms = 2s;
-				  autoplayHoverPause:true
-				});
-			  </script>
+			$('.logo-slider').slick({
+				slidesToShow: 5,
+				slidesToScroll:1,
+				dots:true,
+				arrows:true,
+				autoplay:true,
+				autoplaySpeed:3000,
+				infinite:true,
+			});
+			</script>
 
 
 			<script src="{{asset('user/js/vendor/jquery-2.2.4.min.js')}}"></script>

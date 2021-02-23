@@ -19,45 +19,91 @@
       <a class=" btn btn-success" href="{{ route('admin.post.create') }}">Ajouter Un Article</a>
     </div>
    
-            <div class="box-body">
-            <div class="row">
+
+
+            {{-- Debut des affichage en card --}}
+            
+            {{-- <div class="box-body">
+              <div class="row">
                 @foreach($posts as $post)
-                  <div class="col-lg-4">
-                    <!-- Attachment -->
-                      <div class="attachment-block clearfix">
-                        <img class="attachment-img" style="width:100%;100%;" src="{{ Storage::url($post->image) }}" alt="Attachment Image">
-                            
-                        <div class="attachment-pushed">
-                          <h5 class="attachment-heading">{{ $post->title }}</h5>
-
-                          <div class="attachment-text">
-                            <p> <span>Sous Titre</span> <span>{{ $post->subtitle }}</span></p>
-                            <p> <span></span> <span>{{ $post->created_at }}</span></p>
-                          </div>
-                          <!-- /.attachment-text -->
-                          <div class="text-center">
-                            <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning  btn-xs"> </i></a>
-                            <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="fa fa-edit btn btn-primary btn-xs"> </i></a>
-                              <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
-                                  {{csrf_field()}}
-                                  {{method_field('delete')}}
-                                  </form>
-                                <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
-
-                                  }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger btn-xs"> </i></a>
-                          </div>
-                        </div>
-                        <!-- /.attachment-pushed -->
-                      
-                    
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card" style="width:100%;height:auto;">
+                      <img style="width:100%;100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title text-bold">{{ $post->title }}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                       </div>
-                    <!-- /.attachment-block -->
+                   
+                      <div class="card-body text-center">
+                        <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link"> View </i></a>
+                        <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> Modifier</i></a>
+                        <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
+                            {{csrf_field()}}
+                            {{method_field('delete')}}
+                            </form>
+                          <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
+
+                            }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> Supprimer</i></a>
+                      </div>
+                    </div>
                   </div>
                 @endforeach
               </div>
-             
-            </div>
-            <!-- /.box-body -->
+            </div> --}}
+
+            {{-- Fin des affichage en card --}}
+
+            {{-- Card horizontal --}}
+
+              <div class="box-body">
+                <div class="row">
+                  @foreach($posts as $post)
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                      <div class="card mb-3" style="width:100%;border:1px solid silver;border-radius:5px;padding:5px">
+                        <div class="row g-0">
+                          <div class="col-md-6">
+                            <img style="width:100%;100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
+                            <h5 class="card-title text-bold text-sm">{{ $post->title }}</h5>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <p class="card-text"> {!! $post->body !!}</p>
+                              
+                              <p class="card-text">
+                                @foreach ($post->categories as $post_category)
+                                 <span class="text-bold">Categories :</span>   {{ $post_category->name }},
+                                @endforeach
+                              </p>
+                              <p class="card-text">
+                                <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-facebook"></i> 12</button> 
+                                <button type="button" class="btn btn-info btn-sm"><i class="fa  fa-twitter"></i> 23</button>
+    
+                                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-instagram"></i> 12</button>
+                                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-whatsapp"></i> 34</button>
+                              </p>
+                              <p class="card-text">
+                                <div class="text-muted text-center">
+                                  <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
+                                  <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a>
+                                  <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
+                                      {{csrf_field()}}
+                                      {{method_field('delete')}}
+                                      </form>
+                                    <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
+          
+                                      }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> </i></a>
+                                </div>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  @endforeach
+                </div>
+              </div>
+
+            {{-- Fin de la card horizontal --}}
 
     </section>
     <!-- /.content -->
@@ -69,12 +115,12 @@
           @foreach($posts as $post)
             
         <div class="modal fade" id="modal-default-chambre-{{ $post->id }}">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Les Details De L'article {{ $post->title }}</h4>
+                <h4 class="modal-title"></h4>
               </div>
              
                 <div class="modal-body">
@@ -84,22 +130,51 @@
                         <!-- Box Comment -->
                         <div class="box box-widget">
                           <div class="box-body">
-                            <img class="img-responsive pad" style="width:100%;auto;" src="{{ Storage::url($post->image) }}" alt="Photo">
-                            <!-- 
-                            <p>I took this photo this morning. What do you guys think?</p>
-                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->
-                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                            <div class="row">
+                              <div class="col-sm-7">
+                              <img class="img-responsive pad" style="width:100%;auto;" src="{{ Storage::url($post->image) }}" alt="Photo">
+                              <h4 class="text-bold">{{ $post->title }}</h4>
+                            </div>
+                              <div class="col-sm-5">
+                                <h4 class="text-bold"> Publiere le : {{ $post->created_at->toFormattedDateString() }}</h4>
+                              <p> <span class="text-bold text-primary">Catagories : </span> 
+                                @foreach ($post->categories as $category_post)
+                                    {{ $category_post->name }},
+                                @endforeach
+                              </p>
+                              <p> <span class="text-bold text-primary">Etiquettes : </span> 
+                                @foreach ($post->tags as $tag_post)
+                                    {{ $tag_post->name }},
+                                @endforeach
+                              </p>
+                              <p class="card-text">
+                                <h4 class="text-bold">Avis des utilisateurs</h4>
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> comments</button> 
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-o-up"></i> Like</button>
 
-                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-down"></i> Dislike</button>
-                            <span class="pull-right text-muted">127 likes - 3 comments</span>
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-o-down"></i> Dislike</button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> vues</button>
+                              </p>
+                              <p class="card-text">
+                                <h4 class="text-bold">Partage des aux reseaux sociaux</h4>
+                                <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-facebook"></i> 12</button> 
+                                <button type="button" class="btn btn-info btn-sm"><i class="fa  fa-twitter"></i> 23</button>
+    
+                                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-instagram"></i> 12</button>
+                                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-whatsapp"></i> 34</button>
+                              </p>
+                              </div>
+                            </div>
+                            
+  
                           </div>
                           <!-- /.box-body -->
                           <div class="box-footer box-comments">
                             <div class="box-comment">
-                              <div class="comment-text">
+                              <div class="comment-text text-justify">
                                     <span class="username">
                                       Description
-                                      <span class="text-muted pull-right">  Publiere le : {{ $post->created_at->toFormattedDateString() }}</span>
+                                     
                                     </span>
                                     <br>
                                     {!! $post->body !!}

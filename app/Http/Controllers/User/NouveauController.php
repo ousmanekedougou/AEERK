@@ -55,7 +55,7 @@ class NouveauController extends Controller
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
         // dd($request->all());
-        $immeuble = Immeuble::where('status',false)->first();
+        $immeuble = Immeuble::where('status',1)->first();
         $add_nouveau = new Nouveau;
         $extraitName = '';
         $imageName = '';

@@ -13,8 +13,7 @@
 								</div>
 							</div>
 							<h1 class="text-uppercase">
-								We Ensure better education
-								for a better world			
+								NOUS ASSURONS UNE MEILLEURE ÉDUCATION POUR UN MONDE MEILLEUR		
 							</h1>
 							<p class="pt-10 pb-10">
 								In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
@@ -75,6 +74,27 @@
 				</div>	
 			</section>
 			<!-- End feature Area -->
+
+				<!-- Start info Area -->
+				<section class="info-area" style="margin-top:120px; ">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-5 info-area-left">
+								<img class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
+							</div>
+							<div class="col-lg-7 info-area-right">
+								<h3>Le President de l'AEERK</h3>
+								<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
+								<br>
+								<p>
+									inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+								</p>
+								
+							</div>
+						</div>
+					</div>	
+				</section>
+				<!-- End info Area -->
 					
 			<!-- Start popular-course Area -->
 			<section class="popular-course-area section-gap">
@@ -82,8 +102,8 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Popular Courses we offer</h1>
-								<p>There is a moment in the life of any aspiring.</p>
+								<h1 class="mb-10">Examens et Concours</h1>
+								<p>Les examens de l'annee et les concours mixtes</p>
 							</div>
 						</div>
 					</div>						
@@ -273,8 +293,8 @@
 			
 
 			<!-- Start search-course Area -->
-			<section class="search-course-area relative">
-				<!-- <div class="overlay overlay-bg"></div> -->
+			<section class="search-course-area relative" style="margin-bottom:100px;">
+				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row justify-content-between align-items-center">
 						<div class="col-lg-6 col-md-6 search-course-left">
@@ -288,14 +308,14 @@
 							<div class="row details-content">
 								<div class="col single-detials">
 									<span class="lnr lnr-graduation-hat"></span>
-									<a href="#"><h4>Expert Instructors</h4></a>		
+									<a href="#"><h4>Offres d'emplois</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
 								</div>
 								<div class="col single-detials">
 									<span class="lnr lnr-license"></span>
-									<a href="#"><h4>Certification</h4></a>		
+									<a href="#"><h4>Offres de stages</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
@@ -332,8 +352,9 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Upcoming Events of our Institute</h1>
-								<p>If you are a serious astronomy fanatic like a lot of us</p>
+								<h1 class="mb-10">
+									Prochains événements de notre assiciation</h1>
+								<p>Si vous etes un membre de l'association ou un natif de la region</p>
 							</div>
 						</div>
 					</div>								
@@ -424,9 +445,10 @@
 			<!-- End upcoming-event Area -->
 						
 			<!-- Start review Area -->
+			<h3 class="text-center">Les Temoignages</h3>		
 			<section class="review-area section-gap relative">
 				<div class="overlay overlay-bg"></div>
-				<div class="container">				
+				<div class="container">		
 					<div class="row">
 						<div class="active-review-carusel">
 							<div class="single-review item">
@@ -579,7 +601,7 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Nos Derniers Articlas</h1>
+								<h1 class="mb-10">Nos Derniers Articles</h1>
 								<p>In the history of modern astronomy there is.</p>
 							</div>
 						</div>
@@ -596,7 +618,7 @@
 							<p>
 								Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their.
 							</p>
-							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>		
+							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Voire Plus</span><span class="lnr lnr-arrow-right"></span></a>		
 						</div>
 						<div class="col-lg-3 col-md-6 single-blog">
 							<div class="thumb">
@@ -609,7 +631,7 @@
 							<p>
 								Ah, the technical interview. Nothing like it. Not only does it cause anxiety, but it causes anxiety for several different reasons. 
 							</p>
-							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>						
+							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Voire Plus</span><span class="lnr lnr-arrow-right"></span></a>						
 						</div>
 						<div class="col-lg-3 col-md-6 single-blog">
 							<div class="thumb">
@@ -622,7 +644,7 @@
 							<p>
 								Plantronics with its GN Netcom wireless headset creates the next generation of wireless headset and other products such as wireless.
 							</p>
-							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>									
+							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Voire Plus</span><span class="lnr lnr-arrow-right"></span></a>									
 						</div>
 						<div class="col-lg-3 col-md-6 single-blog">
 							<div class="thumb">
@@ -635,7 +657,7 @@
 							<p>
 								About 64% of all on-line teens say that do things online that they wouldn’t want their parents to know about.   11% of all adult internet 
 							</p>
-							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>							
+							<a href="#" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Voire Plus</span><span class="lnr lnr-arrow-right"></span></a>							
 						</div>							
 					</div>
 				</div>	
