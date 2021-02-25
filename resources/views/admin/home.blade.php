@@ -10,8 +10,8 @@
     <!-- Content Header (Page header) -->
    <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        Tableau de bord
+        <small>Appercue des informations</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,133 +22,336 @@
     <!-- Main content -->
     <section class="content">
 
+    <h3 class="text-center btn btn-warning btn-block text-bold">Information des nouveaux</h3>
+      <br>
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
+        <div class="col-lg-3">
+          <div class="info-box bg-yellow">
+              <span class="info-box-icon"><i class="fa fa-envelope"></i></span>
 
-              <p>New Orders</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <div class="info-box-content">
+                <span class="info-box-text">200 nouveaux messages</span>
+                <span class="info-box-number">78</span>
 
-              <p>Bounce Rate</p>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 50%"></div>
+                </div>
+                <span class="progress-description">
+                     400 message recue au total
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
 
-              <p>User Registrations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
+        <div class="col-lg-3">
+          <div class="info-box bg-yellow">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
 
-              <p>Unique Visitors</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Valider</span>
+                <span class="info-box-number">{{ $nouveau_total_valider->count() }}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
         </div>
-        <!-- ./col -->
+
+        <div class="col-lg-3">
+          <div class="info-box bg-yellow">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Ommis</span>
+                <span class="info-box-number">{{$nouveau_total_ommis->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box bg-yellow">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Codifier</span>
+                <span class="info-box-number">{{$nouveau_total_codifier->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      Total non Codifier
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+
       </div>
-      <!-- /.row -->
 
+     
+      <h3 class="text-center btn btn-success btn-block text-bold">Information des nouveaux</h3>
+      <br>
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
+        <div class="col-lg-3">
+          <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="fa fa-graduation-cap"></i></span>
 
-              <p>New Orders</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Inscrits</span>
+                <span class="info-box-number">{{ $nouveau_total_inscrit->count() }}</span>
 
-              <p>Bounce Rate</p>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 50%"></div>
+                </div>
+                <span class="progress-description">
+                      50% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
 
-              <p>User Registrations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
+        <div class="col-lg-3">
+          <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
 
-              <p>Unique Visitors</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Valider</span>
+                <span class="info-box-number">{{ $nouveau_total_valider->count() }}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
         </div>
-        <!-- ./col -->
+
+        <div class="col-lg-3">
+          <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Ommis</span>
+                <span class="info-box-number">{{$nouveau_total_ommis->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Codifier</span>
+                <span class="info-box-number">{{$nouveau_total_codifier->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      Total non Codifier
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+
       </div>
-      <!-- /.row -->
+
+
+      <h3 class="text-center btn bg-blue btn-block text-bold">Information des Anciens</h3>
+      <br>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="info-box bg-blue">
+              <span class="info-box-icon"><i class="fa fa-graduation-cap"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Inscrits</span>
+                <span class="info-box-number">{{ $ancien_total_inscrit->count() }}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 50%"></div>
+                </div>
+                <span class="progress-description">
+                      50% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box bg-blue">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Valider</span>
+                <span class="info-box-number">{{ $ancien_total_valider->count() }}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box bg-blue">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Ommis</span>
+                <span class="info-box-number">{{$ancien_total_ommis->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box bg-blue">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Codifier</span>
+                <span class="info-box-number">{{$ancien_total_codifier->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      Total non Codifier
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+
+      </div>
+
+
+      <h3 class="text-center btn btn-info btn-block text-bold">Information les recasements des etudiants</h3>
+      <br>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="info-box" style="background-color: #00c0ef;border-color: #00acd6;">
+              <span class="info-box-icon"><i class="fa fa-graduation-cap"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Inscrits</span>
+                <span class="info-box-number">{{ $ancien_total_inscrit->count() }}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 50%"></div>
+                </div>
+                <span class="progress-description">
+                      50% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box "style="background-color: #00c0ef;border-color: #00acd6;">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Valider</span>
+                <span class="info-box-number">{{ $ancien_total_valider->count() }}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box " style="background-color: #00c0ef;border-color: #00acd6;">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Ommis</span>
+                <span class="info-box-number">{{$ancien_total_ommis->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      20% Increase in 30 Days
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="info-box " style="background-color: #00c0ef;border-color: #00acd6;">
+              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Codifier</span>
+                <span class="info-box-number">{{$ancien_total_codifier->count()}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="progress-description">
+                      Total non Codifier
+                    </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+        </div>
+
+
+      </div>
 
     </section>
     <!-- /.content -->

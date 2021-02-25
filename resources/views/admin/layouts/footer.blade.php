@@ -5,8 +5,7 @@
       <div class="pull-right hidden-xs">
       <b>Version</b> {{ Carbon\carbon::now()->year }}
       </div>
-      <strong>Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-      reserved.
+      <strong>Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} <a href="">Designed by Ousmane Diallo </a>.</strong> KdgWeb
     </footer>
 
 
