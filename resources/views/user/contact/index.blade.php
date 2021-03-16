@@ -30,7 +30,7 @@
 			<!-- End banner Area -->	
 
 			<!-- Start contact-page Area -->
-			<section class="contact-page-area section-gap" style="margin-top-30px;margin-bottom:-30px;">
+			<section class="contact-page-area section-gap" style="margin-top:-30px;margin-bottom:-30px;">
 				<div class="container">
 					<div class="row">
 						

@@ -16,7 +16,9 @@
     <!-- Main content -->
     <section class="content">
     <div class="">
-      <a class=" btn btn-success" href="{{ route('admin.post.create') }}">Ajouter Un Article</a>
+      @can('posts.create', Auth::guard('admin')->user())
+        <a class="btn btn-success" href="{{ route('admin.post.create') }}">Ajouter Un Article</a>
+      @endcan
     </div>
    
 
@@ -28,7 +30,7 @@
                 @foreach($posts as $post)
                   <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="card" style="width:100%;height:auto;">
-                      <img style="width:100%;100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
+                      <img style="width:100%;height:100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
                       <div class="card-body">
                         <h5 class="card-title text-bold">{{ $post->title }}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -62,7 +64,7 @@
                       <div class="card mb-3" style="width:100%;border:1px solid silver;border-radius:5px;padding:5px">
                         <div class="row g-0">
                           <div class="col-md-6">
-                            <img style="width:100%;100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
+                            <img style="width:100%;height:100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
                             <h5 class="card-title text-bold text-sm">{{ $post->title }}</h5>
                           </div>
                           <div class="col-md-6">
@@ -83,8 +85,14 @@
                               </p>
                               <p class="card-text">
                                 <div class="text-muted text-center">
-                                  <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
-                                  <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a>
+                                  @can('posts.update', Auth::guard('admin')->user())
+                                    <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
+                                  @endcan
+                                  @can('posts.update', Auth::guard('admin')->user())
+                                    <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a>
+                                  @endcan
+
+                                  @can('posts.delete', Auth::guard('admin')->user())
                                   <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
                                       {{csrf_field()}}
                                       {{method_field('delete')}}
@@ -92,6 +100,7 @@
                                     <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
           
                                       }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> </i></a>
+                                   @endcan
                                 </div>
                               </p>
                             </div>
@@ -132,7 +141,7 @@
                           <div class="box-body">
                             <div class="row">
                               <div class="col-sm-7">
-                              <img class="img-responsive pad" style="width:100%;auto;" src="{{ Storage::url($post->image) }}" alt="Photo">
+                              <img class="img-responsive pad" style="width:100% auto;" src="{{ Storage::url($post->image) }}" alt="Photo">
                               <h4 class="text-bold">{{ $post->title }}</h4>
                             </div>
                               <div class="col-sm-5">
@@ -214,3 +223,5 @@
 </script>
 
 @endsection
+
+

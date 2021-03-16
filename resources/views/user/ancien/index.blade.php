@@ -37,7 +37,7 @@
 
 							<div class="col-lg-3 col-md-3 col-sm-3 mt-sm-30 element-wrap">
 
-								{{-- <div class="single-element-widget">
+								 <div class="single-element-widget">
 									<h3 class="mb-30">Switches</h3>
 									<div class="switch-wrap d-flex justify-content-between">
 										<p>01. Sample Switch</p>
@@ -72,7 +72,7 @@
 											<option value="1">Bengali</option>
 										</select>
 									</div>
-                				</div> --}}
+                				</div>
                 
 							</div>
 

@@ -13,9 +13,11 @@
    <div class="box-body">
           <div class="">
             <div class="col-lg-6 col-lg-offset-5">
-            <div class="form-group pull-right">
-            <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-add-commission" class="col-lg-offset-5 btn btn-primary" href="">Ajouter une commission</a>
+              @can('logement.create', Auth::guard('admin')->user())
+              <div class="form-group pull-right">
+                  <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-add-commission" class="col-lg-offset-5 btn btn-primary" href="">Ajouter une commission</a>
               </div>
+              @endcan
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -24,8 +26,7 @@
                 <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Commission</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Options</th>
                 </tr>
                 </thead>
                   <tbody>
@@ -34,27 +35,29 @@
                           <td>1</td>
                             <td>{{ $com->name }}</td>
                             <td>
-                              <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-{{ $com->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                           
-                            </td>
-                            <td>
+                            @can('logement.update', Auth::guard('admin')->user())
+                              <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-{{ $com->id }}" class="mr-5"><i class="glyphicon glyphicon-edit"></i></a>
+                            @endcan
+                            @can('logement.delete', Auth::guard('admin')->user())
+
                               <form id="delete-form-{{$com->id}}" method="post" action="{{ route('admin.comission.destroy',$com->id) }}" style="display:none">
                               {{csrf_field()}}
                               {{method_field('delete')}}
                               </form>
-                            <a href="" onclick="
+                              <a href="" onclick=" 
                               if(confirm('Are you sure , You want to delete this ?')){
-
-                              event.preventDefault();document.getElementById('delete-form-{{$com->id}}').submit();
-
+                                
+                                event.preventDefault();document.getElementById('delete-form-{{$com->id}}').submit();
+                                
                               }else{
-
+                                
                                 event.preventDefault();
-
+                                
                               }
                               
-                              "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              </td>
+                              " style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              @endcan
+                            </td>
                           </tr>
                           @endforeach
                   </tbody>
@@ -62,8 +65,7 @@
                 <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Commission</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Options</th>
                 </tr>
                 </tfoot>
               </table>
@@ -78,10 +80,12 @@
    <div class="box-body">
           <div class="">
           <div class="col-lg-6 col-lg-offset-5">
+            @can('logement.create', Auth::guard('admin')->user())
             <div class="form-group pull-right">
             <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-poste-add" class="col-lg-offset-5 btn btn-primary" href="">Ajouter un Poste</a>
               </div>
             </div>
+            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center table-bordered table-striped">
@@ -90,8 +94,7 @@
                   <th>S.No</th>
                   <th>Postes</th>
                   <th>Commission</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Options</th>
                 </tr>
                 </thead>
                   <tbody>
@@ -105,10 +108,10 @@
                             @endforeach
                             </td>
                             <td>
+                            @can('logement.update', Auth::guard('admin')->user())
                               <a data-toggle="modal" data-id="{{$poste->id}}" data-name="{{$poste->name}}" data-target="#modal-default-poste-{{ $poste->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                           
-                            </td>
-                            <td>
+                            @endcan
+                            @can('logement.delete', Auth::guard('admin')->user())
                               <form id="delete-form-{{$poste->id}}" method="post" action="{{ route('admin.posteCommission.destroy',$poste->id) }}" style="display:none">
                               {{csrf_field()}}
                               {{method_field('delete')}}
@@ -124,7 +127,8 @@
 
                               }
                               
-                              "><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              " style="margin-left: 15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                            @endcan
                               </td>
                           </tr>
                           @endforeach
@@ -134,8 +138,7 @@
                   <th>S.No</th>
                   <th>Postes</th>
                   <th>Commission</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Options</th>
                 </tr>
                 </tfoot>
               </table>

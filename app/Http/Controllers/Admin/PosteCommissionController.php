@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\Poste;
 use Illuminate\Http\Request;
-use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class PosteCommissionController extends Controller
 {
     public function __construct()
@@ -21,8 +20,8 @@ class PosteCommissionController extends Controller
      */
     public function index()
     {
-        $add_poste = Poste::all();
-        return view('admin.posteCommission.index',compact('add_poste'));
+        // $add_poste = Poste::all();
+        // return view('admin.posteCommission.index',compact('add_poste'));
     }
 
     /**
@@ -43,16 +42,21 @@ class PosteCommissionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'commission' => 'required',
-        ]);
-        $add_poste = new Poste;
-        $add_poste->name = $request->name;
-        $add_poste->save();
-        $add_poste->commissions()->sync($request->commission);
-        Flashy::success('Votre poste a ete ajoute');
-        return back();
+        if (Auth::guard('admin')->user()->can('logement.create')) 
+        {
+            $this->validate($request,[
+                'name' => 'required',
+                'commission' => 'required',
+            ]);
+            $add_poste = new Poste;
+            $add_poste->name = $request->name;
+            $add_poste->save();
+            $add_poste->commissions()->sync($request->commission);
+            Flashy::success('Votre poste a ete ajoute');
+            return back();
+        }
+                                    
+        return redirect(route('admin.home'));
 
     }
 
@@ -87,16 +91,21 @@ class PosteCommissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'commission' => 'required',
-        ]);
-        $update_poste = Poste::find($id);
-        $update_poste->name = $request->name;
-        $update_poste->save();
-        $update_poste->commissions()->sync($request->commission);
-        Flashy::success('Votre poste a ete modifier');
-        return back();
+        if (Auth::guard('admin')->user()->can('logement.update')) 
+        {
+            $this->validate($request,[
+                'name' => 'required',
+                'commission' => 'required',
+            ]);
+            $update_poste = Poste::find($id);
+            $update_poste->name = $request->name;
+            $update_poste->save();
+            $update_poste->commissions()->sync($request->commission);
+            Flashy::success('Votre poste a ete modifier');
+            return back();
+        }
+                                        
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -107,8 +116,13 @@ class PosteCommissionController extends Controller
      */
     public function destroy($id)
     {
-        Poste::find($id)->delete();
-        Flashy::error('Votre poste a ete supprimer');
-        return back();
+        if (Auth::guard('admin')->user()->can('logement.delete')) 
+        {
+            Poste::find($id)->delete();
+            Flashy::error('Votre poste a ete supprimer');
+            return back();
+        }
+                                            
+        return redirect(route('admin.home'));
     }
 }

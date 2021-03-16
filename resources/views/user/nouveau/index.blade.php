@@ -35,8 +35,19 @@
 						<div class="row">
 
 							<div class="col-lg-3 col-md-3 mt-sm-30 element-wrap">
-
-								{{-- <div class="single-element-widget">
+								<h3>Remarque1</h3>
+								<p>
+								Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, eaque id 
+								perspiciatis esse quasi iste modi rem magnam nobis impedit earum 
+								sequi repudiandae voluptatem vel similique facilis soluta consequuntur nemo!
+								</p>
+								<h3>Remarque2</h3>
+								<p>
+								Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, eaque id 
+								perspiciatis esse quasi iste modi rem magnam nobis impedit earum 
+								sequi repudiandae voluptatem vel similique facilis soluta consequuntur nemo!
+								</p>
+								<!-- <div class="single-element-widget">
 									<h3 class="mb-30">Switches</h3>
 									<div class="switch-wrap d-flex justify-content-between">
 										<p>01. Sample Switch</p>
@@ -71,8 +82,8 @@
 											<option value="1">Bengali</option>
 										</select>
 									</div>
-                				</div> --}}
-                
+								</div>  -->
+				
 							</div>
 
 							<div class="col-lg-8 col-md-8">

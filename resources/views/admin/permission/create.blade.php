@@ -37,9 +37,10 @@
                       <label for="for">Permission Pour</label>
                       <select name="for" id="for" class="form-control" >
                           <option selected disable > Selection Permission Pour </option>
-                          <option value="user">User</option>
-                          <option value="post">Post</option>
-                          <option value="other">Other</option>
+                          <option value="codification">Codification</option>
+                          <option value="article">Article</option>
+                          <option value="logement">Logement</option>
+                          <option value="admin">Admin</option>
                       </select>
                     </div>
 

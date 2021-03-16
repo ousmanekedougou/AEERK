@@ -5,10 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Model\User\Nouveau;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
+use App\Model\Admin\Solde;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Nexmo\Laravel\Facade\Nexmo;
 class NouveauController extends Controller
 {
     /**
@@ -91,6 +92,12 @@ class NouveauController extends Controller
         $add_nouveau->immeuble_id =  $immeuble->id;
         $add_nouveau->status = 0;
         $add_nouveau->save();
+        $numero_bureau = Solde::first();
+        Nexmo::message()->send([
+            'to' => '221'.$numero_bureau->numero_nouveau,
+            'from' => '+221'.$request->phone,
+            'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
+        ]);
         Flashy::success('Votre Inscription a ete Valider');
         return redirect()->route('index',$add_nouveau)->with([
             "existe" => "existe",

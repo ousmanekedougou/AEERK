@@ -1,13 +1,12 @@
 <?php
-use App\Mail\ContactMessageCreated;
-
-
-Route::group(['namespace' => 'User'],function(){
+    Route::group(['namespace' => 'User'],function(){
     Route::resource('/','HomeController');
     Route::resource('/contact','ContactController');
     Route::resource('/nouveau','NouveauController');
     Route::resource('/ancien','AncienController');
-    Route::resource('/recasement', 'RecasementController');
+    Route::post('/temoignage','TemoignageController@post')->name('temoignage.post');
+    Route::post('/ancien/update','AncienController@update_certificat')->name('update_certificat');
+    Route::resource('/recasement','RecasementController');
     Route::resource('/formation','FormationController');
     Route::resource('/service','ServiceController');
     Route::resource('/about','AboutController');
@@ -77,6 +76,7 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/commune', 'Admin\CommuneController');
         Route::resource('/profile', 'Admin\ProfilAdminController');
         Route::resource('/immeuble', 'Admin\ImmeubleController');
+        Route::resource('/temoignage', 'Admin\TemoignageController');
 
         Route::resource('/chambre', 'Admin\ChambreController');
         Route::delete('/chambre/{id}/chambre_immeuble_43','Admin\ChambreController@chambre_immeuble_43')->name('chambre_immeuble_43');
@@ -102,6 +102,7 @@ Route::group(['namespace' => 'User'],function(){
         Route::resource('/nouveau', 'Admin\NouveauController');
         Route::get('/nouveau/{id}/update_nouveau', 'Admin\NouveauController@update_nouveau')->name('update_nouveau');
         Route::put('/nouveau/{id}/valider', 'Admin\NouveauController@valider_nouveau')->name('valider_nouveau');
+        Route::get('/migration', 'Admin\NouveauController@migret_nouveau')->name('migret_nouveau');
         // fin des option de uesr
 
         // login admin

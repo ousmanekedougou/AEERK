@@ -6,7 +6,7 @@ use App\Model\Admin\Commune;
 use Illuminate\Http\Request;
 use App\Model\Admin\Departement;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class LocaliteController extends Controller
 {
     /**
@@ -21,9 +21,14 @@ class LocaliteController extends Controller
     
     public function index()
     {
-        $commune = Commune::all();
-        $departement = Departement::all();
-        return view('admin.localite.index',compact('departement','commune'));
+        if (Auth::guard('admin')->user()->can('logement.index')) 
+        {
+            $commune = Commune::all();
+            $departement = Departement::all();
+            return view('admin.localite.index',compact('departement','commune'));
+        }
+                    
+        return redirect(route('admin.home'));
     }
 
     /**

@@ -30,9 +30,13 @@
                   <th>Image</th>
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Voire</th>
+                  @endcan
                   <th>Traitement</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Options</th>
+                  @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -41,8 +45,10 @@
                     <td><img src="{{ Storage::url($nouveau->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
                     <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                     <td>{{ $nouveau->phone }}</td>
-                    <td><a href="{{ route ('admin.nouveau.show',$nouveau->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
-                    </td>
+                    @can('codifier.update', Auth::guard('admin')->user())
+                      <td><a href="{{ route ('admin.nouveau.show',$nouveau->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
+                      </td>
+                    @endcan
                     <td>
                       @if($nouveau->status == 1)
                         <span class="btn btn-primary btn-xs"> <i class="fa fa-check-square-o"></i> Valider</span>
@@ -50,6 +56,7 @@
                       <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
                       @endif
                     </td>
+                    @can('codifier.update', Auth::guard('admin')->user())
                     <td>
                       @if($nouveau->status == 1)
                       <!-- <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.nouveau.edit',$nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a></span> -->
@@ -74,6 +81,7 @@
                       "><i class="fa fa-trash"> Supprimer</i></a></span>
                       @endif
                     </td>
+                    @endcan
                   </tr>
                 @endforeach
                 </tbody>
@@ -82,9 +90,13 @@
                   <th>Image</th>
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Voire</th>
+                  @endcan
                   <th>Traitement</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Options</th>
+                  @endcan
                 </tr>
                 </tfoot>
               </table>
@@ -115,7 +127,7 @@
               </div>
               <div class="row">
                       <div class="col-sm-4">
-                      <img class="profile-user-img img-responsive" style="width:100%;100%;margin-top:10px;margin-left:10px;" src="{{ Storage::url($nouveau->image) }}" alt="User profile picture">
+                      <img class="profile-user-img img-responsive" style="width:100%;height:100%;margin-top:10px;margin-left:10px;" src="{{ Storage::url($nouveau->image) }}" alt="User profile picture">
                       </div>
                       <div class="col-sm-8">
                         <h3 class="profile-username">{{ $nouveau->prenom.' '.$nouveau->nom }}</h3>

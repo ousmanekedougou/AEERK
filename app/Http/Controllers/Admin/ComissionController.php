@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class ComissionController extends Controller
 {
     /**
@@ -22,9 +22,14 @@ class ComissionController extends Controller
     
     public function index()
     {
-        $add_poste = Poste::all();
-        $add_commission = Commission::all();
-        return view('admin.comission.index',compact('add_commission','add_poste'));
+        if (Auth::guard('admin')->user()->can('logement.index')) 
+        {
+            $add_poste = Poste::all();
+            $add_commission = Commission::all();
+            return view('admin.comission.index',compact('add_commission','add_poste'));
+        }
+                            
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -45,14 +50,19 @@ class ComissionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required'
-        ]);
-        $add_commission = new Commission;
-        $add_commission->name = $request->name;
-        $add_commission->save();
-        Flashy::success('Votre Commission a ete ajoute');
-        return redirect()->route('admin.comission.index');
+        if (Auth::guard('admin')->user()->can('logement.create')) 
+        {
+            $this->validate($request,[
+                'name' => 'required'
+            ]);
+            $add_commission = new Commission;
+            $add_commission->name = $request->name;
+            $add_commission->save();
+            Flashy::success('Votre Commission a ete ajoute');
+            return redirect()->route('admin.comission.index');
+        }
+                                
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -86,14 +96,19 @@ class ComissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required'
-        ]);
-        $add_commission = Commission::find($id);
-        $add_commission->name = $request->name;
-        $add_commission->save();
-        Flashy::success('Votre Commission a ete modifier');
-        return redirect()->route('admin.comission.index');
+        if (Auth::guard('admin')->user()->can('logement.update')) 
+        {
+            $this->validate($request,[
+                'name' => 'required'
+            ]);
+            $add_commission = Commission::find($id);
+            $add_commission->name = $request->name;
+            $add_commission->save();
+            Flashy::success('Votre Commission a ete modifier');
+            return redirect()->route('admin.comission.index');
+        }
+                                    
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -104,8 +119,13 @@ class ComissionController extends Controller
      */
     public function destroy($id)
     {
-        Commission::find($id)->delete();
-        Flashy::error('Votre commission a ete supprimer');
-        return back();
+        if (Auth::guard('admin')->user()->can('logement.delete')) 
+        {
+            Commission::find($id)->delete();
+            Flashy::error('Votre commission a ete supprimer');
+            return back();
+        }
+                                        
+        return redirect(route('admin.home'));
     }
 }

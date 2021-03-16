@@ -39,8 +39,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('admin.post.index',compact('posts'));
+        if (Auth::guard('admin')->user()->can('posts.viewAny')) {
+            $posts = Post::all();
+            return view('admin.post.index',compact('posts'));
+        }
+            
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -50,10 +54,12 @@ class PostController extends Controller
      */
     public function create()
     {
-         // les droit d'authentification avec les condition de can
+        // les droit d'authentification avec les condition de can
+        if (Auth::guard('admin')->user()->can('posts.create')) {
             $tags = Tag::all();
             $categorys = Category::all();
             return view('admin.post.post',compact(['tags','categorys']));
+        }
         
         return redirect(route('admin.home'));
     }
@@ -106,8 +112,12 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $show_post = Post::find($id);
-        return view('admin.post.show',compact('show_post'));
+        if(Auth::guard('admin')->user()->can('posts.update'))
+        {
+            $show_post = Post::find($id);
+            return view('admin.post.show',compact('show_post'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -119,13 +129,13 @@ class PostController extends Controller
     public function edit($id)
     {
         // les droit d'authentification avec les condition de can
-        // if(Auth::user()->can('posts.update'))
-        // {
+        if(Auth::guard('admin')->user()->can('posts.update'))
+        {
             $post = Post::with('tags','categories')->where('id',$id)->first();
             $tags = Tag::all();
             $categorys = Category::all();
             return view('admin.post.edit',compact(['tags','categorys','post']));
-        // }
+        }
         return redirect(route('admin.home'));
     }
 
@@ -138,26 +148,29 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-     
-        $post = Post::find($id);
-        $imgdel = $post->image;
-   
-        if($request->image != Null)
+        if(Auth::guard('admin')->user()->can('posts.update'))
         {
-           $imageName = $request->image->store('public/Article');
+            $post = Post::find($id);
+            $imgdel = $post->image;
+    
+            if($request->image != Null)
+            {
+            $imageName = $request->image->store('public/Article');
+            }
+            else{ $imageName = $post->image; }
+            $post->title = $request->title;
+            $post->subtitle = $request->subtitle;
+            $post->slug = $request->slug;
+            $post->status = $request->status;
+            $post->image = $imageName;
+            $post->body = $request->body;
+            $post->save();
+            $post->tags()->sync($request->tags);
+            $post->categories()->sync($request->category);
+            Storage::disk('public')->delete($imgdel); 
+            return redirect(route('admin.post.index'));
         }
-        else{ $imageName = $post->image; }
-        $post->title = $request->title;
-        $post->subtitle = $request->subtitle;
-        $post->slug = $request->slug;
-        $post->status = $request->status;
-        $post->image = $imageName;
-        $post->body = $request->body;
-        $post->save();
-        $post->tags()->sync($request->tags);
-        $post->categories()->sync($request->category);
-        Storage::disk('public')->delete($imgdel); 
-        return redirect(route('admin.post.index'));
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -168,7 +181,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::where('id',$id)->delete();
-        return redirect()->back();
+        if(Auth::guard('admin')->user()->can('posts.delete'))
+        {
+            Post::where('id',$id)->delete();
+            return redirect()->back();
+        }
+        return redirect(route('admin.home'));
     }
 }

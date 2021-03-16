@@ -32,20 +32,20 @@
                   
                     <div class="row">
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                       <label for="name">Permission Codification</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'Medecin')
+                        @if($permission->for == 'codification')
                           <div class="checkbox">
                             <label for=""> <input type="checkbox" value="{{ $permission->id }}" name="permission[]" id="">{{ $permission->name }} </label>
                           </div>
                         @endif
                       @endforeach
                     </div>
-                    <div class="col-lg-4">
-                      <label for="name">Permission Evenement</label>
+                    <div class="col-lg-3">
+                      <label for="name">Permission Articles</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'Article')
+                        @if($permission->for == 'article')
                           <div class="checkbox">
                             <label for=""> <input type="checkbox" value="{{ $permission->id }}"  name="permission[]"  id="">{{ $permission->name }} </label>
                           </div>
@@ -53,10 +53,21 @@
                       @endforeach
                     </div>
 
-                    <div class="col-lg-4">
-                      <label for="name">Permission Article</label>
+                    <div class="col-lg-3">
+                      <label for="name">Permission Logement</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'Autre')
+                        @if($permission->for == 'logement')
+                          <div class="checkbox">
+                            <label for=""> <input type="checkbox" value="{{ $permission->id }}" name="permission[]"  id="">{{ $permission->name }} </label>
+                          </div>
+                        @endif
+                      @endforeach
+                    </div>
+
+                    <div class="col-lg-3">
+                      <label for="name">Permission Administrateurs</label>
+                      @foreach($permissions as $permission)
+                        @if($permission->for == 'admin')
                           <div class="checkbox">
                             <label for=""> <input type="checkbox" value="{{ $permission->id }}" name="permission[]"  id="">{{ $permission->name }} </label>
                           </div>

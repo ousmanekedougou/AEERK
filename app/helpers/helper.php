@@ -3,7 +3,10 @@
 use App\Model\Admin\Info;
 use App\Model\User\Option;
 use App\Model\Admin\Category;
+use App\Model\Admin\Partenaire;
+use App\Model\Admin\Post;
 use App\Model\Admin\Tag;
+use App\Model\User\Temoignage;
 
 if(! function_exists('all_info')){
     function all_info()
@@ -56,5 +59,29 @@ if(! function_exists('set_active_roote')){
     function set_active_roote($route)
     {
         return Route::is($route) ? 'active' : '';
+    }
+}
+
+if(! function_exists('all_temoignage')){
+    function all_temoignage()
+    {
+        $temoignage = Temoignage::where('status',1)->get();
+        return $temoignage;
+    }
+}
+
+if(! function_exists('all_part')){
+    function all_part()
+    {
+        $part = Partenaire::all();
+        return $part;
+    }
+}
+
+if(! function_exists('all_article')){
+    function all_article()
+    {
+        $article = Post::limit(4)->get();
+        return $article;
     }
 }

@@ -4,10 +4,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ Storage::url(Auth::user()->image)}}" class="img-circle" alt="User Image">
+          <img src="{{ Storage::url(Auth::guard('admin')->user()->image)}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Ousmane Diallo</p>
+          <p>{{Auth::guard('admin')->user()->name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -24,22 +24,20 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">PARAMETRES</li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-cog"></i>
-            <span>Paramettres</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">5</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-          <li><a href="{{ route ('admin.info.index') }}"><i class="fa fa-circle-o text-red"></i> <span>Infos_part_reseau</span></a></li>
-        <li><a href="{{ route ('admin.gallery.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Galleries_slider</span></a></li>
-        <li><a href="{{ route ('admin.option.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>option</span></a></li>
-          </ul>
-        </li>
-
+        <!-- <li class="header">PARAMETRES</li> -->
+          <!-- <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cog"></i>
+              <span>Paramettres</span>
+              <span class="pull-right-container">
+                <span class="label label-primary pull-right">5</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ route ('admin.option.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>option</span></a></li>
+            </ul>
+          </li> -->
+        @if (Auth::guard('admin')->user()->can('admins.index'))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-group"></i>
@@ -49,13 +47,18 @@
             </span>
           </a>
           <ul class="treeview-menu">
-        <li><a href="{{ route ('admin.team.index') }}"><i class="fa fa-circle-o"></i> <span>Personnelle</span></a></li>
+            <li><a href="{{ route ('admin.info.index') }}"><i class="fa fa-circle-o text-red"></i> <span>Paramettre</span></a></li>
+            <li><a href="{{ route ('admin.gallery.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Slider</span></a></li>
+            <li><a href="{{ route ('admin.team.index') }}"><i class="fa fa-circle-o"></i> <span>Personnelle</span></a></li>
             <li><a href="{{ route ('admin.admin.index') }}"><i class="fa fa-circle-o"></i>Admins</a></li>
             <li class=""><a href="{{route('admin.role.index')}}"><i class="fa fa-circle-o"></i> Roles</a></li>
             <li class=""><a href="{{route('admin.permission.index')}}"><i class="fa fa-circle-o"></i> Permissions</a></li>
+            <li class=""><a href="{{route('admin.temoignage.index')}}"><i class="fa fa-circle-o"></i> Temoignage</a></li>
           </ul>
         </li>
-       
+        @endif
+
+        @if (Auth::guard('admin')->user()->can('posts.viewAny'))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-rss"></i>
@@ -70,7 +73,8 @@
             <li><a href="{{ route ('admin.tag.index') }}"><i class="fa fa-circle-o"></i>Etiquettes</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        @endif
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-align-justify"></i>
             <span>Pages</span>
@@ -86,8 +90,24 @@
             <li><a href="{{ route ('admin.document.index') }}"><i class="fa fa-circle-o"></i> Documents</a></li>
             <li><a href="{{ route ('admin.contact.index') }}"><i class="fa fa-circle-o"></i> Contacts</a></li>
           </ul>
+        </li> -->
+        @if (Auth::guard('admin')->user()->can('admins.index'))
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span>Mailbox</span>
+            <span class="pull-right-container">
+            <span class="label label-success pull-right">6</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.contact.index') }}"><i class="fa fa-circle-o"></i> Contacts</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Composer</a></li>
+          </ul>
         </li>
+        @endif
 
+        @if (Auth::guard('admin')->user()->can('codifier.index'))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user-plus"></i> <span>Inscription Codification</span>
@@ -128,7 +148,9 @@
           </ul>
         </li>
 
+        @endif
 
+        @if (Auth::guard('admin')->user()->can('logement.index'))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Poste & Habitat</span>
@@ -138,13 +160,14 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route ('admin.comission.index') }}"><i class="fa fa-circle-o"></i> Commissions</a></li>
-        <li><a href="{{ route ('admin.localite.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Localite</span></a></li>
-        <li><a href="{{ route ('admin.logement.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Logements</span></a></li>
+            <li><a href="{{ route ('admin.localite.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Localite</span></a></li>
+            <li><a href="{{ route ('admin.logement.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Logements</span></a></li>
           </ul>
         </li>
+        @endif
 
 
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Education</span>
             <span class="pull-right-container">
@@ -157,7 +180,7 @@
             <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
             <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Emploi & Stage</span></a></li>
           </ul>
-        </li>
+        </li> -->
 
 
 

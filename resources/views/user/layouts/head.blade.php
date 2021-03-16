@@ -28,5 +28,5 @@
 			<link rel="stylesheet" href="{{asset('user/css/animate.min.css')}}">
 			<link rel="stylesheet" href="{{asset('user/css/owl.carousel.css')}}">			
 			<link rel="stylesheet" href="{{asset('user/css/jquery-ui.css')}}">			
+			<link rel="stylesheet" href="{{asset('user/style.css')}}"> 
 			<link rel="stylesheet" href="{{asset('user/css/main.css')}}">
-			 {{-- <link rel="stylesheet" href="{{asset('user/style.css')}}"> --}}

@@ -46,6 +46,8 @@ class PartenerController extends Controller
             'name' => 'required|string',
             'lien' => 'required|string',
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+            'mot' => 'required|string',
+            'date' => 'required|string',
         ]);
         $add_partener = new Partenaire;
         if ($request->hasFile('image')) {
@@ -54,6 +56,8 @@ class PartenerController extends Controller
         $add_partener->nom = $request->name;
         $add_partener->lien = $request->lien;
         $add_partener->image = $imageName;
+        $add_partener->mot = $request->mot;
+        $add_partener->date = $request->date;
         $add_partener->save();
         Flashy::success('Votre partenaire a ete ajouter');
         return back();
@@ -93,6 +97,8 @@ class PartenerController extends Controller
         $this->validate($request,[
             'name' => 'required|string',
             'lien' => 'required|string',
+            'mot' => 'required|string',
+            'date' => 'required|string',
             // 'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
         $update_partener = Partenaire::find($id);
@@ -105,6 +111,8 @@ class PartenerController extends Controller
         $update_partener->nom = $request->name;
         $update_partener->lien = $request->lien;
         $update_partener->image = $imageName;
+        $update_partener->mot = $request->mot;
+        $update_partener->date = $request->date;
         $update_partener->save();
         Flashy::success('Votre partenaire a ete modifier');
         return back();

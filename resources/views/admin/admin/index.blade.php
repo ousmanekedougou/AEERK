@@ -19,8 +19,9 @@
       <div class="">
         <div class="box-header with-border">
           <h3 class="box-title">Administrateur</h3>
-          <a class="col-lg-offset-5 btn btn-success pull-right" href="{{ route('admin.admin.create') }}">Ajouter Un Admin</a>
-
+          @can('admins.create', Auth::guard('admin')->user())
+            <a class="col-lg-offset-5 btn btn-success pull-right" href="{{ route('admin.admin.create') }}">Ajouter Un Admin</a>
+          @endcan
         </div>
         <div class="box-body">
             <!-- debut de la table -->
@@ -35,8 +36,12 @@
                   <th>Prenom & Nom</th>
                   <th>Assigner un Role</th>
                   <th>Status</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  @can('admins.update', Auth::guard('admin')->user())
+                    <th>Modifier</th>
+                  @endcan
+                  @can('admins.delete', Auth::guard('admin')->user())
+                    <th>Supprimer</th>
+                  @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +56,10 @@
                     @endforeach
                   </th>
                   <th>{{ $admin->status? 'Active' : 'Desactive' }}</th>
+                  @can('admins.update', Auth::guard('admin')->user())
                   <th><a href="{{ route('admin.admin.edit',$admin->id) }}"><i class="glyphicon glyphicon-edit"></i></a></th>
+                  @endcan
+                  @can('admins.delete', Auth::guard('admin')->user())
                   <th>
                     <form id="delete-form-{{$admin->id}}" method="post" action="{{ route('admin.admin.destroy',$admin->id) }}" style="display:none">
                     {{csrf_field()}}
@@ -70,6 +78,7 @@
                     
                     "><i class="glyphicon glyphicon-trash text-danger"></i></a>
                     </th>
+                    @endcan
                   </tr>
                   @endforeach
                 </tbody>
@@ -80,8 +89,12 @@
                   <th>Prenom & Nom</th>
                   <th>Assigner un Role</th>
                   <th>Status</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  @can('admins.update', Auth::guard('admin')->user())
+                    <th>Modifier</th>
+                  @endcan
+                  @can('admins.delete', Auth::guard('admin')->user())
+                    <th>Supprimer</th>
+                  @endcan
                 </tr>
                 </tfoot>
               </table>

@@ -215,17 +215,17 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ Storage::url(Auth::user()->image)}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+              <img src="{{ Storage::url(Auth::guard('admin')->user()->image)}}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{ Auth::guard('admin')->user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ Storage::url(Auth::user()->image)}}" class="img-circle" alt="User Image">
+                <img src="{{ Storage::url(Auth::guard('admin')->user()->image)}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }} - Admin
-                  <small>Membre depuis {{ Auth::user()->created_at->toFormattedDateString() }}</small>
+                  {{ Auth::guard('admin')->user()->name }} - Admin
+                  <small>Membre depuis {{ Auth::guard('admin')->user()->created_at->toFormattedDateString() }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -246,7 +246,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{ route('admin.profile.show',Auth::user()->id) }}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route('admin.profile.show',Auth::guard('admin')->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('admin.admin.logout') }}"

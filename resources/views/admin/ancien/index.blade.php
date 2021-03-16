@@ -31,9 +31,13 @@
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
                   <th>Immeuble Choisi</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Voire</th>
+                  @endcan
                   <th>Traitement</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Options</th>
+                  @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -43,8 +47,10 @@
                     <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
                     <td>{{ $ancien->phone }}</td>
                     <td>{{ $ancien->immeuble->name }}</td>
+                    @can('codifier.update', Auth::guard('admin')->user())
                     <td><a href="{{ route ('admin.ancien.show',$ancien->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
                     </td>
+                    @endcan
                     <td>
                       @if($ancien->status == 1)
                         <span class="btn btn-primary btn-xs"> <i class="fa fa-check-square-o"></i> Valider</span>
@@ -52,6 +58,7 @@
                       <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
                       @endif
                     </td>
+                    @can('codifier.update', Auth::guard('admin')->user())
                     <td>
                       @if($ancien->status == 1)
                       <!-- <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.ancien.edit',$ancien->id) }}">Codifier <i class="fa fa-edit"></i></a></span> -->
@@ -76,6 +83,7 @@
                       "><i class="fa fa-trash"> Supprimer</i></a></span>
                       @endif
                     </td>
+                    @endcan
                   </tr>
                 @endforeach
                 </tbody>
@@ -85,9 +93,13 @@
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
                   <th>Immeuble Choisi</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Voire</th>
+                  @endcan
                   <th>Traitement</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Options</th>
+                  @endcan
                 </tr>
                 </tfoot>
               </table>
@@ -118,7 +130,7 @@
               </div>
               <div class="row">
                       <div class="col-sm-4 p-5">
-                      <img class="profile-user-img img-responsive" style="width:100%;100%;margin-top:10px;margin-left:1px;" src="{{ Storage::url($ancien->image) }}" alt="User profile picture">
+                      <img class="profile-user-img img-responsive" style="width:100%;margin-top:10px;margin-left:1px;" src="{{ Storage::url($ancien->image) }}" alt="User profile picture">
                       </div>
                       <div class="col-sm-8 text-justify">
                         <h3 class="profile-username">{{ $ancien->prenom.' '.$ancien->nom }}</h3>

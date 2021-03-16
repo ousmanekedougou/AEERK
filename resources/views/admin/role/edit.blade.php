@@ -34,12 +34,12 @@
 
                     <div class="row">
 
-                    <div class="col-lg-4">
-                      <label for="name">Permission Article</label>
+                    <div class="col-lg-3">
+                      <label for="name">Permission Codifications</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'Medecin')
+                        @if($permission->for == 'codification')
                           <div class="checkbox">
-                            <label for=""> <input type="checkbox" 
+                            <label for="name"> <input type="checkbox" 
                             
                             @foreach($roles->permissions as $rp)
                               @if($rp->id == $permission->id)
@@ -53,12 +53,12 @@
                         @endif
                       @endforeach
                     </div>
-                    <div class="col-lg-4">
-                      <label for="name">Permission Evenement</label>
+                    <div class="col-lg-3">
+                      <label for="name">Permission Articles</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'Article')
+                        @if($permission->for == 'article')
                           <div class="checkbox">
-                            <label for=""> <input type="checkbox"
+                            <label for="name"> <input type="checkbox"
                             
                             @foreach($roles->permissions as $rp)
                               @if($rp->id == $permission->id)
@@ -72,12 +72,12 @@
                       @endforeach
                     </div>
 
-                    <div class="col-lg-4">
-                      <label for="name">Autres Permissions</label>
+                    <div class="col-lg-3">
+                      <label for="name">Permissions Logements</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'Autre')
+                        @if($permission->for == 'logement')
                           <div class="checkbox">
-                            <label for=""> <input type="checkbox"
+                            <label for="name"> <input type="checkbox"
                             
                             @foreach($roles->permissions as $rp)
                               @if($rp->id == $permission->id)
@@ -90,6 +90,26 @@
                         @endif
                       @endforeach
                     </div>
+
+                    <div class="col-lg-3">
+                      <label for="name">Permissions Administrateurs</label>
+                      @foreach($permissions as $permission)
+                        @if($permission->for == 'admin')
+                          <div class="checkbox">
+                            <label for="name"> <input type="checkbox"
+                            
+                            @foreach($roles->permissions as $rp)
+                              @if($rp->id == $permission->id)
+                                checked
+                              @endif
+                            @endforeach
+                            
+                            value="{{ $permission->id }}"  name="permission[]"  id="">{{ $permission->name }} </label>
+                          </div>
+                        @endif
+                      @endforeach
+                    </div>
+
                   </div>
 
                     <!-- /.box-body -->

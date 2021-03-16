@@ -2,33 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\Chambre;
-use Illuminate\Http\Request;
-use App\Model\Admin\Immeuble;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-class LogementController extends Controller
+use App\Model\User\Temoignage;
+use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
+class TemoignageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-    
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('logement.index')) 
-        {
-            $immeuble = Immeuble::all();
-            $chambre = Chambre::all();
-            return view('admin.logement.index',compact('immeuble','chambre'));
-        }
-                    
-        return redirect(route('admin.home'));
+        $temoignages = Temoignage::all();
+        return view('admin.temoignage.index',compact('temoignages'));
     }
 
     /**
@@ -83,7 +71,11 @@ class LogementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_temoignage = Temoignage::find($id);
+        $update_temoignage->status = $request->status;
+        $update_temoignage->save();
+        Flashy::success('Votre status a ete modifier avec successs');
+        return back();
     }
 
     /**
@@ -94,6 +86,8 @@ class LogementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Temoignage::find($id)->delete();
+        Flashy::error('Votre status a ete supprimer avec successs');
+        return back();
     }
 }

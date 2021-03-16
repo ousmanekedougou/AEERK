@@ -1,6 +1,6 @@
 
 	<!-- Start cta-two Area -->
-	<section class="cta-two-area">
+	<!-- <section class="cta-two-area">
 		<div class="slider_container">
 				<h1 class="slider_h1">Nos Partenaires</h1>
 				<div class="logo-slider">
@@ -12,7 +12,7 @@
 					<div class="item"><a href=""><img src="{{ asset('user/img/part/7.png') }}" alt=""></a></div>
 				</div>
 		</div>	
-	</section>
+	</section> -->
 			<!-- End cta-two Area -->
 @include('flashy::message')
 	
@@ -115,7 +115,8 @@ Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} Version Beta & | Vitrine 
 
 
 			<script src="{{asset('user/js/vendor/jquery-2.2.4.min.js')}}"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.{{asset('user/js/1.12.9/umd/popper.min.js')}}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  			<script src="{{asset('user/js/pooper.js')}}"></script>			
 			<script src="{{asset('user/js/vendor/bootstrap.min.js')}}"></script>			
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
   			<script src="{{asset('user/js/easing.min.js')}}"></script>			

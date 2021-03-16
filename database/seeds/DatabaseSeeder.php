@@ -6,6 +6,9 @@ use App\Model\Admin\Admin;
 use App\Model\Admin\Social;
 use App\Model\Admin\Category;
 use App\Model\Admin\Permission;
+use App\Model\Admin\Option;
+use App\Model\Admin\Solde;
+use App\Model\User\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -185,14 +188,37 @@ class DatabaseSeeder extends Seeder
                 // Fin Insertion de Tag
 
 
-        Admin::create([
-            'name' => 'Diallo Ousmane',
-            'email' => 'blog@gmail.com',
-            'phone' => '00000000',
-            'status' => 1,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // 11111111
-            'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
-        ]);
-        // fin de la connexion des admin
+                Admin::create([
+                    'name' => 'Diallo Ousmane',
+                    'email' => 'blog@gmail.com',
+                    'phone' => '00000000',
+                    'status' => 1,
+                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // 11111111
+                    'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
+                ]);
+                // fin de la connexion des admin
+
+                Option::create([
+                    'register' => 1,
+                    'register_nouveau' => 1,
+                    'register_ancien' => 1,
+                    'register_recasement' => 1,
+                    'codification' => 1,
+                    'codification_nouveau' => 1,
+                    'codification_ancien' => 1,
+                    'recasement' => 1
+                ]);
+
+                Solde::create([
+                    'prix_nouveau' => 30000,
+                    'prix_ancien' => 31000,
+                    'numero_nouveau' => 770000000,
+                    'numero_ancien' => 780000000,
+                ]);
+
+                User::create([
+                   'email' => 'codifier@gmail.com',
+                   'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' // 11111111
+                ]);
     }
 }

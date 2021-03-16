@@ -40,10 +40,11 @@
                     <div class="form-group">
                       <label for="for">Permission Pour</label>
                       <select name="for" id="for" class="form-control" >
-                          <option selected disable > Select Permission For </option>
-                          <option value="user">User</option>
-                          <option value="post">Post</option>
-                          <option value="other">Other</option>
+                        <option selected disable > Permission Pour </option>
+                        <option value="codification">Codification</option>
+                        <option value="article">Article</option>
+                        <option value="logement">Logement</option>
+                        <option value="admin">Admin</option>
                       </select>
                     </div>
 

@@ -14,6 +14,7 @@ use App\Model\Admin\Immeuble_chambre;
 use App\Mail\MessageEmailAeerk;
 use App\Mail\AeerkEmailMessage;
 use Illuminate\Support\Facades\Mail;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class EtudiantCodificationController extends Controller
 {
@@ -141,6 +142,11 @@ class EtudiantCodificationController extends Controller
                             $codifier_nouveau->prix = $prix->prix_nouveau;
                             $codifier_nouveau->codifier = 1;
                             $codifier_nouveau->save();
+                            Nexmo::message()->send([
+                                'to' => '221782875971',
+                                'from' => '221781956168',
+                                'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
+                            ]);
                             Mail::to($codifier_nouveau->email)
                             ->send(new AeerkEmailMessage($codifier_nouveau));
                             Flashy::success('Vous avez ete codifier');
@@ -159,6 +165,11 @@ class EtudiantCodificationController extends Controller
                                     $codifier_nouveau->prix = $prix->prix_nouveau;
                                     $codifier_nouveau->codifier = 1;
                                     $codifier_nouveau->save();
+                                    Nexmo::message()->send([
+                                        'to' => '221782875971',
+                                        'from' => '221781956168',
+                                        'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
+                                    ]);
                                     Mail::to($codifier_nouveau->email)
                                     ->send(new AeerkEmailMessage($codifier_nouveau));
                                     Flashy::success('Vous avez ete codifier');
@@ -242,6 +253,11 @@ class EtudiantCodificationController extends Controller
                             $codifier_ancien->prix = $prix->prix_ancien;
                             $codifier_ancien->codifier = 1;
                             $codifier_ancien->save();
+                            Nexmo::message()->send([
+                                'to' => '221782875971',
+                                'from' => '221781956168',
+                                'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
+                            ]);
                             Mail::to($codifier_ancien->email)
                             ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Vous avez ete codifier');
@@ -260,6 +276,11 @@ class EtudiantCodificationController extends Controller
                                     $codifier_ancien->prix = $prix->prix_ancien;
                                     $codifier_ancien->codifier = 1;
                                     $codifier_ancien->save();
+                                    Nexmo::message()->send([
+                                        'to' => '221782875971',
+                                        'from' => '221781956168',
+                                        'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
+                                    ]);
                                     Mail::to($codifier_ancien->email)
                                     ->send(new MessageEmailAeerk($codifier_ancien));
                                     Flashy::success('Vous avez ete codifier');

@@ -7,9 +7,7 @@ use App\Model\Admin\Immeuble;
 use App\Model\User\Recasement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-use App\Model\User\Recasement_ancien;
-use App\Model\User\Recasement_nouveau;
-
+use Illuminate\Support\Facades\Auth;
 class RecasementController extends Controller
 {
     /**
@@ -24,9 +22,13 @@ class RecasementController extends Controller
     
     public function index()
     {
-        $immeubles = Immeuble::all();
-        $nouveau_bac = Recasement::where('status', '=', 0)->where('recaser','=',0)->paginate(10);
-        return view('admin.recasement.index',compact('nouveau_bac','immeubles'));
+        if (Auth::guard('admin')->user()->can('codifier.index')) 
+        {
+            $immeubles = Immeuble::all();
+            $nouveau_bac = Recasement::where('status', '=', 0)->where('recaser','=',0)->paginate(10);
+            return view('admin.recasement.index',compact('nouveau_bac','immeubles'));
+        }                 
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -36,9 +38,13 @@ class RecasementController extends Controller
      */
     public function create()
     {
-        $immeubles = Immeuble::all();
-        $recaser = Recasement::where('recaser','=',1)->paginate(10);
-        return view('admin.recasement.recaser',compact('recaser','immeubles'));
+        if (Auth::guard('admin')->user()->can('codifier.index')) 
+        {
+            $immeubles = Immeuble::all();
+            $recaser = Recasement::where('recaser','=',1)->paginate(10);
+            return view('admin.recasement.recaser',compact('recaser','immeubles'));
+        }                 
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -60,9 +66,13 @@ class RecasementController extends Controller
      */
     public function show($id)
     {
-        $immeubles = Immeuble::all();
-        $show_nouveau = Recasement::find($id);
-        return view('admin.recasement.create',compact('show_nouveau','immeubles'));
+        if (Auth::guard('admin')->user()->can('codifier.update')) 
+        {
+            $immeubles = Immeuble::all();
+            $show_nouveau = Recasement::find($id);
+            return view('admin.recasement.create',compact('show_nouveau','immeubles'));
+        }                 
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -84,39 +94,43 @@ class RecasementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = $this->validate($request,[
-            'chambre_id' => 'required|numeric'
-        ]);
-
-
-        $chambre_ancien = Recasement::select('chambre_id')->get();
-        foreach($chambre_ancien as $chambres){
-            if ($chambres->chambre_id == $request->chambre_id) {
-                if($chambre_ancien->count() < $chambres->chambre->nombre){
-                    $recaser_ancien = Recasement::where('id',$id)->first();
-                    $recaser_ancien->chambre_id = $request->chambre_id;
-                    $recaser_ancien->recaser = 1;
-                    $recaser_ancien->save();
-                    Flashy::success('Votre etudiant a ete codifier');
-                    return redirect()->route('admin.ancien.index');
-                }else{
-                    Flashy::error('Cette Chambre est pleine');
-                    return redirect()->route('admin.recasement.create');
+        if (Auth::guard('admin')->user()->can('codifier.update')) 
+        {
+            $validator = $this->validate($request,[
+                'chambre_id' => 'required|numeric'
+            ]);
+            $chambre_ancien = Recasement::select('chambre_id')->get();
+            foreach($chambre_ancien as $chambres)
+            {
+                if ($chambres->chambre_id == $request->chambre_id) 
+                {
+                    if($chambre_ancien->count() < $chambres->chambre->nombre){
+                        $recaser_ancien = Recasement::where('id',$id)->first();
+                        $recaser_ancien->chambre_id = $request->chambre_id;
+                        $recaser_ancien->recaser = 1;
+                        $recaser_ancien->save();
+                        Flashy::success('Votre etudiant a ete codifier');
+                        return redirect()->route('admin.ancien.index');
+                    }else{
+                        Flashy::error('Cette Chambre est pleine');
+                        return redirect()->route('admin.recasement.create');
+                    }
+                }
+                else if ($chambres->chambre_id == 0){
+                    $chambre_null = Recasement::where('chambre_id',0)->first();
+                    if ($chambre_null) {
+                        $recaser_ancien = Recasement::where('id',$id)->first();
+                        $recaser_ancien->chambre_id = $request->chambre_id;
+                        $recaser_ancien->recaser = 1;
+                        $recaser_ancien->save();
+                        Flashy::success('Votre etudiant a ete codifier');
+                        return redirect()->route('admin.recasement.create');
+                    }
+                    
                 }
             }
-            else if ($chambres->chambre_id == 0){
-                $chambre_null = Recasement::where('chambre_id',0)->first();
-                if ($chambre_null) {
-                    $recaser_ancien = Recasement::where('id',$id)->first();
-                    $recaser_ancien->chambre_id = $request->chambre_id;
-                    $recaser_ancien->recaser = 1;
-                    $recaser_ancien->save();
-                    Flashy::success('Votre etudiant a ete codifier');
-                    return redirect()->route('admin.recasement.create');
-                }
-                
-            }
-        }
+        }                 
+        return redirect(route('admin.home'));
 
 
             // dd($request->chambre_id);

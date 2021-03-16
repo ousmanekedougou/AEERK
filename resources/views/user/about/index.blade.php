@@ -78,7 +78,7 @@
 	<!-- End feature Area -->		
 
 	<!-- Start info Area -->
-	<section class="info-area pb-120">
+	<!-- <section class="info-area pb-120">
 		<div class="container-fluid">
 			<div class="row align-items-center">
 				<div class="col-lg-6 no-padding info-area-left">
@@ -95,8 +95,33 @@
 				</div>
 			</div>
 		</div>	
-	</section>
+	</section> -->
 	<!-- End info Area -->	
+
+
+
+	<!-- Start info Area -->
+	<section class="info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-5 info-area-left">
+					<img class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
+				</div>
+				<div class="col-lg-7 info-area-right">
+					<h3>Le President de l'AEERK</h3>
+					<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
+					<br>
+					<p>
+						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+					</p>
+					
+				</div>
+			</div>
+		</div>	
+	</section>
+	<!-- End info Area -->
+
+
 
 	<!-- Start course-mission Area -->
 	<section class="course-mission-area pb-120">

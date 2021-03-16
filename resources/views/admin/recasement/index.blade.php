@@ -31,7 +31,9 @@
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
                   <th>Immeuble Choisi</th>
+                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Options</th>
+                  @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -42,6 +44,7 @@
                     <td>{{ $nouveau->phone }}</td>
                     <td>{{ $nouveau->immeuble->name }}</td>
                     </td>
+                    @can('codifier.update', Auth::guard('admin')->user())
                     <td>
                      
                       <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.recasement.show',$nouveau->id) }}">Recaser <i class="fa fa-edit"></i></a></span>
@@ -65,6 +68,7 @@
                       "><i class="fa fa-trash"> Supprimer</i></a></span>
                   
                     </td>
+                    @endcan
                   </tr>
                 @endforeach
                 </tbody>
@@ -74,7 +78,9 @@
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
                   <th>Immeuble Choisi</th>
+                  @can('codifier.create', Auth::guard('admin')->user())
                   <th>Options</th>
+                  @endcan
                 </tr>
                 </tfoot>
               </table>

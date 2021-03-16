@@ -13,10 +13,12 @@
    <div class="box-body">
           <div class="">
             
+            @can('logement.create', Auth::guard('admin')->user())
             <div class="form-group pull-right">
                <a data-toggle="modal" data-id="add_dep" data-name="add_dep" data-target="#modal-default-add-dep" class="btn btn-primary">Ajouter un departement</a>
               
             </div>
+            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center table-bordered table-striped">
@@ -24,8 +26,12 @@
                 <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Departement</th>
+                  @can('logement.update', Auth::guard('admin')->user())
                   <th>Modifier</th>
+                  @endcan
+                  @can('logement.delete', Auth::guard('admin')->user())
                   <th>Supprimer</th>
+                  @endcan
                 </tr>
                 {{ $i = '' }}
                 </thead>
@@ -34,8 +40,11 @@
                           <tr>
                           <td>{{ ++$i }}</td>
                             <td>{{ $dep->name }}</td>
+                            @can('logement.update', Auth::guard('admin')->user())
                             <td> <a data-toggle="modal" data-id="{{$dep->id}}" data-name="{{$dep->name}}" data-target="#modal-default-{{ $dep->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                             </td>
+                            @endcan
+                            @can('logement.delete', Auth::guard('admin')->user())
                             <td>
                               <form id="delete-form-{{$dep->id}}" method="post" action="{{ route('admin.departement.destroy',$dep->id) }}" style="display:none">
                               {{csrf_field()}}
@@ -54,6 +63,7 @@
                               
                               "><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               </td>
+                              @endcan
                           </tr>
                           @endforeach
                   </tbody>
@@ -61,8 +71,12 @@
                 <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Nom</th>
+                  @can('logement.update', Auth::guard('admin')->user())
                   <th>Modifier</th>
+                  @endcan
+                  @can('logement.delete', Auth::guard('admin')->user())
                   <th>Supprimer</th>
+                  @endcan
                 </tr>
                 </tfoot>
               </table>
@@ -78,9 +92,11 @@
            <!-- Debut de la div -->
            <div class="box-body">
           <div class="">
-          <div class="form-group pull-right">
-          <a data-toggle="modal" data-id="add_commune" data-name="add_commune" data-target="#modal-default-add-commune" class="btn btn-primary">Ajouter une Commune</a>
-                              </div>
+            @can('logement.create', Auth::guard('admin')->user())
+            <div class="form-group pull-right">
+            <a data-toggle="modal" data-id="add_commune" data-name="add_commune" data-target="#modal-default-add-commune" class="btn btn-primary">Ajouter une Commune</a>
+            </div>
+            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered text-center table-striped">
@@ -89,8 +105,12 @@
                   <th>S.No</th>
                   <th>Communes</th>
                   <th>Departements</th>
+                  @can('logement.update', Auth::guard('admin')->user())
                   <th>Modifier</th>
+                  @endcan
+                  @can('logement.delete', Auth::guard('admin')->user())
                   <th>Supprimer</th>
+                  @endcan
                 </tr>
                 {{ $i = '' }}
                 </thead>
@@ -102,10 +122,13 @@
                             <td>
                                 {{$com->departement->name}}
                             </td>
+                            @can('logement.update', Auth::guard('admin')->user())
                             <td>
                               <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-com-{{ $com->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                            
                             </td>
+                            @endcan
+                            @can('logement.delete', Auth::guard('admin')->user())
                             <td>
                               <form id="delete-form-{{$com->id}}" method="post" action="{{ route('admin.commune.destroy',$com->id) }}" style="display:none">
                               {{csrf_field()}}
@@ -124,6 +147,7 @@
                               
                               "><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               </td>
+                              @endcan
                           </tr>
                           @endforeach
                   </tbody>
@@ -132,8 +156,12 @@
                   <th>S.No</th>
                   <th>Commune</th>
                   <th>Departement</th>
+                  @can('logement.update', Auth::guard('admin')->user())
                   <th>Modifier</th>
+                  @endcan
+                  @can('logement.delete', Auth::guard('admin')->user())
                   <th>Supprimer</th>
+                  @endcan
                 </tr>
                 </tfoot>
               </table>

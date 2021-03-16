@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class ImmeubleController extends Controller
 {
     /**
@@ -21,7 +21,12 @@ class ImmeubleController extends Controller
     
     public function index()
     {
-        return view('admin.immeuble.add');
+        if (Auth::guard('admin')->user()->can('logement.create')) 
+        {
+            return view('admin.immeuble.add');
+        }
+                        
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -42,23 +47,28 @@ class ImmeubleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required|string',
-            'address' => 'required|string',
-            'image' => 'required|image',
-            'status' => 'required'
-        ]);
-        $add_immeuble = new Immeuble;
-        $add_immeuble->name = $request->name;
-        $add_immeuble->address = $request->address;
-        if ($request->hasFile('image')) {
-            $imageName = $request->image->store('public/Immeuble');
+        if (Auth::guard('admin')->user()->can('logement.create')) 
+        {
+            $this->validate($request,[
+                'name' => 'required|string',
+                'address' => 'required|string',
+                'image' => 'required|image',
+                'status' => 'required'
+            ]);
+            $add_immeuble = new Immeuble;
+            $add_immeuble->name = $request->name;
+            $add_immeuble->address = $request->address;
+            if ($request->hasFile('image')) {
+                $imageName = $request->image->store('public/Immeuble');
+            }
+            $add_immeuble->image = $imageName;
+            $add_immeuble->status = $request->status;
+            $add_immeuble->save();
+            Flashy::success('Votre immeuble a ete ajouter');
+            return redirect()->route('admin.logement.index');
         }
-        $add_immeuble->image = $imageName;
-        $add_immeuble->status = $request->status;
-        $add_immeuble->save();
-        Flashy::success('Votre immeuble a ete ajouter');
-        return redirect()->route('admin.logement.index');
+                            
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -92,25 +102,30 @@ class ImmeubleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required|string',
-            'address' => 'required|string',
+        if (Auth::guard('admin')->user()->can('logement.update')) 
+        {
+            $this->validate($request,[
+                'name' => 'required|string',
+                'address' => 'required|string',
 
-        ]);
-        $update_immeuble = Immeuble::find($id);
-        $imageName = '';
-        if ($request->hasFile('image')) {
-            $imageName = $request->image->store('public/Immeuble');
-        }else{
-            $imageName = $update_immeuble->image;
+            ]);
+            $update_immeuble = Immeuble::find($id);
+            $imageName = '';
+            if ($request->hasFile('image')) {
+                $imageName = $request->image->store('public/Immeuble');
+            }else{
+                $imageName = $update_immeuble->image;
+            }
+            $update_immeuble->name = $request->name;
+            $update_immeuble->address = $request->address;
+            $update_immeuble->image = $imageName;
+            $update_immeuble->status = $request->status;
+            $update_immeuble->save();
+            Flashy::success('Votre immeuble a ete ajouter');
+            return redirect()->route('admin.logement.index');
         }
-        $update_immeuble->name = $request->name;
-        $update_immeuble->address = $request->address;
-        $update_immeuble->image = $imageName;
-        $update_immeuble->status = $request->status;
-        $update_immeuble->save();
-        Flashy::success('Votre immeuble a ete ajouter');
-        return redirect()->route('admin.logement.index');
+                                
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -121,8 +136,13 @@ class ImmeubleController extends Controller
      */
     public function destroy($id)
     {
-        Immeuble::find($id)->delete();
-        Flashy::success('Votre immeuble a ete supprimer');
-        return back();
+        if (Auth::guard('admin')->user()->can('logement.delete')) 
+        {
+            Immeuble::find($id)->delete();
+            Flashy::success('Votre immeuble a ete supprimer');
+            return back();
+        }
+                                    
+        return redirect(route('admin.home'));
     }
 }

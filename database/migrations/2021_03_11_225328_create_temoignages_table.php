@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePartenairesTable extends Migration
+class CreateTemoignagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePartenairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('partenaires', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('temoignages', function (Blueprint $table) {
+            $table->id();
             $table->string('nom');
-            $table->string('lien');
-            $table->string('image');
-            $table->string('mot');
-            $table->dateTime('date')->nullable();
+            $table->string('email');
+            $table->longText('message');
+            $table->integer('status')->default(false);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePartenairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partenaires');
+        Schema::dropIfExists('temoignages');
     }
 }

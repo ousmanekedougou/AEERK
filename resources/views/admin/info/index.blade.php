@@ -132,18 +132,18 @@
               <div class="attachment-block clearfix">
                 <img class="attachment-img" src="{{ Storage::url($part->image) }}" alt="Attachment Image">
 
-                <div class="attachment-pushed">
+                <div class="attachment-pushed text-center">
                   <h4 class="attachment-heading"><a href="http://www.lipsum.com/">{{ $part->nom }}</a></h4>
 
                   <div class="attachment-text">
                     <p><a href="{{ $part->lien }}">{{ $part->lien }}</a></p>
                     <p>
-                    <form id="delete-form-{{$part->id}}" action="{{ route('admin.partener.destroy',$part->id) }}" method="post" style="display:none;">
-                @csrf
-                {{ method_field('DELETE') }}
-              </form>
-              <a data-toggle="modal" data-id="{{$part->id}}" data-name="{{$part->name}}" data-target="#modal-default-update-partener-{{$part->id}}"><i class="glyphicon glyphicon-edit"></i></a>
-              <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce Partenaire')){ event.preventDefault();document.getElementById('delete-form-{{$part->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.partener.update',$part->id) }}" style="margin-right:20px;"><i class=" glyphicon glyphicon-trash"></i></a>
+                      <form id="delete-form-{{$part->id}}" action="{{ route('admin.partener.destroy',$part->id) }}" method="post" style="display:none;">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                      </form>
+                      <a data-toggle="modal" data-id="{{$part->id}}" data-name="{{$part->name}}" data-target="#modal-default-update-partener-{{$part->id}}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
+                      <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce Partenaire')){ event.preventDefault();document.getElementById('delete-form-{{$part->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.partener.update',$part->id) }}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-trash"></i> Supprimer</a>
                     </p>
                   </div>
                   <!-- /.attachment-text -->
@@ -685,7 +685,7 @@
 
 <!-- Modal de l'ajout et de l'eddition des reseau -->
 
-        <div class="modal fade" id="modal-default-reaseu-add">
+      <div class="modal fade" id="modal-default-reaseu-add">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -812,13 +812,42 @@
                 </p>
 
                 <p>
-                <input type="file"  value="{{ old('image')}}" class="@error('image') is-invalid @enderror" id="image" name="image" placeholder="">
-                  @error('image')
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p>
+                      <label for="image">Image ou logo </label>
+                        <input type="file"  value="{{ old('image')}}" class="@error('image') is-invalid @enderror" id="image" name="image" placeholder="">
+                        @error('image')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
+                    </div>
+                    <div class="col-sm-6">
+                      <p>
+                      <label for="date">Date du partenariat</label>
+                        <input type="date"  value="{{ old('date')}}" class="@error('date') is-invalid @enderror form-control" id="date" name="date" placeholder="">
+                        @error('date')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
+                    </div>
+                  </div>
+                </p>
+
+                <p>
+                <label for="mot">Mot du Partenaire</label>
+                <textarea class="textarea" style="width: 100%;"  cols="30" rows="10" value="{{ old('mot')}}" class="form-control @error('mot') is-invalid @enderror" id="mot" name="mot" placeholder=""></textarea>
+                  @error('mot')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
                     </span>
                   @enderror
                 </p>
+
               </div>
               <div class="modal-footer">
                 <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
@@ -857,7 +886,7 @@
                 </p>
 
                 <p>
-                <label for="addresse">Lien du Partenaire</label>
+                <label for="lien">Lien du Partenaire</label>
                 <input type="text"  value="{{ old('lien') ?? $part_modal->lien}}" class="form-control @error('lien') is-invalid @enderror" id="lien" name="lien" placeholder="">
                   @error('lien')
                     <span class="invalid-feedback" role="alert">
@@ -867,8 +896,36 @@
                 </p>
 
                 <p>
-                <input type="file"  value="{{ old('image')}}" class="@error('image') is-invalid @enderror" id="image" name="image" placeholder="">
-                  @error('image')
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p>
+                      <label for="image">Image ou logo </label>
+                        <input type="file"  value="{{ old('image')}}" class="@error('image') is-invalid @enderror " id="image" name="image" placeholder="">
+                        @error('image')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
+                    </div>
+                    <div class="col-sm-6">
+                      <p>
+                      <label for="date">Date du partenariat</label>
+                        <input type="date"  value="{{ old('date')}}" class="@error('date') is-invalid @enderror form-control" id="date" name="date" placeholder="">
+                        @error('date')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
+                    </div>
+                  </div>
+                </p>
+
+                <p>
+                <label for="mot">Mot du Partenaire</label>
+                <textarea style="width: 100%;" class="textarea"  cols="30" rows="10" value="{{ old('mot')}}" class="form-control @error('mot') is-invalid @enderror" id="mot" name="mot" placeholder="">{{ $part_modal->mot }}</textarea>
+                  @error('mot')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
                     </span>
@@ -886,7 +943,7 @@
           <!-- /.modal-dialog -->
       </div>
     @endforeach
-<!-- Fin des ajouts et des edditions dea partenaires -->
+<!-- Fin des ajouts et des edditions des partenaires -->
 
 
 

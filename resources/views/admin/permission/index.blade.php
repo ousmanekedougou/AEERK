@@ -51,7 +51,7 @@
                     {{method_field('delete')}}
                     </form>
                   <a href="" onclick="
-                    if(confirm('Are you sure , You want to delete this ?')){
+                    if(confirm('Etes vous sure de supprimer cette permission ?')){
 
                     event.preventDefault();document.getElementById('delete-form-{{$perm->id}}').submit();
 

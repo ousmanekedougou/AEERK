@@ -22,35 +22,49 @@
     <!-- Main content -->
     <section class="content">
 
-    <h3 class="text-center btn btn-warning btn-block text-bold">Information des nouveaux</h3>
+    <h3 class="text-center btn btn-warning btn-block text-bold">D'un cout d'oeuil</h3>
       <br>
       <div class="row">
+      <a href="{{ route('admin.contact.index') }}">
         <div class="col-lg-3">
           <div class="info-box bg-yellow">
               <span class="info-box-icon"><i class="fa fa-envelope"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">200 nouveaux messages</span>
-                <span class="info-box-number">78</span>
+                <span class="info-box-text">Nouveaux messages</span>
+                <span class="info-box-number">
+                  @foreach($contact_all as $contact)
+                    @if($contact->status == 0)
+                      {{$contact->count()}}
+                    @endif
+                  @endforeach
+                </span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 50%"></div>
                 </div>
                 <span class="progress-description">
-                     400 message recue au total
+                @foreach($contact_all as $contact)
+                    @if($contact->status == 1)
+                      {{$contact->count()}} 
+                    @endif
+                  @endforeach
+                  message lue
                     </span>
               </div>
               <!-- /.info-box-content -->
             </div>
         </div>
+        </a>
 
-        <div class="col-lg-3">
+       <a href="{{ route('admin.admin.index') }}">
+       <div class="col-lg-3">
           <div class="info-box bg-yellow">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-cog"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Valider</span>
-                <span class="info-box-number">{{ $nouveau_total_valider->count() }}</span>
+                <span class="info-box-text">Nombre Administrateurs</span>
+                <span class="info-box-number">{{ $admin_all->count() }}</span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 20%"></div>
@@ -62,14 +76,16 @@
               <!-- /.info-box-content -->
             </div>
         </div>
+       </a>
 
+        <a href="{{ route('admin.team.index') }}">
         <div class="col-lg-3">
           <div class="info-box bg-yellow">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Ommis</span>
-                <span class="info-box-number">{{$nouveau_total_ommis->count()}}</span>
+                <span class="info-box-text">Les Membres</span>
+                <span class="info-box-number">{{$team_all->count()}}</span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 20%"></div>
@@ -81,36 +97,38 @@
               <!-- /.info-box-content -->
             </div>
         </div>
+        </a>
 
-        <div class="col-lg-3">
-          <div class="info-box bg-yellow">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+        <a href="{{ route('admin.info.index') }}">
+          <div class="col-lg-3">
+            <div class="info-box bg-yellow">
+                <span class="info-box-icon"><i class="glyphicon glyphicon-flag"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Total Codifier</span>
-                <span class="info-box-number">{{$nouveau_total_codifier->count()}}</span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Partenaires</span>
+                  <span class="info-box-number">{{$partenaire_all->count()}}</span>
 
-                <div class="progress">
-                  <div class="progress-bar" style="width: 20%"></div>
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 20%"></div>
+                  </div>
+                  <span class="progress-description">
+                        Total non Codifier
+                      </span>
                 </div>
-                <span class="progress-description">
-                      Total non Codifier
-                    </span>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
-            </div>
-        </div>
-
+          </div>
+        </a>
 
       </div>
 
      
-      <h3 class="text-center btn btn-success btn-block text-bold">Information des nouveaux</h3>
+      <h3 class="text-center btn btn-success btn-block text-bold">Information des nouveaux <span class=""><i class="fa fa-graduation-cap"></i></span></h3>
       <br>
       <div class="row">
         <div class="col-lg-3">
           <div class="info-box bg-green">
-              <span class="info-box-icon"><i class="fa fa-graduation-cap"></i></span>
+              <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Inscrits</span>
@@ -129,7 +147,7 @@
 
         <div class="col-lg-3">
           <div class="info-box bg-green">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-check-square-o"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Valider</span>
@@ -148,7 +166,7 @@
 
         <div class="col-lg-3">
           <div class="info-box bg-green">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-close "></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Ommis</span>
@@ -167,7 +185,7 @@
 
         <div class="col-lg-3">
           <div class="info-box bg-green">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Codifier</span>
@@ -188,12 +206,12 @@
       </div>
 
 
-      <h3 class="text-center btn bg-blue btn-block text-bold">Information des Anciens</h3>
+      <h3 class="text-center btn bg-blue btn-block text-bold">Information des Anciens <span class=""><i class="fa fa-graduation-cap"></i></span></h3>
       <br>
       <div class="row">
         <div class="col-lg-3">
           <div class="info-box bg-blue">
-              <span class="info-box-icon"><i class="fa fa-graduation-cap"></i></span>
+              <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Inscrits</span>
@@ -212,7 +230,7 @@
 
         <div class="col-lg-3">
           <div class="info-box bg-blue">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-check-square-o"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Valider</span>
@@ -231,7 +249,7 @@
 
         <div class="col-lg-3">
           <div class="info-box bg-blue">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-close "></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Ommis</span>
@@ -250,7 +268,7 @@
 
         <div class="col-lg-3">
           <div class="info-box bg-blue">
-              <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+              <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Codifier</span>

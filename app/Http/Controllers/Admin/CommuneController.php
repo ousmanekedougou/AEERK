@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class CommuneController extends Controller
 {
     /**
@@ -32,8 +32,13 @@ class CommuneController extends Controller
      */
     public function create()
     {
-        $dep = Departement::all();
-        return view('admin.commune.add',compact('dep'));
+        if (Auth::guard('admin')->user()->can('logement.create')) 
+        {
+            $dep = Departement::all();
+            return view('admin.commune.add',compact('dep'));
+        }
+                                    
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -44,16 +49,21 @@ class CommuneController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required|string',
-            'departement' => 'required|string',
-        ]);
-       $add_commune = new Commune;
-       $add_commune->name = $request->name;
-       $add_commune->departement_id = $request->departement;
-       $add_commune->save();
-       Flashy::success('Votre Commune a ete jouter');
-       return redirect()->route('admin.localite.index');
+        if (Auth::guard('admin')->user()->can('logement.create')) 
+        {
+            $this->validate($request,[
+                'name' => 'required|string',
+                'departement' => 'required|string',
+            ]);
+            $add_commune = new Commune;
+            $add_commune->name = $request->name;
+            $add_commune->departement_id = $request->departement;
+            $add_commune->save();
+            Flashy::success('Votre Commune a ete jouter');
+            return redirect()->route('admin.localite.index');
+        }
+                                        
+        return redirect(route('admin.home'));
         
     }
 
@@ -88,12 +98,17 @@ class CommuneController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_com = Commune::find($id);
-        $update_com->name = $request->name;
-        $update_com->departement_id = $request->departement;
-        $update_com->save();
-        Flashy::success('Votre departement a ete modifier');
-        return redirect()->route('admin.localite.index');
+        if (Auth::guard('admin')->user()->can('logement.update')) 
+        {
+            $update_com = Commune::find($id);
+            $update_com->name = $request->name;
+            $update_com->departement_id = $request->departement;
+            $update_com->save();
+            Flashy::success('Votre departement a ete modifier');
+            return redirect()->route('admin.localite.index');
+        }
+                                            
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -104,8 +119,12 @@ class CommuneController extends Controller
      */
     public function destroy($id)
     {
-        Commune::find($id)->delete();
-        Flashy::success('Votre commune a ete Supprimer');
-        return back();
+        if (Auth::guard('admin')->user()->can('logement.delete')) 
+        {
+            Commune::find($id)->delete();
+            Flashy::success('Votre commune a ete Supprimer');
+            return back();
+        }                                               
+        return redirect(route('admin.home'));
     }
 }
