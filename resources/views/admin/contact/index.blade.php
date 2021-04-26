@@ -23,7 +23,7 @@
         <div class="col-md-12 ">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Inbox</h3>
+              <h3 class="box-title"><a href="{{ route('admin.contact.create') }}" class="btn btn-primary btn-block margin-bottom">Creer un message groupe</a></h3>
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">

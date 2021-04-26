@@ -7,17 +7,6 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Text Editors
-        <small>Advanced form element</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">Editors</li>
-      </ol>
-    </section>
 
     <!-- Main content -->
     <section class="content">
@@ -29,7 +18,7 @@
         <!-- les inputs -->
 
              <!-- general form elements -->
-             <div class="">
+             <div class="" style="margin:20px 100px">
             <!-- @include('includes.message') -->
             <!-- /.box-header -->
             <!-- form start -->
@@ -47,17 +36,20 @@
                       <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" placeholder="">
                     </div>
                     
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="subtitle">Sous Titre De L'article</label>
                         <input type="text" class="form-control" value="{{ $post->subtitle }}"  id="subtitle" name="subtitle" placeholder="">
-                    </div>
+                    </div> -->
                     
                     <div class="form-group">
                         <label for="slug">Slug De L'article</label>
                         <input type="text" class="form-control" value="{{$post->slug}}" id="slug" name="slug" placeholder="">
                     </div>
 
-                   
+                    <div class="pull-left">
+                        <label for="image">Image De L'article</label>
+                        <input type="file"  id="image" value="" name="image" >
+                    </div>
                     
                 </div>
 
@@ -65,10 +57,7 @@
                   
                 <div class="form-group">
                     <br>
-                  <div class="pull-right">
-                        <label for="image">Image De L'article</label>
-                        <input type="file"  id="image" value="" name="image" >
-                    </div>
+                 
                  
                     <div class="checkbox pull-left">
                         <label>
@@ -148,22 +137,17 @@
             <!-- /.box-header -->
             <div class="box-body pad">
             
-                <textarea id="editor1"name="body" class="textarea" placeholder="Place some text here"
+                <textarea id="editor1" name="body" class="textarea" placeholder="Place some text here"
                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->body }}</textarea>
-          
+                 
+                 <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Modifier</button>
+                  <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Retoure</a>
+                </div>
             </div>
           </div>
-       
 
-                <!-- fin du textarea -->
-
-
-              <!-- /.box-body -->
-
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Modifier</button>
-                <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Retoure</a>
-              </div>
+           
             </form>
           </div>
           <!-- /.box -->

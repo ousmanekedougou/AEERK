@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 use App\Model\Admin\Tag;
 use App\Model\Admin\Post;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Model\Admin\Category;
-use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,13 +15,6 @@ class PostController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
-    public function uploadImage(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null){
-        $name = !is_null($filename) ? $filename : str_random('25');
-        $file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
-     
-        return $file;
-     }
 
       /**
      * Create a new controller instance.
@@ -74,28 +65,32 @@ class PostController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'subtitle' => 'required',
-            'slug' => 'required',
+            // 'subtitle' => 'required',
+            // 'slug' => 'required',
             'image' => 'required',
             'body' => 'required'
         ]);
         $post = new Post;
-        if($request->has('image')){
-            //On enregistre l'image dans un dossier
-            $image = $request->file('image');
-            //Nous allons definir le nom de notre image en combinant le nom du produit et un timestamp
-            $image_name = Str::slug($request->input('name')).'_'.time();
-            //Nous enregistrerons nos fichiers dans /uploads/images dans public
-            $folder = '/public/Post/';
-            //Nous allons enregistrer le chemin complet de l'image dans la BD
-            $post->image = $folder.$image_name.'.'.$image->getClientOriginalExtension();
-            //Maintenant nous pouvons enregistrer l'image dans le dossier en utilisant la methode uploadImage();
-            $this->uploadImage($image, $folder, 'public', $image_name);
+       
+        if($request->hasFile('image'))
+        {
+            $imageName = $request->image->store('public/Article');
         }
-        
+
+        // $image = $request->image;
+        // $filname = $image->getClientOriginalName();
+        // $image_resize = Image::make($image->getRealPath());
+        // $image_resize->resize(555,280);
+        // $imageName = $image_resize->save(public_path("Article/".$filname));
+
+        if ($request->slug == '') {
+            $slugTitle = $request->title;
+        }elseif ($request->slug != '') {
+            $slugTitle = $request->slug;
+        }
+        $post->image = $imageName;
         $post->title = $request->title;
-        $post->subtitle = $request->subtitle;
-        $post->slug = $request->slug;
+        $post->slug = $slugTitle;
         $post->status = $request->status;
         $post->body = $request->body;
         $post->save();
@@ -153,14 +148,19 @@ class PostController extends Controller
             $post = Post::find($id);
             $imgdel = $post->image;
     
-            if($request->image != Null)
+            if($request->image != '')
             {
-            $imageName = $request->image->store('public/Article');
+                $imageName = $request->image->store('public/Article');
             }
             else{ $imageName = $post->image; }
+
+            if ($request->slug == '') {
+                $slugTitle = $request->title;
+            }elseif ($request->slug != '') {
+                $slugTitle = $request->slug;
+            }
             $post->title = $request->title;
-            $post->subtitle = $request->subtitle;
-            $post->slug = $request->slug;
+            $post->slug = $slugTitle;
             $post->status = $request->status;
             $post->image = $imageName;
             $post->body = $request->body;
@@ -189,3 +189,5 @@ class PostController extends Controller
         return redirect(route('admin.home'));
     }
 }
+
+

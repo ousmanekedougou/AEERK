@@ -8,12 +8,15 @@
     .fa-thumbs-up:hover{
         color:red;
     }
+	header{
+		background-color: #000;
+	}
   </style>
 @endsection
  @section('main-content')
 
   	<!-- start banner Area -->
-	<section class="banner-area relative about-banner" id="home">	
+	<!-- <section class="banner-area relative about-banner" id="home">	
 		<div class="overlay overlay-bg"></div>
 		<div class="container">				
 			<div class="row d-flex align-items-center justify-content-center">
@@ -25,12 +28,13 @@
 				</div>	
 			</div>
 		</div>
-	</section>
+	</section> -->
 	  <!-- End banner Area -->	
 	  
 		<!-- Start post-content Area -->
-		<section class="post-content-area single-post-area">
+		<section class="post-content-area single-post-area" style="margin-top: 60px;">
 				<div class="container">
+		<a class="genric-btn primary btn-xs mb-2" href="{{ route('article.index') }}"> <i class="fa fa-arrow-left"></i> Actualite</a>
 					<div class="row">
 						<div class="col-lg-8 posts-list">
 							<div class="single-post row">
@@ -52,10 +56,10 @@
 										<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{ $slugs->view }} Vue</a> <span class="lnr lnr-eye"></span></p>
 										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">{{ $slugs->comments->count() }} Comments</a> <span class="lnr lnr-bubble"></span></p>
 										<ul class="social-links col-lg-12 col-md-12 col-6">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-github"></i></a></li>
-											<li><a href="#"><i class="fa fa-behance"></i></a></li>
+											<li><a href="#"><i class="lnr lnr-facebook"></i></a></li>
+											<li><a href="#"><i class="lnr lnr-twitter"></i></a></li>
+											<li><a href="#"><i class="lnr lnr-github"></i></a></li>
+											<li><a href="#"><i class="lnr lnr-behance"></i></a></li>
 										</ul>																				
 									</div>
 								</div>
@@ -64,6 +68,14 @@
 									<p class="excert">
 										{!! $slugs->body !!}
 									</p>
+									<div class="row">
+										<div class="col-sm-12 text-center"> 
+											<button class=" genric-btn primary button share_facebook" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-facebook-square"></i></button>
+											<button class=" genric-btn primary button share_twitter" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-twitter"></i></button>
+											<button class=" genric-btn primary button share_gplus" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-google-plus"></i></button>
+											<button class=" genric-btn primary button share_linkedin" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-linkedin"></i></button>
+										</div>
+									</div>
 								</div>
 							</div>
 							

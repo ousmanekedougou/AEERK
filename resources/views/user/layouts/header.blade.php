@@ -28,7 +28,7 @@
 			        <ul class="nav-menu">
 			          <li class="{{ set_active_roote('index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> Home</a></li>
 			           <li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-eject fa_ajout"></i> A Propos</a></li> 
-			          <li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-eject fa_ajout"></i> Comment Ca marche</a></li>
+			          <li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça  marche</a></li>
 			          <!-- <li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-eject fa_ajout"></i> Systeme Educatif</a></li>
 			          <li class="{{ set_active_roote('education.index') }}"><a href="{{ route('education.index') }}"><i class="fa fa-eject fa_ajout"></i> Examen & Concours</a></li> -->
 				

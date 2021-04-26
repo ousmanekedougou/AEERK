@@ -21,7 +21,7 @@
 								<h1 class="text-white">
 									Contactez Nous
 								</h1>	
-								<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="elements.html"> Contact</a></p>
+								<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> Contact</a></p>
 							</div>	
 						</div>
 					</div>

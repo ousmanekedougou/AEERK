@@ -15,73 +15,35 @@
 
     <!-- Main content -->
     <section class="content">
-    <div class="">
-      @can('posts.create', Auth::guard('admin')->user())
-        <a class="btn btn-success" href="{{ route('admin.post.create') }}">Ajouter Un Article</a>
-      @endcan
-    </div>
-   
-
-
-            {{-- Debut des affichage en card --}}
-            
-            {{-- <div class="box-body">
-              <div class="row">
-                @foreach($posts as $post)
-                  <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card" style="width:100%;height:auto;">
-                      <img style="width:100%;height:100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title text-bold">{{ $post->title }}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      </div>
-                   
-                      <div class="card-body text-center">
-                        <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link"> View </i></a>
-                        <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> Modifier</i></a>
-                        <form  id="delete-form-{{$post->id}}" method="post" action="{{ route('admin.post.destroy',$post->id) }}"  style="display:none">
-                            {{csrf_field()}}
-                            {{method_field('delete')}}
-                            </form>
-                          <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$post->id}}').submit();
-
-                            }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> Supprimer</i></a>
-                      </div>
-                    </div>
-                  </div>
-                @endforeach
-              </div>
-            </div> --}}
-
-            {{-- Fin des affichage en card --}}
+      <div class="" style="margin-left: 12px;">
+        @can('posts.create', Auth::guard('admin')->user())
+          <a class="btn btn-success" href="{{ route('admin.post.create') }}">Ajouter Un Article</a>
+        @endcan
+      </div>
 
             {{-- Card horizontal --}}
 
               <div class="box-body">
                 <div class="row">
                   @foreach($posts as $post)
-                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 5px;">
                       <div class="card mb-3" style="width:100%;border:1px solid silver;border-radius:5px;padding:5px">
                         <div class="row g-0">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                             <img style="width:100%;height:100%;" src="{{ Storage::url($post->image) }}" class="card-img-top" alt="...">
-                            <h5 class="card-title text-bold text-sm">{{ $post->title }}</h5>
+                            <h5 class="card-title text-bold">{{ $post->title }}</h5>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                             <div class="card-body">
-                              <p class="card-text"> {!! $post->body !!}</p>
+                              <!-- <p class="card-text"> {!! $post->body !!}</p> -->
+                              <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, facere.</p>
                               
-                              <p class="card-text">
-                                @foreach ($post->categories as $post_category)
-                                 <span class="text-bold">Categories :</span>   {{ $post_category->name }},
-                                @endforeach
-                              </p>
-                              <p class="card-text">
-                                <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-facebook"></i> 12</button> 
-                                <button type="button" class="btn btn-info btn-sm"><i class="fa  fa-twitter"></i> 23</button>
+                              <p class="card-text text-center">
+                                <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-facebook"></i> 12</button> 
+                                <button type="button" class="btn btn-info btn-xs"><i class="fa  fa-twitter"></i> 23</button>
     
-                                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-instagram"></i> 12</button>
-                                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-whatsapp"></i> 34</button>
+                                <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-instagram"></i> 12</button>
+                                <button type="button" class="btn btn-success btn-xs"><i class="fa fa-whatsapp"></i> 34</button>
                               </p>
                               <p class="card-text">
                                 <div class="text-muted text-center">
@@ -106,6 +68,7 @@
                             </div>
                           </div>
                         </div>
+                          
                       </div>
                     </div>
                   @endforeach

@@ -40,33 +40,33 @@
 									<p>
 										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
 									</p>
-									<a href="#">Join Now</a>									
+									<a href="#">Voire</a>									
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Recasements</h4>
+									<h4>Examen & Concours</h4>
 								</div>
 								<div class="desc-wrap">
 									<p>
 										For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
 									</p>
-									<a href="#">Join Now</a>									
+									<a href="#">Voire</a>									
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Actualite educative</h4>
+									<h4>Etudes & Bourse</h4>
 								</div>
 								<div class="desc-wrap">
 									<p>
 										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
 									</p>
-									<a href="#">Join Now</a>									
+									<a href="#">Voire</a>									
 								</div>
 							</div>
 						</div>												
@@ -576,9 +576,13 @@
 								<img class="img-fluid" src="{{ Storage::url($article->image) }}" alt="">								
 							</div>
 							<p class="meta">25 April, 2018  |  By <a href="#">Mark Wiens</a></p>
-							<a  onclick="document.getElementById('update-form-{{$article->id}}').submit();">
+							<a  onclick="document.getElementById('update-forms-{{$article->id}}').submit();">
 								<h5>{{$article->title}}</h5>
 							</a>
+							<form id="update-forms-{{$article->id}}" method="post" action="{{ route('article.update',$article->id) }}" style="display:none">
+								{{csrf_field()}}
+								{{method_field('PUT')}}
+							</form>  
 							<p>
 								<!-- Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their. -->
 							</p>
@@ -586,7 +590,7 @@
 								{{csrf_field()}}
 								{{method_field('PUT')}}
 							</form>  
-							<a onclick="document.getElementById('update-form-{{$article->id}}').submit();" href="" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>		
+							<a onclick="document.getElementById('update-form-{{$article->id}}').submit();" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>		
 						</div>
 					@endforeach	
 					</div>

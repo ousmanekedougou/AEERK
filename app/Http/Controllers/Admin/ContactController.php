@@ -6,6 +6,11 @@ use App\Model\User\Contact;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ResponseEmailMessage;
+use App\Mail\GroupeEmailMessage;
+use App\Model\User\Ancien;
+use App\Model\User\Nouveau;
 
 class ContactController extends Controller
 {
@@ -26,7 +31,29 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.contact.groupe');
+    }
+
+    public function post(Request $request)
+    {
+            // dd($request->all());
+            $validator = $this->validate($request,[
+                'subject' => 'required|string',
+                'msg' => 'required|string'
+            ]);
+            $email_nouveau = Nouveau::select('email')->where('codifier',1)->get(); 
+            $email_ancien = Ancien::select('email')->where('codifier',1)->get(); 
+            foreach ($email_nouveau as $sendmail_nouveau) {
+                $mail = new GroupeEmailMessage($request->subject,$request->msg);
+                Mail::to($sendmail_nouveau->email)->send($mail);
+            }
+            foreach ($email_ancien as $sendmail_ancien) {
+                $mail = new GroupeEmailMessage($request->subject,$request->msg);
+                Mail::to($sendmail_ancien->email)->send($mail);
+            }
+    
+            Flashy::success('Votre reponse a bien ete envoyer');
+            return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -37,7 +64,20 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->all());
+        $validator = $this->validate($request,[
+            'nom' => 'required|string',
+            'email' => 'required|email',
+            'subject' => 'required|string',
+            'message' => 'required|string'
+        ]);
+        $contact = Contact::create($request->only('nom','email','subject','message'));
+
+        Mail::to($request->email)
+            ->send(new ResponseEmailMessage($contact));
+
+        Flashy::success('Votre reponse a bien ete envoyer');
+        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -61,7 +101,7 @@ class ContactController extends Controller
     public function edit($id)
     {
         $create_message = Contact::find($id);
-        return view('admin.contact.compose',compact('create_message'));
+        return view('admin.contact.response',compact('create_message'));
     }
 
     /**

@@ -2,12 +2,13 @@
 
 namespace App\Mail;
 
+use App\Model\User\Contact;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Model\User\Contact;
-class ContactMessageCreated extends Mailable
+
+class GroupeEmailMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,10 +18,12 @@ class ContactMessageCreated extends Mailable
      * @return void
      */
 
+    public $subject;
     public $msg;
 
-    public function __construct(Contact $msg)
+    public function __construct($subject,$msg)
     {
+        $this->subject = $subject;
         $this->msg = $msg;
     }
 
@@ -31,6 +34,6 @@ class ContactMessageCreated extends Mailable
      */
     public function build()
     {
-        return $this->from($this->msg->email)->markdown('emails.messages.created');
+        return $this->from(config('aeerk.admin_support_email'))->markdown('emails.admins.groupe');
     }
 }

@@ -14,29 +14,35 @@
       <div class="row">
         
         <!-- /.col -->
-        <div class="col-md-9">
-          <div class="box box-primary">
+        <div class="col-md-8 col-sm-offset-2">
+          <div class="box ">
             <div class="box-header with-border">
               <h3 class="box-title">Envoyer un Message a {{ $create_message->nom }}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="" method="post">
-              <div class="form-group">
+              <form action="{{ route('admin.contact.store') }}" method="post">
+              @csrf
+              <!-- <div class="form-group">
                 <input value="{{ Auth::user()->email }}" class="form-control" placeholder="To: {{ Auth::user()->email }}">
+              </div> -->
+              <div class="form-group">
+                <input type="hidden" value="{{ $create_message->nom }}" name="nom">
+                <input type="hidden" value="{{ $create_message->email }}" name="email">
+                <input class="form-control" name="subject"  placeholder="Subject:{{ $create_message->subject }}">
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Subject:">
-              </div>
-              <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
+                    <textarea id="compose-textarea" name="message" class="form-control" style="height: 300px">
                      
                     </textarea>
               </div>
               <div class="form-group">
-                <div class="btn btn-default btn-file">
+                <!-- <div class="btn btn-default btn-file">
                   <i class="fa fa-paperclip"></i> Attachment
                   <input type="file" name="attachment">
+                </div> -->
+                <div class="btn btn-warning">
+                  <a style="color: white;" href="{{ route('admin.contact.index') }}">Retoure</a>
                 </div>
                 <div class="pull-right">
                   <button type="reset" class="btn btn-default"><i class="fa fa-pencil"></i> Anuller</button>

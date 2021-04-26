@@ -3,7 +3,7 @@
 
 <head>
 @include('user/layouts/head')
-@section('head')
+  @section('head')
   @show
 </head>
 <body>

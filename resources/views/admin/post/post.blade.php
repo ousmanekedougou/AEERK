@@ -21,24 +21,26 @@
                       <input type="text" class="form-control" id="title" name="title" placeholder="">
                     </div>
                     
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="subtitle">Sous Titre De L'article</label>
                         <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="">
-                    </div>
+                    </div> -->
                    
                     <div class="form-group">
                         <label for="slug">Slug De L'article</label>
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="">
+                    </div>
+
+                    <div class="">
+                        <label for="image">Image De L'article</label>
+                        <input type="file" id="image" value="" name=image>
                     </div>
                     
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
                       <br>
-                      <div class="pull-right">
-                        <label for="image">Image De L'article</label>
-                        <input type="file" id="image" value="" name=image>
-                      </div>
+                    
                   
                       <div class="checkbox pull-left">
                         <label>
@@ -53,7 +55,7 @@
                       <select class="form-control select2" name="category[]" multiple="multiple" data-placeholder="Select a State"
                         style="width: 100%;">
                         @foreach($categorys as $category)
-                        <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                          <option value="{{ $category->id }}"> {{ $category->name }} </option>
                         @endforeach
                       </select>
                     </div>
@@ -72,14 +74,16 @@
                   <h3>Description de votre article</h3>
               </div>
               <div class="box-body pad">
-                  <textarea id="editor1" name="body" placeholder=""
+                  <textarea id="editor1" class="textarea" name="body" placeholder=""
                   style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                  
+                  <div class=" form-group">
+                    <button type="submit" class="btn btn-primary">Enregistre</button>
+                    <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Retoure</a>
+                  </div>
               </div>
 
-                <div class=" form-group" style="margin-left:10px;">
-                  <button type="submit" class="btn btn-primary">Enregistre</button>
-                  <a  href="{{ route('admin.post.index') }}" class="btn btn-warning">Retoure</a>
-                </div>
+               
             </form>
           </div>
           <!-- /.box -->

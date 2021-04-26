@@ -1,25 +1,28 @@
 <?php
+
+    use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Auth;
     Route::group(['namespace' => 'User'],function(){
-    Route::resource('/','HomeController');
-    Route::resource('/contact','ContactController');
-    Route::resource('/nouveau','NouveauController');
-    Route::resource('/ancien','AncienController');
-    Route::post('/temoignage','TemoignageController@post')->name('temoignage.post');
-    Route::post('/ancien/update','AncienController@update_certificat')->name('update_certificat');
-    Route::resource('/recasement','RecasementController');
-    Route::resource('/formation','FormationController');
-    Route::resource('/service','ServiceController');
-    Route::resource('/about','AboutController');
-    Route::resource('/article','ArticleController');
-    Route::resource('/comment','CommentController');
-    Route::resource('/codification','EtudiantCodificationController');
-    Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
-    Route::get('/category/{id}','ArticleController@category')->name('article.category');
-    Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
-    Route::resource('/realisation','RealisationController');
-    Route::resource('/education','EducationController');
-    Route::resource('/systeme','SystemeController');
-});
+        Route::resource('/','HomeController');
+        Route::resource('/contact','ContactController');
+        Route::resource('/nouveau','NouveauController');
+        Route::resource('/ancien','AncienController');
+        Route::post('/temoignage','TemoignageController@post')->name('temoignage.post');
+        Route::post('/ancien/update','AncienController@update_certificat')->name('update_certificat');
+        Route::resource('/recasement','RecasementController');
+        Route::resource('/formation','FormationController');
+        Route::resource('/service','ServiceController');
+        Route::resource('/about','AboutController');
+        Route::resource('/article','ArticleController');
+        Route::resource('/comment','CommentController');
+        Route::resource('/codification','EtudiantCodificationController');
+        Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
+        Route::get('/category/{id}','ArticleController@category')->name('article.category');
+        Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
+        Route::resource('/realisation','RealisationController');
+        Route::resource('/education','EducationController');
+        Route::resource('/systeme','SystemeController');
+    });
 
 
     Route::prefix('/admin')->name('admin.')->group(function() 
@@ -66,6 +69,7 @@
         Route::resource('/realisation', 'Admin\RealisationController');
         Route::resource('/historique', 'Admin\HistoriqueController');
         Route::resource('/contact', 'Admin\ContactController');
+        Route::post('/contact/send', 'Admin\ContactController@post')->name('contact.post');
         Route::resource('/document', 'Admin\DocumentController');
         Route::resource('/education','Admin\EducationController');
         Route::resource('/systeme','Admin\SystemeController');

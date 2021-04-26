@@ -5,9 +5,7 @@
 @section('head')
 <meta name="csrf-token" content="{{ csrf_token() }}">
   <style>
-    .fa-thumbs-up:hover{
-        color:red;
-    }
+	 
   </style>
 @endsection
  @section('main-content')
@@ -104,10 +102,21 @@
 											@endforeach
 										</ul>
 										<div class="user-details row">
-											<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span class="lnr lnr-user"></span></p>
 											<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{ $post->created_at->toFormattedDateString() }}</a> <span class="lnr lnr-calendar-full"></span></p>
 											<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{ $post->view }} Vue</a> <span class="lnr lnr-eye"></span></p>
 											<p class="comments col-lg-12 col-md-12 col-6"><a href="#">{{ $post->comments->count() }} Comments</a> <span class="lnr lnr-bubble"></span></p>						
+											<p class="user-name col-lg-12 col-md-12 col-6">
+												<a href="#">0 <span class="fa fa-thumbs-down"></span></a>
+												<a href="#">0 <span class="fa fa-thumbs-up"></span></a>
+											</p>
+											<!-- <p class="comments col-lg-12 col-md-12 col-6">
+												<button class="btn btn-primary btn-xs button share_facebook" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-facebook-square"></i></button>
+												<button class="btn btn-primary btn-xs button share_twitter" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-twitter"></i></button>
+												<button class="btn btn-primary btn-xs button share_youtube" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-youtube"></i></button>
+												<button class="btn btn-primary btn-xs button share_whatsapp" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-whatsapp"></i></button>
+												<button class="btn btn-primary btn-xs button share_gplus" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-google-plus"></i></button>
+												<button class="btn btn-primary btn-xs button share_linkedin" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-linkedin"></i></button>
+											</p> -->
 										</div>
 									</div>
 									<div class="col-lg-9 col-md-9 ">
@@ -118,12 +127,22 @@
 										<p class="excert">
 											{!! $post->body !!}
 										</p>
-										<form id="update-form-{{$post->id}}" method="post" action="{{ route('article.update',$post->id) }}" style="display:none">
-										{{csrf_field()}}
-										{{method_field('PUT')}}
-										</form>  
-										<a onclick="document.getElementById('update-form-{{$post->id}}').submit();"> <span class="genric-btn primary">Details de l'article</span> </a>
-
+										<div class="row">
+ 											<div class="col-sm-3">
+												<form id="update-form-{{$post->id}}" method="post" action="{{ route('article.update',$post->id) }}" style="display:none">
+													{{csrf_field()}}
+													{{method_field('PUT')}}
+												</form>  
+												<a onclick="document.getElementById('update-form-{{$post->id}}').submit();"> <span class="genric-btn primary">Details</span> </a>
+											 </div>
+ 											<div class="col-sm-9 text-right"> 
+												<button class=" genric-btn primary share_facebook" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-facebook-square"></i></button>
+												<button class=" genric-btn primary share_twitter" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-twitter"></i></button>
+												<button class=" genric-btn primary share_gplus" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-google-plus"></i></button>
+												<button class=" genric-btn primary share_linkedin" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-linkedin"></i></button>
+											</div>
+										</div>
+										
 									</div>
 									
 								</div>

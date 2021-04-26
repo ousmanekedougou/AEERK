@@ -59,19 +59,7 @@ class ArticleController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($slug)
-    {
-        $categorys = Category::all();
-        $tags = Tag::all();
-        $slugs = Post::where('slug',$slug)->first();
-        return view('user.article.show',compact('slugs','categorys','tags'));
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -99,6 +87,20 @@ class ArticleController extends Controller
         $update_post->view = $i + 1 ;
         $update_post->save();
         return redirect()->route('article.show',$update_post->slug);
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
+    {
+        $categorys = Category::all();
+        $tags = Tag::all();
+        $slugs = Post::where('slug',$slug)->first();
+        return view('user.article.show',compact('slugs','categorys','tags'));
     }
 
     /**

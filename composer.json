@@ -13,6 +13,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "informagenie/orange-sms": "^1.2",
+        "intervention/image": "^2.5",
         "laravel/framework": "^7.24",
         "laravel/nexmo-notification-channel": "^2.5",
         "laravel/tinker": "^2.0",

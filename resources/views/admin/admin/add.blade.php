@@ -112,7 +112,7 @@
                                 checked
                                 @endif 
                                 
-                                style="ml-3" value="1" id=""><span class="text-bold">Status</span></label>
+                                 value="1" id=""><span class="text-bold">Status</span></label>
                             </div>
                       </div>
 

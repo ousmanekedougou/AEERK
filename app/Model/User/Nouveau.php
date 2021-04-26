@@ -10,6 +10,9 @@ use App\Model\User\Codification_nouveau;
 
 class Nouveau extends Model
 {
+    protected $fillable = [
+        'subject', 'message',
+    ];
     public function commune(){
         return $this->belongsTo(Commune::class);
     }

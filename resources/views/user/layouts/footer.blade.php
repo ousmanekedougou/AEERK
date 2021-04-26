@@ -130,6 +130,7 @@ Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} Version Beta & | Vitrine 
 			<script src="{{asset('user/js/mail-script.js')}}"></script>	
 			<script src="{{asset('user/js/main.js')}}"></script>
 			<script src="{{asset('user/js/dropzone/dropzone.js')}}"></script>
+			<script src="{{asset('user/js/social.js')}}"></script>
 
 			@if(Session::has('flashy_notification.message'))
 				<script id="flashy-template" type="text/template">
@@ -143,6 +144,9 @@ Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} Version Beta & | Vitrine 
 					flashy("{{ Session::get('flashy_notification.message') }}", "{{ Session::get('flashy_notification.link') }}");
 				</script>
 			@endif
+
+			
+
 			@section('footersection')
 			
 			@show

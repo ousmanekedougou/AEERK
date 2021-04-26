@@ -102,7 +102,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route ('admin.contact.index') }}"><i class="fa fa-circle-o"></i> Contacts</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Composer</a></li>
+            <li><a href="{{ route('admin.contact.create') }}"><i class="fa fa-circle-o"></i> Composer</a></li>
           </ul>
         </li>
         @endif
