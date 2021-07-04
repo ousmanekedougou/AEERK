@@ -76,7 +76,6 @@ class AdminController extends Controller
             }
             $admin->image = $imageName;
             $admin->save();
-            $admin->postes()->sync($request->poste);
             $admin->roles()->sync($request->role);
             Flashy::success('Votre administrateur a ete ajoute');
             return redirect()->route('admin.admin.index');
@@ -108,8 +107,9 @@ class AdminController extends Controller
         if (Auth::guard('admin')->user()->can('admins.update')) 
         {
             $admins = Admin::find($id);
+            $commission = Commission::all();
             $roles = Role::all();
-            return view('admin.admin.edit',compact(['admins','roles']));
+            return view('admin.admin.edit',compact(['admins','roles','commission']));
         }
                 
         return redirect(route('admin.home'));
@@ -126,10 +126,11 @@ class AdminController extends Controller
         {
             if (Auth::guard('admin')->user()->can('admins.update')) 
             {
-                // dd($request->role);
-                $request->status? : $request['status'] = 0 ;
-                $user = Admin::where('id',$id)->update($request->except('_token','_method','role'));
-                Admin::find($id)->roles()->sync($request->role);
+                // dd($request->all());
+                $update_admin = Admin::where('id',$id)->first();
+                $update_admin->poste_id = $request->poste;
+                $update_admin->save();
+                $update_admin->roles()->sync($request->role);
                 Flashy::success('Votre administrateur a ete modifier');
                 return redirect()->route('admin.admin.index');
             }

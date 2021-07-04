@@ -36,7 +36,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Ajouter vos informations</p>
+    <p class="login-box-msg">Se Connecter</p>
 
     @include('includes.message')
 

@@ -35,7 +35,7 @@
                     <div class="col-lg-3">
                       <label for="name">Permission Codification</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'codification')
+                        @if($permission->for == 'Codifier')
                           <div class="checkbox">
                             <label for=""> <input type="checkbox" value="{{ $permission->id }}" name="permission[]" id="">{{ $permission->name }} </label>
                           </div>
@@ -45,7 +45,7 @@
                     <div class="col-lg-3">
                       <label for="name">Permission Articles</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'article')
+                        @if($permission->for == 'Article')
                           <div class="checkbox">
                             <label for=""> <input type="checkbox" value="{{ $permission->id }}"  name="permission[]"  id="">{{ $permission->name }} </label>
                           </div>
@@ -56,7 +56,7 @@
                     <div class="col-lg-3">
                       <label for="name">Permission Logement</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'logement')
+                        @if($permission->for == 'Logement')
                           <div class="checkbox">
                             <label for=""> <input type="checkbox" value="{{ $permission->id }}" name="permission[]"  id="">{{ $permission->name }} </label>
                           </div>
@@ -67,7 +67,7 @@
                     <div class="col-lg-3">
                       <label for="name">Permission Administrateurs</label>
                       @foreach($permissions as $permission)
-                        @if($permission->for == 'admin')
+                        @if($permission->for == 'Admin')
                           <div class="checkbox">
                             <label for=""> <input type="checkbox" value="{{ $permission->id }}" name="permission[]"  id="">{{ $permission->name }} </label>
                           </div>

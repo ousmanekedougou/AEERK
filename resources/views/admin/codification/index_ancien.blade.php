@@ -8,9 +8,39 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <section class="content-header">
 
-           {{-- <div class="nav-tabs-custom">
+      <section class="content-header">
+        <h4 class="btn btn-primary mb-5">{{$immeubles->name}} :
+          @if($immeubles->status == 2)
+            pour les anciens
+          @else 
+            pour les nouveaux
+          @endif
+        </h4>
+        @if($immeubles->status == 1)
+            @can('codifier.create', Auth::guard('admin')->user())
+              <div class="text-right">
+                    <form id="migration_nouveau" method="get" action="{{ route('admin.migret_nouveau') }}" style="display:none">
+                      
+                    </form>
+                    <a class="btn btn-primary" onclick="
+                      if(confirm('Etes vous sure de vouloire migret tous les etudiants ?')){
+
+                      event.preventDefault();document.getElementById('migration_nouveau').submit();
+
+                      }else{
+
+                        event.preventDefault();
+
+                      }
+                      
+                      "><i class="fa fa-share"> Migration des etudiants</i></a>
+              </div>
+            @endcan
+        @endif
+        <br>
+
+            <div class="nav-tabs-custom">
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
                 <table id="example1" class="table text-center table-bordered table-striped">
@@ -26,9 +56,10 @@
                   <tbody>
                   @foreach($ancien_bac as $ancien)
                     <tr>
-                      <td><img src="{{ Storage::url($ancien->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
+                      <td><img class="img-thumbnail" src="{{ Storage::url($ancien->image) }}" style="width:45px;height:45px; border-radius:100%;" alt="" srcset=""></td>
                       <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
                       <td>{{ $ancien->phone }}</td>
+
                       <td>
                         @foreach($ancien->chambre->immeubles as $ac_imb)
                         {{$ac_imb->name}} : 
@@ -36,6 +67,9 @@
                         
                         {{$ancien->chambre->nom }}</td>
                       <td>{{ $ancien->prix }}</td>
+                      <td>
+                        <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.codification.edit',$ancien->id) }}">pdf <i class="fa fa-file-pdf"></i></a></span>
+                      </td>
                     </tr>
                   @endforeach
                   </tbody>
@@ -54,161 +88,14 @@
 
             </div>
             <!-- /.tab-content -->
-          </div>  --}}
+          </div>  
 
 
 
-          {{-- Afficahge par immeuble --}}
-
-          {{-- @foreach ($immeubles as $imb)
-          <span class="btn btn-primary btn-lg">{{ $imb->name }}</span>
-          {{ $i = '' }}
-          <div class="nav-tabs-custom">
-            <div class="tab-content">
-              <div class="active tab-pane" id="activity">
-                <table id="example{{ ++$i }}" class="table text-center table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>Telephone</th>
-                    <th>Codifier A</th>
-                    <th>Prix</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($imb->chambres as $chambre)
-                      @foreach ($chambre->anciens as $ancien)
-                      <tr>
-                        <td><img src="{{ Storage::url($ancien->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
-                        <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
-                        <td>{{ $ancien->phone }}</td>
-                        <td>
-                          {{$ancien->chambre->nom }}</td>
-                        <td>{{ $ancien->prix }}</td>
-                      </tr>
-                      @endforeach
-                    @endforeach
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>Telephone</th>
-                    <th>Codifier A</th>
-                    <th>Prix</th>
-                  </tr>
-                  </tfoot>
-                </table>
-               <span class="pull-rigth"> {{ $ancien_bac->links() }}</span>
-              </div>
-
-            </div>
-            <!-- /.tab-content -->
-          </div>
-          @endforeach --}}
-
-          {{-- Fin de l'afficahe par immeuble --}}
 
 
 
-         
-          <p class="btn btn-primary btn-md ">{{ $immeubles->name }}</p>
-          <div class="nav-tabs-custom">
-            <div class="tab-content">
-              <div class="active tab-pane" id="activity">
-                <table id="example1" class="table text-center table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>Telephone</th>
-                    <th>Chambres</th>
-                    <th>Prix</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($immeubles->chambres as $chambre)
-                      @foreach ($chambre->anciens as $ancien)
-                      @if ($ancien->codifier == 1 && $ancien->prix >= 0)
-                      <tr>
-                        <td><img src="{{ Storage::url($ancien->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
-                        <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
-                        <td>{{ $ancien->phone }}</td>
-                        <td>
-                          {{$ancien->chambre->nom }}</td>
-                        <td>{{ $ancien->prix }}</td>
-                      </tr>
-                      @endif
-                      @endforeach
-                    @endforeach
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>Telephone</th>
-                    <th>Chambres</th>
-                    <th>Prix</th>
-                  </tr>
-                  </tfoot>
-                </table>
-               {{-- <span class="pull-rigth"> {{ $ancien_bac->links() }}</span> --}}
-              </div>
 
-            </div>
-            <!-- /.tab-content -->
-          </div>
-
-
-
-          <p class="btn btn-primary btn-md">{{ $immeuble2->name }}</p>
-          <br>
-          <div class="nav-tabs-custom">
-            <div class="tab-content">
-              <div class="active tab-pane" id="activity">
-                <table id="example2" class="table text-center table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>Telephone</th>
-                    <th>Chambres</th>
-                    <th>Prix</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($immeuble2->chambres as $chambre)
-                      @foreach ($chambre->anciens as $ancien)
-                        @if ($ancien->codifier == 1 && $ancien->prix >= 0)
-                        <tr>
-                          <td><img src="{{ Storage::url($ancien->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
-                          <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
-                          <td>{{ $ancien->phone }}</td>
-                          <td>
-                            {{$ancien->chambre->nom }}</td>
-                          <td>{{ $ancien->prix }}</td>
-                        </tr>
-                        @endif
-                      @endforeach
-                    @endforeach
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>Telephone</th>
-                    <th>Chambres</th>
-                    <th>Prix</th>
-                  </tr>
-                  </tfoot>
-                </table>
-               {{-- <span class="pull-rigth"> {{ $ancien_bac->links() }}</span> --}}
-              </div>
-
-            </div>
-            <!-- /.tab-content -->
-          </div>
         
 
           

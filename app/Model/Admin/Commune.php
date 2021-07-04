@@ -5,6 +5,7 @@ namespace App\Model\Admin;
 use App\Model\User\Ancien;
 use App\Model\User\Nouveau;
 use App\Model\Admin\Departement;
+use App\Model\User\Etudiant;
 use Illuminate\Database\Eloquent\Model;
 
 class Commune extends Model
@@ -25,5 +26,9 @@ class Commune extends Model
     public function nouveaus()
     {
         return $this->hasMany(Nouveau::class);
+    }
+
+    public function etudiants(){
+    return $this->hasMany(Etudiant::class);
     }
 }

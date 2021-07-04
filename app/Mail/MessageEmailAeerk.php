@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Mail;
-use App\Model\User\Ancien;
+use App\Model\User\Etudiant;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -19,7 +19,7 @@ class MessageEmailAeerk extends Mailable
 
     public $msg;
 
-    public function __construct(Ancien $msg)
+    public function __construct(Etudiant $msg)
     {
         $this->msg = $msg;
     }

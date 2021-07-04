@@ -67,7 +67,7 @@
           <div class="">
             <div class="box-header">
               <h3 class="box-title">Data Table With Full Features</h3>
-              @can('codifier.create', Auth::guard('admin')->user())
+            @can('codifier.create', Auth::guard('admin')->user())
               <div class="text-right">
                     <form id="migration_nouveau" method="get" action="{{ route('admin.migret_nouveau') }}" style="display:none">
                       
@@ -84,7 +84,7 @@
                       }
                       
                       "><i class="fa fa-share"> Migration des etudiants</i></a></div>
-            </div>
+              </div>
             @endcan
             <!-- /.box-header -->
             <div class="">

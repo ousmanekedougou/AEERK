@@ -160,7 +160,7 @@
 
   <!-- Debut des modal de commissions -->
 
-  <div class="modal fade" id="modal-default-add-commission">
+        <div class="modal fade" id="modal-default-add-commission">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">

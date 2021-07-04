@@ -134,7 +134,7 @@
                             <br>
                             <h4>Choisire le poste selon la commission</h4>
                               @foreach($commission as $com)
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                   <label for=""  class="text-primary">{{$com->name}}</label>
                                   <br>  
                                 @foreach($com->postes as $com_poste)

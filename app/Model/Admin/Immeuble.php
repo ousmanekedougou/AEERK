@@ -6,6 +6,7 @@ use App\Model\User\Ancien;
 use App\Model\User\Nouveau;
 use App\Model\Admin\Chambre;
 use App\Model\User\Recasement;
+use App\Model\User\Etudiant;
 use Illuminate\Database\Eloquent\Model;
 
 class Immeuble extends Model
@@ -26,5 +27,9 @@ class Immeuble extends Model
 
     public function recasements(){
         return $this->hasMany(Recasement::class);
+    }
+
+    public function etudiants(){
+    return $this->hasMany(Etudiant::class);
     }
 }

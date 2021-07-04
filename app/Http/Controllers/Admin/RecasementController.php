@@ -8,6 +8,8 @@ use App\Model\User\Recasement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MessageEmailAeerk;
 class RecasementController extends Controller
 {
     /**
@@ -109,6 +111,8 @@ class RecasementController extends Controller
                         $recaser_ancien->chambre_id = $request->chambre_id;
                         $recaser_ancien->recaser = 1;
                         $recaser_ancien->save();
+                        Mail::to($recaser_ancien->email)
+                        ->send(new MessageEmailAeerk($recaser_ancien));
                         Flashy::success('Votre etudiant a ete codifier');
                         return redirect()->route('admin.ancien.index');
                     }else{
@@ -123,6 +127,8 @@ class RecasementController extends Controller
                         $recaser_ancien->chambre_id = $request->chambre_id;
                         $recaser_ancien->recaser = 1;
                         $recaser_ancien->save();
+                        Mail::to($recaser_ancien->email)
+                        ->send(new MessageEmailAeerk($recaser_ancien));
                         Flashy::success('Votre etudiant a ete codifier');
                         return redirect()->route('admin.recasement.create');
                     }

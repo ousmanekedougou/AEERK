@@ -13,7 +13,10 @@ use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Nexmo\Laravel\Facade\Nexmo;
+use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 class AncienController extends Controller
 {
     public function __construct()
@@ -30,7 +33,8 @@ class AncienController extends Controller
         if (Auth::guard('admin')->user()->can('codifier.index')) 
         {
             $immeubles = Immeuble::where('status',2)->get();
-            $ancien_bac = Ancien::where('codifier',0)->paginate(10);
+            $ancien_bac = Etudiant::where('codifier', '=', 0)
+            ->where('ancienete', '=', 2)->paginate(10);
             return view('admin.ancien.index',compact('ancien_bac','immeubles'));
         }
                         
@@ -70,7 +74,7 @@ class AncienController extends Controller
         {
             $immeubles = Immeuble::where('status',2)->get();
             $departement = Departement::all();
-            $show_ancien = Ancien::find($id);
+            $show_ancien = Etudiant::find($id);
             return view('admin.ancien.show',compact('show_ancien','departement','immeubles'));
         }
                             
@@ -88,7 +92,7 @@ class AncienController extends Controller
         if (Auth::guard('admin')->user()->can('codifier.update')) 
         {
             $immeubles = Immeuble::where('status',2)->get();
-            $show_ancien = Ancien::find($id);
+            $show_ancien = Etudiant::find($id);
             return view('admin.ancien.create',compact('immeubles','show_ancien'));
         }
                                 
@@ -106,7 +110,7 @@ class AncienController extends Controller
     {
         if (Auth::guard('admin')->user()->can('codifier.update')) 
         {
-            $update_ancien = Ancien::find($id);
+            $update_ancien = Etudiant::find($id);
             $extraitBac = '';
             $imageName = '';
             $photocopieName = '';
@@ -137,7 +141,7 @@ class AncienController extends Controller
             $update_ancien->certificat = $certificatName;
             $update_ancien->photocopie = $photocopieName;
             $update_ancien->save();
-            // Storage::disk('public/Ancien')->delete($imgdel); 
+            Storage::disk('public/Ancien')->delete($imgdel); 
             Flashy::success('Votre etudaint a ete consulter');
             return back();
         }
@@ -151,16 +155,16 @@ class AncienController extends Controller
             $validator = $this->validate($request,[
                 'status' => 'required'
             ]);
-            $ancien = Ancien::find($id);
+            $ancien = Etudiant::find($id);
             if($request->status == 1){
                 $ancien->status = $request->status;
                 $ancien->save();
                 $numero_bureau = Solde::first();
-                Nexmo::message()->send([
-                'to' => '221'.$numero_bureau->numero_ancien,
-                'from' => '+221'.$ancien->phone,
-                'text' => "AEERK : Slut $ancien->prenom  $ancien->nom,vos documents sont valides,un sms vous sera envoyer pour vous informer de la date des codifications en ligne des codification."
-            ]);
+            //     Nexmo::message()->send([
+            //     'to' => '221'.$numero_bureau->numero_ancien,
+            //     'from' => '+221'.$ancien->phone,
+            //     'text' => "AEERK : Slut $ancien->prenom  $ancien->nom,vos documents sont valides,un sms vous sera envoyer pour vous informer de la date des codifications en ligne des codification."
+            // ]);
                 Mail::to($ancien->email)
                 ->send(new MessageEmailAeerk($ancien));
                 Flashy::success('Votre etudiant a ete valide');
@@ -169,11 +173,11 @@ class AncienController extends Controller
                 $ancien->status = $request->status;
                 $ancien->save();
                 $numero_bureau = Solde::first();
-                Nexmo::message()->send([
-                'to' => '221'.$numero_bureau->numero_ancien,
-                    'from' => '+221'.$ancien->phone,
-                    'text' =>"AEERK : Slut $ancien->prenom  $ancien->nom,vos documents ne sont pas valides,pour plus d'information approcher vous au-pres du bureau."
-                ]);
+                // Nexmo::message()->send([
+                // 'to' => '221'.$numero_bureau->numero_ancien,
+                //     'from' => '+221'.$ancien->phone,
+                //     'text' =>"AEERK : Slut $ancien->prenom  $ancien->nom,vos documents ne sont pas valides,pour plus d'information approcher vous au-pres du bureau."
+                // ]);
                 Mail::to($ancien->email)
                 ->send(new MessageEmailAeerk($ancien));
                 Flashy::error('Votre etudiant a ete ommis');
@@ -188,7 +192,7 @@ class AncienController extends Controller
     {
         if (Auth::guard('admin')->user()->can('codifier.update')) 
         {
-            $update_ancien = Ancien::find($id);
+            $update_ancien = Etudiant::find($id);
             $immeuble = Immeuble::where('status',true)->first();
             $update_ancien->nom = $request->nom;
             $update_ancien->prenom = $request->prenom;
@@ -212,23 +216,24 @@ class AncienController extends Controller
                 'chambre_id' => 'required|string',
             ]);
             $prix = Solde::select('prix_ancien')->first();
-            $chambre_ancien = Ancien::all();
+            $chambre_ancien = Etudiant::all();
             foreach($chambre_ancien as $chambres){
                 // dd($request->chambre_id);
-                $ancien = Ancien::where('chambre_id',$request->chambre_id)->get();
+                $ancien = Etudiant::where('chambre_id',$request->chambre_id)->get();
                 if ($chambres->chambre_id == $request->chambre_id) {
                     if($ancien->count() < $chambres->chambre->nombre){
-                        $codifier_ancien = Ancien::where('id',$id)->first();
+                        define('CODIFIER2',1);
+                        $codifier_ancien = Etudiant::where('id',$id)->first();
                         $codifier_ancien->chambre_id = $request->chambre_id;
                         $codifier_ancien->prix = $prix->prix_ancien;
-                        $codifier_ancien->codifier = 1;
+                        $codifier_ancien->codifier = CODIFIER2;
                         $codifier_ancien->save();
-                        $numero_bureau = Solde::first();
-                        Nexmo::message()->send([
-                            'to' => '221'.$numero_bureau->numero_ancien,
-                            'from' => '+221'.$codifier_ancien->phone,
-                            'text' => "AEERK : Salut $codifier_ancien->prenom  $codifier_ancien->nom,vous avez ete codifier verifier votre compte gmail"
-                        ]);
+                        // $numero_bureau = Solde::first();
+                        // Nexmo::message()->send([
+                        //     'to' => '221'.$numero_bureau->numero_ancien,
+                        //     'from' => '+221'.$codifier_ancien->phone,
+                        //     'text' => "AEERK : Salut $codifier_ancien->prenom  $codifier_ancien->nom,vous avez ete codifier verifier votre compte gmail"
+                        // ]);
                         Mail::to($codifier_ancien->email)
                         ->send(new MessageEmailAeerk($codifier_ancien));
                         Flashy::success('Votre etudiant a ete codifier');
@@ -242,19 +247,20 @@ class AncienController extends Controller
                     }
                 }
                 else if ($chambres->chambre_id == !$request->chambre_id){
-                    $chambre_null = Ancien::where('chambre_id',!$request->chambre_id)->first();
+                    $chambre_null = Etudiant::where('chambre_id',!$request->chambre_id)->first();
                     if ($chambre_null) {
-                        $codifier_ancien = Ancien::where('id',$id)->first();
+                        define('CODIFIER1',1);
+                        $codifier_ancien = Etudiant::where('id',$id)->first();
                         $codifier_ancien->chambre_id = $request->chambre_id;
                         $codifier_ancien->prix = $prix->prix_ancien;
-                        $codifier_ancien->codifier = 1;
+                        $codifier_ancien->codifier = CODIFIER1;
                         $codifier_ancien->save();
-                        $numero_bureau = Solde::first();
-                        Nexmo::message()->send([
-                            'to' => '221'.$numero_bureau->numero_ancien,
-                            'from' => '+221'.$codifier_ancien->phone,
-                            'text' => "AEERK : Salut $codifier_ancien->prenom  $codifier_ancien->nom,vous avez ete codifier verifier votre compte gmail"
-                        ]);
+                        // $numero_bureau = Solde::first();
+                        // Nexmo::message()->send([
+                        //     'to' => '221'.$numero_bureau->numero_ancien,
+                        //     'from' => '+221'.$codifier_ancien->phone,
+                        //     'text' => "AEERK : Salut $codifier_ancien->prenom  $codifier_ancien->nom,vous avez ete codifier verifier votre compte gmail"
+                        // ]);
                         Mail::to($codifier_ancien->email)
                         ->send(new MessageEmailAeerk($codifier_ancien));
                         Flashy::success('Votre etudiant a ete codifier');
@@ -263,17 +269,82 @@ class AncienController extends Controller
                     
                 }
             }
-            // $codifier_ancien = Ancien::where('id',$id)->first();
-            // $codifier_ancien->chambre_id = $request->chambre_id;
-            // $codifier_ancien->prix = $request->prix;
-            // $codifier_ancien->codifier = 1;
-            // $codifier_ancien->save();
-            // Flashy::success('Votre etudiant a ete codifier');
-            // return redirect()->route('admin.ancien.index');
         }
                                                 
         return redirect(route('admin.home'));
     }
+
+
+    //   public function codifier_ancien(Request $request, $id)
+    // {
+    //     if (Auth::guard('admin')->user()->can('codifier.update')) 
+    //     {
+    //         $validator = $this->validate($request , [
+    //             'chambre_id' => 'required|string',
+    //         ]);
+    //         $prix = Solde::select('prix_ancien')->first();
+    //         $chambre_ancien = Ancien::all();
+    //         foreach($chambre_ancien as $chambres){
+    //             // dd($request->chambre_id);
+    //             $ancien = Ancien::where('chambre_id',$request->chambre_id)->get();
+    //             if ($chambres->chambre_id == $request->chambre_id) {
+    //                 if($ancien->count() < $chambres->chambre->nombre){
+    //                     $codifier_ancien = Ancien::where('id',$id)->first();
+    //                     $codifier_ancien->chambre_id = $request->chambre_id;
+    //                     $codifier_ancien->prix = $prix->prix_ancien;
+    //                     $codifier_ancien->codifier = 1;
+    //                     $codifier_ancien->save();
+    //                     $numero_bureau = Solde::first();
+    //                     Nexmo::message()->send([
+    //                         'to' => '221'.$numero_bureau->numero_ancien,
+    //                         'from' => '+221'.$codifier_ancien->phone,
+    //                         'text' => "AEERK : Salut $codifier_ancien->prenom  $codifier_ancien->nom,vous avez ete codifier verifier votre compte gmail"
+    //                     ]);
+    //                     Mail::to($codifier_ancien->email)
+    //                     ->send(new MessageEmailAeerk($codifier_ancien));
+    //                     Flashy::success('Votre etudiant a ete codifier');
+    //                     return redirect()->route('admin.ancien.index');
+    //                 }else{
+    //                     $is_pleine = Chambre::where('id',$request->chambre_id)->first();
+    //                     $is_pleine->is_pleine = 1;
+    //                     $is_pleine->save();
+    //                     Flashy::error('Cette Chambre est pleine');
+    //                     return redirect()->route('admin.ancien.index');
+    //                 }
+    //             }
+    //             else if ($chambres->chambre_id == !$request->chambre_id){
+    //                 $chambre_null = Ancien::where('chambre_id',!$request->chambre_id)->first();
+    //                 if ($chambre_null) {
+    //                     $codifier_ancien = Ancien::where('id',$id)->first();
+    //                     $codifier_ancien->chambre_id = $request->chambre_id;
+    //                     $codifier_ancien->prix = $prix->prix_ancien;
+    //                     $codifier_ancien->codifier = 1;
+    //                     $codifier_ancien->save();
+    //                     $numero_bureau = Solde::first();
+    //                     Nexmo::message()->send([
+    //                         'to' => '221'.$numero_bureau->numero_ancien,
+    //                         'from' => '+221'.$codifier_ancien->phone,
+    //                         'text' => "AEERK : Salut $codifier_ancien->prenom  $codifier_ancien->nom,vous avez ete codifier verifier votre compte gmail"
+    //                     ]);
+    //                     Mail::to($codifier_ancien->email)
+    //                     ->send(new MessageEmailAeerk($codifier_ancien));
+    //                     Flashy::success('Votre etudiant a ete codifier');
+    //                     return redirect()->route('admin.ancien.index');
+    //                 }
+                    
+    //             }
+    //         }
+    //         // $codifier_ancien = Ancien::where('id',$id)->first();
+    //         // $codifier_ancien->chambre_id = $request->chambre_id;
+    //         // $codifier_ancien->prix = $request->prix;
+    //         // $codifier_ancien->codifier = 1;
+    //         // $codifier_ancien->save();
+    //         // Flashy::success('Votre etudiant a ete codifier');
+    //         // return redirect()->route('admin.ancien.index');
+    //     }
+                                                
+    //     return redirect(route('admin.home'));
+    // }
     /**
      * Remove the specified resource from storage.
      *
@@ -284,7 +355,7 @@ class AncienController extends Controller
     {
         if (Auth::guard('admin')->user()->can('codifier.delete')) 
         {
-            Ancien::find($id)->delete();
+            Etudiant::find($id)->delete();
             Flashy::success('Votre Etudiant a ete Supprimer');
             return back();
         }

@@ -9,6 +9,7 @@ use App\Model\Admin\Immeuble;
 use App\Model\User\Recasement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Etudiant;
 use App\Model\User\Recasement_ancien;
 use App\Model\User\Recasement_nouveau;
 
@@ -51,7 +52,7 @@ class RecasementController extends Controller
             'immeuble' => 'required|numeric',
         ]);
         if ($request->status == 1) {
-            $nouveaux = Nouveau::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1])->first();
+            $nouveaux = Etudiant::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1,'ancienete' => 1])->first();
             
             if ($nouveaux) {
                 $nouveaux_recaser = new Recasement;
@@ -73,7 +74,7 @@ class RecasementController extends Controller
             }
 
         }elseif ($request->status == 2) {
-            $anciens = Ancien::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1])->first();
+            $anciens = Etudiant::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1,'ancienete' => 2])->first();
             if ($anciens) {
                 dd($request->all());
                 $anciens_recaser = new Recasement;

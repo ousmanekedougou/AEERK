@@ -54,7 +54,7 @@ class ProfilAdminController extends Controller
      */
     public function show($id)
     {
-        $admins = Admin::where('id',Auth::user()->id)->first();
+        $admins = Admin::where('id',Auth::guard('admin')->user()->id)->first();
         return view('admin.profile.show',compact('admins'));
     }
 
@@ -82,31 +82,41 @@ class ProfilAdminController extends Controller
             'name' => 'required|string',
             'email' => 'required',
             'phone' => 'required|numeric',
-            'password' => 'confirmed'
         ]);
-        $imageName = '';
-        $password_actuel = '';
-        $admin_update = Admin::where('id',Auth::user()->id)->first();
+        $admin_update = Admin::where('id',Auth::guard('admin')->user()->id)->first();
         $admin_update->name = $request->name;
         $admin_update->email = $request->email;
         $admin_update->phone = $request->phone;
-        if($request->password == Null){
-            $password_actuel = $admin_update->password;
-        }else{
-            $password_actuel = Hash::make($request->password);
-        }
-        $admin_update->password = $password_actuel;
+        $admin_update->save();
+        Flashy::success('Vos informations ont ete modifier');
+        return back();
+    }
+
+    public function update_password(Request $request , $id){
+        $validator = $this->validate($request,[
+            'password' => 'required|confirmed'
+        ]);
+        $admin_updat_password = Admin::where('id',Auth::guard('admin')->user()->id)->first();
+        $admin_updat_password->password = Hash::make($request->password);
+        $admin_updat_password->save();
+         Flashy::success('Votre mot de passe a ete modifier');
+        return back();
+    }
+
+    public function update_image(Request $request , $id){
+        $admin_updat_image = Admin::where('id',Auth::guard('admin')->user()->id)->first();
+        $imageName = '';
         if($request->image == Null){
-            $imageName = $admin_update->image;
+            $imageName = $admin_updat_image->image;
         }else{
 
             if($request->hasFile('image')){
                 $imageName = $request->image->store('public/Admin');
             }
         }
-        $admin_update->image = $imageName;
-        $admin_update->save();
-        Flashy::success('Votre Profile a ete modifier');
+        $admin_updat_image->image = $imageName;
+        $admin_updat_image->save();
+         Flashy::success('Votre image de profile a bien ete modifier');
         return back();
     }
 

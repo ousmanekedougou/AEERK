@@ -10,6 +10,7 @@ use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Nexmo\Laravel\Facade\Nexmo;
+use App\Model\User\Etudiant;
 class AncienController extends Controller
 {
     /**
@@ -47,7 +48,7 @@ class AncienController extends Controller
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:anciens',
-            'phone' => 'required|unique:anciens|numeric',
+            'phone' => 'required|unique:anciens|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|between:9,13',
             'commune' => 'required|numeric',
             'immeuble' => 'required|numeric',
             'extrait' => 'required|mimes:PDF,pdf',
@@ -56,7 +57,8 @@ class AncienController extends Controller
             'photocopie' => 'required|mimes:pdf,PDF',
         ]);
         // dd($request->all());
-        $add_ancien = new Ancien;
+        $add_ancien = new Etudiant;
+        define('ANCIENETE',2);
         $extraitName = '';
         $imageName = '';
         $photocopieName = '';
@@ -84,14 +86,15 @@ class AncienController extends Controller
         $add_ancien->photocopie = $photocopieName;
         $add_ancien->commune_id = $request->commune;
         $add_ancien->immeuble_id = $request->immeuble;
-        $add_ancien->status = false;
+        $add_ancien->status = 0;
+        $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
         $numero_bureau = Solde::first();
-        Nexmo::message()->send([
-            'to' => '221'.$numero_bureau->numero_ancien,
-            'from' => '+221'.$request->phone,
-            'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
-        ]);
+        // Nexmo::message()->send([
+        //     'to' => '221'.$numero_bureau->numero_ancien,
+        //     'from' => '+221'.$request->phone,
+        //     'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
+        // ]);
         Flashy::success('Votre Inscription a ete Valider');
         return redirect()->route('index',$add_ancien)->with([
             "existe" => "existe",
@@ -146,9 +149,10 @@ class AncienController extends Controller
             'update_certificat' => 'required|mimes:pdf,PDF',
             'update_image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
-        $ancien_existant = Ancien::where('email', '=', $request->update_email)
+        $ancien_existant = Etudiant::where('email', '=', $request->update_email)
         ->where('phone', '=', $request->update_phone)
-        ->where('codifier', '=', 1)->first();
+        ->where('codifier', '=', 1)
+        ->where('ancienete', '=', 2)->first();
         $imageName = '';
         $certificatName = '';
         if ($request->hasFile('update_image')) {

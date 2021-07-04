@@ -13,80 +13,79 @@
  @section('main-content')
 
 	<!-- start banner Area -->
-  <section class="banner-area relative about-banner" id="home">	
+  			<section class="banner-area relative about-banner" id="home">	
 				<div class="overlay overlay-bg"></div>
 				<div class="container">				
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Inscription des Nouveau		
+								Inscription des Nouveaux		
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="elements.html"> Elements</a></p>
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> Nouveaux</a></p>
 						</div>	
 					</div>
 				</div>
 			</section>
       <!-- End banner Area -->	
+
+	<section class="feature-area pb-120">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="single-feature">
+						<div class="title">
+							<h4>Learn Online Courses</h4>
+						</div>
+						<div class="desc-wrap">
+							<p>
+								Usage of the Internet is becoming more common due to rapid advancement
+								of technology.
+							</p>
+							<a href="#">Join Now</a>									
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-lg-4">
+					<div class="single-feature">
+						<div class="title">
+							<h4>No.1 of universities</h4>
+						</div>
+						<div class="desc-wrap">
+							<p>
+								For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
+							</p>
+							<a href="#">Join Now</a>									
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<div class="title">
+							<h4>Huge Library</h4>
+						</div>
+						<div class="desc-wrap">
+							<p>
+								If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+							</p>
+							<a href="#">Join Now</a>									
+						</div>
+					</div>
+				</div>												 -->
+			</div>
+		</div>	
+	</section>
       
 
-      		<div class="whole-wrap">
+      		<section class="feature-area pb-120">
 				<div class="container">
 					<div class="section-top-border">
 						<div class="row">
 
-							<div class="col-lg-3 col-md-3 mt-sm-30 element-wrap">
-								<h3>Remarque1</h3>
-								<p>
-								Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, eaque id 
-								perspiciatis esse quasi iste modi rem magnam nobis impedit earum 
-								sequi repudiandae voluptatem vel similique facilis soluta consequuntur nemo!
-								</p>
-								<h3>Remarque2</h3>
-								<p>
-								Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, eaque id 
-								perspiciatis esse quasi iste modi rem magnam nobis impedit earum 
-								sequi repudiandae voluptatem vel similique facilis soluta consequuntur nemo!
-								</p>
-								<!-- <div class="single-element-widget">
-									<h3 class="mb-30">Switches</h3>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>01. Sample Switch</p>
-										<div class="primary-switch">
-											<input type="checkbox" id="default-switch">
-											<label class="label_form" for="default-switch"></label>
-										</div>
-									</div>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>02. Primary Color Switch</p>
-										<div class="primary-switch">
-											<input type="checkbox" id="primary-switch" checked>
-											<label class="label_form" for="primary-switch"></label>
-										</div>
-									</div>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>03. Confirm Color Switch</p>
-										<div class="confirm-switch">
-											<input type="checkbox" id="confirm-switch" checked>
-											<label class="label_form" for="confirm-switch"></label>
-										</div>
-									</div>
-								</div>
-								<div class="single-element-widget">
-									<h3 class="mb-30">Selectboxes</h3>
-									<div class="default-select" id="default-select">
-										<select>
-											<option value="1">English</option>
-											<option value="1">Spanish</option>
-											<option value="1">Arabic</option>
-											<option value="1">Portuguise</option>
-											<option value="1">Bengali</option>
-										</select>
-									</div>
-								</div>  -->
-				
+							<div class="col-lg-2 col-md-2 mt-sm-30 element-wrap">
+								
 							</div>
 
-							<div class="col-lg-8 col-md-8">
+							<div class="col-lg-8 col-md-8" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
 								<h3 class="mb-30">S'inscrire Pour la codifications</h3>
 								<form action="{{ route('nouveau.store') }}" method="POST" enctype="multipart/form-data">
 									@csrf
@@ -94,14 +93,14 @@
 										<div class="col-sm-4 d-flex justify-content-between">
 											<div class="switch-wrap d-flex justify-content-between">
 												<p class="label_form">Femme</p>
-												<div class="primary-switch ml-3 mr-3 mt-1">
+												<div class="primary-switch ml-3 mr-3 mt-1 bg-secondary">
 													<input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class=" @error('genre') is-invalid @enderror" id="success-switch">
 													<label class="label_form" for="success-switch"></label>
 												</div>
 											</div>
 											<div class="switch-wrap d-flex justify-content-between">
 												<p class="ml-4 label_form">Homme</p>
-												<div class="confirm-switch ml-3 mt-1">
+												<div class="confirm-switch ml-3 mt-1 bg-secondary">
 													<input type="radio" value="{{ old('genre') ?? 2 }}" class=" @error('genre') is-invalid @enderror" name="genre" id="info-switch">
 													<label class="label_form" for="info-switch"></label>
 													@error('genre')
@@ -116,8 +115,8 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
-											<label class="label_form" for="nom"> Votre Nom </label>
-												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Votre Nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
+											<label class="label_form" for="nom">Votre Nom  </label>
+												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
 												@error('nom')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
@@ -128,7 +127,7 @@
 										<div class="col-md-6">
 											<div class="mt-10">
 											<label class="label_form" for="prenom">Votre Prenom</label>
-												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="Votre Prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Prenom'" required class="single-input">
+												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
 												@error('prenom')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
@@ -168,17 +167,18 @@
 										<div class="col-md-6">
 											<div class="input-group-icon mt-10">
 												<label class="label_form" for="commune">Votre Commune</label>
-													<!-- <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div> -->
 												<div class="form-select">
 													<select value="{{ old('commune') }}" class="form-control @error('commune') is-invalid @enderror" name="commune">
-														<option ></option>
+														 <option selected>Selectionne votre commune</option>
 														@foreach($departement as $dep)
-														<p>{{ $dep->name }}</p>
-														@foreach($dep->communes as $dep_com)
-														<option value="{{ $dep_com->id }}">{{$dep_com->name}}</option>
-														@endforeach
+														<optgroup label="Departement de {{ $dep->name }}">
+															@foreach($dep->communes as $dep_com)
+															<option value="{{ $dep_com->id }}">{{$dep_com->name}}</option>
+															@endforeach
+														</optgroup>
 														@endforeach
 													</select>
+														
 														@error('commune')
 															<span class="invalid-feedback" role="alert">
 																<strong class="message_error">{{ $message }}</strong>
@@ -258,13 +258,15 @@
 									</div>
 								</form>
 							</div>
-
+							<div class="col-lg-3 col-md-3 mt-sm-30 element-wrap">
+								
+							</div>
 						
 
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 			<!-- End Align Area -->
 
  @endsection

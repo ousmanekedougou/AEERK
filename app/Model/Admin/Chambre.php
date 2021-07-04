@@ -5,6 +5,7 @@ namespace App\Model\Admin;
 
 use App\Model\User\Ancien;
 use App\Model\User\Nouveau;
+use App\Model\User\Etudiant;
 use App\Model\Admin\Immeuble;
 use App\Model\User\Recasement;
 use App\Model\User\Recasement_ancien;
@@ -31,5 +32,9 @@ class Chambre extends Model
 
     public function nouveaus(){
         return $this->hasMany(Nouveau::class);
+    }
+
+    public function etudiants(){
+        return $this->hasMany(Etudiant::class);
     }
 }

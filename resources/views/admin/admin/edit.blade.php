@@ -65,22 +65,39 @@
                     <div class="form-group col-lg-12">
                       <label>Assign Roles</label>
                      <div class="row">
-                     @foreach($roles as $role)
-                        <div class="checkbox">
-                        <div class="col-lg-3">
-                        <label for="role"> <input type="checkbox" 
-                        
-                        @foreach($admins->roles as $user_role)
-                            @if($user_role->id == $role->id)
-                            checked
-                            @endif
-                        @endforeach
-                        
-                         name="role[]" value="{{ $role->id }}" id=""> {{ $role->name }} </label>
-                        </div>
-                        </div>
+                        @foreach($roles as $role)
+                          <div class="checkbox">
+                          <div class="col-lg-3">
+                          <label for="role"> <input type="checkbox" 
+                          
+                          @foreach($admins->roles as $user_role)
+                              @if($user_role->id == $role->id)
+                              checked
+                              @endif
+                          @endforeach
+                          
+                          name="role[]" value="{{ $role->id }}" id=""> {{ $role->name }} </label>
+                          </div>
+                          </div>
                         @endforeach
                      </div>
+                      <div class="row">
+                            <br>
+                            <h4>Choisire le poste selon la commission</h4>
+                              @foreach($commission as $com)
+                            <div class="col-lg-4">
+                                  <label for=""  class="text-primary">{{$com->name}}</label>
+                                  <br>  
+                                @foreach($com->postes as $com_poste)
+                                  <label class="" for="poste-{{$com_poste->id }}"> <input type="radio" name="poste" value="{{$com_poste->id }}" id="poste-{{$com_poste->id }}"
+                                  @if($admins->poste->id == $com_poste->id)
+                                    checked
+                                  @endif
+                                  > {{ $com_poste->name }} </label>
+                                @endforeach
+                            </div>
+                              @endforeach
+                          </div>
                     </div>
                     
                     <!-- /.box-body -->

@@ -17,6 +17,7 @@
         Route::resource('/comment','CommentController');
         Route::resource('/codification','EtudiantCodificationController');
         Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
+        Route::get('/codification/{id}/createPdf','EtudiantCodificationController@createPdf')->name('createPdf');
         Route::get('/category/{id}','ArticleController@category')->name('article.category');
         Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
         Route::resource('/realisation','RealisationController');
@@ -24,6 +25,11 @@
         Route::resource('/systeme','SystemeController');
     });
 
+    Route::get('/pdf',function(){
+        return view('user.pdf');
+    });
+
+Auth::routes();
 
     Route::prefix('/admin')->name('admin.')->group(function() 
     {
@@ -79,6 +85,8 @@
         Route::resource('/logement', 'Admin\LogementController');
         Route::resource('/commune', 'Admin\CommuneController');
         Route::resource('/profile', 'Admin\ProfilAdminController');
+        Route::put('/profile/{id}/update_password', 'Admin\ProfilAdminController@update_password')->name('update_password');
+        Route::put('/profile/{id}/update_image', 'Admin\ProfilAdminController@update_image')->name('update_image');
         Route::resource('/immeuble', 'Admin\ImmeubleController');
         Route::resource('/temoignage', 'Admin\TemoignageController');
 
@@ -118,4 +126,4 @@
 
  
 
-Auth::routes();
+

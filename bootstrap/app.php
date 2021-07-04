@@ -43,6 +43,8 @@ $app->singleton(
 
 $app->register(Nexmo\Laravel\NexmoServiceProvider::class);
 
+$app->singleton(Barryvdh\DomPDF\ServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

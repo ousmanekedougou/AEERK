@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\User\Ancien;
-use App\Model\User\Nouveau;
+use App\Model\User\Etudiant;
 use App\Model\Admin\Chambre;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
@@ -11,7 +11,8 @@ use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use App\Model\User\Codification_ancien;
 use App\Model\User\Codification_nouveau;
-
+use PDF;
+use Illuminate\Support\Str;
 class CodificationController extends Controller
 {
     /**
@@ -28,7 +29,7 @@ class CodificationController extends Controller
     {
         // Les Etudiant qui ont codifier
         $immeubles = Immeuble::where('status',1)->first();
-        $nouveau_bac = Nouveau::where(['status'=>1, 'codifier'=>1])->paginate(5);
+        $nouveau_bac = Etudiant::where(['status'=>1, 'codifier'=>1 , 'ancienete'=>1])->paginate(5);
         return view('admin.codification.index',compact('nouveau_bac','immeubles'));
     }
 
@@ -42,7 +43,7 @@ class CodificationController extends Controller
           // Les Etudiant qui n'ont pas codifier
         $immeubles = Immeuble::where('status',2)->first();
         $immeuble2 = Immeuble::where('status',2)->latest()->first();
-        $ancien_bac = Ancien::where(['status'=>1,'codifier'=>1])->paginate(5);
+        $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1,'ancienete'=>2])->paginate(5);
         return view('admin.codification.index_ancien',compact('ancien_bac','immeubles','immeuble2'));
     }
 
@@ -54,7 +55,7 @@ class CodificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -65,7 +66,15 @@ class CodificationController extends Controller
      */
     public function show($id)
     {
-     
+        // dd($id);
+        $immeubles = Immeuble::all();
+        foreach($immeubles as $imb){
+           if ($imb->id == $id) {
+               $immeubles = Immeuble::find($imb->id);
+                $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1 , 'immeuble_id' => $id])->paginate(5);
+                return view('admin.codification.index_ancien',compact('ancien_bac','immeubles'));
+           }
+        }
     }
 
     /**
@@ -76,6 +85,11 @@ class CodificationController extends Controller
      */
     public function edit($id)
     {
+        
+    }
+
+     public function createPdf($id){
+
         
     }
 

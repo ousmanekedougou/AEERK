@@ -21,29 +21,79 @@
 							<h1 class="text-white">
 								Inscription Pour Les Recasements	
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="elements.html"> Elements</a></p>
+							<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="">Recasement</a></p>
 						</div>	
 					</div>
 				</div>
 			</section>
      		 <!-- End banner Area -->	
+
+			<section class="feature-area pb-120">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="single-feature">
+								<div class="title">
+									<h4>Learn Online Courses</h4>
+								</div>
+								<div class="desc-wrap">
+									<p>
+										Usage of the Internet is becoming more common due to rapid advancement
+										of technology.
+									</p>
+									<a href="#">Join Now</a>									
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col-lg-4">
+							<div class="single-feature">
+								<div class="title">
+									<h4>No.1 of universities</h4>
+								</div>
+								<div class="desc-wrap">
+									<p>
+										For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
+									</p>
+									<a href="#">Join Now</a>									
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-feature">
+								<div class="title">
+									<h4>Huge Library</h4>
+								</div>
+								<div class="desc-wrap">
+									<p>
+										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+									</p>
+									<a href="#">Join Now</a>									
+								</div>
+							</div>
+						</div>												 -->
+					</div>
+				</div>	
+			</section>
       
 
-      		<div class="whole-wrap">
+      		<section class="feature-area pb-120">
 				<div class="container">
 					<div class="section-top-border">
 						<div class="row">
-							<div class="col-lg-8 col-md-8 ">
-								<div class="col-offset-lg-3 col-lg-9">
-								<h3 class="mb-30 ">S'inscrire Pour Les Recasements</h3>
+							<div class="col-lg-2 col-md-2 ">
+							</div>
+
+							<div class="col-lg-8 col-md-8 " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;padding:20px;background-color:white;color:black;">
+								<div class="">
+								<!-- <h3 class="mb-30 ">S'inscrire Pour Les Recasements</h3> -->
 								<form action="{{ route('recasement.store') }}" method="POST">
 									@csrf
-									<div class="single-element-widget"  style="background-color:black;width:100%;padding:10px;">
-									<h3 class="mb-30 text-white">Precisez Votre Status</h3>
+									<div class="single-element-widget"  style="width:40%;padding:10px;">
+									<h3 class="mb-30 ">Precisez votre status</h3>
 									<div class="switch-wrap d-flex justify-content-between">
-										<p class="text-white">Cochez cette Case Si Vous Etes un Nouveau</p>
-										<div class="primary-switch">
-											<input type="radio" name="status" value="{{ old('status') ?? 1 }}" class=" @error('status') is-invalid @enderror" id="default-switch">
+										<p class="">Vous etes un nouveau</p>
+										<div class="primary-switch bg-secondary">
+											<input type="radio" required name="status" value="{{ old('status') ?? 1 }}" class=" @error('status') is-invalid @enderror" id="default-switch">
 											<label for="default-switch"></label>
 											@error('status')
 											<span class="invalid-feedback" role="alert">
@@ -53,9 +103,9 @@
 										</div>
 									</div>
 									<div class="switch-wrap d-flex justify-content-between">
-										<p  class="text-white">Cochez cette Case Si Vous Etes Un Ancien</p>
-										<div class="primary-switch">
-											<input type="radio" value="{{ old('status') ?? 2 }}" class=" @error('status') is-invalid @enderror"  name="status" id="primary-switch" >
+										<p  class="">Vous etes un ancien</p>
+										<div class="confirm-switch bg-secondary">
+											<input type="radio" required value="{{ old('status') ?? 2 }}" class=" @error('status') is-invalid @enderror"  name="status" id="primary-switch">
 											<label for="primary-switch"></label>
 											@error('status')
 												<span class="invalid-feedback" role="alert">
@@ -66,7 +116,7 @@
 									</div>
 								</div>
 											<div class="mt-10">
-											<label for="email">Votre Adresse E-mail</label>
+											<label for="email">Votre adresse email</label>
 												<input type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
 												@error('email')
 													<span class="invalid-feedback" role="alert">
@@ -75,7 +125,7 @@
 												@enderror
 											</div>
 											<div class="mt-10">
-											<label for="phone">Votre Numero De Telephone</label>
+											<label for="phone">Votre numero de telephone</label>
 												<input type="number" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
 												@error('phone')
 													<span class="invalid-feedback" role="alert">
@@ -84,13 +134,12 @@
 												@enderror
 											</div>
 											<div class="input-group-icon mt-10 mb-5">
-												<div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
-													<div class="form-select" id="default-select">
-													<label for="immeuble">Choisissez Votre immeuble</label>
-														<select value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" name="immeuble">
+													<div class="form-select">
+													<label for="immeuble">Choisissez votre immeuble</label>
+														<select  value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" name="immeuble">
 															
 															@foreach($immeuble as $imb)
-															<option value="{{ $imb->id }}">{{$imb->name}}</option>
+															<option  value="{{ $imb->id }}">{{$imb->name}}</option>
 															@endforeach
 														</select>
 														@error('immeuble')
@@ -102,56 +151,19 @@
 												</div>
 										
 									<div class="mt-10">
-										<input type="submit" value="Enregistre" class="btn btn-secondary">
+										<input type="submit" value="Enregistre l'inscription" class="btn btn-primary btn-block">
 									</div>
 								</form>
 								</div>
 							</div>
 
-							<div class="col-lg-3 col-md-4 mt-sm-30 element-wrap">
-								<div class="single-element-widget">
-									<h3 class="mb-30">Switches</h3>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>01. Sample Switch</p>
-										<div class="primary-switch">
-											<input type="checkbox" id="default-switch">
-											<label for="default-switch"></label>
-										</div>
-									</div>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>02. Primary Color Switch</p>
-										<div class="primary-switch">
-											<input type="checkbox" id="primary-switch" checked>
-											<label for="primary-switch"></label>
-										</div>
-									</div>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p>03. Confirm Color Switch</p>
-										<div class="confirm-switch">
-											<input type="checkbox" id="confirm-switch" checked>
-											<label for="confirm-switch"></label>
-										</div>
-									</div>
-								</div>
-								<div class="single-element-widget">
-									<h3 class="mb-30">Selectboxes</h3>
-									<div class="default-select" id="default-select">
-										<select>
-											<option value="1">English</option>
-											<option value="1">Spanish</option>
-											<option value="1">Arabic</option>
-											<option value="1">Portuguise</option>
-											<option value="1">Bengali</option>
-										</select>
-									</div>
-                				</div>
-                
+							<div class="col-lg-3 col-md-3 ">
 							</div>
 
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 			<!-- End Align Area -->
 
  @endsection

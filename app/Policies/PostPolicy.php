@@ -23,26 +23,70 @@ class PostPolicy
        return false;
     }
 
+        //Partie pour les authorisation administration 
+    public function admin_index(Admin $admin)
+    {
+        return $this->getPermission($admin,1);
+    }
+
+    public function admin_create(Admin $admin)
+    {
+        return $this->getPermission($admin,2);
+    }
+
+    public function admin_update(Admin $admin)
+    {
+        return $this->getPermission($admin,3);
+    }
+
+    public function admin_delete(Admin $admin)
+    {
+        return $this->getPermission($admin,4);
+    }
+
      // Partie pour les authorisation des codifications
      public function codifier_index(Admin $admin)
      {
-         return $this->getPermission($admin,1);
+         return $this->getPermission($admin,5);
      }
  
      public function codifier_create(Admin $admin)
      {
-         return $this->getPermission($admin,2);
+         return $this->getPermission($admin,6);
      }
  
      public function codifier_update(Admin $admin)
      {
-         return $this->getPermission($admin,3);
+         return $this->getPermission($admin,7);
      }
  
      public function codifier_delete(Admin $admin)
      {
-         return $this->getPermission($admin,4);
+         return $this->getPermission($admin,8);
      }
+
+
+    // Partie des authorisation pour les logements
+
+    public function logement_index(Admin $admin)
+    {
+        return $this->getPermission($admin,9);
+    }
+
+    public function logement_create(Admin $admin)
+    {
+        return $this->getPermission($admin,10);
+    }
+
+    public function logement_update(Admin $admin)
+    {
+        return $this->getPermission($admin,11);
+    }
+
+    public function logement_delete(Admin $admin)
+    {
+        return $this->getPermission($admin,12);
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -52,7 +96,7 @@ class PostPolicy
      */
     public function viewAny(Admin $admin)
     {
-        return $this->getPermission($admin,5);
+        return $this->getPermission($admin,13);
     }
 
     /**
@@ -79,7 +123,7 @@ class PostPolicy
 
     public function create(Admin $admin)
     {
-        return $this->getPermission($admin,6);
+        return $this->getPermission($admin,14);
     }
 
 
@@ -93,7 +137,7 @@ class PostPolicy
      */
     public function update(Admin $admin)
     {
-        return $this->getPermission($admin,7);
+        return $this->getPermission($admin,15);
     }
 
     /**
@@ -105,53 +149,13 @@ class PostPolicy
      */
     public function delete(Admin $admin)
     {
-        return $this->getPermission($admin,8);
-    }
-
-
-    // Partie des authorisation pour les logements
-
-    public function logement_index(Admin $admin)
-    {
-        return $this->getPermission($admin,9);
-    }
-
-    public function logement_create(Admin $admin)
-    {
-        return $this->getPermission($admin,10);
-    }
-
-    public function logement_update(Admin $admin)
-    {
-        return $this->getPermission($admin,11);
-    }
-
-    public function logement_delete(Admin $admin)
-    {
-        return $this->getPermission($admin,12);
-    }
-    
-
-    //Partie pour les authorisation administration 
-    public function admin_index(Admin $admin)
-    {
-        return $this->getPermission($admin,13);
-    }
-
-    public function admin_create(Admin $admin)
-    {
-        return $this->getPermission($admin,14);
-    }
-
-    public function admin_update(Admin $admin)
-    {
-        return $this->getPermission($admin,15);
-    }
-
-    public function admin_delete(Admin $admin)
-    {
         return $this->getPermission($admin,16);
     }
+
+
+    
+
+
 
    
 

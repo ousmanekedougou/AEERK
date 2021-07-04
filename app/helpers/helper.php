@@ -3,11 +3,12 @@
 use App\Model\Admin\Info;
 use App\Model\User\Option;
 use App\Model\Admin\Category;
+use App\Model\Admin\Immeuble;
 use App\Model\Admin\Partenaire;
 use App\Model\Admin\Post;
 use App\Model\Admin\Tag;
 use App\Model\User\Temoignage;
-
+  use Illuminate\Support\Facades\Route;
 if(! function_exists('all_info')){
     function all_info()
     {
@@ -15,7 +16,6 @@ if(! function_exists('all_info')){
         return $info;
     }
 }
-
 
 if(! function_exists('all_option')){
     function all_option()
@@ -83,5 +83,14 @@ if(! function_exists('all_article')){
     {
         $article = Post::limit(4)->get();
         return $article;
+    }
+}
+
+
+if(! function_exists('all_immeuble')){
+    function all_immeuble()
+    {
+        $immeubles = Immeuble::all();
+        return $immeubles;
     }
 }

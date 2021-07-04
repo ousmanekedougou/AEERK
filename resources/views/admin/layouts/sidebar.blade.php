@@ -129,8 +129,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route ('admin.codification.index') }}"><i class="fa fa-circle-o"></i>Nouveaux</a></li>
-            <li><a href="{{ route ('admin.codification.create') }}"><i class="fa fa-circle-o"></i> Anciens </a></li>
+            <!-- <li><a href="{{ route ('admin.codification.index') }}"><i class="fa fa-circle-o"></i>Nouveaux</a></li>
+            <li><a href="{{ route ('admin.codification.create') }}"><i class="fa fa-circle-o"></i> Anciens </a></li> -->
+            @foreach( all_immeuble() as $immeuble )
+              <li><a href="{{ route ('admin.codification.show',$immeuble->id) }}"><i class="fa fa-circle-o"></i> {{$immeuble->name}} </a></li>
+            @endforeach
           </ul>
         </li>
 
@@ -150,7 +153,7 @@
 
         @endif
 
-        @if (Auth::guard('admin')->user()->can('logement.index'))
+        @if (Auth::guard('admin')->user()->can('admins.index'))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Poste & Habitat</span>

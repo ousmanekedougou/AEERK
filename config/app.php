@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +168,7 @@ return [
          */
         MercurySeries\Flashy\FlashyServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -232,6 +232,7 @@ return [
         'Flashy' => MercurySeries\Flashy\Flashy::class,
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        "PDF" => Barryvdh\DomPDF\Facade::class,
 
     ],
 

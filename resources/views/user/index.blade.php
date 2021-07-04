@@ -19,7 +19,7 @@
 							<p class="pt-10 pb-10">
 								In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
 							</p>
-							<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;">Get Started</a>
+							<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;">Commencer</a>
 							
 						</div>										
 					</div>
@@ -28,7 +28,7 @@
 			<!-- End banner Area -->
 
 			<!-- Start feature Area -->
-			<section class="feature-area">
+			<section class="feature-area" style="margin-bottom: -50px;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4">
@@ -76,21 +76,29 @@
 			<!-- End feature Area -->
 
 			<!-- Start info Area -->
-			<section class="popular-course-area section-gap" style="margin-bottom: -150px;">
+			<section class="popular-course-area section-gap" style="margin-bottom: -180px;">
 				<div class="container">
-					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:8px;">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-7 col-lg-8">
+							<div class="title text-center">
+								<h3 class="mb-10">
+									Pour les nouveaux bacheliers</h3>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
 						<div class="col-lg-5 info-area-left text-center">
-							<img style="width:350px;height:350px;border-radius:100%;margin-top:-3px;" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
+							<img style="" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
 						</div>
 						<div class="col-lg-7 info-area-right">
-							<h3>Vous etes nouveau</h3>
+							<!-- <h3>Pour les nouveaux bacheliers</h3> -->
 							<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
 							<br>
 							<p class="text-justify">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards .
 							</p>
 							<p class="text-center">
-								<a href="{{ route('nouveau.index') }}" class="btn btn-primary"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire</a>
+								<a href="{{ route('nouveau.index') }}" class="btn btn-primary btn-block"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire</a>
 							</p>
 						</div>
 					</div>
@@ -99,21 +107,29 @@
 			<!-- End info Area -->
 
 			<!-- Start info Area -->
-			<section class="popular-course-area section-gap" style="margin-bottom: -150px;">
+			<section class="popular-course-area section-gap" style="margin-bottom: -180px;">
 				<div class="container">
-					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:8px;">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-7 col-lg-8">
+							<div class="title text-center">
+								<h3 class="mb-10">
+									Pour les anciens</h3>
+							</div>
+						</div>
+					</div>	
+					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
 						<div class="col-lg-5 info-area-left text-center">
-							<img style="width:350px;height:350px;border-radius:100%;margin-top:-3px;" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
+							<img style="" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
 						</div>
 						<div class="col-lg-7 info-area-right">
-							<h3>Vous etes ancien</h3>
+							<!-- <h3>Pour les anciens</h3> -->
 							<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
 							<br>
 							<p class="text-justify">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
 							</p>
 							<p class="text-center">
-								<a href="{{ route('ancien.index') }}" class="btn btn-primary"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire</a>
+								<a href="{{ route('ancien.index') }}" class="btn btn-primary btn-block"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire</a>
 							</p>
 						</div>
 					</div>
@@ -124,19 +140,27 @@
 			<!-- Start info Area -->
 			<section class="popular-course-area section-gap">
 				<div class="container">
-					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:8px;">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-7 col-lg-8">
+							<div class="title text-center">
+								<h3 class="mb-10">
+									Les recasements</h3>
+							</div>
+						</div>
+					</div>	
+					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
 						<div class="col-lg-5 info-area-left text-center">
-							<img style="width:350px;height:350px;border-radius:100%;margin-top:-3px;" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
+							<img style="width:100%" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
 						</div>
 						<div class="col-lg-7 info-area-right">
-							<h3>Les recasement</h3>
+							<!-- <h3>Les recasement</h3> -->
 							<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
 							<br>
 							<p class="text-justify">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. 
 							</p>
 							<p class="text-center">
-								<a href="{{ route('recasement.index') }}" class="btn btn-primary"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire </a>
+								<a href="{{ route('recasement.index') }}" class="btn btn-primary btn-block"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire </a>
 							</p>
 						</div>
 					</div>
@@ -476,10 +500,9 @@
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row justify-content-between align-items-center">
-						<div class="col-lg-6 col-md-6 search-course-left">
+						<div class="col-lg-8 col-md-8 search-course-left">
 							<h1 class="text-white">
-								Get reduced fee <br>
-								during this Summer!
+								Obtenez des frais réduits <br> durant cet été !
 							</h1>
 							<p>
 								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
@@ -501,7 +524,7 @@
 								</div>								
 							</div>
 						</div>
-						<div class="col-lg-6 col-md-6 search-course-right section-gap">
+						<div class="col-lg-4 col-md-4 search-course-right section-gap">
 							<form class="form-wrap"  method="POST" action="{{ route('temoignage.post') }}">
 								@csrf
 								<h4 class="text-white pb-20 text-center mb-30">Faites nous part de votre avis</h4>		
@@ -597,8 +620,5 @@
 				</div>	
 			</section>
 			<!-- End blog Area -->			
-
-
-
 
 @endsection

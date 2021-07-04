@@ -5,6 +5,7 @@ use App\Model\Admin\Role;
 use App\Model\Admin\Admin;
 use App\Model\Admin\Social;
 use App\Model\Admin\Category;
+use App\Model\Admin\Info;
 use App\Model\Admin\Permission;
 use App\Model\Admin\Option;
 use App\Model\Admin\Solde;
@@ -20,27 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
-          // les roles
-          Role::create(
-            [
-                'name' => 'Modifier'
-            ]);
-            Role::create(
-            [
-                'name' => 'Publier'
-            ]);
-            Role::create(
-            [
-                'name' => 'Ecrire'
-            ]);
-            Role::create(
-            [
-                'name' => 'Creer'
-            ]);
-            // fin des role
-
-            Role::create(
+           Info::create(
             [
                 'email' => 'aeerk@gmail.com',
                 'phone' => '77000000',
@@ -48,59 +29,118 @@ class DatabaseSeeder extends Seeder
                 'fax' => '000000',
                 'bp' => 'boite poste',
             ]);
-                
-    
-    
+
+        // $this->call(UserSeeder::class);
+          // les roles
+            Role::create(
+            [
+                'name' => 'Admin'
+            ]);
+            Role::create(
+            [
+                'name' => 'Codifier'
+            ]);
+            Role::create(
+            [
+                'name' => 'Logement'
+            ]);
+            Role::create(
+            [
+                'name' => 'Article'
+            ]);
+            // fin des role
+
             Permission::create(
             [
-                'name' => 'Creer-Article',
+                'name' => 'index',
+                'for' => 'Admin'
+            ]);
+            Permission::create(
+            [
+                'name' => 'create',
+                'for' => 'Admin'
+            ]);
+            Permission::create(
+            [
+                'name' => 'update',
+                'for' => 'Admin'
+            ]);
+            Permission::create(
+            [
+                'name' => 'delete',
+                'for' => 'Admin'
+            ]);
+
+
+            Permission::create(
+            [
+                'name' => 'index',
+                'for' => 'Codifier'
+            ]);
+            Permission::create(
+            [
+                'name' => 'create',
+                'for' => 'Codifier'
+            ]);
+            Permission::create(
+            [
+                'name' => 'update',
+                'for' => 'Codifier'
+            ]);
+            Permission::create(
+            [
+                'name' => 'delete',
+                'for' => 'Codifier'
+            ]);
+
+
+            Permission::create(
+            [
+                'name' => 'index',
+                'for' => 'Logement'
+            ]);
+            Permission::create(
+            [
+                'name' => 'create',
+                'for' => 'Logement'
+            ]);
+            Permission::create(
+            [
+                'name' => 'update',
+                'for' => 'Logement'
+            ]);
+            Permission::create(
+            [
+                'name' => 'delete',
+                'for' => 'Logement'
+            ]);
+
+
+
+            Permission::create(
+            [
+                'name' => 'index',
                 'for' => 'Article'
             ]);
             Permission::create(
             [
-                'name' => 'Modifier-Article',
+                'name' => 'create',
                 'for' => 'Article'
             ]);
             Permission::create(
             [
-                'name' => 'Supprimer-Article',
+                'name' => 'update',
                 'for' => 'Article'
             ]);
             Permission::create(
             [
-                'name' => 'Publier-Article',
+                'name' => 'delete',
                 'for' => 'Article'
             ]);
-            Permission::create(
-            [
-                'name' => 'Creer-Medecin',
-                'for' => 'Medecin'
-            ]);
-            Permission::create(
-            [
-                'name' => 'Modifier-Medecin',
-                'for' => 'Medecin'
-            ]);
-            Permission::create(
-            [
-                'name' => 'Supprimer-Medecin',
-                'for' => 'Medecin'
-            ]);
-            Permission::create(
-            [
-                'name' => 'Publier-Medecin',
-                'for' => 'Medecin'
-            ]);
-            Permission::create(
-            [
-                'name' => 'Tag-Crud',
-                'for' => 'Autre'
-            ]);
-            Permission::create(
-            [
-                'name' => 'Categorie-Crud',
-                'for' => 'Autre'
-            ]);
+
+
+            
+
     
             // Insertion Reseau Sociaux
                 Social::create(
@@ -193,7 +233,7 @@ class DatabaseSeeder extends Seeder
                     'email' => 'blog@gmail.com',
                     'phone' => '00000000',
                     'status' => 1,
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // 11111111
+                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                     'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
                 ]);
                 // fin de la connexion des admin
@@ -218,7 +258,7 @@ class DatabaseSeeder extends Seeder
 
                 User::create([
                    'email' => 'codifier@gmail.com',
-                   'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' // 11111111
+                   'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' // password
                 ]);
     }
 }

@@ -9,6 +9,7 @@ use App\Model\Admin\Solde;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Etudiant;
 use Nexmo\Laravel\Facade\Nexmo;
 class NouveauController extends Controller
 {
@@ -47,7 +48,7 @@ class NouveauController extends Controller
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:nouveaus',
-            'phone' => 'required|unique:nouveaus|numeric',
+            'phone' => 'required|unique:nouveaus|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|between:9,13',
             'commune' => 'required|numeric',
             'extrait' => 'required|mimes:pdf,PDF',
             'relever' => 'required|mimes:pdf,PDF',
@@ -57,7 +58,8 @@ class NouveauController extends Controller
         ]);
         // dd($request->all());
         $immeuble = Immeuble::where('status',1)->first();
-        $add_nouveau = new Nouveau;
+        $add_nouveau = new Etudiant;
+        define('NOUVEAU',1);
         $extraitName = '';
         $imageName = '';
         $photocopieName = '';
@@ -91,13 +93,14 @@ class NouveauController extends Controller
         $add_nouveau->commune_id = $request->commune;
         $add_nouveau->immeuble_id =  $immeuble->id;
         $add_nouveau->status = 0;
+        $add_nouveau->ancienete = NOUVEAU;
         $add_nouveau->save();
         $numero_bureau = Solde::first();
-        Nexmo::message()->send([
-            'to' => '221'.$numero_bureau->numero_nouveau,
-            'from' => '+221'.$request->phone,
-            'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
-        ]);
+        // Nexmo::message()->send([
+        //     'to' => '221'.$numero_bureau->numero_nouveau,
+        //     'from' => '+221'.$request->phone,
+        //     'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
+        // ]);
         Flashy::success('Votre Inscription a ete Valider');
         return redirect()->route('index',$add_nouveau)->with([
             "existe" => "existe",

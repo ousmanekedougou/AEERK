@@ -26,7 +26,10 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
+                 <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-add-commission"  href="">
                     <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($admins->image) }}" alt="User profile picture">
+                    <i class="fa fa-camera" style="transform: translate(400%,-200%);"></i>
+                 </a>
 
                     <h3 class="profile-username text-center">{{ $admins->name }}</h3>
 
@@ -74,7 +77,7 @@
                     <div class="active tab-pane" id="activity">
                         <!-- Post -->
                         <div class="post">
-                        <form class="form-horizontal" action="{{ route('admin.profile.update',Auth::user()->id) }}" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal" action="{{ route('admin.profile.update',Auth::guard('admin')->user()->id) }}" method="post" enctype="multipart/form-data">
                             @csrf 
                             {{ method_field('PUT') }}
                             <div class="form-group">
@@ -115,48 +118,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="inputPassword" class="col-sm-3 control-label">Password</label>
-
-                                <div class="col-sm-9">
-                                   <div>
-                                   <div class="col-lg-6 pull-left"><input id="password" value="{{ old('password')  }}" type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword" placeholder="Password"></div>
-                                 
-                                   </div>
-                                    <div class="col-lg-6"><input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation')  }}" class="form-control @error('password_confirmation') is-invalid @enderror" id="inputPassword" placeholder="Confirm Password"></div>
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong class="text-danger">{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputImage" class="col-sm-3 control-label">Image</label>
-
-                                <div class="col-sm-9">
-                                <input type="file" name="image">
-                                    @error('image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                    </label>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-danger">Modifier</button>
+                                <button type="submit" class="btn btn-primary btn-block">Enregistre les modifications</button>
                             </div>
                             </div>
                         </form>
@@ -168,6 +131,48 @@
                 <!-- /.tab-content -->
             </div>
             <!-- /.nav-tabs-custom -->
+
+
+              <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <!-- <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li> -->
+                </ul>
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <!-- Post -->
+                        <div class="post">
+                        <form class="form-horizontal" action="{{ route('admin.update_password',Auth::guard('admin')->user()->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf 
+                            {{ method_field('PUT') }}
+
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+
+                                <div class="col-sm-9">
+                                   <div class="row">
+                                     <div class="col-lg-12"><input id="password" value="{{ old('password')  }}" type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword" placeholder="Votre mot de passe"></div>
+                              
+                                        <div class="col-lg-12" style="margin-top: 10px;"><input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation')  }}" class="form-control @error('password_confirmation') is-invalid @enderror" id="inputPassword" placeholder="Confirmer la mot de passe"></div>
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    <div class="col-lg-12"  style="margin-top: 10px; width: 100%;">
+                                        <button type="submit" style="width: 100%;" class="btn btn-primary btn-block">Enregistre les modifications</button>
+                                    </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <!-- /.post -->
+                    </div>
+                
+                </div>
+                <!-- /.tab-content -->
+            </div>
         </div>
         <!-- /.col -->
         </div>
@@ -176,6 +181,42 @@
     </section>
         <!-- /.content -->
 </div>
+
+        <div class="modal fade" id="modal-default-add-commission">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modifier votre image de profile</h4>
+              </div>
+              <form action="{{ route('admin.update_image',Auth::guard('admin')->user()->id) }}" method="post" enctype="multipart/form-data">
+                @csrf 
+                {{ method_field('PUT') }}
+              <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputImage" class="col-sm-3 control-label">Image</label>
+
+                    <div class="col-sm-9">
+                    <input type="file" name="image">
+                        @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong class="text-danger">{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Enregistre</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 
 @endsection
 

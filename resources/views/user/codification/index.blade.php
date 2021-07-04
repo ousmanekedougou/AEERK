@@ -31,15 +31,6 @@
 			<!-- Start contact-page Area -->
 			<section class="contact-page-area section-gap">
 				<div class="container">
-					{{-- <div class="pull-right">
-						<a href="{{ route('logout') }}"
-						onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-						 class="btn btn-default btn-flat">Se Deconnecter</a>
-	  
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-							@csrf
-						</form>
-					  </div> --}}
 					<div class="row">
 					<div class="col-lg-4"></div>
 					<div class="col-lg-4 form_content">
@@ -47,11 +38,11 @@
 							<form class="form-area contact-form text-right" action="{{ route('codification.store') }}" method="post">
 								@csrf
 								<div class="row">
-									<h3 class="pull-center" style="margin-left:12px;margin-bottom:10px;">Vous Etes</h3>
+									<h6 class="pull-center" style="margin-left:12px;margin-bottom:10px;">Vous Etes</h6>
 									<div class="col-lg-12">
 										<div class="single-element-widget switch-wrap d-flex justify-content-between button_radio">
 											<div class="switch-wrap d-flex justify-content-between">
-												<p class="text-black mr-2" style="font-weight:700;">* Nouveau</p>
+												<p class="text-black mr-2" style="font-weight:700;"><span class="text-danger">*</span> Nouveau</p>
 												<div class="confirm-switch mt-1">
 													<input type="radio" required="" id="confirm-switch" name="status" value="{{ old('status') ??  $nouveau }}" class=" @error('status') is-invalid @enderror">
 													<label for="confirm-switch"></label>
@@ -63,7 +54,7 @@
 												</div>
 											</div>
 											<div class="switch-wrap d-flex justify-content-between">
-												<p class="text-black mr-2" style="font-weight:700;">* Ancien</p>
+												<p class="text-black mr-2" style="font-weight:700;"><span class="text-danger">*</span> Ancien</p>
 												<div class="primary-switch mt-1">
 													<input type="radio" required="" id="primary-switch" name="status" value="{{ old('status') ?? $ancien }}" class=" @error('status') is-invalid @enderror">
 													<label for="primary-switch"></label>
@@ -78,7 +69,8 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<input name="email" placeholder="Entre votre adresse email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Entre votre adresse email'" class="common-input mb-20 form-control @error('email') is-invalid @enderror" required="" value="{{ old('email') }}" type="email">
+									<label for="" style="color: black;font-weight:600;" class="pull-left">Entrez votre adresse email <span class="text-danger">*</span></label>
+									<input name="email" placeholder="" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" class="common-input mb-20 form-control @error('email') is-invalid @enderror" required="" value="{{ old('email') }}" type="email">
 									@error('email')
 										<span class="invalid-feedback" role="alert">
 											<strong class="message_error">{{ $message }}</strong>
@@ -87,7 +79,8 @@
 								</div>
 								
 								<div class="form-group">
-									<input name="phone" placeholder="Entre votre numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Entre votre numero de telephone'" class="common-input mb-20 form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required="" type="number">
+									<label for="" style="color: black;font-weight:600;" class="pull-left">Entre votre numero de telephone <span class="text-danger">*</span></label>
+									<input name="phone" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" class="common-input mb-20 form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required="" type="number">
 									@error('phone')
 										<span class="invalid-feedback" role="alert">
 											<strong class="message_error">{{ $message }}</strong>
@@ -95,7 +88,7 @@
 									@enderror
 								</div>
 
-								<div class="col-lg-12">
+								<div class="form-group">
 									<div class="alert-msg"></div>
 									<button class="btn  btn-primary btn-block" type="submit">Se Connecter</button>											
 								</div>

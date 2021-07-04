@@ -22,9 +22,9 @@
 								
 								<div class="row">
 									@if($ancien->genre == 1)
-									<h3 class="pull-left" style="margin-bottom:10px;">M.{{ $ancien->prenom .' '. $ancien->nom}}</h3>
+										<h3 class="pull-left" style="margin-bottom:10px;">M.{{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@else 
-									<h3 class="pull-left" style="margin-bottom:10px;">Mme {{ $ancien->prenom .' '. $ancien->nom}}</h3>
+										<h3 class="pull-left" style="margin-bottom:10px;">Mme {{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@endif
 								</div>
 									<h5 class="pull-left" style="margin-bottom:10px;">Choisissez Votre Immeuble</h5>
@@ -34,11 +34,11 @@
 										<div class="input-group-icon mt-10">
 											<!-- <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div> -->
 											<div class="form-select" id="default-select">
-											<label for="" class="pull-right"></label>
-											<input type="hidden" value="{{ $ancien->genre }}" name="genre">
+												<label for="" class="pull-right"></label>
+												<input type="hidden" value="{{ $ancien->genre }}" name="genre">
 												<select value="{{ old('immeuble') }}" name="immeuble" class="common-input mb-20 form-control @error('immeuble') is-invalid @enderror">
 												@foreach($immeubles as $imb)
-														<option value="{{$imb->id}}">{{$imb->name}}</option>
+													<option value="{{$imb->id}}">{{$imb->name}}</option>
 												@endforeach
 												</select>
 												@error('immeuble')
