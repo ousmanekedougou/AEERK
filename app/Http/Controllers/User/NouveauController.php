@@ -48,7 +48,7 @@ class NouveauController extends Controller
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:nouveaus',
-            'phone' => 'required|unique:nouveaus|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|between:9,13',
+            'phone' => 'required|unique:nouveaus|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'commune' => 'required|numeric',
             'extrait' => 'required|mimes:pdf,PDF',
             'relever' => 'required|mimes:pdf,PDF',
@@ -103,13 +103,8 @@ class NouveauController extends Controller
         // ]);
         Flashy::success('Votre Inscription a ete Valider');
         return redirect()->route('index',$add_nouveau)->with([
-            "existe" => "existe",
-            "name" => "$add_nouveau->prenom $add_nouveau->nom",
-            "remercie" => "Votre inscription a ete enregistre et L'AEERK vous en remercie.",
-            "sms" => "Nous vous informons que vous serez notifier apres la verification de vos documents.",
-            "info" => "Si toute fois vos document ont ete valide la codification en ligne est dispnoble 
-            un lien vous sera envoyer.
-            "
+            "success" => "success",
+            "name" => "$add_nouveau->prenom $add_nouveau->nom"
         ]);
     }
 

@@ -4,10 +4,13 @@ namespace App\Model\User;
 use App\Model\Admin\Chambre;
 use App\Model\Admin\Commune;
 use App\Model\Admin\Immeuble;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Etudiant extends Model
 {
+     use  Notifiable;
+
      protected $fillable = [
         'subject', 'message',
     ];

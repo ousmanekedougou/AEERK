@@ -82,40 +82,42 @@
 			            </ul>
 			          </li>	 -->
 			       
-					  {{-- <li class="menu-has-children"><a href=""><i class="fa fa-graduation-cap fa_ajout"></i> Orientation</a>
-			            <ul>
-					          <li class="menu-has-children"><a href="">UCAD </a>
-					            <ul>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-					            </ul>
-							  </li>	
-							  <li class="menu-has-children"><a href="">UGB </a>
-					            <ul>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-					            </ul>
-					          </li>
-							  <li class="menu-has-children"><a href="">UNIVERSITE DE BAMBEY </a>
-					            <ul>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-					            </ul>
-					          </li>	
-							  <li class="menu-has-children"><a href="">UNIVERSITE DE ZIGUINCHORE </a>
-					            <ul>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-					            </ul>
-					          </li>					                						                		
-							  <li class="menu-has-children"><a href="">PRIVEE </a>
-					            <ul>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-					              <li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-					            </ul>
-					          </li>					                							                		
-			            </ul>
-			          </li>				          					          		           --}}
+						{{-- 
+						<li class="menu-has-children"><a href=""><i class="fa fa-graduation-cap fa_ajout"></i> Orientation</a>
+							<ul>
+								<li class="menu-has-children"><a href="">UCAD </a>
+									<ul>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
+									</ul>
+								</li>	
+								<li class="menu-has-children"><a href="">UGB </a>
+									<ul>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
+									</ul>
+								</li>
+								<li class="menu-has-children"><a href="">UNIVERSITE DE BAMBEY </a>
+									<ul>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
+									</ul>
+								</li>	
+								<li class="menu-has-children"><a href="">UNIVERSITE DE ZIGUINCHORE </a>
+									<ul>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
+									</ul>
+								</li>					                						                		
+								<li class="menu-has-children"><a href="">PRIVEE </a>
+									<ul>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
+									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
+									</ul>
+								</li>					                							                		
+							</ul>
+						</li>
+					  	--}}
 			          <li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		

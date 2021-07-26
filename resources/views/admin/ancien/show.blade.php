@@ -33,7 +33,7 @@
                 <b><i class="fa fa-phone"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_ancien->phone }}</a>
                 </li>
                 <li class="list-group-item">
-                <b><i class="fa fa-map-marker"></i></b>  <a class="pull-center text-muted text-bold tex-italic">{{ $show_ancien->commune->name }}</a>
+                <b><i class="fa fa-map-marker"></i></b>  <a class="pull-center text-muted text-bold tex-italic">{{ $show_ancien->commune->name }} ({{$show_ancien->commune->departement->name}})</a>
                 </li>
                 <li class="list-group-item">
                 <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $show_ancien->immeuble->name }}</a>
@@ -244,10 +244,11 @@
                     <div class="col-sm-10">
                       <select name="commune"   value="{{  old('commune')}}" class="form-control @error('commune') is-invalid @enderror" id="">
                          @foreach($departement as $dep)
-														<p>{{ $dep->name }}</p>
-														@foreach($dep->communes as $dep_com)
-														<option value="{{ $dep_com->id }}">{{$dep_com->name}}</option>
-														@endforeach
+                            <optgroup label="{{ $dep->name }}">
+                              @foreach($dep->communes as $dep_com)
+                              <option value="{{ $dep_com->id }}">{{$dep_com->name}}</option>
+                              @endforeach
+                            </optgroup>
 													@endforeach
                         @error('commune')
                       <span class="invalid-feedback" role="alert">
@@ -260,7 +261,7 @@
                   
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Modifier</button>
+                      <button type="submit" class="btn btn-success btn-block">Entegistre las modifications</button>
                     </div>
                   </div>
                 </form>

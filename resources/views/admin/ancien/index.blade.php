@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('headsection')
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
 @endsection
 @section('main-content')
 
@@ -24,7 +25,7 @@
               <div class="nav-tabs-custom">
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
-              <table id="example1" class="table text-center table-bordered table-striped">
+              <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Image</th>
@@ -87,21 +88,6 @@
                   </tr>
                 @endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Image</th>
-                  <th>Prenom et nom</th>
-                  <th>Telephone</th>
-                  <th>Immeuble Choisi</th>
-                  @can('codifier.update', Auth::guard('admin')->user())
-                  <th>Voire</th>
-                  @endcan
-                  <th>Traitement</th>
-                  @can('codifier.update', Auth::guard('admin')->user())
-                  <th>Options</th>
-                  @endcan
-                </tr>
-                </tfoot>
               </table>
               {{-- {{$ancien_bac->links()}} --}}
             </div>
@@ -190,6 +176,7 @@
 
 <script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
 <script>
  $(function () {
     $('#example1').DataTable()

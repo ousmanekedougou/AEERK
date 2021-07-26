@@ -32,7 +32,8 @@ class AncienController extends Controller
      */
     public function create()
     {
-        return view('user.ancien.update');
+        $immeuble = Immeuble::where('status',2)->get();
+        return view('user.ancien.update',compact('immeuble'));
     }
 
     /**
@@ -48,7 +49,7 @@ class AncienController extends Controller
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:anciens',
-            'phone' => 'required|unique:anciens|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|between:9,13',
+            'phone' => 'required|unique:anciens|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'commune' => 'required|numeric',
             'immeuble' => 'required|numeric',
             'extrait' => 'required|mimes:PDF,pdf',
@@ -97,13 +98,8 @@ class AncienController extends Controller
         // ]);
         Flashy::success('Votre Inscription a ete Valider');
         return redirect()->route('index',$add_ancien)->with([
-            "existe" => "existe",
-            "name" => "$add_ancien->prenom $add_ancien->nom",
-            "remercie" => "Votre inscription a ete enregistre et L'AEERK vous en remercie .",
-            "sms" => "Nous vous informons que vous serez notifier apres la verification de vos documents.",
-            "info" => "Si toute fois vos document ont ete valide la codification en ligne est dispnoble 
-            un lien vous sera envoyer.
-            "
+            "success" => "success",
+            "name" => "$add_ancien->prenom $add_ancien->nom"
         ]);
     }
 
@@ -147,16 +143,20 @@ class AncienController extends Controller
             'update_email' => 'required|email',
             'update_phone' => 'required|numeric',
             'update_certificat' => 'required|mimes:pdf,PDF',
-            'update_image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+            'update_image' => 'image|mimes:jpeg,png,jpg,gif,ijf',
+            'immeuble' => 'required|numeric'
         ]);
-        $ancien_existant = Etudiant::where('email', '=', $request->update_email)
-        ->where('phone', '=', $request->update_phone)
-        ->where('codifier', '=', 1)
-        ->where('ancienete', '=', 2)->first();
+        $ancien_existant = Etudiant::where(['email' => $request->update_email , 'phone' => $request->update_phone ,
+        'codifier' => 1 , 'ancienete' => 2])->first();
+
         $imageName = '';
         $certificatName = '';
         if ($request->hasFile('update_image')) {
-            $imageName = $request->update_image->store('public/Ancien');
+            if ($request->update_image == Null) {
+                $imageName = $ancien_existant->image;
+            }else{
+                $imageName = $request->update_image->store('public/Ancien');
+            }
         }
         if ($request->hasFile('update_certificat')) {
             $certificatName = $request->update_certificat->store('public/Ancien');
@@ -167,14 +167,16 @@ class AncienController extends Controller
             $ancien_existant->status = false;
             $ancien_existant->codifier = 0;
             $ancien_existant->prix = 0;
+            $ancien_existant->immeuble_id = $request->immeuble;
+            $ancien_existant->chambre_id = 0;
             $ancien_existant->save();
             $numero_bureau = Solde::first();
-            Nexmo::message()->send([
-                'to' => '221'.$numero_bureau->numero_ancien,
-                'from' => '+221'.$request->update_phone,
-                'text' => "AEERK : Slut $ancien_existant->prenom  $ancien_existant->nom,votre certificat d'inscription a ete modifier."
-            ]);
-            Flashy::success('Votre certificat a ete modifier');
+            // Nexmo::message()->send([
+            //     'to' => '221'.$numero_bureau->numero_ancien,
+            //     'from' => '+221'.$request->update_phone,
+            //     'text' => "AEERK : Slut $ancien_existant->prenom  $ancien_existant->nom,votre certificat d'inscription a ete modifier."
+            // ]);
+            Flashy::success('Votre profile a ete mise a jour');
             return redirect()->route('index');
         }else{
             Flashy::error('Vous etes pas dans notre base de donne');

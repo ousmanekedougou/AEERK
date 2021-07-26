@@ -30,24 +30,37 @@
 
                       <p>Slider Simple</p>
                       <a class="btn btn-warning btn-xs" data-toggle="modal" data-id="{{$slide_slide_1->id}}" data-name="{{$slide_slide_1->id}}" data-target="#modal-default-slider_simple-update-{{$slide_slide_1->id}}"><i class="fa fa-edit"></i> Editer</a>
-                      <form id="delete-form-{{$slide_slide_1->id}}" method="post" action="{{ route('admin.slider.destroy',$slide_slide_1->id) }}" style="display:none">
-                            {{csrf_field()}}
-                            {{method_field('delete')}}
-                            </form>
-                          <a class="btn btn-danger btn-xs" href="" onclick="
-                            if(confirm('Are you sure , You want to delete this ?')){
-
-                            event.preventDefault();document.getElementById('delete-form-{{$slide_slide_1->id}}').submit();
-
-                            }else{
-
-                              event.preventDefault();
-
-                            }
-                            
-                            "><i class="fa fa-trash"></i> Delete</a>
+                   
+                      <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal-default-slider_simple-{{$slide_slide_1->id}}"><i class="fa fa-trash"></i> Delete</a>
                     </div>
                     <!-- /.box-body -->
+                  </div>
+
+                  <div class="modal fade" id="modal-default-slider_simple-{{$slide_slide_1->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Suppression de slider</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire supprimer ce slider simple
+                          </p>
+                        <form action="{{ route('admin.slider.destroy',$slide_slide_1->id) }}" method="post" style="display:none;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
                   </div>
                   @endforeach
               </div>
@@ -62,24 +75,37 @@
 
                       <p>Slider Login</p>
                       <a class="btn btn-warning btn-xs" data-toggle="modal" data-id="{{$slide_slide_login->id}}" data-name="{{$slide_slide_login->id}}" data-target="#modal-default-slider_login-update-{{$slide_slide_login->id}}"><i class="fa fa-edit"></i> Editer</a>
-                      <form id="delete-form-{{$slide_slide_login->id}}" method="post" action="{{ route('admin.slider.destroy',$slide_slide_login->id) }}" style="display:none">
-                            {{csrf_field()}}
-                            {{method_field('delete')}}
-                            </form>
-                          <a class="btn btn-danger btn-xs" href="" onclick="
-                            if(confirm('Are you sure , You want to delete this ?')){
-
-                            event.preventDefault();document.getElementById('delete-form-{{$slide_slide_login->id}}').submit();
-
-                            }else{
-
-                              event.preventDefault();
-
-                            }
-                            
-                            "><i class="fa fa-trash"></i> Delete</a>
+                    
+                          <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal-default-slider_login-{{$slide_slide_login->id}}"><i class="fa fa-trash"></i> Delete</a>
                     </div>
                     <!-- /.box-body -->
+                  </div>
+
+                   <div class="modal fade" id="modal-default-slider_login-{{$slide_slide_login->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Suppression de slider</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire supprimer ce slider de connexion
+                          </p>
+                        <form action="{{ route('admin.slider.destroy',$slide_slide_login->id) }}" method="post" style="display:none;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
                   </div>
                   @endforeach
 
@@ -91,24 +117,37 @@
 
                       <p>Slider Inscription</p>
                       <a class="btn btn-warning btn-xs" data-toggle="modal" data-id="{{$slide_inscription->id}}" data-name="{{$slide_inscription->id}}" data-target="#modal-default-slider_inscription-update-{{$slide_inscription->id}}"><i class="fa fa-edit"></i> Editer</a>
-                      <form id="delete-form-{{$slide_inscription->id}}" method="post" action="{{ route('admin.slider.destroy',$slide_inscription->id) }}" style="display:none">
-                            {{csrf_field()}}
-                            {{method_field('delete')}}
-                            </form>
-                          <a class="btn btn-danger btn-xs" href="" onclick="
-                            if(confirm('Are you sure , You want to delete this ?')){
-
-                            event.preventDefault();document.getElementById('delete-form-{{$slide_inscription->id}}').submit();
-
-                            }else{
-
-                              event.preventDefault();
-
-                            }
-                            
-                            "><i class="fa fa-trash"></i> Delete</a>
+           
+                      <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal-default-slider_inscription-{{$slide_inscription->id}}"><i class="fa fa-trash"></i> Delete</a>
                     </div>
                     <!-- /.box-body -->
+                  </div>
+
+                  <div class="modal fade" id="modal-default-slider_inscription-{{$slide_inscription->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Suppression de slider</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire supprimer ce slider de inscription
+                          </p>
+                        <form action="{{ route('admin.slider.destroy',$slide_inscription->id) }}" method="post" style="display:none;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
                   </div>
                   @endforeach
 
@@ -121,24 +160,37 @@
 
                       <p>Slider Contact</p>
                       <a class="btn btn-warning btn-xs" data-toggle="modal" data-id="{{$slide_contact_sld->id}}" data-name="{{$slide_contact_sld->id}}" data-target="#modal-default-slider_contact-update-{{$slide_contact_sld->id}}"><i class="fa fa-edit"></i> Editer</a>
-                      <form id="delete-form-{{$slide_contact_sld->id}}" method="post" action="{{ route('admin.slider.destroy',$slide_contact_sld->id) }}" style="display:none">
-                            {{csrf_field()}}
-                            {{method_field('delete')}}
-                            </form>
-                          <a class="btn btn-danger btn-xs" href="" onclick="
-                            if(confirm('Are you sure , You want to delete this ?')){
-
-                            event.preventDefault();document.getElementById('delete-form-{{$slide_contact_sld->id}}').submit();
-
-                            }else{
-
-                              event.preventDefault();
-
-                            }
-                            
-                            "><i class="fa fa-trash"></i> Delete</a>
+                  
+                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal-default-slider_contact-{{$slide_contact_sld->id}}"><i class="fa fa-trash"></i> Delete</a>
                     </div>
                     <!-- /.box-body -->
+                  </div>
+
+                   <div class="modal fade" id="modal-default-slider_contact-{{$slide_contact_sld->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Suppression de slider</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire supprimer ce slider de contact
+                          </p>
+                        <form action="{{ route('admin.slider.destroy',$slide_contact_sld->id) }}" method="post" style="display:none;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
                   </div>
                   @endforeach
               </div>

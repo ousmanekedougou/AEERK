@@ -2,6 +2,7 @@
 
 @section('headsection')
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
 @endsection
 
 @section('main-content')
@@ -21,7 +22,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table text-center table-bordered table-striped">
+              <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                 <thead>
                 <tr class="bg-primary">
                   <th>S.No</th>
@@ -61,13 +62,6 @@
                           </tr>
                           @endforeach
                   </tbody>
-                <tfoot>
-                <tr class="bg-primary">
-                  <th>S.No</th>
-                  <th>Commission</th>
-                  <th>Options</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
             <!-- fin de la table -->
@@ -88,7 +82,7 @@
             @endcan
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table text-center table-bordered table-striped">
+              <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                 <thead>
                 <tr class="bg-primary">
                   <th>S.No</th>
@@ -133,14 +127,6 @@
                           </tr>
                           @endforeach
                   </tbody>
-                <tfoot>
-                <tr class="bg-primary">
-                  <th>S.No</th>
-                  <th>Postes</th>
-                  <th>Commission</th>
-                  <th>Options</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
             <!-- fin de la table -->
@@ -335,5 +321,5 @@
     $('#example1').DataTable()
   })
 </script>
-
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
 @endsection

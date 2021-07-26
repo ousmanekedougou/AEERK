@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-
+@section('headsection')
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
+@endsection
 @section('main-content')
 
        <!-- Content Wrapper. Contains page content -->
@@ -17,7 +19,7 @@
             </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <table id="example1" class="table text-center table-bordered table-striped">
+                <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                   <thead>
                   <tr class="bg-primary">
                     <th>S.No</th>
@@ -69,16 +71,6 @@
                             </tr>
                             @endforeach
                     </tbody>
-                  <tfoot>
-                  <tr class="bg-primary">
-                    <th>S.No</th>
-                    <th>Image</th>
-                    <th>Nom</th>
-                    <th>Adresse</th>
-                    <th>Reserve</th>
-                    <th>Options</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
               <!-- fin de la table -->
@@ -100,7 +92,7 @@
                 @foreach($immeuble as $all_immeuble)
                 <h4 class="btn btn-primary text-center pull-center" style="margin-left:10px;">{{ $all_immeuble->name }}</h4>
                 <div class="box-body">
-                  <table id="example1" class="table text-center table-bordered table-striped">
+                  <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                     <thead>
                     <tr class="bg-primary">
                       <th>S.No</th>
@@ -150,15 +142,6 @@
                           </tr>
                         @endforeach
                       </tbody>
-                    <tfoot>
-                    <tr class="bg-primary">
-                      <th>S.No</th>
-                      <th>Nom</th>   
-                      <th>Nombre</th>
-                      <th>Status</th>
-                      <th>Options</th>
-                    </tr>
-                    </tfoot>
                   </table>
                 </div>
                 @endforeach
@@ -498,5 +481,7 @@
 
   <!-- Fin du modal Immeuble -->
 @endsection
-
+@section('footersection')
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
+@endsection
 

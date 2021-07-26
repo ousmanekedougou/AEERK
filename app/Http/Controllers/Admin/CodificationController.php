@@ -85,13 +85,16 @@ class CodificationController extends Controller
      */
     public function edit($id)
     {
-        
+        // $codifier_nouveau = Etudiant::where('id',$id);
+        // $pdf = PDF::loadView('user.pdf', compact('codifier_nouveau'));
+
+        // $path = public_path('pdf/');
+        // $fileName =  $codifier_nouveau->phone . '.' . 'pdf' ;
+        // $pdf->save($path . '/' . $fileName);
+        // return $pdf->download($fileName);
     }
 
-     public function createPdf($id){
 
-        
-    }
 
     /**
      * Update the specified resource in storage.

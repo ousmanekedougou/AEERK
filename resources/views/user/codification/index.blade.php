@@ -1,6 +1,9 @@
-<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
-	@include('user/layouts/head')
+ @extends('user.layouts.app',['title' => 'Connexion'])
+ @section('bg-img',asset('user/img/home-bg.jpg'))
+ @section('title','Se Connecter')
+@section('sub-heding','Bootstrap Template')
+@section('head')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 	<style>
 		.contact-page-area{
 			margin-top: -4em;
@@ -8,7 +11,8 @@
 		.form_content{
 			padding:2em;
 			background-color:#fff;
-			box-shadow: 0px 0px 15px #0000001a;  
+			box-shadow: 0px 0px 15px #0000001a;
+			border-radius: 5px;  
 		}
 		.button_radio{
 			background-color: rgba(0, 0, 0, 0.034);
@@ -25,11 +29,75 @@
 			height: auto;
 		}
 	</style>
-	{{-- @extends('user/layouts/app') --}}
-		<body>	
+@endsection
+@section('main-content')
+			<!-- start banner Area -->
+				<section class="banner-area relative about-banner" id="home">	
+					<div class="overlay overlay-bg"></div>
+					<div class="container">				
+						<div class="row d-flex align-items-center justify-content-center">
+							<div class="about-content col-lg-12">
+								<h1 class="text-white">
+									
+								</h1>	
+								<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="">Entre les informations</a></p>
+							</div>	
+						</div>
+					</div>
+				</section>
+			<!-- End banner Area -->
+
+				<!-- Start feature Area -->
+			<section class="feature-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-2">
+							<!-- <div class="single-feature">
+								<div class="title">
+									<h4>Codification</h4>
+								</div>
+								<div class="desc-wrap">
+									<p>
+										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+									</p>
+									<a href="#">Voire</a>									
+								</div>
+							</div> -->
+						</div>
+						<div class="col-lg-8">
+							<div class="single-feature">
+								<div class="title">
+									<h4>Quelques informations</h4>
+								</div>
+								<div class="desc-wrap">
+									<p>
+										For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
+									</p>
+									<a href="#">Voire</a>									
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<!-- <div class="single-feature">
+								<div class="title">
+									<h4>Etudes & Bourse</h4>
+								</div>
+								<div class="desc-wrap">
+									<p>
+										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+									</p>
+									<a href="#">Voire</a>									
+								</div>
+							</div> -->
+						</div>												
+					</div>
+				</div>	
+			</section>
+			<!-- End feature Area -->
+
 			@include('flashy::message')
 			<!-- Start contact-page Area -->
-			<section class="contact-page-area section-gap">
+			<section class=" contact-page-area section-gap">
 				<div class="container">
 					<div class="row">
 					<div class="col-lg-4"></div>
@@ -100,34 +168,23 @@
 			</section>
 			<!-- End contact-page Area -->
 
-			@if(Session::has('flashy_notification.message'))
-			<script id="flashy-template" type="text/template">
-				<div class="flashy flashy--{{ Session::get('flashy_notification.type') }}">
-					<i class="material-icons">speaker_notes</i>
-					<a href="#" class="flashy__body" target="_blank"></a>
-				</div>
-			</script>
-			
-			<script>
-				flashy("{{ Session::get('flashy_notification.message') }}", "{{ Session::get('flashy_notification.link') }}");
-			</script>
-			@endif
+		
 
 
-			<script src="{{asset('user/js/vendor/jquery-2.2.4.min.js')}}"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.{{asset('user/js/1.12.9/umd/popper.min.js')}}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="{{asset('user/js/vendor/bootstrap.min.js')}}"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  			<script src="{{asset('user/js/easing.min.js')}}"></script>			
-			<script src="{{asset('user/js/hoverIntent.js')}}"></script>
-			<script src="{{asset('user/js/superfish.min.js')}}"></script>	
-			<script src="{{asset('user/js/jquery.ajaxchimp.min.js')}}"></script>
-			<script src="{{asset('user/js/jquery.magnific-popup.min.js')}}"></script>	
-    		<script src="{{asset('user/js/jquery.tabs.min.js')}}"></script>						
-			<script src="{{asset('user/js/jquery.nice-select.min.js')}}"></script>	
-			<script src="{{asset('user/js/owl.carousel.min.js')}}"></script>									
-			<script src="{{asset('user/js/mail-script.js')}}"></script>	
-			<script src="{{asset('user/js/main.js')}}"></script>
-			<script src="{{asset('user/js/dropzone/dropzone.js')}}"></script>	
-		</body>
-	</html>
+ @endsection
+
+ @section('js')
+<script src=" {{ asset('js/app.js') }} "></script>
+@if(Session::has('flashy_notification.message'))
+	<script id="flashy-template" type="text/template">
+		<div class="flashy flashy--{{ Session::get('flashy_notification.type') }}">
+			<i class="material-icons">speaker_notes</i>
+			<a href="#" class="flashy__body" target="_blank"></a>
+		</div>
+	</script>
+	
+	<script>
+		flashy("{{ Session::get('flashy_notification.message') }}", "{{ Session::get('flashy_notification.link') }}");
+	</script>
+	@endif
+@endsection

@@ -1,4 +1,4 @@
- @extends('user.layouts.app',['title' => 'A Propos'])
+ @extends('user.layouts.app',['title' => 'Comment ca marche'])
  @section('bg-img',asset('user/img/home-bg.jpg'))
  @section('title','Clean Blog')
 @section('sub-heding','Bootstrap Template')
@@ -19,9 +19,9 @@
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">
-						A Propos De Nous				
+						Comment ca marche				
 					</h1>	
-					<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('about.index') }}"> A Propos</a></p>
+					<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('systeme.index') }}"> Comment ca marche</a></p>
 				</div>	
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 	<!-- End banner Area -->
 
 	<!-- Start feature Area -->
-	<section class="feature-area pb-120">
+	<!-- <section class="feature-area pb-120">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4">
@@ -74,267 +74,59 @@
 				</div>												
 			</div>
 		</div>	
-	</section>
-	<!-- End feature Area -->		
-
-	<!-- Start info Area -->
-	<section class="info-area pb-120">
-		<div class="container-fluid">
-			<div class="row align-items-center">
-				<div class="col-lg-6 no-padding info-area-left">
-					<img class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
-				</div>
-				<div class="col-lg-6 info-area-right">
-					<h1>Who we are
-					to Serave the nation</h1>
-					<p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
-					<br>
-					<p>
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-					</p>
-				</div>
-			</div>
-		</div>	
-	</section>
-	<!-- End info Area -->	
-
-	<!-- Start course-mission Area -->
-	<section class="course-mission-area pb-120">
-		<div class="container">
-			<div class="row d-flex justify-content-center">
-				<div class="menu-content pb-70 col-lg-8">
-				<div class="title text-center">
-					<h1 class="mb-10">Goals to Achieve for the leadership</h1>
-					<p>Who are in extremely love with eco friendly system.</p>
-				</div>
-				</div>
-			</div>							
-			<div class="row">
-				<div class="col-md-6 accordion-left">
-					<!-- accordion 2 start-->
-					<dl class="accordion">
-						<dt>
-							<a href="">Success</a>
-						</dt>
-						<dd>
-							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-						</dd>
-						<dt>
-							<a href="">Info</a>
-						</dt>
-						<dd>
-							Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
-						</dd>
-						<dt>
-							<a href="">Danger</a>
-						</dt>
-						<dd>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-						</dd>
-						<dt>
-							<a href="">Warning</a>
-						</dt>
-						<dd>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-						</dd>                                    
-					</dl>
-					<!-- accordion 2 end-->
-				</div>
-				<div class="col-md-6 video-right justify-content-center align-items-center d-flex relative">
-					<div class="overlay overlay-bg"></div>
-						<a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid mx-auto" src="img/play.png" alt=""></a>
-				</div>
-			</div>
-		</div>	
-	</section>
-	<!-- End course-mission Area -->
-
-		<!-- Start search-course Area -->
-	<section class="search-course-area relative" style="margin-bottom:100px;">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				<div class="col-lg-6 col-md-6 search-course-left">
-					<h1 class="text-white">
-						Get reduced fee <br>
-						during this Summer!
-					</h1>
-					<p>
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-					</p>
-					<div class="row details-content">
-						<div class="col single-detials">
-							<span class="lnr lnr-graduation-hat"></span>
-							<a href="#"><h4>Expert Instructors</h4></a>		
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
-						</div>
-						<div class="col single-detials">
-							<span class="lnr lnr-license"></span>
-							<a href="#"><h4>Certification</h4></a>		
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
-						</div>								
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 search-course-right section-gap">
-					<form class="form-wrap" action="#">
-						<h4 class="text-white pb-20 text-center mb-30">Search for Available Course</h4>		
-						<input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" >
-						<input type="phone" class="form-control" name="phone" placeholder="Your Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'" >
-						<input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" >
-						<div class="form-select" id="service-select">
-							<select>
-								<option datd-display="">Choose Course</option>
-								<option value="1">Course One</option>
-								<option value="2">Course Two</option>
-								<option value="3">Course Three</option>
-								<option value="4">Course Four</option>
-							</select>
-						</div>									
-						<button class="primary-btn text-uppercase">Submit</button>
-					</form>
-				</div>
-			</div>
-		</div>	
-	</section>
-	
-	<!-- End search-course Area -->	
-
-	<!-- Start review Area -->
-	<!-- <section class="review-area section-gap relative">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">				
-			<div class="row">
-				<div class="active-review-carusel">
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>	
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<img src="img/r1.png" alt="">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>																												
-				</div>
-			</div>
-		</div>	
 	</section> -->
-	<!-- End review Area -->
+	<!-- End feature Area -->	
+
+
+
+	<section class="mt-5">
+		<div class="container">
+			<h3 class="text-heading">Text Sample</h3>
+			<p class="sample-text text-justify">
+				Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results: 
+			</p>
+		</div>
+	</section>	
+	
+	<section class="">
+		<div class="container">
+			<div class="section-top-border">
+				<h3 class="mb-30">Les nouveaux</h3>
+				<div class="row">
+					<div class="col-lg-12">
+						<blockquote class="generic-blockquote text-justify">
+							“Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks such as Party Gaming and PlayTech left the United States. Overnight, online casino players found themselves being chased by the Federal government. But, after a fortnight, the online casino industry came up with a solution and new online casinos started taking root. These began to operate under a different business umbrella, and by doing that, rendered the transfer of money to and from them legal. A major part of this was enlisting electronic banking systems that would accept this new clarification and start doing business with me. Listed in this article are the electronic banking” 
+						</blockquote>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="section-top-border">
+				<h3 class="mb-30">Les anciens</h3>
+				<div class="row">
+					<div class="col-lg-12">
+						<blockquote class="generic-blockquote text-justify">
+							“Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks such as Party Gaming and PlayTech left the United States. Overnight, online casino players found themselves being chased by the Federal government. But, after a fortnight, the online casino industry came up with a solution and new online casinos started taking root. These began to operate under a different business umbrella, and by doing that, rendered the transfer of money to and from them legal. A major part of this was enlisting electronic banking systems that would accept this new clarification and start doing business with me. Listed in this article are the electronic banking” 
+						</blockquote>
+					</div>
+				</div>
+			</div>
+
+			<div class="section-top-border">
+				<h3 class="mb-30">Pour les recasements</h3>
+				<div class="row">
+					<div class="col-lg-12">
+						<blockquote class="generic-blockquote text-justify">
+							“Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks such as Party Gaming and PlayTech left the United States. Overnight, online casino players found themselves being chased by the Federal government. But, after a fortnight, the online casino industry came up with a solution and new online casinos started taking root. These began to operate under a different business umbrella, and by doing that, rendered the transfer of money to and from them legal. A major part of this was enlisting electronic banking systems that would accept this new clarification and start doing business with me. Listed in this article are the electronic banking” 
+						</blockquote>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 
  @endsection
 

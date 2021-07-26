@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ValidateDocument;
 class NouveauController extends Controller
 {
     public function __construct()
@@ -192,11 +193,7 @@ class NouveauController extends Controller
                 $nouveau->status = $request->status;
                 $nouveau->save();
                 $numero_bureau = Solde::first();
-                // Nexmo::message()->send([
-                //     'to' => '221'.$numero_bureau->numero_nouveau,
-                //     'from' => '+221'.$nouveau->phone,
-                //     'text' => "AEERK : Slut $nouveau->prenom  $nouveau->nom,vos documents sont valides,un sms vous sera envoyer pour vous informer de la date des codifications en ligne des codification."
-                // ]);
+                $nouveau->notify(new ValidateDocument());
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));
                 Flashy::success('Votre etudiant a ete valide');
@@ -205,11 +202,7 @@ class NouveauController extends Controller
                 $nouveau->status = $request->status;
                 $nouveau->save();
                 $numero_bureau = Solde::first();
-                // Nexmo::message()->send([
-                //     'to' => '221'.$numero_bureau->numero_nouveau,
-                //     'from' => '+221'.$nouveau->phone,
-                //     'text' =>"AEERK : Slut $nouveau->prenom  $nouveau->nom,vos documents ne sont pas valides,pour plus d'information approcher vous au-pres du bureau."
-                // ]);
+                $nouveau->notify(new ValidateDocument());
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));
                 Flashy::error('Votre etudiant a ete ommis');
@@ -244,6 +237,12 @@ class NouveauController extends Controller
                         //     'from' => '+221'.$nouveau->phone,
                         //     'text' => "AEERK : Salut $nouveau->prenom  $nouveau->nom vous avez ete codifier verifier votre compte gmail"
                         // ]);
+
+                        $position = Chambre::where('id',$request->chambre_id)->first();
+                        $position_nombre = $position->position;
+                        $position->position = $position_nombre + 1;
+                        $position->save();
+
                         Mail::to($codifier_nouveau->email)
                         ->send(new AeerkEmailMessage($codifier_nouveau));
                         Flashy::success('Votre etudiant a ete codifier');
@@ -270,6 +269,11 @@ class NouveauController extends Controller
                         //     'from' => '+221'.$nouveau->phone,
                         //     'text' => "AEERK : Salut $nouveau->prenom  $nouveau->nom vous avez ete codifier verifier votre compte gmail"
                         // ]);
+                        $position = Chambre::where('id',$request->chambre_id)->first();
+                        $position_nombre = $position->position;
+                        $position->position = $position_nombre + 1;
+                        $position->save();
+
                         Mail::to($codifier_nouveau->email)
                         ->send(new AeerkEmailMessage($codifier_nouveau));
                         Flashy::success('Votre etudiant a ete codifier');

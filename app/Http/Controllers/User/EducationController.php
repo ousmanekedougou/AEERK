@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Model\User\Education;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -13,8 +14,14 @@ class EducationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('user.education.index');
+    { 
+        if (request()->type){
+            $documentations = Education::where('type',request()->type)->orderBy('created_at','DESC')->get();
+            
+        }else{
+            $documentations = Education::orderBy('created_at','DESC')->get();
+        }
+        return view('user.education.index',compact('documentations'));
     }
 
     /**

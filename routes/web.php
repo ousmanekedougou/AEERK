@@ -17,7 +17,7 @@
         Route::resource('/comment','CommentController');
         Route::resource('/codification','EtudiantCodificationController');
         Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
-        Route::get('/codification/{id}/createPdf','EtudiantCodificationController@createPdf')->name('createPdf');
+        Route::get('/createPdf/{id}/{prenom}/{phone}','EtudiantCodificationController@createPdf')->name('createPdf');
         Route::get('/category/{id}','ArticleController@category')->name('article.category');
         Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
         Route::resource('/realisation','RealisationController');
@@ -98,6 +98,7 @@ Auth::routes();
         Route::resource('/localite', 'Admin\LocaliteController');
         Route::resource('/inscription', 'Admin\InscriptionController');
         Route::resource('/codification', 'Admin\CodificationController');
+        Route::get('/downloadPDF', 'Admin\CodificationController@downloadPDF')->name('downloadPDF');
 
         Route::put('/ancien/{id}/codifier_ancien', 'Admin\AncienController@codifier_ancien')->name('codifier_ancien');
         Route::put('/nouveau/{id}/codifier_nouveau', 'Admin\NouveauController@codifier_nouveau')->name('codifier_nouveau');

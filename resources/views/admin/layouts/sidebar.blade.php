@@ -153,7 +153,7 @@
 
         @endif
 
-        @if (Auth::guard('admin')->user()->can('admins.index'))
+        @if (Auth::guard('admin')->user()->can('logement.index'))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Poste & Habitat</span>
@@ -170,7 +170,7 @@
         @endif
 
 
-        <!-- <li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Education</span>
             <span class="pull-right-container">
@@ -178,12 +178,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.education.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Education</span></a></li>
             <li><a href="{{ route ('admin.systeme.index') }}"><i class="fa fa-circle-o"></i> Syeteme Educatif</a></li>
-            <li><a href="{{ route ('admin.education.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Examen & Concours</span></a></li>
             <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
             <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Emploi & Stage</span></a></li>
           </ul>
-        </li> -->
+        </li>
 
 
 

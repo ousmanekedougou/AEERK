@@ -123,7 +123,7 @@
 										<div class="feature-img">
 											<img class="img-fluid" src="{{ Storage::url($post->image) }}" alt="">
 										</div>
-										<a class="posts-title" href="blog-single.html"><h3>{{ $post->title }}</h3></a>
+										<a class="posts-title" href="#" onclick="document.getElementById('update-form-{{$post->id}}').submit();"><h3>{{ $post->title }}</h3></a>
 										<p class="excert">
 											{!! $post->body !!}
 										</p>

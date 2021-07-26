@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-
+@section('headsection')
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
+@endsection
 @section('main-content')
 
 
@@ -21,7 +23,7 @@
         </div>
       </section><br>
       <div class="box-body">
-        <table id="example2" class="table text-center table-bordered table-hover">
+        <table id="example2" class="table text-center responsive-table table-bordered table-hover">
           <thead>
           <tr class="bg-primary">
             <th>Email</th>
@@ -44,17 +46,6 @@
                 </td>
               </tr>
           </tbody>
-          <tfoot>
-          <tr>
-          <tr class="bg-primary"> 
-          <th>Email</th>
-            <th>Phone</th>
-            <th>Adresse</th>
-            <th>Boite Postal</th>
-            <th>Fax</th>
-            <th>Option</th>
-          </tr>
-          </tfoot>
         </table>
       </div>
 
@@ -68,7 +59,7 @@
             Reseaux Sociaux
           </div>
         </section><br>
-        <table id="example2" class="table text-center  table-bordered table-hover">
+        <table id="example2" class="table text-center responsive-table table-bordered table-hover">
           <thead>
           <tr class="bg-primary">
             <th>Image</th>
@@ -96,25 +87,41 @@
             <td>{{ $social->name }}</td>
             <td><a href="{{ $social->lien }}">{{ $social->lien }}</a></td>
             <td class="">   
-            <form id="delete-form-{{$social->id}}" action="{{ route('admin.social.destroy',$social->id) }}" method="post" style="display:none;">
-                @csrf
-                {{ method_field('DELETE') }}
-              </form>
+            
               <a data-toggle="modal" data-id="{{$social->id}}" data-name="{{$social->name}}" data-target="#modal-default-social-update{{ $social->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-              <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce reseau')){ event.preventDefault();document.getElementById('delete-form-{{$social->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.social.update',$social->id) }}" style="margin-right:20px;"><i class=" glyphicon glyphicon-trash"></i></a>
+              <a  class="text-danger" data-toggle="modal" data-target="#modal-default-{{$social->id}}" style="margin-right:20px;"><i class=" glyphicon glyphicon-trash"></i></a>
             </td>
           </tr>
+
+
+        <div class="modal fade" id="modal-default-{{$social->id}}">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Suppression de reseau</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+                  Etes vous sure de voloire supprimer ce reseau
+                </p>
+              <form id="delete-form-{{$social->id}}" action="{{ route('admin.social.destroy',$social->id) }}" method="post" style="display:none;">
+                @csrf
+                {{ method_field('DELETE') }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+              </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
           @endforeach
           </tbody>
-          <tfoot>
-          <tr>
-          <tr class="bg-primary">
-          <th>Image</th>
-            <th>Nom</th>
-            <th>Lien</th>
-            <th>Option</th>
-          </tr>
-          </tfoot>
         </table>
       </div>
 
@@ -138,12 +145,8 @@
                   <div class="attachment-text">
                     <p><a href="{{ $part->lien }}">{{ $part->lien }}</a></p>
                     <p>
-                      <form id="delete-form-{{$part->id}}" action="{{ route('admin.partener.destroy',$part->id) }}" method="post" style="display:none;">
-                        @csrf
-                        {{ method_field('DELETE') }}
-                      </form>
                       <a data-toggle="modal" data-id="{{$part->id}}" data-name="{{$part->name}}" data-target="#modal-default-update-partener-{{$part->id}}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-                      <a href="" onClick=" if(confirm('Etes vous sure de Supprimer ce Partenaire')){ event.preventDefault();document.getElementById('delete-form-{{$part->id}}').submit();}else{event.preventDefault();}" href="{{ route('admin.partener.update',$part->id) }}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-trash"></i> Supprimer</a>
+                      <a href=""  data-toggle="modal" data-target="#modal-default-partenaire-{{$part->id}}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-trash"></i> Supprimer</a>
                     </p>
                   </div>
                   <!-- /.attachment-text -->
@@ -151,6 +154,33 @@
                 <!-- /.attachment-pushed -->
               </div>
               <!-- /.attachment-block -->
+            </div>
+
+            <div class="modal fade" id="modal-default-partenaire-{{$part->id}}">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Suppression de partenaire</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      Etes vous sure de voloire supprimer ce partenaire
+                    </p>
+                  <form action="{{ route('admin.partener.destroy',$part->id) }}" method="post" style="display:none;">
+                    @csrf
+                    {{ method_field('DELETE') }}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                  </div>
+                  </form>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
             </div>
           @endforeach
       </div>
@@ -166,13 +196,13 @@
               @endif
           </div>
         </section><br>
-        <table id="example2" class="table text-center table-bordered table-hover">
+        <table id="example2" class="table text-center responsive-table table-bordered table-hover">
           <thead>
           <tr class="bg-primary">
-            <th>Pix Codification Nouveau</th>
-            <th>Pix Codification Ancien</th>
-            <th>Numero Codification Ancien</th>
-            <th>Numero Codification Ancien</th>
+            <th>Prix Nouveau</th>
+            <th>Prix Ancien</th>
+            <th>Numero Ancien</th>
+            <th>Numero Ancien</th>
             <th>Option</th>
           </tr>
           </thead>
@@ -204,7 +234,7 @@
         @endif
     </div>
   </section><br>
-  <table id="example2" class="table text-center table-bordered table-hover">
+  <table id="example2" class="table text-center responsive-table table-bordered table-hover">
     <thead>
     <tr class="bg-primary">
       <th>Email</th>
@@ -238,7 +268,7 @@
               @endif
           </div>
       </section><br>
-      <table id="example2" class="table text-center table-bordered table-hover">
+      <table id="example2" class="table text-center responsive-table table-bordered table-hover">
           <thead>
           <tr class="bg-primary">
           <th>Inscription</th>
@@ -255,84 +285,129 @@
               <!-- Le td du register -->
                 <td>
                 @if($option->register == 1)
-                  <form id="register_etudiant_1" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="0" name="register">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                  event.preventDefault();document.getElementById('register_etudiant_1').submit();
-
-                  }else{
-
-                      event.preventDefault();
-
-                  }
+                  <a data-toggle="modal" data-target="#modal-default-register_desactiver-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
+                  <div class="modal fade" id="modal-default-register_desactiver-{{$option->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Desactiver ce lien</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire desactiver ce lien
+                          </p>
+                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                            {{csrf_field()}}
+                            {{method_field('PUT')}}
+                          <input type="hidden" value="0" name="register">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Desactiver</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
                   
-                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
 
-                  @elseif($option->register == 0)
-                  <form id="register_etudiant_2" method="post" action="{{ route('admin.register',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="1" name="register">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                  event.preventDefault();document.getElementById('register_etudiant_2').submit();
-
-                  }else{
-
-                      event.preventDefault();
-
-                  }
-                  
-                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                @elseif($option->register == 0)
+                <a data-toggle="modal" data-target="#modal-default-register_activer-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
+                  <div class="modal fade" id="modal-default-register_activer-{{$option->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Activer ce lien</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire activer ce lien
+                          </p>
+                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                          {{csrf_field()}}
+                          {{method_field('PUT')}}
+                          <input type="hidden" value="1" name="register">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-success">Activer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
                   @endif
                 </td>
                 <!-- Fin du td du register -->
                   <!-- td des liens inscription des nouveaux et ancien -->
                 <td>
                 @if($option->register_nouveau == 1 && $option->register_ancien == 1)
-                  <form id="update_register" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="0" name="inscription_etudiant">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                  event.preventDefault();document.getElementById('update_register').submit();
-
-                  }else{
-
-                      event.preventDefault();
-
-                  }
-                  
-                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+                  <a data-toggle="modal" data-target="#modal-default-desactiver_etudiant-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
+                  <div class="modal fade" id="modal-default-desactiver_etudiant-{{$option->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Activer ce lien</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire activer ce lien
+                          </p>
+                        <form action="{{ route('admin.register_etudiant',$option->id) }}" method="post" style="display:none;">
+                          {{csrf_field()}}
+                          {{method_field('PUT')}}
+                          <input type="hidden" value="1" name="register">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-success">Activer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
 
                   @elseif($option->register_nouveau == 0 && $option->register_ancien == 0)
-                  <form id="update_liens" method="post" action="{{ route('admin.register_etudiant',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="1" name="inscription_etudiant">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                  event.preventDefault();document.getElementById('update_liens').submit();
-
-                  }else{
-
-                      event.preventDefault();
-
-                  }
-                  
-                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                  <a data-toggle="modal" data-target="#modal-default-activer-etudiant-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
+                  <div class="modal fade" id="modal-default-activer-etudiant-{{$option->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Desactiver ce lien</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire desactiver ce lien
+                          </p>
+                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                          {{csrf_field()}}
+                          {{method_field('PUT')}}
+                          <input type="hidden" value="0" name="register">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Desactiver</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
                   @endif
                 </td>
                 <!-- Fin du td inscription des nouveaux et anciens -->
@@ -340,42 +415,64 @@
                 <!-- td du lien inscription des recasements -->
                 <td>
                 @if($option->register_recasement == 1)
-                  <form id="inscription_recasement_1" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="0" name="register_recasement">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure de cacher ce lien ?')){
-
-                  event.preventDefault();document.getElementById('inscription_recasement_1').submit();
-
-                  }else{
-
-                      event.preventDefault();
-
-                  }
-                  
-                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+                 <a data-toggle="modal" data-target="#modal-default-desactiver_recasement-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
+                  <div class="modal fade" id="modal-default-desactiver_recasement-{{$option->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Activer ce lien</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire activer ce lien
+                          </p>
+                        <form action="{{ route('admin.register_recasement',$option->id) }}" method="post" style="display:none;">
+                          {{csrf_field()}}
+                          {{method_field('PUT')}}
+                          <input type="hidden" value="1" name="register">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-success">Activer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
 
                   @elseif($option->register_recasement == 0)
-                  <form id="inscription_recasement_2" method="post" action="{{ route('admin.register_recasement',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="1" name="register_recasement">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                  event.preventDefault();document.getElementById('inscription_recasement_2').submit();
-
-                  }else{
-
-                      event.preventDefault();
-
-                  }
-                  
-                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                   <a data-toggle="modal" data-target="#modal-default-activer-recasement-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
+                  <div class="modal fade" id="modal-default-activer-recasement-{{$option->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Desactiver ce lien</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire desactiver ce lien
+                          </p>
+                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                          {{csrf_field()}}
+                          {{method_field('PUT')}}
+                          <input type="hidden" value="0" name="register">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Desactiver</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
                   @endif
                 </td>
                 <!-- Fin du td lien inscription des recasements -->
@@ -719,7 +816,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-primary">Modifier</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
               </div>
             </div>
             </form>
@@ -1136,4 +1233,8 @@
 </div>
 {{-- Fin de la partie des codification --}}
 
+@endsection
+
+@section('footersection')
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
 @endsection

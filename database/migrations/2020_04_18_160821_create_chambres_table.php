@@ -20,6 +20,7 @@ class CreateChambresTable extends Migration
             $table->integer('genre')->default(0);
             $table->boolean('status')->default(false);
             $table->boolean('is_pleine')->default(false);
+            $table->integer('position')->default(false);
             $table->timestamps();
         });
     }

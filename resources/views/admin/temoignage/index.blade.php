@@ -31,37 +31,97 @@
                                   <p class="card-text">
                                     <div class="text-muted text-center">
                                     <p class="card-text text-muted text-justify"> {!! $temoignage->message !!}</p>
-                                        <!-- <a data-toggle="modal" data-id="{{$temoignage->id}}" data-name="{{$temoignage->title}}" data-target="#modal-default-chambre-{{ $temoignage->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
-                                    
-                                        <a href="{{ route('admin.temoignage.edit',$temoignage->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a> -->
-                                        <form  id="update-form-{{$temoignage->id}}" method="post" action="{{ route('admin.temoignage.update',$temoignage->id) }}"  style="display:none">
-                                          {{csrf_field()}}
-                                          {{method_field('PATCH')}}
-                                          <input type="hidden" name="status" value="1">
-                                        </form>
-                                        <a  href="" onclick=" if(confirm('Etes Vous sure de d\'aprouver ce temoignage ?')){  event.preventDefault();document.getElementById('update-form-{{$temoignage->id}}').submit();
-              
-                                          }else{event.preventDefault();} "><i class="fa fa-edit btn btn-success card-link btn-xs"> Aprouver </i>
-                                        </a>
 
-                                        <form  id="update-form-{{$temoignage->id}}" method="post" action="{{ route('admin.temoignage.update',$temoignage->id) }}"  style="display:none">
-                                          {{csrf_field()}}
-                                          {{method_field('PATCH')}}
-                                          <input type="hidden" name="status" value="2">
-                                        </form>
-                                        <a  href="" onclick=" if(confirm('Etes Vous sure de desprouver ce temoignage ?')){  event.preventDefault();document.getElementById('update-form-{{$temoignage->id}}').submit();
-              
-                                          }else{event.preventDefault();} "><i class="fa fa-edit btn btn-info card-link btn-xs"> Desaprouver </i>
+                                        <a  data-toggle="modal" data-target="#modal-default-aprouver_a-{{$temoignage->id}}"><i class="fa fa-check-circle btn btn-success card-link btn-xs"></i>
                                         </a>
+                                        <div class="modal fade" id="modal-default-aprouver_a-{{$temoignage->id}}">
+                                          <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Approver un temoignage</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                  Etes vous sure de voloire approuver cet temoignage
+                                                </p>
+                                              <form action="{{ route('admin.temoignage.update',$temoignage->id) }}" method="post" style="display:none;">
+                                                @csrf
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" name="status" value="1">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-success">Approuver</button>
+                                              </div>
+                                              </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
 
-                                        <form  id="delete-form-{{$temoignage->id}}" method="post" action="{{ route('admin.temoignage.destroy',$temoignage->id) }}"  style="display:none">
-                                          {{csrf_field()}}
-                                          {{method_field('delete')}}
-                                        </form>
-                                        <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$temoignage->id}}').submit();
-              
-                                          }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> Supprimer </i>
+                                        <a  href="" data-toggle="modal" data-target="#modal-default-desaprouver_a-{{$temoignage->id}}"><i class="fa fa-times btn btn-warning card-link btn-xs">  </i>
                                         </a>
+                                        <div class="modal fade" id="modal-default-desaprouver_a-{{$temoignage->id}}">
+                                          <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Approver un temoignage</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                  Etes vous sure de voloire desapprouver cet temoignage
+                                                </p>
+                                              <form action="{{ route('admin.temoignage.update',$temoignage->id) }}" method="post" style="display:none;">
+                                                @csrf
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" name="status" value="2">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-warning">Desapprouver</button>
+                                              </div>
+                                              </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
+
+
+                                        <a  data-toggle="modal" data-target="#modal-default-supprimer_a-{{$temoignage->id}}"><i class="fa fa-trash btn btn-danger card-link btn-xs">  </i>
+                                        </a>
+                                        <div class="modal fade" id="modal-default-supprimer_a-{{$temoignage->id}}">
+                                          <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Approver un temoignage</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                  Etes vous sure de voloire supprimer cet temoignage
+                                                </p>
+                                              <form action="{{ route('admin.temoignage.destroy',$temoignage->id) }}" method="post" style="display:none;">
+                                                @csrf
+                                                {{ method_field('delete') }}
+                                                <input type="hidden" name="status" value="2">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                              </div>
+                                              </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
                                       
                                     </div>
                                   </p>
@@ -86,27 +146,66 @@
                                   <p class="card-text">
                                     <div class="text-muted text-center">
                                   <p class="card-text text-muted text-justify"> {!! $temoignage->message !!}</p>
-                                        <!-- <a data-toggle="modal" data-id="{{$temoignage->id}}" data-name="{{$temoignage->title}}" data-target="#modal-default-chambre-{{ $temoignage->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
-                                    
-                                        <a href="{{ route('admin.temoignage.edit',$temoignage->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a> -->
-                                        <form  id="update-form-{{$temoignage->id}}" method="post" action="{{ route('admin.temoignage.update',$temoignage->id) }}"  style="display:none">
-                                          {{csrf_field()}}
-                                          {{method_field('PATCH')}}
-                                          <input type="hidden" name="status" value="2">
-                                        </form>
-                                        <a  href="" onclick=" if(confirm('Etes Vous sure desapprover ce temoignage ?')){  event.preventDefault();document.getElementById('update-form-{{$temoignage->id}}').submit();
-              
-                                          }else{event.preventDefault();} "><i class="fa fa-edit btn btn-info card-link btn-xs"> Desaprouver </i>
+                                       <a  href="" data-toggle="modal" data-target="#modal-default-desaprouver_b-{{$temoignage->id}}"><i class="fa fa-times btn btn-warning card-link btn-xs">  </i>
+                                        </a>
+                                        <div class="modal fade" id="modal-default-desaprouver_b-{{$temoignage->id}}">
+                                          <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Approver un temoignage</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                  Etes vous sure de voloire desapprouver cet temoignage
+                                                </p>
+                                              <form action="{{ route('admin.temoignage.update',$temoignage->id) }}" method="post" style="display:none;">
+                                                @csrf
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" name="status" value="2">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-warning">Desapprouver</button>
+                                              </div>
+                                              </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
+
+                                        <a  data-toggle="modal" data-target="#modal-default-supprimer_b-{{$temoignage->id}}"><i class="fa fa-trash btn btn-danger card-link btn-xs">  </i>
                                         </a>
 
-                                        <form  id="delete-form-{{$temoignage->id}}" method="post" action="{{ route('admin.temoignage.destroy',$temoignage->id) }}"  style="display:none">
-                                          {{csrf_field()}}
-                                          {{method_field('delete')}}
-                                        </form>
-                                        <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$temoignage->id}}').submit();
-              
-                                          }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> Supprimer </i>
-                                        </a>
+                                        <div class="modal fade" id="modal-default-supprimer_b-{{$temoignage->id}}">
+                                          <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Approver un temoignage</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                  Etes vous sure de voloire supprimer cet temoignage
+                                                </p>
+                                              <form action="{{ route('admin.temoignage.destroy',$temoignage->id) }}" method="post" style="display:none;">
+                                                @csrf
+                                                {{ method_field('delete') }}
+                                                <input type="hidden" name="status" value="2">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                              </div>
+                                              </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
                                       
                                     </div>
                                   </p>
@@ -131,28 +230,66 @@
                                   <p class="card-text">
                                     <div class="text-muted text-center">
                                     <p class="card-text text-muted text-justify"> {!! $temoignage->message !!}</p>
-                                        <!-- <a data-toggle="modal" data-id="{{$temoignage->id}}" data-name="{{$temoignage->title}}" data-target="#modal-default-chambre-{{ $temoignage->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
-                                    
-                                        <a href="{{ route('admin.temoignage.edit',$temoignage->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a> -->
-                                    
-                                        <form  id="update-form-{{$temoignage->id}}" method="post" action="{{ route('admin.temoignage.update',$temoignage->id) }}"  style="display:none">
-                                          {{csrf_field()}}
-                                          {{method_field('PATCH')}}
-                                          <input type="hidden" name="status" value="1">
-                                        </form>
-                                        <a  href="" onclick=" if(confirm('Etes Vous sure de d\'approuver ce temoignage ?')){  event.preventDefault();document.getElementById('update-form-{{$temoignage->id}}').submit();
-              
-                                          }else{event.preventDefault();} "><i class="fa fa-edit btn btn-success card-link btn-xs"> Approuver </i>
+                                           <a  data-toggle="modal" data-target="#modal-default-aprouver_b-{{$temoignage->id}}"><i class="fa fa-check-circle btn btn-success card-link btn-xs"></i>
+                                        </a>
+                                        <div class="modal fade" id="modal-default-aprouver_b-{{$temoignage->id}}">
+                                          <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Approver un temoignage</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                  Etes vous sure de voloire approuver cet temoignage
+                                                </p>
+                                              <form action="{{ route('admin.temoignage.update',$temoignage->id) }}" method="post" style="display:none;">
+                                                @csrf
+                                                {{ method_field('PATCH') }}
+                                                <input type="hidden" name="status" value="1">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-success">Approuver</button>
+                                              </div>
+                                              </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
+
+                                        <a  data-toggle="modal" data-target="#modal-default-supprimer_c-{{$temoignage->id}}"><i class="fa fa-trash btn btn-danger card-link btn-xs">  </i>
                                         </a>
 
-                                        <form  id="delete-form-{{$temoignage->id}}" method="post" action="{{ route('admin.temoignage.destroy',$temoignage->id) }}"  style="display:none">
-                                          {{csrf_field()}}
-                                          {{method_field('delete')}}
-                                        </form>
-                                        <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$temoignage->id}}').submit();
-              
-                                          }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> Supprimer </i>
-                                        </a>
+                                        <div class="modal fade" id="modal-default-supprimer_c-{{$temoignage->id}}">
+                                          <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Approver un temoignage</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>
+                                                  Etes vous sure de voloire supprimer cet temoignage
+                                                </p>
+                                              <form action="{{ route('admin.temoignage.destroy',$temoignage->id) }}" method="post" style="display:none;">
+                                                @csrf
+                                                {{ method_field('delete') }}
+                                                <input type="hidden" name="status" value="2">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                              </div>
+                                              </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                          </div>
+                                          <!-- /.modal-dialog -->
+                                        </div>
                                       
                                     </div>
                                   </p>

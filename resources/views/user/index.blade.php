@@ -1,4 +1,59 @@
 @extends('user.layouts.app',['title' => 'acceuil'])
+@section('head')
+		<style type="text/css">
+						
+			#myModal {
+				position:fixed; 
+				display : none; 
+				top : 25%; 
+				
+			}
+			.logo-slider .item{
+			background-color: #fff;
+			box-shadow: 0 4px 5px #cacaca;
+			border: 1px solid blue;
+			border-radius: 8px;
+			padding: 15px;
+		}
+		.logo-slider .item img{
+			width: 100%;
+		}
+			.logo-slider .slick-slide{
+			margin: 15px;
+		}
+		.slick-dots li.slick-active button:before{
+			color: #ff5722;
+		}
+		.slick-dots li button:before{
+			font-size: 12px;
+		}
+		.slick-next:before,.slick-prev:before{
+			color: #ff8159;
+			font-size: 24px;
+		}
+		.item:hover{
+			display: block;
+			transition: all ease 0,3s;
+			transform: scale(1.1) translateY(-5px);
+		}
+
+		@media (max-width: 768px) {
+			.slick-next,.slick-prev {
+				width: 1rem;
+				height: 1rem;
+				margin: 0 10px 0 5px;
+			}
+			.logo-slider .slick-slide{
+				margin: 4px;
+			}
+			.logo-slider .item{
+				padding: 5px;
+			}
+		}
+
+		</style>
+
+@endsection
 @section('main-content')
     		<!-- start banner Area -->
             <section class="banner-area relative" id="home">
@@ -6,12 +61,6 @@
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-between">
 						<div class="banner-content col-lg-9 col-md-12">
-							<div class="row">
-								<div class="col-lg-4"></div>
-								<div class="col-lg-8">
-									@include('user.message.index')
-								</div>
-							</div>
 							<h1 class="text-uppercase">
 							Plateforme de codification
 								<!-- CODIFIER EN TOUTE SECURITE		 -->
@@ -19,54 +68,85 @@
 							<p class="pt-10 pb-10">
 								In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
 							</p>
-							<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;">Commencer</a>
+							<a href="{{ route('education.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;">Documentation</a>
 							
 						</div>										
 					</div>
 				</div>					
 			</section>
+
+			@include('user.message.index')
 			<!-- End banner Area -->
 
-			<!-- Start feature Area -->
 			<section class="feature-area" style="margin-bottom: -50px;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="single-feature">
-								<div class="title">
-									<h4>Codification</h4>
-								</div>
 								<div class="desc-wrap">
 									<p>
-										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-									</p>
-									<a href="#">Voire</a>									
+										<img src="{{ asset('user/img/3ccs.jpg') }}" alt="" srcset="">
+									</p>								
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-8">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Examen & Concours</h4>
+									<h4>Description</h4>
+								</div>
+								<div class="desc-wrap">
+									<p class="text-justify">
+										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure, beatae totam minima sit sequi perspiciatis, cum, nulla blanditiis laboriosam dolor qui quo animi unde optio laborum. Dolorem porro aliquid sit reiciendis tempora. Soluta velit, sit ullam nobis aliquid deserunt, dicta numquam et officiis animi atque? Ullam ipsam molestias voluptatum pariatur, commodi alias corrupti quos, esse magnam assumenda quia ex incidunt rem quas soluta, nostrum libero asperiores possimus numquam nesciunt perferendis id ea adipisci explicabo? Ab dolor necessitatibus quos ea quibusdam eaque excepturi culpa ut. Nesciunt cupiditate debitis soluta officia, quo asperiores saepe distinctio iure architecto, nobis temporibus. Eligendi tenetur consequatur soluta doloribus, expedita ducimus praesentium unde 
+									</p>
+									<a href="{{ route('education.index', [ 'type' =>  4 ])}}">Voire</a>									
+								</div>
+							</div>
+						</div>											
+					</div>
+				</div>	
+			</section>
+
+			<!-- Start feature Area -->
+			<section class="feature-area" style="margin-bottom: -40px;margin-top:130px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="single-feature">
+								<div class="title bg-primary">
+									<h4>Visions</h4>
 								</div>
 								<div class="desc-wrap">
 									<p>
 										For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
 									</p>
-									<a href="#">Voire</a>									
+									<a href="{{ route('education.index', [ 'type' =>  4 ])}}">Voire</a>									
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4">
 							<div class="single-feature">
-								<div class="title">
-									<h4>Etudes & Bourse</h4>
+								<div class="title bg-primary">
+									<h4>Missions</h4>
 								</div>
 								<div class="desc-wrap">
 									<p>
 										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
 									</p>
-									<a href="#">Voire</a>									
+									<a href="{{ route('education.index', [ 'type' =>  3 ])}}">Voire</a>									
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-feature">
+								<div class="title bg-primary">
+									<h4>Objectifs</h4>
+								</div>
+								<div class="desc-wrap">
+									<p>
+										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+									</p>
+									<a href="{{ route('education.index', [ 'type' =>  5 ])}}">Voire</a>									
 								</div>
 							</div>
 						</div>												
@@ -75,353 +155,23 @@
 			</section>
 			<!-- End feature Area -->
 
-			<!-- Start info Area -->
-			<section class="popular-course-area section-gap" style="margin-bottom: -180px;">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-7 col-lg-8">
-							<div class="title text-center">
-								<h3 class="mb-10">
-									Pour les nouveaux bacheliers</h3>
-							</div>
-						</div>
-					</div>
-					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
-						<div class="col-lg-5 info-area-left text-center">
-							<img style="" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
-						</div>
-						<div class="col-lg-7 info-area-right">
-							<!-- <h3>Pour les nouveaux bacheliers</h3> -->
-							<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
-							<br>
-							<p class="text-justify">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards .
-							</p>
-							<p class="text-center">
-								<a href="{{ route('nouveau.index') }}" class="btn btn-primary btn-block"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire</a>
-							</p>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End info Area -->
-
-			<!-- Start info Area -->
-			<section class="popular-course-area section-gap" style="margin-bottom: -180px;">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-7 col-lg-8">
-							<div class="title text-center">
-								<h3 class="mb-10">
-									Pour les anciens</h3>
-							</div>
-						</div>
-					</div>	
-					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
-						<div class="col-lg-5 info-area-left text-center">
-							<img style="" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
-						</div>
-						<div class="col-lg-7 info-area-right">
-							<!-- <h3>Pour les anciens</h3> -->
-							<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
-							<br>
-							<p class="text-justify">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-							</p>
-							<p class="text-center">
-								<a href="{{ route('ancien.index') }}" class="btn btn-primary btn-block"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire</a>
-							</p>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End info Area -->
-
-			<!-- Start info Area -->
-			<section class="popular-course-area section-gap">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-7 col-lg-8">
-							<div class="title text-center">
-								<h3 class="mb-10">
-									Les recasements</h3>
-							</div>
-						</div>
-					</div>	
-					<div class="row" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
-						<div class="col-lg-5 info-area-left text-center">
-							<img style="width:100%" class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
-						</div>
-						<div class="col-lg-7 info-area-right">
-							<!-- <h3>Les recasement</h3> -->
-							<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
-							<br>
-							<p class="text-justify">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. 
-							</p>
-							<p class="text-center">
-								<a href="{{ route('recasement.index') }}" class="btn btn-primary btn-block"> <span> <i class="fa fa-user-plus"></i></span> S'inscrire </a>
-							</p>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End info Area -->
-					
-			<!-- Start popular-course Area -->
-			<!-- <section class="popular-course-area section-gap">
+			
+			<!-- Nos activites officiell-->
+			<section class="upcoming-event-area section-gap">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Examens et Concours</h1>
-								<p>Les examens de l'annee et les concours mixtes</p>
-							</div>
-						</div>
-					</div>						
-					<div class="row">
-						<div class="active-popular-carusel">
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn Designing
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn React js beginners
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn Photography
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn Surveying
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn Designing
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn React js beginners
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn Photography
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-carusel">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-								<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-										<h4>$150</h4>
-									</div>									
-								</div>
-								<div class="details">
-									<a href="#">
-										<h4>
-											Learn Surveying
-										</h4>
-									</a>
-									<p>
-										When television was young, there was a hugely popular show based on the still popular fictional characte										
-									</p>
-								</div>
-							</div>							
-						</div>
-					</div>
-				</div>	
-			</section> -->
-			<!-- End popular-course Area -->
-			
-
-		
-			
-		
-			<!-- Start upcoming-event Area -->
-			<section class="upcoming-event-area section-gap" style="margin-top: -150px;">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-70 col-lg-8">
-							<div class="title text-center">
-								<h1 class="mb-10">
-									Nos Partenaires</h1>
-								<p>Si vous etes un membre de l'association ou un natif de la region</p>
+								<h1 class="mb-10">Nos Activites</h1>
+								<p>If you are a serious astronomy fanatic like a lot of us</p>
 							</div>
 						</div>
 					</div>								
 					<div class="row">
 						<div class="active-upcoming-event-carusel">
-						@foreach(all_part() as $partenaire)
 							<div class="single-carusel row align-items-center">
 								<div class="col-12 col-md-6 thumb">
-									<img class="img-fluid" src="{{ Storage::url($partenaire->image) }}" alt="">
-								</div>
-								<div class="detials col-12 col-md-6">
-									<p>Depuis Mars, 2018</p>
-									<a href="{{ $partenaire->lien }}"><h4>{{ $partenaire->nom }}</h4></a>
-									<p>{!! $partenaire->mot !!}</p>
-								</div>
-							</div>
-						@endforeach
-							<!-- <div class="single-carusel row align-items-center">
-								<div class="col-12 col-md-6 thumb">
-									<img class="img-fluid" src="{{asset('user/img/e2.jpg')}}" alt="">
-								</div>
-								<div class="detials col-12 col-md-6">
-									<p>25th February, 2018</p>
-									<a href="#"><h4>The Universe Through
-									A Child S Eyes</h4></a>
-									<p>
-										For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-									</p>
-								</div>
-							</div>	
-							<div class="single-carusel row align-items-center">
-								<div class="col-12 col-md-6 thumb">
-									<img class="img-fluid" src="{{asset('user/img/e1.jpg')}}" alt="">
-								</div>
-								<div class="detials col-12 col-md-6">
-									<p>25th February, 2018</p>
-									<a href="#"><h4>The Universe Through
-									A Child S Eyes</h4></a>
-									<p>
-										For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-									</p>
-								</div>
-							</div>	
-							<div class="single-carusel row align-items-center">
-								<div class="col-12 col-md-6 thumb">
-									<img class="img-fluid" src="{{asset('user/img/e1.jpg')}}" alt="">
+									<img class="img-fluid" src="{{ asset('user/img/e1.jpg') }}" alt="">
 								</div>
 								<div class="detials col-12 col-md-6">
 									<p>25th February, 2018</p>
@@ -457,14 +207,55 @@
 										For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
 									</p>
 								</div>
-							</div>																						 -->
+							</div>	
+							<div class="single-carusel row align-items-center">
+								<div class="col-12 col-md-6 thumb">
+									<img class="img-fluid" src="{{asset('user/img/e1.jpg')}}" alt="">
+								</div>
+								<div class="detials col-12 col-md-6">
+									<p>25th February, 2018</p>
+									<a href="#"><h4>The Universe Through
+									A Child S Eyes</h4></a>
+									<p>
+										For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+									</p>
+								</div>
+							</div>
+							<div class="single-carusel row align-items-center">
+								<div class="col-12 col-md-6 thumb">
+									<img class="img-fluid" src="{{asset('user/img/e2.jpg')}}" alt="">
+								</div>
+								<div class="detials col-12 col-md-6">
+									<p>25th February, 2018</p>
+									<a href="#"><h4>The Universe Through
+									A Child S Eyes</h4></a>
+									<p>
+										For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+									</p>
+								</div>
+							</div>	
+							<div class="single-carusel row align-items-center">
+								<div class="col-12 col-md-6 thumb">
+									<img class="img-fluid" src="{{asset('user/img/e1.jpg')}}" alt="">
+								</div>
+								<div class="detials col-12 col-md-6">
+									<p>25th February, 2018</p>
+									<a href="#"><h4>The Universe Through
+									A Child S Eyes</h4></a>
+									<p>
+										For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
+									</p>
+								</div>
+							</div>																						
 						</div>
 					</div>
 				</div>	
 			</section>
-			<!-- End upcoming-event Area -->
+			<!-- Fin de nos activite officielle-->
+
+			
 						
-			<!-- Start review Area -->
+			<!--  les temoignages -->
 			<section class="review-area section-gap relative">
 				<h3 class="text-center" style="margin-top:-100px;margin-bottom: 15px;">Les Temoignages</h3>		
 				<div class="overlay overlay-bg"></div>
@@ -492,7 +283,7 @@
 					</div>
 				</div>	
 			</section>
-			<!-- End review Area -->	
+			<!--  les temoignages -->	
 			
 
 			<!-- Start search-course Area -->
@@ -504,20 +295,34 @@
 							<h1 class="text-white">
 								Obtenez des frais réduits <br> durant cet été !
 							</h1>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-							</p>
 							<div class="row details-content">
 								<div class="col single-detials">
 									<span class="lnr lnr-graduation-hat"></span>
-									<a href="#"><h4>Offres d'emplois</h4></a>		
+									<a href="{{ route('education.index', [ 'type' =>  1 ])}}"><h4>Offres d'emplois & statges</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
 								</div>
 								<div class="col single-detials">
 									<span class="lnr lnr-license"></span>
-									<a href="#"><h4>Offres de stages</h4></a>		
+									<a href="{{ route('education.index', [ 'type' =>  3 ])}}"><h4>Bourses D'etudes</h4></a>		
+									<p>
+										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									</p>						
+								</div>								
+							</div>
+
+							<div class="row details-content">
+								<div class="col single-detials">
+									<span class="lnr lnr-graduation-hat"></span>
+									<a href="{{ route('education.index', [ 'type' =>  5 ])}}"><h4>Formations</h4></a>		
+									<p>
+										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									</p>						
+								</div>
+								<div class="col single-detials">
+									<span class="lnr lnr-license"></span>
+									<a href="{{ route('education.index', [ 'type' =>  4 ])}}"><h4>Examan & Concours</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
@@ -619,6 +424,48 @@
 					</div>
 				</div>	
 			</section>
-			<!-- End blog Area -->			
+			<!-- End blog Area -->	
+
+
+
+			<section class="upcoming-event-area section-gap" style="margin-top: -150px;">
+
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">
+									Nos Partenaires</h1>
+								<p>Si vous etes un membre de l'association ou un natif de la region</p>
+							</div>
+						</div>
+					</div>
+					<div class="logo-slider" style="margin-top: -50px;">
+					@foreach(all_part() as $partenaire)
+						<div class="item"><a href="#"><img src="{{ Storage::url($partenaire->image) }}" alt="" srcset=""></a></div>
+					@endforeach
+						<!-- <div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
+						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
+						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
+						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
+						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div> -->
+					</div>
+				</div>
+			</section>
+
+	
+
+		
 
 @endsection
+
+@section('js')
+
+		<script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+</script>
+@endsection
+
+

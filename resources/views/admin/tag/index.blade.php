@@ -43,23 +43,34 @@
                   <td class="text-center">{{ $tag->slug }}</td>
                   <td class="text-center"><a data-toggle="modal" data-id="{{$tag->id}}" data-name="{{$tag->name}}" data-target="#modal-default-update-tag-{{ $tag->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                   
-                    <form id="delete-form-{{$tag->id}}" method="post" action="{{ route('admin.tag.destroy',$tag->id) }}" style="display:none">
-                    {{csrf_field()}}
-                    {{method_field('delete')}}
-                    </form>
-                  <a href="" onclick="
-                    if(confirm('Are you sure , You want to delete this ?')){
-
-                    event.preventDefault();document.getElementById('delete-form-{{$tag->id}}').submit();
-
-                    }else{
-
-                      event.preventDefault();
-
-                    }
-                    
-                    "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                    </td>
+                    <a data-toggle="modal" data-target="#modal-default-{{$tag->id}}"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                    <div class="modal fade" id="modal-default-{{$tag->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Suppression de categorie</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire supprimer cette etiquette
+                            </p>
+                          <form action="{{ route('admin.tag.destroy',$tag->id) }}" method="post" style="display:none;">
+                            @csrf
+                            {{ method_field('DELETE') }}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                          </div>
+                          </form>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                  </td>
                   </tr>
                   @endforeach
                 </tbody>

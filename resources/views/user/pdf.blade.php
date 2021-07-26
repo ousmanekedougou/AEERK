@@ -1,154 +1,206 @@
-	<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
-		<!-- Author Meta -->
-		<meta name="author" content="colorlib">
-		<!-- Meta Description -->
-		<meta name="description" content="">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>pdf</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AEERK|CODIFICATION</title>
+  <style>
+      @font-face {
+  font-family: SourceSansPro;
+  src: url(SourceSansPro-Regular.ttf);
+}
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="{{asset('user/css/dropzone/dropzone.css')}}">
-			<link rel="stylesheet" href="{{asset('user/css/linearicons.css')}}">
-			<link rel="stylesheet" href="{{asset('user/css/font-awesome.min.css')}}">
-			<link rel="stylesheet" href="{{asset('user/css/bootstrap.css')}}">
-			<link rel="stylesheet" href="{{asset('user/css/magnific-popup.css')}}">
-			<link rel="stylesheet" href="{{asset('user/css/nice-select.css')}}">							
-			<link rel="stylesheet" href="{{asset('user/css/animate.min.css')}}">
-			<link rel="stylesheet" href="{{asset('user/css/owl.carousel.css')}}">			
-			<link rel="stylesheet" href="{{asset('user/css/jquery-ui.css')}}">			
-			<link rel="stylesheet" href="{{asset('user/style.css')}}"> 
-			<link rel="stylesheet" href="{{asset('user/css/main.css')}}">
-            <style>
-                .sample-text{
-                    margin-top: 5px;
-                    text-align: justify;
-                }
-                .content{
-                   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-                    padding: 20px;
-                    margin: 5px;
-                    width: 100%;
-                }
-                table{
-                    width: 100%;
-                }
-                .header-info{
-                    padding: 8px;
-                   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-                    color: black;
-                    font-weight: 400;
-                }
-                .header-info img{
-                    width: 90%;
-                }
-            </style>
-		</head>
-		<body>	
-	
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-			<!-- Start Sample Area -->
-			<section class="sample-text-area">
-				<div class="container">
-					<div class="row">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-8 content">
-                            <div class="row header-info" >
-                                <div class="col-md-4">
-                                    <img src="{{ Storage::url($codifier_nouveau->image) }}" alt="" class="img-fluid">
-                                </div>
-                                <div class="col-md-8 mt-sm-20 left-align-p">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>Trante un mille</td>
-                                                <td class="pull-right">{{$codifier_nouveau->prix}}</td>
-                                            </tr>
-                                             <tr>
-                                                <td>Nom</td>
-                                                <td class="pull-right">{{$codifier_nouveau->nom}}</td>
-                                            </tr>
-                                             <tr>
-                                                <td>Prenom</td>
-                                                <td class="pull-right">{{$codifier_nouveau->prenom}}</td>
-                                            </tr>
-                                             <tr>
-                                                <td>Telephone</td>
-                                                <td class="pull-right">{{$codifier_nouveau->phone}}</td>
-                                            </tr>
-                                             <tr>
-                                                <td>{{$codifier_nouveau->immeuble->name}}</td>
-                                                <td class="pull-right">{{$codifier_nouveau->chambre->name}}</td>
-                                            </tr>
-                                             <tr>
-                                                <td>
-                                                @if($codifier_nouveau->ancienete == 1)
-                                                    Nouveau
-                                                @else 
-                                                    Ancien
-                                                @endif
-                                                </td>
-                                                <td class="pull-right">{{$codifier_nouveau->created_at}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <br>
-                            <h4 class="text-heading">Reglement interieure</h4>
-                            <p class="sample-text">
-                                Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results: 
+a {
+  color: #0087C3;
+  text-decoration: none;
+}
 
-                            </p>
-                             <p class="sample-text">
-                                Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results: 
-                            </p>
-                             <p class="sample-text">
-                                Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results: 
+body {
+  position: relative;
+  width: 21cm;  
+  height: 29.7cm; 
+  margin: 0 auto; 
+  color: #555555;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 16px; 
+  font-family: SourceSansPro;
+}
 
-                            </p>
-                             <p class="sample-text">
-                                Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results: 
+header {
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #AAAAAA;
+}
 
-                            </p>
-                        </div>
-                        <div class="col-lg-2"></div>
-                    </div>
-				</div>
-			</section>
-	
+#logo {
+  float: left;
+  margin-top: 8px;
+}
 
-		
+#logo img {
+  height: 70px;
+}
+
+#company {
+  float: right;
+  text-align: left;
+}
 
 
-			<script src="{{asset('user/js/vendor/jquery-2.2.4.min.js')}}"></script>
-			<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-  			<script src="{{asset('user/js/pooper.js')}}"></script>			
-			<script src="{{asset('user/js/vendor/bootstrap.min.js')}}"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  			<script src="{{asset('user/js/easing.min.js')}}"></script>			
-			<script src="{{asset('user/js/hoverIntent.js')}}"></script>
-			<script src="{{asset('user/js/superfish.min.js')}}"></script>	
-			<script src="{{asset('user/js/jquery.ajaxchimp.min.js')}}"></script>
-			<script src="{{asset('user/js/jquery.magnific-popup.min.js')}}"></script>	
-    		<script src="{{asset('user/js/jquery.tabs.min.js')}}"></script>						
-			<script src="{{asset('user/js/jquery.nice-select.min.js')}}"></script>	
-			<script src="{{asset('user/js/owl.carousel.min.js')}}"></script>									
-			<script src="{{asset('user/js/mail-script.js')}}"></script>	
-			<script src="{{asset('user/js/main.js')}}"></script>
-			<script src="{{asset('user/js/dropzone/dropzone.js')}}"></script>
-			<script src="{{asset('user/js/social.js')}}"></script>
-		</body>
-	</html>
+#details {
+  margin-bottom: 50px;
+}
+
+#client {
+  padding-left: 6px;
+  border-left: 6px solid #0087C3;
+  float: left;
+}
+
+#client .to {
+  color: #777777;
+}
+
+h2.name {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
+}
+
+#invoice {
+  float: right;
+  text-align: left;
+}
+
+#invoice h1 {
+  color: #0087C3;
+  font-size: 2.4em;
+  line-height: 1em;
+  font-weight: normal;
+  margin: 0  0 10px 0;
+}
+
+#invoice .date {
+  font-size: 1.1em;
+  color: #777777;
+}
+.container{
+
+}
+
+.container .text-justify{
+    text-align: justify;
+}
+
+#thanks{
+  font-size: 2em;
+  margin-bottom: 50px;
+}
+
+#notices{
+  padding-left: 6px;
+  border-left: 6px solid #0087C3;  
+}
+
+#notices .notice {
+  font-size: 1.2em;
+}
+
+footer {
+  color: #777777;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #AAAAAA;
+  padding: 8px 0;
+  text-align: center;
+}
+
+
+  </style>
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="{{ asset('user/img/3ccs.jpg') }}">
+      </div>
+      <div id="company">
+        <h1 class="name">AEERK</h1>
+        <div>Rue 39x30</div>
+        <div>77 000 00 00 / 78 000 00 00</div>
+        <div><a href="">aeerk@gmail.com</a></div>
+      </div>
+      </div>
+    </header>
+    <main>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to" style="font-size:24px;">Reçue De Codification:</div>
+          <h2 class="name">{{$etudiant->prenom.' '.$etudiant->nom }} </h2>
+          <div class="email"><a href="">{{$etudiant->email }}</a></div>
+          <div class="address">{{$etudiant->phone }}</div>
+          <div class="address">{{$etudiant->commune->name }} ({{$etudiant->commune->departement->name }})</div>
+          <div class="address">
+            @if($etudiant->ancienete == 1)
+                Nouveau
+            @else 
+                Ancien
+            @endif
+          </div>
+        </div>
+        <div id="invoice">
+          <h2>{{$etudiant->prix }} FCFA</h2>
+          <div class="date">
+                @foreach($etudiant->chambre->immeubles as $ac_imb)
+                        {{$ac_imb->name}} : 
+                @endforeach
+                a {{$etudiant->chambre->nom }}
+          </div>
+          <div class="date">
+              A la 
+            @if($etudiant->chambre->position == 1)
+                {{$etudiant->chambre->position}} ere
+            @else 
+                {{$etudiant->chambre->position}} em
+            @endif
+            place
+          </div>
+          <div class="date">Le {{$etudiant->updated_at }}</div>
+        </div>
+      </div>
+        <div class="container">
+            <h1>Le Reglement interieur de l'AEERK</h1>
+            <p class="text-justify">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
+            </p>
+               <p class="text-justify">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
+            </p>
+               <p class="text-justify">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
+            </p>
+               <p class="text-justify">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
+            </p>
+               <p class="text-justify">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
+            </p>
+        </div>
+      <div id="thanks">Merci,</div>
+      <div id="notices">
+        <div>Cordialement:</div>
+        <div class="notice">Le Bureau</div>
+      </div>
+    </main>
+    <footer>
+      Invoice was created on a computer and is valid without the signature and seal.
+    </footer>
+  </body>
+</html>

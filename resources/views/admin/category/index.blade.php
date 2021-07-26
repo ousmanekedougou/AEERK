@@ -41,24 +41,36 @@
                   <td class="text-center">{{ $loop->index +1 }}</td>
                   <td class="text-center">{{ $category->name }}</td>
                   <td class="text-center">{{ $category->slug }}</td>
-                  <td class="text-center"><a data-toggle="modal" data-id="{{$category->id}}" data-name="{{$category->name}}" data-target="#modal-default-update-category-{{ $category->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-              
-                    <form id="delete-form-{{$category->id}}" method="post" action="{{ route('admin.category.destroy',$category->id) }}" style="display:none">
-                    {{csrf_field()}}
-                    {{method_field('delete')}}
-                    </form>
-                  <a href="" onclick="
-                    if(confirm('Etes Vous Sur De Supprimer Cette Categorie ?')){
-
-                    event.preventDefault();document.getElementById('delete-form-{{$category->id}}').submit();
-
-                    }else{
-
-                      event.preventDefault();
-
-                    }
-                    
-                    "><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                  <td class="text-center">
+                    <a data-toggle="modal" data-id="{{$category->id}}" data-name="{{$category->name}}" data-target="#modal-default-update-category-{{ $category->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                  
+                  <a data-toggle="modal" data-target="#modal-default-{{$category->id}}"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                  <div class="modal fade" id="modal-default-{{$category->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Suppression de categorie</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire supprimer cette categorie
+                          </p>
+                        <form action="{{ route('admin.category.destroy',$category->id) }}" method="post" style="display:none;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
                     </td>
                   </tr>
                   @endforeach

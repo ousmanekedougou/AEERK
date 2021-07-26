@@ -17,7 +17,11 @@ class CreateEducationTable extends Migration
             $table->id();
             $table->string('titre');
             $table->longText('content');
-            $table->string('type');
+            $table->Integer('type');
+            $table->Integer('concour_type')->default(0);
+            $table->Integer('bourse_type')->default(0);
+            $table->string('lien')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

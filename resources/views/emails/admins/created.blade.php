@@ -35,6 +35,11 @@
                     {{$ac_imb->name}}
                 @endforeach
                     a la chambre {{$msg->chambre->nom }}
+                    @if($msg->position == 1)
+                        a la {{$msg->chambre->position }}ere place
+                    @else
+                        a la {{$msg->chambre->position }}em place
+                    @endif
             @endcomponent
         @endif
         Merci,Le President de la commission sociale
@@ -277,9 +282,9 @@
                                         <p style="line-height: 24px; margin-bottom:15px;">
                                         Salut
                                             @if($msg->genre == 1)
-                                                Mr {{$msg->prenom}} {{$msg->nom}},
+                                                Mme  {{$msg->prenom}} {{$msg->nom}},
                                             @elseif($msg->genre == 2)
-                                                Mme {{$msg->prenom}} {{$msg->nom}},
+                                                Mr {{$msg->prenom}} {{$msg->nom}},
                                             @endif
                                         </p>
                                         @if($msg->status == 1 && $msg->codifier != 1 && $msg->prix == 0)
@@ -307,7 +312,20 @@
                                                 @foreach($msg->chambre->immeubles as $ac_imb)
                                                     {{$ac_imb->name}}
                                                 @endforeach
-                                                    a la chambre {{$msg->chambre->nom }}
+                                                    a la chambre {{$msg->chambre->nom }},
+                                                    @if($msg->chambre->position == 1)
+                                                        @if($msg->genre == 1)
+                                                            vous etes la  {{$msg->chambre->position }}ere a etre codifier dans cette chambre
+                                                        @elseif($msg->genre == 2)
+                                                            vous etes le  {{$msg->chambre->position }}ere a etre codifier dans cette chambre
+                                                        @endif
+                                                    @else
+                                                        @if($msg->genre == 1)
+                                                            vous etes la  {{$msg->chambre->position }}em a etre codifier dans cette chambre
+                                                        @elseif($msg->genre == 2)
+                                                            vous etes le  {{$msg->chambre->position }}em a etre codifier dans cette chambre
+                                                        @endif
+                                                    @endif
                                         </p>
                                         <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 
@@ -320,7 +338,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="" style="color: #ffffff; text-decoration: none;">Telecharger le reglement</a>
+                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->prenom }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Telecharger le reglement</a>
                                                     </div>
                                                 </td>
                                             </tr>

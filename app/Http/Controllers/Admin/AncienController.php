@@ -228,6 +228,12 @@ class AncienController extends Controller
                         $codifier_ancien->prix = $prix->prix_ancien;
                         $codifier_ancien->codifier = CODIFIER2;
                         $codifier_ancien->save();
+
+                        $position = Chambre::where('id',$request->chambre_id)->first();
+                        $position_nombre = $position->position;
+                        $position->position = $position_nombre + 1;
+                        $position->save();
+
                         // $numero_bureau = Solde::first();
                         // Nexmo::message()->send([
                         //     'to' => '221'.$numero_bureau->numero_ancien,
@@ -261,6 +267,11 @@ class AncienController extends Controller
                         //     'from' => '+221'.$codifier_ancien->phone,
                         //     'text' => "AEERK : Salut $codifier_ancien->prenom  $codifier_ancien->nom,vous avez ete codifier verifier votre compte gmail"
                         // ]);
+                        $position = Chambre::where('id',$request->chambre_id)->first();
+                        $position_nombre = $position->position;
+                        $position->position = $position_nombre + 1;
+                        $position->save();
+
                         Mail::to($codifier_ancien->email)
                         ->send(new MessageEmailAeerk($codifier_ancien));
                         Flashy::success('Votre etudiant a ete codifier');

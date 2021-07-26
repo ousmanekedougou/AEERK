@@ -110,6 +110,17 @@
 				autoplay:true,
 				autoplaySpeed:3000,
 				infinite:true,
+				responsive: [{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 4
+				}
+				}, {
+				breakpoint: 520,
+				settings: {
+					slidesToShow: 2
+				}
+				}]
 			});
 			</script>
 

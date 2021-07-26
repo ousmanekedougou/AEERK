@@ -1,54 +1,61 @@
 
-      
-        			@if (session('existe'))
-								<div class="single-feature" style="margin-top:10em;margin-bottom:25px;">
-									<div class="title">
-										@if(session('name'))
-										<h4>Bienvenue {!! session('name') !!}</h4>
-										@endif
-									</div>
-									<div class="desc-wrap">
-											@if(session('remercie'))
-												<p class="mb-1 mt-1" style="text-align:justify;font-weight:700; color:black"> {!! session('remercie') !!}</p>
-                      @endif
-											@if(session('sms'))
-												<p class="mb-1 mt-1" style="text-align:justify;font-weight:700; color:black"> {!! session('sms') !!}</p>
-                      @endif
-											@if(session('info'))
-												<p class="mb-1 mt-1" style="text-align:justify;"> <span style="font-weight:900;color:blue;">INFORMATION : </span> <span style="font-weight:700; color:black"> {!! session('info') !!}</span></p>
-                      @endif
-										<!-- <a href="#">Join Now</a> -->
-									</div>
-								</div>
-
-					@endif
-
-
-
-
-			<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  @if (session('success'))
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content bg-success text-white">
+          <div class="modal-header">
+            @if(session('name'))
+              <h5 class="modal-title text-white">{!! session('name') !!}</h5>
+						@endif
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="text-bold">
+              Votre inscription a bien ete enregistre ,un sms vous sera envoyer pour vous faire part de l'avis du bureau sur vos documents.
+            </p>
+            <h6 class="text-white">Information : </h6>
+            <p>
+              La codification en ligne est maintenant displonible si toute fois vos documents ont ete accepter un lien vous sera envoyer sur votre addresse email. <br>
+              D'ici la passez une bonne fin de journnee, <br>
+              Cordialement le Bureau
+            </p>
+            
+          </div>
+        </div>
       </div>
     </div>
+  @endif
+
+
+  <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Note d'information pour les codifications</h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="text-bold">
+              Chers etudiants,<br>
+              L'AEERK (Association Des Eleves Et Etudiants Ressortissants De Kedougou) lance sa phase d'inscription pour les codifications.
+            </p>
+            <p>
+              Pour plus d'information pour les modalites de codification veuillez clicker sur <a href="{{ route('systeme.index') }}">les information demander</a>.
+              <br> Si toute fois vous avez assimiler ce programme vous pouvez vous inscrire selon votre status en clickant les lien ci-dessous
+            </p>
+            
+          </div>
+           <div class="modal-footer text-center">
+             <div style="display: flex;width:100%">
+              <p style="width: 50%;">
+                 <a href="{{ route('nouveau.index') }}" class="">Inscription Nouveaux</a>
+              </p>
+              
+               <p style="width: 50%;">
+                 <a href="{{ route('ancien.index') }}" class="">Inscription Anciens</a>
+               </p>
+             </div>
+          </div>
+        </div>
+      </div>
   </div>
-</div> -->
-	

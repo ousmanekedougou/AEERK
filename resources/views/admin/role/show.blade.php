@@ -2,6 +2,7 @@
 
 @section('headsection')
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
 @endsection
 
 
@@ -27,7 +28,7 @@
           <div class="">
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Num</th>
@@ -39,38 +40,42 @@
                 <tbody>
                   @foreach($roles as $role)
                   <tr>
-                  <th>{{ $loop->index +1 }}</th>
-                  <th>{{ $role->name }}</th>
-                  <th><a href="{{ route('admin.role.edit',$role->id) }}"><i class="glyphicon glyphicon-edit"></i></a></th>
-                  <th>
-                    <form id="delete-form-{{$role->id}}" method="post" action="{{ route('admin.role.destroy',$role->id) }}" style="display:none">
-                    {{csrf_field()}}
-                    {{method_field('delete')}}
-                    </form>
-                  <a href="" onclick="
-                    if(confirm('Etes vous sure de supprimer cet role ?')){
-
-                    event.preventDefault();document.getElementById('delete-form-{{$role->id}}').submit();
-
-                    }else{
-
-                      event.preventDefault();
-
-                    }
-                    
-                    "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                    </th>
+                    <td>{{ $loop->index +1 }}</td>
+                    <td>{{ $role->name }}</td>
+                    <td><a href="{{ route('admin.role.edit',$role->id) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
+                    <td>
+                    <a data-toggle="modal" data-target="#modal-default-{{$role->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                      </td>
                   </tr>
+
+                  <div class="modal fade" id="modal-default-{{$role->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Suppression de slider</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire supprimer ce role
+                          </p>
+                        <form action="{{ route('admin.role.destroy',$role->id) }}" method="post" style="display:none;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
                   @endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Num</th>
-                  <th>Nom Role</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
-                </tr>
-                </tfoot>
               </table>
               {{ $roles->links() }}
             </div>
@@ -99,5 +104,5 @@
     $('#example1').DataTable()
   })
 </script>
-
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
 @endsection

@@ -2,10 +2,10 @@
 
 @section('headsection')
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
 @endsection
 
   @section('main-content')
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
@@ -19,7 +19,7 @@
         </h4>
         @if($immeubles->status == 1)
             @can('codifier.create', Auth::guard('admin')->user())
-              <div class="text-right">
+              <div class="text-right" style="margin-top: -30px;">
                     <form id="migration_nouveau" method="get" action="{{ route('admin.migret_nouveau') }}" style="display:none">
                       
                     </form>
@@ -43,7 +43,7 @@
             <div class="nav-tabs-custom">
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
-                <table id="example1" class="table text-center table-bordered table-striped">
+                <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Image</th>
@@ -51,6 +51,7 @@
                     <th>Telephone</th>
                     <th>Codifier A</th>
                     <th>Prix</th>
+                    <th>Place</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -68,20 +69,15 @@
                         {{$ancien->chambre->nom }}</td>
                       <td>{{ $ancien->prix }}</td>
                       <td>
-                        <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.codification.edit',$ancien->id) }}">pdf <i class="fa fa-file-pdf"></i></a></span>
+                        @if($ancien->chambre->position == 1)
+                          {{ $ancien->chambre->position }} ere
+                        @else 
+                          {{ $ancien->chambre->position }} em
+                        @endif
                       </td>
                     </tr>
                   @endforeach
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>Telephone</th>
-                    <th>Codifier A</th>
-                    <th>Prix</th>
-                  </tr>
-                  </tfoot>
                 </table>
                <span class="pull-rigth"> {{ $ancien_bac->links() }}</span>
               </div>
@@ -90,15 +86,6 @@
             <!-- /.tab-content -->
           </div>  
 
-
-
-
-
-
-
-        
-
-          
 
       </section>
                   <!-- /.content -->
@@ -110,6 +97,7 @@
 
 <script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
 <script>
  $(function () {
     $('#example1').DataTable()

@@ -2,6 +2,7 @@
 
 @section('headsection')
 <link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
 @endsection
 
 @section('main-content')
@@ -16,7 +17,7 @@
        
             <div class="tab-content">
               <div class="active tab-pane" id="">
-                <table id="example1" class="table text-center table-bordered table-striped">
+                <table id="example1" class="table responsive-table text-center table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Image</th>
@@ -42,15 +43,6 @@
                     </tr>
                   @endforeach
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Image</th>
-                    <th>Prenom et nom</th>
-                    <th>E-mail</th>
-                    <th>Telephone</th>
-                    <th>Recaser A</th>
-                  </tr>
-                  </tfoot>
                 </table>
                 {{ $recaser->links() }}
               </div>
@@ -86,5 +78,5 @@
     })
   })
 </script>
-
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
 @endsection

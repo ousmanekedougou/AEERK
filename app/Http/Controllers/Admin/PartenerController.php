@@ -45,7 +45,7 @@ class PartenerController extends Controller
         $this->validate($request,[
             'name' => 'required|string',
             'lien' => 'required|string',
-            'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+            'image' => 'required|image | mimes:jpeg,png,jpg,gif,ijf',
             'mot' => 'required|string',
             'date' => 'required|string',
         ]);

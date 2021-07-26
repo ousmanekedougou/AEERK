@@ -42,20 +42,38 @@
                           {{csrf_field()}}
                           {{method_field('delete')}}
                           </form>
-                  <a  href="" onclick="
-                          if(confirm('Etes Vous sure de supprimer ce personnelle ?')){
-
-                          event.preventDefault();document.getElementById('delete-form-{{$team->id}}').submit();
-
-                          }else{
-
-                            event.preventDefault();
-
-                          }
-                          
-                          " class="card-link"><i class="fa fa-trash btn btn-danger btn-xs"> Supprimer</i></a>
+                  <a  data-toggle="modal" data-target="#modal-default-{{$team->id}}" class="card-link"><i class="fa fa-trash btn btn-danger btn-xs"> Supprimer</i></a>
                       </div>
                     </div>
+                  </div>
+
+
+
+                  <div class="modal fade" id="modal-default-{{$team->id}}">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Suppression de slider</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Etes vous sure de voloire supprimer ce membre
+                          </p>
+                        <form action="{{ route('admin.team.destroy',$team->id) }}" method="post" style="display:none;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                          <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </div>
+                        </form>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
                   </div>
                 @endforeach
               </div>

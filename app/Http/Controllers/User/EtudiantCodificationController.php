@@ -16,7 +16,7 @@ use App\Mail\AeerkEmailMessage;
 use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Mail;
 use Nexmo\Laravel\Facade\Nexmo;
-use PDF;
+use Dompdf\Dompdf;
 use Illuminate\Support\Str;
 class EtudiantCodificationController extends Controller
 {
@@ -57,8 +57,8 @@ class EtudiantCodificationController extends Controller
     {
         $validatore = $this->validate($request,[
             'email' => 'required',
-            'phone' => 'required',
-            'status' => 'required'
+            'phone' => 'required|numeric',
+            'status' => 'required|numeric'
         ]);
         // dd($request->status);
         if($request->status == 1){
@@ -68,9 +68,8 @@ class EtudiantCodificationController extends Controller
                 $immeubles = Immeuble::where('status',1)->first();
                 return view('user.codification.nouveau',compact('nouveau','immeubles'));
             }elseif(!$nouveau){
-                
-                    Flashy::error('Vous etes deja codifier');
-                    return back();
+                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas !');
+                return back();
             }
             
 
@@ -83,7 +82,7 @@ class EtudiantCodificationController extends Controller
                 return view('user.codification.ancien',compact('ancien','immeubles'));
             }elseif(!$ancien){
                 
-                Flashy::error('Vous etes deja codifier');
+                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas !');
                 return back();
             }
         }
@@ -156,6 +155,11 @@ class EtudiantCodificationController extends Controller
                             //     'reglement' => $file
                             // ]);
 
+                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position_nombre = $position->position;
+                            $position->position = $position_nombre + 1;
+                            $position->save();
+
                             Mail::to($codifier_nouveau->email)
                             ->send(new AeerkEmailMessage($codifier_nouveau));
                             Flashy::success('Vous avez ete codifier');
@@ -187,6 +191,12 @@ class EtudiantCodificationController extends Controller
                                     //     'from' => '221781956168',
                                     //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
                                     // ]);
+
+                                    $position = Chambre::where('id',$request->chambre_id)->first();
+                                    $position_nombre = $position->position;
+                                    $position->position = $position_nombre + 1;
+                                    $position->save();
+
                                     Mail::to($codifier_nouveau->email)
                                     ->send(new AeerkEmailMessage($codifier_nouveau));
                                     Flashy::success('Vous avez ete codifier');
@@ -276,6 +286,12 @@ class EtudiantCodificationController extends Controller
                             //     'from' => '221781956168',
                             //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
                             // ]);
+
+                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position_nombre = $position->position;
+                            $position->position = $position_nombre + 1;
+                            $position->save();
+
                             Mail::to($codifier_ancien->email)
                             ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Vous avez ete codifier');
@@ -299,6 +315,12 @@ class EtudiantCodificationController extends Controller
                                     //     'from' => '221781956168',
                                     //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
                                     // ]);
+
+                                    $position = Chambre::where('id',$request->chambre_id)->first();
+                                    $position_nombre = $position->position;
+                                    $position->position = $position_nombre + 1;
+                                    $position->save();
+
                                     Mail::to($codifier_ancien->email)
                                     ->send(new MessageEmailAeerk($codifier_ancien));
                                     Flashy::success('Vous avez ete codifier');
@@ -368,6 +390,17 @@ class EtudiantCodificationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function createPdf($id,$prenom,$phone){
+         $etudiant = Etudiant::where(['id' => $id ,'prenom' => $prenom , 'phone' => $phone , 'codifier' => 1])->first();
+         $output = view('user.pdf' ,compact('etudiant'));
+         $dompdf = new Dompdf();
+         $dompdf->loadHtml($output);
+         $dompdf->setPaper('A4','landscape');
+         $dompdf->render();
+         $dompdf->stream();
+        
     }
 }
 

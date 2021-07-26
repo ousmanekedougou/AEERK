@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chambre extends Model
 {
+     protected $fillable = [
+        'nom', 'nombre','genre','status','is_pleine','position'
+    ];
     public function immeubles(){
         return $this->belongsToMany(Immeuble::class,'immeuble_chambres');
     }
