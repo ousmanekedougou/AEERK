@@ -40,23 +40,33 @@
                               <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-{{ $com->id }}" class="mr-5"><i class="glyphicon glyphicon-edit"></i></a>
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
-
-                              <form id="delete-form-{{$com->id}}" method="post" action="{{ route('admin.comission.destroy',$com->id) }}" style="display:none">
-                              {{csrf_field()}}
-                              {{method_field('delete')}}
-                              </form>
-                              <a href="" onclick=" 
-                              if(confirm('Are you sure , You want to delete this ?')){
-                                
-                                event.preventDefault();document.getElementById('delete-form-{{$com->id}}').submit();
-                                
-                              }else{
-                                
-                                event.preventDefault();
-                                
-                              }
-                              
-                              " style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <a data-toggle="modal" data-target="#modal-default-{{$com->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-{{$com->id}}">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title">Suppression de commission</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>
+                                        Etes vous sure de voloire supprimer cette commission
+                                      </p>
+                                    <form action="{{ route('admin.comission.destroy',$com->id) }}" method="post" style="display:none;">
+                                      @csrf
+                                      {{ method_field('DELETE') }}
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
                               @endcan
                             </td>
                           </tr>
@@ -106,22 +116,33 @@
                               <a data-toggle="modal" data-id="{{$poste->id}}" data-name="{{$poste->name}}" data-target="#modal-default-poste-{{ $poste->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
-                              <form id="delete-form-{{$poste->id}}" method="post" action="{{ route('admin.posteCommission.destroy',$poste->id) }}" style="display:none">
-                              {{csrf_field()}}
-                              {{method_field('delete')}}
-                              </form>
-                            <a href="" onclick="
-                              if(confirm('Are you sure , You want to delete this ?')){
-
-                              event.preventDefault();document.getElementById('delete-form-{{$poste->id}}').submit();
-
-                              }else{
-
-                                event.preventDefault();
-
-                              }
-                              
-                              " style="margin-left: 15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                               <a data-toggle="modal" data-target="#modal-default-poste-{{$poste->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-poste-{{$poste->id}}">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title">Suppression de poste</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>
+                                        Etes vous sure de voloire supprimer ce poste
+                                      </p>
+                                    <form action="{{ route('admin.posteCommission.destroy',$poste->id) }}" method="post" style="display:none;">
+                                      @csrf
+                                      {{ method_field('DELETE') }}
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
                             @endcan
                               </td>
                           </tr>

@@ -47,23 +47,34 @@
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
                             <td>
-                              <form id="delete-form-{{$dep->id}}" method="post" action="{{ route('admin.departement.destroy',$dep->id) }}" style="display:none">
-                              {{csrf_field()}}
-                              {{method_field('delete')}}
-                              </form>
-                            <a href="" onclick="
-                              if(confirm('Are you sure , You want to delete this ?')){
-
-                              event.preventDefault();document.getElementById('delete-form-{{$dep->id}}').submit();
-
-                              }else{
-
-                                event.preventDefault();
-
-                              }
-                              
-                              "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              </td>
+                               <a data-toggle="modal" data-target="#modal-default-{{$dep->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-{{$dep->id}}">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title">Suppression de poste</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>
+                                        Etes vous sure de voloire supprimer ce departement
+                                      </p>
+                                    <form action="{{ route('admin.departement.destroy',$dep->id) }}" method="post" style="display:none;">
+                                      @csrf
+                                      {{ method_field('DELETE') }}
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
+                            </td>
                               @endcan
                           </tr>
                           @endforeach
@@ -119,23 +130,34 @@
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
                             <td>
-                              <form id="delete-form-{{$com->id}}" method="post" action="{{ route('admin.commune.destroy',$com->id) }}" style="display:none">
-                              {{csrf_field()}}
-                              {{method_field('delete')}}
-                              </form>
-                            <a href="" onclick="
-                              if(confirm('Eetes vous sure de supprimer cette commune ?')){
-
-                              event.preventDefault();document.getElementById('delete-form-{{$com->id}}').submit();
-
-                              }else{
-
-                                event.preventDefault();
-
-                              }
-                              
-                              "><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              </td>
+                               <a data-toggle="modal" data-target="#modal-default-commune-{{$com->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-commune-{{$com->id}}">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title">Suppression de commune</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>
+                                        Etes vous sure de voloire supprimer cette commune
+                                      </p>
+                                    <form action="{{ route('admin.commune.destroy',$com->id) }}" method="post" style="display:none;">
+                                      @csrf
+                                      {{ method_field('DELETE') }}
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
+                            </td>
                               @endcan
                           </tr>
                           @endforeach

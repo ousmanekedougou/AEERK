@@ -65,23 +65,34 @@
                       <!-- <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.ancien.edit',$ancien->id) }}">Codifier <i class="fa fa-edit"></i></a></span> -->
                       <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$ancien->id}}" data-name="{{$ancien->name}}" data-target="#modal-default-edit-ancien{{ $ancien->id }}">Codifier <i class="fa fa-edit"></i></a></a>
                       @else 
-                      <form id="delete-form-{{$ancien->id}}" method="post" action="{{ route('admin.ancien.destroy',$ancien->id) }}" style="display:none">
-                      {{csrf_field()}}
-                      {{method_field('delete')}}
-                      </form>
-                      <span class=""><a class="btn btn-danger btn-xs text-center" 
-                      onclick="
-                      if(confirm('Etes Vous Sur De Supprimer Cet Etudiant ?')){
-
-                      event.preventDefault();document.getElementById('delete-form-{{$ancien->id}}').submit();
-
-                      }else{
-
-                        event.preventDefault();
-
-                      }
-                      
-                      "><i class="fa fa-trash"> Supprimer</i></a></span>
+                        <a class="btn btn-danger btn-xs text-center" 
+                      data-toggle="modal" data-target="#modal-default-{{$ancien->id}}"><i class="fa fa-trash"> Supprimer</i></a></span>
+                      <div class="modal fade" id="modal-default-{{$ancien->id}}">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title">Suppression de slider</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>
+                                Etes vous sure de voloire supprimer cet etudiant
+                              </p>
+                            <form action="{{ route('admin.ancien.destroy',$ancien->id) }}" method="post" style="display:none;">
+                              @csrf
+                              {{ method_field('DELETE') }}
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                              <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </div>
+                            </form>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
                       @endif
                     </td>
                     @endcan

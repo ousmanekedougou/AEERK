@@ -50,22 +50,33 @@
                                 <a style="margin-right:5px;" data-toggle="modal" data-id="{{$all_immeuble->id}}" data-name="{{$all_immeuble->name}}" data-target="#modal-default-{{ $all_immeuble->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                               @endcan
                               @can('logement.delete', Auth::guard('admin')->user())
-                                <form id="delete-form-{{$all_immeuble->id}}" method="post" action="{{ route('admin.immeuble.destroy',$all_immeuble->id) }}" style="display:none">
-                                {{csrf_field()}}
-                                {{method_field('delete')}}
-                                </form>
-                              <a style="margin-left:8px;" href="" onclick="
-                                if(confirm('Etes Vous Sure De Supprimer Cette Immeuble ?')){
-
-                                event.preventDefault();document.getElementById('delete-form-{{$all_immeuble->id}}').submit();
-
-                                }else{
-
-                                  event.preventDefault();
-
-                                }
-                                
-                                "><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                                <a data-toggle="modal" data-target="#modal-default-immeuble-{{$all_immeuble->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-immeuble-{{$all_immeuble->id}}">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title">Suppression d'immeuble</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>
+                                        Etes vous sure de voloire supprimer cette immeuble
+                                      </p>
+                                    <form action="{{ route('admin.immeuble.destroy',$all_immeuble->id) }}" method="post" style="display:none;">
+                                      @csrf
+                                      {{ method_field('DELETE') }}
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
                               @endcan
                                 </td>
                             </tr>
@@ -121,22 +132,33 @@
                             <a style="margin-right:5px;" data-toggle="modal" data-id="{{$chm->id}}" data-name="{{$chm->name}}" data-target="#modal-default-chambre-{{ $chm->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
-                            <form id="delete-form-{{$chm->id}}" method="post" action="{{ route('admin.chambre.destroy',$chm->id) }}" style="display:none">
-                            {{csrf_field()}}
-                            {{method_field('delete')}}
-                            </form>
-                            <a style="margin-left:8px;" href="" onclick="
-                            if(confirm('Etes Vous Sure Supprimer Cette Chambre ?')){
-  
-                            event.preventDefault();document.getElementById('delete-form-{{$chm->id}}').submit();
-  
-                            }else{
-  
-                              event.preventDefault();
-  
-                            }
-                            
-                            "><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <a data-toggle="modal" data-target="#modal-default-chambre-{{$chm->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-chambre-{{$chm->id}}">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title">Suppression de cahmbre</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>
+                                        Etes vous sure de voloire supprimer cette chambre
+                                      </p>
+                                    <form action="{{ route('admin.chambre.destroy',$chm->id) }}" method="post" style="display:none;">
+                                      @csrf
+                                      {{ method_field('DELETE') }}
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
                             @endcan
                             </td>
                           </tr>
