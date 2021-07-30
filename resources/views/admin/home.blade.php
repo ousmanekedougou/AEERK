@@ -25,40 +25,40 @@
     <h3 class="text-center btn btn-warning btn-block text-bold">D'un cout d'oeuil</h3>
       <br>
       <div class="row">
-      <a href="{{ route('admin.contact.index') }}">
-        <div class="col-lg-3">
-          <div class="info-box bg-yellow">
-              <span class="info-box-icon"><i class="fa fa-envelope"></i></span>
+        <a href="{{ route('admin.contact.index') }}">
+          <div class="col-lg-3">
+            <div class="info-box bg-yellow">
+                <span class="info-box-icon"><i class="fa fa-envelope"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Nouveaux messages</span>
-                <span class="info-box-number">
+                <div class="info-box-content">
+                  <span class="info-box-text">Nouveaux messages</span>
+                  <span class="info-box-number">
+                    @foreach($contact_all as $contact)
+                      @if($contact->status == 0)
+                        {{$contact->count()}}
+                      @endif
+                    @endforeach
+                  </span>
+
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 50%"></div>
+                  </div>
+                  <span class="progress-description">
                   @foreach($contact_all as $contact)
-                    @if($contact->status == 0)
-                      {{$contact->count()}}
-                    @endif
-                  @endforeach
-                </span>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 50%"></div>
+                      @if($contact->status == 1)
+                        {{$contact->count()}} 
+                      @endif
+                    @endforeach
+                    message lue
+                      </span>
                 </div>
-                <span class="progress-description">
-                @foreach($contact_all as $contact)
-                    @if($contact->status == 1)
-                      {{$contact->count()}} 
-                    @endif
-                  @endforeach
-                  message lue
-                    </span>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
-            </div>
-        </div>
+          </div>
         </a>
 
        <a href="{{ route('admin.admin.index') }}">
-       <div class="col-lg-3">
+        <div class="col-lg-3">
           <div class="info-box bg-yellow">
               <span class="info-box-icon"><i class="fa fa-cog"></i></span>
 
@@ -79,24 +79,24 @@
        </a>
 
         <a href="{{ route('admin.team.index') }}">
-        <div class="col-lg-3">
-          <div class="info-box bg-yellow">
-              <span class="info-box-icon"><i class="fa fa-users"></i></span>
+          <div class="col-lg-3">
+            <div class="info-box bg-yellow">
+                <span class="info-box-icon"><i class="fa fa-users"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Les Membres</span>
-                <span class="info-box-number">{{$team_all->count()}}</span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Les Membres</span>
+                  <span class="info-box-number">{{$team_all->count()}}</span>
 
-                <div class="progress">
-                  <div class="progress-bar" style="width: 20%"></div>
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 20%"></div>
+                  </div>
+                  <span class="progress-description">
+                        20% Increase in 30 Days
+                      </span>
                 </div>
-                <span class="progress-description">
-                      20% Increase in 30 Days
-                    </span>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
-            </div>
-        </div>
+          </div>
         </a>
 
         <a href="{{ route('admin.info.index') }}">
@@ -127,22 +127,24 @@
       <br>
       <div class="row">
         <div class="col-lg-3">
-          <div class="info-box bg-green">
-              <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
+          <a href="{{ route('admin.nouveau.index') }}">
+            <div class="info-box bg-green">
+                <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Total Inscrits</span>
-                <span class="info-box-number">{{ $nouveau_total_inscrit->count() }}</span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Inscrits</span>
+                  <span class="info-box-number">{{ $nouveau_total_inscrit->count() }}</span>
 
-                <div class="progress">
-                  <div class="progress-bar" style="width: 50%"></div>
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 50%"></div>
+                  </div>
+                  <span class="progress-description">
+                        50% Increase in 30 Days
+                      </span>
                 </div>
-                <span class="progress-description">
-                      50% Increase in 30 Days
-                    </span>
-              </div>
-              <!-- /.info-box-content -->
+                <!-- /.info-box-content -->
             </div>
+          </a>
         </div>
 
         <div class="col-lg-3">
@@ -161,7 +163,7 @@
                     </span>
               </div>
               <!-- /.info-box-content -->
-            </div>
+          </div>
         </div>
 
         <div class="col-lg-3">
@@ -180,7 +182,7 @@
                     </span>
               </div>
               <!-- /.info-box-content -->
-            </div>
+          </div>
         </div>
 
         <div class="col-lg-3">
@@ -199,7 +201,7 @@
                     </span>
               </div>
               <!-- /.info-box-content -->
-            </div>
+          </div>
         </div>
 
 
@@ -210,22 +212,24 @@
       <br>
       <div class="row">
         <div class="col-lg-3">
-          <div class="info-box bg-blue">
-              <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
+          <a href="{{ route('admin.ancien.index') }}">
+            <div class="info-box bg-blue">
+                <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Total Inscrits</span>
-                <span class="info-box-number">{{ $ancien_total_inscrit->count() }}</span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Inscrits</span>
+                  <span class="info-box-number">{{ $ancien_total_inscrit->count() }}</span>
 
-                <div class="progress">
-                  <div class="progress-bar" style="width: 50%"></div>
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 50%"></div>
+                  </div>
+                  <span class="progress-description">
+                        50% Increase in 30 Days
+                      </span>
                 </div>
-                <span class="progress-description">
-                      50% Increase in 30 Days
-                    </span>
-              </div>
-              <!-- /.info-box-content -->
+                <!-- /.info-box-content -->
             </div>
+          </a>
         </div>
 
         <div class="col-lg-3">
@@ -244,45 +248,45 @@
                     </span>
               </div>
               <!-- /.info-box-content -->
-            </div>
+          </div>
         </div>
 
         <div class="col-lg-3">
           <div class="info-box bg-blue">
-              <span class="info-box-icon"><i class="fa fa-close "></i></span>
+            <span class="info-box-icon"><i class="fa fa-close "></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Total Ommis</span>
-                <span class="info-box-number">{{$ancien_total_ommis->count()}}</span>
+            <div class="info-box-content">
+              <span class="info-box-text">Total Ommis</span>
+              <span class="info-box-number">{{$ancien_total_ommis->count()}}</span>
 
-                <div class="progress">
-                  <div class="progress-bar" style="width: 20%"></div>
-                </div>
-                <span class="progress-description">
-                      20% Increase in 30 Days
-                    </span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 20%"></div>
               </div>
-              <!-- /.info-box-content -->
+              <span class="progress-description">
+                    20% Increase in 30 Days
+                  </span>
             </div>
+            <!-- /.info-box-content -->
+          </div>
         </div>
 
         <div class="col-lg-3">
           <div class="info-box bg-blue">
-              <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
+            <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Total Codifier</span>
-                <span class="info-box-number">{{$ancien_total_codifier->count()}}</span>
+            <div class="info-box-content">
+              <span class="info-box-text">Total Codifier</span>
+              <span class="info-box-number">{{$ancien_total_codifier->count()}}</span>
 
-                <div class="progress">
-                  <div class="progress-bar" style="width: 20%"></div>
-                </div>
-                <span class="progress-description">
-                      Total non Codifier
-                    </span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 20%"></div>
               </div>
-              <!-- /.info-box-content -->
+              <span class="progress-description">
+                    Total non Codifier
+                  </span>
             </div>
+            <!-- /.info-box-content -->
+          </div>
         </div>
 
 

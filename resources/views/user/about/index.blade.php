@@ -35,7 +35,7 @@
 				<div class="col-lg-4">
 					<div class="single-feature">
 						<div class="title">
-							<h4>Learn Online Courses</h4>
+							<h4>Missions</h4>
 						</div>
 						<div class="desc-wrap">
 							<p>
@@ -49,7 +49,7 @@
 				<div class="col-lg-4">
 					<div class="single-feature">
 						<div class="title">
-							<h4>No.1 of universities</h4>
+							<h4>Visions</h4>
 						</div>
 						<div class="desc-wrap">
 							<p>
@@ -62,7 +62,7 @@
 				<div class="col-lg-4">
 					<div class="single-feature">
 						<div class="title">
-							<h4>Huge Library</h4>
+							<h4>Objectifs</h4>
 						</div>
 						<div class="desc-wrap">
 							<p>
@@ -129,35 +129,37 @@
 			<div class="row d-flex justify-content-center">
 				<div class="menu-content pb-70 col-lg-8">
 				<div class="title text-center">
-					<h1 class="mb-10">Goals to Achieve for the leadership</h1>
-					<p>Who are in extremely love with eco friendly system.</p>
+					<h1 class="mb-10">Nos secteurs de travail</h1>
+					<p class="text-left">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint cumque dolor soluta, labore voluptates rem illo ipsam harum fugiat nobis iure qui aperiam rerum ullam provident odit vitae, molestiae ipsa quae asperiores quibusdam dicta, blanditiis itaque architecto. Modi tempore hic nihil architecto aspernatur, mollitia beatae repellat incidunt suscipit pariatur facere minus cupiditate illum facilis iusto laborum nulla adipisci? Nulla illum distinctio est velit suscipit quis aliquam consequatur, itaque vel natus nihil vitae. Eos quia a veniam vero reiciendis sequi dolore corporis, veritatis id voluptatum, velit, est provident laborum fugit omnis quo eius! Excepturi ea dolorem eligendi tenetur impedit nostrum aperiam.</p>
 				</div>
 				</div>
 			</div>							
 			<div class="row">
-				<div class="col-md-6 accordion-left">
+				<div class="col-md-7 accordion-left">
 					<!-- accordion 2 start-->
 					<dl class="accordion">
 						<dt>
-							<a href="">Success</a>
+							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Social</a>
 						</dt>
 						<dd>
 							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
+							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
+							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
 						</dd>
 						<dt>
-							<a href="">Info</a>
+							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Pedagogique</a>
 						</dt>
 						<dd>
 							Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
 						</dd>
 						<dt>
-							<a href="">Danger</a>
+							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Sportive</a>
 						</dt>
 						<dd>
 							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
 						</dd>
 						<dt>
-							<a href="">Warning</a>
+							<a href="" class="text-uppercase" style="font-weight: 700;">Commission D'organisation</a>
 						</dt>
 						<dd>
 							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
@@ -165,7 +167,7 @@
 					</dl>
 					<!-- accordion 2 end-->
 				</div>
-				<div class="col-md-6 video-right justify-content-center align-items-center d-flex relative">
+				<div class="col-md-5 video-right justify-content-center align-items-center d-flex relative">
 					<div class="overlay overlay-bg"></div>
 						<a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid mx-auto" src="img/play.png" alt=""></a>
 				</div>
@@ -174,192 +176,313 @@
 	</section>
 	<!-- End course-mission Area -->
 
-		<!-- Start search-course Area -->
-	<section class="search-course-area relative" style="margin-bottom:100px;">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				<div class="col-lg-6 col-md-6 search-course-left">
-					<h1 class="text-white">
-						Get reduced fee <br>
-						during this Summer!
-					</h1>
-					<p>
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-					</p>
-					<div class="row details-content">
-						<div class="col single-detials">
-							<span class="lnr lnr-graduation-hat"></span>
-							<a href="#"><h4>Expert Instructors</h4></a>		
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
+	<!-- Start popular-course Area -->
+		<section class="popular-course-area section-gap" style="margin-top: -150px;">
+			<div class="container">
+				<div class="row d-flex justify-content-center">
+					<div class="menu-content pb-70 col-lg-8">
+						<div class="title text-center">
+							<h1 class="mb-10">Le personnelle du bureau</h1>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sit?</p>
 						</div>
-						<div class="col single-detials">
-							<span class="lnr lnr-license"></span>
-							<a href="#"><h4>Certification</h4></a>		
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
-						</div>								
+					</div>
+				</div>						
+				<div class="row">
+					<div class="active-popular-carusel">
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Designing
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn React js beginners
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Photography
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Surveying
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Designing
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn React js beginners
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Photography
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Surveying
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>							
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 search-course-right section-gap">
-					<form class="form-wrap" action="#">
-						<h4 class="text-white pb-20 text-center mb-30">Search for Available Course</h4>		
-						<input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" >
-						<input type="phone" class="form-control" name="phone" placeholder="Your Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'" >
-						<input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" >
-						<div class="form-select" id="service-select">
-							<select>
-								<option datd-display="">Choose Course</option>
-								<option value="1">Course One</option>
-								<option value="2">Course Two</option>
-								<option value="3">Course Three</option>
-								<option value="4">Course Four</option>
-							</select>
-						</div>									
-						<button class="primary-btn text-uppercase">Submit</button>
-					</form>
-				</div>
-			</div>
-		</div>	
-	</section>
-	
-	<!-- End search-course Area -->	
+			</div>	
+		</section>
+	<!-- End popular-course Area -->
 
-	<!-- Start review Area -->
-	<!-- <section class="review-area section-gap relative">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">				
-			<div class="row">
-				<div class="active-review-carusel">
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
+	<!-- Start search-course Area -->
+		<section class="search-course-area relative" style="margin-bottom:100px;">
+			<div class="overlay overlay-bg"></div>
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-lg-8 col-md-8 search-course-left">
+						<h1 class="text-white">
+							Obtenez des frais réduits <br> durant cet été !
+						</h1>
+						<div class="row details-content">
+							<div class="col single-detials">
+								<span class="lnr lnr-graduation-hat"></span>
+								<a href="{{ route('education.index', [ 'type' =>  1 ])}}"><h4>Offres d'emplois & statges</h4></a>		
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>						
 							</div>
+							<div class="col single-detials">
+								<span class="lnr lnr-license"></span>
+								<a href="{{ route('education.index', [ 'type' =>  3 ])}}"><h4>Bourses D'etudes</h4></a>		
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>						
+							</div>								
 						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
+
+						<div class="row details-content">
+							<div class="col single-detials">
+								<span class="lnr lnr-graduation-hat"></span>
+								<a href="{{ route('education.index', [ 'type' =>  5 ])}}"><h4>Formations</h4></a>		
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>						
+							</div>
+							<div class="col single-detials">
+								<span class="lnr lnr-license"></span>
+								<a href="{{ route('education.index', [ 'type' =>  4 ])}}"><h4>Examan & Concours</h4></a>		
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>						
+							</div>								
+						</div>
 					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
+					<div class="col-lg-4 col-md-4 search-course-right section-gap">
+						<form class="form-wrap"  method="POST" action="{{ route('temoignage.post') }}">
+							@csrf
+							<h4 class="text-white pb-20 text-center mb-30">Faites nous part de votre avis</h4>		
+							<div class="mt-10">
+								<input type="text"  value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Votre prenom et nom" onfocus="this.placeholder = 'Votre prenom et nom'" onblur="this.placeholder = 'Votre prenom et nom'" required class="single-input">
+								@error('name')
+									<span class="invalid-feedback" role="alert">
+										<strong class="message_error">{{ $message }}</strong>
+									</span>
+								@enderror
 							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
+
+							<div class="mt-10">
+								<input type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Votre adresse email" onfocus="this.placeholder = 'Votre adresse email'" onblur="this.placeholder = 'Votre adresse email'" required class="single-input">
+								@error('email')
+									<span class="invalid-feedback" role="alert">
+										<strong class="message_error">{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+							<div class="mt-10">
+								<textarea class="textarea" name="message" id="" value="{{ old('message') }}" class="form-control @error('message') is-invalid @enderror" required placeholder="Votre message"  style="width: 100%;height:200px;outline:none;"></textarea>								
+								@error('message')
+									<span class="invalid-feedback" role="alert">
+										<strong class="message_error">{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+							<button type="submit" class="primary-btn text-uppercase">Envoyer</button>
+						</form>
 					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>	
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<img src="img/r1.png" alt="">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Fannie Rowe</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>
-					<div class="single-review item">
-						<div class="title justify-content-start d-flex">
-							<a href="#"><h4>Hulda Sutton</h4></a>
-							<div class="star">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
-						<p>
-							Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-						</p>
-					</div>																												
 				</div>
-			</div>
-		</div>	
-	</section> -->
-	<!-- End review Area -->
+			</div>	
+		</section>
+	<!-- End search-course Area -->
+
+
+	<!--  les temoignages -->
+		<section class="review-area section-gap relative">
+			<h3 class="text-center" style="margin-top:-100px;margin-bottom: 15px;">Les Temoignages</h3>		
+			<div class="overlay overlay-bg"></div>
+			<div class="container">		
+				<div class="row">
+					<div class="active-review-carusel" >
+					@foreach(all_temoignage() as $temoignage)
+						<div class="single-review item">
+							<div class="title justify-content-start d-flex">
+								<a href="#"><h4>{{$temoignage->nom}}</h4></a>
+								<div class="star">
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+								</div>
+							</div>
+							<p>
+								{{$temoignage->message}}
+							</p>
+						</div>
+					@endforeach																													
+					</div>
+				</div>
+			</div>	
+		</section>
+	<!--  les temoignages -->		
+
+	
 
  @endsection
 

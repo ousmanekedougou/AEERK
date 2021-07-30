@@ -132,8 +132,8 @@
                             <a style="margin-right:5px;" data-toggle="modal" data-id="{{$chm->id}}" data-name="{{$chm->name}}" data-target="#modal-default-chambre-{{ $chm->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
-                              <a data-toggle="modal" data-target="#modal-default-chambre-{{$chm->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              <div class="modal fade" id="modal-default-chambre-{{$chm->id}}">
+                              <a data-toggle="modal" data-target="#modal-default-chambre-delete-{{$chm->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-chambre-delete-{{$chm->id}}">
                                 <div class="modal-dialog modal-sm">
                                   <div class="modal-content">
                                     <div class="modal-header">

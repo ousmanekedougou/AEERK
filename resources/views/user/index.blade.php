@@ -107,53 +107,7 @@
 				</div>	
 			</section>
 
-			<!-- Start feature Area -->
-			<section class="feature-area" style="margin-bottom: -40px;margin-top:130px;">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-feature">
-								<div class="title bg-primary">
-									<h4>Visions</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
-									</p>
-									<a href="{{ route('education.index', [ 'type' =>  4 ])}}">Voire</a>									
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-feature">
-								<div class="title bg-primary">
-									<h4>Missions</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-									</p>
-									<a href="{{ route('education.index', [ 'type' =>  3 ])}}">Voire</a>									
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-feature">
-								<div class="title bg-primary">
-									<h4>Objectifs</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-									</p>
-									<a href="{{ route('education.index', [ 'type' =>  5 ])}}">Voire</a>									
-								</div>
-							</div>
-						</div>												
-					</div>
-				</div>	
-			</section>
-			<!-- End feature Area -->
+			
 
 			
 			<!-- Nos activites officiell-->
@@ -255,35 +209,7 @@
 
 			
 						
-			<!--  les temoignages -->
-			<section class="review-area section-gap relative">
-				<h3 class="text-center" style="margin-top:-100px;margin-bottom: 15px;">Les Temoignages</h3>		
-				<div class="overlay overlay-bg"></div>
-				<div class="container">		
-					<div class="row">
-						<div class="active-review-carusel" >
-						@foreach(all_temoignage() as $temoignage)
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>{{$temoignage->nom}}</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
-									</div>
-								</div>
-								<p>
-									{{$temoignage->message}}
-								</p>
-							</div>
-						@endforeach																													
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!--  les temoignages -->	
+		
 			
 
 			<!-- Start search-course Area -->
@@ -387,7 +313,7 @@
 
 			
 			<!-- Start blog Area -->
-			<section class="blog-area section-gap" id="blog">
+			<section class="blog-area section-gap" id="blog" style="margin-top: -150px;">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
@@ -452,6 +378,37 @@
 					</div>
 				</div>
 			</section>
+
+
+				<!--  les temoignages -->
+			<section class="review-area section-gap relative" style="margin-top: -100px;">
+				<h3 class="text-center" style="margin-top:-100px;margin-bottom: 15px;">Les Temoignages</h3>		
+				<div class="overlay overlay-bg"></div>
+				<div class="container">		
+					<div class="row">
+						<div class="active-review-carusel" >
+						@foreach(all_temoignage() as $temoignage)
+							<div class="single-review item">
+								<div class="title justify-content-start d-flex">
+									<a href="#"><h4>{{$temoignage->nom}}</h4></a>
+									<div class="star">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+									</div>
+								</div>
+								<p>
+									{{$temoignage->message}}
+								</p>
+							</div>
+						@endforeach																													
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!--  les temoignages -->	
 
 	
 

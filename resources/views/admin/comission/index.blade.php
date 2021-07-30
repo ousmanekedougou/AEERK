@@ -40,8 +40,8 @@
                               <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-{{ $com->id }}" class="mr-5"><i class="glyphicon glyphicon-edit"></i></a>
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
-                              <a data-toggle="modal" data-target="#modal-default-{{$com->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              <div class="modal fade" id="modal-default-{{$com->id}}">
+                              <a data-toggle="modal" data-target="#modal-default-delete-{{$com->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-delete-{{$com->id}}">
                                 <div class="modal-dialog modal-sm">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -116,8 +116,8 @@
                               <a data-toggle="modal" data-id="{{$poste->id}}" data-name="{{$poste->name}}" data-target="#modal-default-poste-{{ $poste->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
-                               <a data-toggle="modal" data-target="#modal-default-poste-{{$poste->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              <div class="modal fade" id="modal-default-poste-{{$poste->id}}">
+                               <a data-toggle="modal" data-target="#modal-default-delete-poste-{{$poste->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-delete-poste-{{$poste->id}}">
                                 <div class="modal-dialog modal-sm">
                                   <div class="modal-content">
                                     <div class="modal-header">

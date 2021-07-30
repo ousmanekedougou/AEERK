@@ -76,7 +76,6 @@ class RecasementController extends Controller
         }elseif ($request->status == 2) {
             $anciens = Etudiant::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1,'ancienete' => 2])->first();
             if ($anciens) {
-                dd($request->all());
                 $anciens_recaser = new Recasement;
                 $anciens_recaser->genre = $anciens->genre;
                 $anciens_recaser->nom = $anciens->nom;

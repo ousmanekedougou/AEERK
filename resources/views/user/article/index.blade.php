@@ -40,7 +40,7 @@
 											<img class="content-image img-fluid d-block mx-auto" src="{{asset('user/img/blog/cat-widget1.jpg')}}" alt="">
 										</div>
 										<div class="content-details">
-											<h4 class="content-title mx-auto text-uppercase">Vie Sicial</h4>
+											<h4 class="content-title mx-auto text-uppercase">Vie Social</h4>
 											<span></span>								        
 											<p>Enjoy your social life together</p>
 										</div>
@@ -57,7 +57,7 @@
 											<img class="content-image img-fluid d-block mx-auto" src="{{asset('user/img/blog/cat-widget2.jpg')}}" alt="">
 										</div>
 										<div class="content-details">
-											<h4 class="content-title mx-auto text-uppercase">La Politique</h4>
+											<h4 class="content-title mx-auto text-uppercase">Employabilite</h4>
 											<span></span>								        
 											<p>Be a part of politics</p>
 										</div>
@@ -74,7 +74,7 @@
 											<img class="content-image img-fluid d-block mx-auto" src="{{asset('user/img/blog/cat-widget3.jpg')}}" alt="">
 										</div>
 										<div class="content-details">
-											<h4 class="content-title mx-auto text-uppercase">Le football</h4>
+											<h4 class="content-title mx-auto text-uppercase">Education</h4>
 											<span></span>
 											<p>Let the food be finished</p>
 										</div>

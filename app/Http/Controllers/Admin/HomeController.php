@@ -9,6 +9,7 @@ use App\Model\Admin\Team;
 use App\Model\User\Nouveau;
 use App\Model\User\Ancien;
 use App\Model\User\Contact;
+use App\Model\User\Etudiant;
 
 class HomeController extends Controller {
 
@@ -19,16 +20,16 @@ class HomeController extends Controller {
     
     public function index() 
     {
-        $nouveau_total_inscrit = Nouveau::all();
-        $nouveau_total_valider = Nouveau::where('status',1)->get();
-        $nouveau_total_ommis = Nouveau::where('status',2)->get();
-        $nouveau_total_codifier = Nouveau::where('codifier',1)->get();
+        $nouveau_total_inscrit = Etudiant::where(['ancienete' => 1 , 'status' => 0])->get();
+        $nouveau_total_valider = Etudiant::where(['ancienete' => 1 , 'status' => 1])->get();
+        $nouveau_total_ommis = Etudiant::where(['ancienete' => 1 , 'status' => 2])->get();
+        $nouveau_total_codifier = Etudiant::where(['ancienete' => 1 , 'status' => 1 , 'codifier' => 1])->get();
 
 
-        $ancien_total_inscrit = Ancien::all();
-        $ancien_total_valider = Ancien::where('status',1)->get();
-        $ancien_total_ommis = Ancien::where('status',2)->get();
-        $ancien_total_codifier = Ancien::where('codifier',1)->get();
+        $ancien_total_inscrit = Etudiant::where(['ancienete' => 2 , 'status' => 0])->get();
+        $ancien_total_valider = Etudiant::where(['ancienete' => 2 , 'status' => 1])->get();
+        $ancien_total_ommis = Etudiant::where(['ancienete' => 2 , 'status' => 2])->get();
+        $ancien_total_codifier = Etudiant::where(['ancienete' => 2 , 'status' => 1 , 'codifier' => 1])->get();
 
         $contact_all = Contact::all();
 

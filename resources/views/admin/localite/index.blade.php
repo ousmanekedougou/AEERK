@@ -47,8 +47,8 @@
                             @endcan
                             @can('logement.delete', Auth::guard('admin')->user())
                             <td>
-                               <a data-toggle="modal" data-target="#modal-default-{{$dep->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                              <div class="modal fade" id="modal-default-{{$dep->id}}">
+                               <a data-toggle="modal" data-target="#modal-default-immeuble-{{$dep->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                              <div class="modal fade" id="modal-default-immeuble-{{$dep->id}}">
                                 <div class="modal-dialog modal-sm">
                                   <div class="modal-content">
                                     <div class="modal-header">

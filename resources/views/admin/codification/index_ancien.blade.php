@@ -19,22 +19,34 @@
         </h4>
         @if($immeubles->status == 1)
             @can('codifier.create', Auth::guard('admin')->user())
-              <div class="text-right" style="margin-top: -30px;">
-                    <form id="migration_nouveau" method="get" action="{{ route('admin.migret_nouveau') }}" style="display:none">
-                      
-                    </form>
-                    <a class="btn btn-primary" onclick="
-                      if(confirm('Etes vous sure de vouloire migret tous les etudiants ?')){
+              <div  style="float:right;">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-share"> Migration des etudiants</i></a>
 
-                      event.preventDefault();document.getElementById('migration_nouveau').submit();
-
-                      }else{
-
-                        event.preventDefault();
-
-                      }
-                      
-                      "><i class="fa fa-share"> Migration des etudiants</i></a>
+                      <div class="modal fade" id="modal-default-migraion">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title text-left">Migration d'etudiants</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p class="text-left">
+                                Etes vous sure de vouloire migret tous les etudiants
+                              </p>
+                            <form action="{{ route('admin.migret_nouveau') }}" method="get" style="display:none;">
+                             
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                              <button type="submit" class="btn btn-primary">Valider le migration</button>
+                            </div>
+                            </form>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
               </div>
             @endcan
         @endif

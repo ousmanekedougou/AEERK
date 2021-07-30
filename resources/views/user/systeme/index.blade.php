@@ -80,18 +80,18 @@
 
 
 	<section class="mt-5">
-		<div class="container">
-			<h3 class="text-heading">Text Sample</h3>
+		<div class="container" style="padding-left: 220px;margin-right:220px;">
+			<h3 class="text-heading">Comment s'inscrire pour les codifications</h3>
 			<p class="sample-text text-justify">
 				Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results: 
 			</p>
 		</div>
 	</section>	
 	
-	<section class="">
-		<div class="container">
+	<section class="" >
+		<div class="container" style="padding-left: 220px;margin-right:220px;">
 			<div class="section-top-border">
-				<h3 class="mb-30">Les nouveaux</h3>
+				<h3 class="mb-30">Pour les nouveaux</h3>
 				<div class="row">
 					<div class="col-lg-12">
 						<blockquote class="generic-blockquote text-justify">
@@ -103,7 +103,7 @@
 
 
 			<div class="section-top-border">
-				<h3 class="mb-30">Les anciens</h3>
+				<h3 class="mb-30">Pour les anciens</h3>
 				<div class="row">
 					<div class="col-lg-12">
 						<blockquote class="generic-blockquote text-justify">
@@ -114,7 +114,7 @@
 			</div>
 
 			<div class="section-top-border">
-				<h3 class="mb-30">Pour les recasements</h3>
+				<h3 class="mb-30">Consernant les recasements(Inscrption & Recasement)</h3>
 				<div class="row">
 					<div class="col-lg-12">
 						<blockquote class="generic-blockquote text-justify">

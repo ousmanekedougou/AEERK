@@ -62,13 +62,34 @@
                                   @endcan
 
                                   @can('posts.delete', Auth::guard('admin')->user())
-                                  <form  id="delete-form-{{$educ->id}}" method="post" action="{{ route('admin.education.destroy',$educ->id) }}"  style="display:none">
-                                      {{csrf_field()}}
-                                      {{method_field('DELETE')}}
-                                      </form>
-                                    <a  href="" onclick=" if(confirm('Etes Vous sure de supprimer cette article ?')){  event.preventDefault();document.getElementById('delete-form-{{$educ->id}}').submit();
-          
-                                      }else{event.preventDefault();} "><i class="fa fa-trash btn btn-danger card-link btn-xs"> </i></a>
+
+                                       <a data-toggle="modal" data-target="#modal-default-{{$educ->id}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                      <div class="modal fade" id="modal-default-{{$educ->id}}">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                              <h4 class="modal-title">Suppression de document</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>
+                                                Etes vous sure de voloire supprimer ce document
+                                              </p>
+                                            <form action="{{ route('admin.education.destroy',$educ->id) }}" method="post" style="display:none;">
+                                              @csrf
+                                              {{ method_field('DELETE') }}
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                              <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            </div>
+                                            </form>
+                                          </div>
+                                          <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                      </div>
                                    @endcan
                                 </div>
                               </p>

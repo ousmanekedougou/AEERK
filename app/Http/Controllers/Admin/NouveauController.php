@@ -402,8 +402,8 @@ class NouveauController extends Controller
         {
             // return 'Tous les etudiant ont ete migre';
             $nouveau_bac = Etudiant::where(['status'=>1, 'codifier'=>1, 'ancienete'=>1])->get(); 
-            $immeuble = Immeuble::where('status',2)->first();
-            $immeuble_id = $immeuble->id;
+            // $immeuble = Immeuble::where('status',2)->first();
+            // $immeuble_id = $immeuble->id;
 
             foreach($nouveau_bac as $migration){
                 $migration->ancienete = 2;
@@ -412,13 +412,6 @@ class NouveauController extends Controller
                 $migration->status = false;
                 $migration->prix = 0;
                 $migration->save();
-                // dd($migration);
-                $numero_bureau = Solde::first();
-                // Nexmo::message()->send([
-                //     'to' => '221'.$numero_bureau->numero_nouveau,
-                //     'from' => '+221'.$migration->phone,
-                //     'text' => "AEERK : Salut $migration->prenom  $migration->nom vous avez ete migret comme ancien verifier votre compte gmail"
-                // ]);
             }
             Flashy::success('La migration a bien reussie');
             return back()->with('success','Votre migration a reussie');

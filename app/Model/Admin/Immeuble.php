@@ -30,6 +30,6 @@ class Immeuble extends Model
     }
 
     public function etudiants(){
-    return $this->hasMany(Etudiant::class);
+        return $this->hasMany(Etudiant::class);
     }
 }
