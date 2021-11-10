@@ -161,12 +161,11 @@
                       }" type="submit"> Appliquer</button>
                       </form>
                       </div>
-                      @endif
+                    @endif
                   <div class="pull-left">
                   <a style="margin-right:5px;" href="{{ route('admin.nouveau.index') }}" class="btn btn-warning btn-xs"><i class="fa fa-share"></i> Retoure</a>
                       @if($show_nouveau->status == 1)
-                      <!-- <a style="margin-right:5px;"  class="btn btn-success btn-xs" href="{{ route ('admin.nouveau.edit',$show_nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a> -->
-                      <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-default-edit-nouveau{{ $show_nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
+                        <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-default-edit-nouveau{{ $show_nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
                       @endif
                   </div>
                       <!-- <a href="#"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>

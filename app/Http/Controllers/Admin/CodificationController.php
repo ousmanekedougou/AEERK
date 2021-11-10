@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\User\Ancien;
 use App\Model\User\Etudiant;
 use App\Model\Admin\Chambre;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-use App\Model\User\Codification_ancien;
-use App\Model\User\Codification_nouveau;
 use PDF;
 use Illuminate\Support\Str;
 class CodificationController extends Controller
@@ -85,13 +82,7 @@ class CodificationController extends Controller
      */
     public function edit($id)
     {
-        // $codifier_nouveau = Etudiant::where('id',$id);
-        // $pdf = PDF::loadView('user.pdf', compact('codifier_nouveau'));
-
-        // $path = public_path('pdf/');
-        // $fileName =  $codifier_nouveau->phone . '.' . 'pdf' ;
-        // $pdf->save($path . '/' . $fileName);
-        // return $pdf->download($fileName);
+       
     }
 
 

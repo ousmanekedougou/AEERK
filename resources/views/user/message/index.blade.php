@@ -26,6 +26,26 @@
     </div>
   @endif
 
+  @if (session('recrute'))
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content bg-success text-white">
+          <div class="modal-header">
+            @if(session('etudiant_name'))
+              <h5 class="modal-title text-white">{!! session('etudiant_name') !!}</h5>
+						@endif
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="text-bold">
+              Votre inscription a bien ete enregistre ,un sms vous sera envoyer pour vous faire part de l'avis du bureau sur vos documents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
+
 
   <div id="myModal" class="modal fade">
       <div class="modal-dialog">

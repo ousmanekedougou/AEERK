@@ -34,9 +34,7 @@
                   <th>Immeuble Choisi</th>
                   @can('codifier.update', Auth::guard('admin')->user())
                   <th>Voire</th>
-                  @endcan
                   <th>Traitement</th>
-                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Options</th>
                   @endcan
                 </tr>

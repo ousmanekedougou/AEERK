@@ -85,7 +85,7 @@
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="" class="btn btn-danger btn-block">Mot de passe oublier</a><br>
+    <a href="{{ route('admin.password.reset') }}" class="btn btn-danger btn-block">Mot de passe oublier</a><br>
     <!-- <a href="#" class="text-center">Register a new membership</a> -->
 
   </div>

@@ -19,7 +19,7 @@
              <!-- general form elements -->
              <div class="">
             <div class="">
-              <h3 class="box-title">Add Admin</h3>
+              <h3 class="box-title">Modification de l'administrateur</h3>
             </div>
             @include('includes.message')
             <!-- /.box-header -->
@@ -50,13 +50,21 @@
 
 
                       <div class="form-group">
-                        <label for="for">Status</label>
-                            <div class=" checkbox">
-                                <label> <input type="checkbox" name="status" @if($admins->status == 1 )
-                                checked
+                        <label for="for">Activation</label>
+                            <div class=" radio">
+                                <label> <input type="radio" value="1" name="status" @if($admins->status == 1)
+                                  checked
                                 @endif 
                                 
-                                style="ml-3" value="1" id="">Status</label>
+                                style="ml-3"  id="">Activer</label>
+                            </div>
+
+                            <div class=" radio">
+                                <label> <input type="radio" value="0" name="status" @if($admins->status == 0)
+                                  checked
+                                @endif 
+                                
+                                style="ml-3" id="">Desactiver</label>
                             </div>
                       </div>
 
@@ -81,21 +89,22 @@
                           </div>
                         @endforeach
                      </div>
-                      <div class="row">
+                          <div class="row">
                             <br>
                             <h4>Choisire le poste selon la commission</h4>
                               @foreach($commission as $com)
-                            <div class="col-lg-4">
-                                  <label for=""  class="text-primary">{{$com->name}}</label>
-                                  <br>  
-                                @foreach($com->postes as $com_poste)
-                                  <label class="" for="poste-{{$com_poste->id }}"> <input type="radio" name="poste" value="{{$com_poste->id }}" id="poste-{{$com_poste->id }}"
-                                  @if($admins->poste->id == $com_poste->id)
-                                    checked
-                                  @endif
-                                  > {{ $com_poste->name }} </label>
-                                @endforeach
-                            </div>
+                                <div class="col-lg-4">
+                                      <label for=""  class="text-primary">{{$com->name}}</label>
+                                      <br>  
+                                    @foreach($com->postes as $com_poste)
+                                      <label class="" for="poste-{{$com_poste->id }}"> <input type="radio" name="poste" value="{{$com_poste->id }}" id="poste-{{$com_poste->id }}"
+                                      @if($admins->poste_id == $com_poste->id)
+                                        checked
+                                      @endif
+                                      > {{ $com_poste->name }} </label>
+                                    @endforeach
+                                    
+                                </div>
                               @endforeach
                           </div>
                     </div>

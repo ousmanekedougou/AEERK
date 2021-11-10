@@ -182,6 +182,7 @@
             <li><a href="{{ route ('admin.systeme.index') }}"><i class="fa fa-circle-o"></i> Syeteme Educatif</a></li>
             <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
             <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Emploi & Stage</span></a></li>
+            <li><a href="{{ route('admin.realisation.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Recrutement</span></a></li>
           </ul>
         </li>
 

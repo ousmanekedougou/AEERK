@@ -121,7 +121,7 @@ class ImmeubleController extends Controller
             $update_immeuble->image = $imageName;
             $update_immeuble->status = $request->status;
             $update_immeuble->save();
-            Flashy::success('Votre immeuble a ete ajouter');
+            Flashy::success('Votre immeuble a ete modifier');
             return redirect()->route('admin.logement.index');
         }
                                 

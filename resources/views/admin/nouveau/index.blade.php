@@ -60,7 +60,6 @@
                     @can('codifier.update', Auth::guard('admin')->user())
                     <td>
                       @if($nouveau->status == 1)
-                      <!-- <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.nouveau.edit',$nouveau->id) }}">Codifier <i class="fa fa-edit"></i></a></span> -->
                       <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$nouveau->id}}" data-name="{{$nouveau->name}}" data-target="#modal-default-edit-nouveau{{ $nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
                       @else
                       <span class="">
@@ -72,7 +71,7 @@
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title">Suppression de slider</h4>
+                              <h4 class="modal-title">Suppression d'un etudiant</h4>
                             </div>
                             <div class="modal-body">
                               <p>

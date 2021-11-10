@@ -47,8 +47,8 @@ class NouveauController extends Controller
             'genre' => 'required',
             'nom' => 'required|string',
             'prenom' => 'required|string',
-            'email' => 'required|email|unique:nouveaus',
-            'phone' => 'required|unique:nouveaus|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'email' => 'required|email|unique:etudiants',
+            'phone' => 'required|unique:etudiants|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'commune' => 'required|numeric',
             'extrait' => 'required|mimes:pdf,PDF',
             'relever' => 'required|mimes:pdf,PDF',
@@ -80,11 +80,20 @@ class NouveauController extends Controller
         if ($request->hasFile('relever')) {
             $releverName = $request->relever->store('public/Nouveau');
         }
+        $phoneFinale = '';
+        $phoneComplet = $request->indicatif.''.$request->phone;
+        if (strlen($request->phone) == 13 ) {
+            $phoneFinale = $request->phone;
+        }elseif (strlen($request->phone) == 9) {
+            $phoneFinale = $phoneComplet;
+        }else {
+            return back()->with('error','votre numero de telephone est invalid');
+        }
         $add_nouveau->genre = $request->genre;
         $add_nouveau->nom = $request->nom;
         $add_nouveau->prenom = $request->prenom;
         $add_nouveau->email = $request->email;
-        $add_nouveau->phone = $request->phone;
+        $add_nouveau->phone = $phoneFinale;
         $add_nouveau->image = $imageName;
         $add_nouveau->extrait = $extraitName;
         $add_nouveau->attestation = $attestationName;

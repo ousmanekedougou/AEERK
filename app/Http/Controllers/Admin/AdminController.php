@@ -128,6 +128,7 @@ class AdminController extends Controller
             {
                 // dd($request->all());
                 $update_admin = Admin::where('id',$id)->first();
+                $update_admin->status = $request->status;
                 $update_admin->poste_id = $request->poste;
                 $update_admin->save();
                 $update_admin->roles()->sync($request->role);

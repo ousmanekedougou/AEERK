@@ -9,6 +9,8 @@
         color:red;
     }
   </style>
+  	<link rel="stylesheet" href="{{asset('user/build/css/intlTelInput.css')}}">
+  	<link rel="stylesheet" href="{{asset('user/build/css/demo.css')}}">
 @endsection
  @section('main-content')
 
@@ -87,7 +89,7 @@
 
 							<div class="col-lg-8 col-md-8" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
 								<h3 class="mb-30">S'inscrire Pour la codifications</h3>
-								<form action="{{ route('nouveau.store') }}" method="POST" enctype="multipart/form-data">
+								<form action="{{ route('nouveau.store') }}" method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
 									@csrf
 									<div class="row">
 										<div class="col-sm-4 d-flex justify-content-between">
@@ -153,7 +155,8 @@
 										<div class="col-md-6">
 											<div class="mt-10">
 											<label class="label_form" for="phone">Votre Numero De Telephone</label>
-												<input type="number" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Numero de telephone'" required class="single-input">
+												<input type="number" id="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Numero de telephone'" required class="single-input">
+												<input type="hidden" name="indicatif" id="indicatif">
 												@error('phone')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
@@ -273,5 +276,57 @@
 
  @section('js')
 <script src=" {{ asset('js/app.js') }} "></script>
+
+
+
+  <script src="{{asset('user/build/js/intlTelInput.js')}}"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      // autoPlaceholder: "off",
+      // dropdownContainer: document.body,
+      // excludeCountries: ["us"],
+      // formatOnDisplay: false,
+      // geoIpLookup: function(callback) {
+      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+      //     var countryCode = (resp && resp.country) ? resp.country : "";
+      //     callback(countryCode);
+      //   });
+      // },
+      // hiddenInput: "full_number",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+      // nationalMode: false,
+      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      // placeholderNumberType: "MOBILE",
+      // preferredCountries: ['cn', 'jp'],
+      // separateDialCode: true,
+      utilsScript: "user/build/js/utils.js",
+    });
+
+
+	function validation(){
+		var phone = document.forms["myform"]["phone"];
+		var get_num_1 = String(phone.value).charAt(0);
+		var get_num_2 = String(phone.value).charAt(1);
+		var get_num_final = get_num_1+''+get_num_2;
+		var first_num = Number(get_num_final);
+		if (isNaN(phone.value)) {
+			alert('Votre numero de telephone est invalide');
+			return false;
+		}else if(phone.value.length != 9){
+			alert('Votre numero de telphone doit etre de 9 caracter exp: 77xxxxxxx');
+			return false;
+		}else if(first_num != 77){
+			alert('Votre numero de telphone doit commencer par un (77 ou 78 ou 70 ou 76)')
+			return false;
+		}
+		return true;
+	}
+
+
+  </script>
  @endsection
 

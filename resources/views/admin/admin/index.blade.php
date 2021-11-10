@@ -19,7 +19,7 @@
       <!-- Default box -->
       <div class="">
         <div class="box-header with-border">
-          <h3 class="box-title">Administrateur</h3>
+          <h3 class="box-title">Administrateurs du bureau</h3>
           @can('admins.create', Auth::guard('admin')->user())
             <a class="col-lg-offset-5 btn btn-success pull-right" href="{{ route('admin.admin.create') }}">Ajouter Un Admin</a>
           @endcan

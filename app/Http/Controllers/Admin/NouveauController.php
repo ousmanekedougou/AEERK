@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\Solde;
-use App\Model\User\Nouveau;
-use App\Model\User\Ancien;
 use App\Model\Admin\Chambre;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
@@ -193,7 +191,7 @@ class NouveauController extends Controller
                 $nouveau->status = $request->status;
                 $nouveau->save();
                 $numero_bureau = Solde::first();
-                $nouveau->notify(new ValidateDocument());
+                // $nouveau->notify(new ValidateDocument());
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));
                 Flashy::success('Votre etudiant a ete valide');
@@ -202,7 +200,7 @@ class NouveauController extends Controller
                 $nouveau->status = $request->status;
                 $nouveau->save();
                 $numero_bureau = Solde::first();
-                $nouveau->notify(new ValidateDocument());
+                // $nouveau->notify(new ValidateDocument());
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));
                 Flashy::error('Votre etudiant a ete ommis');
@@ -232,11 +230,8 @@ class NouveauController extends Controller
                         $codifier_nouveau->codifier = 1;
                         $codifier_nouveau->save();
                         // $numero_bureau = Solde::first();
-                        // Nexmo::message()->send([
-                        //     'to' => '221'.$numero_bureau->numero_nouveau,
-                        //     'from' => '+221'.$nouveau->phone,
-                        //     'text' => "AEERK : Salut $nouveau->prenom  $nouveau->nom vous avez ete codifier verifier votre compte gmail"
-                        // ]);
+
+                        // Message sms
 
                         $position = Chambre::where('id',$request->chambre_id)->first();
                         $position_nombre = $position->position;
@@ -264,11 +259,7 @@ class NouveauController extends Controller
                         $codifier_nouveau->codifier = 1;
                         $codifier_nouveau->save();
                         // $numero_bureau = Solde::first();
-                        // Nexmo::message()->send([
-                        //     'to' => '221'.$numero_bureau->numero_nouveau,
-                        //     'from' => '+221'.$nouveau->phone,
-                        //     'text' => "AEERK : Salut $nouveau->prenom  $nouveau->nom vous avez ete codifier verifier votre compte gmail"
-                        // ]);
+                        // Message sms
                         $position = Chambre::where('id',$request->chambre_id)->first();
                         $position_nombre = $position->position;
                         $position->position = $position_nombre + 1;
@@ -290,120 +281,12 @@ class NouveauController extends Controller
     }
 
 
-    //     public function codifier_nouveau(Request $request, $id)
-    // {
-    //     if (Auth::guard('admin')->user()->can('codifier.update')) 
-    //     {
-    //         $validator = $this->validate($request , [
-    //             'chambre_id' => 'required|string',
-    //         ]);
-    //         $prix = Solde::select('prix_nouveau')->first();
-    //         $chambre_nouveau = Nouveau::all();
-    //         foreach($chambre_nouveau as $chambres){
-    //             $nouveau = Nouveau::where('chambre_id',$request->chambre_id)->get();
-    //             if ($chambres->chambre_id == $request->chambre_id) {
-    //                 if($nouveau->count() < $chambres->chambre->nombre){
-    //                     $codifier_nouveau = Nouveau::where('id',$id)->first();
-    //                     $codifier_nouveau->chambre_id = $request->chambre_id;
-    //                     $codifier_nouveau->prix = $prix->prix_nouveau;
-    //                     $codifier_nouveau->codifier = 1;
-    //                     $codifier_nouveau->save();
-    //                     $numero_bureau = Solde::first();
-    //                     Nexmo::message()->send([
-    //                         'to' => '221'.$numero_bureau->numero_nouveau,
-    //                         'from' => '+221'.$nouveau->phone,
-    //                         'text' => "AEERK : Salut $nouveau->prenom  $nouveau->nom vous avez ete codifier verifier votre compte gmail"
-    //                     ]);
-    //                     Mail::to($codifier_nouveau->email)
-    //                     ->send(new AeerkEmailMessage($codifier_nouveau));
-    //                     Flashy::success('Votre etudiant a ete codifier');
-    //                     return redirect()->route('admin.nouveau.index');
-    //                 }else{
-    //                     $is_pleine = Chambre::where('id',$request->chambre_id)->first();
-    //                     $is_pleine->is_pleine = 1;
-    //                     $is_pleine->save();
-    //                     Flashy::error('Cette Chambre est pleine');
-    //                     return redirect()->route('admin.nouveau.index');
-    //                 }
-    //             }
-    //             else if ($chambres->chambre_id == 0){
-    //                 $chambre_null = Nouveau::where('chambre_id',0)->first();
-    //                 if ($chambre_null) {
-    //                     $codifier_nouveau = Nouveau::where('id',$id)->first();
-    //                     $codifier_nouveau->chambre_id = $request->chambre_id;
-    //                     $codifier_nouveau->prix = $prix->prix_nouveau;
-    //                     $codifier_nouveau->codifier = 1;
-    //                     $codifier_nouveau->save();
-    //                     $numero_bureau = Solde::first();
-    //                     Nexmo::message()->send([
-    //                         'to' => '221'.$numero_bureau->numero_nouveau,
-    //                         'from' => '+221'.$nouveau->phone,
-    //                         'text' => "AEERK : Salut $nouveau->prenom  $nouveau->nom vous avez ete codifier verifier votre compte gmail"
-    //                     ]);
-    //                     Mail::to($codifier_nouveau->email)
-    //                     ->send(new AeerkEmailMessage($codifier_nouveau));
-    //                     Flashy::success('Votre etudiant a ete codifier');
-    //                     return redirect()->route('admin.nouveau.index');
-    //                 }
-                    
-    //             }
-    //         }
-
-        
-    //     }
-                                                
-    //     return redirect(route('admin.home'));
-    // }
-
-    // public function migret_nouveau(Request $request)
-    // {
-    //     if (Auth::guard('admin')->user()->can('codifier.create')) 
-    //     {
-    //         // return 'Tous les etudiant ont ete migre';
-    //         $nouveau_bac = Nouveau::where(['status'=>1, 'codifier'=>1])->get(); 
-    //         $immeuble = Immeuble::where('status',2)->first();
-    //         $immeuble_id = $immeuble->id;
-
-    //         foreach($nouveau_bac as $migration){
-    //             $migret_a_ancien = new Ancien;
-    //             $migret_a_ancien->genre = $migration->genre;
-    //             $migret_a_ancien->nom = $migration->nom;
-    //             $migret_a_ancien->prenom = $migration->prenom;
-    //             $migret_a_ancien->email = $migration->email;
-    //             $migret_a_ancien->phone = $migration->phone;
-    //             $migret_a_ancien->image = $migration->image;
-    //             $migret_a_ancien->bac = $migration->attestation;
-    //             $migret_a_ancien->certificat = $migration->relever;
-    //             $migret_a_ancien->photocopie = $migration->photocopie;
-    //             $migret_a_ancien->commune_id = $migration->commune_id;
-    //             $migret_a_ancien->immeuble_id = $immeuble_id;
-    //             $migret_a_ancien->status = false;
-    //             $migret_a_ancien->save();
-    //             // dd($migration);
-    //             Nouveau::find($migration->id)->delete();
-    //             $numero_bureau = Solde::first();
-    //             Nexmo::message()->send([
-    //                 'to' => '221'.$numero_bureau->numero_nouveau,
-    //                 'from' => '+221'.$migration->phone,
-    //                 'text' => "AEERK : Salut $migration->prenom  $migration->nom vous avez ete migret comme ancien verifier votre compte gmail"
-    //             ]);
-    //         }
-    //         Flashy::success('La migration a bien reussie');
-    //         return redirect()->route('admin.nouveau.index');
-    //     }
-                                                    
-    //     return redirect(route('admin.home'));
-    // }
-
 
        public function migret_nouveau(Request $request)
     {
         if (Auth::guard('admin')->user()->can('codifier.create')) 
         {
-            // return 'Tous les etudiant ont ete migre';
             $nouveau_bac = Etudiant::where(['status'=>1, 'codifier'=>1, 'ancienete'=>1])->get(); 
-            // $immeuble = Immeuble::where('status',2)->first();
-            // $immeuble_id = $immeuble->id;
 
             foreach($nouveau_bac as $migration){
                 $migration->ancienete = 2;

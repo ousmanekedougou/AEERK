@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Realisation;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Departement;
+use App\Model\User\Recrutement;
 
 class RealisationController extends Controller
 {
@@ -21,8 +23,8 @@ class RealisationController extends Controller
     
     public function index()
     {
-        $realisation_all = Realisation::all();
-        return view('admin.realisation.index',compact('realisation_all'));
+        $etudiants = Recrutement::orderBy('created_at','DESC')->paginate(10);
+        return view('admin.realisation.index',compact('etudiants'));
     }
 
     /**
@@ -75,7 +77,9 @@ class RealisationController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_etudiant = Recrutement::find($id);
+        $departements = Departement::all();
+        return view('admin.realisation.show',compact('show_etudiant','departements'));
     }
 
     /**
@@ -86,8 +90,7 @@ class RealisationController extends Controller
      */
     public function edit($id)
     {
-        $edit_realisation = Realisation::find($id);
-        return view('admin.realisation.edite',compact('edit_realisation'));
+        
     }
 
     /**
@@ -99,18 +102,78 @@ class RealisationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_realisation = Realisation::find($id);
-        if ($request->hasFile('image')) {
-            $imageName = $request->image->store('public/realisation');
-        }elseif ($request->image == Null){
-            $imageName = $update_realisation->image;
+         if ($request->option == 1) 
+        {
+          $naissance = '';
+            $add_etudiant = Recrutement::where('id',$id)->first();
+            $add_etudiant->genre = $request->genre;
+            $add_etudiant->name = $request->name;
+            $add_etudiant->email = $request->email;
+            $add_etudiant->phone = $request->phone;
+              if ($request->naissance == null) {
+                $naissance = $add_etudiant->naissance;
+            }
+            else{
+                $naissance = $request->naissance;
+            }
+            $add_etudiant->naissance = $naissance;
+            $add_etudiant->lieu = $request->lieu;
+            $add_etudiant->niveau = $request->niveau;
+            $add_etudiant->commune_id = $request->commune;
+            $add_etudiant->etablissement = $request->etablissement;
+            $add_etudiant->status = $request->status;
+            $add_etudiant->filliere = $request->filliere;
+            $add_etudiant->save();
+            return back()->with('success','Votre etudiant ete modifier');
         }
-        $update_realisation->nom = $request->libele;
-        $update_realisation->date = $request->date;
-        $update_realisation->contenu = $request->contenu;
-        $update_realisation->status = $request->status;
-        $update_realisation->image = $imageName;
-        $update_realisation->save();
+        if ($request->option == 2) {
+            $validator = $this->validate($request , [
+                'diplome' => 'required|mimes:pdf,PDF',
+            ]);                
+            $etudiant_diplome = Recrutement::where('id',$id)->first();
+            if ($request->hasFile('diplome')) {
+                $diplomeName = $request->diplome->store('public/diplomes');
+            }
+            $etudiant_diplome->diplome = $diplomeName;
+            $etudiant_diplome->save();
+            return back()->with('success','Le diplome a ete modifier');
+        }
+        if ($request->option == 3) {
+             $validator = $this->validate($request , [
+                'curiculum' => 'required|mimes:pdf,PDF',
+            ]);    
+            $etudiant_curiculum = Recrutement::where('id',$id)->first();
+            if ($request->hasFile('curiculum')) {
+                $curiculumName = $request->curiculum->store('public/curiculum');
+            }
+            $etudiant_curiculum->curiculum = $curiculumName;
+            $etudiant_curiculum->save();
+            return back()->with('success','Le curiculum a ete modifier');
+        }
+        if ($request->option == 4) {
+             $validator = $this->validate($request , [
+                'photocopie' => 'required|mimes:pdf,PDF',
+            ]);   
+            $etudiant_cni = Recrutement::where('id',$id)->first();
+            if ($request->hasFile('photocopie')) {
+                $cniName = $request->photocopie->store('public/cni');
+            }
+            $etudiant_cni->identite = $cniName;
+            $etudiant_cni->save();
+            return back()->with('success','Le identite a ete modifier');
+        }
+        if ($request->option == 5) {
+              $validator = $this->validate($request , [
+                'image' => 'required|image | mimes:jpeg,png,jpg,gif,ijf,PNG,JPEG,JPG,GIF,IJF',
+            ]);
+            $etudiant_image = Recrutement::where('id',$id)->first();
+            if ($request->hasFile('image')) {
+                $imageName = $request->image->store('public/images');
+            }
+            $etudiant_image->image = $imageName;
+            $etudiant_image->save();
+            return back()->with('success','L\'image a ete modifier');
+        }
         Flashy::success('Votre realisation a ete modifier');
         return redirect()->route('admin.realisation.index');
     }
@@ -123,8 +186,8 @@ class RealisationController extends Controller
      */
     public function destroy($id)
     {
-        Realisation::find($id)->delete();
-        Flashy::success('Votre realisation a ete supprimer');
+        Recrutement::find($id)->delete();
+        Flashy::success('Cte etudiant a ete supprimer');
         return back();
     }
 }

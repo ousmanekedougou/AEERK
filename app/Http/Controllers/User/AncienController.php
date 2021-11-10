@@ -48,8 +48,8 @@ class AncienController extends Controller
             'genre' => 'required',
             'nom' => 'required|string',
             'prenom' => 'required|string',
-            'email' => 'required|email|unique:anciens',
-            'phone' => 'required|unique:anciens|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'email' => 'required|email|unique:etudiants',
+            'phone' => 'required|unique:etudiants|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'commune' => 'required|numeric',
             'immeuble' => 'required|numeric',
             'extrait' => 'required|mimes:PDF,pdf',
@@ -57,7 +57,7 @@ class AncienController extends Controller
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
             'photocopie' => 'required|mimes:pdf,PDF',
         ]);
-        // dd($request->all());
+        // dd($request->ccode);
         $add_ancien = new Etudiant;
         define('ANCIENETE',2);
         $extraitName = '';
@@ -76,11 +76,20 @@ class AncienController extends Controller
         if ($request->hasFile('photocopie')) {
             $photocopieName = $request->photocopie->store('public/Ancien');
         }
+        $phoneFinale = '';
+        $phoneComplet = $request->indicatif.''.$request->phone;
+        if (strlen($request->phone) == 13 ) {
+            $phoneFinale = $request->phone;
+        }elseif (strlen($request->phone) == 9) {
+            $phoneFinale = $phoneComplet;
+        }else {
+            return back()->with('error','votre numero de telephone est invalid');
+        }
         $add_ancien->genre = $request->genre;
         $add_ancien->nom = $request->nom;
         $add_ancien->prenom = $request->prenom;
         $add_ancien->email = $request->email;
-        $add_ancien->phone = $request->phone;
+        $add_ancien->phone = $phoneFinale;
         $add_ancien->image = $imageName;
         $add_ancien->bac = $extraitName;
         $add_ancien->certificat = $certificatName;

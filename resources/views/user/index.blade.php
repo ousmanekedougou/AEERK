@@ -93,7 +93,7 @@
 						<div class="col-lg-8">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Description</h4>
+									<h4>Bref presentation de l'association</h4>
 								</div>
 								<div class="desc-wrap">
 									<p class="text-justify">

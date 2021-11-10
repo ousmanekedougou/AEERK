@@ -27,11 +27,8 @@
                 <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Departement</th>
-                  @can('logement.update', Auth::guard('admin')->user())
-                  <th>Modifier</th>
-                  @endcan
-                  @can('logement.delete', Auth::guard('admin')->user())
-                  <th>Supprimer</th>
+                  @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
+                  <th>Options</th>
                   @endcan
                 </tr>
                 {{ $i = '' }}
@@ -41,12 +38,9 @@
                           <tr>
                           <td>{{ ++$i }}</td>
                             <td>{{ $dep->name }}</td>
-                            @can('logement.update', Auth::guard('admin')->user())
+                            @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
                             <td> <a data-toggle="modal" data-id="{{$dep->id}}" data-name="{{$dep->name}}" data-target="#modal-default-{{ $dep->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                            </td>
-                            @endcan
-                            @can('logement.delete', Auth::guard('admin')->user())
-                            <td>
+                           
                                <a data-toggle="modal" data-target="#modal-default-immeuble-{{$dep->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               <div class="modal fade" id="modal-default-immeuble-{{$dep->id}}">
                                 <div class="modal-dialog modal-sm">
@@ -105,11 +99,8 @@
                   <th>S.No</th>
                   <th>Communes</th>
                   <th>Departements</th>
-                  @can('logement.update', Auth::guard('admin')->user())
-                  <th>Modifier</th>
-                  @endcan
-                  @can('logement.delete', Auth::guard('admin')->user())
-                  <th>Supprimer</th>
+                  @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
+                  <th>Options</th>
                   @endcan
                 </tr>
                 {{ $i = '' }}
@@ -122,14 +113,10 @@
                             <td>
                                 {{$com->departement->name}}
                             </td>
-                            @can('logement.update', Auth::guard('admin')->user())
+                            @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
                             <td>
                               <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-com-{{ $com->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                            
-                            </td>
-                            @endcan
-                            @can('logement.delete', Auth::guard('admin')->user())
-                            <td>
                                <a data-toggle="modal" data-target="#modal-default-commune-{{$com->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               <div class="modal fade" id="modal-default-commune-{{$com->id}}">
                                 <div class="modal-dialog modal-sm">

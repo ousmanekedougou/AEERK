@@ -9,8 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResponseEmailMessage;
 use App\Mail\GroupeEmailMessage;
-use App\Model\User\Ancien;
-use App\Model\User\Nouveau;
+use App\Model\User\Etudiant;
 
 class ContactController extends Controller
 {
@@ -41,15 +40,10 @@ class ContactController extends Controller
                 'subject' => 'required|string',
                 'msg' => 'required|string'
             ]);
-            $email_nouveau = Nouveau::select('email')->where('codifier',1)->get(); 
-            $email_ancien = Ancien::select('email')->where('codifier',1)->get(); 
-            foreach ($email_nouveau as $sendmail_nouveau) {
+            $email_etudian = Etudiant::select('email')->where('codifier',1)->get(); 
+            foreach ($email_etudian as $sendmail_etudiant) {
                 $mail = new GroupeEmailMessage($request->subject,$request->msg);
-                Mail::to($sendmail_nouveau->email)->send($mail);
-            }
-            foreach ($email_ancien as $sendmail_ancien) {
-                $mail = new GroupeEmailMessage($request->subject,$request->msg);
-                Mail::to($sendmail_ancien->email)->send($mail);
+                Mail::to($sendmail_etudiant->email)->send($mail);
             }
     
             Flashy::success('Votre reponse a bien ete envoyer');

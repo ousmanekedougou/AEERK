@@ -1,109 +1,139 @@
 @extends('admin.layouts.app')
-
+@section('headsection')
+<link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
+@endsection
 @section('main-content')
 
 
 
 
      <!-- Content Wrapper. Contains page content -->
-          <div class="content-wrapper">
-            <br>
-          <a  href="{{ route('admin.realisation.create') }}" class="col-lg-offset-5 btn btn-success" href="">Ajouter Une realisation</a>
-             <!-- Main content -->
-            <section class="content">
-              <ul class="mailbox-attachments clearfix">
-                @foreach($realisation_all as $realisation)
-                <li>
-                <a href="{{Storage::url($realisation->image)}}" class="mailbox-attachment-name"><span class="mailbox-attachment-icon has-img"><img src="{{Storage::url($realisation->image)}}" alt="Attachment"></span></a>
+     <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+   <section class="content-header">
+      <h1>
+        La liste des etudiants
+        <small>Appercue des informations</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
 
-                  <div class="mailbox-attachment-info">
-                    <a href="{{Storage::url($realisation->image)}}" class="mailbox-attachment-name"><i class="fa fa-camera"></i> {{ $realisation->libele }}</a>
-                        <span class="mailbox-attachment-size">
-                          1,245 KB
-
-                    <form id="delete-form-{{$realisation->id}}" method="post" action="{{ route('admin.realisation.destroy',$realisation->id) }}" style="display:none">
-                    {{csrf_field()}}
-                    {{method_field('delete')}}
-                    </form>
-                    <a style="margin-left:7px;"  onclick=" if(confirm('Etes Vous Sure De Supprimer Cette realisation ?')){ event.preventDefault();document.getElementById('delete-form-{{$realisation->id}}').submit();
-
-                    }else{ event.preventDefault(); } " class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i></a>
-
-                          <a style="margin-left:7px;" href="{{ route('admin.realisation.edit',$realisation->id) }}" class="btn btn-primary btn-xs pull-right"><i class="fa fa-edit"></i></a>
-                          <a style="margin-left:7px;" data-toggle="modal" data-id="{{$realisation->id}}" data-name="{{$realisation->name}}" data-target="#modal-default-view-realisation-{{ $realisation->id }}" class="btn btn-warning btn-xs pull-right"><i class="fa fa-eye"></i></a>
-                        </span>
-                  </div>
-                </li>
+    <!-- Main content -->
+    <section class="content">
+      <div class="box-body">
+        {{--<div class="row text-center">
+          <div class="margin">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default">Toute les fillieres</button>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                @foreach(App\Models\User\Faculty::all() as $faculty)
+                  <li><a href="{{ route('home.index', ['filliere'
+                    => $faculty->slug]) }}">{{$faculty->name}}</a></li>
                 @endforeach
               </ul>
-            </section>
-            <!-- /.content -->
-          </div>
-            <!-- /.content-wrapper -->
-
-
-                <!-- Fin du modal des edtions -->
-                @foreach($realisation_all as $realisation)
-            
-            <div class="modal fade" id="modal-default-view-realisation-{{ $realisation->id }}">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Les Details De La realisation {{ $realisation->nom }}</h4>
-                  </div>
-                 
-                    <div class="modal-body">
-                      <p>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <!-- Box Comment -->
-                            <div class="box box-widget">
-                              <div class="box-body">
-                                <img class="img-responsive pad" style="width:100%;auto;" src="{{ Storage::url($realisation->image) }}" alt="Photo">
-                                <!-- 
-                                <p>I took this photo this morning. What do you guys think?</p>
-                                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->
-                                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-    
-                                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-down"></i> Dislike</button>
-                                <span class="pull-right text-muted">127 likes - 3 comments</span>
-                              </div>
-                              <!-- /.box-body -->
-                              <div class="box-footer box-comments">
-                                <div class="box-comment">
-                                  <div class="comment-text">
-                                        <span class="username">
-                                          Description
-                                          <span class="text-muted pull-right">  Publiere le : {{ $realisation->created_at->toFormattedDateString() }}</span>
-                                          <span style="margin-left:20px;" class="text-muted pull-right">  Status : @if($realisation->status == 1) Publique @else Privee @endif</span>
-                                        </span>
-                                        <br>
-                                        {!! $realisation->contenu !!}
-                                  </div>
-                                  <!-- /.comment-text -->
-                                </div>
-                                <!-- /.box-comment -->
-                               
-                            
-                              </div>
-                         
-                            </div>
-                            <!-- /.box -->
-                          </div>
-                        </div>
-                      </p>
-                    </div>
-                
-                </div>
-                
-                <!-- /.modal-content -->
-              </div>
-              <!-- /.modal-dialog -->
             </div>
-              @endforeach
+          </div>
+        </div>--}}
+          <!-- debut de la table -->
+        <div class="nav-tabs-custom">
+          <div class="tab-content">
+            <div class="active tab-pane" id="activity">
+              <table id="example1" class="table text-center responsive-table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th class="text-center">Num</th>
+                  <th class="text-center">Image</th>
+                  <th class="text-center">Prenom et nom</th>
+                  <th class="text-center">email</th>
+                   <th class="text-center">telephone</th>
+                  <th class="text-center">Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach($etudiants as $home)
+                  <tr>
+                  <td class="text-center">{{ $loop->index +1 }}</td>
+                  <td class="text-center">  <img style="width:50px;height:50px;" class="img-circle img-responsive" src="{{ Storage::url($home->image) }}" ></td>
+                  <td class="text-center">{{ $home->name }}</td>
+                  <td class="text-center">{{ $home->email }}</td>
+                  <td class="text-center">{{ $home->phone }}</td>
+                  <td class="text-center"><a href="{{ route('admin.realisation.show',$home->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
+              
+                  <a href="" data-toggle="modal" data-target="#modal-default-delete-{{$home->id}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                    <div class="modal fade" id="modal-default-delete-{{$home->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Suppression d'etudiant</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire supprimer cet etudiant
+                            </p>
+                          <form action="{{ route('admin.realisation.destroy',$home->id) }}" method="post" style="display:none;">
+                            @csrf
+                            {{ method_field('DELETE') }}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                          </div>
+                          </form>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              {{ $etudiants->links() }}
+            </div>
+            <!-- /.box-body -->
+          </div>
+            <!-- fin de la table -->
+        </div>
+        <!-- /.box-body -->
+       
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
 
 
+@endsection
+
+@section('footersection')
+<script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script>
+ $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
 @endsection

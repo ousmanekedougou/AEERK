@@ -301,12 +301,12 @@
                   <p>
                     <div class="radio pull-left">
                       <label style="margin-right: 14px;font-weight:bold;">
-                        <input type="radio"  value="{{ old('status') ?? $modal_immeuble->status }}" class="@error('status') is-invalid @enderror" id="status"  name="status" 
+                        <input type="radio"  value="{{ old('status') ?? 1 }}" class="@error('status') is-invalid @enderror" id="status"  name="status" 
                           @if ($modal_immeuble->status == 1) {{ 'checked' }} @endif > 
                           Nouveau
                       </label>
                       <label style="margin-left: 14px;font-weight:bold;">
-                        <input type="radio"  value="{{ old('status') ?? $modal_immeuble->status }}" class="@error('status') is-invalid @enderror" id="status"  name="status" 
+                        <input type="radio"  value="{{ old('status') ?? 2 }}" class="@error('status') is-invalid @enderror" id="status"  name="status" 
                         @if ($modal_immeuble->status == 2) {{ 'checked' }} @endif > 
                         Anciens
                     </label>

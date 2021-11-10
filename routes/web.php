@@ -17,12 +17,15 @@
         Route::resource('/comment','CommentController');
         Route::resource('/codification','EtudiantCodificationController');
         Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
-        Route::get('/createPdf/{id}/{prenom}/{phone}','EtudiantCodificationController@createPdf')->name('createPdf');
+        Route::get('/createPdf/{id}/{email}/{phone}','EtudiantCodificationController@createPdf')->name('createPdf');
         Route::get('/category/{id}','ArticleController@category')->name('article.category');
         Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
         Route::resource('/realisation','RealisationController');
         Route::resource('/education','EducationController');
         Route::resource('/systeme','SystemeController');
+
+
+      
     });
 
     Route::get('/pdf',function(){
@@ -123,6 +126,15 @@ Auth::routes();
         Route::post('/admin-login','Admin\Auth\LoginController@login')->name('admin.login');
         Route::post('/admin-logout','Admin\Auth\LoginController@logout')->name('admin.logout');
         // fin des login admin
+
+
+
+        // Forgot password
+            Route::get('/password/reset','Admin\ForgotPassword\ForgotController@reset')->name('password.reset');
+            Route::post('/password/verify','Admin\ForgotPassword\ForgotController@verify')->name('password.verify');
+            Route::get('/confirm/{id}/{email}','Admin\ForgotPassword\ForgotController@confirm')->name('password.confirm');
+            Route::put('/update/{id}/{email}/{token}','Admin\ForgotPassword\ForgotController@update')->name('password.update');
+        // And forgot password
     });
 
  

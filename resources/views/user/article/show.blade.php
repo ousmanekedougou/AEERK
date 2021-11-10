@@ -15,21 +15,7 @@
 @endsection
  @section('main-content')
 
-  	<!-- start banner Area -->
-	<!-- <section class="banner-area relative about-banner" id="home">	
-		<div class="overlay overlay-bg"></div>
-		<div class="container">				
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="about-content col-lg-12">
-					<h1 class="text-white">
-						{{ $slugs->title }}
-					</h1>	
-					<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('article.index') }}"> Artcle</a></p>
-				</div>	
-			</div>
-		</div>
-	</section> -->
-	  <!-- End banner Area -->	
+  
 	  
 		<!-- Start post-content Area -->
 		<section class="post-content-area single-post-area" style="margin-top: 60px;">

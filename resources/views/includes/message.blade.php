@@ -6,6 +6,11 @@
             @endif
 
 
+            @if(session()->has('error_email'))
+              <p class="alert alert-danger">{{ session('error_email') }}</p>
+            @endif
+
+
             @if(session()->has('message'))
             <p class="alert alert-success">{{ session('message') }}</p>
             @endif

@@ -338,7 +338,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->prenom }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Telecharger le reglement</a>
+                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Telecharger le reglement</a>
                                                     </div>
                                                 </td>
                                             </tr>

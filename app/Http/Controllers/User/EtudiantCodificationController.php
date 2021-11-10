@@ -155,7 +155,7 @@ class EtudiantCodificationController extends Controller
                             //     'reglement' => $file
                             // ]);
 
-                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position = Chambre::where('id',$chambres->id)->first();
                             $position_nombre = $position->position;
                             $position->position = $position_nombre + 1;
                             $position->save();
@@ -192,7 +192,7 @@ class EtudiantCodificationController extends Controller
                                     //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
                                     // ]);
 
-                                    $position = Chambre::where('id',$request->chambre_id)->first();
+                                    $position = Chambre::where('id',$chambres->id)->first();
                                     $position_nombre = $position->position;
                                     $position->position = $position_nombre + 1;
                                     $position->save();
@@ -270,6 +270,7 @@ class EtudiantCodificationController extends Controller
             
         // dd($request->all());
             $immeuble_chambre = Immeuble_chambre::select('chambre_id')->where('immeuble_id',$immeuble->id)->get();
+            
             foreach($immeuble_chambre as $imb_chm){
                 $chambre_vide = Chambre::where('is_pleine',0)->get();
                 foreach($chambre_vide as $chambres){
@@ -287,7 +288,7 @@ class EtudiantCodificationController extends Controller
                             //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
                             // ]);
 
-                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position = Chambre::where('id',$chambres->id)->first();
                             $position_nombre = $position->position;
                             $position->position = $position_nombre + 1;
                             $position->save();
@@ -316,7 +317,7 @@ class EtudiantCodificationController extends Controller
                                     //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
                                     // ]);
 
-                                    $position = Chambre::where('id',$request->chambre_id)->first();
+                                    $position = Chambre::where('id',$chambres->id)->first();
                                     $position_nombre = $position->position;
                                     $position->position = $position_nombre + 1;
                                     $position->save();
@@ -392,8 +393,8 @@ class EtudiantCodificationController extends Controller
         //
     }
 
-    public function createPdf($id,$prenom,$phone){
-         $etudiant = Etudiant::where(['id' => $id ,'prenom' => $prenom , 'phone' => $phone , 'codifier' => 1])->first();
+    public function createPdf($id,$email,$phone){
+         $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
          $output = view('user.pdf' ,compact('etudiant'));
          $dompdf = new Dompdf();
          $dompdf->loadHtml($output);

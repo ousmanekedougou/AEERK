@@ -11,6 +11,10 @@
                         <div class="content-wrapper">
                   <!-- Content Header (Page header) -->
                   <section class="content-header">
+                      <!-- Default box -->
+      <div class="box-header">
+        <h3 class="box-title">Les etudiants recase</h3>
+      </div>
                       <!-- /.col -->
         <div class="">
           <div class="nav-tabs-custom">

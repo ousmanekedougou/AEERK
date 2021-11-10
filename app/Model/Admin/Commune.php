@@ -6,6 +6,7 @@ use App\Model\User\Ancien;
 use App\Model\User\Nouveau;
 use App\Model\Admin\Departement;
 use App\Model\User\Etudiant;
+use App\User\Recrutement;
 use Illuminate\Database\Eloquent\Model;
 
 class Commune extends Model
@@ -30,5 +31,9 @@ class Commune extends Model
 
     public function etudiants(){
     return $this->hasMany(Etudiant::class);
+    }
+
+     public function recrutements(){
+        return $this->hasMany(Recrutement::class);
     }
 }

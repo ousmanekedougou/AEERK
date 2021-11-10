@@ -13,8 +13,6 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-       // pour securiser l'url dont le user n'est pas attribuere dans le authServiceProvider
-        // $this->middleware('can:posts.categorie'); 
     }
 
 

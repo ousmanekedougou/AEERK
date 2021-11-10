@@ -129,7 +129,7 @@
 			<div class="row d-flex justify-content-center">
 				<div class="menu-content pb-70 col-lg-8">
 				<div class="title text-center">
-					<h1 class="mb-10">Nos secteurs de travail</h1>
+					<h1 class="mb-10">Nos secteurs d'activite</h1>
 					<p class="text-left">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint cumque dolor soluta, labore voluptates rem illo ipsam harum fugiat nobis iure qui aperiam rerum ullam provident odit vitae, molestiae ipsa quae asperiores quibusdam dicta, blanditiis itaque architecto. Modi tempore hic nihil architecto aspernatur, mollitia beatae repellat incidunt suscipit pariatur facere minus cupiditate illum facilis iusto laborum nulla adipisci? Nulla illum distinctio est velit suscipit quis aliquam consequatur, itaque vel natus nihil vitae. Eos quia a veniam vero reiciendis sequi dolore corporis, veritatis id voluptatum, velit, est provident laborum fugit omnis quo eius! Excepturi ea dolorem eligendi tenetur impedit nostrum aperiam.</p>
 				</div>
 				</div>
