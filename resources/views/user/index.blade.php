@@ -311,7 +311,7 @@
 			</section> -->
 			<!-- End cta-one Area -->
 
-			{{--
+			
 			<!-- Start blog Area -->
 			<section class="blog-area section-gap" id="blog" style="margin-top: -150px;">
 				<div class="container">
@@ -410,7 +410,7 @@
 			</section>
 			<!--  les temoignages -->	
 
-		--}}
+	
 
 		
 
