@@ -8,8 +8,10 @@ use App\Model\Admin\Partenaire;
 use App\Model\Admin\Post;
 use App\Model\Admin\Tag;
 use App\Model\User\Temoignage;
-  use Illuminate\Support\Facades\Route;
-if(! function_exists('all_info')){
+use Illuminate\Support\Facades\Route;
+
+
+if(!function_exists('all_info')){
     function all_info()
     {
         $info = Info::first();
@@ -17,7 +19,7 @@ if(! function_exists('all_info')){
     }
 }
 
-if(! function_exists('all_option')){
+if(!function_exists('all_option')){
     function all_option()
     {
         $option = Option::first();
@@ -25,7 +27,7 @@ if(! function_exists('all_option')){
     }
 }
 
-if(! function_exists('all_category')){
+if(!function_exists('all_category')){
     function all_category()
     {
         $category = Category::all();
@@ -34,7 +36,7 @@ if(! function_exists('all_category')){
 }
 
 
-if(! function_exists('all_tag')){
+if(!function_exists('all_tag')){
     function all_tag()
     {
         $tag = Tag::all();
@@ -43,7 +45,7 @@ if(! function_exists('all_tag')){
 }
 
 
-if(! function_exists('page_title')){
+if(!function_exists('page_title')){
     function page_title($title)
     {
         $base_title = 'AEERK';
@@ -55,14 +57,14 @@ if(! function_exists('page_title')){
     }
 }
 
-if(! function_exists('set_active_roote')){
+if(!function_exists('set_active_roote')){
     function set_active_roote($route)
     {
         return Route::is($route) ? 'active' : '';
     }
 }
 
-if(! function_exists('all_temoignage')){
+if(!function_exists('all_temoignage')){
     function all_temoignage()
     {
         $temoignage = Temoignage::where('status',1)->get();
@@ -70,7 +72,7 @@ if(! function_exists('all_temoignage')){
     }
 }
 
-if(! function_exists('all_part')){
+if(!function_exists('all_part')){
     function all_part()
     {
         $part = Partenaire::all();
@@ -78,7 +80,7 @@ if(! function_exists('all_part')){
     }
 }
 
-if(! function_exists('all_article')){
+if(!function_exists('all_article')){
     function all_article()
     {
         $article = Post::limit(4)->get();
@@ -87,7 +89,7 @@ if(! function_exists('all_article')){
 }
 
 
-if(! function_exists('all_immeuble')){
+if(!function_exists('all_immeuble')){
     function all_immeuble()
     {
         $immeubles = Immeuble::all();
