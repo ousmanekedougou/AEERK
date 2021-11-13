@@ -6,15 +6,13 @@ use App\Model\Admin\Tag;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class TagController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth:admin');
-        //pour securiser l'url dont le user n'est pas attribuere dans le authServiceProvider
-        // $this->middleware('can:posts.tag'); 
     }
 
 
@@ -25,8 +23,11 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::paginate(10);
-        return view('admin.tag.index',compact('tags'));
+        if (Auth::guard('admin')->user()->can('posts.viewAny')) {
+            $tags = Tag::paginate(10);
+            return view('admin.tag.index',compact('tags'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -36,7 +37,10 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.add');
+        if (Auth::guard('admin')->user()->can('posts.create')) {
+            return view('admin.tag.add');
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -79,8 +83,11 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::where('id',$id)->first();
-        return view('admin.tag.edit',compact('tag'));
+        if (Auth::guard('admin')->user()->can('posts.update')) {
+            $tag = Tag::where('id',$id)->first();
+            return view('admin.tag.edit',compact('tag'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -92,17 +99,20 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'slug' => 'required',
-           
-        ]);
-        $tag = Tag::find($id);
-        $tag->name = $request->name;
-        $tag->slug = $request->slug;
-        $tag->save();
-        Flashy::success('Votre tag a ete modifier');
-        return redirect(route('admin.tag.index'));
+        if (Auth::guard('admin')->user()->can('posts.update')) {
+            $this->validate($request,[
+                'name' => 'required',
+                'slug' => 'required',
+            
+            ]);
+            $tag = Tag::find($id);
+            $tag->name = $request->name;
+            $tag->slug = $request->slug;
+            $tag->save();
+            Flashy::success('Votre tag a ete modifier');
+            return redirect(route('admin.tag.index'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -113,7 +123,10 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        Tag::where('id',$id)->delete();
-        return redirect()->back();
+        if (Auth::guard('admin')->user()->can('posts.delete')) {
+            Tag::where('id',$id)->delete();
+            return redirect()->back();
+        }
+        return redirect(route('admin.home'));
     }
 }

@@ -63,6 +63,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::guard('admin')->user()->can('posts.create')) {
         $this->validate($request,[
             'title' => 'required',
             // 'subtitle' => 'required',
@@ -97,6 +98,8 @@ class PostController extends Controller
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->category);
         return redirect(route('admin.post.index'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**

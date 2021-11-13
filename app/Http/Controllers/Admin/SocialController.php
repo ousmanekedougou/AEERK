@@ -6,7 +6,7 @@ use App\Model\Admin\Social;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class SocialController extends Controller
 {
     /**
@@ -41,6 +41,8 @@ class SocialController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::guard('admin')->user()->can('admins.create')) 
+        {
         $validator =  $this->validate($request,[
             'name' => 'required|unique:socials',
             'lien' => 'required|unique:socials',
@@ -49,6 +51,8 @@ class SocialController extends Controller
         Social::create($request->all());
         Flashy::success('Votre reseau a ete ajouter');
         return redirect()->route('admin.info.index');
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -82,6 +86,8 @@ class SocialController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (Auth::guard('admin')->user()->can('admins.update')) 
+        {
         $validator =  $this->validate($request,[
             'name' => 'required|unique:socials',
             'lien' => 'required|unique:socials',
@@ -94,6 +100,8 @@ class SocialController extends Controller
         $social_update->save();
         Flashy::success('Votre reseau a ete modifier');
         return redirect()->route('admin.info.index');
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -104,7 +112,11 @@ class SocialController extends Controller
      */
     public function destroy($id)
     {
+        if (Auth::guard('admin')->user()->can('admins.delete')) 
+        {
         Social::where('id',$id)->delete();
         return back();
+        }
+        return redirect(route('admin.home'));
     }
 }

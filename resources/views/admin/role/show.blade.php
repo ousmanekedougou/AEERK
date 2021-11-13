@@ -20,8 +20,9 @@
       <div class="">
         <div class="box-header with-border">
           <h3 class="box-title">Roles</h3>
-          <a class="col-lg-offset-5 btn btn-success" href="{{ route('admin.role.create') }}">Ajouter Un Role</a>
-
+          {{--
+            <a class="col-lg-offset-5 btn btn-success" href="{{ route('admin.role.create') }}">Ajouter Un Role</a>
+          --}}
         </div>
         <div class="box-body">
             <!-- debut de la table -->
@@ -33,8 +34,7 @@
                 <tr>
                   <th>Num</th>
                   <th>Nom Role</th>
-                  <th>Modifier</th>
-                  <th>Supprimer</th>
+                  <th>Options</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,10 +42,12 @@
                   <tr>
                     <td>{{ $loop->index +1 }}</td>
                     <td>{{ $role->name }}</td>
-                    <td><a href="{{ route('admin.role.edit',$role->id) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
                     <td>
-                    <a data-toggle="modal" data-target="#modal-default-{{$role->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
-                      </td>
+                      <a href="{{ route('admin.role.edit',$role->id) }}"><i class="glyphicon glyphicon-edit"></i></a>
+                      {{--
+                      <a data-toggle="modal" data-target="#modal-default-{{$role->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                      --}}
+                    </td>
                   </tr>
 
                   <div class="modal fade" id="modal-default-{{$role->id}}">

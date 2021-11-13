@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Category;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
 
@@ -23,8 +23,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categorys = Category::paginate(10);
-        return view('admin.category.index',compact('categorys'));
+        if (Auth::guard('admin')->user()->can('posts.viewAny')) {
+            $categorys = Category::paginate(10);
+            return view('admin.category.index',compact('categorys'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -34,7 +37,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.add');
+        if (Auth::guard('admin')->user()->can('posts.create')) {
+            return view('admin.category.add');
+        }
+         return redirect(route('admin.home'));
     }
 
     /**
@@ -77,8 +83,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::where('id',$id)->first();
-        return view('admin.category.edit',compact('category'));
+        if (Auth::guard('admin')->user()->can('posts.update')) {   
+            $category = Category::where('id',$id)->first();
+            return view('admin.category.edit',compact('category'));
+        }
+         return redirect(route('admin.home'));
     }
 
     /**
@@ -90,17 +99,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'slug' => 'required',
-           
-        ]);
-        $category = Category::find($id);
-        $category->name = $request->name;
-        $category->slug = $request->slug;
-        $category->save();
-        Flashy::success('Votre categorie a ete modifier');
-        return redirect(route('admin.category.index'));
+        if (Auth::guard('admin')->user()->can('posts.update')) {
+            $this->validate($request,[
+                'name' => 'required',
+                'slug' => 'required',
+            
+            ]);
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->slug = $request->slug;
+            $category->save();
+            Flashy::success('Votre categorie a ete modifier');
+            return redirect(route('admin.category.index'));
+        }
+         return redirect(route('admin.home'));
     }
 
     /**
@@ -111,7 +123,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::where('id',$id)->delete();
-        return redirect()->back();
+        if (Auth::guard('admin')->user()->can('posts.delete')) {
+            Category::where('id',$id)->delete();
+            return redirect()->back();
+        }
+         return redirect(route('admin.home'));
     }
 }

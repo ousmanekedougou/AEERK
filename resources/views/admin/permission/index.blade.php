@@ -20,8 +20,9 @@
       <div class="">
         <div class="box-header with-border">
           <h3 class="box-title">Permissions</h3>
-          <a class="col-lg-offset-5 btn btn-success" href="{{ route('admin.permission.create') }}">Ajouter Une Permission</a>
-
+          {{--
+            <a class="col-lg-offset-5 btn btn-success" href="{{ route('admin.permission.create') }}">Ajouter Une Permission</a>
+          --}}
         </div>
         <div class="box-body">
             <!-- debut de la table -->
@@ -35,8 +36,10 @@
                   <th>Num</th>
                   <th>Nom Permission</th>
                   <th>Permission Pour</th>
+                  {{--
                   <th>Modifier</th>
                   <th>Supprimer</th>
+                 --}}
                 </tr>
                 </thead>
                 <tbody>
@@ -45,10 +48,12 @@
                   <td>{{ $loop->index +1 }}</td>
                   <td>{{ $perm->name }}</td>
                   <td>{{ $perm->for }}</td>
+                  {{--
                   <td><a href="{{ route('admin.permission.edit',$perm->id) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
                   <td>
                   <a data-toggle="modal" data-target="#modal-default-{{$perm->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
                     </td>
+                     --}}
                   </tr>
 
                   <div class="modal fade" id="modal-default-{{$perm->id}}">

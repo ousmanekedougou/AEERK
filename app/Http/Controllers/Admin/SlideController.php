@@ -6,7 +6,7 @@ use App\Model\Admin\Slide;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class SlideController extends Controller
 {
     /**
@@ -21,7 +21,27 @@ class SlideController extends Controller
     
     public function index()
     {
-        //
+         if (Auth::guard('admin')->user()->can('admins.index')) 
+        {
+            $sl = Slide::all();
+            $slider = [];
+            $slider_login = [];
+            $slider_ins = [];
+            $slider_contact = [];
+            foreach ($sl as $sle) {
+                if($sle->role == 1){
+                    $slider[] = $sle;
+                }elseif ($sle->role == 2) {
+                    $slider_login[] = $sle;
+                }elseif ($sle->role == 3) {
+                    $slider_ins[] = $sle;
+                }elseif ($sle->role == 4) {
+                    $slider_contact[] = $sle;
+                }
+            }
+            return view('admin.gallery.index',compact('slider','slider_ins','slider_login','slider_contact','sl'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -42,6 +62,8 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
+         if (Auth::guard('admin')->user()->can('admins.create')) 
+        {
         $validator = $this->validate($request , [
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
             'role' => 'required|string'
@@ -57,6 +79,8 @@ class SlideController extends Controller
         $add_slider->save();
         Flashy::success('votre image slider a ete ajouter');
         return back();
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -90,6 +114,8 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
+         if (Auth::guard('admin')->user()->can('admins.update')) 
+        {
         $validator = $this->validate($request , [
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
             'role' => 'required|string'
@@ -108,6 +134,8 @@ class SlideController extends Controller
         $update_slider->save();
         Flashy::success('votre image slider a ete modifier');
         return back();
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
@@ -118,8 +146,12 @@ class SlideController extends Controller
      */
     public function destroy($id)
     {
-        Slide::find($id)->delete();
-        Flashy::success('Votre Image slider a ete supprimer');
-        return back();
+        if (Auth::guard('admin')->user()->can('admins.delete')) 
+        {
+            Slide::find($id)->delete();
+            Flashy::success('Votre Image slider a ete supprimer');
+            return back();
+        }
+        return redirect(route('admin.home'));
     }
 }

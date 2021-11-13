@@ -48,11 +48,11 @@ if(!function_exists('all_tag')){
 if(!function_exists('page_title')){
     function page_title($title)
     {
-        $base_title = 'AEERK';
+        $page_title = 'AEERK';
         if($title === ''){
-            return  $base_title;
+            return  $page_title;
         }else{
-            return $title . ' | ' . $base_title;
+            return $title . ' | ' . $page_title;
         }
     }
 }
