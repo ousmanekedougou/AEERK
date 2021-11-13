@@ -126,14 +126,15 @@
 	<!-- Start course-mission Area -->
 	<section class="course-mission-area pb-120">
 		<div class="container">
+			<h3 class="mb-30">Nos secteurs d'activite</h3>
 			<div class="row d-flex justify-content-center">
-				<div class="menu-content pb-70 col-lg-8">
-				<div class="title text-center">
-					<h1 class="mb-10">Nos secteurs d'activite</h1>
-					<p class="text-left">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint cumque dolor soluta, labore voluptates rem illo ipsam harum fugiat nobis iure qui aperiam rerum ullam provident odit vitae, molestiae ipsa quae asperiores quibusdam dicta, blanditiis itaque architecto. Modi tempore hic nihil architecto aspernatur, mollitia beatae repellat incidunt suscipit pariatur facere minus cupiditate illum facilis iusto laborum nulla adipisci? Nulla illum distinctio est velit suscipit quis aliquam consequatur, itaque vel natus nihil vitae. Eos quia a veniam vero reiciendis sequi dolore corporis, veritatis id voluptatum, velit, est provident laborum fugit omnis quo eius! Excepturi ea dolorem eligendi tenetur impedit nostrum aperiam.</p>
+				<div class="col-lg-12">
+					<blockquote class="generic-blockquote text-justify">
+						“Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks such as Party Gaming and PlayTech left the United States. Overnight, online casino players found themselves being chased by the Federal government. But, after a fortnight, the online casino industry came up with a solution and new online casinos started taking root. These began to operate under a different business umbrella, and by doing that, rendered the transfer of money to and from them legal. A major part of this was enlisting electronic banking systems that would accept this new clarification and start doing business with me. Listed in this article are the electronic banking” 
+					</blockquote>
 				</div>
-				</div>
-			</div>							
+			</div>		
+
 			<div class="row">
 				<div class="col-md-7 accordion-left">
 					<!-- accordion 2 start-->
