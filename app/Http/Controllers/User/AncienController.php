@@ -101,11 +101,11 @@ class AncienController extends Controller
         $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
         $numero_bureau = Solde::first();
-        // Nexmo::message()->send([
-        //     'from' => $numero_bureau->numero_ancien,
-        //     'to' => $phoneFinale,
-        //     'text' => 'AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos documents.'
-        // ]);
+        Nexmo::message()->send([
+            'from' => $numero_bureau->numero_ancien,
+            'to' => '221782875971',
+            'text' => 'AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation.'
+        ]);
 
 
             // $config = array(
