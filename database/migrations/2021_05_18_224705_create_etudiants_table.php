@@ -31,8 +31,8 @@ class CreateEtudiantsTable extends Migration
             $table->integer('immeuble_id')->default(0);
             $table->integer('chambre_id')->default(0);
             $table->integer('prix')->default(0);
-            $table->boolean('status')->default(0);
-            $table->boolean('ancienete')->default(0);
+            $table->integer('status')->default(0);
+            $table->integer('ancienete')->default(0);
             $table->boolean('codifier')->default(0);
             $table->timestamps();
         });
