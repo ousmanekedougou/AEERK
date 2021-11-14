@@ -418,7 +418,7 @@
 
 @section('js')
 
-		<script>
+<script>
     $(document).ready(function(){
         $("#myModal").modal('show');
     });

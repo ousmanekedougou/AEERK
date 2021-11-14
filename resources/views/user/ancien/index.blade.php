@@ -316,7 +316,7 @@
 		}else if(phone.value.length != 9){
 			alert('Votre numero de telphone doit etre de 9 caracter exp: 77xxxxxxx');
 			return false;
-		}else if(first_num != 77){
+		}else if(first_num != 78){
 			alert('Votre numero de telphone doit commencer par un (77 ou 78 ou 70 ou 76)')
 			return false;
 		}
