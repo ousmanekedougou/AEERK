@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
                 Poste::create([
                     'name' => $p,
                     'status' => 1
-                ])->commisions()->sync(1,2,3,4);
+                ])->commissions()->sync(1,2,3,4);
             }
 
         // $this->call(UserSeeder::class);
