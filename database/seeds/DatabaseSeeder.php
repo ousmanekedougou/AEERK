@@ -243,13 +243,30 @@ class DatabaseSeeder extends Seeder
                 ]);
                 // fin de la connexion des admin
 
-                  for ($i=0; $i <=  4 ; $i++) { 
+                 
                     Role_admin::create(
                     [
-                        'admin_id' => '1',
-                        'role_id' => $i++
+                        'admin_id' => 1,
+                        'role_id' => 1
                     ]);
-                }
+
+                    Role_admin::create(
+                    [
+                        'admin_id' => 1,
+                        'role_id' => 2
+                    ]);
+
+                    Role_admin::create(
+                    [
+                        'admin_id' => 1,
+                        'role_id' => 3
+                    ]);
+
+                    Role_admin::create(
+                    [
+                        'admin_id' => 1,
+                        'role_id' => 4
+                    ]);
 
                 Option::create([
                     'register' => 1,
