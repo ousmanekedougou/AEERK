@@ -232,7 +232,7 @@ class DatabaseSeeder extends Seeder
                 // Fin Insertion de Tag
 
 
-                $admin =  Admin::create([
+                Admin::create([
                     'name' => 'Diallo Ousmane',
                     'email' => 'blog@gmail.com',
                     'phone' => '00000000',
@@ -243,12 +243,30 @@ class DatabaseSeeder extends Seeder
                 ]);
                 // fin de la connexion des admin
 
-                $admin->role_admins->create([
+                
+                Role_admin::create(
+                [
                     'admin_id' => 1,
                     'role_id' => 1
                 ]);
 
-                
+                Role_admin::create(
+                [
+                    'admin_id' => 1,
+                    'role_id' => 2
+                ]);
+
+                Role_admin::create(
+                [
+                    'admin_id' => 1,
+                    'role_id' => 3
+                ]);
+
+                Role_admin::create(
+                [
+                    'admin_id' => 1,
+                    'role_id' => 4
+                ]);
 
                 Option::create([
                     'register' => 1,
