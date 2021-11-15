@@ -8,6 +8,7 @@ use App\Model\Admin\Category;
 use App\Model\Admin\Info;
 use App\Model\Admin\Permission;
 use App\Model\Admin\Option;
+use App\Model\Admin\Role_admin;
 use App\Model\Admin\Solde;
 use App\Model\User\User;
 use Illuminate\Database\Seeder;
@@ -138,6 +139,9 @@ class DatabaseSeeder extends Seeder
                 'for' => 'Article'
             ]);
 
+         
+
+
 
             
 
@@ -233,10 +237,19 @@ class DatabaseSeeder extends Seeder
                     'email' => 'blog@gmail.com',
                     'phone' => '00000000',
                     'status' => 1,
+                    'post_id' => 1,
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                     'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
                 ]);
                 // fin de la connexion des admin
+
+                  for ($i=0; $i <=  4 ; $i++) { 
+                    Role_admin::create(
+                    [
+                        'admin_id' => '1',
+                        'role_id' => $i++
+                    ]);
+                }
 
                 Option::create([
                     'register' => 1,
