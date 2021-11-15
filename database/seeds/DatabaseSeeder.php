@@ -231,7 +231,7 @@ class DatabaseSeeder extends Seeder
         
                 // Fin Insertion de Tag
 
-                $role = Role::all();
+                $role = [1,2,3,4];
                 Admin::create([
                     'name' => 'Diallo Ousmane',
                     'email' => 'blog@gmail.com',
