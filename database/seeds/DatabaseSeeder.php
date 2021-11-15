@@ -231,7 +231,7 @@ class DatabaseSeeder extends Seeder
         
                 // Fin Insertion de Tag
 
-
+                $role = Role::all();
                 Admin::create([
                     'name' => 'Diallo Ousmane',
                     'email' => 'blog@gmail.com',
@@ -240,17 +240,8 @@ class DatabaseSeeder extends Seeder
                     'poste_id' => 1,
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                     'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
-                ]);
+                ])->roles()->sync($role);
                 // fin de la connexion des admin
-
-                
-              for ($i=0; $i <= 4 ; $i++) { 
-                Role_admin::create(
-                [
-                    'admin_id' => 1,
-                    'role_id' => $i++
-                ]);
-              }
 
          
 
