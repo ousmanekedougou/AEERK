@@ -25,18 +25,6 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- <li class="header">PARAMETRES</li> -->
-          <!-- <li class="treeview">
-            <a href="#">
-              <i class="fa fa-cog"></i>
-              <span>Paramettres</span>
-              <span class="pull-right-container">
-                <span class="label label-primary pull-right">5</span>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="{{ route ('admin.option.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>option</span></a></li>
-            </ul>
-          </li> -->
         @if (Auth::guard('admin')->user()->can('admins.index'))
         <li class="treeview">
           <a href="#">
@@ -74,23 +62,7 @@
           </ul>
         </li>
         @endif
-        <!-- <li class="treeview">
-          <a href="#">
-            <i class="fa fa-align-justify"></i>
-            <span>Pages</span>
-            <span class="pull-right-container">
-            <span class="label label-danger pull-right">6</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin.activite.index') }}"><i class="fa fa-circle-o"></i> Activites</a></li>
-            <li><a href="{{ route ('admin.service.index') }}"><i class="fa fa-circle-o"></i> Services</a></li>
-            <li><a href="{{ route ('admin.realisation.index') }}"><i class="fa fa-circle-o"></i> Realisations</a></li>
-            <li><a href="{{ route ('admin.historique.index') }}"><i class="fa fa-circle-o"></i> Historique</a></li>
-            <li><a href="{{ route ('admin.document.index') }}"><i class="fa fa-circle-o"></i> Documents</a></li>
-            <li><a href="{{ route ('admin.contact.index') }}"><i class="fa fa-circle-o"></i> Contacts</a></li>
-          </ul>
-        </li> -->
+        
         @if (Auth::guard('admin')->user()->can('admins.index'))
         <li class="treeview">
           <a href="#">

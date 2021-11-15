@@ -5,9 +5,11 @@ use App\Model\Admin\Role;
 use App\Model\Admin\Admin;
 use App\Model\Admin\Social;
 use App\Model\Admin\Category;
+use App\Model\Admin\Commission;
 use App\Model\Admin\Info;
 use App\Model\Admin\Permission;
 use App\Model\Admin\Option;
+use App\Model\Admin\Poste;
 use App\Model\Admin\Role_admin;
 use App\Model\Admin\Solde;
 use App\Model\User\User;
@@ -31,25 +33,50 @@ class DatabaseSeeder extends Seeder
                 'bp' => 'boite poste',
             ]);
 
+            $com = [
+                'Social',
+                'Pedagogique',
+                'Sportive',
+                'Culturelle',
+                'Organisation'
+            ];
+
+            foreach ($com as $c) { 
+                Commission::create([
+                    'name' => $c,
+                    'status' => 1
+                ]);
+            }
+
+            $post = [
+                'President',
+                'Secretaire',
+                'Tresorie',
+                'Commissaire au compte',
+            ];
+
+            foreach ($post as $p) {
+                Poste::create([
+                    'name' => $p,
+                    'status' => 1
+                ])->commisions()->sync(1,2,3,4);
+            }
+
         // $this->call(UserSeeder::class);
           // les roles
+          $role = [
+              'Admin',
+              'Codifier',
+              'Logement',
+              'Article',
+          ];
+          foreach ($role as $r) {
             Role::create(
             [
-                'name' => 'Admin'
-            ]);
-            Role::create(
-            [
-                'name' => 'Codifier'
-            ]);
-            Role::create(
-            [
-                'name' => 'Logement'
-            ]);
-            Role::create(
-            [
-                'name' => 'Article'
+                'name' => $r
             ]);
             // fin des role
+          }
 
             Permission::create(
             [
