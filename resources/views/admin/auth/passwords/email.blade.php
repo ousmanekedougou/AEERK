@@ -41,7 +41,7 @@
     @include('includes.message')
 
     <form action="{{ route('admin.password.verify') }}" method="post">
-        {{ csrf_field() }}
+        {{ csrf_field('POST') }}
       <div class="form-group has-feedback">
         <input type="email" id="email" class="form-control  @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" required autocomplete="email" autofocus placeholder="Adresse E-mail">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
