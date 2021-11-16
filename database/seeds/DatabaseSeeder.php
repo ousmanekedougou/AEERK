@@ -261,7 +261,7 @@ class DatabaseSeeder extends Seeder
                 $role = [1,2,3,4];
                 Admin::create([
                     'name' => 'Diallo Ousmane',
-                    'email' => 'blog@gmail.com',
+                    'email' => 'yabaye07@gmail.com',
                     'phone' => '00000000',
                     'status' => 1,
                     'poste_id' => 1,
