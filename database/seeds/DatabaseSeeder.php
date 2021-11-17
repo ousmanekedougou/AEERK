@@ -203,7 +203,7 @@ class DatabaseSeeder extends Seeder
                     foreach ($permission as $k => $v) { 
                         if ($role->name == $v) {
                             Permission::create([
-                            'nom' => $k,
+                            'name' => $k,
                             'for' => $v,
                             ])->roles->sync($role->id);
                         }
