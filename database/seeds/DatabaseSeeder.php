@@ -201,7 +201,7 @@ class DatabaseSeeder extends Seeder
                 $roles = Role::all();
                 foreach ($roles as $role) {
                     foreach ($permission as $k => $v) { 
-                        if ($role->name = $v) {
+                        if ($role->name == $v) {
                             Permission::create([
                             'nom' => $k,
                             'for' => $v,
