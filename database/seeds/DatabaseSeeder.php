@@ -6,6 +6,8 @@ use App\Model\Admin\Admin;
 use App\Model\Admin\Social;
 use App\Model\Admin\Category;
 use App\Model\Admin\Commission;
+use App\Model\Admin\Commune;
+use App\Model\Admin\Departement;
 use App\Model\Admin\Info;
 use App\Model\Admin\Permission;
 use App\Model\Admin\Option;
@@ -137,11 +139,65 @@ class DatabaseSeeder extends Seeder
                 'delete' => 'Article',
             ];
 
-             foreach ($article_permission as $key_article => $value_article) {
+            foreach ($article_permission as $key_article => $value_article) {
                 Permission::create([
                     'name' => $key_article,
                     'for' => $value_article
                 ])->roles()->sync(4);
+            }
+
+            $departement = [
+                'Kedougou','Saraye','Salemate'
+            ];
+
+            foreach ($departement as $dep) {
+                Departement::create([
+                    'name' => $dep
+                ]);
+            }
+
+            $kedougou = [
+                'Kedougou' => 1,
+                'Bandafassi' => 1,
+                'Dimboli' => 1,
+                'Dindefelo' => 1,
+                'Fongolimbi' => 1,
+                'Ninefecha' => 1,
+                'Tomboronkoto' => 1,
+            ];
+            foreach ($kedougou as $key_ked => $value_ked) {
+                Commune::create([
+                    'name' => $key_ked,
+                    'departement_id' => $value_ked
+                ]);
+            }
+
+            $saray = [
+                'Bembou' => 2,
+                'Khossanto' => 2,
+                'Medina Bafe' => 2,
+                'Missirah Sirimana' => 2,
+                'Saraya' => 2,
+            ];
+            foreach ($saray as $key_sar => $value_sar) {
+                Commune::create([
+                    'name' => $key_sar,
+                    'departement_id' => $value_sar
+                ]);
+            }
+            $salemata = [
+                'Dakately' => 3,
+                'Dar Salam' => 3,
+                'Ethiolo' => 3,
+                'Kevoye' => 3,
+                'Oubadji' => 3,
+                'Salemata' => 3,
+            ];
+             foreach ($salemata as $key_sale => $value_sale) {
+                Commune::create([
+                    'name' => $key_sale,
+                    'departement_id' => $value_sale
+                ]);
             }
 
             // Insertion Reseau Sociaux
