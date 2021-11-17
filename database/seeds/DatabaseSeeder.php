@@ -62,21 +62,7 @@ class DatabaseSeeder extends Seeder
                 ])->commissions()->sync(1,2,3,4);
             }
 
-        // $this->call(UserSeeder::class);
-          // les roles
-          $role = [
-              'Admin',
-              'Codifier',
-              'Logement',
-              'Article',
-          ];
-          foreach ($role as $r) {
-            Role::create(
-            [
-                'name' => $r
-            ]);
-            // fin des role
-          }
+        
 
             Permission::create(
             [
@@ -258,8 +244,10 @@ class DatabaseSeeder extends Seeder
         
                 // Fin Insertion de Tag
 
-                $role = [1,2,3,4];
-                Admin::create([
+                
+
+               
+                $admin = Admin::create([
                     'name' => 'Diallo Ousmane',
                     'email' => 'yabaye07@gmail.com',
                     'phone' => '00000000',
@@ -267,8 +255,23 @@ class DatabaseSeeder extends Seeder
                     'poste_id' => 1,
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                     'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
-                ])->roles()->sync($role);
+                ]);
                 // fin de la connexion des admin
+
+                // les roles
+                $role = [
+                    'Admin',
+                    'Codifier',
+                    'Logement',
+                    'Article',
+                ];
+                foreach ($role as $r) {
+                    Role::create(
+                    [
+                        'name' => $r
+                    ])->admins()->sync($admin->id);
+                    // fin des role
+                }
 
          
 
