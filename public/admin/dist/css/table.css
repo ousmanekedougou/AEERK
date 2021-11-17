@@ -46,7 +46,7 @@
                
             }
             .responsive-table tr{
-                margin-bottom:1rem ;
+                margin-bottom:2em ;
             }
             .responsive-table thead{display: none;}
             .responsive-table  th + td {
@@ -54,5 +54,9 @@
             }
             .responsive-table  th + td{
                 display: none;
+            }
+            .responsive-table tbody tr td{
+                padding-left: 50px;
+                text-align: right;
             }
         }

@@ -29,7 +29,7 @@ class AncienController extends Controller
      */
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('codifier.index')) 
+        if (Auth::guard('admin')->user()->can('codifier.inde')) 
         {
             $immeubles = Immeuble::where('status',2)->get();
             $ancien_bac = Etudiant::where('codifier', '=', 0)
