@@ -61,104 +61,6 @@ class DatabaseSeeder extends Seeder
                     'status' => 1
                 ])->commissions()->sync(1,2,3,4);
             }
-
-        
-
-            Permission::create(
-            [
-                'name' => 'index',
-                'for' => 'Admin'
-            ]);
-            Permission::create(
-            [
-                'name' => 'create',
-                'for' => 'Admin'
-            ]);
-            Permission::create(
-            [
-                'name' => 'update',
-                'for' => 'Admin'
-            ]);
-            Permission::create(
-            [
-                'name' => 'delete',
-                'for' => 'Admin'
-            ]);
-
-
-            Permission::create(
-            [
-                'name' => 'index',
-                'for' => 'Codifier'
-            ]);
-            Permission::create(
-            [
-                'name' => 'create',
-                'for' => 'Codifier'
-            ]);
-            Permission::create(
-            [
-                'name' => 'update',
-                'for' => 'Codifier'
-            ]);
-            Permission::create(
-            [
-                'name' => 'delete',
-                'for' => 'Codifier'
-            ]);
-
-
-            Permission::create(
-            [
-                'name' => 'index',
-                'for' => 'Logement'
-            ]);
-            Permission::create(
-            [
-                'name' => 'create',
-                'for' => 'Logement'
-            ]);
-            Permission::create(
-            [
-                'name' => 'update',
-                'for' => 'Logement'
-            ]);
-            Permission::create(
-            [
-                'name' => 'delete',
-                'for' => 'Logement'
-            ]);
-
-
-
-            Permission::create(
-            [
-                'name' => 'index',
-                'for' => 'Article'
-            ]);
-            Permission::create(
-            [
-                'name' => 'create',
-                'for' => 'Article'
-            ]);
-            Permission::create(
-            [
-                'name' => 'update',
-                'for' => 'Article'
-            ]);
-            Permission::create(
-            [
-                'name' => 'delete',
-                'for' => 'Article'
-            ]);
-
-         
-
-
-
-            
-
-    
             // Insertion Reseau Sociaux
                 Social::create(
                 [
@@ -271,6 +173,41 @@ class DatabaseSeeder extends Seeder
                         'name' => $r
                     ])->admins()->sync($admin->id);
                     // fin des role
+                }
+
+                //Creer les permissions
+                    $permission = [
+                    'index' => 'Admin',
+                    'create' => 'Admin',
+                    'update' => 'Admin',
+                    'delete' => 'Admin',
+
+                    'index' => 'Codifier',
+                    'create' => 'Codifier',
+                    'update' => 'Codifier',
+                    'delete' => 'Codifier',
+
+                    'index' => 'Logement',
+                    'create' => 'Logement',
+                    'update' => 'Logement',
+                    'delete' => 'Logement',
+
+                    'index' => 'Article',
+                    'create' => 'Article',
+                    'update' => 'Article',
+                    'delete' => 'Article',
+                ];
+
+                $roles = Role::all();
+                foreach ($roles as $role) {
+                    foreach ($permission as $k => $v) { 
+                        if ($role->name = $v) {
+                            Permission::create([
+                            'nom' => $k,
+                            'for' => $v,
+                            ])->roles->sync($role->id);
+                        }
+                    }
                 }
 
          
