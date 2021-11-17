@@ -205,7 +205,7 @@ class DatabaseSeeder extends Seeder
                             Permission::create([
                             'name' => $k,
                             'for' => $v,
-                            ])->roles->sync($role->id);
+                            ])->roles()->sync($role->id);
                         }
                     }
                 }
