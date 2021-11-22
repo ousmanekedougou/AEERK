@@ -48,7 +48,7 @@ class ContactController extends Controller
         /* Mail::to(config('aeerk.admin_support_email'))
            ->send(new ContactMessageCreated($contact));*/
 
-        Mail::send('emails.message.created', $contact, function($message) {
+        Mail::send('emails.messages.created', $contact, function($message) {
             $message->to(config('aeerk.admin_support_email'));
         });
 
