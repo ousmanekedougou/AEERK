@@ -84,12 +84,12 @@ return [
     */
 
     'from' => array('address' => 'ousmanelaravel@gmail.com', 'name' => 'AEERK'),
-
+    /*
     // 'from' => [
     //     'address' => env('MAIL_FROM_ADDRESS', 'ousmanelaravel@gmail.com'),
     //     'name' => env('MAIL_FROM_NAME', 'AEERK'),
     // ],
-
+    */
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
