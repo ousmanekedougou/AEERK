@@ -37,8 +37,8 @@ return [
         'smtp' => [
             'transport' => 'smtp',
             'host' =>  'smtp.gmail.com',
-            'port' =>  587,
-            'encryption' => 'tls',
+            'port' =>  465,
+            'encryption' => 'ssl',
             'username' => 'ousmanelaravel@gmail.com',
             'password' => 'baye13811',
             'timeout' => null,
