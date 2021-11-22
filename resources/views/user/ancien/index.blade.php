@@ -1,7 +1,5 @@
- @extends('user.layouts.app',['title' => 'Addmission'])
+ @extends('user.layouts.app',['title' => 'Admission'])
  @section('bg-img',asset('user/img/home-bg.jpg'))
- @section('title','Admission')
-@section('sub-heding','Bootstrap Template')
 @section('head')
 <meta name="csrf-token" content="{{ csrf_token() }}">
   <style>

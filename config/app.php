@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'AEERK'),
 
     /*
     |--------------------------------------------------------------------------
@@ -133,6 +133,11 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+
+    /*  Les informations du send sms  */
+        'clientId' => 'PiA90EgGRemIGExbGkSYKGSplG5MPZGU',
+        'clientSecret' => '9osVWNXzQG0Z7XPI',
+     /* ___________________________   */
 
     'providers' => [
 

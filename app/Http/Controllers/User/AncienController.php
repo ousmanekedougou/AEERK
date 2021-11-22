@@ -11,7 +11,7 @@ use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\Model\User\Etudiant;
-use \Osms\Osms;
+use App\Helpers\Sms;
 class AncienController extends Controller
 {
     /**
@@ -101,6 +101,7 @@ class AncienController extends Controller
         $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
         $numero_bureau = Solde::first();
+        
         // Nexmo::message()->send([
         //     'from' => $numero_bureau->numero_ancien,
         //     'to' => '221782875971',
@@ -108,36 +109,29 @@ class AncienController extends Controller
         // ]);
 
 
-            // $config = array(
-            //     'clientId' => 'PiA90EgGRemIGExbGkSYKGSplG5MPZGU',
-            //     'clientSecret' => '9osVWNXzQG0Z7XPI'
-            // );
+            $config = array(
+                'clientId' => config('app.clientId'),
+                'clientSecret' =>  config('app.clientSecret'),
+            );
+            $osms = new Sms($config);
 
-            // $osms = new Osms($config);
-            // $osms->setVerifyPeerSSL(false);
-            // // retrieve an access token
-            // $response = $osms->getTokenFromConsumerKey();
+            // retrieve an access token
+            $response = $osms->getTokenFromConsumerKey();
 
-            // if (!empty($response['access_token'])) {
-            //     $senderAddress = 'tel:+221781956168';
-            //     $receiverAddress = 'tel:+221782875971';
-            //     $message = 'Bonjour c\'est un message exemple!';
-            //     $senderName = 'AEERK';
+            if (!empty($response['access_token'])) {
+                $senderAddress = '221781956168';
+                $receiverAddress = '2212875971';
+                $message = 'Un message de teste!';
+                $senderName = 'AEERK';
 
-            //     $osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
-            // } else {
-            //     // error
-            // }
-
-
-
-
-
-        Flashy::success('Votre Inscription a ete Valider');
-        return redirect()->route('index',$add_ancien)->with([
-            "success" => "success",
-            "name" => "$add_ancien->prenom $add_ancien->nom"
-        ]);
+                $osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
+            } else {
+                // error
+            }
+            return redirect()->route('index',$add_ancien)->with([
+                "success" => "success",
+                "name" => "$add_ancien->prenom $add_ancien->nom"
+            ]);
     }
 
     /**

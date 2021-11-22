@@ -16,6 +16,8 @@
         Route::resource('/article','ArticleController');
         Route::resource('/comment','CommentController');
         Route::resource('/codification','EtudiantCodificationController');
+        Route::get('/reponse','EtudiantCodificationController@reponse')->name('codification.reponse');
+        Route::get('/payment','EtudiantCodificationController@payment')->name('codification.payment');
         Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
         Route::get('/createPdf/{id}/{email}/{phone}','EtudiantCodificationController@createPdf')->name('createPdf');
         Route::get('/category/{id}','ArticleController@category')->name('article.category');
