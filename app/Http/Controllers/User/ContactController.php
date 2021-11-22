@@ -46,10 +46,10 @@ class ContactController extends Controller
         $contact = Contact::create($request->only('nom','email','subject','message'));
 
         /* Mail::to(config('aeerk.admin_support_email'))
-           ->send(new ContactMessageCreated($contact));*/
+            ->send(new ContactMessageCreated($contact)); */
 
-        Mail::send('emails.messages.created', $contact, function($message) {
-            $message->to(config('aeerk.admin_support_email'));
+       Mail::send('emails.messages', $contact, function($message) {
+            $message->to('ousmanelaravel@gmail.com')->subject('Email from your website!');
         });
 
         Flashy::success('Votre Message a ete Poster');
