@@ -44,16 +44,28 @@ return [
             'timeout' => null,
             'auth_mode' => null,
         ],
-    */
 
-    'mailers' => [
-        'smtp' => [
+
+          'smtp' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
+            'auth_mode' => null,
+        ],
+    */
+
+    'mailers' => [
+         'smtp' => [
+            'transport' => 'smtp',
+            'host' =>  'smtp.gmail.com',
+            'port' =>  587,
+            'encryption' => 'tls',
+            'username' => 'ousmanelaravel@gmail.com',
+            'password' => 'baye13811',
             'timeout' => null,
             'auth_mode' => null,
         ],
