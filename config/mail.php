@@ -33,39 +33,14 @@ return [
     |
     */
 
-       /*
-      'smtp' => [
+    'mailers' => [
+        'smtp' => [
             'transport' => 'smtp',
-            'host' =>  'smtp.gmail.com',
-            'port' =>  587,
-            'encryption' => 'tls',
-            'username' => 'ousmanelaravel@gmail.com',
-            'password' => 'baye13811',
-            'timeout' => null,
-            'auth_mode' => null,
-        ],
-
-
-          'smtp' => [
-            'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT', 464),
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'auth_mode' => null,
-        ],
-    */
-
-    'mailers' => [
-         'smtp' => [
-            'transport' => 'smtp',
-            'host' =>  'smtp.gmail.com',
-            'port' =>  587,
-            'encryption' => 'tls',
-            'username' => 'ousmanelaravel@gmail.com',
-            'password' => 'baye13811',
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -108,10 +83,10 @@ return [
     |
     */
 
-    'from' => array (
-        'address' => 'ousmanelaravel@gmail.com',
-        'name' => 'AEERK'
-    ),
+    'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
