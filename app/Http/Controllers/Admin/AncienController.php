@@ -148,7 +148,28 @@ class AncienController extends Controller
         return redirect(route('admin.home'));
     }
 
-    public function valider_ancien(Request $request,$id){
+    public function update_ancien(Request $request, $id)
+    {
+        if (Auth::guard('admin')->user()->can('codifier.update')) 
+        {
+            $update_ancien = Etudiant::find($id);
+            $immeuble = Immeuble::where('status',true)->first();
+            $update_ancien->nom = $request->nom;
+            $update_ancien->prenom = $request->prenom;
+            $update_ancien->email = $request->email;
+            $update_ancien->phone = $request->phone;
+            $update_ancien->commune_id = $request->commune;
+            $update_ancien->immeuble_id = $immeuble ->id;
+            $update_ancien->save();
+            Flashy::success('Votre etudaint a ete consulter');
+            return back();
+        }
+                                            
+        return redirect(route('admin.home'));
+    }
+
+    public function valider_ancien(Request $request,$id)
+    {
         if (Auth::guard('admin')->user()->can('codifier.update')) 
         {
             $validator = $this->validate($request,[
@@ -180,26 +201,6 @@ class AncienController extends Controller
             }
         }
                                         
-        return redirect(route('admin.home'));
-    }
-
-    public function update_ancien(Request $request, $id)
-    {
-        if (Auth::guard('admin')->user()->can('codifier.update')) 
-        {
-            $update_ancien = Etudiant::find($id);
-            $immeuble = Immeuble::where('status',true)->first();
-            $update_ancien->nom = $request->nom;
-            $update_ancien->prenom = $request->prenom;
-            $update_ancien->email = $request->email;
-            $update_ancien->phone = $request->phone;
-            $update_ancien->commune_id = $request->commune;
-            $update_ancien->immeuble_id = $immeuble ->id;
-            $update_ancien->save();
-            Flashy::success('Votre etudaint a ete consulter');
-            return back();
-        }
-                                            
         return redirect(route('admin.home'));
     }
     

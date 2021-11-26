@@ -17,3 +17,4 @@ Store::setPostalAddress("Median");
 Store::setWebsiteUrl("http://localhost:8000/");
 Store::setLogoUrl("http://localhost:8000//logo.png");
 Store::setCallbackUrl("http://localhost:8000/reponse");
+Store::setReturnUrl("http://localhost:8000/reponse");

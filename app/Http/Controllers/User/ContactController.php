@@ -43,10 +43,10 @@ class ContactController extends Controller
             'subject' => 'required|string',
             'message' => 'required|string'
         ]);
-        $contact = Contact::create($request->only('nom','email','subject','message'));
+        Contact::create($request->only('nom','email','subject','message'));
 
-        Mail::to(config('aeerk.admin_support_email'))
-            ->send(new ContactMessageCreated($contact));
+        // Mail::to(config('aeerk.admin_support_email'))
+        //     ->send(new ContactMessageCreated($contact));
 
         Flashy::success('Votre Message a ete Poster');
         return redirect()->route('index');

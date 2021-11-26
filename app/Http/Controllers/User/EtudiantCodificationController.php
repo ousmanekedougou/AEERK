@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Mail;
 use Nexmo\Laravel\Facade\Nexmo;
 use Dompdf\Dompdf;
 use Illuminate\Support\Str;
+use Paydunya\Checkout\CheckoutInvoice;
+
 class EtudiantCodificationController extends Controller
 {
     public function __construct()
@@ -137,34 +139,51 @@ class EtudiantCodificationController extends Controller
                     if($chambres->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
                         $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                         if($nouveau->count() < $chambres->nombre){
-                            $codifier_nouveau = Etudiant::where('id',$id)->first();
-                            $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
-                            $codifier_nouveau->prix = $prix->prix_nouveau;
-                            $codifier_nouveau->codifier = 1;
-                            $codifier_nouveau->save();
-                            // Nexmo::message()->send([
-                            //     'to' => '221782875971',
-                            //     'from' => '221781956168',
-                            //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                            // ]);
+                                $codifier_nouveau = Etudiant::where('id',$id)->first();
+                                $invoice = new CheckoutInvoice();
+                                $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_nouveau, "Codifier en toute securite");
+                                $invoice->setTotalAmount($prix->prix_nouveau);
+                                $invoice->addCustomData("id", $id);
+                                $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
+                                $invoice->addCustomData("chambres", $chambres->id);
+                                $invoice->addCustomData("email", $codifier_nouveau->email);
+                                $invoice->addCustomData("phone", $codifier_nouveau->phone);
+                                $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
+                                $invoice->setReturnUrl("http://localhost:8000/reponse");
 
-                            // view()->shared('etudiants',$codifier_nouveau);
-                            // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
-                            // $file = $pdf->save('public/reglement');
-                            // $codifier_nouveau->update([
-                            //     'reglement' => $file
-                            // ]);
 
-                            $position = Chambre::where('id',$chambres->id)->first();
-                            $position_nombre = $position->position;
-                            $position->position = $position_nombre + 1;
-                            $position->save();
+                                if($invoice->create()) {
+                                    return redirect(url($invoice->getInvoiceUrl()));
+                                }else{
+                                    dd($invoice->response_text);
+                                }
+                            // $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
+                            // $codifier_nouveau->prix = $prix->prix_nouveau;
+                            // $codifier_nouveau->codifier = 1;
+                            // $codifier_nouveau->save();
+                            // // Nexmo::message()->send([
+                            // //     'to' => '221782875971',
+                            // //     'from' => '221781956168',
+                            // //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
+                            // // ]);
 
-                            Mail::to($codifier_nouveau->email)
-                            ->send(new AeerkEmailMessage($codifier_nouveau));
-                            Flashy::success('Vous avez ete codifier');
-                            Auth::logout();
-                            return redirect()->route('index')->with('success','Vous avez bien ete codifier, verifier votre adresse email');
+                            // // view()->shared('etudiants',$codifier_nouveau);
+                            // // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
+                            // // $file = $pdf->save('public/reglement');
+                            // // $codifier_nouveau->update([
+                            // //     'reglement' => $file
+                            // // ]);
+
+                            // $position = Chambre::where('id',$chambres->id)->first();
+                            // $position_nombre = $position->position;
+                            // $position->position = $position_nombre + 1;
+                            // $position->save();
+
+                            // Mail::to($codifier_nouveau->email)
+                            // ->send(new AeerkEmailMessage($codifier_nouveau));
+                            // Flashy::success('Vous avez ete codifier');
+                            // Auth::logout();
+                            // return redirect()->route('index')->with('success','Vous avez bien ete codifier, verifier votre adresse email');
                         }else{
                             $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
                             $is_pleine->is_pleine = 1;
@@ -173,11 +192,29 @@ class EtudiantCodificationController extends Controller
                             if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
                                 $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                                 if($nouveau->count() < $chambres->nombre){
-                                    $codifier_nouveau = Etudiant::where('id',$id)->first();
-                                    $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
-                                    $codifier_nouveau->prix = $prix->prix_nouveau;
-                                    $codifier_nouveau->codifier = 1;
-                                    $codifier_nouveau->save();
+                                        $codifier_nouveau = Etudiant::where('id',$id)->first();
+                                        $invoice = new CheckoutInvoice();
+                                        $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_nouveau, "Codifier en toute securite");
+                                        $invoice->setTotalAmount($prix->prix_nouveau);
+                                        $invoice->addCustomData("id", $id);
+                                        $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
+                                        $invoice->addCustomData("chambres", $chambres->id);
+                                        $invoice->addCustomData("email", $codifier_nouveau->email);
+                                        $invoice->addCustomData("phone", $codifier_nouveau->phone);
+                                        $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
+                                        $invoice->setReturnUrl("http://localhost:8000/reponse");
+
+
+                                        if($invoice->create()) {
+                                            return redirect(url($invoice->getInvoiceUrl()));
+                                        }else{
+                                            dd($invoice->response_text);
+                                        }
+                                    // $codifier_nouveau = Etudiant::where('id',$id)->first();
+                                    // $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
+                                    // $codifier_nouveau->prix = $prix->prix_nouveau;
+                                    // $codifier_nouveau->codifier = 1;
+                                    // $codifier_nouveau->save();
 
                                     // view()->shared('etudiants',$codifier_nouveau);
                                     // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
@@ -192,16 +229,16 @@ class EtudiantCodificationController extends Controller
                                     //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
                                     // ]);
 
-                                    $position = Chambre::where('id',$chambres->id)->first();
-                                    $position_nombre = $position->position;
-                                    $position->position = $position_nombre + 1;
-                                    $position->save();
+                                    // $position = Chambre::where('id',$chambres->id)->first();
+                                    // $position_nombre = $position->position;
+                                    // $position->position = $position_nombre + 1;
+                                    // $position->save();
 
-                                    Mail::to($codifier_nouveau->email)
-                                    ->send(new AeerkEmailMessage($codifier_nouveau));
-                                    Flashy::success('Vous avez ete codifier');
-                                    Auth::logout();
-                                    return redirect()->route('index');
+                                    // Mail::to($codifier_nouveau->email)
+                                    // ->send(new AeerkEmailMessage($codifier_nouveau));
+                                    // Flashy::success('Vous avez ete codifier');
+                                    // Auth::logout();
+                                    // return redirect()->route('index');
                                 }
                             }
                         }
@@ -209,52 +246,6 @@ class EtudiantCodificationController extends Controller
                 }
             }
     }
-
-
-
-    // public function update(Request $request, $id)
-    // {
-    //     $validator = $this->validate($request , [
-    //         'chambre_id' => 'required|string',
-    //     ]);
-    //     $prix = Solde::select('prix_nouveau')->first();
-    //     $chambre_nouveau = Nouveau::all();
-    //     foreach($chambre_nouveau as $chambres){
-    //         $nouveau = Nouveau::where('chambre_id',$request->chambre_id)->get();
-    //         if ($chambres->chambre_id == $request->chambre_id) {
-    //             if($nouveau->count() < $chambres->chambre->nombre){
-    //                 $codifier_nouveau = Nouveau::where('id',$id)->first();
-    //                 $codifier_nouveau->chambre_id = $request->chambre_id;
-    //                 $codifier_nouveau->prix = $prix->prix_nouveau;
-    //                 $codifier_nouveau->codifier = 1;
-    //                 $codifier_nouveau->save();
-    //                 Flashy::success('Vous avez ete codifier');
-    //                 Auth::logout();
-    //                 return redirect()->route('index');
-    //             }else{
-    //                 Flashy::error('Cette Chambre est pleine');
-    //                 return redirect()->back();
-    //             }
-    //         }
-    //         else if ($chambres->chambre_id == !$request->chambre_id){
-    //             $chambre_null = Nouveau::where('chambre_id',!$request->chambre_id)->first();
-    //             if ($chambre_null) {
-    //                 $codifier_nouveau = Nouveau::where('id',$id)->first();
-    //                 $codifier_nouveau->chambre_id = $request->chambre_id;
-    //                 $codifier_nouveau->prix = $prix->prix_nouveau;
-    //                 $codifier_nouveau->codifier = 1;
-    //                 $codifier_nouveau->save();
-    //                 Auth::logout();
-    //                 Flashy::success('Vous avez ete codifier');
-    //                 return redirect()->route('index');
-    //             }
-                
-    //         }
-    //     }
-    // }
-
-
-
 
 
 
@@ -278,26 +269,26 @@ class EtudiantCodificationController extends Controller
                         $ancien = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                         if($ancien->count() < $chambres->nombre){
                             $codifier_ancien = Etudiant::where('id',$id)->first();
-                            $codifier_ancien->chambre_id = $imb_chm->chambre_id;
-                            $codifier_ancien->prix = $prix->prix_ancien;
-                            $codifier_ancien->codifier = 1;
-                            $codifier_ancien->save();
-                            // Nexmo::message()->send([
-                            //     'to' => '221782875971',
-                            //     'from' => '221781956168',
-                            //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                            // ]);
 
-                            $position = Chambre::where('id',$chambres->id)->first();
-                            $position_nombre = $position->position;
-                            $position->position = $position_nombre + 1;
-                            $position->save();
+                                $invoice = new CheckoutInvoice();
+                                $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_ancien, "Codifier en toute securite");
+                                $invoice->setTotalAmount($prix->prix_ancien);
+                                $invoice->addCustomData("id", $id);
+                                $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
+                                $invoice->addCustomData("chambres", $chambres->id);
+                                $invoice->addCustomData("email", $codifier_ancien->email);
+                                $invoice->addCustomData("phone", $codifier_ancien->phone);
+                                $invoice->addCustomData("codifier", $codifier_ancien->codifier);
+                                $invoice->setReturnUrl("http://localhost:8000/reponse");
 
-                            Mail::to($codifier_ancien->email)
-                            ->send(new MessageEmailAeerk($codifier_ancien));
-                            Flashy::success('Vous avez ete codifier');
-                            Auth::logout();
-                            return redirect()->route('index');
+
+                                if($invoice->create()) {
+                                    return redirect(url($invoice->getInvoiceUrl()));
+                                }else{
+                                    dd($invoice->response_text);
+                                }
+
+                         
                         }else{
                             $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
                             $is_pleine->is_pleine = 1;
@@ -306,27 +297,45 @@ class EtudiantCodificationController extends Controller
                             if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
                                 $ancien = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                                 if($ancien->count() < $chambres->nombre){
-                                    $codifier_ancien = Ancien::where('id',$id)->first();
-                                    $codifier_ancien->chambre_id = $imb_chm->chambre_id;
-                                    $codifier_ancien->prix = $prix->prix_ancien;
-                                    $codifier_ancien->codifier = 1;
-                                    $codifier_ancien->save();
-                                    // Nexmo::message()->send([
-                                    //     'to' => '221782875971',
-                                    //     'from' => '221781956168',
-                                    //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                                    // ]);
+                                $codifier_ancien = Etudiant::where('id',$id)->first();
+                                $invoice = new CheckoutInvoice();
+                                $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_ancien, "Codifier en toute securite");
+                                $invoice->setTotalAmount($prix->prix_ancien);
+                                $invoice->addCustomData("id", $id);
+                                $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
+                                $invoice->addCustomData("chambres", $chambres->id);
+                                $invoice->addCustomData("email", $codifier_ancien->email);
+                                $invoice->addCustomData("phone", $codifier_ancien->phone);
+                                $invoice->addCustomData("codifier", $codifier_ancien->codifier);
+                                $invoice->setReturnUrl("http://localhost:8000/reponse");
 
-                                    $position = Chambre::where('id',$chambres->id)->first();
-                                    $position_nombre = $position->position;
-                                    $position->position = $position_nombre + 1;
-                                    $position->save();
 
-                                    Mail::to($codifier_ancien->email)
-                                    ->send(new MessageEmailAeerk($codifier_ancien));
-                                    Flashy::success('Vous avez ete codifier');
-                                    Auth::logout();
-                                    return redirect()->route('index');
+                                if($invoice->create()) {
+                                    return redirect(url($invoice->getInvoiceUrl()));
+                                }else{
+                                    dd($invoice->response_text);
+                                }
+                                    // $codifier_ancien = Ancien::where('id',$id)->first();
+                                    // $codifier_ancien->chambre_id = $imb_chm->chambre_id;
+                                    // $codifier_ancien->prix = $prix->prix_ancien;
+                                    // $codifier_ancien->codifier = 1;
+                                    // $codifier_ancien->save();
+                                    // // Nexmo::message()->send([
+                                    // //     'to' => '221782875971',
+                                    // //     'from' => '221781956168',
+                                    // //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
+                                    // // ]);
+
+                                    // $position = Chambre::where('id',$chambres->id)->first();
+                                    // $position_nombre = $position->position;
+                                    // $position->position = $position_nombre + 1;
+                                    // $position->save();
+
+                                    // Mail::to($codifier_ancien->email)
+                                    // ->send(new MessageEmailAeerk($codifier_ancien));
+                                    // Flashy::success('Vous avez ete codifier');
+                                    // Auth::logout();
+                                    // return redirect()->route('index');
                                 }
                             }
                         }
@@ -335,53 +344,74 @@ class EtudiantCodificationController extends Controller
             }
     }
 
+public function reponse(){
+$token = $_GET['token'];
+
+$invoice = new CheckoutInvoice();
+if ($invoice->confirm($token)) {
+
+  // Récupérer le statut du paiement
+  // Le statut du paiement peut être soit completed, pending, cancelled
+//   echo $invoice->getStatus();
+
+  // Vous pouvez récupérer le nom, l'adresse email et le
+  // numéro de téléphone du client en utilisant
+  // les méthodes suivantes
+//   echo $invoice->getCustomerInfo('name');
+//   echo $invoice->getCustomerInfo('email');
+//   echo $invoice->getCustomerInfo('phone');
+
+  // Les méthodes qui suivent seront disponibles si et
+  // seulement si le statut du paiement est égal à "completed".
+
+  // Récupérer l'URL du reçu PDF électronique pour téléchargement
+//   echo $invoice->getReceiptUrl();
+
+  // Récupérer n'importe laquelle des données personnalisées que
+  // vous avez eu à rajouter précédemment à la facture.
+  // Merci de vous assurer à utiliser les mêmes clés que celles utilisées
+  // lors de la configuration.
+    // echo $invoice->getCustomData("id");
+    // echo $invoice->getCustomData("chambre_id");
+    // echo $invoice->getCustomData("chambres");
+    // echo $invoice->getCustomData("email");
+    // echo $invoice->getCustomData("phone");
+    // echo $invoice->getCustomData("codifier");
+  if ($invoice->getStatus() == "completed") {
+    $codifier_ancien = Etudiant::where('id',$invoice->getCustomData("id"))->first();
+    $codifier_ancien->chambre_id = $invoice->getCustomData("chambre_id");
+    $codifier_ancien->prix = $invoice->getTotalAmount();
+    $codifier_ancien->codifier = 1;
+    $codifier_ancien->save();
+
+    $position = Chambre::where('id',$invoice->getCustomData("chambres"))->first();
+    $position_nombre = $position->position;
+    $position->position = $position_nombre + 1;
+    $position->save();
+
+    Mail::to($codifier_ancien->email)
+    ->send(new MessageEmailAeerk($codifier_ancien));
+    Flashy::success('Vous avez ete codifier');
+    Auth::logout();
+    return redirect()->route('index');
+  }elseif ($invoice->getStatus() == "cancelled") {
+      return redirect()->route('index')->with('error','Votre codification a echouer');
+  }
+
+  // Vous pouvez aussi récupérer le montant total spécifié précédemment
+  echo $invoice->getTotalAmount();
+
+}else{
+  echo $invoice->getStatus();
+  echo $invoice->response_text;
+  echo $invoice->response_code;
+}
+    }
 
 
 
 
 
-
-    // public function codifier_ancien(Request $request,$id)
-    // {
-    //     $validator = $this->validate($request , [
-    //         'chambre_id' => 'required|string',
-    //     ]);
-    //     // dd($request->chambre_id);
-    //     $prix = Solde::select('prix_ancien')->first();
-    //     $chambre_ancien = Ancien::all();
-    //     foreach($chambre_ancien as $chambres){
-    //         if ($chambres->chambre_id == $request->chambre_id) {
-    //             $ancien = Ancien::where('chambre_id',$request->chambre_id)->get();
-    //             if($ancien->count() < $chambres->chambre->nombre){
-    //                 $codifier_ancien = Ancien::where('id',$id)->first();
-    //                 $codifier_ancien->chambre_id = $request->chambre_id;
-    //                 $codifier_ancien->prix = $prix->prix_ancien;
-    //                 $codifier_ancien->codifier = 1;
-    //                 $codifier_ancien->save();
-    //                 Flashy::success('Vous avez ete codifier');
-    //                 Auth::logout();
-    //                 return redirect()->route('index');
-    //             }else{
-    //                 Flashy::error('Cette Chambre est pleine');
-    //                 return redirect()->back();
-    //             }
-    //         }
-    //         else if ($chambres->chambre_id == !$request->chambre_id){
-    //             $chambre_null = Ancien::where('chambre_id',!$request->chambre_id)->first();
-    //             if ($chambre_null) {
-    //                 $codifier_ancien = Ancien::where('id',$id)->first();
-    //                 $codifier_ancien->chambre_id = $request->chambre_id;
-    //                 $codifier_ancien->prix = $prix->prix_ancien;
-    //                 $codifier_ancien->codifier = 1;
-    //                 $codifier_ancien->save();
-    //                 Auth::logout();
-    //                 Flashy::success('Vous avez ete codifier');
-    //                 return redirect()->route('index');
-    //             }
-                
-    //         }
-    //     }
-    // }
     /**
      * Remove the specified resource from storage.
      *
