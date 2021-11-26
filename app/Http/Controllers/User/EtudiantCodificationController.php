@@ -202,7 +202,7 @@ class EtudiantCodificationController extends Controller
                                         $invoice->addCustomData("email", $codifier_nouveau->email);
                                         $invoice->addCustomData("phone", $codifier_nouveau->phone);
                                         $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
-                                        $invoice->setReturnUrl("http://localhost:8000/reponse");
+                                        // $invoice->setReturnUrl("http://localhost:8000/reponse");
 
 
                                         if($invoice->create()) {
