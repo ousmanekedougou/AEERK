@@ -378,7 +378,11 @@ if ($invoice->confirm($token)) {
     // echo $invoice->getCustomData("phone");
     // echo $invoice->getCustomData("codifier");
   if ($invoice->getStatus() == "completed") {
-    $codifier_ancien = Etudiant::where('id',$invoice->getCustomData("id"))->first();
+    $codifier_ancien = Etudiant::where('id',$invoice->getCustomData("id"))
+        ->where('email',$invoice->getCustomData("email"))
+        ->where('phone',$invoice->getCustomData("phone"))
+        ->where('codifier',$invoice->getCustomData("codifier"))
+        ->first();
     $codifier_ancien->chambre_id = $invoice->getCustomData("chambre_id");
     $codifier_ancien->prix = $invoice->getTotalAmount();
     $codifier_ancien->codifier = 1;
