@@ -96,3 +96,11 @@ if(!function_exists('all_immeuble')){
         return $immeubles;
     }
 }
+
+if(!function_exists('envoiemail')){
+    function envoiemail()
+    {
+        $email = 'ousmanelaravel@gmail.com';
+        return $email;
+    }
+}
