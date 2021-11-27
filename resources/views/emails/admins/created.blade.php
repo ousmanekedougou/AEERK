@@ -294,7 +294,7 @@
                                             La codification en ligne est mainteneant disponible en cliquant sur le bouton ci dessous ou vous approcher du bureau pour la codification manuelle
                                         </p>
                                         <p style="line-height: 24px; margin-bottom:20px;">
-                                            @component('mail::button', ['url' => 'http://localhost:8000/codification'])
+                                            @component('mail::button', ['url' => 'http://aeerk.herokuapp.com/codification'])
                                                 Codification en ligne
                                             @endcomponent
                                         </p>
@@ -338,7 +338,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Telecharger le reglement</a>
+                                                        <a href="http://aeerk.herokuapp.com/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Telecharger le reglement</a>
                                                     </div>
                                                 </td>
                                             </tr>
