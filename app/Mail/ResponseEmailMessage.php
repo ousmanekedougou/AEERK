@@ -32,6 +32,7 @@ class ResponseEmailMessage extends Mailable
      */
     public function build()
     {
-        return $this->from(config('aeerk.admin_support_email'))->markdown('emails.admins.response');
+        return $this->from('ousmanelaravel@gmail.com')->markdown('emails.admins.response');
+        // return $this->from(config('aeerk.admin_support_email'))->markdown('emails.admins.response');
     }
 }
