@@ -33,22 +33,14 @@
                   <div class="info-box-content">
                     <span class="info-box-text">Nouveaux messages</span>
                     <span class="info-box-number">
-                      @foreach($contact_all as $contact)
-                        @if($contact->status == 0)
-                          {{$contact->count()}}
-                        @endif
-                      @endforeach
+                          {{$contact_nomLue->count()}}
                     </span>
 
                     <div class="progress">
                       <div class="progress-bar" style="width: 50%"></div>
                     </div>
                     <span class="progress-description">
-                    @foreach($contact_all as $contact)
-                        @if($contact->status == 1)
-                          {{$contact->count()}} 
-                        @endif
-                      @endforeach
+                          {{$contact_lue->count()}} 
                       message lue
                         </span>
                   </div>

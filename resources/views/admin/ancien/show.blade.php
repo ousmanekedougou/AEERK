@@ -121,52 +121,54 @@
                     <div class="box-footer">
                     @if($show_ancien->codifier == 0 )
                       <div class="pull-right">
-                      <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post">
-                        @csrf 
-                        {{ method_field('PUT') }}
-                      <label>
-                          <input type="radio" value="1" name="status" class="flat-red"
+                        <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post">
+                          @csrf 
+                          {{ method_field('PUT') }}
+                          <label>
+                            <input type="radio" value="1" name="status" class="flat-red"
+                              @if($show_ancien->status == 1)
+                              checked
+                              @endif
+                            >
                             @if($show_ancien->status == 1)
-                            checked
+                            <span class="text-success"> A ete Valider</span>
+                            @else 
+                            <span class="text-warning"> Valider</span>
                             @endif
-                          >
-                          @if($show_ancien->status == 1)
-                          <span class="text-success"> A ete Valider</span>
-                          @else 
-                          <span class="text-warning"> Valider</span>
-                          @endif
-                        </label>
-                        <label>
-                          <input type="radio" value="2" name="status" class="flat-red" style="margin-left:20px;" 
-                          @if($show_ancien->status == 2)
-                            checked
+                          </label>
+                          <label>
+                            <input type="radio" value="2" name="status" class="flat-red" style="margin-left:20px;" 
+                            @if($show_ancien->status == 2)
+                              checked
+                              @endif
+                            >
+                            @if($show_ancien->status == 2)
+                            <span class="text-success">A ete Ommis</span>
+                            @else 
+                            <span class="text-warning">Ommetre</span>
                             @endif
-                          >
-                          @if($show_ancien->status == 2)
-                          <span class="text-success">A ete Ommis</span>
-                          @else 
-                          <span class="text-warning">Ommetre</span>
-                          @endif
-                        </label>
-                        <button  onclick="
-                      if(confirm('Etes Vous Sur de cette option ?')){
+                          </label>
+                          <button  onclick="
+                          if(confirm('Etes Vous Sur de cette option ?')){
 
-                      event.preventDefault();document.getElementById('delete-form-{{$show_ancien->id}}').submit();
+                          event.preventDefault();document.getElementById('delete-form-{{$show_ancien->id}}').submit();
 
-                      }else{
+                          }else{
 
-                        event.preventDefault();
+                            event.preventDefault();
 
-                      }"
-                      type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
-                      </form>
+                          }"
+                          type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
+                        </form>
                       </div>
                       @endif
                     <div class="pull-left">
                     <a style="margin-right:5px;" href="{{ route('admin.ancien.index') }}" class="btn btn-warning btn-xs"><i class="fa fa-share"></i> Retoure</a>
-                      @if($show_ancien->status == 1)
-                      <!-- <a style="margin-right:5px;" class="btn btn-success btn-xs" href="{{ route ('admin.ancien.edit',$show_ancien->id) }}">Codifier <i class="fa fa-edit"></i></a> -->
-                      <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->name}}" data-target="#modal-default-edit-show_ancien{{ $show_ancien->id }}">Codifier <i class="fa fa-edit"></i></a></a>
+                      @if($show_ancien->status == 1 && $show_ancien->codifier == 0)
+                        <!-- <a style="margin-right:5px;" class="btn btn-success btn-xs" href="{{ route ('admin.ancien.edit',$show_ancien->id) }}">Codifier <i class="fa fa-edit"></i></a> -->
+                        <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->name}}" data-target="#modal-default-edit-show_ancien{{ $show_ancien->id }}">Codifier <i class="fa fa-edit"></i></a></a>
+                      @elseif($show_ancien->status == 1 && $show_ancien->codifier == 0)
+                        <span class="btn btn-success btn-xs">{{ $show_ancien->prenom }} {{$show_ancien->nom}} a ete codifier a {{ $show_ancien->chambre->name }}</span>
                       @endif
                     </div>
                       <!-- <a href="#"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
