@@ -43,7 +43,7 @@ class ContactController extends Controller
             'subject' => 'required|string',
             'message' => 'required|string'
         ]);
-         $contact=Contact::create($request->only('nom','email','subject','message'));
+         $contact = Contact::create($request->only('nom','email','subject','message'));
 
         Mail::to(config('aeerk.admin_support_email'))
             ->send(new ContactMessageCreated($contact));
