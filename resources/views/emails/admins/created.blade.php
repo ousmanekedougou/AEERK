@@ -16,7 +16,7 @@
             Remarque : Apres avoir codifier nous vous prions de verifier votre compte email pour recevoire la notification qui vous informera votre chambre.
         @endcomponent
 
-        @component('mail::button', ['url' => 'http://localhost:8000/codification'])
+        @component('mail::button', ['url' => 'http://aeerk.herokuapp.com/codification'])
             Veullez Vous Codifier
         @endcomponent
 
