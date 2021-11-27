@@ -149,7 +149,7 @@ class EtudiantCodificationController extends Controller
                                 $invoice->addCustomData("email", $codifier_nouveau->email);
                                 $invoice->addCustomData("phone", $codifier_nouveau->phone);
                                 $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
-                                $invoice->setReturnUrl("http://localhost:8000/reponse");
+                                $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
 
 
                                 if($invoice->create()) {
@@ -202,7 +202,7 @@ class EtudiantCodificationController extends Controller
                                         $invoice->addCustomData("email", $codifier_nouveau->email);
                                         $invoice->addCustomData("phone", $codifier_nouveau->phone);
                                         $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
-                                        // $invoice->setReturnUrl("http://localhost:8000/reponse");
+                                        $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
 
 
                                         if($invoice->create()) {
@@ -279,7 +279,7 @@ class EtudiantCodificationController extends Controller
                                 $invoice->addCustomData("email", $codifier_ancien->email);
                                 $invoice->addCustomData("phone", $codifier_ancien->phone);
                                 $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                                $invoice->setReturnUrl("http://localhost:8000/reponse");
+                                $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
 
 
                                 if($invoice->create()) {
@@ -307,7 +307,7 @@ class EtudiantCodificationController extends Controller
                                 $invoice->addCustomData("email", $codifier_ancien->email);
                                 $invoice->addCustomData("phone", $codifier_ancien->phone);
                                 $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                                $invoice->setReturnUrl("http://localhost:8000/reponse");
+                                $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
 
 
                                 if($invoice->create()) {
