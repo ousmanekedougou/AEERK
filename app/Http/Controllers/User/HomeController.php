@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Paydunya\Checkout\CheckoutInvoice;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,14 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        $token = $_GET['token'];
+
+        $invoice = new CheckoutInvoice();
+        if ($invoice->confirm($token)) {
+            if ($invoice->getStatus() == "cancelled") {
+                return redirect()->route('index')->with('error','Votre codification a echouer');
+            }
+        }
     }
 
     /**

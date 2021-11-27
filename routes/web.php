@@ -4,6 +4,7 @@
     use Illuminate\Support\Facades\Auth;
     Route::group(['namespace' => 'User'],function(){
         Route::resource('/','HomeController');
+        Route::get('/paymentAnnuler','HomeController@create')->name('codification.annuller');
         Route::resource('/contact','ContactController');
         Route::resource('/nouveau','NouveauController');
         Route::resource('/ancien','AncienController');
