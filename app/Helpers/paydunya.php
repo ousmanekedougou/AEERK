@@ -14,8 +14,8 @@ Store::setName("AEERK"); // Seul le nom est requis
 Store::setTagline("Codification");
 Store::setPhoneNumber("781956168");
 Store::setPostalAddress("Median");
-Store::setWebsiteUrl("http://localhost:8000/");
+Store::setWebsiteUrl("http://aeerk.herokuapp.com/");
 Store::setLogoUrl("http://localhost:8000//logo.png");
-Store::setCallbackUrl("http://localhost:8000/reponse");
-Store::setReturnUrl("http://localhost:8000/reponse");
-Store::setCancelUrl("http://localhost:8000/paymentAnnuler");
+Store::setCallbackUrl("http://aeerk.herokuapp.com/reponse");
+Store::setReturnUrl("http://aeerk.herokuapp.com/reponse");
+Store::setCancelUrl("http://aeerk.herokuapp.com/paymentAnnuler");
