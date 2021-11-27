@@ -98,8 +98,8 @@
 									</div>
 									</div>
 									<div class="col-lg-6 form-group">
-										<textarea class="common-textarea form-control @error('message') is-invalid @enderror" value="{{ old('message') }}" name="message" placeholder="Votre Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Messege'" required=""></textarea>				
-										@error('message')
+										<textarea class="common-textarea form-control @error('msg') is-invalid @enderror" value="{{ old('msg') }}" name="msg" placeholder="Votre Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Messege'" required=""></textarea>				
+										@error('msg')
 											<span class="invalid-feedback" role="alert">
 												<strong class="text-danger">{{ $message }}</strong>
 											</span>

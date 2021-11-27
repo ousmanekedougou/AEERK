@@ -1,10 +1,10 @@
 @component('mail::message')
 # Hey President
--{{ $msg->nom }}
--{{ $msg->email }}
--{{ $msg->subject }}
+-{{ $nom }}
+-{{ $email }}
+-{{ $subject }}
 @component('mail::panel')
-{{ $msg->message }}
+{{ $msg }}
 @endcomponent
 
 @component('mail::table')
