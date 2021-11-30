@@ -195,6 +195,7 @@ class EtudiantCodificationController extends Controller
                                 // return redirect()->route('index')->with('success','Vous avez bien ete codifier, verifier votre adresse email');
                             }else {
                                 Auth::logout();
+                                 Flashy::error('Votre quota de codification est epuiser');
                                 return redirect()->route('index')->with('error','Votre quotta de codofication est epuiser');
                             } 
                         }else{
@@ -226,6 +227,7 @@ class EtudiantCodificationController extends Controller
                                         }
                                     }else {
                                         Auth::logout();
+                                         Flashy::error('Votre quota de codification est epuiser');
                                         return redirect()->route('index')->with('error','Votre quotta de codofication est epuiser');
                                     }
                                 }
@@ -276,6 +278,7 @@ class EtudiantCodificationController extends Controller
                                 }
                             }else {
                                 Auth::logout();
+                                 Flashy::error('Votre quota de codification est epuiser');
                                 return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
                             }
                         }else{
@@ -305,6 +308,7 @@ class EtudiantCodificationController extends Controller
                                         }
                                     }else {
                                         Auth::logout();
+                                         Flashy::error('Votre quota de codification est epuiser');
                                         return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
                                     }
                                 }
@@ -389,7 +393,7 @@ if ($invoice->confirm($token)) {
   echo $invoice->response_text;
   echo $invoice->response_code;
 }
-    }
+}
 
 
 

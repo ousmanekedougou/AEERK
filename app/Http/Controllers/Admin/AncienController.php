@@ -241,6 +241,7 @@ class AncienController extends Controller
                             return redirect()->route('admin.ancien.index');
                         }
                         else{
+                             Flashy::error('Le quotta de codofication de cette etudiant est epuiser');
                             return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
                         }
                     }else{
@@ -276,6 +277,7 @@ class AncienController extends Controller
                             Flashy::success('Votre etudiant a ete codifier');
                             return redirect()->route('admin.ancien.index');
                         }else {
+                            Flashy::error('Le quotta de codofication de cette etudiant est epuiser');
                             return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
                         }
                     }

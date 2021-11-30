@@ -129,7 +129,7 @@ footer {
   <body>
     <header class="clearfix">
       <div id="logo">
-        <img src="{{ asset('user/img/3ccs.jpg') }}">
+        <img src="{{ asset('Ancien/'.$etudiant->image) }}" width="150" height="150">
       </div>
       <div id="company">
         <h1 class="name">AEERK</h1>
@@ -143,7 +143,7 @@ footer {
       <div id="details" class="clearfix">
         <div id="client">
           <div class="to" style="font-size:24px;">Reçue De Codification:</div>
-          <h2 class="name">{{$etudiant->prenom.' '.$etudiant->nom }} </h2>
+          <h2 class="name">{{$etudiant->prenom}} {{$etudiant->nom}} </h2>
           <div class="email"><a href="">{{$etudiant->email }}</a></div>
           <div class="address">{{$etudiant->phone }}</div>
           <div class="address">{{$etudiant->commune->name }} ({{$etudiant->commune->departement->name }})</div>
@@ -165,10 +165,10 @@ footer {
           </div>
           <div class="date">
               A la 
-            @if($etudiant->chambre->position == 1)
-                {{$etudiant->chambre->position}} ere
+            @if($etudiant->position == 1)
+                {{$etudiant->position}} ere
             @else 
-                {{$etudiant->chambre->position}} em
+                {{$etudiant->position}} em
             @endif
             place
           </div>
