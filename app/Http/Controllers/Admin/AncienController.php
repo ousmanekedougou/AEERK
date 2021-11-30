@@ -220,22 +220,29 @@ class AncienController extends Controller
                     if($ancien->count() < $chambres->chambre->nombre){
                         define('CODIFIER2',1);
                         $codifier_ancien = Etudiant::where('id',$id)->first();
-                        $codifier_ancien->chambre_id = $request->chambre_id;
-                        $codifier_ancien->prix = $prix->prix_ancien;
-                        $codifier_ancien->codifier = CODIFIER2;
-                        $codifier_ancien->save();
+                        if ($codifier_ancien->codification_count < 5) {
 
-                        $position = Chambre::where('id',$request->chambre_id)->first();
-                        $position_nombre = $position->position;
-                        $position->position = $position_nombre + 1;
-                        $position->save();
+                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position_nombre = $position->position;
+                            $position->position = $position_nombre + 1;
+                            $position->save();
 
-                        // Message du sms
-
-                        Mail::to($codifier_ancien->email)
-                        ->send(new MessageEmailAeerk($codifier_ancien));
-                        Flashy::success('Votre etudiant a ete codifier');
-                        return redirect()->route('admin.ancien.index');
+                            $codifier_ancien->chambre_id = $request->chambre_id;
+                            $codifier_ancien->prix = $prix->prix_ancien;
+                            $codifier_ancien->codifier = CODIFIER2;
+                            $count = $codifier_ancien->codification_count;
+                            $codifier_ancien->codification_count = $count + 1;
+                            $codifier_ancien->position = $position_nombre + 1;
+                            $codifier_ancien->save();
+                            // Message du sms
+                            Mail::to($codifier_ancien->email)
+                            ->send(new MessageEmailAeerk($codifier_ancien));
+                            Flashy::success('Votre etudiant a ete codifier');
+                            return redirect()->route('admin.ancien.index');
+                        }
+                        else{
+                            return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
+                        }
                     }else{
                         $is_pleine = Chambre::where('id',$request->chambre_id)->first();
                         $is_pleine->is_pleine = 1;
@@ -249,22 +256,28 @@ class AncienController extends Controller
                     if ($chambre_null) {
                         define('CODIFIER1',1);
                         $codifier_ancien = Etudiant::where('id',$id)->first();
-                        $codifier_ancien->chambre_id = $request->chambre_id;
-                        $codifier_ancien->prix = $prix->prix_ancien;
-                        $codifier_ancien->codifier = CODIFIER1;
-                        $codifier_ancien->save();
+                        if ($codifier_ancien->codification_count < 5) {
+                            
+                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position_nombre = $position->position;
+                            $position->position = $position_nombre + 1;
+                            $position->save();
 
-                        $position = Chambre::where('id',$request->chambre_id)->first();
-                        $position_nombre = $position->position;
-                        $position->position = $position_nombre + 1;
-                        $position->save();
-
-                        // Message du sms
-
-                        Mail::to($codifier_ancien->email)
-                        ->send(new MessageEmailAeerk($codifier_ancien));
-                        Flashy::success('Votre etudiant a ete codifier');
-                        return redirect()->route('admin.ancien.index');
+                            $codifier_ancien->chambre_id = $request->chambre_id;
+                            $codifier_ancien->prix = $prix->prix_ancien;
+                            $codifier_ancien->codifier = CODIFIER1;
+                            $count = $codifier_ancien->codification_count;
+                            $codifier_ancien->codification_count = $count + 1;
+                            $codifier_ancien->position = $position_nombre + 1;
+                            $codifier_ancien->save();
+                            // Message du sms
+                            Mail::to($codifier_ancien->email)
+                            ->send(new MessageEmailAeerk($codifier_ancien));
+                            Flashy::success('Votre etudiant a ete codifier');
+                            return redirect()->route('admin.ancien.index');
+                        }else {
+                            return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
+                        }
                     }
                     
                 }

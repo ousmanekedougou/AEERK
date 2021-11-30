@@ -130,3 +130,18 @@
 		    </div>
 		   </div>
 		  </header><!-- #header -->
+			{{--
+		   	@if (session('error'))
+				<div id="myModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content bg-danger">
+						<div class="modal-body">
+							<div class="row">
+							<div class="col-sm-12">{!! session('message') !!}</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			@endif
+			--}}

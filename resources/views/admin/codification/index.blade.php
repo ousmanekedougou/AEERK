@@ -99,6 +99,7 @@
                         <th>Telephone</th>
                         <th>Codifier A</th>
                         <th>Prix</th>
+                        <th>Plce</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -113,6 +114,13 @@
                             @endforeach
                             {{$nouveau->chambre->nom }}</td>
                           <td>{{ $nouveau->prix }}</td>
+                          <td>
+                            @if($nouveau->position == 1)
+                              {{ $nouveau->position }} ere
+                            @else 
+                              {{ $nouveau->position }} em
+                            @endif
+                          </td>
                         </tr>
                       @endforeach
                       </tbody>
@@ -123,6 +131,7 @@
                         <th>Telephone</th>
                         <th>Codifier A</th>
                         <th>Prix</th>
+                        <th>Place</th>
                       </tr>
                       </tfoot>
                     </table>

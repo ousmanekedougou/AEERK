@@ -105,10 +105,10 @@
                         </li>
 
                         <li>
-                            <a href="{{Storage::url($show_ancien->image)}}" class="mailbox-attachment-name">
-                          <span class="mailbox-attachment-icon has-img"><img src="{{Storage::url($show_ancien->image)}}" alt="Attachment"></span>
+                            <a href="{{Storage::url($show_ancien->image)}}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i>
+                          <span class="mailbox-attachment-icon has-img"><img src="{{Storage::url($show_ancien->image)}}" alt="Attachment" style="width: 100%;height:auto"></span>
                           </a>
-                          <div class="mailbox-attachment-info">
+                          <div class="mailbox-attachment-info" style="margin-top: 5px;">
                                 <span class="mailbox-attachment-size">
                                    Image Format CNI
                                   <a data-toggle="modal" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->image}}" data-target="#modal-default-update-image" class="btn btn-default btn-xs pull-right btn-info"><i class="fa fa-edit"></i></a>
@@ -440,7 +440,7 @@
               </div>
               <div class="row">
                       <div class="col-sm-4 p-5">
-                      <img class="profile-user-img img-responsive" style="width:100%;100%;margin-top:10px;margin-left:1px;" src="{{ Storage::url($show_ancien->image) }}" alt="User profile picture">
+                      <img class="profile-user-img img-responsive" style="width:100%;margin-top:10px;margin-left:1px;" src="{{ Storage::url($show_ancien->image) }}" alt="User profile picture">
                       </div>
                       <div class="col-sm-8 text-justify">
                         <h3 class="profile-username">{{ $show_ancien->prenom.' '.$show_ancien->nom }}</h3>

@@ -79,3 +79,17 @@
         </div>
       </div>
   </div>
+
+  @if (session('error'))
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">{!! session('error') !!}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif

@@ -225,23 +225,30 @@ class NouveauController extends Controller
                 if ($chambres->chambre_id == $request->chambre_id) {
                     if($nouveau->count() < $chambres->chambre->nombre){
                         $codifier_nouveau = Etudiant::where('id',$id)->first();
-                        $codifier_nouveau->chambre_id = $request->chambre_id;
-                        $codifier_nouveau->prix = $prix->prix_nouveau;
-                        $codifier_nouveau->codifier = 1;
-                        $codifier_nouveau->save();
-                        // $numero_bureau = Solde::first();
+                        if ($codifier_nouveau->codification_count < 5) {
+                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position_nombre = $position->position;
+                            $position->position = $position_nombre + 1;
+                            $position->save();
 
-                        // Message sms
+                            $codifier_nouveau->chambre_id = $request->chambre_id;
+                            $codifier_nouveau->prix = $prix->prix_nouveau;
+                            $codifier_nouveau->codifier = 1;
+                            $count = $codifier_nouveau->codification_count;
+                            $codifier_nouveau->codification_count = $count + 1;
+                            $codifier_nouveau->position = $position_nombre + 1;
+                            $codifier_nouveau->save();
+                            // Message sms
+                            
 
-                        $position = Chambre::where('id',$request->chambre_id)->first();
-                        $position_nombre = $position->position;
-                        $position->position = $position_nombre + 1;
-                        $position->save();
-
-                        Mail::to($codifier_nouveau->email)
-                        ->send(new AeerkEmailMessage($codifier_nouveau));
-                        Flashy::success('Votre etudiant a ete codifier');
-                        return redirect()->route('admin.nouveau.index');
+                            Mail::to($codifier_nouveau->email)
+                            ->send(new AeerkEmailMessage($codifier_nouveau));
+                            Flashy::success('Votre etudiant a ete codifier');
+                            return redirect()->route('admin.nouveau.index');
+                        }
+                        else {
+                            return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
+                        }
                     }else{
                         $is_pleine = Chambre::where('id',$request->chambre_id)->first();
                         $is_pleine->is_pleine = 1;
@@ -254,21 +261,30 @@ class NouveauController extends Controller
                     $chambre_null = Etudiant::where('chambre_id',0)->first();
                     if ($chambre_null) {
                         $codifier_nouveau = Etudiant::where('id',$id)->first();
-                        $codifier_nouveau->chambre_id = $request->chambre_id;
-                        $codifier_nouveau->prix = $prix->prix_nouveau;
-                        $codifier_nouveau->codifier = 1;
-                        $codifier_nouveau->save();
-                        // $numero_bureau = Solde::first();
-                        // Message sms
-                        $position = Chambre::where('id',$request->chambre_id)->first();
-                        $position_nombre = $position->position;
-                        $position->position = $position_nombre + 1;
-                        $position->save();
+                        if ($codifier_nouveau->codification_count < 5) {
+                            $position = Chambre::where('id',$request->chambre_id)->first();
+                            $position_nombre = $position->position;
+                            $position->position = $position_nombre + 1;
+                            $position->save();
 
-                        Mail::to($codifier_nouveau->email)
-                        ->send(new AeerkEmailMessage($codifier_nouveau));
-                        Flashy::success('Votre etudiant a ete codifier');
-                        return redirect()->route('admin.nouveau.index');
+                            $codifier_nouveau->chambre_id = $request->chambre_id;
+                            $codifier_nouveau->prix = $prix->prix_nouveau;
+                            $codifier_nouveau->codifier = 1;
+                            $count = $codifier_nouveau->codification_count;
+                            $codifier_nouveau->codification_count = $count + 1;
+                            $codifier_nouveau->position = $position_nombre + 1;
+                            $codifier_nouveau->save();
+                            // $numero_bureau = Solde::first();
+                            // Message sms
+                            
+
+                            Mail::to($codifier_nouveau->email)
+                            ->send(new AeerkEmailMessage($codifier_nouveau));
+                            Flashy::success('Votre etudiant a ete codifier');
+                            return redirect()->route('admin.nouveau.index');
+                        }else {
+                            return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
+                        }
                     }
                     
                 }
@@ -293,6 +309,7 @@ class NouveauController extends Controller
                 $migration->immeuble_id = 0;
                 $migration->codifier = 0;
                 $migration->status = false;
+                $migration->chambre_id = 0;
                 $migration->prix = 0;
                 $migration->save();
             }

@@ -67,11 +67,16 @@ class EtudiantCodificationController extends Controller
             $status = $request->status;
             $nouveau = Etudiant::where(['email' => $request->email,'phone' => $request->phone,'codifier' => 0,'ancienete' => 1,'status' => 1,'prix' => 0])->first();
             if($nouveau){
-                $immeubles = Immeuble::where('status',1)->first();
-                return view('user.codification.nouveau',compact('nouveau','immeubles'));
+                if ($nouveau->codification_count < 5 ) {
+                    $immeubles = Immeuble::where('status',1)->first();
+                    return view('user.codification.nouveau',compact('nouveau','immeubles'));
+                }else {
+                    Flashy::error('Votre quota de codification est epuiser');
+                    return back()->with('error','Votre quota de codification est epuiser');
+                }
             }elseif(!$nouveau){
-                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas !');
-                return back();
+                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas');
+               return back()->with('error','Vous etes deja codifier ou vos information ne correspondent pas');
             }
             
 
@@ -80,12 +85,17 @@ class EtudiantCodificationController extends Controller
             $ancien = Etudiant::where(['email' => $request->email,'phone' => $request->phone ,'codifier' => 0,'ancienete' => 2,'status' => 1,'prix' => 0])->first();
             // dd($ancien);
             if($ancien){
-                $immeubles = Immeuble::where('status',2)->get();
-                return view('user.codification.ancien',compact('ancien','immeubles'));
+                if ($ancien->codification_count < 5 ) {
+                    $immeubles = Immeuble::where('status',2)->get();
+                    return view('user.codification.ancien',compact('ancien','immeubles'));
+                }else {
+                    Flashy::error('Votre quota de codification est epuiser');
+                    return back()->with(['error' => 'error',
+                     'message' => 'Votre quota de codification est epuiser']);
+                }
             }elseif(!$ancien){
-                
-                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas !');
-                return back();
+                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas');
+                return back()->with('error','Vous etes deja codifier ou vos information ne correspondent pas');
             }
         }
     }
@@ -139,7 +149,8 @@ class EtudiantCodificationController extends Controller
                     if($chambres->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
                         $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                         if($nouveau->count() < $chambres->nombre){
-                                $codifier_nouveau = Etudiant::where('id',$id)->first();
+                            $codifier_nouveau = Etudiant::where('id',$id)->first();
+                            if ($codifier_nouveau->codification_count < 5) {
                                 $invoice = new CheckoutInvoice();
                                 $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_nouveau, "Codifier en toute securite");
                                 $invoice->setTotalAmount($prix->prix_nouveau);
@@ -150,40 +161,42 @@ class EtudiantCodificationController extends Controller
                                 $invoice->addCustomData("phone", $codifier_nouveau->phone);
                                 $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
                                 $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
-
-
                                 if($invoice->create()) {
                                     return redirect(url($invoice->getInvoiceUrl()));
                                 }else{
                                     dd($invoice->response_text);
                                 }
-                            // $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
-                            // $codifier_nouveau->prix = $prix->prix_nouveau;
-                            // $codifier_nouveau->codifier = 1;
-                            // $codifier_nouveau->save();
-                            // // Nexmo::message()->send([
-                            // //     'to' => '221782875971',
-                            // //     'from' => '221781956168',
-                            // //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                            // // ]);
+                                // $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
+                                // $codifier_nouveau->prix = $prix->prix_nouveau;
+                                // $codifier_nouveau->codifier = 1;
+                                // $codifier_nouveau->save();
+                                // // Nexmo::message()->send([
+                                // //     'to' => '221782875971',
+                                // //     'from' => '221781956168',
+                                // //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
+                                // // ]);
 
-                            // // view()->shared('etudiants',$codifier_nouveau);
-                            // // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
-                            // // $file = $pdf->save('public/reglement');
-                            // // $codifier_nouveau->update([
-                            // //     'reglement' => $file
-                            // // ]);
+                                // // view()->shared('etudiants',$codifier_nouveau);
+                                // // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
+                                // // $file = $pdf->save('public/reglement');
+                                // // $codifier_nouveau->update([
+                                // //     'reglement' => $file
+                                // // ]);
 
-                            // $position = Chambre::where('id',$chambres->id)->first();
-                            // $position_nombre = $position->position;
-                            // $position->position = $position_nombre + 1;
-                            // $position->save();
+                                // $position = Chambre::where('id',$chambres->id)->first();
+                                // $position_nombre = $position->position;
+                                // $position->position = $position_nombre + 1;
+                                // $position->save();
 
-                            // Mail::to($codifier_nouveau->email)
-                            // ->send(new AeerkEmailMessage($codifier_nouveau));
-                            // Flashy::success('Vous avez ete codifier');
-                            // Auth::logout();
-                            // return redirect()->route('index')->with('success','Vous avez bien ete codifier, verifier votre adresse email');
+                                // Mail::to($codifier_nouveau->email)
+                                // ->send(new AeerkEmailMessage($codifier_nouveau));
+                                // Flashy::success('Vous avez ete codifier');
+                                // Auth::logout();
+                                // return redirect()->route('index')->with('success','Vous avez bien ete codifier, verifier votre adresse email');
+                            }else {
+                                Auth::logout();
+                                return redirect()->route('index')->with('error','Votre quotta de codofication est epuiser');
+                            } 
                         }else{
                             $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
                             $is_pleine->is_pleine = 1;
@@ -192,7 +205,8 @@ class EtudiantCodificationController extends Controller
                             if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
                                 $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                                 if($nouveau->count() < $chambres->nombre){
-                                        $codifier_nouveau = Etudiant::where('id',$id)->first();
+                                    $codifier_nouveau = Etudiant::where('id',$id)->first();
+                                    if ($codifier_nouveau->codification_count < 5) {
                                         $invoice = new CheckoutInvoice();
                                         $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_nouveau, "Codifier en toute securite");
                                         $invoice->setTotalAmount($prix->prix_nouveau);
@@ -210,35 +224,10 @@ class EtudiantCodificationController extends Controller
                                         }else{
                                             dd($invoice->response_text);
                                         }
-                                    // $codifier_nouveau = Etudiant::where('id',$id)->first();
-                                    // $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
-                                    // $codifier_nouveau->prix = $prix->prix_nouveau;
-                                    // $codifier_nouveau->codifier = 1;
-                                    // $codifier_nouveau->save();
-
-                                    // view()->shared('etudiants',$codifier_nouveau);
-                                    // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
-                                    // $file = $pdf->save('public/reglement');
-                                    // $codifier_nouveau->update([
-                                    //     'reglement' => $file
-                                    // ]);
-
-                                    // Nexmo::message()->send([
-                                    //     'to' => '221782875971',
-                                    //     'from' => '221781956168',
-                                    //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                                    // ]);
-
-                                    // $position = Chambre::where('id',$chambres->id)->first();
-                                    // $position_nombre = $position->position;
-                                    // $position->position = $position_nombre + 1;
-                                    // $position->save();
-
-                                    // Mail::to($codifier_nouveau->email)
-                                    // ->send(new AeerkEmailMessage($codifier_nouveau));
-                                    // Flashy::success('Vous avez ete codifier');
-                                    // Auth::logout();
-                                    // return redirect()->route('index');
+                                    }else {
+                                        Auth::logout();
+                                        return redirect()->route('index')->with('error','Votre quotta de codofication est epuiser');
+                                    }
                                 }
                             }
                         }
@@ -269,7 +258,7 @@ class EtudiantCodificationController extends Controller
                         $ancien = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                         if($ancien->count() < $chambres->nombre){
                             $codifier_ancien = Etudiant::where('id',$id)->first();
-
+                            if ($codifier_ancien->codification_count < 5) {
                                 $invoice = new CheckoutInvoice();
                                 $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_ancien, "Codifier en toute securite");
                                 $invoice->setTotalAmount($prix->prix_ancien);
@@ -280,15 +269,15 @@ class EtudiantCodificationController extends Controller
                                 $invoice->addCustomData("phone", $codifier_ancien->phone);
                                 $invoice->addCustomData("codifier", $codifier_ancien->codifier);
                                 $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
-
-
                                 if($invoice->create()) {
                                     return redirect(url($invoice->getInvoiceUrl()));
                                 }else{
                                     dd($invoice->response_text);
                                 }
-
-                         
+                            }else {
+                                Auth::logout();
+                                return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
+                            }
                         }else{
                             $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
                             $is_pleine->is_pleine = 1;
@@ -297,45 +286,27 @@ class EtudiantCodificationController extends Controller
                             if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
                                 $ancien = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
                                 if($ancien->count() < $chambres->nombre){
-                                $codifier_ancien = Etudiant::where('id',$id)->first();
-                                $invoice = new CheckoutInvoice();
-                                $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_ancien, "Codifier en toute securite");
-                                $invoice->setTotalAmount($prix->prix_ancien);
-                                $invoice->addCustomData("id", $id);
-                                $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
-                                $invoice->addCustomData("chambres", $chambres->id);
-                                $invoice->addCustomData("email", $codifier_ancien->email);
-                                $invoice->addCustomData("phone", $codifier_ancien->phone);
-                                $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                                $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
-
-
-                                if($invoice->create()) {
-                                    return redirect(url($invoice->getInvoiceUrl()));
-                                }else{
-                                    dd($invoice->response_text);
-                                }
-                                    // $codifier_ancien = Ancien::where('id',$id)->first();
-                                    // $codifier_ancien->chambre_id = $imb_chm->chambre_id;
-                                    // $codifier_ancien->prix = $prix->prix_ancien;
-                                    // $codifier_ancien->codifier = 1;
-                                    // $codifier_ancien->save();
-                                    // // Nexmo::message()->send([
-                                    // //     'to' => '221782875971',
-                                    // //     'from' => '221781956168',
-                                    // //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                                    // // ]);
-
-                                    // $position = Chambre::where('id',$chambres->id)->first();
-                                    // $position_nombre = $position->position;
-                                    // $position->position = $position_nombre + 1;
-                                    // $position->save();
-
-                                    // Mail::to($codifier_ancien->email)
-                                    // ->send(new MessageEmailAeerk($codifier_ancien));
-                                    // Flashy::success('Vous avez ete codifier');
-                                    // Auth::logout();
-                                    // return redirect()->route('index');
+                                    $codifier_ancien = Etudiant::where('id',$id)->first();
+                                    if ($codifier_ancien->codification_count < 5) {
+                                        $invoice = new CheckoutInvoice();
+                                        $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_ancien, "Codifier en toute securite");
+                                        $invoice->setTotalAmount($prix->prix_ancien);
+                                        $invoice->addCustomData("id", $id);
+                                        $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
+                                        $invoice->addCustomData("chambres", $chambres->id);
+                                        $invoice->addCustomData("email", $codifier_ancien->email);
+                                        $invoice->addCustomData("phone", $codifier_ancien->phone);
+                                        $invoice->addCustomData("codifier", $codifier_ancien->codifier);
+                                        $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
+                                        if($invoice->create()) {
+                                            return redirect(url($invoice->getInvoiceUrl()));
+                                        }else{
+                                            dd($invoice->response_text);
+                                        }
+                                    }else {
+                                        Auth::logout();
+                                        return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
+                                    }
                                 }
                             }
                         }
@@ -377,7 +348,14 @@ if ($invoice->confirm($token)) {
     // echo $invoice->getCustomData("email");
     // echo $invoice->getCustomData("phone");
     // echo $invoice->getCustomData("codifier");
+
   if ($invoice->getStatus() == "completed") {
+
+    $position = Chambre::where('id',$invoice->getCustomData("chambres"))->first();
+    $position_nombre = $position->position;
+    $position->position = $position_nombre + 1;
+    $position->save();
+
     $codifier_ancien = Etudiant::where('id',$invoice->getCustomData("id"))
         ->where('email',$invoice->getCustomData("email"))
         ->where('phone',$invoice->getCustomData("phone"))
@@ -386,12 +364,13 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->chambre_id = $invoice->getCustomData("chambre_id");
     $codifier_ancien->prix = $invoice->getTotalAmount();
     $codifier_ancien->codifier = 1;
+
+    $count = $codifier_ancien->codification_count;
+    $codifier_ancien->codification_count = $count + 1;
+    $codifier_ancien->position = $position_nombre + 1;
     $codifier_ancien->save();
 
-    $position = Chambre::where('id',$invoice->getCustomData("chambres"))->first();
-    $position_nombre = $position->position;
-    $position->position = $position_nombre + 1;
-    $position->save();
+    
 
     Mail::to($codifier_ancien->email)
     ->send(new MessageEmailAeerk($codifier_ancien));

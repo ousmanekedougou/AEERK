@@ -34,6 +34,8 @@ class CreateEtudiantsTable extends Migration
             $table->integer('status')->default(0);
             $table->integer('ancienete')->default(0);
             $table->boolean('codifier')->default(0);
+            $table->integer('codification_count')->default(0);
+            $table->integer('position')->default(0);
             $table->timestamps();
         });
     }

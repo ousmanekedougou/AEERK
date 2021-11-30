@@ -51,10 +51,12 @@
                     </td>
                     @endcan
                     <td>
-                      @if($ancien->status == 1)
-                        <span class="btn btn-primary btn-xs"> <i class="fa fa-check-square-o"></i> Valider</span>
-                      @else 
-                      <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
+                      @if($ancien->status == 0)
+                        <span class="btn btn-primary btn-xs"> <i class=""></i> Non Consulter</span>
+                      @elseif($ancien->status == 1) 
+                        <span class="btn btn-success btn-xs"> <i class="fa fa-check-square-o"></i> Valider</span>
+                      @elseif($ancien->status == 2) 
+                        <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
                       @endif
                     </td>
                     @can('codifier.update', Auth::guard('admin')->user())
@@ -71,11 +73,11 @@
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title">Suppression de slider</h4>
+                              <h4 class="modal-title">Suppression d'un etudiant</h4>
                             </div>
                             <div class="modal-body">
                               <p>
-                                Etes vous sure de voloire supprimer cet etudiant
+                                Etes vous sure de voloire supprimer {{$ancien->prenom}} {{$ancien->nom}}
                               </p>
                             <form action="{{ route('admin.ancien.destroy',$ancien->id) }}" method="post" style="display:none;">
                               @csrf

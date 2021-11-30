@@ -193,22 +193,26 @@ class AncienController extends Controller
             $certificatName = $request->update_certificat->store('public/Ancien');
         }
         if ($ancien_existant){
-            $ancien_existant->certificat = $certificatName;
-            $ancien_existant->image = $imageName;
-            $ancien_existant->status = false;
-            $ancien_existant->codifier = 0;
-            $ancien_existant->prix = 0;
-            $ancien_existant->immeuble_id = $request->immeuble;
-            $ancien_existant->chambre_id = 0;
-            $ancien_existant->save();
-            $numero_bureau = Solde::first();
-            // Nexmo::message()->send([
-            //     'to' => '221'.$numero_bureau->numero_ancien,
-            //     'from' => '+221'.$request->update_phone,
-            //     'text' => "AEERK : Slut $ancien_existant->prenom  $ancien_existant->nom,votre certificat d'inscription a ete modifier."
-            // ]);
-            Flashy::success('Votre profile a ete mise a jour');
-            return redirect()->route('index');
+            if ($ancien_existant->codification_count < 5) {
+                $ancien_existant->certificat = $certificatName;
+                $ancien_existant->image = $imageName;
+                $ancien_existant->status = false;
+                $ancien_existant->codifier = 0;
+                $ancien_existant->prix = 0;
+                $ancien_existant->immeuble_id = $request->immeuble;
+                $ancien_existant->chambre_id = 0;
+                $ancien_existant->save();
+                $numero_bureau = Solde::first();
+                // Nexmo::message()->send([
+                //     'to' => '221'.$numero_bureau->numero_ancien,
+                //     'from' => '+221'.$request->update_phone,
+                //     'text' => "AEERK : Slut $ancien_existant->prenom  $ancien_existant->nom,votre certificat d'inscription a ete modifier."
+                // ]);
+                Flashy::success('Votre profile a ete mise a jour');
+                return redirect()->route('index');
+            }else {
+                return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
+            }
         }else{
             Flashy::error('Vous etes pas dans notre base de donne');
             return redirect()->route('index');

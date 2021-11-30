@@ -10,17 +10,17 @@
     <div class="content-wrapper">
 
       <section class="content-header">
-        <h4 class="btn btn-primary mb-5">{{$immeubles->name}} :
+        <span class="btn btn-primary">{{$immeubles->name}} :
           @if($immeubles->status == 2)
             pour les anciens
           @else 
             pour les nouveaux
           @endif
-        </h4>
+        </span>
         @if($immeubles->status == 1)
             @can('codifier.create', Auth::guard('admin')->user())
-              <div  style="float:right;">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-share"> Migration des etudiants</i></a>
+              <span class="etudiant_migration"  style="float:right;">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-share"> Migrer</i></a>
 
                       <div class="modal fade" id="modal-default-migraion">
                         <div class="modal-dialog modal-sm">
@@ -47,7 +47,7 @@
                         </div>
                         <!-- /.modal-dialog -->
                       </div>
-              </div>
+              </span>
             @endcan
         @endif
         <br>
@@ -64,6 +64,7 @@
                     <th>Codifier A</th>
                     <th>Prix</th>
                     <th>Place</th>
+                    <th>option</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -81,11 +82,41 @@
                         {{$ancien->chambre->nom }}</td>
                       <td>{{ $ancien->prix }}</td>
                       <td>
-                        @if($ancien->chambre->position == 1)
-                          {{ $ancien->chambre->position }} ere
+                        @if($ancien->position == 1)
+                          {{ $ancien->position }} ere
                         @else 
-                          {{ $ancien->chambre->position }} em
+                          {{ $ancien->position }} em
                         @endif
+                      </td>
+                      <td>
+                      <a class="btn btn-danger btn-xs text-center" 
+                      data-toggle="modal" data-target="#modal-default-{{$ancien->id}}"><i class="fa fa-trash"></i></a></span>
+                      <div class="modal fade" id="modal-default-{{$ancien->id}}">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title">Suppression d'un etidiant</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>
+                                Etes vous sure de voloire supprimer {{$ancien->prenom}} {{$ancien->nom}}
+                              </p>
+                            <form action="{{ route('admin.ancien.destroy',$ancien->id) }}" method="post" style="display:none;">
+                              @csrf
+                              {{ method_field('DELETE') }}
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                              <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </div>
+                            </form>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
                       </td>
                     </tr>
                   @endforeach
