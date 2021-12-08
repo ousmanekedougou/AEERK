@@ -36,6 +36,7 @@ class CreateEtudiantsTable extends Migration
             $table->boolean('codifier')->default(0);
             $table->integer('codification_count')->default(0);
             $table->integer('position')->default(0);
+            $table->string('payment_methode')->nullable();
             $table->timestamps();
         });
     }

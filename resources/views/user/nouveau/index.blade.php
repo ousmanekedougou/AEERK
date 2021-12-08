@@ -113,18 +113,7 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
-											<div class="mt-10">
-											<label class="label_form" for="nom">Votre Nom  </label>
-												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
-												@error('nom')
-													<span class="invalid-feedback" role="alert">
-														<strong class="message_error">{{ $message }}</strong>
-													</span>
-												@enderror
-											</div>
-										</div>
-										<div class="col-md-6">
+										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
 											<label class="label_form" for="prenom">Votre Prenom</label>
 												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
@@ -135,6 +124,18 @@
 												@enderror
 											</div>
 										</div>
+										<div class="col-md-6 col-sm-6 col-lg-6">
+											<div class="mt-10">
+											<label class="label_form" for="nom">Votre Nom  </label>
+												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
+												@error('nom')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error">{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+										</div>
+										
 									</div>
 									
 									
@@ -274,33 +275,10 @@
 
  @section('js')
 <script src=" {{ asset('js/app.js') }} "></script>
-
-
-
   <script src="{{asset('user/build/js/intlTelInput.js')}}"></script>
   <script>
     var input = document.querySelector("#phone");
     window.intlTelInput(input, {
-      // allowDropdown: false,
-      // autoHideDialCode: false,
-      // autoPlaceholder: "off",
-      // dropdownContainer: document.body,
-      // excludeCountries: ["us"],
-      // formatOnDisplay: false,
-      // geoIpLookup: function(callback) {
-      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-      //     var countryCode = (resp && resp.country) ? resp.country : "";
-      //     callback(countryCode);
-      //   });
-      // },
-      // hiddenInput: "full_number",
-      // initialCountry: "auto",
-      // localizedCountries: { 'de': 'Deutschland' },
-      // nationalMode: false,
-      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-      // placeholderNumberType: "MOBILE",
-      // preferredCountries: ['cn', 'jp'],
-      // separateDialCode: true,
       utilsScript: "user/build/js/utils.js",
     });
 
@@ -317,8 +295,8 @@
 		}else if(phone.value.length != 9){
 			alert('Votre numero de telphone doit etre de 9 caracter exp: 77xxxxxxx');
 			return false;
-		}else if(first_num != 77){
-			alert('Votre numero de telphone doit commencer par un (77 ou 78 ou 70 ou 76)')
+		}else if(first_num != 77 & first_num != 78 & first_num != 76 & first_num != 70 & first_num != 75  ){
+			alert('Votre numero de telphone doit commencer par un (77 ou 78 ou 76 ou 70 ou 75)')
 			return false;
 		}
 		return true;

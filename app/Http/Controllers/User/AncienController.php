@@ -100,38 +100,28 @@ class AncienController extends Controller
         $add_ancien->status = 0;
         $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
-        $numero_bureau = Solde::first();
         
-        // Nexmo::message()->send([
-        //     'from' => $numero_bureau->numero_ancien,
-        //     'to' => '221782875971',
-        //     'text' => 'AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation.'
-        // ]);
-
-
-            $config = array(
-                'clientId' => config('app.clientId'),
-                'clientSecret' =>  config('app.clientSecret'),
-            );
-            $osms = new Sms($config);
-
-            // retrieve an access token
-            $response = $osms->getTokenFromConsumerKey();
-
-            if (!empty($response['access_token'])) {
-                $senderAddress = '221781956168';
-                $receiverAddress = '2212875971';
-                $message = 'Un message de teste!';
-                $senderName = 'AEERK';
-
-                $osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
-            } else {
-                // error
-            }
-            return redirect()->route('index',$add_ancien)->with([
-                "success" => "success",
-                "name" => "$add_ancien->prenom $add_ancien->nom"
-            ]);
+        // Authorisation details.
+        $username = "ousmanelaravel@gmail.com";
+        $hash = "18b51d0115d65bfa0abd5bb15b25d685d6b76bd03380f0fe9fdafd658bc76de9";
+        $test = "0";
+        $sender = "AEERK";
+        $numbers = $add_ancien->phone;
+        $message = "Salut $add_ancien->prenom $add_ancien->nom votre inscription a ete valider";
+        $message = urlencode($message);
+        $data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
+        $ch = curl_init('http://api.txtlocal.com/send/?');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        // dd($result);
+        
+        return redirect()->route('index',$add_ancien)->with([
+            "success" => "success",
+            "name" => "$add_ancien->prenom $add_ancien->nom"
+        ]);
     }
 
     /**
@@ -228,5 +218,30 @@ class AncienController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getSendSms($email , $user_tel ,$prenom , $nom){
+        // Authorisation details.
+        $username = "ousmanelaravel@gmail.com";
+        $hash = "18b51d0115d65bfa0abd5bb15b25d685d6b76bd03380f0fe9fdafd658bc76de9";
+
+        // Config variables. Consult http://api.txtlocal.com/docs for more info.
+        $test = "0";
+
+        // Data for text message. This is the text message data.
+        $sender = "AEERK"; // This is who the message appears to be from.
+        $numbers = $user_tel; // A single number or a comma-seperated list of numbers
+        $message = "Salut $prenom $nom votre inscription a bien ete valider";
+        // 612 chars or less
+        // A single number or a comma-seperated list of numbers
+        $message = urlencode($message);
+        $data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
+        $ch = curl_init('http://api.txtlocal.com/send/?');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch); // This is the result from the API
+        curl_close($ch);
+        dd($result);
     }
 }

@@ -372,6 +372,7 @@ if ($invoice->confirm($token)) {
     $count = $codifier_ancien->codification_count;
     $codifier_ancien->codification_count = $count + 1;
     $codifier_ancien->position = $position_nombre + 1;
+    $codifier_ancien->payment_methode = 'En ligne';
     $codifier_ancien->save();
 
     
@@ -382,11 +383,9 @@ if ($invoice->confirm($token)) {
     Auth::logout();
     return redirect()->route('index');
   }elseif ($invoice->getStatus() == "cancelled") {
+      Flashy::success('Votre codification a echouer');
       return redirect()->route('index')->with('error','Votre codification a echouer');
   }
-
-  // Vous pouvez aussi récupérer le montant total spécifié précédemment
-  echo $invoice->getTotalAmount();
 
 }else{
   echo $invoice->getStatus();

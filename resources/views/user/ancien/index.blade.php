@@ -124,9 +124,9 @@
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-												<label class="label_form" for="nom">Votre Nom</label>
-												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Votre Nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Nom'" required class="single-input">
-												@error('nom')
+											<label class="label_form" for="prenom">Votre Prenom</label>
+												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="Votre Prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Prenom'" required class="single-input">
+												@error('prenom')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
 													</span>
@@ -135,9 +135,9 @@
 										</div>
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label class="label_form" for="prenom">Votre Prenom</label>
-												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="Votre Prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Prenom'" required class="single-input">
-												@error('prenom')
+												<label class="label_form" for="nom">Votre Nom</label>
+												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Votre Nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre Nom'" required class="single-input">
+												@error('nom')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
 													</span>
@@ -292,9 +292,6 @@
 
  @section('js')
 <script src=" {{ asset('js/app.js') }} "></script>
-
-
-
   <script src="{{asset('user/build/js/intlTelInput.js')}}"></script>
   <script>
     var input = document.querySelector("#phone");
@@ -314,8 +311,8 @@
 		}else if(phone.value.length != 9){
 			alert('Votre numero de telphone doit etre de 9 caracter exp: 77xxxxxxx');
 			return false;
-		}else if(first_num != 78){
-			alert('Votre numero de telphone doit commencer par un (77 ou 78 ou 70 ou 76)')
+		}else if(first_num != 77 & first_num != 78 & first_num != 76 & first_num != 70 & first_num != 75  ){
+			alert('Votre numero de telphone doit commencer par un (77 ou 78 ou 76 ou 70 ou 75)')
 			return false;
 		}
 		return true;

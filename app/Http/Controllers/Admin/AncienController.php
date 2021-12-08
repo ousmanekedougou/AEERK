@@ -233,6 +233,7 @@ class AncienController extends Controller
                             $count = $codifier_ancien->codification_count;
                             $codifier_ancien->codification_count = $count + 1;
                             $codifier_ancien->position = $position_nombre + 1;
+                            $codifier_ancien->payment_methode = 'Presentielle';
                             $codifier_ancien->save();
                             // Message du sms
                             Mail::to($codifier_ancien->email)
@@ -270,6 +271,7 @@ class AncienController extends Controller
                             $count = $codifier_ancien->codification_count;
                             $codifier_ancien->codification_count = $count + 1;
                             $codifier_ancien->position = $position_nombre + 1;
+                            $codifier_ancien->payment_methode = 'Presentielle';
                             $codifier_ancien->save();
                             // Message du sms
                             Mail::to($codifier_ancien->email)

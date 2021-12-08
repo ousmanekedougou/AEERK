@@ -237,6 +237,7 @@ class NouveauController extends Controller
                             $count = $codifier_nouveau->codification_count;
                             $codifier_nouveau->codification_count = $count + 1;
                             $codifier_nouveau->position = $position_nombre + 1;
+                            $codifier_nouveau->payment_methode = 'Presentielle';
                             $codifier_nouveau->save();
                             // Message sms
                             
@@ -274,6 +275,7 @@ class NouveauController extends Controller
                             $count = $codifier_nouveau->codification_count;
                             $codifier_nouveau->codification_count = $count + 1;
                             $codifier_nouveau->position = $position_nombre + 1;
+                            $codifier_nouveau->payment_methode = 'Presentielle';
                             $codifier_nouveau->save();
                             // $numero_bureau = Solde::first();
                             // Message sms
