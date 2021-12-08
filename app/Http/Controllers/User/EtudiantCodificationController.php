@@ -381,7 +381,7 @@ if ($invoice->confirm($token)) {
     ->send(new MessageEmailAeerk($codifier_ancien));
     Flashy::success('Vous avez ete codifier');
     Auth::logout();
-    return redirect()->route('index');
+    return redirect(url($invoice->getReceiptUrl()));
   }elseif ($invoice->getStatus() == "cancelled") {
       Flashy::success('Votre codification a echouer');
       return redirect()->route('index')->with('error','Votre codification a echouer');
