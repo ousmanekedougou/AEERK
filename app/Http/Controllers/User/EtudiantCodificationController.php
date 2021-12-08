@@ -152,7 +152,7 @@ class EtudiantCodificationController extends Controller
                             $codifier_nouveau = Etudiant::where('id',$id)->first();
                             if ($codifier_nouveau->codification_count < 5) {
                                 $invoice = new CheckoutInvoice();
-                                $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_nouveau, "Codifier en toute securite");
+                                $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
                                 $invoice->setTotalAmount($prix->prix_nouveau);
                                 $invoice->addCustomData("id", $id);
                                 $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
@@ -209,7 +209,7 @@ class EtudiantCodificationController extends Controller
                                     $codifier_nouveau = Etudiant::where('id',$id)->first();
                                     if ($codifier_nouveau->codification_count < 5) {
                                         $invoice = new CheckoutInvoice();
-                                        $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_nouveau, "Codifier en toute securite");
+                                        $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
                                         $invoice->setTotalAmount($prix->prix_nouveau);
                                         $invoice->addCustomData("id", $id);
                                         $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
@@ -262,7 +262,7 @@ class EtudiantCodificationController extends Controller
                             $codifier_ancien = Etudiant::where('id',$id)->first();
                             if ($codifier_ancien->codification_count < 5) {
                                 $invoice = new CheckoutInvoice();
-                                $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_ancien, "Codifier en toute securite");
+                                $invoice->addItem("AEERK CODIFICATION", 1,$prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
                                 $invoice->setTotalAmount($prix->prix_ancien);
                                 $invoice->addCustomData("id", $id);
                                 $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
@@ -292,7 +292,7 @@ class EtudiantCodificationController extends Controller
                                     $codifier_ancien = Etudiant::where('id',$id)->first();
                                     if ($codifier_ancien->codification_count < 5) {
                                         $invoice = new CheckoutInvoice();
-                                        $invoice->addItem("AEERK CODIFICATION", 1, 1, $prix->prix_ancien, "Codifier en toute securite");
+                                        $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
                                         $invoice->setTotalAmount($prix->prix_ancien);
                                         $invoice->addCustomData("id", $id);
                                         $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
@@ -355,6 +355,8 @@ if ($invoice->confirm($token)) {
 
   if ($invoice->getStatus() == "completed") {
 
+      $facture  = $invoice->getReceiptUrl();
+
     $position = Chambre::where('id',$invoice->getCustomData("chambres"))->first();
     $position_nombre = $position->position;
     $position->position = $position_nombre + 1;
@@ -381,7 +383,7 @@ if ($invoice->confirm($token)) {
     ->send(new MessageEmailAeerk($codifier_ancien));
     Flashy::success('Vous avez ete codifier');
     Auth::logout();
-    return redirect(url($invoice->getReceiptUrl()));
+    return redirect()->route('index')->with(['facture' => $facture]);
   }elseif ($invoice->getStatus() == "cancelled") {
       Flashy::success('Votre codification a echouer');
       return redirect()->route('index')->with('error','Votre codification a echouer');

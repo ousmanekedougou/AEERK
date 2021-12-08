@@ -47,6 +47,24 @@
   @endif
 
 
+    @if (session('facture'))
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content bg-success text-white">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="text-bold">
+              Votre codification a bien ete valider telecharger votre facture <a href="url($facture)"></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
+
+
   <div id="myModal" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">

@@ -62,8 +62,9 @@
                     <th>Prenom et nom</th>
                     <th>Telephone</th>
                     <th>Codifier A</th>
-                    <th>Prix</th>
                     <th>Place</th>
+                    <th>Prix</th>
+                    <th>Methode</th>
                     <th>option</th>
                   </tr>
                   </thead>
@@ -80,7 +81,6 @@
                         @endforeach
                         
                         {{$ancien->chambre->nom }}</td>
-                      <td>{{ $ancien->prix }}</td>
                       <td>
                         @if($ancien->position == 1)
                           {{ $ancien->position }} ere
@@ -88,6 +88,8 @@
                           {{ $ancien->position }} em
                         @endif
                       </td>
+                      <td>{{ $ancien->prix }}</td>
+                      <td>{{ $ancien->payment_methode }}</td>
                       <td>
                       <a class="btn btn-danger btn-xs text-center" 
                       data-toggle="modal" data-target="#modal-default-{{$ancien->id}}"><i class="fa fa-trash"></i></a></span>

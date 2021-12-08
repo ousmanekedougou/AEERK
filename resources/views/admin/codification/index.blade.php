@@ -98,8 +98,9 @@
                         <th>Prenom et nom</th>
                         <th>Telephone</th>
                         <th>Codifier A</th>
-                        <th>Prix</th>
                         <th>Plce</th>
+                        <th>Prix</th>
+                        <th>Methode</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -113,7 +114,6 @@
                             {{$ac_imb->name}} : 
                             @endforeach
                             {{$nouveau->chambre->nom }}</td>
-                          <td>{{ $nouveau->prix }}</td>
                           <td>
                             @if($nouveau->position == 1)
                               {{ $nouveau->position }} ere
@@ -121,6 +121,8 @@
                               {{ $nouveau->position }} em
                             @endif
                           </td>
+                          <td>{{ $nouveau->prix }}</td>
+                          <td>{{ $nouveau->payment_methode }}</td>
                         </tr>
                       @endforeach
                       </tbody>
