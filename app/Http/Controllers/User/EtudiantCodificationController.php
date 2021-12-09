@@ -72,11 +72,11 @@ class EtudiantCodificationController extends Controller
                     return view('user.codification.nouveau',compact('nouveau','immeubles'));
                 }else {
                     Flashy::error('Votre quota de codification est epuiser');
-                    return back()->with('error','Votre quota de codification est epuiser');
+                    return back()->with(['error' => 'Votre quota de codification est epuiser']);
                 }
             }elseif(!$nouveau){
                 Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas');
-               return back()->with('error','Vous etes deja codifier ou vos information ne correspondent pas');
+               return back()->with(['error' => 'Vous etes deja codifier ou vos information ne correspondent pas']);
             }
             
 
@@ -90,12 +90,11 @@ class EtudiantCodificationController extends Controller
                     return view('user.codification.ancien',compact('ancien','immeubles'));
                 }else {
                     Flashy::error('Votre quota de codification est epuiser');
-                    return back()->with(['error' => 'error',
-                     'message' => 'Votre quota de codification est epuiser']);
+                    return back()->with(['error' => 'Votre quota de codification est epuiser']);
                 }
             }elseif(!$ancien){
                 Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas');
-                return back()->with('error','Vous etes deja codifier ou vos information ne correspondent pas');
+                return back()->with(['error' => 'Vous etes deja codifier ou vos information ne correspondent pas']);
             }
         }
     }
@@ -196,7 +195,7 @@ class EtudiantCodificationController extends Controller
                             }else {
                                 Auth::logout();
                                  Flashy::error('Votre quota de codification est epuiser');
-                                return redirect()->route('index')->with('error','Votre quotta de codofication est epuiser');
+                                return redirect()->route('index')->with(['error' => 'Votre quotta de codofication est epuiser']);
                             } 
                         }else{
                             $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
@@ -228,7 +227,7 @@ class EtudiantCodificationController extends Controller
                                     }else {
                                         Auth::logout();
                                          Flashy::error('Votre quota de codification est epuiser');
-                                        return redirect()->route('index')->with('error','Votre quotta de codofication est epuiser');
+                                        return redirect()->route('index')->with(['error' => 'Votre quotta de codofication est epuiser']);
                                     }
                                 }
                             }
@@ -279,7 +278,7 @@ class EtudiantCodificationController extends Controller
                             }else {
                                 Auth::logout();
                                  Flashy::error('Votre quota de codification est epuiser');
-                                return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
+                                return redirect()->route('index')->with(['error' => 'Votre quotta de codification est epuiser']);
                             }
                         }else{
                             $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
@@ -309,7 +308,7 @@ class EtudiantCodificationController extends Controller
                                     }else {
                                         Auth::logout();
                                          Flashy::error('Votre quota de codification est epuiser');
-                                        return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
+                                        return redirect()->route('index')->with(['error' => 'Votre quotta de codification est epuiser']);
                                     }
                                 }
                             }
@@ -383,10 +382,10 @@ if ($invoice->confirm($token)) {
     ->send(new MessageEmailAeerk($codifier_ancien));
     Flashy::success('Vous avez ete codifier');
     Auth::logout();
-    return redirect()->route('index')->with(['facture' => $facture]);
+    return redirect()->route('index');
   }elseif ($invoice->getStatus() == "cancelled") {
       Flashy::success('Votre codification a echouer');
-      return redirect()->route('index')->with('error','Votre codification a echouer');
+      return redirect()->route('index')->with(['error' => 'Votre codification a echouer']);
   }
 
 }else{
