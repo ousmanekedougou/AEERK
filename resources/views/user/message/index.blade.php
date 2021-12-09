@@ -56,7 +56,7 @@
           </div>
           <div class="modal-body">
             <p class="text-bold">
-              Votre codification a bien ete valider telecharger votre facture <a href="url($facture)"></a>
+              Votre codification a bien ete valider telecharger votre facture <a href="url($facture)">Telecharger</a>
             </p>
           </div>
         </div>
