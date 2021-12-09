@@ -313,17 +313,17 @@
                                                     {{$ac_imb->name}}
                                                 @endforeach
                                                     a la chambre {{$msg->chambre->nom }},
-                                                    @if($msg->chambre->position == 1)
+                                                    @if($msg->position == 1)
                                                         @if($msg->genre == 1)
-                                                            vous etes la  {{$msg->chambre->position }}ere a etre codifier dans cette chambre
+                                                            vous etes la  {{$msg->position }}ere a etre codifier dans cette chambre
                                                         @elseif($msg->genre == 2)
-                                                            vous etes le  {{$msg->chambre->position }}ere a etre codifier dans cette chambre
+                                                            vous etes le  {{$msg->position }}er a etre codifier dans cette chambre
                                                         @endif
                                                     @else
                                                         @if($msg->genre == 1)
-                                                            vous etes la  {{$msg->chambre->position }}em a etre codifier dans cette chambre
+                                                            vous etes la  {{$msg->position }}eme a etre codifier dans cette chambre
                                                         @elseif($msg->genre == 2)
-                                                            vous etes le  {{$msg->chambre->position }}em a etre codifier dans cette chambre
+                                                            vous etes le  {{$msg->position }}em a etre codifier dans cette chambre
                                                         @endif
                                                     @endif
                                         </p>

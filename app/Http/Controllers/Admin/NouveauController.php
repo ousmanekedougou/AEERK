@@ -45,7 +45,14 @@ class NouveauController extends Controller
      */
     public function create()
     {
-        //
+        $sendsms  = Etudiant::where('codifier',0)->where('ancienete',1)->where('status','!=',0)->get();
+        foreach ($sendsms as $sms) {
+            Mail::to($sms->email)
+            ->send(new AeerkEmailMessage($sms));
+            // la partie des sms
+        }
+        Flashy::success('Votre message a ete envoyer');
+        return back();
     }
 
     /**
@@ -190,8 +197,6 @@ class NouveauController extends Controller
             if($request->status == 1){
                 $nouveau->status = $request->status;
                 $nouveau->save();
-                $numero_bureau = Solde::first();
-                // $nouveau->notify(new ValidateDocument());
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));
                 Flashy::success('Votre etudiant a ete valide');
@@ -199,8 +204,6 @@ class NouveauController extends Controller
             }elseif($request->status == 2){
                 $nouveau->status = $request->status;
                 $nouveau->save();
-                $numero_bureau = Solde::first();
-                // $nouveau->notify(new ValidateDocument());
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));
                 Flashy::error('Votre etudiant a ete ommis');
@@ -277,7 +280,6 @@ class NouveauController extends Controller
                             $codifier_nouveau->position = $position_nombre + 1;
                             $codifier_nouveau->payment_methode = 'Presentielle';
                             $codifier_nouveau->save();
-                            // $numero_bureau = Solde::first();
                             // Message sms
                             
 
@@ -318,7 +320,7 @@ class NouveauController extends Controller
                 $migration->save();
             }
             Flashy::success('La migration a bien reussie');
-            return back()->with('success','Votre migration a reussie');
+            return back();
         }
                                                     
         return redirect(route('admin.home'));

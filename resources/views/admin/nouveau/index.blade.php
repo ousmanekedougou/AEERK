@@ -17,9 +17,38 @@
 
       <!-- La partie des inscriptions -->
           <div class="">
-            <div class="box-header">
-              <h3 class="box-title">Liste D'inscription Des Nouveaux Bacheliers</h3>
-            </div>
+              <span class="btn btn-primary">Liste D'inscription Des Nouveaux Bacheliers</span>
+               @can('codifier.create', Auth::guard('admin')->user())
+              <span class="etudiant_migration"  style="float:right;">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
+
+                      <div class="modal fade" id="modal-default-migraion">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title text-left">Message de confirmation</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p class="text-left">
+                                Etes vous sure de vouloire envoyer ce message
+                              </p>
+                            <form action="{{ route('admin.nouveau.create') }}" method="get" style="display:none;">
+                             
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                              <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                            </div>
+                            </form>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
+              </span>
+            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <div class="nav-tabs-custom">
@@ -51,10 +80,12 @@
                       </td>
                     @endcan
                     <td>
-                      @if($nouveau->status == 1)
-                        <span class="btn btn-primary btn-xs"> <i class="fa fa-check-square-o"></i> Valider</span>
-                      @else 
-                      <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
+                       @if($nouveau->status == 0)
+                        <span class="btn btn-primary btn-xs"> <i class=""></i> Non Consulter</span>
+                      @elseif($nouveau->status == 1) 
+                        <span class="btn btn-success btn-xs"> <i class="fa fa-check-square-o"></i> Valider</span>
+                      @elseif($nouveau->status == 2) 
+                        <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
                       @endif
                     </td>
                     @can('codifier.update', Auth::guard('admin')->user())

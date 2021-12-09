@@ -47,7 +47,16 @@ class AncienController extends Controller
      */
     public function create()
     {
-        //
+        $sendsms  = Etudiant::where('codifier',0)->where('ancienete',2)->where('status','!=',0)->get();
+        foreach ($sendsms as $sms) {
+            Mail::to($sms->email)
+            ->send(new MessageEmailAeerk($sms));
+
+            // La partie des sms
+        }
+        Flashy::success('Votre message a ete envoyer');
+        return back();
+
     }
 
     /**
@@ -179,10 +188,6 @@ class AncienController extends Controller
             if($request->status == 1){
                 $ancien->status = $request->status;
                 $ancien->save();
-                $numero_bureau = Solde::first();
-
-                // Message sms
-                
                 Mail::to($ancien->email)
                 ->send(new MessageEmailAeerk($ancien));
                 Flashy::success('Votre etudiant a ete valide');
@@ -190,10 +195,6 @@ class AncienController extends Controller
             }elseif($request->status == 2){
                 $ancien->status = $request->status;
                 $ancien->save();
-                $numero_bureau = Solde::first();
-
-                // Message sms
-
                 Mail::to($ancien->email)
                 ->send(new MessageEmailAeerk($ancien));
                 Flashy::error('Votre etudiant a ete ommis');
