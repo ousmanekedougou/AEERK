@@ -289,41 +289,48 @@
                                         </p>
                                         @if($msg->status == 1 && $msg->codifier != 1 && $msg->prix == 0)
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            Le Bureau de l'AEERK vous remercie de votre comprehesion. <br>
-                                            Nous vous informons que vos documents depose pour la codification ont ete accepte. <br>
-                                            La codification en ligne est mainteneant disponible en cliquant sur le bouton ci dessous ou vous approcher du bureau pour la codification manuelle
+                                            Le bureau de l'AEERK vous remércie de votre compréhesion pour cette attente de vérification. <br>
+                                            Nous vous informons que vos documents déposés pour la codification ont été accéptés. <br>
+                                            La codification en ligne est mainteneant disponible en cliquant sur le bouton ci dessous ou vous approcher auprès du bureau pour vous codifier
                                         </p>
                                         <p style="line-height: 24px; margin-bottom:20px;">
                                             @component('mail::button', ['url' => 'http://aeerk.herokuapp.com/codification'])
                                                 Codification en ligne
                                             @endcomponent
                                         </p>
+                                        <p style="line-height: 24px;margin-bottom:15px;">
+                                            <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivante pour se connécter.
+                                            <br>
+                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>aeerk@gmail.com 
+                                            <br>
+                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>password
+                                        </p>
                                        
                                         @elseif($msg->status == 2 )
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            Le Bureau de l'AEERK vous remercie de votre comprehesion. <br>
-                                            Nous vous informons que vos documents depose pour la codification n'ont pas ete accepte. <br>
-                                            Vous pouvez vous raprocher au pres du bureau pour plus d'information <br>
-                                            Nous contactez sur le 77000000 / 7800000 ou l'adresse suivante aeerk@gmail.com. 
+                                            Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
+                                            Nous vous informons que vos documents déposés pour la codification n'ont pas étés accéptés. <br>
+                                            Vous pouvez vous raprocher auprès du bureau pour plus d'information <br>
+                                            Ou nous contactez sur le 77000000 / 7800000 ou sur l'adrésse mail suivante aeerk@gmail.com. 
                                         </p>
                                         @elseif($msg->status == 1 && $msg->codifier == 1 && $msg->prix > 0)
                                           <p style="line-height: 24px;margin-bottom:15px;">
-                                                Votre codification a bien ete enregistre, vous etes a
+                                                Votre codification à bien été enrégistré, vous êtes à
                                                 @foreach($msg->chambre->immeubles as $ac_imb)
                                                     {{$ac_imb->name}}
                                                 @endforeach
-                                                    a la chambre {{$msg->chambre->nom }},
+                                                    à la chambre {{$msg->chambre->nom }},
                                                     @if($msg->position == 1)
                                                         @if($msg->genre == 1)
-                                                            vous etes la  {{$msg->position }}ere a etre codifier dans cette chambre
+                                                            vous êtes la  {{$msg->position }}ere à être codifier dans cette chambre
                                                         @elseif($msg->genre == 2)
-                                                            vous etes le  {{$msg->position }}er a etre codifier dans cette chambre
+                                                            vous êtes le  {{$msg->position }}er à être codifier dans cette chambre
                                                         @endif
                                                     @else
                                                         @if($msg->genre == 1)
-                                                            vous etes la  {{$msg->position }}eme a etre codifier dans cette chambre
+                                                            vous êtes la  {{$msg->position }}eme à être codifier dans cette chambre
                                                         @elseif($msg->genre == 2)
-                                                            vous etes le  {{$msg->position }}em a etre codifier dans cette chambre
+                                                            vous êtes le  {{$msg->position }}em à être codifier dans cette chambre
                                                         @endif
                                                     @endif
                                         </p>
@@ -338,7 +345,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="http://aeerk.herokuapp.com/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Telecharger le reglement</a>
+                                                        <a href="http://aeerk.herokuapp.com/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -351,7 +358,7 @@
                                         @endif
                                         <p style="line-height: 24px">
                                             Cordialement,</br>
-                                            Le President de la commission sociale
+                                            Le bureau de l'AEERK
                                         </p>
 
                                     </td>

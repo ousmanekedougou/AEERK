@@ -78,7 +78,7 @@
 			@include('user.message.index')
 			<!-- End banner Area -->
 
-			<section class="feature-area" style="margin-bottom: -50px;">
+			<section class="feature-area" style="margin-bottom: 50px;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4">
@@ -90,14 +90,27 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-8">
+						<div class="col-lg-4">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Bref presentation de l'association</h4>
+									<h4>Présentation de la plateforme</h4>
 								</div>
 								<div class="desc-wrap">
 									<p class="text-justify">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure, beatae totam minima sit sequi perspiciatis, cum, nulla blanditiis laboriosam dolor qui quo animi unde optio laborum. Dolorem porro aliquid sit reiciendis tempora. Soluta velit, sit ullam nobis aliquid deserunt, dicta numquam et officiis animi atque? Ullam ipsam molestias voluptatum pariatur, commodi alias corrupti quos, esse magnam assumenda quia ex incidunt rem quas soluta, nostrum libero asperiores possimus numquam nesciunt perferendis id ea adipisci explicabo? Ab dolor necessitatibus quos ea quibusdam eaque excepturi culpa ut. Nesciunt cupiditate debitis soluta officia, quo asperiores saepe distinctio iure architecto, nobis temporibus. Eligendi tenetur consequatur soluta doloribus, expedita ducimus praesentium unde 
+										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure duuj hjjjjj rjjjr jrjjkr 
+									</p>
+									<a href="{{ route('education.index', [ 'type' =>  4 ])}}">Voire</a>									
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-feature">
+								<div class="title">
+									<h4>Instructions</h4>
+								</div>
+								<div class="desc-wrap">
+									<p class="text-justify">
+										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure duuj hjjjjj rjjjr jrjjkr 
 									</p>
 									<a href="{{ route('education.index', [ 'type' =>  4 ])}}">Voire</a>									
 								</div>
@@ -111,7 +124,7 @@
 
 			
 			<!-- Nos activites officiell-->
-			<section class="upcoming-event-area section-gap">
+			{{-- <section class="upcoming-event-area section-gap">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
@@ -204,7 +217,7 @@
 						</div>
 					</div>
 				</div>	
-			</section>
+			</section> --}}
 			<!-- Fin de nos activite officielle-->
 
 			
@@ -213,7 +226,7 @@
 			
 
 			<!-- Start search-course Area -->
-			<section class="search-course-area relative" style="margin-bottom:100px;">
+			{{-- <section class="search-course-area relative" style="margin-bottom:100px;">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row justify-content-between align-items-center">
@@ -289,31 +302,16 @@
 						</div>
 					</div>
 				</div>	
-			</section>
+			</section> --}}
 			<!-- End search-course Area -->
 
 
 			
-			<!-- Start cta-one Area -->
-			<!-- <section class="cta-one-area relative section-gap">
-				<div class="container">
-					<div class="overlay overlay-bg"></div>
-					<div class="row justify-content-center">
-						<div class="wrap">
-							<h1 class="text-white">Become an instructor</h1>
-							<p>
-								There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station whether that is on the deck.
-							</p>
-							<a class="primary-btn wh" href="#">Apply for the post</a>								
-						</div>					
-					</div>
-				</div>	
-			</section> -->
-			<!-- End cta-one Area -->
+			
 
 			
 			<!-- Start blog Area -->
-			<section class="blog-area section-gap" id="blog" style="margin-top: -150px;">
+			{{-- <section class="blog-area section-gap" id="blog" style="margin-top: -150px;">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
@@ -338,7 +336,6 @@
 								{{method_field('PUT')}}
 							</form>  
 							<p>
-								<!-- Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their. -->
 							</p>
 							<form id="update-form-{{$article->id}}" method="post" action="{{ route('article.update',$article->id) }}" style="display:none">
 								{{csrf_field()}}
@@ -349,12 +346,12 @@
 					@endforeach	
 					</div>
 				</div>	
-			</section>
+			</section> --}}
 			<!-- End blog Area -->	
 
 
-
-			<section class="upcoming-event-area section-gap" style="margin-top: -150px;">
+			<!-- Nos partenaire -->
+			{{-- <section class="upcoming-event-area section-gap" style="margin-top: -150px;">
 
 				<div class="container">
 					<div class="row d-flex justify-content-center">
@@ -367,21 +364,16 @@
 						</div>
 					</div>
 					<div class="logo-slider" style="margin-top: -50px;">
-					@foreach(all_part() as $partenaire)
-						<div class="item"><a href="#"><img src="{{ Storage::url($partenaire->image) }}" alt="" srcset=""></a></div>
-					@endforeach
-						<!-- <div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
-						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
-						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
-						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div>
-						<div class="item"><a href="#"><img src="{{asset('user/img/img.jpeg')}}" alt="" srcset=""></a></div> -->
+						@foreach(all_part() as $partenaire)
+							<div class="item"><a href="#"><img src="{{ Storage::url($partenaire->image) }}" alt="" srcset=""></a></div>
+						@endforeach
 					</div>
 				</div>
-			</section>
+			</section> --}}
 
 
 				<!--  les temoignages -->
-			<section class="review-area section-gap relative" style="margin-top: -100px;">
+			{{-- <section class="review-area section-gap relative" style="margin-top: -100px;">
 				<h3 class="text-center" style="margin-top:-100px;margin-bottom: 15px;">Les Temoignages</h3>		
 				<div class="overlay overlay-bg"></div>
 				<div class="container">		
@@ -407,7 +399,7 @@
 						</div>
 					</div>
 				</div>	
-			</section>
+			</section> --}}
 			<!--  les temoignages -->	
 
 	

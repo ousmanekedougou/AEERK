@@ -63,9 +63,16 @@ class EtudiantCodificationController extends Controller
             'status' => 'required|numeric'
         ]);
         // dd($request->status);
+         $phoneFinale = '';
+        $phoneComplet = '221'.$request->phone;
+        if (strlen($request->phone) == 13 ) {
+            $phoneFinale = $request->phone;
+        }elseif (strlen($request->phone) == 9) {
+            $phoneFinale = $phoneComplet;
+        }
         if($request->status == 1){
             $status = $request->status;
-            $nouveau = Etudiant::where(['email' => $request->email,'phone' => $request->phone,'codifier' => 0,'ancienete' => 1,'status' => 1,'prix' => 0])->first();
+            $nouveau = Etudiant::where(['email' => $request->email,'phone' => $phoneFinale,'codifier' => 0,'ancienete' => 1,'status' => 1,'prix' => 0])->first();
             if($nouveau){
                 if ($nouveau->codification_count < 5 ) {
                     $immeubles = Immeuble::where('status',1)->first();
@@ -82,8 +89,7 @@ class EtudiantCodificationController extends Controller
 
         }else if($request->status == 2){
             $status = $request->status;
-            $ancien = Etudiant::where(['email' => $request->email,'phone' => $request->phone ,'codifier' => 0,'ancienete' => 2,'status' => 1,'prix' => 0])->first();
-            // dd($ancien);
+            $ancien = Etudiant::where(['email' => $request->email,'phone' => $phoneFinale ,'codifier' => 0,'ancienete' => 2,'status' => 1,'prix' => 0])->first();
             if($ancien){
                 if ($ancien->codification_count < 5 ) {
                     $immeubles = Immeuble::where('status',2)->get();

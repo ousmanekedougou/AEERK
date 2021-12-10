@@ -28,7 +28,7 @@
 			</section>
       <!-- End banner Area -->	
 
-	<section class="feature-area pb-120">
+	<!-- <section class="feature-area pb-120">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -44,36 +44,10 @@
 							<a href="#">Join Now</a>									
 						</div>
 					</div>
-				</div>
-				<!-- <div class="col-lg-4">
-					<div class="single-feature">
-						<div class="title">
-							<h4>No.1 of universities</h4>
-						</div>
-						<div class="desc-wrap">
-							<p>
-								For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
-							</p>
-							<a href="#">Join Now</a>									
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-feature">
-						<div class="title">
-							<h4>Huge Library</h4>
-						</div>
-						<div class="desc-wrap">
-							<p>
-								If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-							</p>
-							<a href="#">Join Now</a>									
-						</div>
-					</div>
-				</div>												 -->
+				</div>									
 			</div>
 		</div>	
-	</section>
+	</section> -->
       
 
       		<section class="feature-area pb-120">
@@ -86,7 +60,7 @@
 							</div>
 
 							<div class="col-lg-8 col-md-8" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
-								<h3 class="mb-30">S'inscrire Pour la codifications</h3>
+								<h3 class="mb-30 text-center">S'inscrire Pour la codifications</h3>
 								<form action="{{ route('nouveau.store') }}" method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
 									@csrf
 									<div class="row">

@@ -5,18 +5,18 @@
         <div class="modal-content bg-success text-white">
           <div class="modal-header">
             @if(session('name'))
-              <h5 class="modal-title text-white">{!! session('name') !!}</h5>
+              <h5 class="modal-title text-white">Salut {!! session('name') !!}</h5>
 						@endif
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
             <p class="text-bold">
-              Votre inscription a bien ete enregistre ,un sms vous sera envoyer pour vous faire part de l'avis du bureau sur vos documents.
+              Votre inscription à bien été enrégistré ,un sms vous sera envoyer pour vous faire part de l'avis du bureau sur vos documents.
             </p>
-            <h6 class="text-white">Information : </h6>
+            <h6 class="text-white">NB : </h6>
             <p>
-              La codification en ligne est maintenant displonible si toute fois vos documents ont ete accepter un lien vous sera envoyer sur votre addresse email. <br>
-              D'ici la passez une bonne fin de journnee, <br>
+              La codification en ligne est maintenant displonible si toute fois vos documents ont été accépter un lien vous sera envoyer sur votre adresse mail. <br>
+              D'ici la passez une bonne fin de journnée, <br>
               Cordialement le Bureau
             </p>
             
@@ -38,7 +38,7 @@
           </div>
           <div class="modal-body">
             <p class="text-bold">
-              Votre inscription a bien ete enregistre ,un sms vous sera envoyer pour vous faire part de l'avis du bureau sur vos documents.
+              Votre inscription à bien été enrégistré ,un sms vous sera envoyer pour vous faire part de l'avis du bureau sur vos documents.
             </p>
           </div>
         </div>
@@ -58,12 +58,12 @@
           </div>
           <div class="modal-body">
             <p class="text-bold">
-              Chers etudiants,<br>
-              L'AEERK (Association Des Eleves Et Etudiants Ressortissants De Kedougou) lance sa phase d'inscription pour les codifications.
+              Chers étudiants,<br>
+              L'AEERK (Association Des Eléves Et Etudiants Ressortissants De Kédougou) lance sa phase d'inscription pour les codifications.
             </p>
             <p>
-              Pour plus d'information pour les modalites de codification veuillez clicker sur <a href="{{ route('systeme.index') }}">les information demander</a>.
-              <br> Si toute fois vous avez assimiler ce programme vous pouvez vous inscrire selon votre status en clickant les lien ci-dessous
+              Pour plus d'information sur les modalités de codification veuillez clicker sur <a href="{{ route('systeme.index') }}">les informations demander</a>.
+              <br> Si toute fois vous avez assimiler ce programme vous pouvez vous inscrire selon votre status en cliquant sur les liens ci-dessous
             </p>
             
           </div>

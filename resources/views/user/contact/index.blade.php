@@ -52,7 +52,7 @@
 								</div>
 								<div class="contact-details">
 									<h5>{{ all_info()->phone  ?? '+221 78 287 59 71' }}</h5>
-									<p>Mon to Fri 9am to 6 pm</p>
+									<p>24/24 et 7/7</p>
 								</div>
 							</div>
 							<div class="single-contact-address d-flex flex-row">
@@ -61,7 +61,7 @@
 								</div>
 								<div class="contact-details">
 									<h5>{{ all_info()->email ?? 'ousmanelaravel@gmail.com'}}</h5>
-									<p>Send us your query anytime!</p>
+									<p>Envoyez-nous votre requête à tout moment !</p>
 								</div>
 							</div>														
 						</div>

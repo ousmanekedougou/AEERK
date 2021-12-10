@@ -8,6 +8,7 @@ use App\Model\Admin\Category;
 use App\Model\Admin\Commission;
 use App\Model\Admin\Commune;
 use App\Model\Admin\Departement;
+use App\Model\Admin\Immeuble;
 use App\Model\Admin\Info;
 use App\Model\Admin\Permission;
 use App\Model\Admin\Option;
@@ -200,6 +201,16 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
 
+            $immeubles = [
+                'Immeuble 39' , 'Immeuble 43' , 'Immeuble Zone A'
+            ];
+            foreach($immeubles as $imb){
+                Immeuble::create([
+                    'name' => $imb,
+                    'status' => 1
+                ]);
+            }
+
             // Insertion Reseau Sociaux
                 Social::create(
                 [
@@ -285,12 +296,6 @@ class DatabaseSeeder extends Seeder
         
                 // Fin Insertion de Tag
 
-                
-
-             
-
-         
-
                 Option::create([
                     'register' => 1,
                     'register_nouveau' => 1,
@@ -310,7 +315,7 @@ class DatabaseSeeder extends Seeder
                 ]);
 
                 User::create([
-                   'email' => 'codifier@gmail.com',
+                   'email' => 'aeerk@gmail.com',
                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' // password
                 ]);
     }

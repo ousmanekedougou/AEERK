@@ -35,43 +35,52 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-2">
-							<!-- <div class="single-feature">
-								<div class="title">
-									<h4>Codification</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-									</p>
-									<a href="#">Voire</a>									
-								</div>
-							</div> -->
 						</div>
 						<div class="col-lg-8">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Quelques informations</h4>
+									<h4>Se Connecter</h4>
 								</div>
 								<div class="desc-wrap">
-									<p>
-										For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
-									</p>
-									<a href="#">Voire</a>									
+									<div class="row ">
+						
+										<div class="col-lg-2 d-flex flex-column address-wrap">
+																								
+										</div>
+										<div class="col-lg-8 col-md-8">
+											<form action="{{ route('login') }}" method="post">
+												{{ csrf_field() }}
+												<div class="input-group-icon mt-10">
+													<label for="" style="font-weight: bold;">Entrez l'adresse email</label>
+															<input type="email" name="email" id="email" class=" form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
+													@error('email')
+													<span class="invalid-feedback" role="alert">
+														<strong class="text-danger">{{ $message }}</strong>
+													</span>
+													@enderror
+												</div>
+												<div class="input-group-icon mt-10">
+													<label for="" style="font-weight: bold;">Entrez le mot de passe</label>
+																		<input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
+													@error('password')
+														<span class="invalid-feedback" role="alert">
+															<strong class="text-danger">{{ $message }}</strong>
+														</span>
+													@enderror
+												</div>
+												<div class="col-xs-12 mt-3">
+													<button type="submit" class="genric-btn primary radius btn-block">Se Connecter</button>
+												</div>
+											</form>
+										</div>
+										<div class="col-lg-2 d-flex flex-column address-wrap">
+																								
+										</div>
+									</div>									
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-2">
-							<!-- <div class="single-feature">
-								<div class="title">
-									<h4>Etudes & Bourse</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-									</p>
-									<a href="#">Voire</a>									
-								</div>
-							</div> -->
 						</div>												
 					</div>
 				</div>	
@@ -81,42 +90,7 @@
 			<!-- Start contact-page Area -->
 			<section class="contact-page-area section-gap" style="margin-top:-90px;margin-bottom:-30px;">
 				<div class="container">
-					<div class="row " style="padding:20px;">
-						
-						<div class="col-lg-2 d-flex flex-column address-wrap">
-																				
-						</div>
-						<div class="col-lg-8 col-md-8" style="background-color:white;padding:20px;">
-							<h3 class="mb-30 text-center">Se Connecter</h3>
-							<form action="{{ route('login') }}" method="post">
-								{{ csrf_field() }}
-								<div class="input-group-icon mt-10">
-									<label for="" style="font-weight: bold;">Entrez l'adresse email</label>
-														<input type="email" name="email" id="email" class=" form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
-									@error('email')
-									<span class="invalid-feedback" role="alert">
-										<strong class="text-danger">{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-								<div class="input-group-icon mt-10">
-									<label for="" style="font-weight: bold;">Entrez le mot de passe</label>
-														<input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
-									@error('password')
-										<span class="invalid-feedback" role="alert">
-											<strong class="text-danger">{{ $message }}</strong>
-										</span>
-									@enderror
-								</div>
-								<div class="col-xs-12 mt-3">
-									<button type="submit" class="genric-btn primary radius btn-block">Se Connecter</button>
-								</div>
-							</form>
-						</div>
-						<div class="col-lg-2 d-flex flex-column address-wrap">
-																				
-						</div>
-					</div>
+					
 				</div>	
 			</section>
 
