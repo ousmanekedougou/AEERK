@@ -280,10 +280,11 @@ class InfoController extends Controller
             'email' => 'required|email|string',
             'password' => 'required|confirmed'
         ]);
-       $update_autorisation = User::where('id',$id)->first();
-       $update_autorisation->email = $request->email;
-       $update_autorisation->password = Hash::make($request->password);
-       $update_autorisation->save();
+        $update_autorisation = User::where('id',$id)->first();
+        $update_autorisation->email = $request->email;
+        $update_autorisation->password = Hash::make($request->password);
+        $update_autorisation->sendmail = $request->sendmail;
+        $update_autorisation->save();
         Flashy::success('Vos informations de codifications ont ete modifier');
         return back();
         }

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 use App\Model\User\Etudiant;
+use App\Model\User\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -31,6 +32,7 @@ class AeerkEmailMessage extends Mailable
      */
     public function build()
     {
-        return $this->from('ousmanelaravel@gmail.com')->markdown('emails.admins.created');
+        $user = User::select('sendmail')->first();
+        return $this->from($user->sendmail)->markdown('emails.admins.created');
     }
 }

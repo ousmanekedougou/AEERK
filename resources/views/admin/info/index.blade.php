@@ -228,24 +228,20 @@
   <section class="content-header">
       <h1>Le Mail et Mot de passe Pour la codification</h1>
     <div class="box-header">
-      @if($soldes->count() < 1)
-      <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
-        <!-- Default box -->
-        @endif
     </div>
   </section><br>
   <table id="example2" class="table text-center responsive-table table-bordered table-hover">
     <thead>
     <tr class="bg-primary">
-      <th>Email</th>
-      <th>Utilite</th>
+      <th>Email connexion</th>
+      <th>Email d'envoi</th>
       <th>Option</th>
     </tr>
     </thead>
     <tbody>
         <tr>
-          <td>{{ $autorisation->email }} f</td>
-          <td> text</td>
+          <td>{{ $autorisation->email }}</td>
+          <td> {{ $autorisation->sendmail }}</td>
           <td class="">   
             <a data-toggle="modal" data-id="{{$autorisation->id}}" data-name="{{$autorisation->name}}" data-target="#modal-default-edit-autorisation-{{ $autorisation->id }}"><i class="glyphicon glyphicon-edit"></i></a>
           </td>
@@ -1196,7 +1192,7 @@
       <div class="modal-body">
 
         <p>
-        <label for="name">email</label>
+        <label for="name">email connexion</label>
         <input type="email"  value="{{ old('email') ?? $autorisation->email }}" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="">
           @error('email')
             <span class="invalid-feedback" role="alert">
@@ -1205,9 +1201,19 @@
           @enderror
         </p>
 
+          <p>
+        <label for="name">email d'envoi</label>
+        <input type="email"  value="{{ old('sendmail') ?? $autorisation->sendmail }}" class="form-control @error('sendmail') is-invalid @enderror" id="sendmail" name="sendmail" placeholder="">
+          @error('sendmail')
+            <span class="invalid-feedback" role="alert">
+                <strong class="text-danger">{{ $message }}</strong>
+            </span>
+          @enderror
+        </p>
+
         <p>
           <label for="bp">Mot de passe</label>
-          <input type="password"  value="{{ old('password') }}" class=" form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="">
             @error('password')
               <span class="invalid-feedback" role="alert">
                   <strong class="text-danger">{{ $message }}</strong>
@@ -1217,7 +1223,7 @@
 
           <p>
             <label for="bp">Confirmer votre mot de passe</label>
-            <input type="password"  value="{{ old('password') }}" class=" form-control @error('password') is-invalid @enderror" id="password" name="password_confirmation" placeholder="">
+            <input type="password" class=" form-control @error('password') is-invalid @enderror" id="password" name="password_confirmation" placeholder="">
             </p>
        
       </div>

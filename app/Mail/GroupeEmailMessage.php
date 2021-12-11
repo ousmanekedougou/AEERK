@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Model\User\Contact;
+use App\Model\User\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -34,6 +35,7 @@ class GroupeEmailMessage extends Mailable
      */
     public function build()
     {
-        return $this->from('ousmanelaravel@gmail.com')->markdown('emails.admins.groupe');
+        $user = User::select('sendmail')->first();
+        return $this->from($user->sendmail)->markdown('emails.admins.groupe');
     }
 }

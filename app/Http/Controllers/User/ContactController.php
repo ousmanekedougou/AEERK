@@ -6,6 +6,7 @@ use App\Model\User\Contact;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\User;
 use Illuminate\Support\Facades\Mail;
 class ContactController extends Controller
 {
@@ -45,8 +46,8 @@ class ContactController extends Controller
         ]);
          $contact = Contact::create($request->only('nom','email','subject','message'));
          
-
-        Mail::to('ousmanelaravel@gmail.com')
+        $user = User::select('sendmail')->first();
+        Mail::to($user->sendmail)
             ->send(new ContactMessageCreated($contact));
 
         Flashy::success('Votre Message a ete Poster');

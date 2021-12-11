@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Model\User\Contact;
+use App\Model\User\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -32,7 +33,8 @@ class ResponseEmailMessage extends Mailable
      */
     public function build()
     {
-        return $this->from('ousmanelaravel@gmail.com')->markdown('emails.admins.response');
+        $user = User::select('sendmail')->first();
+        return $this->from($user->sendmail)->markdown('emails.admins.response');
         // return $this->from(config('aeerk.admin_support_email'))->markdown('emails.admins.response');
     }
 }
