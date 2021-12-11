@@ -124,7 +124,7 @@
                         <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post">
                           @csrf 
                           {{ method_field('PUT') }}
-                          <label>
+                          <label style="margin-right: 20px;">
                             <input type="radio" value="1" name="status" class="flat-red"
                               @if($show_ancien->status == 1)
                               checked

@@ -125,7 +125,7 @@
                       <form id="delete-form-{{$show_nouveau->id}}" action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post">
                         @csrf 
                         {{ method_field('PUT') }}
-                      <label>
+                      <label style="margin-right: 20px;">
                           <input type="radio" value="1" name="status" class="flat-red"
                             @if($show_nouveau->status == 1)
                             checked
@@ -158,7 +158,7 @@
 
                         event.preventDefault();
 
-                      }" type="submit"> Appliquer</button>
+                      }" type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
                       </form>
                       </div>
                     @endif
