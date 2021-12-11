@@ -19,36 +19,38 @@
           <div class="">
               <span class="btn btn-primary">Liste D'inscription Des Nouveaux Bacheliers</span>
                @can('codifier.create', Auth::guard('admin')->user())
-              <span class="etudiant_migration"  style="float:right;">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
+                  @if($nouveau_bac->count() == $nouveau_sms->count())
+                    <span class="etudiant_migration"  style="float:right;">
+                      <a class="btn btn-success" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
 
-                      <div class="modal fade" id="modal-default-migraion">
-                        <div class="modal-dialog modal-sm">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title text-left">Message de confirmation</h4>
+                        <div class="modal fade" id="modal-default-migraion">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-left">Message de confirmation</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-left">
+                                  Etes vous sure de vouloire envoyer ce message
+                                </p>
+                              <form action="{{ route('admin.nouveau.create') }}" method="get" style="display:none;">
+                              
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                              </div>
+                              </form>
                             </div>
-                            <div class="modal-body">
-                              <p class="text-left">
-                                Etes vous sure de vouloire envoyer ce message
-                              </p>
-                            <form action="{{ route('admin.nouveau.create') }}" method="get" style="display:none;">
-                             
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                              <button type="submit" class="btn btn-primary">Envoyer le message</button>
-                            </div>
-                            </form>
+                            <!-- /.modal-content -->
                           </div>
-                          <!-- /.modal-content -->
+                          <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-dialog -->
-                      </div>
-              </span>
-            @endcan
+                    </span>
+                  @endif
+              @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <div class="nav-tabs-custom">

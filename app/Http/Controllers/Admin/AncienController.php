@@ -34,7 +34,8 @@ class AncienController extends Controller
             $immeubles = Immeuble::where('status',2)->get();
             $ancien_bac = Etudiant::where('codifier', '=', 0)
             ->where('ancienete', '=', 2)->paginate(10);
-            return view('admin.ancien.index',compact('ancien_bac','immeubles'));
+            $ancien_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 2)->get();
+            return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms'));
         }
                         
         return redirect(route('admin.home'));

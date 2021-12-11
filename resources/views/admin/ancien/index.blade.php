@@ -19,9 +19,9 @@
       <div class="">
             <span class="btn btn-primary">Liste D'inscription Des Anciens</span>
             @can('codifier.create', Auth::guard('admin')->user())
-              <span class="etudiant_migration"  style="float:right;">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
-
+                @if($ancien_bac->count() == $ancien_sms->count())
+                  <span class="etudiant_migration"  style="float:right;">
+                    <a class="btn btn-success" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
                       <div class="modal fade" id="modal-default-migraion">
                         <div class="modal-dialog modal-sm">
                           <div class="modal-content">
@@ -47,7 +47,8 @@
                         </div>
                         <!-- /.modal-dialog -->
                       </div>
-              </span>
+                  </span>
+                @endif
             @endcan
             <!-- /.box-header -->
             <div class="box-body">
