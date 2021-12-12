@@ -293,17 +293,19 @@
                                             Nous vous informons que vos documents déposés pour la codification ont été accéptés. <br>
                                             La codification en ligne est mainteneant disponible en cliquant sur le bouton ci dessous ou vous approcher auprès du bureau pour vous codifier
                                         </p>
-                                        <p style="line-height: 24px; margin-bottom:20px;">
-                                            @component('mail::button', ['url' => 'http://aeerk.herokuapp.com/codification'])
-                                                Codification en ligne
-                                            @endcomponent
-                                        </p>
+                                       
                                         <p style="line-height: 24px;margin-bottom:15px;">
                                             <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivante pour se connécter.
                                             <br>
                                             <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>aeerk@gmail.com 
                                             <br>
                                             <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>password
+                                        </p>
+
+                                        <p style="line-height: 24px; margin-bottom:20px;">
+                                            @component('mail::button', ['url' => 'http://aeerk.herokuapp.com/codification'])
+                                                Codification en ligne
+                                            @endcomponent
                                         </p>
                                        
                                         @elseif($msg->status == 2 )
