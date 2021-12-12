@@ -68,7 +68,7 @@
 							<p class="pt-10 pb-10">
 								In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
 							</p>
-							<a href="{{ route('education.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;">Documentation</a>
+							<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;">Documentation</a>
 							
 						</div>										
 					</div>
