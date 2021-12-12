@@ -178,6 +178,7 @@ class DatabaseSeeder extends Seeder
                 'Khossanto' => 2,
                 'Medina Bafe' => 2,
                 'Missirah Sirimana' => 2,
+                'Sabodala' => 2,
                 'Saraya' => 2,
             ];
             foreach ($saray as $key_sar => $value_sar) {
