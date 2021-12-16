@@ -111,14 +111,14 @@ class ChambreController extends Controller
                 'genre' => 'required',
             ]);
                 $statusNumber = '';
-                $update_chambre = Chambre::find($id);
+                $update_chambre = Chambre::where('id',$id)->first();
                 $update_chambre->nom = $request->name;
                 $update_chambre->nombre = $request->nombre;
                 $update_chambre->status = $request->status;
                 $update_chambre->genre = $request->genre;
                 $update_chambre->save();
                 $update_chambre->immeubles()->sync($request->immeuble);
-                Flashy::success('Votre chambre a ete ajoute');
+                Flashy::success('Votre chambre a ete modifier');
                 return redirect()->route('admin.logement.index');
             }
                     

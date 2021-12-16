@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 
 class MessageEmailAeerk extends Mailable
 {
@@ -32,6 +33,7 @@ class MessageEmailAeerk extends Mailable
      */
     public function build()
     {
+        
         $user = User::select('sendmail')->first();
         return $this->from($user->sendmail)->markdown('emails.admins.created');
     }

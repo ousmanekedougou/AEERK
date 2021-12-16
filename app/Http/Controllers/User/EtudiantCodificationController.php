@@ -17,6 +17,7 @@ use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Mail;
 use Nexmo\Laravel\Facade\Nexmo;
 use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Paydunya\Checkout\CheckoutInvoice;
 
@@ -418,7 +419,9 @@ if ($invoice->confirm($token)) {
 
     public function createPdf($id,$email,$phone){
          $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
-         $output = view('user.pdf' ,compact('etudiant'));
+         $image = Storage::url($etudiant->image);
+         $logo = 'http://localhost:8000/user/img/accueil.png';
+         $output = view('user.pdf',compact('etudiant','image','logo'));
          $dompdf = new Dompdf();
          $dompdf->loadHtml($output);
          $dompdf->setPaper('A4','landscape');

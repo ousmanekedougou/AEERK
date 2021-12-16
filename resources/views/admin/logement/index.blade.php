@@ -357,7 +357,7 @@
                   </p>
                   <p>
                     <input type="hidden" value="1" name="immeuble">
-                  <label for="slug">Immeubles</label>
+                    <label for="slug">Immeubles</label>
                     <div class="row" style="margin-bottom:15px;">
                       @foreach($immeuble as $imb)
                         <div class="col-lg-3">
@@ -428,7 +428,15 @@
                   @csrf
                   {{ method_field('PUT') }}
                   <div class="modal-body">
-                    <p><input type="hidden" value="39" name="numero"></p>
+                    <p>
+                      @foreach($immeuble as $imb_chambre)
+                        @foreach($modal_chambre->immeubles as $imbs)
+                          @if($imb_chambre->id == $imbs->id)
+                            <input type="hidden" value="{{$imbs->id}}" name="immeuble">
+                          @endif
+                        @endforeach
+                      @endforeach
+                    </p>
                     <p>
                     <label for="slug">Nom de la chambre</label>
                     <input type="text"  value="{{ old('name') ?? $modal_chambre->nom }}" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="">
