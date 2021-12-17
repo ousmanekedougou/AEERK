@@ -420,8 +420,9 @@ if ($invoice->confirm($token)) {
     public function createPdf($id,$email,$phone){
          $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
          
-         $image_etudiant = Storage::url($etudiant->image);
-         $imge = str_replace("/storage/",'',$image_etudiant);
+        //  $image_etudiant = Storage::url($etudiant->image);
+        //  $imge = str_replace("/storage/",'',$image_etudiant);
+
         //  dd(str_replace("/storage/",'',$image_etudiant));
         //  $path_etudiant = base_path(substr($image_etudiant , 1));
         //  dd($path_etudiant);
@@ -432,12 +433,11 @@ if ($invoice->confirm($token)) {
         //    dd($data_etudiant);
         //  $image = "data:etudiant/" .$type_etudiant. ';base64,' . base64_encode($data_etudiant);
 
-        $img = 'storage/app/public/'.$imge;
-        // dd($img);
-         $path_img = base_path($img);
-         $type_img = pathinfo($path_img , PATHINFO_EXTENSION);
-         $data_img = file_get_contents($path_img);
-         $image = "data:image/" .$type_img. ';base64,' . base64_encode($data_img);
+        //  $img = 'storage/app/public/'.$imge;
+        //  $path_img = base_path($img);
+        //  $type_img = pathinfo($path_img , PATHINFO_EXTENSION);
+        //  $data_img = file_get_contents($path_img);
+        //  $image = "data:image/" .$type_img. ';base64,' . base64_encode($data_img);
 
          $logo = 'accueil.png';
          $path = base_path($logo);
@@ -445,7 +445,7 @@ if ($invoice->confirm($token)) {
          $data = file_get_contents($path);
          $pic = "data:image/" .$type. ';base64,' . base64_encode($data);
 
-         $output = view('user.pdf',compact('etudiant','image','pic'));
+         $output = view('user.pdf',compact('etudiant','pic'));
          $dompdf = new Dompdf();
          $dompdf->loadHtml($output);
          $dompdf->setPaper('A4','landscape');
