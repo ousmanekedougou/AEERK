@@ -347,7 +347,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
+                                                        <a href="http://aeerk.herokuapp.com//createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
                                                     </div>
                                                 </td>
                                             </tr>
