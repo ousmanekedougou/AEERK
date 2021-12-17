@@ -15,6 +15,8 @@ use Nexmo\Laravel\Facade\Nexmo;
 use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ValidateDocument;
+use Illuminate\Support\Facades\Storage;
+
 class NouveauController extends Controller
 {
     public function __construct()
@@ -128,29 +130,39 @@ class NouveauController extends Controller
             $imageName = '';
             $photocopieName = '';
             $attestationName = '';
+            $imgdel = $update_nouveau->image;
+            $extrait = $update_nouveau->extrait;
+            $attestation = $update_nouveau->attestation;
+            $photocopie = $update_nouveau->photocopie;
+            $relever = $update_nouveau->relever;
             $releverName = '';
             if ($request->hasFile('image')) {
                 $imageName = $request->image->store('public/Nouveau');
+                Storage::delete($imgdel); 
             }else{
                 $imageName = $update_nouveau->image;
             }
             if ($request->hasFile('extrait')) {
                 $extraitName = $request->extrait->store('public/Nouveau');
+                Storage::delete($extrait); 
             }else{
                 $extraitName = $update_nouveau->extrait;
             }
             if ($request->hasFile('attestation')) {
                 $attestationName = $request->attestation->store('public/Nouveau');
+                Storage::delete($attestation);
             }else{
                 $attestationName = $update_nouveau->attestation;
             }
             if ($request->hasFile('photocopie')) {
                 $photocopieName = $request->photocopie->store('public/Nouveau');
+                Storage::delete($photocopie);
             }else{
                 $photocopieName = $update_nouveau->photocopie;
             }
             if ($request->hasFile('relever')) {
                 $releverName = $request->relever->store('public/Nouveau');
+                Storage::delete($relever);
             }else{
                 $releverName = $update_nouveau->relever;
             }

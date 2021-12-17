@@ -125,6 +125,9 @@ footer {
 .box-shadow{
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
+#company img{
+  margin-left: -20px;
+}
 
 
   </style>
@@ -134,10 +137,10 @@ footer {
         <div class="box-shadow">
             <header class="clearfix">
                 <div id="logo">
-                    <img src="http://localhost:8000{{$image}}" width="150" height="150">
+                    <img src="{{$image}}" width="150" height="150">
                 </div>
                 <div id="company">
-                    <img src="{{$logo}}" width="147" height="30">
+                    <img src="{{$pic}}" width="147" height="30">
                     <div>Rue 39x30</div>
                     <div>77 000 00 00 / 78 000 00 00</div>
                     <div><a href="">aeerk@gmail.com</a></div>

@@ -35,7 +35,7 @@
         return view('user.pdf');
     });
 
-Auth::routes();
+    Auth::routes();
 
     Route::prefix('/admin')->name('admin.')->group(function() 
     {

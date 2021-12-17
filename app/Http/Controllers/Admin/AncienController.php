@@ -125,23 +125,30 @@ class AncienController extends Controller
             $photocopieName = '';
             $certificatName = '';
             $imgdel = $update_ancien->image;
+            $bac = $update_ancien->bac;
+            $certificat = $update_ancien->certificat;
+            $photocopie = $update_ancien->photocopie;
             if ($request->hasFile('image')) {
-                $imageName = $request->image->store('public/Nouveau');
+                $imageName = $request->image->store('public/Ancien');
+                Storage::delete($imgdel); 
             }else{
                 $imageName = $update_ancien->image;
             }
             if ($request->hasFile('bac')) {
                 $extraitBac = $request->bac->store('public/Ancien');
+                Storage::delete($bac); 
             }else{
                 $extraitBac = $update_ancien->bac;
             }
             if ($request->hasFile('certificat')) {
                 $certificatName = $request->certificat->store('public/Ancien');
+                Storage::delete($certificat); 
             }else{
                 $certificatName = $update_ancien->certificat;
             }
             if ($request->hasFile('photocopie')) {
                 $photocopieName = $request->photocopie->store('public/Ancien');
+                Storage::delete($photocopie);
             }else{
                 $photocopieName = $update_ancien->photocopie;
             }
@@ -150,7 +157,6 @@ class AncienController extends Controller
             $update_ancien->certificat = $certificatName;
             $update_ancien->photocopie = $photocopieName;
             $update_ancien->save();
-            Storage::disk('public/Ancien')->delete($imgdel); 
             Flashy::success('Votre etudaint a ete consulter');
             return back();
         }
