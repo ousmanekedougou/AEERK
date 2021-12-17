@@ -222,7 +222,6 @@ class AncienController extends Controller
             $prix = Solde::select('prix_ancien')->first();
             $chambre_ancien = Etudiant::all();
             foreach($chambre_ancien as $chambres){
-                // dd($request->chambre_id);
                 $ancien = Etudiant::where('chambre_id',$request->chambre_id)->get();
                 if ($chambres->chambre_id == $request->chambre_id) {
                     if($ancien->count() < $chambres->chambre->nombre){

@@ -180,7 +180,9 @@
                             <option selected>Choisir la chambre</option>
                             @foreach($imb->chambres  as $chm)
                               @if($ancien->genre == $chm->genre)
-                                <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                                @if($chm->is_pleine == 0)
+                                  <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                                @endif
                               @endif
                             @endforeach
                           
