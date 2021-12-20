@@ -27,7 +27,8 @@
         "paydunya/paydunya": "^1.0",
         "php-http/httplug": "^2.2",
         "php-http/message-factory": "^1.0",
-        "symfony/http-client": "^5.2"
+        "symfony/http-client": "^5.2",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
