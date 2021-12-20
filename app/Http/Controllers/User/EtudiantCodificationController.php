@@ -422,15 +422,6 @@ if ($invoice->confirm($token)) {
          
          $image_etudiant = Storage::url($etudiant->image);
          $imge_s = str_replace("/storage/",'',$image_etudiant);
-        //  dd(str_replace("/storage/",'',$image_etudiant));
-        //  $path_etudiant = base_path(substr($image_etudiant , 1));
-        //  dd($path_etudiant);
-        //  dd(str_replace("/storage/storage",'/storage/app/public',$path_etudiant));
-        //  $type_etudiant = pathinfo($path_etudiant , PATHINFO_EXTENSION);
-        //  dd($type_etudiant);
-        //  $data_etudiant = file_get_contents(str_replace("/storage/storage/",'/storage/app/public',$path_etudiant));
-        //    dd($data_etudiant);
-        //  $image = "data:etudiant/" .$type_etudiant. ';base64,' . base64_encode($data_etudiant);
 
          $img = 'storage/app/public/'.$imge_s;
          $path_img = base_path($img);
@@ -438,7 +429,7 @@ if ($invoice->confirm($token)) {
          $data_img = file_get_contents($path_img);
          $image = "data:image/" .$type_img. ';base64,' . base64_encode($data_img);
 
-         $logo = 'accueil.png';
+         $logo = 'image/accueil.png';
          $path = base_path($logo);
          $type = pathinfo($path , PATHINFO_EXTENSION);
          $data = file_get_contents($path);

@@ -105,6 +105,8 @@
         Route::resource('/inscription', 'Admin\InscriptionController');
         Route::resource('/codification', 'Admin\CodificationController');
         Route::get('/downloadPDF', 'Admin\CodificationController@downloadPDF')->name('downloadPDF');
+        Route::get('/carte', 'Admin\CodificationController@carte')->name('carte');
+        Route::get('/carte/recto', 'Admin\CodificationController@recto')->name('recto');
 
         Route::put('/ancien/{id}/codifier_ancien', 'Admin\AncienController@codifier_ancien')->name('codifier_ancien');
         Route::put('/nouveau/{id}/codifier_nouveau', 'Admin\NouveauController@codifier_nouveau')->name('codifier_nouveau');

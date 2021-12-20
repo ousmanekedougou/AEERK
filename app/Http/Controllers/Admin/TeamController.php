@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class TeamController extends Controller
 {
     /**

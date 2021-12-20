@@ -113,6 +113,13 @@ class CodificationController extends Controller
 
     }
 
+    public function carte(){
+        return view('admin.carte.index');
+    }
+    public function recto(){
+        return view('admin.carte.recto');
+    }
+
    
 
     /**

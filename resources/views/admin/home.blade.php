@@ -13,10 +13,6 @@
         Tableau de bord
         <small>Appercue des informations</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
     </section>
 
     <!-- Main content -->
@@ -178,6 +174,7 @@
         </div>
 
         <div class="col-lg-3">
+          <a href="{{ route ('admin.codification.show',$immeuble_nouveau->id) }}">
           <div class="info-box bg-green">
               <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
 
@@ -194,6 +191,7 @@
               </div>
               <!-- /.info-box-content -->
           </div>
+          </a>
         </div>
 
 
@@ -290,6 +288,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="info-box" style="background-color: #00c0ef;border-color: #00acd6;">
+          <a href="{{ route('admin.recasement.index') }}" style="color:white;">
               <span class="info-box-icon" style="color: white;"><i class="fa fa-user-plus"></i></span>
 
               <div class="info-box-content">
@@ -303,14 +302,15 @@
                       50% Increase in 30 Days
                     </span>
               </div>
+               </a>
               <!-- /.info-box-content -->
             </div>
         </div>
 
         <div class="col-lg-6">
-          <div class="info-box "style="background-color: #00c0ef;border-color: #00acd6;">
+            <div class="info-box "style="background-color: #00c0ef;border-color: #00acd6;color:white;">
+            
               <span class="info-box-icon" style="color: white;"><i class="fa fa-thumbs-up"></i></span>
-
               <div class="info-box-content">
                 <span class="info-box-text">Total Recaser</span>
                 <span class="info-box-number">{{ $recaser->count() }}</span>
@@ -322,6 +322,7 @@
                       20% Increase in 30 Days
                     </span>
               </div>
+             
               <!-- /.info-box-content -->
             </div>
         </div>

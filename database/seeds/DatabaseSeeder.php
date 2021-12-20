@@ -92,7 +92,7 @@ class DatabaseSeeder extends Seeder
             }
             $admin_permisions = [
                 'index' => 'Admin',
-                'crate' => 'Admin',
+                'create' => 'Admin',
                 'update' => 'Admin',
                 'delete' => 'Admin',
             ];
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
 
             $cofifier_permission = [
                 'index' => 'Codifier',
-                'crate' => 'Codifier',
+                'create' => 'Codifier',
                 'update' => 'Codifier',
                 'delete' => 'Codifier',
             ];
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
             $logement_permission = 
             [
                'index' => 'Logement',
-                'crate' => 'Logement',
+                'create' => 'Logement',
                 'update' => 'Logement',
                 'delete' => 'Logement',
             ];
@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
             $article_permission = 
             [
                 'index' => 'Article',
-                'crate' => 'Article',
+                'create' => 'Article',
                 'update' => 'Article',
                 'delete' => 'Article',
             ];

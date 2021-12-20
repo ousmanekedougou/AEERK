@@ -351,7 +351,7 @@
 
 
 			<!-- Nos partenaire -->
-			{{-- <section class="upcoming-event-area section-gap" style="margin-top: -150px;">
+			 <section class="upcoming-event-area section-gap" style="margin-top: -130px;">
 
 				<div class="container">
 					<div class="row d-flex justify-content-center">
@@ -359,7 +359,7 @@
 							<div class="title text-center">
 								<h1 class="mb-10">
 									Nos Partenaires</h1>
-								<p>Si vous etes un membre de l'association ou un natif de la region</p>
+								<!-- <p>Si vous etes un membre de l'association ou un natif de la region</p> -->
 							</div>
 						</div>
 					</div>
@@ -369,7 +369,7 @@
 						@endforeach
 					</div>
 				</div>
-			</section> --}}
+			</section> 
 
 
 				<!--  les temoignages -->

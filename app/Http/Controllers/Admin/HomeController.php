@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Admin;
+use App\Model\Admin\Immeuble;
 use App\Model\Admin\Partenaire;
 use App\Model\Admin\Team;
 use App\Model\User\Nouveau;
@@ -34,6 +35,7 @@ class HomeController extends Controller {
         $nouveau_total_valider = Etudiant::where(['ancienete' => 1 , 'status' => 1])->get();
         $nouveau_total_ommis = Etudiant::where(['ancienete' => 1 , 'status' => 2])->get();
         $nouveau_total_codifier = Etudiant::where(['ancienete' => 1 , 'status' => 1 , 'codifier' => 1])->get();
+        $immeuble_nouveau = Immeuble::where('status',1)->first();
 
 
         $ancien_total_inscrit = Etudiant::where(['ancienete' => 2 , 'status' => 0])->get();
@@ -50,7 +52,8 @@ class HomeController extends Controller {
             
             'ancien_total_inscrit','ancien_total_valider','ancien_total_ommis','ancien_total_codifier',
 
-            'contact_nomLue','contact_lue','admin_all','team_all','partenaire_all','inscription_recasement','recaser'
+            'contact_nomLue','contact_lue','admin_all','team_all','partenaire_all','inscription_recasement','recaser',
+            'immeuble_nouveau'
 
             ]
         ));
