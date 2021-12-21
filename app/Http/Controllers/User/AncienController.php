@@ -100,23 +100,8 @@ class AncienController extends Controller
         $add_ancien->status = 0;
         $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
-        
-        // Authorisation details.
-        $username = "ousmanelaravel@gmail.com";
-        $hash = "18b51d0115d65bfa0abd5bb15b25d685d6b76bd03380f0fe9fdafd658bc76de9";
-        $test = "0";
-        $sender = "AEERK";
-        $numbers = $add_ancien->phone;
-        $message = "Salut $add_ancien->prenom $add_ancien->nom votre inscription a ete valider";
-        $message = urlencode($message);
-        $data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
-        $ch = curl_init('http://api.txtlocal.com/send/?');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $result = curl_exec($ch);
-        curl_close($ch);
-        // dd($result);
+
+        // Teste sms
         
         return redirect()->route('index',$add_ancien)->with([
             "success" => "success",
