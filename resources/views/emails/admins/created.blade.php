@@ -313,7 +313,7 @@
                                             Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
                                             Nous vous informons que vos documents déposés pour la codification n'ont pas étés accéptés. <br>
                                             Vous pouvez vous raprocher auprès du bureau pour plus d'information <br>
-                                            Ou nous contactez sur le 77000000 / 7800000 ou sur l'adrésse mail suivante aeerk@gmail.com. 
+                                            Ou nous contactez sur le {{$info->phone}} ou sur l'adrésse mail suivante {{$info->email}}. 
                                         </p>
                                         @elseif($msg->status == 1 && $msg->codifier == 1 && $msg->prix > 0)
                                           <p style="line-height: 24px;margin-bottom:15px;">
@@ -336,7 +336,7 @@
                                                         @endif
                                                     @endif
                                         </p>
-                                        <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
+                                        <table border="0" align="center" style="text-align: justify;" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 
                                             <tr>
                                                 <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
@@ -347,7 +347,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="http://aeerk.herokuapp.com/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
+                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
                                                     </div>
                                                 </td>
                                             </tr>
