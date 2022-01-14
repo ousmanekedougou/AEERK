@@ -17,7 +17,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <h3 class="text-center btn btn-info btn-block text-bold">Information les recasements des etudiants</h3>
+      <h3 class="text-center btn btn-info btn-block text-bold">Impression des cartes des nouveaux</h3>
       <br>
       <div class="row">
         <div class="col-lg-6">
