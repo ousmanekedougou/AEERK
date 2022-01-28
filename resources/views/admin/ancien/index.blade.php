@@ -22,31 +22,45 @@
                 @if($ancien_sms->count() > 0 && $ancien_bac->count() > 0)
                   <span class="etudiant_migration"  style="float:right;">
                     <a class="btn btn-success" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
-                      <div class="modal fade" id="modal-default-migraion">
-                        <div class="modal-dialog modal-sm">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title text-left">Message de confirmation</h4>
-                            </div>
-                            <div class="modal-body">
-                              <p class="text-left">
-                                Etes vous sure de vouloire envoyer ce message
-                              </p>
-                            <form action="{{ route('admin.ancien.create') }}" method="get" style="display:none;">
-                             
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                              <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                        <div class="modal fade" id="modal-default-migraion">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Envoyer un sms </h4>
+                              </div>
+                              <form action="{{ route('admin.ancien.sendSms') }}" method="POST">
+                              @csrf
+                              <div class="modal-body">
+                                <p>
+                                  <div class="row">
+                                    <div class="checkbox">
+                                      <div class="col-lg-6">
+                                      <label class="col-form-label text-md-right" for="role"> <input type="radio" name="sms" value="{{ old('sms') ?? 1}}" class="@error('sms') is-invalid @enderror" id="sms"> Information de la verification des documents </label>
+                                      </div>
+                                      <div class="col-lg-6">
+                                      <label class="col-form-label text-md-right" for="role"> <input type="radio" name="sms" value="{{ old('sms') ?? 2}}" class="@error('sms') is-invalid @enderror" id="sms"> Information de la date des codifcations </label>
+                                      </div>
+                                    </div>
+                                </div>
+                                      @error('sms')
+                                        <span class="invalid-feedback text-center text-danger" role="alert">
+                                            <strong class="message_error">{{ $message }}</strong>
+                                        </span>
+                                      @enderror
+                                </p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary">Enmvoyer le message</button>
+                              </div>
                             </div>
                             </form>
+                            <!-- /.modal-content -->
                           </div>
-                          <!-- /.modal-content -->
+                          <!-- /.modal-dialog -->
                         </div>
-                        <!-- /.modal-dialog -->
-                      </div>
                   </span>
                 @endif
             @endcan

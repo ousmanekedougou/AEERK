@@ -289,11 +289,8 @@
                                         </p>
                                         @if($msg->status == 1 && $msg->codifier != 1 && $msg->prix == 0)
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            Le bureau de l'AEERK vous remércie de votre compréhesion pour cette attente de vérification. <br>
-                                            Nous vous informons que vos documents déposés pour la codification ont été accéptés. <br>
-                                            La codification en ligne est mainteneant disponible en cliquant sur le bouton ci dessous ou vous approcher auprès du bureau pour vous codifier
+                                           Nous vous invitons a aller jetter un cout d'oeil sur la page de documentation http://aeerk.herokuapp.com/systeme de la plateforme pour comprendre la procedure des codification.
                                         </p>
-                                       
                                         <p style="line-height: 24px;margin-bottom:15px;">
                                             <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivante pour se connécter.
                                             <br>
@@ -307,7 +304,10 @@
                                                 Codification en ligne
                                             @endcomponent
                                         </p>
-                                       
+
+                                        <p style="line-height: 24px;margin-bottom:15px;">
+                                           Et si vous n'aviez pas compris la procedure approchez vous au pres du bureau pour effectuer la codification en presentielle.
+                                        </p>
                                         @elseif($msg->status == 2 )
                                         <p style="line-height: 24px;margin-bottom:15px;">
                                             Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
@@ -316,7 +316,7 @@
                                             Ou nous contactez sur le {{$info->phone}} ou sur l'adrésse mail suivante {{$info->email}}. 
                                         </p>
                                         @elseif($msg->status == 1 && $msg->codifier == 1 && $msg->prix > 0)
-                                          <p style="line-height: 24px;margin-bottom:15px;">
+                                            <p style="line-height: 24px;margin-bottom:15px;">
                                                 Votre codification à bien été enrégistré, vous êtes à
                                                 @foreach($msg->chambre->immeubles as $ac_imb)
                                                     {{$ac_imb->name}}
@@ -335,7 +335,7 @@
                                                             vous êtes le  {{$msg->position }}em à être codifier dans cette chambre
                                                         @endif
                                                     @endif
-                                        </p>
+                                            </p>
                                         <table border="0" align="center" style="text-align: justify;" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 
                                             <tr>

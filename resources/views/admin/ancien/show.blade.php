@@ -4,6 +4,7 @@
 
 @section('headsection')
 <link rel="stylesheet" href="{{asset('admin/dist/css/skins/_all-skins.min.css')}}">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 
 
@@ -124,6 +125,7 @@
                         <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post">
                           @csrf 
                           {{ method_field('PUT') }}
+                          <input type="hidden" name="token" value="{{csrf_token()}}">
                           <label style="margin-right: 20px;">
                             <input type="radio" value="1" name="status" class="flat-red"
                               @if($show_ancien->status == 1)

@@ -119,11 +119,13 @@
 
         Route::get('/ancien/{id}/update_ancien', 'Admin\AncienController@update_ancien')->name('update_ancien');
         Route::put('/ancien/{id}/valider', 'Admin\AncienController@valider_ancien')->name('valider_ancien');
+        Route::post('/ancien/sendSms', 'Admin\AncienController@sendSms')->name('ancien.sendSms');
 
         Route::resource('/nouveau', 'Admin\NouveauController');
         Route::get('/nouveau/{id}/update_nouveau', 'Admin\NouveauController@update_nouveau')->name('update_nouveau');
         Route::put('/nouveau/{id}/valider', 'Admin\NouveauController@valider_nouveau')->name('valider_nouveau');
         Route::get('/migration', 'Admin\NouveauController@migret_nouveau')->name('migret_nouveau');
+        Route::get('nouveau/sendSms', 'Admin\NouveauController@nouveau.sendSms')->name('nouveau.sendSms');
         // fin des option de uesr
 
         // login admin

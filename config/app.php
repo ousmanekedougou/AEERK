@@ -135,8 +135,8 @@ return [
     */
 
     /*  Les informations du send sms  */
-        'clientId' => 'PiA90EgGRemIGExbGkSYKGSplG5MPZGU',
-        'clientSecret' => '9osVWNXzQG0Z7XPI',
+        'clientId' => 'z7HuGrRwYMkV42VKGINHQaj9xc9NBlOy',
+        'clientSecret' => 'ZZioSCAN0TbKZ3BP',
      /* ___________________________   */
 
     'providers' => [

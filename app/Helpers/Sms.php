@@ -1,12 +1,12 @@
 <?php
 namespace App\Helpers;
 
-class Sms
-{
+class Sms {
+
     const BASE_URL = 'https://api.orange.com';
-    
+
     /**
-     * Client Identifier. Unique ID provided by the Orange backend server to identify 
+     * Client Identifier. Unique ID provided by the Orange backend server to identify
      * your application.
      *
      * @var string
@@ -39,7 +39,7 @@ class Sms
      * token yet, he can leave $token empty and retrieve a token with
      * getTokenFromConsumerKey() method later.
      *
-     * @param  array  $config  An associative array that can contain clientId, clientSecret, 
+     * @param  array  $config  An associative array that can contain clientId, clientSecret,
      *                         token, and verifyPeerSSL
      *
      * @return void
@@ -68,8 +68,8 @@ class Sms
      * @return array
      */
     public function getTokenFromConsumerKey()
-    {   
-        $url = self::BASE_URL . '/oauth/v2/token';
+    {
+        $url = self::BASE_URL . '/oauth/v3/token';
 
         $credentials = $this->getClientId() . ':' . $this->getClientSecret();
 
@@ -94,7 +94,7 @@ class Sms
      * @param  string  $receiverAddress  The receiver address in this format:
      *                                   "tel:+22500000000"
      * @param  string  $message          The content of the SMS, must not exceed
-     *                                   160 characters         
+     *                                   160 characters
      * @param  string  $senderName       The sender name
      *
      * @return array
@@ -103,7 +103,7 @@ class Sms
         $senderAddress,
         $receiverAddress,
         $message,
-        $senderName = ''
+        $senderName
     ) {
         $url = self::BASE_URL . '/smsmessaging/v1/outbound/' . urlencode($senderAddress)
             . '/requests';
@@ -144,13 +144,13 @@ class Sms
      *
      * @param  array  $args  An associative array to filter the results, containing
      *                       country (the international 3 digits country code) and/or
-     *                       appid (you can retrieve your application ID from your 
+     *                       appid (you can retrieve your application ID from your
      *                       dashboard application)
      *
      * @return array
      */
     public function getAdminStats($args = null)
-    {   
+    {
         $url = self::BASE_URL . '/sms/admin/v1/statistics';
 
         $headers = array('Authorization: Bearer ' . $this->getToken());
@@ -161,7 +161,7 @@ class Sms
     /**
      * Displays how many SMS you can still send.
      *
-     * @param  string  $country  The country to filter on (the international 3 digits 
+     * @param  string  $country  The country to filter on (the international 3 digits
      *                           country)
      *
      * @return array
@@ -227,7 +227,7 @@ class Sms
         $jsonEncodeArgs = false
     ) {
         $ch = curl_init();
-    
+
         if ($method === 'POST') {
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, true);
@@ -261,7 +261,7 @@ class Sms
         }
 
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
- 
+
         curl_close($ch);
 
         $response = json_decode($data, true);

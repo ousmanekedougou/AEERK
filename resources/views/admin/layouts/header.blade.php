@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="{{ route('admin.home') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>K</b>DG</span>
+      <span class="logo-mini"><img src="{{ asset('admin/dist/img/logo.jpg') }}" alt="" srcset="" style="width:100%;"></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><img src="{{ asset('admin/dist/img/admin.png') }}" alt="" srcset=""></span>
     </a>

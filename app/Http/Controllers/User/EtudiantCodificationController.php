@@ -14,6 +14,7 @@ use App\Model\Admin\Immeuble_chambre;
 use App\Mail\MessageEmailAeerk;
 use App\Mail\AeerkEmailMessage;
 use App\Model\User\Etudiant;
+use App\Model\User\User;
 use Illuminate\Support\Facades\Mail;
 use Nexmo\Laravel\Facade\Nexmo;
 use Dompdf\Dompdf;
@@ -35,9 +36,15 @@ class EtudiantCodificationController extends Controller
      */
     public function index()
     {
-        $nouveau = 1;
-        $ancien = 2;
-        return view('user.codification.index',compact('nouveau','ancien'));
+        $active_lien_codification = User::first();
+        if($active_lien_codification->lien == 1){
+            $nouveau = 1;
+            $ancien = 2;
+            return view('user.codification.index',compact('nouveau','ancien'));
+        }else {
+            return redirect()->route('index');
+        }
+            
     }
 
     /**

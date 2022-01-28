@@ -9,13 +9,13 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ext-gd": "*",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "informagenie/orange-sms": "^1.2",
         "intervention/image": "^2.5",
-        "ismaeltoe/osms": "^2.0",
         "laravel/framework": "^7.24",
         "laravel/nexmo-notification-channel": "^2.5",
         "laravel/tinker": "^2.0",
@@ -27,8 +27,7 @@
         "paydunya/paydunya": "^1.0",
         "php-http/httplug": "^2.2",
         "php-http/message-factory": "^1.0",
-        "symfony/http-client": "^5.2",
-        "ext-gd": "*"
+        "symfony/http-client": "^5.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -67,7 +66,8 @@
             "Tests\\": "tests/"
         },
         "files":[
-            "app/Helpers/helper.php"
+            "app/Helpers/helper.php",
+            "app/Helpers/Sms.php"
         ]
        
     },
@@ -77,6 +77,9 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"

@@ -15,6 +15,7 @@ use Nexmo\Laravel\Facade\Nexmo;
 use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\Sms;
 
 class AncienController extends Controller
 {
@@ -46,12 +47,93 @@ class AncienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function sendSms(Request $request)
     {
-        $sendsms  = Etudiant::where('codifier',0)->where('ancienete',2)->where('status','!=',0)->get();
-        foreach ($sendsms as $sms) {
-            Mail::to($sms->email)
-            ->send(new MessageEmailAeerk($sms));
+        $validator = $this->validate($request , [
+            'sms' => 'required|numeric',
+        ]);
+        $etudiant  = Etudiant::where('codifier',0)->where('ancienete',2)->where('status','!=',0)->get();
+        foreach ($etudiant as $smsEtudiant) {
+            // Mail::to($sms->email)
+            // ->send(new MessageEmailAeerk($sms));
+            if($request->sms == 1){
+                if ($smsEtudiant->status == 1) {
+                     $config = array(
+                        'clientId' => config('app.clientId'),
+                        'clientSecret' =>  config('app.clientSecret'),
+                    );
+                    $osms = new Sms($config);
+
+                    $data = $osms->getTokenFromConsumerKey();
+                    $token = array(
+                        'token' => $data['access_token']
+                    );
+                    $phone = $smsEtudiant->phone;
+                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom, les documents que vous avez deposés pour les codifications ont été accéptées.Nous vous envérrons un méssage pour la date et les modalités des codification \nCordialement le Bureau de l'AEERK";
+
+                    $response = $osms->sendSms(
+                        // sender
+                        'tel:+221781956168',
+                        // receiver
+                        'tel:+' . $phone,
+                        // message
+                        $message,
+                        'AEERK'
+                    );
+                }elseif ($smsEtudiant->status == 2) {
+                     $config = array(
+                        'clientId' => config('app.clientId'),
+                        'clientSecret' =>  config('app.clientSecret'),
+                    );
+                    $osms = new Sms($config);
+
+                    $data = $osms->getTokenFromConsumerKey();
+                    // dd($data);
+                    $token = array(
+                        'token' => $data['access_token']
+                    );
+                    $phone = $smsEtudiant->phone;
+                    // dd($phone);
+                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom les documents que vous avez deposés pour les codifications ont ete rejetés veuiilez vous repprocher au-pres du bureau plus d'information. \nCordialement le Bureau de l'AEERK";
+
+                    $response = $osms->sendSms(
+                        // sender
+                        'tel:+221781956168',
+                        // receiver
+                        'tel:+221' . $phone,
+                        // message
+                        $message,
+                        'AEERK'
+                    );
+                }
+            }elseif ($request->sms == 2) {
+                  if ($smsEtudiant->status == 1) {
+                    Mail::to($smsEtudiant->email)
+                    ->send(new MessageEmailAeerk($smsEtudiant));
+                    $config = array(
+                        'clientId' => config('app.clientId'),
+                        'clientSecret' =>  config('app.clientSecret'),
+                    );
+                    $osms = new Sms($config);
+
+                    $data = $osms->getTokenFromConsumerKey();
+                    $token = array(
+                        'token' => $data['access_token']
+                    );
+                    $phone = $smsEtudiant->phone;
+                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom.\nNous vous informons que la date des codification est fixe le 10/12/2022 a partire de 8:00.\nNous vous avons envoye un courier mail pour plus de details.\nCordialement le Bureau de l'AEERK";
+
+                    $response = $osms->sendSms(
+                        // sender
+                        'tel:+221781956168',
+                        // receiver
+                        'tel:+' . $phone,
+                        // message
+                        $message,
+                        'AEERK'
+                    );
+                }
+            }
 
             // La partie des sms
         }
@@ -186,6 +268,7 @@ class AncienController extends Controller
 
     public function valider_ancien(Request $request,$id)
     {
+        
         if (Auth::guard('admin')->user()->can('codifier.update')) 
         {
             $validator = $this->validate($request,[
@@ -195,15 +278,15 @@ class AncienController extends Controller
             if($request->status == 1){
                 $ancien->status = $request->status;
                 $ancien->save();
-                Mail::to($ancien->email)
-                ->send(new MessageEmailAeerk($ancien));
+                // Mail::to($ancien->email)
+                // ->send(new MessageEmailAeerk($ancien));
                 Flashy::success('Votre etudiant a ete valide');
                 return back();
             }elseif($request->status == 2){
                 $ancien->status = $request->status;
                 $ancien->save();
-                Mail::to($ancien->email)
-                ->send(new MessageEmailAeerk($ancien));
+                // Mail::to($ancien->email)
+                // ->send(new MessageEmailAeerk($ancien));
                 Flashy::error('Votre etudiant a ete ommis');
                 return back();
             }

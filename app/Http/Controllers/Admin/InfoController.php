@@ -274,19 +274,27 @@ class InfoController extends Controller
 
 
     public function autorisation(Request $request ,$id){
-          if (Auth::guard('admin')->user()->can('admins.update')) 
+        if (Auth::guard('admin')->user()->can('admins.update')) 
         {
-        $this->validate($request,[
-            'email' => 'required|email|string',
-            'password' => 'required|confirmed'
-        ]);
-        $update_autorisation = User::where('id',$id)->first();
-        $update_autorisation->email = $request->email;
-        $update_autorisation->password = Hash::make($request->password);
-        $update_autorisation->sendmail = $request->sendmail;
-        $update_autorisation->save();
-        Flashy::success('Vos informations de codifications ont ete modifier');
-        return back();
+            if ($request->option == 1) {
+                $this->validate($request,[
+                    'email' => 'required|email|string',
+                    'password' => 'required|confirmed'
+                ]);
+                $update_autorisation = User::where('id',$id)->first();
+                $update_autorisation->email = $request->email;
+                $update_autorisation->password = Hash::make($request->password);
+                $update_autorisation->sendmail = $request->sendmail;
+                $update_autorisation->save();
+                Flashy::success('Vos informations de codifications ont ete modifier');
+                return back();
+            }elseif ($request->option == 2) {
+                $update_lient = User::where('id',$id)->first();
+                $update_lient->lien = $request->lien;
+                $update_lient->save();
+                Flashy::success('Le status de votre lien a ete modifier');
+                return back();
+            }
         }
         return redirect(route('admin.home'));
     }

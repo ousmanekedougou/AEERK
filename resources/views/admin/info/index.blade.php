@@ -235,7 +235,7 @@
     <tr class="bg-primary">
       <th>Email connexion</th>
       <th>Email d'envoi</th>
-      <th>Option</th>
+      <th>Options</th>
     </tr>
     </thead>
     <tbody>
@@ -244,6 +244,49 @@
           <td> {{ $autorisation->sendmail }}</td>
           <td class="">   
             <a data-toggle="modal" data-id="{{$autorisation->id}}" data-name="{{$autorisation->name}}" data-target="#modal-default-edit-autorisation-{{ $autorisation->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+            <a data-toggle="modal" data-id="modal-default-migraion" data-name="modal-default-migraion" data-target="#modal-default-migraion-{{ $autorisation->id }}" style="margin-left: 20px;"><i class="glyphicon glyphicon-link"></i></a>
+              <div class="modal fade" id="modal-default-migraion-{{ $autorisation->id }}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Autorisation de codification cote etudiant</h4>
+                    </div>
+                    <form action="{{ route('admin.autorisation',$autorisation->id) }}" method="POST">
+                    @csrf
+                    {{method_field('PUT')}}
+                    <div class="modal-body">
+                      <p>
+                        <input type="hidden" name="option" value="2">
+                        <div class="row">
+                          <div class="checkbox">
+                            <div class="col-lg-6">
+                            <label class="col-form-label text-md-right" for="role"> 
+                              <input type="radio" name="lien" value="{{ old('lien') ?? 1}}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 1) checked @endif > Activer le lien de codification </label>
+                            </div>
+                            <div class="col-lg-6">
+                            <label class="col-form-label text-md-right" for="role"> <input type="radio" name="lien" value="{{ old('lien') ?? 2}}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 2) checked @endif > Desactiver le lien de codification </label>
+                            </div>
+                          </div>
+                      </div>
+                            @error('lien')
+                              <span class="invalid-feedback text-center text-danger" role="alert">
+                                  <strong class="message_error">{{ $message }}</strong>
+                              </span>
+                            @enderror
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                      <button type="submit" class="btn btn-primary">Enmvoyer le message</button>
+                    </div>
+                  </div>
+                  </form>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
           </td>
         </tr>
     </tbody>
@@ -1190,7 +1233,7 @@
       @csrf
       {{method_field('PUT')}}
       <div class="modal-body">
-
+        <input type="hidden" name="option" value="1">
         <p>
         <label for="name">email connexion</label>
         <input type="email"  value="{{ old('email') ?? $autorisation->email }}" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="">
