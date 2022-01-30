@@ -26,7 +26,7 @@ class EtudiantCodificationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('createPdf');
+        $this->middleware('auth')->except(['createPdf','reponse']);
     }
 
     /**
