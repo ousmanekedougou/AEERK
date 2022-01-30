@@ -7,6 +7,8 @@ use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 class ImmeubleController extends Controller
 {
     /**
@@ -111,8 +113,10 @@ class ImmeubleController extends Controller
             ]);
             $update_immeuble = Immeuble::find($id);
             $imageName = '';
+            $imgdel = $update_immeuble->image;
             if ($request->hasFile('image')) {
                 $imageName = $request->image->store('public/Immeuble');
+                Storage::delete($imgdel); 
             }else{
                 $imageName = $update_immeuble->image;
             }
@@ -138,7 +142,10 @@ class ImmeubleController extends Controller
     {
         if (Auth::guard('admin')->user()->can('logement.delete')) 
         {
-            Immeuble::find($id)->delete();
+            $imeuble = Immeuble::find($id);
+            $imdel = $imeuble->image;
+            Storage::delete($imdel);
+            $imeuble->delete();
             Flashy::success('Votre immeuble a ete supprimer');
             return back();
         }

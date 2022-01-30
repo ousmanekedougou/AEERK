@@ -7,6 +7,8 @@ use App\Model\Admin\Document;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 class DocumentController extends Controller
 {
 
@@ -111,8 +113,10 @@ class DocumentController extends Controller
         if (Auth::guard('admin')->user()->can('posts.update')) 
         {
             $update_doc = Document::find($id);
+            $docment = $update_doc->image;
             if ($request->hasFile('image')) {
                 $imageName = $request->image->store('public/Document');
+                Storage::delete($docment);
             }elseif ($request->image == Null){
                 $imageName = $update_doc->image;
             }
@@ -138,7 +142,10 @@ class DocumentController extends Controller
     {
         if (Auth::guard('admin')->user()->can('posts.delete')) 
         {
-            Document::find($id)->delete();
+            $doc_delete = Document::find($id);
+            $doc_img = $doc_delete->image;
+            Storage::delete($doc_img);
+            $doc_delete->delete();
             Flashy::success('Votre document a ete supprimer');
             return back();
         }

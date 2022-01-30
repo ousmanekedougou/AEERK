@@ -10,6 +10,8 @@ use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 class AdminController extends Controller
 {
     /**
@@ -149,7 +151,10 @@ class AdminController extends Controller
         {
             if (Auth::guard('admin')->user()->can('admins.delete')) 
             {
-                Admin::where('id',$id)->delete();
+                $admin_delete = Admin::where('id',$id)->delete();
+                $imgdel = $admin_delete->image;
+                Storage::delete($imgdel); 
+                $admin_delete->delete();
                 return back();
             }
                         

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 class SlideController extends Controller
 {
     /**
@@ -123,9 +125,11 @@ class SlideController extends Controller
 
         $update_slider = Slide::find($id);
         $imageName = '';
+        $imgdel = $update_slider->image;
        if($request->hasFile('image'))
         {
             $imageName = $request->image->store('public/Slider');
+            Storage::delete($imgdel); 
         }else if ($request->hasFile('')) {
             $imageName = $update_slider->image;
         }
@@ -148,7 +152,10 @@ class SlideController extends Controller
     {
         if (Auth::guard('admin')->user()->can('admins.delete')) 
         {
-            Slide::find($id)->delete();
+            $silder_delete = Slide::find($id);
+            $imgdel = $silder_delete->image;
+            Storage::delete($imgdel); 
+            $silder_delete->delete();
             Flashy::success('Votre Image slider a ete supprimer');
             return back();
         }

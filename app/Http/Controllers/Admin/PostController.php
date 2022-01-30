@@ -8,6 +8,7 @@ use App\Model\Admin\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use MercurySeries\Flashy\Flashy;
 
 class PostController extends Controller
 {
@@ -97,6 +98,7 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->category);
+        Flashy::success('Votre article a ete ajouter');
         return redirect(route('admin.post.index'));
         }
         return redirect(route('admin.home'));
@@ -154,6 +156,7 @@ class PostController extends Controller
             if($request->image != '')
             {
                 $imageName = $request->image->store('public/Article');
+                Storage::delete($imgdel); 
             }
             else{ $imageName = $post->image; }
 
@@ -170,7 +173,7 @@ class PostController extends Controller
             $post->save();
             $post->tags()->sync($request->tags);
             $post->categories()->sync($request->category);
-            Storage::disk('public')->delete($imgdel); 
+            Storage::delete($imgdel); 
             return redirect(route('admin.post.index'));
         }
         return redirect(route('admin.home'));
@@ -186,7 +189,10 @@ class PostController extends Controller
     {
         if(Auth::guard('admin')->user()->can('posts.delete'))
         {
-            Post::where('id',$id)->delete();
+            $poste_delete = Post::where('id',$id);
+            $imgdel = $poste_delete->image;
+            Storage::delete($imgdel); 
+            $poste_delete->delete();
             return redirect()->back();
         }
         return redirect(route('admin.home'));

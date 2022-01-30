@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilAdminController extends Controller
 {
@@ -106,12 +107,14 @@ class ProfilAdminController extends Controller
     public function update_image(Request $request , $id){
         $admin_updat_image = Admin::where('id',Auth::guard('admin')->user()->id)->first();
         $imageName = '';
+        $imgdel = $admin_updat_image->image;
         if($request->image == Null){
             $imageName = $admin_updat_image->image;
         }else{
 
             if($request->hasFile('image')){
                 $imageName = $request->image->store('public/Admin');
+                Storage::delete($imgdel); 
             }
         }
         $admin_updat_image->image = $imageName;

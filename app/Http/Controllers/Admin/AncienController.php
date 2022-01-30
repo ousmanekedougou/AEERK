@@ -325,7 +325,30 @@ class AncienController extends Controller
                             $codifier_ancien->position = $position_nombre + 1;
                             $codifier_ancien->payment_methode = 'Presentielle';
                             $codifier_ancien->save();
+
                             // Message du sms
+                            $config = array(
+                                'clientId' => config('app.clientId'),
+                                'clientSecret' =>  config('app.clientSecret'),
+                            );
+                            $osms = new Sms($config);
+
+                            $data = $osms->getTokenFromConsumerKey();
+                            $token = array(
+                                'token' => $data['access_token']
+                            );
+                            $phone = $codifier_ancien->phone;
+                            $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+
+                            $response = $osms->sendSms(
+                                // sender
+                                'tel:+221781956168',
+                                // receiver
+                                'tel:+' . $phone,
+                                // message
+                                $message,
+                                'AEERK'
+                            );
                             Mail::to($codifier_ancien->email)
                             ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Votre etudiant a ete codifier');
@@ -363,7 +386,31 @@ class AncienController extends Controller
                             $codifier_ancien->position = $position_nombre + 1;
                             $codifier_ancien->payment_methode = 'Presentielle';
                             $codifier_ancien->save();
+
                             // Message du sms
+                            $config = array(
+                                'clientId' => config('app.clientId'),
+                                'clientSecret' =>  config('app.clientSecret'),
+                            );
+                            $osms = new Sms($config);
+
+                            $data = $osms->getTokenFromConsumerKey();
+                            $token = array(
+                                'token' => $data['access_token']
+                            );
+                            $phone = $codifier_ancien->phone;
+                            $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+
+                            $response = $osms->sendSms(
+                                // sender
+                                'tel:+221781956168',
+                                // receiver
+                                'tel:+' . $phone,
+                                // message
+                                $message,
+                                'AEERK'
+                            );
+                            
                             Mail::to($codifier_ancien->email)
                             ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Votre etudiant a ete codifier');
@@ -393,7 +440,16 @@ class AncienController extends Controller
     {
         if (Auth::guard('admin')->user()->can('codifier.delete')) 
         {
-            Etudiant::find($id)->delete();
+           $dlete_etudiant = Etudiant::find($id);
+            $imgdel = $dlete_etudiant->image;
+            $bac = $dlete_etudiant->bac;
+            $certificat = $dlete_etudiant->certificat;
+            $photocopie = $dlete_etudiant->photocopie;
+            Storage::delete($imgdel); 
+            Storage::delete($bac); 
+            Storage::delete($certificat); 
+            Storage::delete($photocopie); 
+            $dlete_etudiant->delete();
             Flashy::success('Votre Etudiant a ete Supprimer');
             return back();
         }

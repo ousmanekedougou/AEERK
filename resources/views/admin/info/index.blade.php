@@ -263,10 +263,11 @@
                           <div class="checkbox">
                             <div class="col-lg-6">
                             <label class="col-form-label text-md-right" for="role"> 
-                              <input type="radio" name="lien" value="{{ old('lien') ?? 1}}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 1) checked @endif > Activer le lien de codification </label>
+                              <input type="radio" name="lien" value="{{ old('lien') ?? 1 }}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 1) checked @endif > Activer le lien de codification </label>
                             </div>
                             <div class="col-lg-6">
-                            <label class="col-form-label text-md-right" for="role"> <input type="radio" name="lien" value="{{ old('lien') ?? 2}}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 2) checked @endif > Desactiver le lien de codification </label>
+                            <label class="col-form-label text-md-right" for="role"> 
+                              <input type="radio" name="lien" value="{{ old('lien') ?? 2 }}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 2) checked @endif > Desactiver le lien de codification </label>
                             </div>
                           </div>
                       </div>

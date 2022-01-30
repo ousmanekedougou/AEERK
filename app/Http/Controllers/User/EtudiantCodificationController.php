@@ -21,7 +21,7 @@ use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Paydunya\Checkout\CheckoutInvoice;
-
+use App\Helpers\Sms;
 class EtudiantCodificationController extends Controller
 {
     public function __construct()
@@ -73,7 +73,7 @@ class EtudiantCodificationController extends Controller
         // dd($request->status);
          $phoneFinale = '';
         $phoneComplet = '221'.$request->phone;
-        if (strlen($request->phone) == 13 ) {
+        if (strlen($request->phone) == 12 ) {
             $phoneFinale = $request->phone;
         }elseif (strlen($request->phone) == 9) {
             $phoneFinale = $phoneComplet;
@@ -368,7 +368,7 @@ if ($invoice->confirm($token)) {
 
   if ($invoice->getStatus() == "completed") {
 
-      $facture  = $invoice->getReceiptUrl();
+    $facture  = $invoice->getReceiptUrl();
 
     $position = Chambre::where('id',$invoice->getCustomData("chambres"))->first();
     $position_nombre = $position->position;
@@ -390,10 +390,30 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->payment_methode = 'En ligne';
     $codifier_ancien->save();
 
-    
-
     Mail::to($codifier_ancien->email)
     ->send(new MessageEmailAeerk($codifier_ancien));
+    $config = array(
+        'clientId' => config('app.clientId'),
+        'clientSecret' =>  config('app.clientSecret'),
+    );
+    $osms = new Sms($config);
+
+    $data = $osms->getTokenFromConsumerKey();
+    $token = array(
+        'token' => $data['access_token']
+    );
+    $phone = $codifier_ancien->phone;
+    $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+    $sendPhone = User::first();
+    $response = $osms->sendSms(
+        // sender
+        'tel:+' . $sendPhone->sendPhone,
+        // receiver
+        'tel:+' . $phone,
+        // message
+        $message,
+        'AEERK'
+    );
     Flashy::success('Vous avez ete codifier');
     Auth::logout();
     return redirect()->route('index');

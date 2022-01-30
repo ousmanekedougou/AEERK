@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\ValidateDocument;
 use Illuminate\Support\Facades\Storage;
 use App\Helpers\Sms;
+use App\Model\User\User;
+
 class NouveauController extends Controller
 {
     public function __construct()
@@ -70,10 +72,10 @@ public function sendSms(Request $request)
                     );
                     $phone = $smsEtudiant->phone;
                     $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom, les documents que vous avez deposés pour les codifications ont été accéptées.Nous vous envérrons un méssage pour la date et les modalités des codification \nCordialement le Bureau de l'AEERK";
-
+                    $sendPhone = User::first();
                     $response = $osms->sendSms(
                         // sender
-                        'tel:+221781956168',
+                        'tel:+' . $sendPhone->sendPhone,
                         // receiver
                         'tel:+' . $phone,
                         // message
@@ -95,12 +97,12 @@ public function sendSms(Request $request)
                     $phone = $smsEtudiant->phone;
                     // dd($phone);
                     $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom les documents que vous avez deposés pour les codifications ont ete rejetés veuiilez vous repprocher au-pres du bureau plus d'information. \nCordialement le Bureau de l'AEERK";
-
+                    $sendPhone = User::first();
                     $response = $osms->sendSms(
                         // sender
-                        'tel:+221781956168',
+                        'tel:+' . $sendPhone->sendPhone,
                         // receiver
-                        'tel:+221' . $phone,
+                        'tel:+' . $phone,
                         // message
                         $message,
                         'AEERK'
@@ -123,10 +125,10 @@ public function sendSms(Request $request)
                     );
                     $phone = $smsEtudiant->phone;
                     $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom.\nNous vous informons que la date des codification est fixe le 10/12/2022 a partire de 8:00.\nNous vous avons envoye un courier mail pour plus de details.\nCordialement le Bureau de l'AEERK";
-
+                    $sendPhone = User::first();
                     $response = $osms->sendSms(
                         // sender
-                        'tel:+221781956168',
+                        'tel:+' . $sendPhone->sendPhone,
                         // receiver
                         'tel:+' . $phone,
                         // message
@@ -342,8 +344,30 @@ public function sendSms(Request $request)
                             $codifier_nouveau->position = $position_nombre + 1;
                             $codifier_nouveau->payment_methode = 'Presentielle';
                             $codifier_nouveau->save();
+
                             // Message sms
-                            
+                              $config = array(
+                                'clientId' => config('app.clientId'),
+                                'clientSecret' =>  config('app.clientSecret'),
+                            );
+                            $osms = new Sms($config);
+
+                            $data = $osms->getTokenFromConsumerKey();
+                            $token = array(
+                                'token' => $data['access_token']
+                            );
+                            $phone = $codifier_nouveau->phone;
+                            $message = "AEERK KEDOUGOU:\nSalut $codifier_nouveau->prenom $codifier_nouveau->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+                            $sendPhone = User::first();
+                            $response = $osms->sendSms(
+                                // sender
+                                'tel:+' . $sendPhone->sendPhone,
+                                // receiver
+                                'tel:+' . $phone,
+                                // message
+                                $message,
+                                'AEERK'
+                            );
 
                             Mail::to($codifier_nouveau->email)
                             ->send(new AeerkEmailMessage($codifier_nouveau));
@@ -381,7 +405,28 @@ public function sendSms(Request $request)
                             $codifier_nouveau->payment_methode = 'Presentielle';
                             $codifier_nouveau->save();
                             // Message sms
-                            
+                            $config = array(
+                                'clientId' => config('app.clientId'),
+                                'clientSecret' =>  config('app.clientSecret'),
+                            );
+                            $osms = new Sms($config);
+
+                            $data = $osms->getTokenFromConsumerKey();
+                            $token = array(
+                                'token' => $data['access_token']
+                            );
+                            $phone = $codifier_nouveau->phone;
+                            $message = "AEERK KEDOUGOU:\nSalut $codifier_nouveau->prenom $codifier_nouveau->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+                            $sendPhone = User::first();
+                            $response = $osms->sendSms(
+                                // sender
+                                'tel:+' . $sendPhone->sendPhone,
+                                // receiver
+                                'tel:+' . $phone,
+                                // message
+                                $message,
+                                'AEERK'
+                            );
 
                             Mail::to($codifier_nouveau->email)
                             ->send(new AeerkEmailMessage($codifier_nouveau));
@@ -436,7 +481,16 @@ public function sendSms(Request $request)
     {
         if (Auth::guard('admin')->user()->can('codifier.delete')) 
         {
-            Etudiant::find($id)->delete();
+            $dlete_etudiant = Etudiant::find($id);
+            $imgdel = $dlete_etudiant->image;
+            $bac = $dlete_etudiant->bac;
+            $certificat = $dlete_etudiant->certificat;
+            $photocopie = $dlete_etudiant->photocopie;
+            Storage::delete($imgdel); 
+            Storage::delete($bac); 
+            Storage::delete($certificat); 
+            Storage::delete($photocopie); 
+            $dlete_etudiant->delete();
             Flashy::success('Votre Etudiant a ete Supprimer');
             return back();
         }

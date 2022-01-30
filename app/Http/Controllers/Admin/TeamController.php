@@ -8,6 +8,8 @@ use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 class TeamController extends Controller
 {
     /**
@@ -114,8 +116,10 @@ class TeamController extends Controller
             $update_personnel->email = $request->email;
             $update_personnel->phone = $request->phone;
             $update_personnel->poste_id = $request->poste;
+            $teameImg = $update_personnel->image;
             if($request->hasFile('image')){
                 $imageName = $request->image->store('public/Personnel');
+                Storage::delete($teameImg);
             }else {
                 $imageName = $update_personnel->image;
             }
@@ -137,7 +141,10 @@ class TeamController extends Controller
     {
         if (Auth::guard('admin')->user()->can('admins.delete')) 
         {
-            Team::find($id)->delete();
+            $team = Team::find($id);
+            $teamimge = $team->image;
+            Storage::delete($teamimge);
+            $team->delete();
             Flashy::primary('Votre Personnelle a ete Supprimer');
             return back();
         }

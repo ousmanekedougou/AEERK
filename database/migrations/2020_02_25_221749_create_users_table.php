@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('sendmail');
             $table->integer('lien')->default(2);
+            $table->string('sendPhone');
             $table->rememberToken();
             $table->timestamps();
         });
