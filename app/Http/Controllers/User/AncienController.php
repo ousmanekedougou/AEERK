@@ -177,12 +177,6 @@ class AncienController extends Controller
                 $ancien_existant->immeuble_id = $request->immeuble;
                 $ancien_existant->chambre_id = 0;
                 $ancien_existant->save();
-                $numero_bureau = Solde::first();
-                // Nexmo::message()->send([
-                //     'to' => '221'.$numero_bureau->numero_ancien,
-                //     'from' => '+221'.$request->update_phone,
-                //     'text' => "AEERK : Slut $ancien_existant->prenom  $ancien_existant->nom,votre certificat d'inscription a ete modifier."
-                // ]);
                 Flashy::success('Votre profile a ete mise a jour');
                 return redirect()->route('index');
             }else {

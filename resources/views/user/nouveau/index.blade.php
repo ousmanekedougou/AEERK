@@ -7,8 +7,8 @@
         color:red;
     }
   </style>
-  	<link rel="stylesheet" href="{{asset('user/build/css/intlTelInput.css')}}">
-  	<link rel="stylesheet" href="{{asset('user/build/css/demo.css')}}">
+  	{{--<link rel="stylesheet" href="{{asset('user/build/css/demo.css')}}">--}}
+  	<link rel="stylesheet" href="{{asset('user/build/css/intlTelInput.min.css')}}">
 @endsection
  @section('main-content')
 

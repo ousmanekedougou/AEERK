@@ -44,11 +44,13 @@ class ContactController extends Controller
             'subject' => 'required|string',
             'message' => 'required|string'
         ]);
-         $contact = Contact::create($request->only('nom','email','subject','message'));
+        //  $contact = Contact::create($request->only('nom','email','subject','message'));
          
         $user = User::select('sendmail')->first();
         Mail::to($user->sendmail)
-            ->send(new ContactMessageCreated($contact));
+            ->send(new ContactMessageCreated($request->nom,$request->email,$request->subject,$request->message));
+
+        
 
         Flashy::success('Votre Message a ete Poster');
         return redirect()->route('index');

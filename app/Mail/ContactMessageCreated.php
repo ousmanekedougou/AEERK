@@ -19,8 +19,11 @@ class ContactMessageCreated extends Mailable
 
     public $msg;
 
-    public function __construct(Contact $msg)
+    public function __construct($name,$email,$subject,$msg)
     {
+        $this->name = $name;
+        $this->email = $email;
+        $this->subject = $subject;
         $this->msg = $msg;
     }
 
@@ -31,6 +34,12 @@ class ContactMessageCreated extends Mailable
      */
     public function build()
     {
-        return $this->from($this->msg->email)->markdown('emails.messages.created');
+        $name = $this->name;
+        $email = $this->email;
+        $subject = $this->subject;
+        $msg = $this->msg;
+        return $this->from($this->email)->markdown('emails.messages.created',compact(
+            'name','email','subject','msg'
+        ));
     }
 }

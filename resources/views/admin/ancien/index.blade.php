@@ -19,7 +19,7 @@
       <div class="">
             <span class="btn btn-primary">Liste D'inscription Des Anciens</span>
             @can('codifier.create', Auth::guard('admin')->user())
-                @if($ancien_sms->count() > 0 && $ancien_bac->count() > 0)
+                @if($ancien_sms->count() == $count_etudiant)
                   <span class="etudiant_migration"  style="float:right;">
                     <a class="btn btn-success" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
                         <div class="modal fade" id="modal-default-migraion">

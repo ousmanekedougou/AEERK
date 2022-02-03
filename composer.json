@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
         "mercuryseries/flashy": "^1.0",
+        "mike42/escpos-php": "^2.2",
         "nexmo/client-core": "^2.7",
         "nexmo/laravel": "^2.4",
         "nyholm/psr7": "^1.3",

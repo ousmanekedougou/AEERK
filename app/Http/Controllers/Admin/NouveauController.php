@@ -37,8 +37,9 @@ class NouveauController extends Controller
             $immeubles = Immeuble::where('status',1)->first();
             $nouveau_bac = Etudiant::where('codifier', '=', 0)
             ->where('ancienete', '=', 1)->paginate(10);
-            $nouveau_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 1)->get();
-            return view('admin.nouveau.index',compact('nouveau_bac','immeubles','nouveau_sms'));
+            $nouveau_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 1)->where('codifier', '=', 0)->get();
+            $count_etudiant = $nouveau_sms->count();
+            return view('admin.nouveau.index',compact('nouveau_bac','immeubles','nouveau_sms','count_etudiant'));
         }                 
         return redirect(route('admin.home'));
     }

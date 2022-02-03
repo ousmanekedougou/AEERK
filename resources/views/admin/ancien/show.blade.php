@@ -139,7 +139,7 @@
                             @endif
                           </label>
                           <label>
-                            <input type="radio" value="2" name="status" class="flat-red" style="margin-left:20px;" 
+                            <input type="radio" value="2" name="status" data-toggle="modal" data-id="modalSms" data-name="modalSms" data-target="#modalSms"  class="flat-red" style="margin-left:20px;" 
                             @if($show_ancien->status == 2)
                               checked
                               @endif
@@ -395,7 +395,7 @@
 
 <!-- Debut du modal pour l'eddition de l'image -->
 
-<div class="modal fade" id="modal-default-update-image">
+        <div class="modal fade" id="modal-default-update-image">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -496,6 +496,48 @@
       </div>
    
 <!-- Fin du modal pour la codification des anciens -->
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="modalSms">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Text detailler des documents a modifier </h4>
+              </div>
+              <form action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post" enctype="multipart/form-data">
+              @csrf
+              {{ method_field('PUT') }}
+              <input type="hidden" value="2" name="status" class="flat-red">
+              <div class="modal-body">
+                <p>
+                <textarea id="editor1" name="body" value="{{ old('body')}}" class="form-control @error('body') textarea is-invalid @enderror" id="body" placeholder=""
+                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                  @error('body')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 
 @endsection
 

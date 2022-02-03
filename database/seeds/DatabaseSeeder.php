@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             $admin = Admin::create([
                 'name' => 'Diallo Ousmane',
                 'email' => 'yabaye07@gmail.com',
-                'phone' => '00000000',
+                'phone' => '7700000000',
                 'status' => 1,
                 'poste_id' => 1,
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

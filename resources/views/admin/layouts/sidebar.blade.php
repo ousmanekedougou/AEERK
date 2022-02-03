@@ -11,6 +11,7 @@
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
+      {{--
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
@@ -22,6 +23,7 @@
         </div>
       </form>
       <!-- /.search form -->
+      --}}
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- <li class="header">PARAMETRES</li> -->
@@ -62,7 +64,7 @@
           </ul>
         </li>
         @endif
-        
+        {{--
         @if (Auth::guard('admin')->user()->can('admins.index'))
         <li class="treeview">
           <a href="#">
@@ -78,7 +80,7 @@
           </ul>
         </li>
         @endif
-
+        --}}
         @if (Auth::guard('admin')->user()->can('codifier.index'))
         <li class="treeview">
           <a href="#">

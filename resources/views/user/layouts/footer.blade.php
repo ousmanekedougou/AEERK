@@ -99,8 +99,12 @@
 			</footer>	
 			<!-- End footer Area -->	
 
+			<script src="{{asset('user/js/slick-jquery.min.js')}}"></script>
+			<script src="{{asset('user/js/slick.min.js')}}"></script>
+			{{--
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+			--}}
 			<script>
 			$('.logo-slider').slick({
 				slidesToShow: 5,
@@ -129,7 +133,7 @@
 			<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
   			<script src="{{asset('user/js/pooper.js')}}"></script>			
 			<script src="{{asset('user/js/vendor/bootstrap.min.js')}}"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+			<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
   			<script src="{{asset('user/js/easing.min.js')}}"></script>			
 			<script src="{{asset('user/js/hoverIntent.js')}}"></script>
 			<script src="{{asset('user/js/superfish.min.js')}}"></script>	

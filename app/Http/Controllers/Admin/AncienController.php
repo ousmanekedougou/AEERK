@@ -16,6 +16,7 @@ use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Helpers\Sms;
+use App\Model\User\User;
 
 class AncienController extends Controller
 {
@@ -35,8 +36,9 @@ class AncienController extends Controller
             $immeubles = Immeuble::where('status',2)->get();
             $ancien_bac = Etudiant::where('codifier', '=', 0)
             ->where('ancienete', '=', 2)->paginate(10);
-            $ancien_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 2)->get();
-            return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms'));
+            $ancien_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 2)->where('codifier', '=', 0)->get();
+            $count_etudiant = $ancien_sms->count();
+            return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms','count_etudiant'));
         }
                         
         return redirect(route('admin.home'));
@@ -53,6 +55,7 @@ class AncienController extends Controller
             'sms' => 'required|numeric',
         ]);
         $etudiant  = Etudiant::where('codifier',0)->where('ancienete',2)->where('status','!=',0)->get();
+         $sendPhone = User::first();
         foreach ($etudiant as $smsEtudiant) {
             // Mail::to($sms->email)
             // ->send(new MessageEmailAeerk($sms));
@@ -68,16 +71,16 @@ class AncienController extends Controller
                     $token = array(
                         'token' => $data['access_token']
                     );
-                    $phone = $smsEtudiant->phone;
-                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom, les documents que vous avez deposés pour les codifications ont été accéptées.Nous vous envérrons un méssage pour la date et les modalités des codification \nCordialement le Bureau de l'AEERK";
-
+                    $phone = intval($smsEtudiant->phone);
+                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom,les documents que vous avez deposés pour les codifications ont été accéptées.Nous vous envérrons un méssage pour la date et les modalités des codification \nCordialement le Bureau de l'AEERK";
                     $response = $osms->sendSms(
                         // sender
-                        'tel:+221781956168',
+                        'tel:+' . $sendPhone->sendPhone,
                         // receiver
-                        'tel:+' . $phone,
+                        'tel:+' . $phone, 
                         // message
                         $message,
+
                         'AEERK'
                     );
                 }elseif ($smsEtudiant->status == 2) {
@@ -92,17 +95,17 @@ class AncienController extends Controller
                     $token = array(
                         'token' => $data['access_token']
                     );
-                    $phone = $smsEtudiant->phone;
-                    // dd($phone);
+                    $phone = intval($smsEtudiant->phone);
                     $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom les documents que vous avez deposés pour les codifications ont ete rejetés veuiilez vous repprocher au-pres du bureau plus d'information. \nCordialement le Bureau de l'AEERK";
-
+                        
                     $response = $osms->sendSms(
                         // sender
-                        'tel:+221781956168',
+                        'tel:+' . $sendPhone->sendPhone,
                         // receiver
-                        'tel:+221' . $phone,
+                        'tel:+221782875971',
                         // message
                         $message,
+
                         'AEERK'
                     );
                 }
@@ -125,11 +128,12 @@ class AncienController extends Controller
 
                     $response = $osms->sendSms(
                         // sender
-                        'tel:+221781956168',
+                        'tel:+' . $sendPhone->sendPhone,
                         // receiver
                         'tel:+' . $phone,
                         // message
                         $message,
+
                         'AEERK'
                     );
                 }
@@ -284,6 +288,7 @@ class AncienController extends Controller
                 return back();
             }elseif($request->status == 2){
                 $ancien->status = $request->status;
+                $ancien->textmail = $request->body;
                 $ancien->save();
                 // Mail::to($ancien->email)
                 // ->send(new MessageEmailAeerk($ancien));
@@ -304,6 +309,7 @@ class AncienController extends Controller
             ]);
             $prix = Solde::select('prix_ancien')->first();
             $chambre_ancien = Etudiant::all();
+            $sendPhone = User::first();
             foreach($chambre_ancien as $chambres){
                 $ancien = Etudiant::where('chambre_id',$request->chambre_id)->get();
                 if ($chambres->chambre_id == $request->chambre_id) {
@@ -342,7 +348,7 @@ class AncienController extends Controller
 
                             $response = $osms->sendSms(
                                 // sender
-                                'tel:+221781956168',
+                                'tel:+' . $sendPhone->sendPhone,
                                 // receiver
                                 'tel:+' . $phone,
                                 // message
@@ -403,7 +409,7 @@ class AncienController extends Controller
 
                             $response = $osms->sendSms(
                                 // sender
-                                'tel:+221781956168',
+                                'tel:+' . $sendPhone->sendPhone,
                                 // receiver
                                 'tel:+' . $phone,
                                 // message
