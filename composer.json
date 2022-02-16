@@ -68,7 +68,8 @@
         },
         "files":[
             "app/Helpers/helper.php",
-            "app/Helpers/Sms.php"
+            "app/Helpers/Sms.php",
+            "app/Helpers/paydunya.php"
         ]
        
     },

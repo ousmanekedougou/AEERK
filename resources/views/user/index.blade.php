@@ -226,7 +226,7 @@
 			
 
 			<!-- Start search-course Area -->
-			{{-- <section class="search-course-area relative" style="margin-bottom:100px;">
+			 <section class="search-course-area relative" style="">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row justify-content-between align-items-center">
@@ -302,7 +302,7 @@
 						</div>
 					</div>
 				</div>	
-			</section> --}}
+			</section> 
 			<!-- End search-course Area -->
 
 
@@ -349,7 +349,7 @@
 			</section> --}}
 			<!-- End blog Area -->	
 
-
+			{{--
 			<!-- Nos partenaire -->
 			 <section class="upcoming-event-area section-gap" style="margin-top: -130px;">
 
@@ -370,7 +370,7 @@
 					</div>
 				</div>
 			</section> 
-
+			--}}
 
 				<!--  les temoignages -->
 			{{-- <section class="review-area section-gap relative" style="margin-top: -100px;">
