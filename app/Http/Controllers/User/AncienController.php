@@ -79,7 +79,7 @@ class AncienController extends Controller
         }
         $phoneFinale = '';
         $phoneComplet = '221'.$request->phone;
-        if (strlen($request->phone) == 13 ) {
+        if (strlen($request->phone) == 12 ) {
             $phoneFinale = $request->phone;
         }elseif (strlen($request->phone) == 9) {
             $phoneFinale = $phoneComplet;

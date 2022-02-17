@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Paydunya\Checkout\CheckoutInvoice;
 use App\Helpers\Sms;
+use App\Model\Admin\Info;
+
 class EtudiantCodificationController extends Controller
 {
     public function __construct()
@@ -70,7 +72,6 @@ class EtudiantCodificationController extends Controller
             'phone' => 'required|numeric',
             'status' => 'required|numeric'
         ]);
-        // dd($request->status);
          $phoneFinale = '';
         $phoneComplet = '221'.$request->phone;
         if (strlen($request->phone) == 12 ) {
@@ -78,6 +79,7 @@ class EtudiantCodificationController extends Controller
         }elseif (strlen($request->phone) == 9) {
             $phoneFinale = $phoneComplet;
         }
+        // dd($phoneFinale);
         if($request->status == 1){
             $status = $request->status;
             $nouveau = Etudiant::where(['email' => $request->email,'phone' => $phoneFinale,'codifier' => 0,'ancienete' => 1,'status' => 1,'prix' => 0])->first();
@@ -146,12 +148,13 @@ class EtudiantCodificationController extends Controller
      */
 
 
+    // Pour la codification des nouveaux
     public function update(Request $request,$id)
     {
         $validator = $this->validate($request , [
             'immeuble' => 'required|string',
         ]);
-        // dd('ddjjd');
+       
         $prix = Solde::select('prix_nouveau')->first();
         $immeuble = Immeuble::where(['id' => $request->immeuble , 'status' => 1])->first();
         $chambre_nouveau = Etudiant::all();
@@ -173,7 +176,7 @@ class EtudiantCodificationController extends Controller
                                 $invoice->addCustomData("email", $codifier_nouveau->email);
                                 $invoice->addCustomData("phone", $codifier_nouveau->phone);
                                 $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
-                                $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
+                                $invoice->addChannels(['wave-senegal']);
                                 if($invoice->create()) {
                                     return redirect(url($invoice->getInvoiceUrl()));
                                 }else{
@@ -216,34 +219,44 @@ class EtudiantCodificationController extends Controller
                             $is_pleine->is_pleine = 1;
                             $is_pleine->save();
                             $chambre_suivante = Chambre::where('is_pleine',0)->first();
-                            if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
-                                $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
-                                if($nouveau->count() < $chambres->nombre){
-                                    $codifier_nouveau = Etudiant::where('id',$id)->first();
-                                    if ($codifier_nouveau->codification_count < 5) {
-                                        $invoice = new CheckoutInvoice();
-                                        $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
-                                        $invoice->setTotalAmount($prix->prix_nouveau);
-                                        $invoice->addCustomData("id", $id);
-                                        $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
-                                        $invoice->addCustomData("chambres", $chambres->id);
-                                        $invoice->addCustomData("email", $codifier_nouveau->email);
-                                        $invoice->addCustomData("phone", $codifier_nouveau->phone);
-                                        $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
-                                        $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
+                            if ($chambre_suivante) {
+                                if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
+                                    $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
+                                    if($nouveau->count() < $chambres->nombre){
+                                        $codifier_nouveau = Etudiant::where('id',$id)->first();
+                                        if ($codifier_nouveau->codification_count < 5) {
+                                            $invoice = new CheckoutInvoice();
+                                            $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
+                                            $invoice->setTotalAmount($prix->prix_nouveau);
+                                            $invoice->addCustomData("id", $id);
+                                            $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
+                                            $invoice->addCustomData("chambres", $chambres->id);
+                                            $invoice->addCustomData("email", $codifier_nouveau->email);
+                                            $invoice->addCustomData("phone", $codifier_nouveau->phone);
+                                            $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
+                                            $invoice->addChannels(['wave-senegal']);
 
 
-                                        if($invoice->create()) {
-                                            return redirect(url($invoice->getInvoiceUrl()));
-                                        }else{
-                                            dd($invoice->response_text);
+                                            if($invoice->create()) {
+                                                return redirect(url($invoice->getInvoiceUrl()));
+                                            }else{
+                                                dd($invoice->response_text);
+                                            }
+                                        }else {
+                                            Auth::logout();
+                                            Flashy::error('Votre quota de codification est epuiser');
+                                            return redirect()->route('index')->with(['error' => 'Votre quotta de codofication est epuiser']);
                                         }
-                                    }else {
-                                        Auth::logout();
-                                         Flashy::error('Votre quota de codification est epuiser');
-                                        return redirect()->route('index')->with(['error' => 'Votre quotta de codofication est epuiser']);
                                     }
+                                }else {
+                                    Auth::logout();
+                                    Flashy::error('Il n\'existe plus de chambre pour votre status');
+                                    return redirect()->route('index')->with(['error' => 'Votre quotta de codification est epuiser']);
                                 }
+                            }else {
+                                Auth::logout();
+                                 Flashy::error('L\'immeuble est plein');
+                                return redirect()->route('index')->with(['error' => 'Votre quotta de codification est epuiser']);
                             }
                         }
                     }
@@ -283,7 +296,7 @@ class EtudiantCodificationController extends Controller
                                 $invoice->addCustomData("email", $codifier_ancien->email);
                                 $invoice->addCustomData("phone", $codifier_ancien->phone);
                                 $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                                $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
+                                $invoice->addChannels(['wave-senegal']);
                                 if($invoice->create()) {
                                     return redirect(url($invoice->getInvoiceUrl()));
                                 }else{
@@ -313,7 +326,7 @@ class EtudiantCodificationController extends Controller
                                         $invoice->addCustomData("email", $codifier_ancien->email);
                                         $invoice->addCustomData("phone", $codifier_ancien->phone);
                                         $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                                        $invoice->addChannels(['wave-senegal', 'orange-money-senegal']);
+                                        $invoice->addChannels(['wave-senegal']);
                                         if($invoice->create()) {
                                             return redirect(url($invoice->getInvoiceUrl()));
                                         }else{
@@ -390,33 +403,33 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->payment_methode = 'En ligne';
     $codifier_ancien->save();
 
-    Mail::to($codifier_ancien->email)
-    ->send(new MessageEmailAeerk($codifier_ancien));
-    $config = array(
-        'clientId' => config('app.clientId'),
-        'clientSecret' =>  config('app.clientSecret'),
-    );
-    $osms = new Sms($config);
+    // Mail::to($codifier_ancien->email)
+    // ->send(new MessageEmailAeerk($codifier_ancien));
+    // $config = array(
+    //     'clientId' => config('app.clientId'),
+    //     'clientSecret' =>  config('app.clientSecret'),
+    // );
+    // $osms = new Sms($config);
 
-    $data = $osms->getTokenFromConsumerKey();
-    $token = array(
-        'token' => $data['access_token']
-    );
-    $phone = $codifier_ancien->phone;
-    $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
-    $sendPhone = User::first();
-    $response = $osms->sendSms(
-        // sender
-        'tel:+' . $sendPhone->sendPhone,
-        // receiver
-        'tel:+' . $phone,
-        // message
-        $message,
-        'AEERK'
-    );
+    // $data = $osms->getTokenFromConsumerKey();
+    // $token = array(
+    //     'token' => $data['access_token']
+    // );
+    // $phone = $codifier_ancien->phone;
+    // $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+    // $sendPhone = User::first();
+    // $response = $osms->sendSms(
+    //     // sender
+    //     'tel:+' . $sendPhone->sendPhone,
+    //     // receiver
+    //     'tel:+' . $phone,
+    //     // message
+    //     $message,
+    //     'AEERK'
+    // );
     Flashy::success('Vous avez ete codifier');
     Auth::logout();
-    return redirect()->route('index');
+    return redirect()->route('createPdf',$codifier_ancien->id);
   }elseif ($invoice->getStatus() == "cancelled") {
       Flashy::success('Votre codification a echouer');
       return redirect()->route('index')->with(['error' => 'Votre codification a echouer']);
@@ -444,30 +457,36 @@ if ($invoice->confirm($token)) {
         //
     }
 
-    public function createPdf($id,$email,$phone){
-         $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
+    public function createPdf($id){
+        //  $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
          
-         $image_etudiant = Storage::url($etudiant->image);
-         $imge_s = str_replace("/storage/",'',$image_etudiant);
+        //  $image_etudiant = Storage::url($etudiant->image);
+        //  $imge_s = str_replace("/storage/",'',$image_etudiant);
 
-         $img = 'storage/app/public/'.$imge_s;
-         $path_img = base_path($img);
-         $type_img = pathinfo($path_img , PATHINFO_EXTENSION);
-         $data_img = file_get_contents($path_img);
-         $image = "data:image/" .$type_img. ';base64,' . base64_encode($data_img);
+        //  $img = 'storage/app/public/'.$imge_s;
+        //  $path_img = base_path($img);
+        //  $type_img = pathinfo($path_img , PATHINFO_EXTENSION);
+        //  $data_img = file_get_contents($path_img);
+        //  $image = "data:image/" .$type_img. ';base64,' . base64_encode($data_img);
 
-         $logo = 'image/accueil.png';
-         $path = base_path($logo);
-         $type = pathinfo($path , PATHINFO_EXTENSION);
-         $data = file_get_contents($path);
-         $pic = "data:image/" .$type. ';base64,' . base64_encode($data);
+        //  $logo = 'image/accueil.png';
+        //  $path = base_path($logo);
+        //  $type = pathinfo($path , PATHINFO_EXTENSION);
+        //  $data = file_get_contents($path);
+        //  $pic = "data:image/" .$type. ';base64,' . base64_encode($data);
 
-         $output = view('user.pdf',compact('etudiant','image','pic'));
-         $dompdf = new Dompdf();
-         $dompdf->loadHtml($output);
-         $dompdf->setPaper('A4','landscape');
-         $dompdf->render();
-         $dompdf->stream();
+        //  $output = view('user.pdf',compact('etudiant','image','pic'));
+        //  $dompdf = new Dompdf();
+        //  $dompdf->loadHtml($output);
+        //  $dompdf->setPaper('A4','landscape');
+        //  $dompdf->render();
+        //  $dompdf->stream();
+
+        $etudiant = Etudiant::where(['id' => $id , 'codifier' => 1])->first();
+        $image = Storage::url($etudiant->image);
+        $pic = 'image/accueil.png';
+        $info = Info::first();
+        return view('user.pdf',compact('etudiant','image','pic','info'));
         
     }
 }

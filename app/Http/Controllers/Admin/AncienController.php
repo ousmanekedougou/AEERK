@@ -287,6 +287,9 @@ class AncienController extends Controller
                 Flashy::success('Votre etudiant a ete valide');
                 return back();
             }elseif($request->status == 2){
+                $validator = $this->validate($request,[
+                    'body' => 'required'
+                ]);
                 $ancien->status = $request->status;
                 $ancien->textmail = $request->body;
                 $ancien->save();
@@ -355,8 +358,8 @@ class AncienController extends Controller
                                 $message,
                                 'AEERK'
                             );
-                            Mail::to($codifier_ancien->email)
-                            ->send(new MessageEmailAeerk($codifier_ancien));
+                            // Mail::to($codifier_ancien->email)
+                            // ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Votre etudiant a ete codifier');
                             return redirect()->route('admin.ancien.index');
                         }
@@ -417,8 +420,8 @@ class AncienController extends Controller
                                 'AEERK'
                             );
                             
-                            Mail::to($codifier_ancien->email)
-                            ->send(new MessageEmailAeerk($codifier_ancien));
+                            // Mail::to($codifier_ancien->email)
+                            // ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Votre etudiant a ete codifier');
                             return redirect()->route('admin.ancien.index');
                         }else {

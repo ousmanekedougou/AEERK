@@ -304,7 +304,11 @@ public function sendSms(Request $request)
                 Flashy::success('Votre etudiant a ete valide');
                 return back();
             }elseif($request->status == 2){
+                $validator = $this->validate($request,[
+                    'body' => 'required'
+                ]);
                 $nouveau->status = $request->status;
+                $nouveau->textmail = $request->body;
                 $nouveau->save();
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));

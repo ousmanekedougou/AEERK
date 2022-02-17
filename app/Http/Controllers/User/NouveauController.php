@@ -81,40 +81,45 @@ class NouveauController extends Controller
             $releverName = $request->relever->store('public/Nouveau');
         }
         $phoneFinale = '';
-        $phoneComplet = $request->indicatif.''.$request->phone;
-        if (strlen($request->phone) == 13 ) {
+        $phoneComplet = '221'.$request->phone;
+        if (strlen($request->phone) == 12 ) {
             $phoneFinale = $request->phone;
         }elseif (strlen($request->phone) == 9) {
             $phoneFinale = $phoneComplet;
         }else {
             return back()->with('error','votre numero de telephone est invalid');
         }
-        $add_nouveau->genre = $request->genre;
-        $add_nouveau->nom = $request->nom;
-        $add_nouveau->prenom = $request->prenom;
-        $add_nouveau->email = $request->email;
-        $add_nouveau->phone = $phoneFinale;
-        $add_nouveau->image = $imageName;
-        $add_nouveau->extrait = $extraitName;
-        $add_nouveau->attestation = $attestationName;
-        $add_nouveau->photocopie = $photocopieName;
-        $add_nouveau->relever = $releverName;
-        $add_nouveau->commune_id = $request->commune;
-        $add_nouveau->immeuble_id =  $immeuble->id;
-        $add_nouveau->status = 0;
-        $add_nouveau->ancienete = NOUVEAU;
-        $add_nouveau->save();
-        $numero_bureau = Solde::first();
-        // Nexmo::message()->send([
-        //     'to' => '221'.$numero_bureau->numero_nouveau,
-        //     'from' => '+221'.$request->phone,
-        //     'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
-        // ]);
-        Flashy::success('Votre Inscription a ete Valider');
-        return redirect()->route('index',$add_nouveau)->with([
-            "success" => "success",
-            "name" => "$add_nouveau->prenom $add_nouveau->nom"
-        ]);
+        if ($immeuble) {
+            # code...
+            $add_nouveau->genre = $request->genre;
+            $add_nouveau->nom = $request->nom;
+            $add_nouveau->prenom = $request->prenom;
+            $add_nouveau->email = $request->email;
+            $add_nouveau->phone = $phoneFinale;
+            $add_nouveau->image = $imageName;
+            $add_nouveau->extrait = $extraitName;
+            $add_nouveau->attestation = $attestationName;
+            $add_nouveau->photocopie = $photocopieName;
+            $add_nouveau->relever = $releverName;
+            $add_nouveau->commune_id = $request->commune;
+            $add_nouveau->immeuble_id =  $immeuble->id;
+            $add_nouveau->status = 0;
+            $add_nouveau->ancienete = NOUVEAU;
+            $add_nouveau->save();
+            $numero_bureau = Solde::first();
+            // Nexmo::message()->send([
+            //     'to' => '221'.$numero_bureau->numero_nouveau,
+            //     'from' => '+221'.$request->phone,
+            //     'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
+            // ]);
+            Flashy::success('Votre Inscription a ete Valider');
+            return redirect()->route('index',$add_nouveau)->with([
+                "success" => "success",
+                "name" => "$add_nouveau->prenom $add_nouveau->nom"
+            ]);
+        }else {
+           Flashy::error('Il n\'existe pas d\'immeuble pour vous');
+        }
     }
 
     /**

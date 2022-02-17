@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>AEERK|RECUE</title>
+    <title>{{$etudiant->prenom}}_{{$etudiant->nom}}_{{ $etudiant->phone }}</title>
   <style>
-      @font-face {
+@font-face {
   font-family: SourceSansPro;
   src: url(SourceSansPro-Regular.ttf);
 }
@@ -128,11 +128,25 @@ footer {
 #company img{
   margin-left: -20px;
 }
+ .btn{
+      border: 1px solid blue;
+      border-radius: 4px;
+      padding: 10px;
+      color: white;
+      background-color: blue;
+      margin: 10px;
+      margin-top: 20px;
+  }
+  @media print {
+      #print_Button{
+          display: none;
+      }
+  }
 
 
   </style>
   </head>
-  <body>
+  <body id="print">
       <h1 class="name_h1">REÇUE DE CODIFICATION</h1>
         <div class="box-shadow">
             <header class="clearfix">
@@ -140,10 +154,12 @@ footer {
                     <img src="{{$image}}">
                 </div>
                 <div id="company">
-                    <img src="{{$pic}}" width="147" height="30">
+                    <!-- <img src="{{$pic}}" width="147" height="30"> -->
+                    <img src="{{ asset('user/img/accueil.png') }}" width="147" height="30">
+                    <div>{{$info->email}}</div>
+                    <div>{{$info->phone}}</div>
                     <div>Rue 39x30</div>
-                    <div>77 000 00 00 / 78 000 00 00</div>
-                    <div><a href="">aeerk@gmail.com</a></div>
+                    <div><button  class="btn btn-success btn-xs" style="margin-top:10px" id="print_Button" onclick="printDiv()"><i class="fa fa-print">Telecharger le recu</i></button> </div>
                 </div>
             </header>
               <div id="details" class="clearfix">
@@ -173,7 +189,7 @@ footer {
                           @foreach($etudiant->chambre->immeubles as $ac_imb)
                                   {{$ac_imb->name}} : 
                           @endforeach
-                          a {{$etudiant->chambre->nom }}
+                          à  {{$etudiant->chambre->nom }}
                   </div>
                   <div class="date">
                       A la 
@@ -190,20 +206,20 @@ footer {
               </div>
     <main>
       <div class="container">
-          <h1 style="text-align: center;">Le Reglement interieur de l'AEERK</h1>
+          <h1 style="text-align: center;">LE REGLEMENT INTERIEURE DE L'AEERK</h1>
           <p class="text-justify">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
           </p>
-              <p class="text-justify">
+          <p class="text-justify">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
           </p>
-              <p class="text-justify">
+          <p class="text-justify">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
           </p>
-              <p class="text-justify">
+          <p class="text-justify">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
           </p>
-              <p class="text-justify">
+          <p class="text-justify">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi ut, commodi iure dignissimos sapiente nihil voluptatibus doloremque, obcaecati vel corporis aliquam unde, dolorum atque repudiandae consequuntur eligendi fuga voluptas nulla similique veniam quibusdam deserunt. Nemo possimus nesciunt sequi voluptates velit, consequatur voluptate! Accusamus quo molestias itaque at fuga ipsa est sunt cum quos exercitationem temporibus commodi explicabo voluptate, quisquam excepturi aperiam doloribus magni, ipsam illo tenetur voluptates tempora consequatur. Quae beatae dolore harum atque perspiciatis, ipsa, enim provident nisi tempore eligendi illum non numquam, magni fuga molestiae iste voluptatum quo sed dolor quod nihil. Quisquam exercitationem error laudantium id dignissimos?
           </p>
       </div>
@@ -213,8 +229,18 @@ footer {
         <div class="notice">Le Bureau</div>
       </div>
     </main>
-    <footer>
-      Invoice was created on a computer and is valid without the signature and seal.
-    </footer>
+
+     <script type="text/javascript">
+        function printDiv(){
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+    </script>
   </body>
 </html>
+
+
