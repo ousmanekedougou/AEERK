@@ -195,78 +195,92 @@ class DatabaseSeeder extends Seeder
                 'Oubadji' => 3,
                 'Salemata' => 3,
             ];
-             foreach ($salemata as $key_sale => $value_sale) {
+            foreach ($salemata as $key_sale => $value_sale) {
                 Commune::create([
                     'name' => $key_sale,
                     'departement_id' => $value_sale
                 ]);
             }
 
-            $immeubles = [
-                'Immeuble 39' , 'Immeuble 43' , 'Immeuble Zone A'
-            ];
-            foreach($immeubles as $imb){
-                Immeuble::create([
-                    'name' => $imb,
-                    'status' => 1
-                ]);
-            }
+            // $immeubles = [
+            //     'Immeuble 39' , 'Immeuble 43' , 'Immeuble Zone A'
+            // ];
+            // foreach($immeubles as $imb){
+            //     Immeuble::create([
+            //         'name' => $imb,
+            //         'status' => 1
+            //     ]);
+            // }
+
+            Immeuble::create([
+                'name' => 'Immeuble 43',
+                'status' => 1
+            ]);
+            Immeuble::create([
+                'name' => 'Immeuble 39',
+                'status' => 2
+            ]);
+            Immeuble::create([
+                'name' => 'Immeuble Zone A',
+                'status' => 2
+            ]);
+
+
 
             // Insertion Reseau Sociaux
-                Social::create(
-                [
-                    'name' => "facebook",
-                    'lien' => "www.facebook.com"
-                ]);
-                Social::create(
-                [
-                    'name' => "youtube",
-                    'lien' => "www.youtube.com"
-                ]);
-                Social::create(
-                [
-                    'name' => "twitter",
-                    'lien' => "www.twitter.com"
-                ]);
-                Social::create(
-                [
-                    'name' => "whatsapp",
-                    'lien' => "www.whatsapp.com"
-                ]);
-    
-                Social::create(
-                [
-                    'name' => "instagram",
-                    'lien' => "www.instagram.com"
-                ]);
+            Social::create(
+            [
+                'name' => "facebook",
+                'lien' => "www.facebook.com"
+            ]);
+            Social::create(
+            [
+                'name' => "youtube",
+                'lien' => "www.youtube.com"
+            ]);
+            Social::create(
+            [
+                'name' => "twitter",
+                'lien' => "www.twitter.com"
+            ]);
+            Social::create(
+            [
+                'name' => "whatsapp",
+                'lien' => "www.whatsapp.com"
+            ]);
+
+            Social::create(
+            [
+                'name' => "instagram",
+                'lien' => "www.instagram.com"
+            ]);
             // Fin des reseau sociaux
     
             // Insertion de Categorie
-    
             Category::create(
-                [
-                    'name' => "Politique",
-                    'slug' => "Campagne"
-                    
-                ]);
-                 Category::create(
-                [
-                    'name' => "Culturelle",
-                    'slug' => "Danse"
-                    
-                ]);
-                 Category::create(
-                [
-                    'name' => "Sport",
-                    'slug' => "Football"
-                    
-                ]);
-                 Category::create(
-                [
-                    'name' => "Religion",
-                    'slug' => "Gamou"
-                    
-                ]);
+            [
+                'name' => "Politique",
+                'slug' => "Campagne"
+                
+            ]);
+            Category::create(
+            [
+                'name' => "Culturelle",
+                'slug' => "Danse"
+                
+            ]);
+            Category::create(
+            [
+                'name' => "Sport",
+                'slug' => "Football"
+                
+            ]);
+            Category::create(
+            [
+                'name' => "Religion",
+                'slug' => "Gamou"
+                
+            ]);
     
             // Fin Insertion de Categorie
     
