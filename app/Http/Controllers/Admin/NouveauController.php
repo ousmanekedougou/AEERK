@@ -313,7 +313,7 @@ public function sendSms(Request $request)
                 Mail::to($nouveau->email)
                 ->send(new AeerkEmailMessage($nouveau));
                 //Doit se faire par sms
-                Flashy::error('Votre etudiant a ete ommis');
+                Flashy::success('Votre etudiant a ete ommis');
                 return back();
             }
         }
@@ -350,29 +350,29 @@ public function sendSms(Request $request)
                             $codifier_nouveau->payment_methode = 'Presentielle';
                             $codifier_nouveau->save();
 
-                            // Message sms
-                              $config = array(
-                                'clientId' => config('app.clientId'),
-                                'clientSecret' =>  config('app.clientSecret'),
-                            );
-                            $osms = new Sms($config);
+                            // // Message sms
+                            //   $config = array(
+                            //     'clientId' => config('app.clientId'),
+                            //     'clientSecret' =>  config('app.clientSecret'),
+                            // );
+                            // $osms = new Sms($config);
 
-                            $data = $osms->getTokenFromConsumerKey();
-                            $token = array(
-                                'token' => $data['access_token']
-                            );
-                            $phone = $codifier_nouveau->phone;
-                            $message = "AEERK KEDOUGOU:\nSalut $codifier_nouveau->prenom $codifier_nouveau->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
-                            $sendPhone = User::first();
-                            $response = $osms->sendSms(
-                                // sender
-                                'tel:+' . $sendPhone->sendPhone,
-                                // receiver
-                                'tel:+' . $phone,
-                                // message
-                                $message,
-                                'AEERK'
-                            );
+                            // $data = $osms->getTokenFromConsumerKey();
+                            // $token = array(
+                            //     'token' => $data['access_token']
+                            // );
+                            // $phone = $codifier_nouveau->phone;
+                            // $message = "AEERK KEDOUGOU:\nSalut $codifier_nouveau->prenom $codifier_nouveau->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+                            // $sendPhone = User::first();
+                            // $response = $osms->sendSms(
+                            //     // sender
+                            //     'tel:+' . $sendPhone->sendPhone,
+                            //     // receiver
+                            //     'tel:+' . $phone,
+                            //     // message
+                            //     $message,
+                            //     'AEERK'
+                            // );
 
                             Mail::to($codifier_nouveau->email)
                             ->send(new AeerkEmailMessage($codifier_nouveau));
@@ -410,28 +410,28 @@ public function sendSms(Request $request)
                             $codifier_nouveau->payment_methode = 'Presentielle';
                             $codifier_nouveau->save();
                             // Message sms
-                            $config = array(
-                                'clientId' => config('app.clientId'),
-                                'clientSecret' =>  config('app.clientSecret'),
-                            );
-                            $osms = new Sms($config);
+                            // $config = array(
+                            //     'clientId' => config('app.clientId'),
+                            //     'clientSecret' =>  config('app.clientSecret'),
+                            // );
+                            // $osms = new Sms($config);
 
-                            $data = $osms->getTokenFromConsumerKey();
-                            $token = array(
-                                'token' => $data['access_token']
-                            );
-                            $phone = $codifier_nouveau->phone;
-                            $message = "AEERK KEDOUGOU:\nSalut $codifier_nouveau->prenom $codifier_nouveau->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
-                            $sendPhone = User::first();
-                            $response = $osms->sendSms(
-                                // sender
-                                'tel:+' . $sendPhone->sendPhone,
-                                // receiver
-                                'tel:+' . $phone,
-                                // message
-                                $message,
-                                'AEERK'
-                            );
+                            // $data = $osms->getTokenFromConsumerKey();
+                            // $token = array(
+                            //     'token' => $data['access_token']
+                            // );
+                            // $phone = $codifier_nouveau->phone;
+                            // $message = "AEERK KEDOUGOU:\nSalut $codifier_nouveau->prenom $codifier_nouveau->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+                            // $sendPhone = User::first();
+                            // $response = $osms->sendSms(
+                            //     // sender
+                            //     'tel:+' . $sendPhone->sendPhone,
+                            //     // receiver
+                            //     'tel:+' . $phone,
+                            //     // message
+                            //     $message,
+                            //     'AEERK'
+                            // );
 
                             Mail::to($codifier_nouveau->email)
                             ->send(new AeerkEmailMessage($codifier_nouveau));

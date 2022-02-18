@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('sendmail');
             $table->integer('lien')->default(2);
             $table->string('sendPhone');
+            $table->string('text_dechifre')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

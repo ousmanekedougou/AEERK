@@ -403,8 +403,8 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->payment_methode = 'En ligne';
     $codifier_ancien->save();
 
-    // Mail::to($codifier_ancien->email)
-    // ->send(new MessageEmailAeerk($codifier_ancien));
+    Mail::to($codifier_ancien->email)
+    ->send(new MessageEmailAeerk($codifier_ancien));
     // $config = array(
     //     'clientId' => config('app.clientId'),
     //     'clientSecret' =>  config('app.clientSecret'),
@@ -429,7 +429,7 @@ if ($invoice->confirm($token)) {
     // );
     Flashy::success('Vous avez ete codifier');
     Auth::logout();
-    return redirect()->route('createPdf',$codifier_ancien->id);
+    return redirect()->route('createPdf',$codifier_ancien->id,$codifier_ancien->email,$codifier_ancien->phone);
   }elseif ($invoice->getStatus() == "cancelled") {
       Flashy::success('Votre codification a echouer');
       return redirect()->route('index')->with(['error' => 'Votre codification a echouer']);
@@ -457,7 +457,7 @@ if ($invoice->confirm($token)) {
         //
     }
 
-    public function createPdf($id){
+    public function createPdf($id,$email,$phone){
         //  $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
          
         //  $image_etudiant = Storage::url($etudiant->image);
@@ -482,7 +482,7 @@ if ($invoice->confirm($token)) {
         //  $dompdf->render();
         //  $dompdf->stream();
 
-        $etudiant = Etudiant::where(['id' => $id , 'codifier' => 1])->first();
+        $etudiant = Etudiant::where(['id' => $id ,'email' => $email ,'phone' => $phone, 'codifier' => 1])->first();
         $image = Storage::url($etudiant->image);
         $pic = 'image/accueil.png';
         $info = Info::first();

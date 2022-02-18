@@ -151,7 +151,7 @@ footer {
         <div class="box-shadow">
             <header class="clearfix">
                 <div id="logo">
-                    <img src="{{$image}}">
+                    <img src="{{$image}}" style="width: 100px;height:auto;">
                 </div>
                 <div id="company">
                     <!-- <img src="{{$pic}}" width="147" height="30"> -->

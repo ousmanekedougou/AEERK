@@ -295,7 +295,7 @@ class AncienController extends Controller
                 $ancien->save();
                 // Mail::to($ancien->email)
                 // ->send(new MessageEmailAeerk($ancien));
-                Flashy::error('Votre etudiant a ete ommis');
+                Flashy::success('Votre etudiant a ete ommis');
                 return back();
             }
         }
@@ -358,8 +358,8 @@ class AncienController extends Controller
                                 $message,
                                 'AEERK'
                             );
-                            // Mail::to($codifier_ancien->email)
-                            // ->send(new MessageEmailAeerk($codifier_ancien));
+                            Mail::to($codifier_ancien->email)
+                            ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Votre etudiant a ete codifier');
                             return redirect()->route('admin.ancien.index');
                         }
@@ -420,8 +420,8 @@ class AncienController extends Controller
                                 'AEERK'
                             );
                             
-                            // Mail::to($codifier_ancien->email)
-                            // ->send(new MessageEmailAeerk($codifier_ancien));
+                            Mail::to($codifier_ancien->email)
+                            ->send(new MessageEmailAeerk($codifier_ancien));
                             Flashy::success('Votre etudiant a ete codifier');
                             return redirect()->route('admin.ancien.index');
                         }else {

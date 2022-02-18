@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Mail;
+
+use App\Model\Admin\Info;
 use App\Model\User\Etudiant;
 use App\Model\User\User;
 use Illuminate\Bus\Queueable;
@@ -32,7 +34,8 @@ class AeerkEmailMessage extends Mailable
      */
     public function build()
     {
-        $user = User::select('sendmail')->first();
-        return $this->from($user->sendmail)->markdown('emails.admins.created');
+        $user = User::first();
+        $info = Info::first();
+        return $this->from($user->sendmail)->markdown('emails.admins.created',compact('user','info'));
     }
 }

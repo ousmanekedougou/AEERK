@@ -289,22 +289,24 @@
                                         </p>
                                         @if($msg->status == 1 && $msg->codifier != 1 && $msg->prix == 0)
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                           Nous vous invitons a aller jetter un cout d'oeil sur la page de documentation http://aeerk.herokuapp.com/systeme de la plateforme pour comprendre la procedure des codification.
+                                           Nous vous invitons a aller jetter un coup d'oeil sur la page de documentation <a href="https://aeerk.herokuapp.com/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure des codification.
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
                                             <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivante pour se connécter.
                                             <br>
-                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>aeerk@gmail.com 
+                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="https://aeerk.herokuapp.com/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
                                             <br>
-                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>password
+                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>{{$user->email}} 
+                                            <br>
+                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>{{$user->text_dechifre}}
                                         </p>
-
+                                        {{--
                                         <p style="line-height: 24px; margin-bottom:20px;">
-                                            @component('mail::button', ['url' => 'http://aeerk.herokuapp.com/codification'])
+                                            @component('mail::button', ['url' => 'https://aeerk.herokuapp.com/codification'])
                                                 Codification en ligne
                                             @endcomponent
                                         </p>
-
+                                        --}}
                                         <p style="line-height: 24px;margin-bottom:15px;">
                                            Et si vous n'aviez pas compris la procedure approchez vous au pres du bureau pour effectuer la codification en presentielle.
                                         </p>
@@ -312,9 +314,13 @@
                                         <p style="line-height: 24px;margin-bottom:15px;">
                                             Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
                                             Nous vous informons que vos documents déposés pour la codification n'ont pas étés accéptés. <br>
-                                            Vous pouvez vous raprocher auprès du bureau pour plus d'information <br>
-                                            Ou nous contactez sur le {{$info->phone}} ou sur l'adrésse mail suivante {{$info->email}}. 
+                                            
                                         </p>
+                                        <h3 style="font-weight:bold;text-decoration:underline;color:blue;text-align:center">Motif du rejet des documents :</h3>
+                                        <p>
+                                            {{$msg->textmail}} <br> <br>
+                                            Pour plus d'informations nous contacter sur l'adrésse mail suivante {{$info->email}} ou sur le {{$info->phone}}. 
+                                       </p>
                                         @elseif($msg->status == 1 && $msg->codifier == 1 && $msg->prix > 0)
                                             <p style="line-height: 24px;margin-bottom:15px;">
                                                 Votre codification à bien été enrégistré, vous êtes à
@@ -393,3 +399,5 @@
 </body>
 
 </html>
+
+

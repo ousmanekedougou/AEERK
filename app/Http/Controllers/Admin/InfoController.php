@@ -283,6 +283,7 @@ class InfoController extends Controller
                 ]);
                 $update_autorisation = User::where('id',$id)->first();
                 $update_autorisation->email = $request->email;
+                $update_autorisation->text_dechifre = $request->password;
                 $update_autorisation->password = Hash::make($request->password);
                 $update_autorisation->sendmail = $request->sendmail;
                 $update_autorisation->save();
