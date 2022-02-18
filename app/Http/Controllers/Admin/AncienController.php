@@ -36,9 +36,10 @@ class AncienController extends Controller
             $immeubles = Immeuble::where('status',2)->get();
             $ancien_bac = Etudiant::where('codifier', '=', 0)
             ->where('ancienete', '=', 2)->paginate(10);
+            $ancienCount = Etudiant::where('codifier', '=', 0)
+            ->where('ancienete', '=', 2)->get();
             $ancien_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 2)->where('codifier', '=', 0)->get();
-            $count_etudiant = $ancien_sms->count();
-            return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms','count_etudiant'));
+            return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms','ancienCount'));
         }
                         
         return redirect(route('admin.home'));
@@ -96,7 +97,7 @@ class AncienController extends Controller
                         'token' => $data['access_token']
                     );
                     $phone = intval($smsEtudiant->phone);
-                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom les documents que vous avez deposés pour les codifications ont ete rejetés veuiilez vous repprocher au-pres du bureau plus d'information. \nCordialement le Bureau de l'AEERK";
+                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom les documents que vous avez deposés pour les codifications ont été rejetés\n\nMotif du rejet :\n$smsEtudiant->texmail.\nVeuiilez vous repprocher au-pres du bureau plus d'information. \nCordialement le Bureau de l'AEERK";
                         
                     $response = $osms->sendSms(
                         // sender
@@ -111,8 +112,8 @@ class AncienController extends Controller
                 }
             }elseif ($request->sms == 2) {
                   if ($smsEtudiant->status == 1) {
-                    Mail::to($smsEtudiant->email)
-                    ->send(new MessageEmailAeerk($smsEtudiant));
+                    // Mail::to($smsEtudiant->email)
+                    // ->send(new MessageEmailAeerk($smsEtudiant));
                     $config = array(
                         'clientId' => config('app.clientId'),
                         'clientSecret' =>  config('app.clientSecret'),

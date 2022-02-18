@@ -192,7 +192,7 @@ footer {
                           à  {{$etudiant->chambre->nom }}
                   </div>
                   <div class="date">
-                      A la 
+                      à la 
                       @if($etudiant->position == 1)
                           {{$etudiant->position}} ere
                       @else 

@@ -37,9 +37,10 @@ class NouveauController extends Controller
             $immeubles = Immeuble::where('status',1)->first();
             $nouveau_bac = Etudiant::where('codifier', '=', 0)
             ->where('ancienete', '=', 1)->paginate(10);
+            $nouveauCount = Etudiant::where('codifier', '=', 0)
+            ->where('ancienete', '=', 1)->get();
             $nouveau_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 1)->where('codifier', '=', 0)->get();
-            $count_etudiant = $nouveau_sms->count();
-            return view('admin.nouveau.index',compact('nouveau_bac','immeubles','nouveau_sms','count_etudiant'));
+            return view('admin.nouveau.index',compact('nouveau_bac','immeubles','nouveau_sms','nouveauCount'));
         }                 
         return redirect(route('admin.home'));
     }
@@ -111,8 +112,8 @@ public function sendSms(Request $request)
                 }
             }elseif ($request->sms == 2) {
                   if ($smsEtudiant->status == 1) {
-                    Mail::to($smsEtudiant->email)
-                    ->send(new AeerkEmailMessage($smsEtudiant));
+                    // Mail::to($smsEtudiant->email)
+                    // ->send(new AeerkEmailMessage($smsEtudiant));
                     $config = array(
                         'clientId' => config('app.clientId'),
                         'clientSecret' =>  config('app.clientSecret'),
@@ -298,8 +299,8 @@ public function sendSms(Request $request)
             if($request->status == 1){
                 $nouveau->status = $request->status;
                 $nouveau->save();
-                Mail::to($nouveau->email)
-                ->send(new AeerkEmailMessage($nouveau));
+                // Mail::to($nouveau->email)
+                // ->send(new AeerkEmailMessage($nouveau));
                 //Doit se faire par sms
                 Flashy::success('Votre etudiant a ete valide');
                 return back();
@@ -310,8 +311,8 @@ public function sendSms(Request $request)
                 $nouveau->status = $request->status;
                 $nouveau->textmail = $request->body;
                 $nouveau->save();
-                Mail::to($nouveau->email)
-                ->send(new AeerkEmailMessage($nouveau));
+                // Mail::to($nouveau->email)
+                // ->send(new AeerkEmailMessage($nouveau));
                 //Doit se faire par sms
                 Flashy::success('Votre etudiant a ete ommis');
                 return back();

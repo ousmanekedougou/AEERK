@@ -1,58 +1,57 @@
 @extends('user.layouts.app',['title' => 'acceuil'])
 @section('head')
-		<style type="text/css">
-						
-			#myModal {
-				position:fixed; 
-				display : none; 
-				top : 25%; 
-				
+	<style type="text/css">
+					
+		#myModal {
+			position:fixed; 
+			display : none; 
+			top : 25%; 
+			
+		}
+		.logo-slider .item{
+		background-color: #fff;
+		box-shadow: 0 4px 5px #cacaca;
+		border: 1px solid blue;
+		border-radius: 8px;
+		padding: 15px;
+		}
+		.logo-slider .item img{
+			width: 100%;
+		}
+			.logo-slider .slick-slide{
+			margin: 15px;
+		}
+		.slick-dots li.slick-active button:before{
+			color: #ff5722;
+		}
+		.slick-dots li button:before{
+			font-size: 12px;
+		}
+		.slick-next:before,.slick-prev:before{
+			color: #ff8159;
+			font-size: 24px;
+		}
+		.item:hover{
+			display: block;
+			transition: all ease 0,3s;
+			transform: scale(1.1) translateY(-5px);
+		}
+
+		@media (max-width: 768px) {
+			.slick-next,.slick-prev {
+				width: 1rem;
+				height: 1rem;
+				margin: 0 10px 0 5px;
+			}
+			.logo-slider .slick-slide{
+				margin: 4px;
 			}
 			.logo-slider .item{
-			background-color: #fff;
-			box-shadow: 0 4px 5px #cacaca;
-			border: 1px solid blue;
-			border-radius: 8px;
-			padding: 15px;
+				padding: 5px;
 			}
-			.logo-slider .item img{
-				width: 100%;
-			}
-				.logo-slider .slick-slide{
-				margin: 15px;
-			}
-			.slick-dots li.slick-active button:before{
-				color: #ff5722;
-			}
-			.slick-dots li button:before{
-				font-size: 12px;
-			}
-			.slick-next:before,.slick-prev:before{
-				color: #ff8159;
-				font-size: 24px;
-			}
-			.item:hover{
-				display: block;
-				transition: all ease 0,3s;
-				transform: scale(1.1) translateY(-5px);
-			}
+		}
 
-			@media (max-width: 768px) {
-				.slick-next,.slick-prev {
-					width: 1rem;
-					height: 1rem;
-					margin: 0 10px 0 5px;
-				}
-				.logo-slider .slick-slide{
-					margin: 4px;
-				}
-				.logo-slider .item{
-					padding: 5px;
-				}
-			}
-
-		</style>
-
+	</style>
 @endsection
 @section('main-content')
     		<!-- start banner Area -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en zxx" class="no-js">
+<html lang="fr" class="no-js">
 
 <head>
 @include('user/layouts/head')

@@ -429,7 +429,7 @@ if ($invoice->confirm($token)) {
     // );
     Flashy::success('Vous avez ete codifier');
     Auth::logout();
-    return redirect()->route('createPdf',$codifier_ancien->id,$codifier_ancien->email,$codifier_ancien->phone);
+    return redirect()->route('createPdf',['id' => $codifier_ancien->id,'email' => $codifier_ancien->email,'phone' => $codifier_ancien->phone]);
   }elseif ($invoice->getStatus() == "cancelled") {
       Flashy::success('Votre codification a echouer');
       return redirect()->route('index')->with(['error' => 'Votre codification a echouer']);
