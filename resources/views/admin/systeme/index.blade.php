@@ -253,7 +253,7 @@
 @endsection
 
   @section('footersection')
-  <script src={{ asset('admin/bower_components/ckeditor/ckeditor.js"></script')}}></script>
+  <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js')}}"></script>
   <script>
     $(function () {
       // Replace the <textarea id="editor1"> with a CKEditor

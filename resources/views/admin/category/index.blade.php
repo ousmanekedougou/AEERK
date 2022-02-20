@@ -75,14 +75,6 @@
                   </tr>
                   @endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th class="text-center">Num</th>
-                  <th class="text-center">Categorie</th>
-                  <th class="text-center">Etiquete</th>
-                  <th class="text-center">Options</th>
-                </tr>
-                </tfoot>
               </table>
               {{ $categorys->links() }}
             </div>

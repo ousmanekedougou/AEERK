@@ -21,19 +21,15 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isAdmin']);
 
     }
     
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('admins.index')) 
-        {
-            $admins = Admin::all();
-            return view('admin.admin.index',compact('admins'));
-        }
-            
-        return redirect(route('admin.home'));
+        $admins = Admin::all();
+        $commission = Commission::all();
+        return view('admin.admin.index',compact('admins','commission'));
     }
 
     /**
@@ -43,14 +39,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        if (Auth::guard('admin')->user()->can('admins.create')) 
-        {
-            $roles = Role::all();
-            $commission = Commission::all();
-            return view('admin.admin.add',compact('roles','commission'));
-        }
-                
-        return redirect(route('admin.home'));
+        $roles = Role::all();
+        $commission = Commission::all();
+        return view('admin.admin.add',compact('roles','commission'));
     }
 
     /**
@@ -61,29 +52,28 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::guard('admin')->user()->can('admins.create')) 
-        {
-            $this->validate($request,[
-                'name' => 'required|string',
-                'email' => 'required|unique:admins',
-                'phone' => 'required|unique:admins|numeric',
-                'password' => 'required|min:6|string',
-                'image' => 'required|image | mimes:jpeg,png,jpg,gif,ijf',
-            ]);
-        
-            $request['password'] = Hash::make($request->password);
-            $admin = Admin::create($request->all());
-            if($request->hasFile('image')){
-                $imageName = $request->image->store('public/Admin');
-            }
-            $admin->image = $imageName;
-            $admin->save();
-            $admin->roles()->sync($request->role);
-            Flashy::success('Votre administrateur a ete ajoute');
-            return redirect()->route('admin.admin.index');
+        $this->validate($request,[
+            'name' => 'required|string',
+            'email' => 'required|unique:admins',
+            'phone' => 'required|unique:admins|numeric',
+            'role' => 'required|numeric',
+            'password' => 'required|min:6|string',
+            'image' => 'required|image | mimes:jpeg,png,jpg,gif,ijf',
+        ]);
+        if($request->hasFile('image')){
+            $imageName = $request->image->store('public/Admin');
         }
-                    
-        return redirect(route('admin.home'));
+        $admin = new Admin();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+        $admin->password = Hash::make($request->password);
+        $admin->is_admin = $request->role;
+        $admin->image = $imageName;
+        $admin->status = 1;
+        $admin->save();
+        Flashy::success('Votre administrateur a ete ajoute');
+        return redirect()->route('admin.admin.index');
     }
 
     /**
@@ -106,15 +96,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
-            $admins = Admin::find($id);
-            $commission = Commission::all();
-            $roles = Role::all();
-            return view('admin.admin.edit',compact(['admins','roles','commission']));
-        }
-                
-        return redirect(route('admin.home'));
+        $admins = Admin::find($id);
+        $commission = Commission::all();
+        $roles = Role::all();
+        return view('admin.admin.edit',compact(['admins','roles','commission']));
     }
 
     /**
@@ -126,19 +111,12 @@ class AdminController extends Controller
      */
         public function update(Request $request, $id)
         {
-            if (Auth::guard('admin')->user()->can('admins.update')) 
-            {
-                // dd($request->all());
-                $update_admin = Admin::where('id',$id)->first();
-                $update_admin->status = $request->status;
-                $update_admin->poste_id = $request->poste;
-                $update_admin->save();
-                $update_admin->roles()->sync($request->role);
-                Flashy::success('Votre administrateur a ete modifier');
-                return redirect()->route('admin.admin.index');
-            }
-                    
-            return redirect(route('admin.home'));
+            $update_admin = Admin::where('id',$id)->first();
+            $update_admin->is_admin = $request->role;
+            $update_admin->status = $request->status;
+            $update_admin->save();
+            Flashy::success('Votre administrateur a ete modifier');
+            return redirect()->route('admin.admin.index');
         }
 
         /**
@@ -149,15 +127,10 @@ class AdminController extends Controller
          */
         public function destroy($id)
         {
-            if (Auth::guard('admin')->user()->can('admins.delete')) 
-            {
-                $admin_delete = Admin::where('id',$id)->delete();
-                $imgdel = $admin_delete->image;
-                Storage::delete($imgdel); 
-                $admin_delete->delete();
-                return back();
-            }
-                        
-            return redirect(route('admin.home'));
+            $admin_delete = Admin::where('id',$id)->delete();
+            $imgdel = $admin_delete->image;
+            Storage::delete($imgdel); 
+            $admin_delete->delete();
+            return back();
         }
 }

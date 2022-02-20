@@ -19,25 +19,18 @@ class DocumentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isEduc']);
     }
 
     public function index() {
-        if (Auth::guard('admin')->user()->can('posts.viewAny')) 
-        {
-            $document_all = Document::all();
-            return view('admin.document.index',compact('document_all'));
-        }
-         return redirect(route('admin.home'));
+        
+        $document_all = Document::all();
+        return view('admin.document.index',compact('document_all'));
     }
     
     public function create()
     {
-        if (Auth::guard('admin')->user()->can('posts.create')) 
-        {
-            return view('admin.document.add');
-        }
-         return redirect(route('admin.home'));
+        return view('admin.document.add');
     }
 
     /**
@@ -48,30 +41,26 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::guard('admin')->user()->can('posts.create')) 
-        {
-            $validator = $this->validate($request,[
-                'libele' => 'required|string',
-                'type' => 'required|string',
-                'image' => 'required|mimes:pdf,PDF',
-                'resume' => 'required|string',
-            ]);
+        $validator = $this->validate($request,[
+            'libele' => 'required|string',
+            'type' => 'required|string',
+            'image' => 'required|mimes:pdf,PDF',
+            'resume' => 'required|string',
+        ]);
 
-            $add_doc = new Document();
-            if ($request->hasFile('image')) {
-                $imageName = $request->image->store('public/Document');
-            }
-
-            $add_doc->libele = $request->libele;
-            $add_doc->type = $request->type;
-            $add_doc->resume = $request->resume;
-            $add_doc->status = $request->status;
-            $add_doc->image = $imageName;
-            $add_doc->save();
-            Flashy::success('Votre Document a ete ajoute');
-            return redirect()->route('admin.document.index');
+        $add_doc = new Document();
+        if ($request->hasFile('image')) {
+            $imageName = $request->image->store('public/Document');
         }
-         return redirect(route('admin.home'));
+
+        $add_doc->libele = $request->libele;
+        $add_doc->type = $request->type;
+        $add_doc->resume = $request->resume;
+        $add_doc->status = $request->status;
+        $add_doc->image = $imageName;
+        $add_doc->save();
+        Flashy::success('Votre Document a ete ajoute');
+        return redirect()->route('admin.document.index');
     }
 
     /**
@@ -93,12 +82,8 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::guard('admin')->user()->can('posts.update')) 
-        {
-            $edit_doc = Document::find($id);
-            return view('admin.document.edite',compact('edit_doc'));
-        }
-         return redirect(route('admin.home'));
+        $edit_doc = Document::find($id);
+        return view('admin.document.edite',compact('edit_doc'));
     }
 
     /**
@@ -110,26 +95,22 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('posts.update')) 
-        {
-            $update_doc = Document::find($id);
-            $docment = $update_doc->image;
-            if ($request->hasFile('image')) {
-                $imageName = $request->image->store('public/Document');
-                Storage::delete($docment);
-            }elseif ($request->image == Null){
-                $imageName = $update_doc->image;
-            }
-            $update_doc->libele = $request->libele;
-            $update_doc->type = $request->type;
-            $update_doc->resume = $request->resume;
-            $update_doc->status = $request->status;
-            $update_doc->image = $imageName;
-            $update_doc->save();
-            Flashy::success('Votre Document a ete modifier');
-            return redirect()->route('admin.document.index');
+        $update_doc = Document::find($id);
+        $docment = $update_doc->image;
+        if ($request->hasFile('image')) {
+            $imageName = $request->image->store('public/Document');
+            Storage::delete($docment);
+        }elseif ($request->image == Null){
+            $imageName = $update_doc->image;
         }
-         return redirect(route('admin.home'));
+        $update_doc->libele = $request->libele;
+        $update_doc->type = $request->type;
+        $update_doc->resume = $request->resume;
+        $update_doc->status = $request->status;
+        $update_doc->image = $imageName;
+        $update_doc->save();
+        Flashy::success('Votre Document a ete modifier');
+        return redirect()->route('admin.document.index');
     }
 
     /**
@@ -140,16 +121,12 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('posts.delete')) 
-        {
-            $doc_delete = Document::find($id);
-            $doc_img = $doc_delete->image;
-            Storage::delete($doc_img);
-            $doc_delete->delete();
-            Flashy::success('Votre document a ete supprimer');
-            return back();
-        }
-         return redirect(route('admin.home'));
+        $doc_delete = Document::find($id);
+        $doc_img = $doc_delete->image;
+        Storage::delete($doc_img);
+        $doc_delete->delete();
+        Flashy::success('Votre document a ete supprimer');
+        return back();
     }
 
 

@@ -18,7 +18,6 @@
           @endif
         </span>
         @if($immeubles->status == 1)
-            @can('codifier.create', Auth::guard('admin')->user())
               <span class="etudiant_migration"  style="float:right;">
                     <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-share"> Migrer</i></a>
 
@@ -48,7 +47,6 @@
                         <!-- /.modal-dialog -->
                       </div>
               </span>
-            @endcan
         @endif
         <br>
 

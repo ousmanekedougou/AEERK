@@ -11,7 +11,7 @@ class PosteCommissionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isAdmin']);
     }
     /**
      * Display a listing of the resource.
@@ -42,8 +42,6 @@ class PosteCommissionController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::guard('admin')->user()->can('logement.create')) 
-        {
             $this->validate($request,[
                 'name' => 'required',
                 'commission' => 'required',
@@ -54,9 +52,6 @@ class PosteCommissionController extends Controller
             $add_poste->commissions()->sync($request->commission);
             Flashy::success('Votre poste a ete ajoute');
             return back();
-        }
-                                    
-        return redirect(route('admin.home'));
 
     }
 
@@ -91,21 +86,16 @@ class PosteCommissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('logement.update')) 
-        {
-            $this->validate($request,[
-                'name' => 'required',
-                'commission' => 'required',
-            ]);
-            $update_poste = Poste::find($id);
-            $update_poste->name = $request->name;
-            $update_poste->save();
-            $update_poste->commissions()->sync($request->commission);
-            Flashy::success('Votre poste a ete modifier');
-            return back();
-        }
-                                        
-        return redirect(route('admin.home'));
+        $this->validate($request,[
+            'name' => 'required',
+            'commission' => 'required',
+        ]);
+        $update_poste = Poste::find($id);
+        $update_poste->name = $request->name;
+        $update_poste->save();
+        $update_poste->commissions()->sync($request->commission);
+        Flashy::success('Votre poste a ete modifier');
+        return back();
     }
 
     /**
@@ -116,13 +106,8 @@ class PosteCommissionController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('logement.delete')) 
-        {
-            Poste::find($id)->delete();
-            Flashy::error('Votre poste a ete supprimer');
-            return back();
-        }
-                                            
-        return redirect(route('admin.home'));
+        Poste::find($id)->delete();
+        Flashy::error('Votre poste a ete supprimer');
+        return back();
     }
 }

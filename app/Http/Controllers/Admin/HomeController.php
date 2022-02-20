@@ -22,14 +22,11 @@ class HomeController extends Controller {
     
     public function index() 
     {
-        // if (Auth::guard('admin')->user()->can('admins.index')) 
-        // {
-            $contact_nomLue = Contact::where('status',0)->get();
-            $contact_lue = Contact::where('status',1)->get();
-            $admin_all = Admin::all();
-            $team_all = Team::all();
-            $partenaire_all = Partenaire::all();
-        // }
+        $contact_nomLue = Contact::where('status',0)->get();
+        $contact_lue = Contact::where('status',1)->get();
+        $admin_all = Admin::all();
+        $team_all = Team::all();
+        $partenaire_all = Partenaire::all();
         
         $nouveau_total_inscrit = Etudiant::where(['ancienete' => 1 , 'status' => 0])->get();
         $nouveau_total_valider = Etudiant::where(['ancienete' => 1 , 'status' => 1])->get();

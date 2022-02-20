@@ -14,11 +14,9 @@
    <div class="box-body">
           <div class="">
             <div class="col-lg-6 col-lg-offset-5">
-              @can('logement.create', Auth::guard('admin')->user())
               <div class="form-group pull-right">
                   <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-add-commission" class="col-lg-offset-5 btn btn-primary" href="">Ajouter une commission</a>
               </div>
-              @endcan
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -36,10 +34,7 @@
                           <td>1</td>
                             <td>{{ $com->name }}</td>
                             <td>
-                            @can('logement.update', Auth::guard('admin')->user())
                               <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-{{ $com->id }}" class="mr-5"><i class="glyphicon glyphicon-edit"></i></a>
-                            @endcan
-                            @can('logement.delete', Auth::guard('admin')->user())
                               <a data-toggle="modal" data-target="#modal-default-delete-{{$com->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               <div class="modal fade" id="modal-default-delete-{{$com->id}}">
                                 <div class="modal-dialog modal-sm">
@@ -67,7 +62,6 @@
                                 </div>
                                 <!-- /.modal-dialog -->
                               </div>
-                              @endcan
                             </td>
                           </tr>
                           @endforeach
@@ -84,12 +78,10 @@
    <div class="box-body">
           <div class="">
           <div class="col-lg-6 col-lg-offset-5">
-            @can('logement.create', Auth::guard('admin')->user())
             <div class="form-group pull-right">
             <a  data-toggle="modal" data-id="#commission" data-name="commission" data-target="#modal-default-poste-add" class="col-lg-offset-5 btn btn-primary" href="">Ajouter un Poste</a>
               </div>
             </div>
-            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center responsive-table table-bordered table-striped">
@@ -112,10 +104,8 @@
                             @endforeach
                             </td>
                             <td>
-                            @can('logement.update', Auth::guard('admin')->user())
                               <a data-toggle="modal" data-id="{{$poste->id}}" data-name="{{$poste->name}}" data-target="#modal-default-poste-{{ $poste->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                            @endcan
-                            @can('logement.delete', Auth::guard('admin')->user())
+                            
                                <a data-toggle="modal" data-target="#modal-default-delete-poste-{{$poste->id}}" style="margin-left:15px;"><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               <div class="modal fade" id="modal-default-delete-poste-{{$poste->id}}">
                                 <div class="modal-dialog modal-sm">
@@ -143,7 +133,6 @@
                                 </div>
                                 <!-- /.modal-dialog -->
                               </div>
-                            @endcan
                               </td>
                           </tr>
                           @endforeach
@@ -198,7 +187,7 @@
           <!-- /.modal-dialog -->
         </div>
 
-  @foreach($add_commission as $modal_com)
+      @foreach($add_commission as $modal_com)
         <div class="modal fade" id="modal-default-{{ $modal_com->id }}">
           <div class="modal-dialog">
             <div class="modal-content">

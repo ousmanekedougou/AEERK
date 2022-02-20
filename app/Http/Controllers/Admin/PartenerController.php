@@ -16,7 +16,7 @@ class PartenerController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isAdmin']);
     }
     
     public function index()
@@ -42,8 +42,6 @@ class PartenerController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::guard('admin')->user()->can('admins.create')) 
-        {
         $this->validate($request,[
             'name' => 'required|string',
             'lien' => 'required|string',
@@ -63,8 +61,6 @@ class PartenerController extends Controller
         $add_partener->save();
         Flashy::success('Votre partenaire a ete ajouter');
         return back();
-        }
-            return redirect(route('admin.home'));
     }
 
     /**
@@ -98,8 +94,6 @@ class PartenerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $this->validate($request,[
             'name' => 'required|string',
             'lien' => 'required|string',
@@ -122,8 +116,6 @@ class PartenerController extends Controller
         $update_partener->save();
         Flashy::success('Votre partenaire a ete modifier');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
 
@@ -135,12 +127,8 @@ class PartenerController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('admins.delete')) 
-        {
         Partenaire::find($id)->delete();
         Flashy::success('Votre Partenaire a ete supprimer');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 }

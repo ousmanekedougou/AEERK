@@ -16,9 +16,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="" style="margin-left: 12px;">
-        @can('posts.create', Auth::guard('admin')->user())
           <a class="btn btn-success" href="{{ route('admin.post.create') }}">Ajouter Un Article</a>
-        @endcan
       </div>
 
             {{-- Card horizontal --}}
@@ -47,14 +45,10 @@
                               </p>
                               <p class="card-text">
                                 <div class="text-muted text-center">
-                                  @can('posts.update', Auth::guard('admin')->user())
                                     <a data-toggle="modal" data-id="{{$post->id}}" data-name="{{$post->title}}" data-target="#modal-default-chambre-{{ $post->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
-                                  @endcan
-                                  @can('posts.update', Auth::guard('admin')->user())
+                                
                                     <a href="{{ route('admin.post.edit',$post->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a>
-                                  @endcan
-
-                                  @can('posts.delete', Auth::guard('admin')->user())
+                                 
                                     <a data-toggle="modal" data-target="#modal-default-{{$post->id}}"><i class="fa fa-trash btn btn-danger card-link btn-xs"> </i></a>
                                     <div class="modal fade" id="modal-default-{{$post->id}}">
                                       <div class="modal-dialog modal-sm">
@@ -82,7 +76,6 @@
                                       </div>
                                       <!-- /.modal-dialog -->
                                     </div>
-                                   @endcan
                                 </div>
                               </p>
                             </div>
@@ -105,92 +98,91 @@
 
 
           @foreach($posts as $post)
-            
-        <div class="modal fade" id="modal-default-chambre-{{ $post->id }}">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"></h4>
-              </div>
-             
-                <div class="modal-body">
-                  <p>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <!-- Box Comment -->
-                        <div class="box box-widget">
-                          <div class="box-body">
-                            <div class="row">
-                              <div class="col-sm-7">
-                              <img class="img-responsive pad" style="width:100% auto;" src="{{ Storage::url($post->image) }}" alt="Photo">
-                              <h4 class="text-bold">{{ $post->title }}</h4>
-                            </div>
-                              <div class="col-sm-5">
-                                <h4 class="text-bold"> Publiere le : {{ $post->created_at->toFormattedDateString() }}</h4>
-                              <p> <span class="text-bold text-primary">Catagories : </span> 
-                                @foreach ($post->categories as $category_post)
-                                    {{ $category_post->name }},
-                                @endforeach
-                              </p>
-                              <p> <span class="text-bold text-primary">Etiquettes : </span> 
-                                @foreach ($post->tags as $tag_post)
-                                    {{ $tag_post->name }},
-                                @endforeach
-                              </p>
-                              <p class="card-text">
-                                <h4 class="text-bold">Avis des utilisateurs</h4>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> comments</button> 
-                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-o-up"></i> Like</button>
+            <div class="modal fade" id="modal-default-chambre-{{ $post->id }}">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"></h4>
+                  </div>
+                
+                    <div class="modal-body">
+                      <p>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <!-- Box Comment -->
+                            <div class="box box-widget">
+                              <div class="box-body">
+                                <div class="row">
+                                  <div class="col-sm-7">
+                                  <img class="img-responsive pad" style="width:100% auto;" src="{{ Storage::url($post->image) }}" alt="Photo">
+                                  <h4 class="text-bold">{{ $post->title }}</h4>
+                                </div>
+                                  <div class="col-sm-5">
+                                    <h4 class="text-bold"> Publiere le : {{ $post->created_at->toFormattedDateString() }}</h4>
+                                  <p> <span class="text-bold text-primary">Catagories : </span> 
+                                    @foreach ($post->categories as $category_post)
+                                        {{ $category_post->name }},
+                                    @endforeach
+                                  </p>
+                                  <p> <span class="text-bold text-primary">Etiquettes : </span> 
+                                    @foreach ($post->tags as $tag_post)
+                                        {{ $tag_post->name }},
+                                    @endforeach
+                                  </p>
+                                  <p class="card-text">
+                                    <h4 class="text-bold">Avis des utilisateurs</h4>
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comments"></i> comments</button> 
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-o-up"></i> Like</button>
 
-                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-o-down"></i> Dislike</button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> vues</button>
-                              </p>
-                              <p class="card-text">
-                                <h4 class="text-bold">Partage des aux reseaux sociaux</h4>
-                                <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-facebook"></i> 12</button> 
-                                <button type="button" class="btn btn-info btn-sm"><i class="fa  fa-twitter"></i> 23</button>
-    
-                                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-instagram"></i> 12</button>
-                                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-whatsapp"></i> 34</button>
-                              </p>
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-thumbs-o-down"></i> Dislike</button>
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> vues</button>
+                                  </p>
+                                  <p class="card-text">
+                                    <h4 class="text-bold">Partage des aux reseaux sociaux</h4>
+                                    <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-facebook"></i> 12</button> 
+                                    <button type="button" class="btn btn-info btn-sm"><i class="fa  fa-twitter"></i> 23</button>
+        
+                                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-instagram"></i> 12</button>
+                                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-whatsapp"></i> 34</button>
+                                  </p>
+                                  </div>
+                                </div>
+                                
+      
                               </div>
-                            </div>
+                              <!-- /.box-body -->
+                              <div class="box-footer box-comments">
+                                <div class="box-comment">
+                                  <div class="comment-text text-justify">
+                                        <span class="username">
+                                          Description
+                                        
+                                        </span>
+                                        <br>
+                                        {!! $post->body !!}
+                                  </div>
+                                  <!-- /.comment-text -->
+                                </div>
+                                <!-- /.box-comment -->
+                              
                             
-  
-                          </div>
-                          <!-- /.box-body -->
-                          <div class="box-footer box-comments">
-                            <div class="box-comment">
-                              <div class="comment-text text-justify">
-                                    <span class="username">
-                                      Description
-                                     
-                                    </span>
-                                    <br>
-                                    {!! $post->body !!}
                               </div>
-                              <!-- /.comment-text -->
-                            </div>
-                            <!-- /.box-comment -->
-                           
                         
+                            </div>
+                            <!-- /.box -->
                           </div>
-                     
                         </div>
-                        <!-- /.box -->
-                      </div>
+                      </p>
                     </div>
-                  </p>
+                
                 </div>
-            
+                
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
             </div>
-            
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
           @endforeach
 
 @endsection

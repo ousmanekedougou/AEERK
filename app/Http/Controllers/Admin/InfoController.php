@@ -21,21 +21,18 @@ class InfoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('auth:admin');
-     }
+        $this->middleware(['auth:admin','isAdmin']);
+    }
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('admins.index')) 
-        {
-            $infos = Info::first();
-            $partener = Partenaire::all();
-            $social_reseau = Social::all();
-            $soldes = Solde::first();
-            $options = Option::all();
-            $autorisation = User::first();
-            return view('admin.info.index',compact('infos','social_reseau','partener','soldes','options','autorisation'));
-        }
-        return redirect(route('admin.home'));
+        $infos = Info::first();
+        $partener = Partenaire::all();
+        $social_reseau = Social::all();
+        $soldes = Solde::first();
+        $options = Option::all();
+        $autorisation = User::first();
+        return view('admin.info.index',compact('infos','social_reseau','partener','soldes','options','autorisation'));
+       
     }
 
     /**
@@ -49,8 +46,7 @@ class InfoController extends Controller
     }
 
     public function add_prix(Request $request){
-        if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
+  
         $validator = $this->validate($request,[
             'prix_n' => 'required|numeric',
             'prix_a' => 'required|numeric',
@@ -65,8 +61,6 @@ class InfoController extends Controller
         $add_solde->save();
         Flashy::success('Vos Prix ont ete mise a joure');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
     /**
@@ -77,8 +71,6 @@ class InfoController extends Controller
      */
     public function store(Request $request)
     {
-         if (Auth::guard('admin')->user()->can('admins.create')) 
-        {
         $validator =  $this->validate($request,[
             'email' => 'required|email|unique:infos',
             'phone' => 'required|unique:infos',
@@ -96,8 +88,6 @@ class InfoController extends Controller
         $info_ajouter->save();
         Flashy::success('Vos infos ont ete ajouter');
         return redirect()->route('admin.info.index');
-        }
-        return redirect(route('admin.home'));
     }
 
     /**
@@ -108,8 +98,6 @@ class InfoController extends Controller
      */
     public function solde(Request $request ,$id)
     {
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $validator = $this->validate($request,[
             'prix_n' => 'required|numeric',
             'prix_a' => 'required|numeric',
@@ -125,13 +113,9 @@ class InfoController extends Controller
         $update_solde->save();
         Flashy::success('Vos Prix ont ete mise a joure');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
     public function register(Request $request ,$id){
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $update_lien = Option::find($id);
         // dd($request->recasement_etudiant);
         
@@ -143,13 +127,9 @@ class InfoController extends Controller
         $update_lien->save();
         Flashy::success('Votre lien a ete modifier');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
     public function register_etudiant(Request $request ,$id){
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $update_lien = Option::find($id);
         if($request->inscription_etudiant == 0){
             $update_lien->register_nouveau = 0;
@@ -161,13 +141,9 @@ class InfoController extends Controller
         $update_lien->save();
         Flashy::success('Votre lien a ete modifier');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
     public function register_recasement(Request $request ,$id){
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $update_lien = Option::find($id);
         if($request->register_recasement == 0){
             $update_lien->register_recasement = 0;
@@ -177,13 +153,9 @@ class InfoController extends Controller
         $update_lien->save();
         Flashy::success('Votre lien a ete modifier');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
     public function codification(Request $request ,$id){
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $update_lien = Option::find($id);
         if($request->codification == 0){
             $update_lien->codification = 0;
@@ -193,13 +165,9 @@ class InfoController extends Controller
         $update_lien->save();
         Flashy::success('Votre lien a ete modifier');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
     public function codification_etudiant(Request $request ,$id){
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $update_lien = Option::find($id);
         if($request->codification_etudiant == 0){
             $update_lien->codification_nouveau = 0;
@@ -211,13 +179,9 @@ class InfoController extends Controller
         $update_lien->save();
         Flashy::success('Votre lien a ete modifier');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
     public function recasement_etudiant(Request $request ,$id){
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $update_lien = Option::find($id);
         if($request->recasement_etudiant == 0){
             $update_lien->recasement = 0;
@@ -227,8 +191,6 @@ class InfoController extends Controller
         $update_lien->save();
         Flashy::success('Votre lien a ete modifier');
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 
 
@@ -240,12 +202,8 @@ class InfoController extends Controller
      */
     public function edit($id)
     {
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $info_view = Info::where('id',$id)->first();
         return view('admin.info.edite',compact('info_view'));
-        }
-        return redirect(route('admin.home'));
     }
 
     /**
@@ -257,8 +215,6 @@ class InfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-          if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $info_update = Info::find($id);
         $info_update->email = $request->email;
         $info_update->phone = $request->phone;
@@ -268,36 +224,30 @@ class InfoController extends Controller
         $info_update->save();
         Flashy::success('Vos infos ont ete modifier');
         return redirect()->route('admin.info.index');
-        }
-        return redirect(route('admin.home'));
     }
 
 
     public function autorisation(Request $request ,$id){
-        if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
-            if ($request->option == 1) {
-                $this->validate($request,[
-                    'email' => 'required|email|string',
-                    'password' => 'required|confirmed'
-                ]);
-                $update_autorisation = User::where('id',$id)->first();
-                $update_autorisation->email = $request->email;
-                $update_autorisation->text_dechifre = $request->password;
-                $update_autorisation->password = Hash::make($request->password);
-                $update_autorisation->sendmail = $request->sendmail;
-                $update_autorisation->save();
-                Flashy::success('Vos informations de codifications ont ete modifier');
-                return back();
-            }elseif ($request->option == 2) {
-                $update_lient = User::where('id',$id)->first();
-                $update_lient->lien = $request->lien;
-                $update_lient->save();
-                Flashy::success('Le status de votre lien a ete modifier');
-                return back();
-            }
+        if ($request->option == 1) {
+            $this->validate($request,[
+                'email' => 'required|email|string',
+                'password' => 'required|confirmed'
+            ]);
+            $update_autorisation = User::where('id',$id)->first();
+            $update_autorisation->email = $request->email;
+            $update_autorisation->text_dechifre = $request->password;
+            $update_autorisation->password = Hash::make($request->password);
+            $update_autorisation->sendmail = $request->sendmail;
+            $update_autorisation->save();
+            Flashy::success('Vos informations de codifications ont ete modifier');
+            return back();
+        }elseif ($request->option == 2) {
+            $update_lient = User::where('id',$id)->first();
+            $update_lient->lien = $request->lien;
+            $update_lient->save();
+            Flashy::success('Le status de votre lien a ete modifier');
+            return back();
         }
-        return redirect(route('admin.home'));
     }
    
 
@@ -309,11 +259,7 @@ class InfoController extends Controller
      */
     public function destroy($id)
     {
-          if (Auth::guard('admin')->user()->can('admins.delete')) 
-        {
         Info::where('id',$id)->delete();
         return back();
-        }
-        return redirect(route('admin.home'));
     }
 }

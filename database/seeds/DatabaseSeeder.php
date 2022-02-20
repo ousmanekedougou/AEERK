@@ -66,86 +66,18 @@ class DatabaseSeeder extends Seeder
             }
 
               
-            $admin = Admin::create([
+            Admin::create([
                 'name' => 'Diallo Ousmane',
                 'email' => 'yabaye07@gmail.com',
                 'phone' => '7700000000',
                 'status' => 1,
-                'poste_id' => 1,
+                'is_admin' => 1,
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
             ]);
             // fin de la connexion des admin
 
-            // les roles
-            $role = [
-                'Admin',
-                'Codifier',
-                'Logement',
-                'Article',
-            ];
-            foreach ($role as $r) {
-                Role::create(
-                [
-                    'name' => $r
-                ])->admins()->sync($admin->id);
-            }
-            $admin_permisions = [
-                'index' => 'Admin',
-                'create' => 'Admin',
-                'update' => 'Admin',
-                'delete' => 'Admin',
-            ];
-
-            foreach ($admin_permisions as $key => $value) {
-                Permission::create([
-                    'name' => $key,
-                    'for' => $value
-                ])->roles()->sync(1);
-            }
-
-            $cofifier_permission = [
-                'index' => 'Codifier',
-                'create' => 'Codifier',
-                'update' => 'Codifier',
-                'delete' => 'Codifier',
-            ];
-
-            foreach ($cofifier_permission as $key_code => $value_code) {
-                Permission::create([
-                    'name' => $key_code,
-                    'for' => $value_code
-                ])->roles()->sync(2);
-            }
-
-            $logement_permission = 
-            [
-               'index' => 'Logement',
-                'create' => 'Logement',
-                'update' => 'Logement',
-                'delete' => 'Logement',
-            ];
-             foreach ($logement_permission as $key_log => $value_log) {
-                Permission::create([
-                    'name' => $key_log,
-                    'for' => $value_log
-                ])->roles()->sync(3);
-            }
-
-            $article_permission = 
-            [
-                'index' => 'Article',
-                'create' => 'Article',
-                'update' => 'Article',
-                'delete' => 'Article',
-            ];
-
-            foreach ($article_permission as $key_article => $value_article) {
-                Permission::create([
-                    'name' => $key_article,
-                    'for' => $value_article
-                ])->roles()->sync(4);
-            }
+            
 
             $departement = [
                 'Kedougou','Saraye','Salemate'

@@ -27,7 +27,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- <li class="header">PARAMETRES</li> -->
-        @if (Auth::guard('admin')->user()->can('admins.index'))
+        @if (admin()->is_admin == 1)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-group"></i>
@@ -41,14 +41,25 @@
             <li><a href="{{ route ('admin.gallery.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Slider</span></a></li>
             <li><a href="{{ route ('admin.team.index') }}"><i class="fa fa-circle-o"></i> <span>Personnelle</span></a></li>
             <li><a href="{{ route ('admin.admin.index') }}"><i class="fa fa-circle-o"></i>Admins</a></li>
-            <li class=""><a href="{{route('admin.role.index')}}"><i class="fa fa-circle-o"></i> Roles</a></li>
-            <li class=""><a href="{{route('admin.permission.index')}}"><i class="fa fa-circle-o"></i> Permissions</a></li>
             <li class=""><a href="{{route('admin.temoignage.index')}}"><i class="fa fa-circle-o"></i> Temoignage</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span>Mailbox</span>
+            <span class="pull-right-container">
+            <span class="label label-success pull-right">6</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.contact.index') }}"><i class="fa fa-circle-o"></i> Contacts</a></li>
+            <li><a href="{{ route('admin.contact.create') }}"><i class="fa fa-circle-o"></i> Composer</a></li>
           </ul>
         </li>
         @endif
 
-        @if (Auth::guard('admin')->user()->can('posts.viewAny'))
+        @if (admin()->is_admin == 4 || admin()->is_admin == 1)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-rss"></i>
@@ -64,24 +75,8 @@
           </ul>
         </li>
         @endif
-        {{--
-        @if (Auth::guard('admin')->user()->can('admins.index'))
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-envelope"></i>
-            <span>Mailbox</span>
-            <span class="pull-right-container">
-            <span class="label label-success pull-right">6</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route ('admin.contact.index') }}"><i class="fa fa-circle-o"></i> Contacts</a></li>
-            <li><a href="{{ route('admin.contact.create') }}"><i class="fa fa-circle-o"></i> Composer</a></li>
-          </ul>
-        </li>
-        @endif
-        --}}
-        @if (Auth::guard('admin')->user()->can('codifier.index'))
+
+        @if (admin()->is_admin == 2 || admin()->is_admin == 1)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user-plus"></i> <span>Inscription Codification</span>
@@ -126,9 +121,6 @@
           </ul>
         </li>
 
-        @endif
-
-        @if (Auth::guard('admin')->user()->can('logement.index'))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Poste & Habitat</span>
@@ -144,22 +136,23 @@
         </li>
         @endif
 
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-building"></i> <span>Education</span>
-            <span class="pull-right-container">
-            <span class="label label-warning pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route ('admin.education.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Education</span></a></li>
-            <li><a href="{{ route ('admin.systeme.index') }}"><i class="fa fa-circle-o"></i> Syeteme Educatif</a></li>
-            <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
-            <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Emploi & Stage</span></a></li>
-            <li><a href="{{ route('admin.realisation.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Recrutement</span></a></li>
-          </ul>
-        </li>
+        @if (admin()->is_admin == 3 || admin()->is_admin == 1)
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-building"></i> <span>Education</span>
+              <span class="pull-right-container">
+              <span class="label label-warning pull-right">4</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ route ('admin.education.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Education</span></a></li>
+              <li><a href="{{ route ('admin.systeme.index') }}"><i class="fa fa-circle-o"></i> Syeteme Educatif</a></li>
+              <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
+              <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Emploi & Stage</span></a></li>
+              <li><a href="{{ route('admin.realisation.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Recrutement</span></a></li>
+            </ul>
+          </li>
+        @endif
 
 
 

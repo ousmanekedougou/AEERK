@@ -20,19 +20,15 @@ class CodificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isCodifier']);
     }
     
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('codifier.index')) 
-        {
-            // Les Etudiant qui ont codifier
-            $immeubles = Immeuble::where('status',1)->first();
-            $nouveau_bac = Etudiant::where(['status'=>1, 'codifier'=>1 , 'ancienete'=>1])->paginate(5);
-            return view('admin.codification.index',compact('nouveau_bac','immeubles'));
-        }
-         return redirect(route('admin.home'));
+        // Les Etudiant qui ont codifier
+        $immeubles = Immeuble::where('status',1)->first();
+        $nouveau_bac = Etudiant::where(['status'=>1, 'codifier'=>1 , 'ancienete'=>1])->paginate(5);
+        return view('admin.codification.index',compact('nouveau_bac','immeubles'));
     }
 
     /**
@@ -42,15 +38,11 @@ class CodificationController extends Controller
      */
     public function create()
     {
-        if (Auth::guard('admin')->user()->can('codifier.create')) 
-        {
-            // Les Etudiant qui n'ont pas codifier
-            $immeubles = Immeuble::where('status',2)->first();
-            $immeuble2 = Immeuble::where('status',2)->latest()->first();
-            $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1,'ancienete'=>2])->paginate(5);
-            return view('admin.codification.index_ancien',compact('ancien_bac','immeubles','immeuble2'));
-        }
-         return redirect(route('admin.home'));
+        // Les Etudiant qui n'ont pas codifier
+        $immeubles = Immeuble::where('status',2)->first();
+        $immeuble2 = Immeuble::where('status',2)->latest()->first();
+        $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1,'ancienete'=>2])->paginate(5);
+        return view('admin.codification.index_ancien',compact('ancien_bac','immeubles','immeuble2'));
     }
 
     /**
@@ -72,19 +64,14 @@ class CodificationController extends Controller
      */
     public function show($id)
     {
-        // dd($id);
-        if (Auth::guard('admin')->user()->can('codifier.index')) 
-        {
-            $immeubles = Immeuble::all();
-            foreach($immeubles as $imb){
-                if ($imb->id == $id) {
-                    $immeubles = Immeuble::find($imb->id);
-                        $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1 , 'immeuble_id' => $id])->paginate(5);
-                        return view('admin.codification.index_ancien',compact('ancien_bac','immeubles'));
-                }
+        $immeubles = Immeuble::all();
+        foreach($immeubles as $imb){
+            if ($imb->id == $id) {
+                $immeubles = Immeuble::find($imb->id);
+                    $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1 , 'immeuble_id' => $id])->paginate(5);
+                    return view('admin.codification.index_ancien',compact('ancien_bac','immeubles'));
             }
         }
-         return redirect(route('admin.home'));
     }
 
     /**

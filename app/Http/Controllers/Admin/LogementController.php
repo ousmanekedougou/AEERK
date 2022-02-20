@@ -16,19 +16,14 @@ class LogementController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isCodifier']);
     }
     
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('logement.index')) 
-        {
-            $immeuble = Immeuble::all();
-            $chambre = Chambre::all();
-            return view('admin.logement.index',compact('immeuble','chambre'));
-        }
-                    
-        return redirect(route('admin.home'));
+        $immeuble = Immeuble::all();
+        $chambre = Chambre::all();
+        return view('admin.logement.index',compact('immeuble','chambre'));
     }
 
     /**

@@ -16,19 +16,14 @@ class LocaliteController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isCodifier']);
     }
     
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('logement.index')) 
-        {
-            $commune = Commune::all();
-            $departement = Departement::all();
-            return view('admin.localite.index',compact('departement','commune'));
-        }
-                    
-        return redirect(route('admin.home'));
+        $commune = Commune::all();
+        $departement = Departement::all();
+        return view('admin.localite.index',compact('departement','commune'));
     }
 
     /**

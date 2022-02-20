@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isPost']);
     }
 
       /**
@@ -31,12 +31,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('posts.viewAny')) {
             $posts = Post::all();
             return view('admin.post.index',compact('posts'));
-        }
-            
-        return redirect(route('admin.home'));
     }
 
     /**
@@ -46,14 +42,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        // les droit d'authentification avec les condition de can
-        if (Auth::guard('admin')->user()->can('posts.create')) {
-            $tags = Tag::all();
-            $categorys = Category::all();
-            return view('admin.post.post',compact(['tags','categorys']));
-        }
-        
-        return redirect(route('admin.home'));
+        $tags = Tag::all();
+        $categorys = Category::all();
+        return view('admin.post.post',compact(['tags','categorys']));
     }
 
     /**
@@ -64,7 +55,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::guard('admin')->user()->can('posts.create')) {
         $this->validate($request,[
             'title' => 'required',
             // 'subtitle' => 'required',
@@ -100,8 +90,6 @@ class PostController extends Controller
         $post->categories()->sync($request->category);
         Flashy::success('Votre article a ete ajouter');
         return redirect(route('admin.post.index'));
-        }
-        return redirect(route('admin.home'));
     }
 
     /**
@@ -112,12 +100,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        if(Auth::guard('admin')->user()->can('posts.update'))
-        {
-            $show_post = Post::find($id);
-            return view('admin.post.show',compact('show_post'));
-        }
-        return redirect(route('admin.home'));
+        $show_post = Post::find($id);
+        return view('admin.post.show',compact('show_post'));
     }
 
     /**
@@ -128,15 +112,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        // les droit d'authentification avec les condition de can
-        if(Auth::guard('admin')->user()->can('posts.update'))
-        {
-            $post = Post::with('tags','categories')->where('id',$id)->first();
-            $tags = Tag::all();
-            $categorys = Category::all();
-            return view('admin.post.edit',compact(['tags','categorys','post']));
-        }
-        return redirect(route('admin.home'));
+        $post = Post::with('tags','categories')->where('id',$id)->first();
+        $tags = Tag::all();
+        $categorys = Category::all();
+        return view('admin.post.edit',compact(['tags','categorys','post']));
     }
 
     /**
@@ -148,35 +127,31 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::guard('admin')->user()->can('posts.update'))
-        {
-            $post = Post::find($id);
-            $imgdel = $post->image;
-    
-            if($request->image != '')
-            {
-                $imageName = $request->image->store('public/Article');
-                Storage::delete($imgdel); 
-            }
-            else{ $imageName = $post->image; }
+        $post = Post::find($id);
+        $imgdel = $post->image;
 
-            if ($request->slug == '') {
-                $slugTitle = $request->title;
-            }elseif ($request->slug != '') {
-                $slugTitle = $request->slug;
-            }
-            $post->title = $request->title;
-            $post->slug = $slugTitle;
-            $post->status = $request->status;
-            $post->image = $imageName;
-            $post->body = $request->body;
-            $post->save();
-            $post->tags()->sync($request->tags);
-            $post->categories()->sync($request->category);
+        if($request->image != '')
+        {
+            $imageName = $request->image->store('public/Article');
             Storage::delete($imgdel); 
-            return redirect(route('admin.post.index'));
         }
-        return redirect(route('admin.home'));
+        else{ $imageName = $post->image; }
+
+        if ($request->slug == '') {
+            $slugTitle = $request->title;
+        }elseif ($request->slug != '') {
+            $slugTitle = $request->slug;
+        }
+        $post->title = $request->title;
+        $post->slug = $slugTitle;
+        $post->status = $request->status;
+        $post->image = $imageName;
+        $post->body = $request->body;
+        $post->save();
+        $post->tags()->sync($request->tags);
+        $post->categories()->sync($request->category);
+        Storage::delete($imgdel); 
+        return redirect(route('admin.post.index'));
     }
 
     /**
@@ -187,15 +162,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::guard('admin')->user()->can('posts.delete'))
-        {
-            $poste_delete = Post::where('id',$id);
-            $imgdel = $poste_delete->image;
-            Storage::delete($imgdel); 
-            $poste_delete->delete();
-            return redirect()->back();
-        }
-        return redirect(route('admin.home'));
+        $poste_delete = Post::where('id',$id);
+        $imgdel = $poste_delete->image;
+        Storage::delete($imgdel); 
+        $poste_delete->delete();
+        return redirect()->back();
     }
 }
 

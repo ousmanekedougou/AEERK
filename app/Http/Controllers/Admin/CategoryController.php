@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isCodifier']);
     }
 
 
@@ -23,11 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('posts.viewAny')) {
-            $categorys = Category::paginate(10);
-            return view('admin.category.index',compact('categorys'));
-        }
-        return redirect(route('admin.home'));
+        $categorys = Category::paginate(10);
+        return view('admin.category.index',compact('categorys'));
     }
 
     /**
@@ -37,10 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        if (Auth::guard('admin')->user()->can('posts.create')) {
-            return view('admin.category.add');
-        }
-         return redirect(route('admin.home'));
+        return view('admin.category.add');
     }
 
     /**
@@ -82,12 +76,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        if (Auth::guard('admin')->user()->can('posts.update')) {   
-            $category = Category::where('id',$id)->first();
-            return view('admin.category.edit',compact('category'));
-        }
-         return redirect(route('admin.home'));
+    {  
+        $category = Category::where('id',$id)->first();
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -99,20 +90,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('posts.update')) {
-            $this->validate($request,[
-                'name' => 'required',
-                'slug' => 'required',
-            
-            ]);
-            $category = Category::find($id);
-            $category->name = $request->name;
-            $category->slug = $request->slug;
-            $category->save();
-            Flashy::success('Votre categorie a ete modifier');
-            return redirect(route('admin.category.index'));
-        }
-         return redirect(route('admin.home'));
+        $this->validate($request,[
+            'name' => 'required',
+            'slug' => 'required',
+        
+        ]);
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->save();
+        Flashy::success('Votre categorie a ete modifier');
+        return redirect(route('admin.category.index'));
     }
 
     /**
@@ -123,10 +111,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('posts.delete')) {
-            Category::where('id',$id)->delete();
-            return redirect()->back();
-        }
-         return redirect(route('admin.home'));
+        Category::where('id',$id)->delete();
+        return redirect()->back();
     }
 }

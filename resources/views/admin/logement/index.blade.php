@@ -13,9 +13,8 @@
           <div class="box-body">
           <div class="">
             <div class="box-header">
-            @can('logement.create', Auth::guard('admin')->user())
             <a class="col-lg-offset-5 pull-right btn btn-primary mr-5" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-ajouter-immeuble">Ajouter un Immeuble</a>
-            @endcan
+           
             </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -46,10 +45,8 @@
                                 @endif
                               </td>
                               <td>
-                              @can('logement.update', Auth::guard('admin')->user())
                                 <a style="margin-right:5px;" data-toggle="modal" data-id="{{$all_immeuble->id}}" data-name="{{$all_immeuble->name}}" data-target="#modal-default-{{ $all_immeuble->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                              @endcan
-                              @can('logement.delete', Auth::guard('admin')->user())
+                              
                                 <a data-toggle="modal" data-target="#modal-default-immeuble-{{$all_immeuble->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               <div class="modal fade" id="modal-default-immeuble-{{$all_immeuble->id}}">
                                 <div class="modal-dialog modal-sm">
@@ -77,7 +74,6 @@
                                 </div>
                                 <!-- /.modal-dialog -->
                               </div>
-                              @endcan
                                 </td>
                             </tr>
                             @endforeach
@@ -96,9 +92,8 @@
             <!-- Debut de la div -->
             <div class="box-body">
               <div class="">
-              @can('logement.create', Auth::guard('admin')->user())
                 <a class="col-lg-offset-5 pull-right btn btn-primary" data-toggle="modal" data-id="add-chambre" data-name="add-chambre" data-target="#modal-default-add-chambre" style="margin-right: 10px">Ajouter une chambre</a>
-              @endcan
+              
                 <!-- /.box-header -->
                 @foreach($immeuble as $all_immeuble)
                 <h4 class="btn btn-primary text-center pull-center" style="margin-left:10px;">{{ $all_immeuble->name }}</h4>
@@ -128,10 +123,8 @@
                                 @endif
                             </td>
                             <td>
-                            @can('logement.update', Auth::guard('admin')->user())
                             <a style="margin-right:5px;" data-toggle="modal" data-id="{{$chm->id}}" data-name="{{$chm->name}}" data-target="#modal-default-chambre-{{ $chm->id }}"><i class="glyphicon glyphicon-edit"></i></a>
-                            @endcan
-                            @can('logement.delete', Auth::guard('admin')->user())
+                           
                               <a data-toggle="modal" data-target="#modal-default-chambre-delete-{{$chm->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
                               <div class="modal fade" id="modal-default-chambre-delete-{{$chm->id}}">
                                 <div class="modal-dialog modal-sm">
@@ -159,7 +152,6 @@
                                 </div>
                                 <!-- /.modal-dialog -->
                               </div>
-                            @endcan
                             </td>
                           </tr>
                         @endforeach

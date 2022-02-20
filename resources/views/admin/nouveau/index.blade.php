@@ -18,11 +18,9 @@
       <!-- La partie des inscriptions -->
           <div class="">
               <span class="btn btn-primary">Liste D'inscription Des Nouveaux Bacheliers</span>
-               @can('codifier.create', Auth::guard('admin')->user())
                   @if($nouveau_sms->count() == $nouveauCount->count())
                     <span class="etudiant_migration"  style="float:right;">
                       <a class="btn btn-success" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
-
                         <div class="modal fade" id="modal-default-migraion">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -64,7 +62,6 @@
                         </div>
                       </span>
                   @endif
-              @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <div class="nav-tabs-custom">
@@ -76,13 +73,9 @@
                   <th>Image</th>
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
-                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Voire</th>
-                  @endcan
                   <th>Traitement</th>
-                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Options</th>
-                  @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -91,10 +84,8 @@
                     <td><img src="{{ Storage::url($nouveau->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
                     <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                     <td>{{ $nouveau->phone }}</td>
-                    @can('codifier.update', Auth::guard('admin')->user())
                       <td><a href="{{ route ('admin.nouveau.show',$nouveau->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
                       </td>
-                    @endcan
                     <td>
                        @if($nouveau->status == 0)
                         <span class="btn btn-primary btn-xs"> <i class=""></i> Non Consulter</span>
@@ -104,7 +95,6 @@
                         <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
                       @endif
                     </td>
-                    @can('codifier.update', Auth::guard('admin')->user())
                     <td>
                       @if($nouveau->status == 1)
                       <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$nouveau->id}}" data-name="{{$nouveau->name}}" data-target="#modal-default-edit-nouveau{{ $nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
@@ -140,7 +130,6 @@
                       </div>
                       @endif
                     </td>
-                    @endcan
                   </tr>
                 @endforeach
                 </tbody>
@@ -223,8 +212,6 @@
 
 
 @endsection
-
-
 
 @section('footersection')
 

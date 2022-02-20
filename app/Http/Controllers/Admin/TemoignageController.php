@@ -14,14 +14,14 @@ class TemoignageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware(['auth:admin','isPost']);
+    }
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('admins.index')) 
-        {
         $temoignages = Temoignage::all();
         return view('admin.temoignage.index',compact('temoignages'));
-        }
-         return redirect(route('admin.home'));
     }
 
     /**
@@ -76,15 +76,11 @@ class TemoignageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
         $update_temoignage = Temoignage::find($id);
         $update_temoignage->status = $request->status;
         $update_temoignage->save();
         Flashy::success('Votre status a ete modifier avec successs');
         return back();
-        }
-         return redirect(route('admin.home'));
     }
 
     /**
@@ -95,12 +91,8 @@ class TemoignageController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('admins.delete')) 
-        {
         Temoignage::find($id)->delete();
         Flashy::error('Votre status a ete supprimer avec successs');
         return back();
-        }
-         return redirect(route('admin.home'));
     }
 }

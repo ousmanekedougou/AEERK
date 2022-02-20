@@ -16,18 +16,12 @@ class DepartementController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isCodifier']);
     }
     
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('logement.create')) 
-        {
-        
-            return view('admin.departement.add');
-        }
-                        
-        return redirect(route('admin.home'));
+        return view('admin.departement.add');
     }
 
     /**
@@ -48,17 +42,12 @@ class DepartementController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::guard('admin')->user()->can('logement.create')) 
-        {
-            $this->validate($request,[
-                    'name' => 'required|string'
-            ]);
-            Departement::create($request->all());
-            Flashy::success('Votre departement a ete ajouter');
-            return redirect()->route('admin.localite.index');
-        }
-                        
-        return redirect(route('admin.home'));
+        $this->validate($request,[
+                'name' => 'required|string'
+        ]);
+        Departement::create($request->all());
+        Flashy::success('Votre departement a ete ajouter');
+        return redirect()->route('admin.localite.index');
     }
 
     /**
@@ -92,16 +81,11 @@ class DepartementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('logement.update')) 
-        {
-            $update_dep = Departement::find($id);
-            $update_dep->name = $request->name;
-            $update_dep->save();
-            Flashy::success('Votre departement a ete modifier');
-            return redirect()->route('admin.localite.index');
-        }
-                            
-        return redirect(route('admin.home'));
+        $update_dep = Departement::find($id);
+        $update_dep->name = $request->name;
+        $update_dep->save();
+        Flashy::success('Votre departement a ete modifier');
+        return redirect()->route('admin.localite.index');
     }
 
     /**
@@ -112,12 +96,7 @@ class DepartementController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('logement.delete')) 
-        {
-            Departement::find($id)->delete();
-            return back();
-        }
-                                
-        return redirect(route('admin.home'));
+        Departement::find($id)->delete();
+        return back();
     }
 }

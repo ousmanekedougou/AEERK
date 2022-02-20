@@ -12,7 +12,7 @@ class TagController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isPost']);
     }
 
 
@@ -23,11 +23,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('posts.viewAny')) {
             $tags = Tag::paginate(10);
             return view('admin.tag.index',compact('tags'));
-        }
-        return redirect(route('admin.home'));
     }
 
     /**
@@ -37,10 +34,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        if (Auth::guard('admin')->user()->can('posts.create')) {
-            return view('admin.tag.add');
-        }
-        return redirect(route('admin.home'));
+        return view('admin.tag.add');
     }
 
     /**
@@ -83,11 +77,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::guard('admin')->user()->can('posts.update')) {
-            $tag = Tag::where('id',$id)->first();
-            return view('admin.tag.edit',compact('tag'));
-        }
-        return redirect(route('admin.home'));
+        $tag = Tag::where('id',$id)->first();
+        return view('admin.tag.edit',compact('tag'));
     }
 
     /**
@@ -99,20 +90,17 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('posts.update')) {
-            $this->validate($request,[
-                'name' => 'required',
-                'slug' => 'required',
-            
-            ]);
-            $tag = Tag::find($id);
-            $tag->name = $request->name;
-            $tag->slug = $request->slug;
-            $tag->save();
-            Flashy::success('Votre tag a ete modifier');
-            return redirect(route('admin.tag.index'));
-        }
-        return redirect(route('admin.home'));
+        $this->validate($request,[
+            'name' => 'required',
+            'slug' => 'required',
+        
+        ]);
+        $tag = Tag::find($id);
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+        $tag->save();
+        Flashy::success('Votre tag a ete modifier');
+        return redirect(route('admin.tag.index'));
     }
 
     /**
@@ -123,10 +111,7 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('posts.delete')) {
-            Tag::where('id',$id)->delete();
-            return redirect()->back();
-        }
-        return redirect(route('admin.home'));
+        Tag::where('id',$id)->delete();
+        return redirect()->back();
     }
 }

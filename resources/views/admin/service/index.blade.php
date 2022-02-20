@@ -14,7 +14,7 @@
               <ul class="mailbox-attachments clearfix">
                 @foreach($service_all as $service)
                 <li>
-                <a href="{{Storage::url($service->icon)}}" class="mailbox-attachment-name"><span class="mailbox-attachment-icon has-img"><img style="width:100%;heigth::90px;" src="{{Storage::url($service->icon)}}" alt="Attachment"></span></a>
+                <a href="{{Storage::url($service->icon)}}" class="mailbox-attachment-name"><span class="mailbox-attachment-icon has-img"><img style="width:100%;height:90px;" src="{{Storage::url($service->icon)}}" alt="Attachment"></span></a>
 
                   <div class="mailbox-attachment-info">
                     <a href="{{Storage::url($service->icon)}}" class="mailbox-attachment-name"><i class="fa fa-camera"></i> {{ $service->libele }}</a>

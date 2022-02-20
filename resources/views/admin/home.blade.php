@@ -17,7 +17,7 @@
 
     <!-- Main content -->
     <section class="content">
-      @if(Auth::guard('admin')->user()->can('admins.index')) 
+      @if (admin()->is_admin == 1)
         <h3 class="text-center btn btn-warning btn-block text-bold">D'un cout d'oeuil</h3>
         <br>
         <div class="row">

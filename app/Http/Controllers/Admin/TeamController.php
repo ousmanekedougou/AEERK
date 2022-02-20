@@ -19,18 +19,14 @@ class TeamController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isAdmin']);
     }
     
     public function index()
     {
-        if (Auth::guard('admin')->user()->can('admins.index')) 
-        {
-            $commission = Commission::all();
-            $teams = Team::all();
-            return view('admin.personnel.index',compact('commission','teams'));
-        }
-        return redirect(route('admin.home'));
+        $commission = Commission::all();
+        $teams = Team::all();
+        return view('admin.personnel.index',compact('commission','teams'));
     }
 
     /**
@@ -51,31 +47,27 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::guard('admin')->user()->can('admins.create')) 
-        {
-            // dd($request->All());
-            $validator = $this->validate($request,[
-                'nom' => 'required|string',
-                'email' => 'required|email',
-                'phone' => 'required|numeric',
-                'image' => 'required|image',
-                'poste' => 'required|numeric',
-            ]);
-            if($request->hasFile('image')){
-                $imageName = $request->image->store('public/Personnel');
-            }
-
-            $add_personnel = new Team;
-            $add_personnel->nom = $request->nom;
-            $add_personnel->email = $request->email;
-            $add_personnel->phone = $request->phone;
-            $add_personnel->poste_id = $request->poste;
-            $add_personnel->image = $imageName;
-            $add_personnel->save();
-            Flashy::success('Votre Personnelle a ete ajouter');
-            return back();
+        // dd($request->All());
+        $validator = $this->validate($request,[
+            'nom' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'image' => 'required|image',
+            'poste' => 'required|numeric',
+        ]);
+        if($request->hasFile('image')){
+            $imageName = $request->image->store('public/Personnel');
         }
-        return redirect(route('admin.home'));
+
+        $add_personnel = new Team;
+        $add_personnel->nom = $request->nom;
+        $add_personnel->email = $request->email;
+        $add_personnel->phone = $request->phone;
+        $add_personnel->poste_id = $request->poste;
+        $add_personnel->image = $imageName;
+        $add_personnel->save();
+        Flashy::success('Votre Personnelle a ete ajouter');
+        return back();
     }
 
     /**
@@ -109,26 +101,22 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::guard('admin')->user()->can('admins.update')) 
-        {
-            $update_personnel = Team::find($id);
-            $update_personnel->nom = $request->nom;
-            $update_personnel->email = $request->email;
-            $update_personnel->phone = $request->phone;
-            $update_personnel->poste_id = $request->poste;
-            $teameImg = $update_personnel->image;
-            if($request->hasFile('image')){
-                $imageName = $request->image->store('public/Personnel');
-                Storage::delete($teameImg);
-            }else {
-                $imageName = $update_personnel->image;
-            }
-            $update_personnel->image = $imageName;
-            $update_personnel->save();
-            Flashy::success('Votre Personnelle a ete modifier');
-            return back();
+        $update_personnel = Team::find($id);
+        $update_personnel->nom = $request->nom;
+        $update_personnel->email = $request->email;
+        $update_personnel->phone = $request->phone;
+        $update_personnel->poste_id = $request->poste;
+        $teameImg = $update_personnel->image;
+        if($request->hasFile('image')){
+            $imageName = $request->image->store('public/Personnel');
+            Storage::delete($teameImg);
+        }else {
+            $imageName = $update_personnel->image;
         }
-        return redirect(route('admin.home'));
+        $update_personnel->image = $imageName;
+        $update_personnel->save();
+        Flashy::success('Votre Personnelle a ete modifier');
+        return back();
     }
 
     /**
@@ -139,15 +127,11 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::guard('admin')->user()->can('admins.delete')) 
-        {
-            $team = Team::find($id);
-            $teamimge = $team->image;
-            Storage::delete($teamimge);
-            $team->delete();
-            Flashy::primary('Votre Personnelle a ete Supprimer');
-            return back();
-        }
-        return redirect(route('admin.home'));
+        $team = Team::find($id);
+        $teamimge = $team->image;
+        Storage::delete($teamimge);
+        $team->delete();
+        Flashy::primary('Votre Personnelle a ete Supprimer');
+        return back();
     }
 }

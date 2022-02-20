@@ -16,9 +16,8 @@
     <!-- Main content -->
     <section class="content">
       <div class="" style="margin-left: 12px;">
-        @can('posts.create', Auth::guard('admin')->user())
           <a class="btn btn-success" href="{{ route('admin.education.create') }}">Ajouter Une documentation</a>
-        @endcan
+       
       </div>
 
             {{-- Card horizontal --}}
@@ -54,14 +53,10 @@
                         
                               <p class="card-text">
                                 <div class="text-muted text-center">
-                                  @can('posts.update', Auth::guard('admin')->user())
                                     <a data-toggle="modal" data-id="{{$educ->id}}" data-name="{{$educ->title}}" data-target="#modal-default-chambre-{{ $educ->id }}" style="margin-right:5px;"><i class="fa fa-eye btn btn-warning btn-xs card-link">  </i></a>
-                                  @endcan
-                                  @can('posts.update', Auth::guard('admin')->user())
+                           
                                     <a href="{{ route('admin.education.edit',$educ->id) }}" style="margin-right:5px;"><i class="card-link fa fa-edit btn btn-primary btn-xs"> </i></a>
-                                  @endcan
-
-                                  @can('posts.delete', Auth::guard('admin')->user())
+                           
 
                                        <a data-toggle="modal" data-target="#modal-default-{{$educ->id}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                       <div class="modal fade" id="modal-default-{{$educ->id}}">
@@ -90,7 +85,6 @@
                                         </div>
                                         <!-- /.modal-dialog -->
                                       </div>
-                                   @endcan
                                 </div>
                               </p>
                             </div>

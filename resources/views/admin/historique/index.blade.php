@@ -61,7 +61,7 @@
                             <!-- Box Comment -->
                             <div class="box box-widget">
                               <div class="box-body">
-                                <img class="img-responsive pad" style="width:100%;auto;" src="{{ Storage::url($historique->image) }}" alt="Photo">
+                                <img class="img-responsive pad" style="width:100%;height:auto;" src="{{ Storage::url($historique->image) }}" alt="Photo">
                                 <!-- 
                                 <p>I took this photo this morning. What do you guys think?</p>
                                 <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->

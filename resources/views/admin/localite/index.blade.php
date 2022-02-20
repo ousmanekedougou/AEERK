@@ -14,12 +14,10 @@
    <div class="box-body">
           <div class="">
             
-            @can('logement.create', Auth::guard('admin')->user())
             <div class="form-group pull-right">
                <a data-toggle="modal" data-id="add_dep" data-name="add_dep" data-target="#modal-default-add-dep" class="btn btn-primary">Ajouter un departement</a>
               
             </div>
-            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center responsive-table table-bordered table-striped">
@@ -27,9 +25,7 @@
                 <tr class="bg-primary">
                   <th>S.No</th>
                   <th>Departement</th>
-                  @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
                   <th>Options</th>
-                  @endcan
                 </tr>
                 {{ $i = '' }}
                 </thead>
@@ -38,7 +34,6 @@
                           <tr>
                           <td>{{ ++$i }}</td>
                             <td>{{ $dep->name }}</td>
-                            @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
                             <td> <a data-toggle="modal" data-id="{{$dep->id}}" data-name="{{$dep->name}}" data-target="#modal-default-{{ $dep->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                            
                                <a data-toggle="modal" data-target="#modal-default-immeuble-{{$dep->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
@@ -69,7 +64,6 @@
                                 <!-- /.modal-dialog -->
                               </div>
                             </td>
-                              @endcan
                           </tr>
                           @endforeach
                   </tbody>
@@ -86,11 +80,9 @@
            <!-- Debut de la div -->
            <div class="box-body">
           <div class="">
-            @can('logement.create', Auth::guard('admin')->user())
             <div class="form-group pull-right">
             <a data-toggle="modal" data-id="add_commune" data-name="add_commune" data-target="#modal-default-add-commune" class="btn btn-primary">Ajouter une Commune</a>
             </div>
-            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table responsive-table table-bordered text-center table-striped">
@@ -99,9 +91,7 @@
                   <th>S.No</th>
                   <th>Communes</th>
                   <th>Departements</th>
-                  @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
                   <th>Options</th>
-                  @endcan
                 </tr>
                 {{ $i = '' }}
                 </thead>
@@ -113,7 +103,6 @@
                             <td>
                                 {{$com->departement->name}}
                             </td>
-                            @can(['logement.delete','logement.update'], Auth::guard('admin')->user())
                             <td>
                               <a data-toggle="modal" data-id="{{$com->id}}" data-name="{{$com->name}}" data-target="#modal-default-com-{{ $com->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                            
@@ -145,7 +134,6 @@
                                 <!-- /.modal-dialog -->
                               </div>
                             </td>
-                              @endcan
                           </tr>
                           @endforeach
                   </tbody>

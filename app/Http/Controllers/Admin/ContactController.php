@@ -15,7 +15,7 @@ class ContactController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin','isAdmin']);
     }
     
     public function index() {
@@ -35,19 +35,19 @@ class ContactController extends Controller
 
     public function post(Request $request)
     {
-            // dd($request->all());
-            $validator = $this->validate($request,[
-                'subject' => 'required|string',
-                'msg' => 'required|string'
-            ]);
-            $email_etudian = Etudiant::select('email')->where('codifier',1)->get(); 
-            foreach ($email_etudian as $sendmail_etudiant) {
-                $mail = new GroupeEmailMessage($request->subject,$request->msg);
-                Mail::to($sendmail_etudiant->email)->send($mail);
-            }
-    
-            Flashy::success('Votre reponse a bien ete envoyer');
-            return redirect()->route('admin.contact.index');
+        // dd($request->all());
+        $validator = $this->validate($request,[
+            'subject' => 'required|string',
+            'msg' => 'required|string'
+        ]);
+        $email_etudian = Etudiant::select('email')->where('codifier',1)->get(); 
+        foreach ($email_etudian as $sendmail_etudiant) {
+            $mail = new GroupeEmailMessage($request->subject,$request->msg);
+            Mail::to($sendmail_etudiant->email)->send($mail);
+        }
+
+        Flashy::success('Votre reponse a bien ete envoyer');
+        return redirect()->route('admin.contact.index');
     }
 
     /**

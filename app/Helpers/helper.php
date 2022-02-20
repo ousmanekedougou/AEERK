@@ -8,6 +8,7 @@ use App\Model\Admin\Partenaire;
 use App\Model\Admin\Post;
 use App\Model\Admin\Tag;
 use App\Model\User\Temoignage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -102,5 +103,13 @@ if(!function_exists('envoiemail')){
     {
         $email = 'ousmanelaravel@gmail.com';
         return $email;
+    }
+}
+
+if(!function_exists('admin')){
+    function admin()
+    {
+        $admin = Auth::guard('admin')->user();
+        return $admin;
     }
 }

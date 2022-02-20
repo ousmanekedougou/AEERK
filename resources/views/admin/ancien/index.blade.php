@@ -18,7 +18,6 @@
       <!-- Default box -->
       <div class="">
             <span class="btn btn-primary">Liste D'inscription Des Anciens</span>
-            @can('codifier.create', Auth::guard('admin')->user())
                 @if($ancien_sms->count() == $ancienCount->count())
                   <span class="etudiant_migration"  style="float:right;">
                     <a class="btn btn-success" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
@@ -63,7 +62,6 @@
                         </div>
                   </span>
                 @endif
-            @endcan
             <!-- /.box-header -->
             <div class="box-body">
               <div class="nav-tabs-custom">
@@ -76,11 +74,9 @@
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
                   <th>Immeuble Choisi</th>
-                  @can('codifier.update', Auth::guard('admin')->user())
                   <th>Voire</th>
                   <th>Traitement</th>
                   <th>Options</th>
-                  @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -90,10 +86,8 @@
                     <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
                     <td>{{ $ancien->phone }}</td>
                     <td>{{ $ancien->immeuble->name }}</td>
-                    @can('codifier.update', Auth::guard('admin')->user())
                     <td><a href="{{ route ('admin.ancien.show',$ancien->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
                     </td>
-                    @endcan
                     <td>
                       @if($ancien->status == 0)
                         <span class="btn btn-primary btn-xs"> <i class=""></i> Non Consulter</span>
@@ -103,7 +97,6 @@
                         <span class="btn btn-danger btn-xs"> <i class="fa  fa-times-circle"></i> Non Valider</span>
                       @endif
                     </td>
-                    @can('codifier.update', Auth::guard('admin')->user())
                     <td>
                       @if($ancien->status == 1)
                       <!-- <span class=""><a class="btn btn-success btn-xs text-center" href="{{ route ('admin.ancien.edit',$ancien->id) }}">Codifier <i class="fa fa-edit"></i></a></span> -->
@@ -139,7 +132,6 @@
                       </div>
                       @endif
                     </td>
-                    @endcan
                   </tr>
                 @endforeach
                 </tbody>
