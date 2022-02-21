@@ -40,9 +40,9 @@
 									<span class="lnr lnr-home"></span>
 								</div>
 								<div class="contact-details">
-									<h5>{{ all_info()->adresse ?? 'Medina-(Dakar),30x32'}}</h5>
+									<h5>{{ all_info()->adresse ?? 'Medina-(Dakar),39x30'}}</h5>
 									<p>
-										4343 Hinkle Deegan Lake Road
+										Rue 39x30
 									</p>
 								</div>
 							</div>

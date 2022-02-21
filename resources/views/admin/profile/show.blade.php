@@ -147,13 +147,13 @@
                             {{ method_field('PUT') }}
 
                             <div class="form-group">
-                                <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+                                <label for="inputPassword" class="col-sm-3 control-label">Mot de passe</label>
 
                                 <div class="col-sm-9">
                                    <div class="row">
                                      <div class="col-lg-12"><input id="password" value="{{ old('password')  }}" type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword" placeholder="Votre mot de passe"></div>
                               
-                                        <div class="col-lg-12" style="margin-top: 10px;"><input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation')  }}" class="form-control @error('password_confirmation') is-invalid @enderror" id="inputPassword" placeholder="Confirmer la mot de passe"></div>
+                                        <div class="col-lg-12" style="margin-top: 10px;"><input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation')  }}" class="form-control @error('password_confirmation') is-invalid @enderror" id="inputPassword" placeholder="Confirmer le mot de passe"></div>
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong class="text-danger">{{ $message }}</strong>

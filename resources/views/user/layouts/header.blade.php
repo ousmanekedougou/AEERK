@@ -38,7 +38,7 @@
 			          <!-- <li class="{{ set_active_roote('education.index') }}"><a href="{{ route('education.index') }}"><i class="fa fa-graduation fa_ajout"></i> Documentation</a></li> -->
 				
 					{{-- <li class=""><a href=""><i class="fa fa-hiking fa_ajout"></i>Activites</a></li>  --}}
-					  {{--<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li> --}}
+					  <li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
 						{{-- @if(all_option()->register == 1)
 							<li class="menu-has-children text-white"><a href=""><i class="fa fa-user-plus fa_ajout"></i> Inscription</a>
 							@if(all_option()->register == 1 && all_option()->register_nouveau == 1 && all_option()->register_ancien == 1)

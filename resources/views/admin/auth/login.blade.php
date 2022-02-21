@@ -32,7 +32,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b class="text-primary">Bureau AEERK</b> </a>
+    <a href=""><b class="text-primary">BUREAU AEERK</b> </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -61,15 +61,8 @@
         @enderror
       </div>
       <div class="row">
-        <div class="col-xs-7">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Se Souvenir De Moi
-            </label>
-          </div>
-        </div>
         <!-- /.col -->
-        <div class="col-xs-5">
+        <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block">Connexion</button>
         </div>
         <!-- /.col -->
@@ -82,10 +75,10 @@
         Facebook</a>
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+</a> -->
+      <a href="{{ route('admin.password.reset') }}" class="text-center">Mot de passe oublier</a><br>
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="{{ route('admin.password.reset') }}" class="btn btn-danger btn-block">Mot de passe oublier</a><br>
     <!-- <a href="#" class="text-center">Register a new membership</a> -->
 
   </div>
