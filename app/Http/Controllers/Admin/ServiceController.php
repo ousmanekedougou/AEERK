@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Service;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ServiceController extends Controller
 {
@@ -59,7 +60,7 @@ class ServiceController extends Controller
         $add_service->status = $request->status;
         $add_service->icon = $imageName;
         $add_service->save();
-        Flashy::success('Votre service a ete ajoute');
+        Toastr::success('Votre service a ete ajouter','Ajout Service', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.service.index');
     }
 
@@ -109,7 +110,7 @@ class ServiceController extends Controller
         $update_service->status = $request->status;
         $update_service->icon = $imageName;
         $update_service->save();
-        Flashy::success('Votre Service a ete modifier');
+        Toastr::success('Votre service a ete modifier','Modification Service', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.service.index');
     }
 
@@ -122,7 +123,7 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         Service::find($id)->delete();
-        Flashy::success('Votre service a ete supprimer');
+        Toastr::success('Votre service a ete supprimer','Suppression Service', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

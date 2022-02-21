@@ -10,6 +10,7 @@ use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use App\Model\User\Etudiant;
+use Brian2694\Toastr\Facades\Toastr;
 use Nexmo\Laravel\Facade\Nexmo;
 class NouveauController extends Controller
 {
@@ -21,7 +22,6 @@ class NouveauController extends Controller
     public function index()
     {
         $departement = Departement::all();
-    
         return view('user.nouveau.index',compact('departement'));
     }
 
@@ -87,7 +87,7 @@ class NouveauController extends Controller
         }elseif (strlen($request->phone) == 9) {
             $phoneFinale = $phoneComplet;
         }else {
-            return back()->with('error','votre numero de telephone est invalid');
+            Toastr::error('votre numero de telephone est invalid', 'Error Telepone', ["positionClass" => "toast-top-right"]);
         }
         if ($immeuble) {
             # code...
@@ -107,18 +107,12 @@ class NouveauController extends Controller
             $add_nouveau->ancienete = NOUVEAU;
             $add_nouveau->save();
             $numero_bureau = Solde::first();
-            // Nexmo::message()->send([
-            //     'to' => '221'.$numero_bureau->numero_nouveau,
-            //     'from' => '+221'.$request->phone,
-            //     'text' => "AEERK : Slut $request->prenom  $request->nom,votre inscription a ete enreistre.Nous vous revenons apres consultation de vos."
-            // ]);
-            Flashy::success('Votre Inscription a ete Valider');
             return redirect()->route('index',$add_nouveau)->with([
                 "success" => "success",
                 "name" => "$add_nouveau->prenom $add_nouveau->nom"
             ]);
         }else {
-           Flashy::error('Il n\'existe pas d\'immeuble pour vous');
+            Toastr::error('Il n\'existe pas d\'immeuble pour vous', 'Immeule non identifier', ["positionClass" => "toast-top-right"]);
         }
     }
 

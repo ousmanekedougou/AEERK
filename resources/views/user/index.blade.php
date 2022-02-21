@@ -225,7 +225,7 @@
 			
 
 			<!-- Start search-course Area -->
-			 <section class="search-course-area relative" style="">
+			 <section class="search-course-area relative">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row justify-content-between align-items-center">

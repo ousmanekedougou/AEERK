@@ -438,7 +438,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Codifier Cette Etudiant</h4>
+                <h4 class="modal-title">Codifier Cet Etudiant</h4>
               </div>
               <div class="row">
                       <div class="col-sm-4 p-5">
@@ -462,7 +462,6 @@
                         <div class="form-group">
                           <label>Chambres</label>
                           <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                            <option selected>Choisir la chambre</option>
                             @foreach($imb->chambres  as $chm)
                               @if($show_ancien->genre == $chm->genre)
                                 @if($chm->is_pleine == 0)

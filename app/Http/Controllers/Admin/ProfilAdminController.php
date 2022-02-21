@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Admin\Admin;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -89,7 +90,7 @@ class ProfilAdminController extends Controller
         $admin_update->email = $request->email;
         $admin_update->phone = $request->phone;
         $admin_update->save();
-        Flashy::success('Vos informations ont ete modifier');
+        Toastr::success('Votre information a ete modifier','Modification Information', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -100,7 +101,7 @@ class ProfilAdminController extends Controller
         $admin_updat_password = Admin::where('id',Auth::guard('admin')->user()->id)->first();
         $admin_updat_password->password = Hash::make($request->password);
         $admin_updat_password->save();
-         Flashy::success('Votre mot de passe a ete modifier');
+        Toastr::success('Votre mot de passe a ete modifier','Modification Mot de passe', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -119,7 +120,7 @@ class ProfilAdminController extends Controller
         }
         $admin_updat_image->image = $imageName;
         $admin_updat_image->save();
-         Flashy::success('Votre image de profile a bien ete modifier');
+        Toastr::success('Votre image de profile a ete modifier','Modification Image', ["positionClass" => "toast-top-right"]);
         return back();
     }
 

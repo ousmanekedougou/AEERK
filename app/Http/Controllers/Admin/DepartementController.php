@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class DepartementController extends Controller
 {
@@ -46,7 +47,7 @@ class DepartementController extends Controller
                 'name' => 'required|string'
         ]);
         Departement::create($request->all());
-        Flashy::success('Votre departement a ete ajouter');
+        Toastr::success('Votre departement a ete ajouter', 'Ajout Departement', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.localite.index');
     }
 
@@ -84,7 +85,7 @@ class DepartementController extends Controller
         $update_dep = Departement::find($id);
         $update_dep->name = $request->name;
         $update_dep->save();
-        Flashy::success('Votre departement a ete modifier');
+        Toastr::success('Votre departement a ete modifier', 'Modification Departement', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.localite.index');
     }
 
@@ -97,6 +98,7 @@ class DepartementController extends Controller
     public function destroy($id)
     {
         Departement::find($id)->delete();
+        Toastr::success('Votre departement a ete supprimer', 'Suppression Departement', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

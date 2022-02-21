@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Helpers\Sms;
 use App\Model\User\User;
+use Brian2694\Toastr\Facades\Toastr;
 
 class AncienController extends Controller
 {
@@ -137,7 +138,7 @@ class AncienController extends Controller
 
             // La partie des sms
         }
-        Flashy::success('Votre message a ete envoyer');
+        Toastr::success('Votre message a ete envoyer', 'Envoi Message Sms', ["positionClass" => "toast-top-right"]);
         return back();
 
     }
@@ -227,7 +228,7 @@ class AncienController extends Controller
         $update_ancien->certificat = $certificatName;
         $update_ancien->photocopie = $photocopieName;
         $update_ancien->save();
-        Flashy::success('Votre etudaint a ete consulter');
+        Toastr::success('Votre etudaint a ete modifier', 'Modification Etudiant', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -242,7 +243,7 @@ class AncienController extends Controller
         $update_ancien->commune_id = $request->commune;
         $update_ancien->immeuble_id = $immeuble ->id;
         $update_ancien->save();
-        Flashy::success('Votre etudaint a ete consulter');
+        Toastr::success('Votre etudaint a ete modifier', 'Modification Etudiant', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -257,7 +258,7 @@ class AncienController extends Controller
             $ancien->save();
             // Mail::to($ancien->email)
             // ->send(new MessageEmailAeerk($ancien));
-            Flashy::success('Votre etudiant a ete valide');
+            Toastr::success('Votre etudaint a ete valider', 'Verification Etudiant', ["positionClass" => "toast-top-right"]);
             return back();
         }elseif($request->status == 2){
             $validator = $this->validate($request,[
@@ -268,7 +269,7 @@ class AncienController extends Controller
             $ancien->save();
             // Mail::to($ancien->email)
             // ->send(new MessageEmailAeerk($ancien));
-            Flashy::success('Votre etudiant a ete ommis');
+            Toastr::success('Votre etudaint a ete ommis', 'Verification Etudiant', ["positionClass" => "toast-top-right"]);
             return back();
         }
     }
@@ -328,18 +329,18 @@ class AncienController extends Controller
                         );
                         Mail::to($codifier_ancien->email)
                         ->send(new MessageEmailAeerk($codifier_ancien));
-                        Flashy::success('Votre etudiant a ete codifier');
+                        Toastr::success('Votre etudaint a ete codifier', 'Codification Etudiant', ["positionClass" => "toast-top-right"]);
                         return redirect()->route('admin.ancien.index');
                     }
                     else{
-                            Flashy::error('Le quotta de codofication de cette etudiant est epuiser');
-                        return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
+                        Toastr::error('Le quotta de codofication de cette etudiant est epuiser', 'Quota Etudiant', ["positionClass" => "toast-top-right"]);
+                        return redirect()->route('admin.home');
                     }
                 }else{
                     $is_pleine = Chambre::where('id',$request->chambre_id)->first();
                     $is_pleine->is_pleine = 1;
                     $is_pleine->save();
-                    Flashy::error('Cette Chambre est pleine');
+                    Toastr::error('Cette Chambre est pleine', 'Chambre Status', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('admin.ancien.index');
                 }
             }
@@ -390,11 +391,11 @@ class AncienController extends Controller
                         
                         Mail::to($codifier_ancien->email)
                         ->send(new MessageEmailAeerk($codifier_ancien));
-                        Flashy::success('Votre etudiant a ete codifier');
+                        Toastr::success('Votre etudiant a ete codifier', 'Codification Etudiant', ["positionClass" => "toast-top-right"]);
                         return redirect()->route('admin.ancien.index');
                     }else {
-                        Flashy::error('Le quotta de codofication de cette etudiant est epuiser');
-                        return redirect()->route('admin.home')->with('error','Le quotta de codofication de cette etudiant est epuiser');
+                        Toastr::error('Le quotta de codofication de cette etudiant est epuiser', 'Quota Etudiant', ["positionClass" => "toast-top-right"]);
+                        return redirect()->route('admin.home');
                     }
                 }
                 
@@ -422,7 +423,7 @@ class AncienController extends Controller
         Storage::delete($certificat); 
         Storage::delete($photocopie); 
         $dlete_etudiant->delete();
-        Flashy::success('Votre Etudiant a ete Supprimer');
+        Toastr::success('Votre Etudiant a ete Supprimer', 'Suppression Etudiant', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

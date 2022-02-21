@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Paydunya\Checkout\CheckoutInvoice;
 
 class HomeController extends Controller
@@ -26,11 +28,12 @@ class HomeController extends Controller
     public function create()
     {
         $token = $_GET['token'];
-
         $invoice = new CheckoutInvoice();
         if ($invoice->confirm($token)) {
             if ($invoice->getStatus() == "cancelled") {
-                return redirect()->route('index')->with('error','Votre codification a echouer');
+                Auth::logout();
+                Toastr::error('Votre codification a echouer', 'Error Codification payment', ["positionClass" => "toast-top-right"]);
+                return redirect()->route('index');
             }
         }
     }

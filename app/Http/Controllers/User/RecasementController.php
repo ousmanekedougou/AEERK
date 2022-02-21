@@ -7,11 +7,9 @@ use App\Model\User\Nouveau;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use App\Model\User\Recasement;
-use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use App\Model\User\Etudiant;
-use App\Model\User\Recasement_ancien;
-use App\Model\User\Recasement_nouveau;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RecasementController extends Controller
 {
@@ -66,10 +64,10 @@ class RecasementController extends Controller
                 $nouveaux_recaser->status = 0;
                 $nouveaux_recaser->recaser = 0;
                 $nouveaux_recaser->save();
-                Flashy::success('Votre Inscription a ete valider');
+                Toastr::sucess('Votre inscription a ete enregistre','Inscription Valider', ["positionClass" => "toast-top-right"]);
                 return back();
             } else {
-                Flashy::error('Vous n\'aviez pas codifier');
+                Toastr::error('Vous n\'aviez pas codifier','Error Codification', ["positionClass" => "toast-top-right"]);
                 return back();
             }
 
@@ -87,10 +85,10 @@ class RecasementController extends Controller
                 $anciens_recaser->status = 0;
                 $anciens_recaser->recaser = 0;
                 $anciens_recaser->save();
-                Flashy::success('Votre Inscription a ete valider');
+                Toastr::sucess('Votre inscription a ete enregistre','Inscription Valider', ["positionClass" => "toast-top-right"]);
                 return back();
             } else {
-                Flashy::error('Vous n\'aviez pas codifier');
+                Toastr::error('Vous n\'aviez pas codifier','Error Codification', ["positionClass" => "toast-top-right"]);
                 return back();
             }
         }

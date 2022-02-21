@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -59,7 +60,7 @@ class ImmeubleController extends Controller
         $add_immeuble->image = $imageName;
         $add_immeuble->status = $request->status;
         $add_immeuble->save();
-        Flashy::success('Votre immeuble a ete ajouter');
+        Toastr::success('Votre historique a ete ajouter', 'Ajout Immeuble', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.logement.index');
     }
 
@@ -113,7 +114,7 @@ class ImmeubleController extends Controller
         $update_immeuble->image = $imageName;
         $update_immeuble->status = $request->status;
         $update_immeuble->save();
-        Flashy::success('Votre immeuble a ete modifier');
+        Toastr::success('Votre historique a ete modifier', 'Modification Immeuble', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.logement.index');
     }
 
@@ -129,7 +130,7 @@ class ImmeubleController extends Controller
         $imdel = $imeuble->image;
         Storage::delete($imdel);
         $imeuble->delete();
-        Flashy::success('Votre immeuble a ete supprimer');
+        Toastr::success('Votre historique a ete supprimer', 'Suppression Immeuble', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

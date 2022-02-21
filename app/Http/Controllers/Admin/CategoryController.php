@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Category;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware(['auth:admin','isCodifier']);
+        $this->middleware(['auth:admin','isPost']);
     }
 
 
@@ -54,7 +55,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->save();
-        Flashy::success('Votre Categorie a ete ajoute');
+        Toastr::success('Votre Categorie a ete ajoute', 'Ajout Category', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.category.index'));
     }
 
@@ -99,7 +100,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->save();
-        Flashy::success('Votre categorie a ete modifier');
+        Toastr::success('Votre Categorie a ete modifier', 'Modification Category', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.category.index'));
     }
 
@@ -112,6 +113,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::where('id',$id)->delete();
+        Toastr::success('Votre Categorie a ete supprimer', 'Suppression Category', ["positionClass" => "toast-top-right"]);
         return redirect()->back();
     }
 }

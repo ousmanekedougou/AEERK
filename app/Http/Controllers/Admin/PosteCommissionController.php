@@ -6,6 +6,7 @@ use App\Model\Admin\Poste;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class PosteCommissionController extends Controller
 {
@@ -42,16 +43,16 @@ class PosteCommissionController extends Controller
      */
     public function store(Request $request)
     {
-            $this->validate($request,[
-                'name' => 'required',
-                'commission' => 'required',
-            ]);
-            $add_poste = new Poste;
-            $add_poste->name = $request->name;
-            $add_poste->save();
-            $add_poste->commissions()->sync($request->commission);
-            Flashy::success('Votre poste a ete ajoute');
-            return back();
+        $this->validate($request,[
+            'name' => 'required',
+            'commission' => 'required',
+        ]);
+        $add_poste = new Poste;
+        $add_poste->name = $request->name;
+        $add_poste->save();
+        $add_poste->commissions()->sync($request->commission);
+        Toastr::success('Votre poste a ete ajouter','Ajout Poste', ["positionClass" => "toast-top-right"]);
+        return back();
 
     }
 
@@ -94,7 +95,7 @@ class PosteCommissionController extends Controller
         $update_poste->name = $request->name;
         $update_poste->save();
         $update_poste->commissions()->sync($request->commission);
-        Flashy::success('Votre poste a ete modifier');
+        Toastr::success('Votre poste a ete modifier','Modification Poste', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -107,7 +108,7 @@ class PosteCommissionController extends Controller
     public function destroy($id)
     {
         Poste::find($id)->delete();
-        Flashy::error('Votre poste a ete supprimer');
+        Toastr::success('Votre poste a ete supprimer','Suppression Poste', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

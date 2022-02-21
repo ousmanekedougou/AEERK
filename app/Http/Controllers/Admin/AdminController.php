@@ -9,6 +9,7 @@ use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -72,7 +73,7 @@ class AdminController extends Controller
         $admin->image = $imageName;
         $admin->status = 1;
         $admin->save();
-        Flashy::success('Votre administrateur a ete ajoute');
+        Toastr::success('Votre administrateur a ete ajoute', 'Ajout Admin', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.admin.index');
     }
 
@@ -115,7 +116,7 @@ class AdminController extends Controller
             $update_admin->is_admin = $request->role;
             $update_admin->status = $request->status;
             $update_admin->save();
-            Flashy::success('Votre administrateur a ete modifier');
+            Toastr::success('Votre administrateur a ete modifier', 'Modification Admin', ["positionClass" => "toast-top-right"]);
             return redirect()->route('admin.admin.index');
         }
 
@@ -131,6 +132,7 @@ class AdminController extends Controller
             $imgdel = $admin_delete->image;
             Storage::delete($imgdel); 
             $admin_delete->delete();
+            Toastr::success('Votre administrateur a ete supprimer', 'Supression Admin', ["positionClass" => "toast-top-right"]);
             return back();
         }
 }

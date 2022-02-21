@@ -1,13 +1,13 @@
 
 
- @include('flashy::message')
+
+    {!! Toastr::message() !!}
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
       <b>Version</b> {{ Carbon\carbon::now()->year }}
       </div>
-      <strong>Copyright &copy; 2020-{{ Carbon\carbon::now()->year }} <a href="">Designed by Ousmane Diallo </a>.</strong> KdgWeb
+      <strong>Copyright &copy; 2021-{{ Carbon\carbon::now()->year }} <a href="">Designed by Ousmane Diallo </a>.</strong> KdgWeb
     </footer>
-
 
 
 
@@ -50,19 +50,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset ( 'admin/dist/js/demo.js ') }}"></script>
 
-
-@if(Session::has('flashy_notification.message'))
-<script id="flashy-template" type="text/template">
-    <div class="flashy flashy--{{ Session::get('flashy_notification.type') }}">
-        <i class="material-icons">speaker_notes</i>
-        <a href="#" class="flashy__body" target="_blank"></a>
-    </div>
-</script>
-
-<script>
-    flashy("{{ Session::get('flashy_notification.message') }}", "{{ Session::get('flashy_notification.link') }}");
-</script>
-@endif
+<!-- les script des tostr -->
+<script src="{{ asset ( 'admin/dist/js/toastr-jquery.min.js ') }}"></script>
+<script src="{{ asset ( 'admin/dist/js/toastr.min.js ') }}"></script>
+{!! Toastr::message() !!}
 
 @section('footersection')
  

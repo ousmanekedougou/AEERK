@@ -6,6 +6,7 @@ use App\Model\Admin\Social;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class SocialController extends Controller
 {
@@ -47,7 +48,7 @@ class SocialController extends Controller
             
         ]);
         Social::create($request->all());
-        Flashy::success('Votre reseau a ete ajouter');
+        Toastr::success('Votre social reseau a ete ajouter','Ajout Social Reseau', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.info.index');
     }
 
@@ -92,7 +93,7 @@ class SocialController extends Controller
         $social_update->name = $request->name;
         $social_update->lien = $request->lien;
         $social_update->save();
-        Flashy::success('Votre reseau a ete modifier');
+        Toastr::success('Votre social reseau a ete modifier','Modification Social Reseau', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.info.index');
     }
 
@@ -105,6 +106,7 @@ class SocialController extends Controller
     public function destroy($id)
     {
         Social::where('id',$id)->delete();
+        Toastr::success('Votre social reseau a ete supprimer','Suppression Social Reseau', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

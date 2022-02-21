@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -66,7 +67,7 @@ class TeamController extends Controller
         $add_personnel->poste_id = $request->poste;
         $add_personnel->image = $imageName;
         $add_personnel->save();
-        Flashy::success('Votre Personnelle a ete ajouter');
+        Toastr::success('Votre personnel a ete ajouter','Ajout Personnelle', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -115,7 +116,7 @@ class TeamController extends Controller
         }
         $update_personnel->image = $imageName;
         $update_personnel->save();
-        Flashy::success('Votre Personnelle a ete modifier');
+        Toastr::success('Votre personnel a ete modifier','Modification Personnelle', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -131,7 +132,7 @@ class TeamController extends Controller
         $teamimge = $team->image;
         Storage::delete($teamimge);
         $team->delete();
-        Flashy::primary('Votre Personnelle a ete Supprimer');
+        Toastr::success('Votre personnel a ete supprimer','Suppression Personnelle', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

@@ -6,6 +6,7 @@ use App\Model\User\Systeme;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class SystemeController extends Controller
 {
@@ -60,7 +61,7 @@ class SystemeController extends Controller
         $addSysteme->content = $request->content;
         $addSysteme->image = $imageName;
         $addSysteme->save();
-        Flashy::success('Votre systeme a ete ajoute');
+        Toastr::success('Votre systeme a ete ajouter','Ajout Systeme', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -115,7 +116,7 @@ class SystemeController extends Controller
         $updateSysteme->content = $request->content;
         $updateSysteme->image = $imageName;
         $updateSysteme->save();
-        Flashy::success('Votre systeme a ete modifier');
+        Toastr::success('Votre systeme a ete modifier','Modification Systeme', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -128,7 +129,7 @@ class SystemeController extends Controller
     public function destroy($id)
     {
         Systeme::find($id)->delete();
-        Flashy::error('Votre systeme a ete supprimer');
+        Toastr::success('Votre systeme a ete supprimer','Suppression Systeme', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

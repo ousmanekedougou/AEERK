@@ -6,6 +6,7 @@ use App\Model\Admin\Tag;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class TagController extends Controller
 {
@@ -54,7 +55,7 @@ class TagController extends Controller
         $tag->name = $request->name;
         $tag->slug = $request->slug;
         $tag->save();
-        Flashy::success('Votre tag a ete ajoute');
+        Toastr::success('Votre tag a ete ajouter','Ajout Tag', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.tag.index'));
     }
 
@@ -99,7 +100,7 @@ class TagController extends Controller
         $tag->name = $request->name;
         $tag->slug = $request->slug;
         $tag->save();
-        Flashy::success('Votre tag a ete modifier');
+        Toastr::success('Votre tag a ete modifier','Modification Tag', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.tag.index'));
     }
 
@@ -112,6 +113,7 @@ class TagController extends Controller
     public function destroy($id)
     {
         Tag::where('id',$id)->delete();
+        Toastr::success('Votre tag a ete supprimer','Suppression Tag', ["positionClass" => "toast-top-right"]);
         return redirect()->back();
     }
 }

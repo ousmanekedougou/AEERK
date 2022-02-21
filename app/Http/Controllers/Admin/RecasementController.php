@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MessageEmailAeerk;
+use Brian2694\Toastr\Facades\Toastr;
+
 class RecasementController extends Controller
 {
     /**
@@ -99,10 +101,10 @@ class RecasementController extends Controller
                     $recaser_ancien->save();
                     Mail::to($recaser_ancien->email)
                     ->send(new MessageEmailAeerk($recaser_ancien));
-                    Flashy::success('Votre etudiant a ete codifier');
+                    Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('admin.ancien.index');
                 }else{
-                    Flashy::error('Cette Chambre est pleine');
+                    Toastr::success('Cette Chambre est pleine','Status Chambre', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('admin.recasement.create');
                 }
             }
@@ -115,22 +117,12 @@ class RecasementController extends Controller
                     $recaser_ancien->save();
                     Mail::to($recaser_ancien->email)
                     ->send(new MessageEmailAeerk($recaser_ancien));
-                    Flashy::success('Votre etudiant a ete codifier');
+                    Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('admin.recasement.create');
                 }
                 
             }
         }
-
-
-        // dd($request->chambre_id);
-        // $recasement_nouveau = Recasement::find($id);
-        // $recasement_nouveau->chambre_id = $request->chambre_id;
-        // $recasement_nouveau->recaser = 1;
-        // $recasement_nouveau->status = 1;
-        // $recasement_nouveau->save();
-        // Flashy::success('Votre etudiant a ete Recaser');
-        // return redirect()->route('admin.recasement.create');
     }
 
     /**

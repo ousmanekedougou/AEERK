@@ -23,6 +23,7 @@ use Illuminate\Support\Str;
 use Paydunya\Checkout\CheckoutInvoice;
 use App\Helpers\Sms;
 use App\Model\Admin\Info;
+use Brian2694\Toastr\Facades\Toastr;
 
 class EtudiantCodificationController extends Controller
 {
@@ -44,6 +45,7 @@ class EtudiantCodificationController extends Controller
             $ancien = 2;
             return view('user.codification.index',compact('nouveau','ancien'));
         }else {
+            Toastr::error('Cette page n\'est pas disponible', 'Indisponible', ["positionClass" => "toast-top-right"]);
             return redirect()->route('index');
         }
             
@@ -88,12 +90,12 @@ class EtudiantCodificationController extends Controller
                     $immeubles = Immeuble::where('status',1)->first();
                     return view('user.codification.nouveau',compact('nouveau','immeubles'));
                 }else {
-                    Flashy::error('Votre quota de codification est epuiser');
-                    return back()->with(['error' => 'Votre quota de codification est epuiser']);
+                    Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                    return back();
                 }
             }elseif(!$nouveau){
-                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas');
-               return back()->with(['error' => 'Vous etes deja codifier ou vos information ne correspondent pas']);
+                Toastr::error('Vous etes deja codifier ou vos information ne correspondent pas', 'Error Information', ["positionClass" => "toast-top-right"]);
+                return back();
             }
             
 
@@ -105,12 +107,12 @@ class EtudiantCodificationController extends Controller
                     $immeubles = Immeuble::where('status',2)->get();
                     return view('user.codification.ancien',compact('ancien','immeubles'));
                 }else {
-                    Flashy::error('Votre quota de codification est epuiser');
-                    return back()->with(['error' => 'Votre quota de codification est epuiser']);
+                    Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                    return back();
                 }
             }elseif(!$ancien){
-                Flashy::error('Vous etes deja codifier ou vos information ne correspondent pas');
-                return back()->with(['error' => 'Vous etes deja codifier ou vos information ne correspondent pas']);
+                Toastr::error('Vous etes deja codifier ou vos information ne correspondent pas', 'Error Information', ["positionClass" => "toast-top-right"]);
+                return back();
             }
         }
     }
@@ -184,8 +186,8 @@ class EtudiantCodificationController extends Controller
                             }
                         }else {
                             Auth::logout();
-                            Flashy::error('Votre quota de codification est epuiser');
-                            return redirect()->route('index')->with(['error' => 'Votre quotta de codofication est epuiser']);
+                            Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                            return redirect()->route('index');
                         } 
                     }else{
                         // $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
@@ -218,21 +220,25 @@ class EtudiantCodificationController extends Controller
                                         }
                                     }else {
                                         Auth::logout();
-                                        Flashy::error('Votre quota de codification est epuiser');
-                                        return redirect()->route('index')->with(['error' => 'Votre quotta de codofication est epuiser']);
+                                        Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                                        return redirect()->route('index');
                                     }
                                 }
                             }else {
                                 Auth::logout();
-                                Flashy::error('Il n\'existe plus de chambre pour votre status');
-                                return redirect()->route('index')->with(['error' => 'Votre quotta de codification est epuiser']);
+                                Toastr::error('Il n\'existe plus de chambre pour votre status', 'Error Chambre', ["positionClass" => "toast-top-right"]);
+                                return redirect()->route('index');
                             }
                         }else {
                             Auth::logout();
-                            Flashy::error('L\'immeuble est plein');
+                            Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
                             return redirect()->route('index');
                         }
                     }
+                }else {
+                    Auth::logout();
+                    Toastr::error('Pas de chambre correspondan','Error Chambre', ["positionClass" => "toast-top-right"]);
+                    return redirect()->route('index');
                 }
             }
         }
@@ -276,8 +282,8 @@ class EtudiantCodificationController extends Controller
                                 }
                             }else {
                                 Auth::logout();
-                                 Flashy::error('Votre quota de codification est epuiser');
-                                return redirect()->route('index')->with(['error' => 'Votre quotta de codification est epuiser']);
+                                Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                                return redirect()->route('index');
                             }
                         }else{
                             // $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
@@ -287,34 +293,48 @@ class EtudiantCodificationController extends Controller
                                 'is_pleine' => 1
                             ]);
                             $chambre_suivante = Chambre::where('is_pleine',0)->first();
-                            if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
-                                $ancien = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
-                                if($ancien->count() < $chambres->nombre){
-                                    $codifier_ancien = Etudiant::where('id',$id)->first();
-                                    if ($codifier_ancien->codification_count < 5) {
-                                        $invoice = new CheckoutInvoice();
-                                        $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
-                                        $invoice->setTotalAmount($prix->prix_ancien);
-                                        $invoice->addCustomData("id", $id);
-                                        $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
-                                        $invoice->addCustomData("chambres", $chambres->id);
-                                        $invoice->addCustomData("email", $codifier_ancien->email);
-                                        $invoice->addCustomData("phone", $codifier_ancien->phone);
-                                        $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                                        $invoice->addChannels(['wave-senegal']);
-                                        if($invoice->create()) {
-                                            return redirect(url($invoice->getInvoiceUrl()));
-                                        }else{
-                                            dd($invoice->response_text);
+                            if ($chambre_suivante) {
+                                if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
+                                    $ancien = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
+                                    if($ancien->count() < $chambres->nombre){
+                                        $codifier_ancien = Etudiant::where('id',$id)->first();
+                                        if ($codifier_ancien->codification_count < 5) {
+                                            $invoice = new CheckoutInvoice();
+                                            $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
+                                            $invoice->setTotalAmount($prix->prix_ancien);
+                                            $invoice->addCustomData("id", $id);
+                                            $invoice->addCustomData("chambre_id", $imb_chm->chambre_id);
+                                            $invoice->addCustomData("chambres", $chambres->id);
+                                            $invoice->addCustomData("email", $codifier_ancien->email);
+                                            $invoice->addCustomData("phone", $codifier_ancien->phone);
+                                            $invoice->addCustomData("codifier", $codifier_ancien->codifier);
+                                            $invoice->addChannels(['wave-senegal']);
+                                            if($invoice->create()) {
+                                                return redirect(url($invoice->getInvoiceUrl()));
+                                            }else{
+                                                dd($invoice->response_text);
+                                            }
+                                        }else {
+                                            Auth::logout();
+                                            Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                                            return redirect()->route('index');
                                         }
-                                    }else {
-                                        Auth::logout();
-                                         Flashy::error('Votre quota de codification est epuiser');
-                                        return redirect()->route('index')->with(['error' => 'Votre quotta de codification est epuiser']);
                                     }
+                                }else {
+                                    Auth::logout();
+                                    Toastr::error('Il n\'existe plus de chambre pour votre status', 'Error Chambre', ["positionClass" => "toast-top-right"]);
+                                    return redirect()->route('index');
                                 }
+                            }else {
+                                Auth::logout();
+                                Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
+                                return redirect()->route('index');
                             }
                         }
+                    }else {
+                        Auth::logout();
+                        Toastr::error('Pas de chambre correspondan','Error Chambre', ["positionClass" => "toast-top-right"]);
+                        return redirect()->route('index');
                     }
                 }
             }
@@ -402,12 +422,14 @@ if ($invoice->confirm($token)) {
         $message,
         'AEERK'
     );
-    Flashy::success('Vous avez ete codifier');
     Auth::logout();
+    Toastr::success('Vous avez bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
+    // return redirect()->route('index');
     return redirect()->route('createPdf',['id' => $codifier_ancien->id,'email' => $codifier_ancien->email,'phone' => $codifier_ancien->phone]);
     }elseif ($invoice->getStatus() == "cancelled") {
-        Flashy::success('Votre codification a echouer');
-        return redirect()->route('index')->with(['error' => 'Votre codification a echouer']);
+        Auth::logout();
+        Toastr::error('Votre codification a echouer','Error Codification', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('index');
     }
 
     }else{

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ResponseEmailMessage;
 use App\Mail\GroupeEmailMessage;
 use App\Model\User\Etudiant;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ContactController extends Controller
 {
@@ -45,8 +46,7 @@ class ContactController extends Controller
             $mail = new GroupeEmailMessage($request->subject,$request->msg);
             Mail::to($sendmail_etudiant->email)->send($mail);
         }
-
-        Flashy::success('Votre reponse a bien ete envoyer');
+        Toastr::success('Votre reponse a bien ete envoyer', 'Envoi Message Reponse', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.contact.index');
     }
 
@@ -70,7 +70,7 @@ class ContactController extends Controller
         Mail::to($request->email)
             ->send(new ResponseEmailMessage($contact));
 
-        Flashy::success('Votre reponse a bien ete envoyer');
+        Toastr::success('Votre reponse a bien ete envoyer', 'Envoi Message Reponse', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.contact.index');
     }
 
@@ -123,7 +123,7 @@ class ContactController extends Controller
     public function destroy($id)
     {
         Contact::find($id)->delete();
-        Flashy::success('Le Message a ete supprimer');
+        Toastr::success('Votre message a bien ete supprimer', 'Suppression Message', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.contact.index');
     }
 }

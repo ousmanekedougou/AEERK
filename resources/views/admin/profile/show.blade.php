@@ -33,8 +33,6 @@
 
                     <h3 class="profile-username text-center">{{ $admins->name }}</h3>
 
-                    <p class="text-muted text-center">{{ $admins->poste->name }}</p>
-
                     <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                         <b>E-mail</b> <a class="pull-right">{{$admins->email}}</a>
@@ -45,16 +43,19 @@
                     <li class="list-group-item">
                         <b>Commission</b> 
                         <a class="pull-right">
-                           @foreach($admins->poste->commissions as $admin_com)
-                            {{$admin_com->name}}
-                           @endforeach
                         </a>
                     </li>
                     <li class="list-group-item">
                         <b>Role</b> <a class="pull-right">
-                            @foreach($admins->roles as $admin_role)
-                                {{$admin_role->name}},
-                            @endforeach
+                            @if($admins->is_admin == 1)
+                            Administrateur
+                           @elseif($admins->is_admin == 2)
+                            Codification
+                           @elseif($admins->is_admin == 3)
+                            Pedagogie
+                           @elseif($admins->is_admin == 4)
+                            Communication
+                           @endif
                         </a>
                     </li>
                     <!-- <li class="list-group-item">

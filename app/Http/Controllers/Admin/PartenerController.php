@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Partenaire;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class PartenerController extends Controller
 {
@@ -59,7 +60,7 @@ class PartenerController extends Controller
         $add_partener->mot = $request->mot;
         $add_partener->date = $request->date;
         $add_partener->save();
-        Flashy::success('Votre partenaire a ete ajouter');
+        Toastr::success('Votre partenaire a ete ajouter','Ajout Partenaire', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -114,7 +115,7 @@ class PartenerController extends Controller
         $update_partener->mot = $request->mot;
         $update_partener->date = $request->date;
         $update_partener->save();
-        Flashy::success('Votre partenaire a ete modifier');
+        Toastr::success('Votre partenaire a ete modifier','Modification Partenaire', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -128,7 +129,7 @@ class PartenerController extends Controller
     public function destroy($id)
     {
         Partenaire::find($id)->delete();
-        Flashy::success('Votre Partenaire a ete supprimer');
+        Toastr::success('Votre partenaire a ete supprimer','Suppression Partenaire', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

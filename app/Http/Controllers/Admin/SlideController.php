@@ -6,6 +6,7 @@ use App\Model\Admin\Slide;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -74,7 +75,7 @@ class SlideController extends Controller
         $add_slider->image = $imageName;
         $add_slider->role = $request->role;
         $add_slider->save();
-        Flashy::success('votre image slider a ete ajouter');
+        Toastr::success('Votre image slider a ete ajouter','Ajout Image', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -127,7 +128,7 @@ class SlideController extends Controller
         $update_slider->image = $imageName;
         $update_slider->role = $request->role;
         $update_slider->save();
-        Flashy::success('votre image slider a ete modifier');
+        Toastr::success('Votre image slider a ete modifier','Modification Image', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -143,7 +144,7 @@ class SlideController extends Controller
         $imgdel = $silder_delete->image;
         Storage::delete($imgdel); 
         $silder_delete->delete();
-        Flashy::success('Votre Image slider a ete supprimer');
+        Toastr::success('Votre image slider a ete supprimer','Suppression Image', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

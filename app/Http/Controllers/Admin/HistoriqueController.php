@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Historique;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class HistoriqueController extends Controller
 {
@@ -61,7 +62,7 @@ class HistoriqueController extends Controller
         $add_historique->status = $request->status;
         $add_historique->image = $imageName;
         $add_historique->save();
-        Flashy::success('Votre historique a ete ajoute');
+        Toastr::success('Votre historique a ete ajouter', 'Ajout Historique', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.historique.index');
     }
 
@@ -111,7 +112,7 @@ class HistoriqueController extends Controller
         $update_historique->status = $request->status;
         $update_historique->image = $imageName;
         $update_historique->save();
-        Flashy::success('Votre historique a ete modifier');
+        Toastr::success('Votre historique a ete mise a jour', 'Ajout Historique', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.historique.index');
     }
 
@@ -124,7 +125,7 @@ class HistoriqueController extends Controller
     public function destroy($id)
     {
         Historique::find($id)->delete();
-        Flashy::success('Votre historique a ete supprimer');
+        Toastr::success('Votre historique a ete supprimer', 'Suppression Historique', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

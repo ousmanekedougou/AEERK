@@ -8,6 +8,7 @@ use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Departement;
 use App\Model\User\Recrutement;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RealisationController extends Controller
 {
@@ -63,7 +64,7 @@ class RealisationController extends Controller
         $add_realisation->status = $request->status;
         $add_realisation->image = $imageName;
         $add_realisation->save();
-        Flashy::success('Votre realisation a ete ajoute');
+        Toastr::success('Votre realisation a ete ajouter','Ajout Realisation', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.realisation.index');
     }
 
@@ -174,7 +175,7 @@ class RealisationController extends Controller
             $etudiant_image->save();
             return back()->with('success','L\'image a ete modifier');
         }
-        Flashy::success('Votre realisation a ete modifier');
+        Toastr::success('Votre realisation a ete modifier','Modification Realisation', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.realisation.index');
     }
 
@@ -187,7 +188,7 @@ class RealisationController extends Controller
     public function destroy($id)
     {
         Recrutement::find($id)->delete();
-        Flashy::success('Cte etudiant a ete supprimer');
+        Toastr::success('Votre realisation a ete supprimer','Suppression Realisation', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

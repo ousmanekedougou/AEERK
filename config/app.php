@@ -171,6 +171,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Brian2694\Toastr\ToastrServiceProvider::class,
         MercurySeries\Flashy\FlashyServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
@@ -238,6 +239,7 @@ return [
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
         'Image' => Intervention\Image\Facades\Image::class,
         "PDF" => Barryvdh\DomPDF\Facade::class,
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
 
     ],
 

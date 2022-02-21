@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class CommuneController extends Controller
 {
@@ -52,7 +53,7 @@ class CommuneController extends Controller
         $add_commune->name = $request->name;
         $add_commune->departement_id = $request->departement;
         $add_commune->save();
-        Flashy::success('Votre Commune a ete jouter');
+        Toastr::success('Votre commune a ete ajoute', 'Ajout Commune', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.localite.index');
         
     }
@@ -92,7 +93,7 @@ class CommuneController extends Controller
         $update_com->name = $request->name;
         $update_com->departement_id = $request->departement;
         $update_com->save();
-        Flashy::success('Votre departement a ete modifier');
+        Toastr::success('Votre commune a ete modifier', 'Modification Commune', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.localite.index');
     }
 
@@ -105,7 +106,7 @@ class CommuneController extends Controller
     public function destroy($id)
     {
         Commune::find($id)->delete();
-        Flashy::success('Votre commune a ete Supprimer');
+        Toastr::success('Votre commune a ete supprimer', 'Suppression Commune', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

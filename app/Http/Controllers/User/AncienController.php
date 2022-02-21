@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\Model\User\Etudiant;
 use App\Helpers\Sms;
+use Brian2694\Toastr\Facades\Toastr;
+
 class AncienController extends Controller
 {
     /**
@@ -84,7 +86,8 @@ class AncienController extends Controller
         }elseif (strlen($request->phone) == 9) {
             $phoneFinale = $phoneComplet;
         }else {
-            return back()->with('error','votre numero de telephone est invalid');
+            Toastr::error('votre numero de telephone est invalid', 'Error Telepone', ["positionClass" => "toast-top-right"]);
+            return back();
         }
         $add_ancien->genre = $request->genre;
         $add_ancien->nom = $request->nom;
@@ -177,13 +180,14 @@ class AncienController extends Controller
                 $ancien_existant->immeuble_id = $request->immeuble;
                 $ancien_existant->chambre_id = 0;
                 $ancien_existant->save();
-                Flashy::success('Votre profile a ete mise a jour');
+                Toastr::success('Votre profile a ete mise a jour', 'Modificatin Profile', ["positionClass" => "toast-top-right"]);
                 return redirect()->route('index');
             }else {
-                return redirect()->route('index')->with('error','Votre quotta de codification est epuiser');
+                Toastr::error('Votre quotta de codification est epuiser', 'Error Codification', ["positionClass" => "toast-top-right"]);
+                return redirect()->route('index');
             }
         }else{
-            Flashy::error('Vous etes pas dans notre base de donne');
+            Toastr::error('Vous etes pas dans notre base de donne', 'Inexiatant', ["positionClass" => "toast-top-right"]);
             return redirect()->route('index');
         }
     }
@@ -199,28 +203,4 @@ class AncienController extends Controller
         //
     }
 
-    public function getSendSms($email , $user_tel ,$prenom , $nom){
-        // Authorisation details.
-        $username = "ousmanelaravel@gmail.com";
-        $hash = "18b51d0115d65bfa0abd5bb15b25d685d6b76bd03380f0fe9fdafd658bc76de9";
-
-        // Config variables. Consult http://api.txtlocal.com/docs for more info.
-        $test = "0";
-
-        // Data for text message. This is the text message data.
-        $sender = "AEERK"; // This is who the message appears to be from.
-        $numbers = $user_tel; // A single number or a comma-seperated list of numbers
-        $message = "Salut $prenom $nom votre inscription a bien ete valider";
-        // 612 chars or less
-        // A single number or a comma-seperated list of numbers
-        $message = urlencode($message);
-        $data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
-        $ch = curl_init('http://api.txtlocal.com/send/?');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $result = curl_exec($ch); // This is the result from the API
-        curl_close($ch);
-        dd($result);
-    }
 }

@@ -7,6 +7,7 @@ use App\Model\Admin\Role;
 use App\Model\Admin\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
@@ -55,7 +56,7 @@ class UserController extends Controller
         ]);
         $request['password'] = bcrypt($request->password);
         $user = Admin::create($request->all());
-        $user->roles()->sync($request->role);
+        Toastr::success('Votre admin a ete ajouter','Ajout Admin', ["positionClass" => "toast-top-right"]);
         return redirect(route('user.index'));
     }
 
@@ -98,9 +99,9 @@ class UserController extends Controller
             'phone' => 'required|numeric',
         ]);
         $request->status? : $request['status'] = 0 ;
-        $user = Admin::where('id',$id)->update($request->except('_token','_method','role'));
-        Admin::find($id)->roles()->sync($request->role);
-        return redirect(route('user.index'))->with('message','Admin updated succuffly');
+        Admin::where('id',$id)->update($request->except('_token','_method','role'));
+        Toastr::success('Votre admin a ete modifier','Modification Admin', ["positionClass" => "toast-top-right"]);
+        return redirect(route('user.index'));
     }
 
     /**
@@ -112,6 +113,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         Admin::where('id',$id)->delete();
-        return redirect()->back()->with('message','Admin deleted succuffly');
+        Toastr::success('Votre admin a ete supprimer','Suppression Admin', ["positionClass" => "toast-top-right"]);
+        return redirect()->back();
     }
 }

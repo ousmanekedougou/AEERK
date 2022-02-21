@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class ChambreController extends Controller
 {
@@ -58,7 +59,7 @@ class ChambreController extends Controller
         $add_chambre->genre = $request->genre;
         $add_chambre->save();
         $add_chambre->immeubles()->sync($request->immeuble);
-        Flashy::success('Votre chambre a ete ajoute');
+        Toastr::success('Votre chambre a ete ajoute', 'Ajout Chambre', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.logement.index');
     }
 
@@ -106,7 +107,7 @@ class ChambreController extends Controller
         $update_chambre->genre = $request->genre;
         $update_chambre->save();
         $update_chambre->immeubles()->sync($request->immeuble);
-        Flashy::success('Votre chambre a ete modifier');
+        Toastr::success('Votre chambre a ete modifier', 'Modification Chambre', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.logement.index');
     }
 
@@ -119,7 +120,7 @@ class ChambreController extends Controller
     public function destroy($id)
     {
         Chambre::find($id)->delete();
-        Flashy::success('Votre Chambre a ete Supprimer');
+        Toastr::success('Votre chambre a ete supprimer', 'Suppression Chambre', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

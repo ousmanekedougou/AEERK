@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\User\Temoignage;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +80,7 @@ class TemoignageController extends Controller
         $update_temoignage = Temoignage::find($id);
         $update_temoignage->status = $request->status;
         $update_temoignage->save();
-        Flashy::success('Votre status a ete modifier avec successs');
+        Toastr::success('Votre status a ete modifier','Modification Status', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -92,7 +93,7 @@ class TemoignageController extends Controller
     public function destroy($id)
     {
         Temoignage::find($id)->delete();
-        Flashy::error('Votre status a ete supprimer avec successs');
+        Toastr::success('Votre status a ete supprimer','Suppression Status', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

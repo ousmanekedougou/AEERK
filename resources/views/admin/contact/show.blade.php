@@ -84,12 +84,7 @@
                         </div>
                         <!-- /.mailbox-controls -->
                         <div class="mailbox-read-message">
-                            <p>Hello John,</p>
-
                             <p>{{ $show_contact->message }}</p>
-
-                         
-
                             <p>Merci,<br>{{ $show_contact->nom }}</p>
                         </div>
                         <!-- /.mailbox-read-message -->

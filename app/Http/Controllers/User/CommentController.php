@@ -6,6 +6,7 @@ use App\Model\User\Comment;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class CommentController extends Controller
 {
@@ -49,7 +50,7 @@ class CommentController extends Controller
         $comment->comment = $request->comment;
         $comment->post_id = $request->post_id;
         $comment->save();
-        Flashy::success('Votre commentaire a ete ajouter');
+        Toastr::success('Votre commentaire a ete ajouter', 'Ajout de commentaire', ["positionClass" => "toast-top-right"]);
         return back();
     }
 

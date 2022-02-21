@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Document;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -59,7 +60,7 @@ class DocumentController extends Controller
         $add_doc->status = $request->status;
         $add_doc->image = $imageName;
         $add_doc->save();
-        Flashy::success('Votre Document a ete ajoute');
+        Toastr::success('Votre document a ete ajouter', 'Ajout Document', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.document.index');
     }
 
@@ -109,7 +110,7 @@ class DocumentController extends Controller
         $update_doc->status = $request->status;
         $update_doc->image = $imageName;
         $update_doc->save();
-        Flashy::success('Votre Document a ete modifier');
+        Toastr::success('Votre document a ete modifier', 'Modification Document', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.document.index');
     }
 
@@ -125,7 +126,7 @@ class DocumentController extends Controller
         $doc_img = $doc_delete->image;
         Storage::delete($doc_img);
         $doc_delete->delete();
-        Flashy::success('Votre document a ete supprimer');
+        Toastr::success('Votre document a ete supprimer', 'Suppression Document', ["positionClass" => "toast-top-right"]);
         return back();
     }
 

@@ -6,6 +6,7 @@ use App\Model\Admin\Post;
 use Illuminate\Http\Request;
 use App\Model\Admin\Category;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use MercurySeries\Flashy\Flashy;
@@ -88,7 +89,7 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->category);
-        Flashy::success('Votre article a ete ajouter');
+        Toastr::success('Votre article a ete ajouter','Ajout Article', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.post.index'));
     }
 
@@ -151,6 +152,7 @@ class PostController extends Controller
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->category);
         Storage::delete($imgdel); 
+        Toastr::success('Votre article a ete modifier','Modification Article', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.post.index'));
     }
 
@@ -166,6 +168,7 @@ class PostController extends Controller
         $imgdel = $poste_delete->image;
         Storage::delete($imgdel); 
         $poste_delete->delete();
+        Toastr::success('Votre article a ete supprimer','Suppression Article', ["positionClass" => "toast-top-right"]);
         return redirect()->back();
     }
 }

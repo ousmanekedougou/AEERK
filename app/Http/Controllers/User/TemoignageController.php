@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Model\User\Temoignage;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 
@@ -11,7 +12,6 @@ class TemoignageController extends Controller
 {
     public function post(Request $request)
     {
-        // dd($request->all());
         $validator = $this->validate($request , [
             'name' => 'required|string',
             'email' => 'required|email|string',
@@ -24,7 +24,7 @@ class TemoignageController extends Controller
         $add_temoignage->message = $request->message;
         $add_temoignage->status = false;
         $add_temoignage->save();
-        Flashy::success('Merci de nous faire part de votre avis');
+        Toastr::success('Merci de nous faire part de votre avis', 'Avis Message', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

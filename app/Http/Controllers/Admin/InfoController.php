@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Partenaire;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class InfoController extends Controller
@@ -53,13 +54,13 @@ class InfoController extends Controller
             'numero_n' => 'required|numeric',
             'numero_a' => 'required|numeric',
         ]);
-        $add_solde = new Solde;
+        $add_solde = new Solde();
         $add_solde->prix_nouveau = $request->prix_n;
         $add_solde->prix_ancien = $request->prix_a;
         $add_solde->numero_nouveau = $request->numero_n;
         $add_solde->numero_ancien = $request->numero_a;
         $add_solde->save();
-        Flashy::success('Vos Prix ont ete mise a joure');
+        Toastr::success('Vos Prix ont ete ajouter', 'Ajout Solde', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -86,7 +87,7 @@ class InfoController extends Controller
         $info_ajouter->bp = $request->bp;
         $info_ajouter->fax = $request->fax;
         $info_ajouter->save();
-        Flashy::success('Vos infos ont ete ajouter');
+        Toastr::success('Vos infos ont ete ajouter', 'Ajout Info', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.info.index');
     }
 
@@ -111,7 +112,7 @@ class InfoController extends Controller
         $update_solde->numero_nouveau = $request->numero_n;
         $update_solde->numero_ancien = $request->numero_a;
         $update_solde->save();
-        Flashy::success('Vos Prix ont ete mise a joure');
+        Toastr::success('Vos solde ont ete modifier', 'Modifier Solde', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -125,7 +126,7 @@ class InfoController extends Controller
             $update_lien->register = 1;
         }
         $update_lien->save();
-        Flashy::success('Votre lien a ete modifier');
+        Toastr::success('Votre lien a ete ajouter', 'Ajout Lien', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -139,7 +140,7 @@ class InfoController extends Controller
             $update_lien->register_ancien = 1;
         }
         $update_lien->save();
-        Flashy::success('Votre lien a ete modifier');
+        Toastr::success('Votre lien a ete modifier', 'Modification Lien', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -151,7 +152,7 @@ class InfoController extends Controller
             $update_lien->register_recasement = 1;
         }
         $update_lien->save();
-        Flashy::success('Votre lien a ete modifier');
+        Toastr::success('Votre lien a ete modifier', 'Modification Lien', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -163,7 +164,7 @@ class InfoController extends Controller
             $update_lien->codification = 1;
         }
         $update_lien->save();
-        Flashy::success('Votre lien a ete modifier');
+        Toastr::success('Votre lien a ete modifier', 'Modification Lien', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -177,7 +178,7 @@ class InfoController extends Controller
             $update_lien->codification_ancien = 1;
         }
         $update_lien->save();
-        Flashy::success('Votre lien a ete modifier');
+        Toastr::success('Votre lien a ete modifier', 'Modification Lien', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -189,7 +190,7 @@ class InfoController extends Controller
             $update_lien->recasement = 1;
         }
         $update_lien->save();
-        Flashy::success('Votre lien a ete modifier');
+        Toastr::success('Votre lien a ete modifier', 'Modification Lien', ["positionClass" => "toast-top-right"]);
         return back();
     }
 
@@ -222,7 +223,7 @@ class InfoController extends Controller
         $info_update->bp = $request->bp;
         $info_update->fax = $request->fax;
         $info_update->save();
-        Flashy::success('Vos infos ont ete modifier');
+        Toastr::success('Votre info a ete modifier', 'Modification Info', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.info.index');
     }
 
@@ -239,13 +240,13 @@ class InfoController extends Controller
             $update_autorisation->password = Hash::make($request->password);
             $update_autorisation->sendmail = $request->sendmail;
             $update_autorisation->save();
-            Flashy::success('Vos informations de codifications ont ete modifier');
+            Toastr::success('Vos informations de codifications ont ete modifier', 'Modification Codification', ["positionClass" => "toast-top-right"]);
             return back();
         }elseif ($request->option == 2) {
             $update_lient = User::where('id',$id)->first();
             $update_lient->lien = $request->lien;
             $update_lient->save();
-            Flashy::success('Le status de votre lien a ete modifier');
+            Toastr::success('Le status de votre lien a ete modifier', 'Modification Lien', ["positionClass" => "toast-top-right"]);
             return back();
         }
     }
@@ -260,6 +261,7 @@ class InfoController extends Controller
     public function destroy($id)
     {
         Info::where('id',$id)->delete();
+        Toastr::success('Le status de votre info a ete supprimer', 'Suppression Info', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

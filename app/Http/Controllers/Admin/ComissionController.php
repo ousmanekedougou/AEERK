@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Commission;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class ComissionController extends Controller
 {
@@ -51,7 +52,7 @@ class ComissionController extends Controller
         $add_commission = new Commission;
         $add_commission->name = $request->name;
         $add_commission->save();
-        Flashy::success('Votre Commission a ete ajoute');
+        Toastr::success('Votre commission a ete ajoute', 'Ajout Commission', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.comission.index');
     }
 
@@ -92,7 +93,7 @@ class ComissionController extends Controller
         $add_commission = Commission::find($id);
         $add_commission->name = $request->name;
         $add_commission->save();
-        Flashy::success('Votre Commission a ete modifier');
+        Toastr::success('Votre commission a ete modifier', 'Modification Commission', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.comission.index');
     }
 
@@ -105,7 +106,7 @@ class ComissionController extends Controller
     public function destroy($id)
     {
         Commission::find($id)->delete();
-        Flashy::error('Votre commission a ete supprimer');
+        Toastr::success('Votre commission a ete supprimer', 'Suppression Commission', ["positionClass" => "toast-top-right"]);
         return back();
     }
 }

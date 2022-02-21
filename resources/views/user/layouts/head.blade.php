@@ -2,7 +2,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Favicon-->
 		<link rel="shortcut icon" href="{{asset('user/img/3ccs.jpg')}}">
-		<!-- <link rel="shortcut icon" href="{{asset('user/img/fav.png')}}"> -->
 		<!-- Author Meta -->
 		<meta name="author" content="colorlib">
 		<!-- Meta Description -->
@@ -15,11 +14,9 @@
 		<title> {{ page_title($title ?? '') }}</title>
 
 		<link rel="stylesheet" href="{{asset('user/css/slick.min.css')}}">
-		<link rel="stylesheet" href="{{asset('user/css/slick-theme.min.css')}}">
-		{{--
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-		--}}	<!--
+		<link rel="stylesheet" href="{{asset('user/css/slick-theme.min.css')}}">	
+		<link rel="stylesheet" href="{{asset('user/css/toastr.min.css')}}">	
+		<!--
 			CSS
 			============================================= -->
 			<link rel="stylesheet" href="{{asset('user/css/dropzone/dropzone.css')}}">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\User\Education;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -63,7 +64,8 @@ class EducationController extends Controller
             $add_document->content = $request->body;
             $add_document->slug = $request->title.' '.$request->type; 
             $add_document->save();
-            return redirect()->route('admin.education.index')->with('success','Votre ducument a ete ajoute');
+            Toastr::success('Votre document a ete ajouter', 'Ajout Document', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('admin.education.index');
     }
 
     /**
@@ -119,7 +121,8 @@ class EducationController extends Controller
             $update_document->content = $request->body;
             $update_document->slug = $request->title.' '.$request->type; 
             $update_document->save();
-            return redirect()->route('admin.education.index')->with('success','Votre ducument a ete mise a joure');
+            Toastr::success('Votre ducument a ete mise a jour', 'Modification Document', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('admin.education.index');
     }
 
     /**
@@ -131,6 +134,7 @@ class EducationController extends Controller
     public function destroy($id)
     {
         Education::find($id)->delete();
-        return back()->with('success','Votre document a ete supprimer');
+        Toastr::success('Votre ducument a ete supprimer', 'Suppression Document', ["positionClass" => "toast-top-right"]);
+        return back();
     }
 }
