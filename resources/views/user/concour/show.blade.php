@@ -1,4 +1,4 @@
- @extends('user.layouts.app',['title' => 'Formation'])
+ @extends('user.layouts.app',['title' => 'Concour'])
  @section('bg-img',asset('user/img/home-bg.jpg'))
 @section('head')
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,7 +19,7 @@
                     <h1 class="text-white">
                         {{$show->titre}}				
                     </h1>	
-                    <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('formation.index') }}">Offre formation</a></p>
+                    <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('concour.index') }}">Offre concour</a></p>
                 </div>	
             </div>
         </div>
@@ -40,8 +40,7 @@
                             <div class="jq-tab-menu">
                                 <div class="jq-tab-title active" data-tab="1">Description</div>
                                 <div class="jq-tab-title" data-tab="2">Detail Complet</div>
-                                <div class="jq-tab-title" data-tab="3">Postuler</div>
-                                
+                                <div class="jq-tab-title" data-tab="3">Pour postuler</div>
                                 {{--
                                 <div class="jq-tab-title" data-tab="4">Comments</div>
                                 <div class="jq-tab-title" data-tab="5">Reviews</div>
@@ -345,30 +344,30 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Autres offres de formations de la memme categorie	</h1>
+								<h1 class="mb-10">Autres offres de concours de la memme categorie	</h1>
 							</div>
 						</div>
 					</div>	
 					<div class="row align-items-center">
-						@foreach($formations as $formation)
+						@foreach($concours as $concour)
 							<div class="single-popular-carusel col-lg-3 col-md-6">
 								<div class="thumb-wrap relative">
 									<div class="thumb relative">
 										<div class="overlay overlay-bg"></div>	
-											<a href="{{ route('formation.show',$formation->id) }}"><img class="img-fluid" src="{{Storage::url($formation->image)}}" alt=""></a>
+											<a href="{{ route('concour.show',$concour->id) }}"><img class="img-fluid" src="{{Storage::url($concour->image)}}" alt=""></a>
 									</div>
 									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-clock"></span> {{$formation->created_at->diffForHumans()}} </p>
+										<p><span class="lnr lnr-clock"></span> {{$concour->created_at->diffForHumans()}} </p>
 									</div>									
 								</div>
 								<div class="details">
-									<a href="{{ route('formation.show',$formation->id) }}">
+									<a href="{{ route('concour.show',$concour->id) }}">
 										<h4>
-											{{$formation->titre}}
+											{{$concour->titre}}
 										</h4>
 									</a>
 									<p>
-										{{$formation->desc}}										
+										{{$concour->desc}}										
 									</p>
 								</div>
 							</div>

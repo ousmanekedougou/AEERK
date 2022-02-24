@@ -38,7 +38,6 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route ('admin.info.index') }}"><i class="fa fa-circle-o text-red"></i> <span>Paramettre</span></a></li>
-            <li><a href="{{ route ('admin.gallery.index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Slider</span></a></li>
             <li><a href="{{ route ('admin.team.index') }}"><i class="fa fa-circle-o"></i> <span>Personnelle</span></a></li>
             <li><a href="{{ route ('admin.admin.index') }}"><i class="fa fa-circle-o"></i>Admins</a></li>
             <li class=""><a href="{{route('admin.temoignage.index')}}"><i class="fa fa-circle-o"></i> Temoignage</a></li>
@@ -145,10 +144,11 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{ route ('admin.education.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Education</span></a></li>
-              <li><a href="{{ route ('admin.systeme.index') }}"><i class="fa fa-circle-o"></i> Syeteme Educatif</a></li>
-              <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
-              <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Emploi & Stage</span></a></li>
+              <li><a href="{{ route ('admin.emploi.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Empois</span></a></li>
+              <li><a href="{{ route ('admin.formation.index') }}"><i class="fa fa-circle-o"></i>Formation</a></li>
+              <li><a href="{{ route('admin.bourse.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
+              <li><a href="{{ route('admin.concour.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Concours</span></a></li>
+              <li><a href="{{ route('admin.stage.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Stage</span></a></li>
               <li><a href="{{ route('admin.realisation.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Recrutement</span></a></li>
             </ul>
           </li>

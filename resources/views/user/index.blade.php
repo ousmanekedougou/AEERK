@@ -67,7 +67,7 @@
 							<p class="pt-10 pb-10">
 								In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
 							</p>
-							<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;">Documentation</a>
+							<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase" style="border-radius: 5px;"> <i class="fa fa-cog fa_ajout"></i>  Comment ça  marche</a>
 							
 						</div>										
 					</div>
@@ -98,7 +98,7 @@
 									<p class="text-justify">
 										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure duuj hjjjjj rjjjr jrjjkr 
 									</p>
-									<a href="{{ route('education.index', [ 'type' =>  4 ])}}">Voire</a>									
+									<a href="">Voire</a>									
 								</div>
 							</div>
 						</div>
@@ -111,7 +111,7 @@
 									<p class="text-justify">
 										Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure duuj hjjjjj rjjjr jrjjkr 
 									</p>
-									<a href="{{ route('education.index', [ 'type' =>  4 ])}}">Voire</a>									
+									<a href="">Voire</a>									
 								</div>
 							</div>
 						</div>											
@@ -236,14 +236,14 @@
 							<div class="row details-content">
 								<div class="col single-detials">
 									<span class="lnr lnr-graduation-hat"></span>
-									<a href="{{ route('education.index', [ 'type' =>  1 ])}}"><h4>Offres d'emplois & statges</h4></a>		
+									<a href="{{ route('emploi.index')}}"><h4>Offres d'emplois</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
 								</div>
 								<div class="col single-detials">
 									<span class="lnr lnr-license"></span>
-									<a href="{{ route('education.index', [ 'type' =>  3 ])}}"><h4>Bourses D'etudes</h4></a>		
+									<a href="{{ route('stage.index')}}"><h4>Offres de stages</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
@@ -253,14 +253,14 @@
 							<div class="row details-content">
 								<div class="col single-detials">
 									<span class="lnr lnr-graduation-hat"></span>
-									<a href="{{ route('education.index', [ 'type' =>  5 ])}}"><h4>Formations</h4></a>		
+									<a href="{{ route('formation.index')}}"><h4>Formations</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
 								</div>
 								<div class="col single-detials">
 									<span class="lnr lnr-license"></span>
-									<a href="{{ route('education.index', [ 'type' =>  4 ])}}"><h4>Examan & Concours</h4></a>		
+									<a href="{{ route('concour.index')}}"><h4>Concours</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						

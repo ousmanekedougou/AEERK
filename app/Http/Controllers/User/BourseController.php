@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\User\Education;
 use Illuminate\Http\Request;
 
-class FormationController extends Controller
+class BourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class FormationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.formation.index',compact('formations'));
+    { 
+        $bourses = Education::where('type',1)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        return view('user.bourse.index',compact('bourses'));
     }
 
     /**
@@ -48,9 +48,9 @@ class FormationController extends Controller
      */
     public function show($id)
     {
-         $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        $show = Education::where('type',3)->where('status',1)->where('id',$id)->first();
-        return view('user.formation.show',compact('show','formations'));
+        $bourses = Education::where('type',1)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        $show = Education::where('type',1)->where('status',1)->where('id',$id)->first();
+        return view('user.bourse.show',compact('show','bourses'));
     }
 
     /**

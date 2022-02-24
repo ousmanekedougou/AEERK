@@ -16,12 +16,13 @@ class CreateEducationTable extends Migration
         Schema::create('education', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->longText('content');
-            $table->Integer('type');
-            $table->Integer('concour_type')->default(0);
-            $table->Integer('bourse_type')->default(0);
             $table->string('lien')->nullable();
-            $table->string('file')->nullable();
+            $table->string('lien_name')->nullable();
+            $table->string('image')->nullable();
+            $table->Integer('type');
+            $table->boolean('status')->default(1);
+            $table->text('desc');
+            $table->longText('content');
             $table->timestamps();
         });
     }

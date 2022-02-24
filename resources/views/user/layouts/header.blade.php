@@ -26,104 +26,26 @@
 			      </div>
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
-			          <li class="{{ set_active_roote('index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> Home</a></li>
-			           {{--<li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-eject fa_ajout"></i> A Propos</a></li>--}} 
-			          <li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça  marche</a></li>
-					 <li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Codification</a>
-			            <ul>
-			              <li><a href="{{ route('nouveau.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Nouveau</a></li>
-			              <li><a href="{{ route('ancien.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
-			            </ul>
-			          </li>	
-			          <!-- <li class="{{ set_active_roote('education.index') }}"><a href="{{ route('education.index') }}"><i class="fa fa-graduation fa_ajout"></i> Documentation</a></li> -->
-				
-					{{-- <li class=""><a href=""><i class="fa fa-hiking fa_ajout"></i>Activites</a></li>  --}}
-					  <li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
-						{{-- @if(all_option()->register == 1)
-							<li class="menu-has-children text-white"><a href=""><i class="fa fa-user-plus fa_ajout"></i> Inscription</a>
-							@if(all_option()->register == 1 && all_option()->register_nouveau == 1 && all_option()->register_ancien == 1)
-								<ul style="z-index:2;border-radius:5px;">
-								@elseif(all_option()->register == 1 && all_option()->register_recasement == 1)
-								<ul style="z-index:2;border-radius:5px;">
-								@else
-								<ul style="opacity:0;">
-								@endif
-								@if(all_option()->register == 1 && all_option()->register_nouveau == 1 && all_option()->register_ancien == 1)
-								<li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Nouveau Etudiants</a></li>
-								<li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Ancien Etudiants</a></li>
-								@elseif(all_option()->register == 1 && all_option()->register_recasement == 1)
-								<li><a href="{{ route('recasement.index') }}"><i class="fa fa-chevron-right"></i>Inscription Recasement</a></li>
-								@endif
-								</ul>
-							</li>	
-						@endif --}}
-						<!-- Fin de la gestion de l'inscription -->
-			
-						<!-- Gestion de la codification  -->
-						{{-- @if(all_option()->codification == 1)
-							<li class="menu-has-children text-white"><a href=""><i class="fa fa-user-plus fa_ajout"></i> Codifications</a>
-								@if(all_option()->codification == 1 && all_option()->codification_nouveau == 1 && all_option()->codification_ancien == 1)
-									<ul style="z-index:2;border-radius:5px;">
-								@elseif(all_option()->codification == 1 && all_option()->recasement == 1)
-									<ul style="z-index:2;border-radius:5px;">
-								@else
-									<ul style="opacity:0;">
-								@endif
-								@if(all_option()->codification == 1 && all_option()->codification_nouveau == 1 && all_option()->codification_ancien == 1)
-									<li><a href="{{ route('nouveau.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes Nouveau</a></li>
-									<li><a href="{{ route('ancien.index') }}"> <i class="fa fa-chevron-right"></i> Vous etes  Anciens</a></li>
-								@elseif(all_option()->codification == 1 && all_option()->recasement == 1)
-									<li><a href="{{ route('recasement.index') }}"> <i class="fa fa-chevron-right"></i> Recasement</a></li>
-								@endif
-									</ul>
-							</li>	
-						@endif --}}
-						<!-- Fin de la gestion de la codification -->
-
-			          {{-- <li class="menu-has-children"><a href="">Articles</a>
-			            <ul>
-			              <li><a href="">Article Video</a></li>
-			              <li><a href="">Article Image</a></li>
-			            </ul>
-			          </li>	 --}}
-			       
-						{{-- 
-						<li class="menu-has-children"><a href=""><i class="fa fa-graduation-cap fa_ajout"></i> Orientation</a>
+						<li class="{{ set_active_roote('index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> Home</a></li>
+						{{--<li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-eject fa_ajout"></i> A Propos</a></li>--}} 
+						{{--<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça  marche</a></li>--}}
+						<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Codification</a>
 							<ul>
-								<li class="menu-has-children"><a href="">UCAD </a>
-									<ul>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-									</ul>
-								</li>	
-								<li class="menu-has-children"><a href="">UGB </a>
-									<ul>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-									</ul>
-								</li>
-								<li class="menu-has-children"><a href="">UNIVERSITE DE BAMBEY </a>
-									<ul>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-									</ul>
-								</li>	
-								<li class="menu-has-children"><a href="">UNIVERSITE DE ZIGUINCHORE </a>
-									<ul>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-									</ul>
-								</li>					                						                		
-								<li class="menu-has-children"><a href="">PRIVEE </a>
-									<ul>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item One</a></li>
-									<li><a href="#"> <i class="fa fa-chevron-right"></i> Item Two</a></li>
-									</ul>
-								</li>					                							                		
+							<li><a href="{{ route('nouveau.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Nouveau</a></li>
+							<li><a href="{{ route('ancien.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
+							</ul>
+						</li>	
+						<li class="menu-has-children"><a href=""><i class="fa fa-graduation-cap fa_ajout"></i> Education</a>
+							<ul class="">
+								<li class="menu-has-children"><a href="{{ route('bourse.index') }}">Offres de Bourses </a></li>						                						                		
+								<li class="menu-has-children"><a href="{{ route('emploi.index') }}">Offres d'emplois </a></li>						                						                		
+								<li class="menu-has-children"><a href="{{ route('stage.index') }}">Offres de Stages </a></li>						                						                		
+								<li class="menu-has-children"><a href="{{ route('formation.index') }}">Offres de Formations </a></li>						                						                		
+								<li class="menu-has-children"><a href="{{ route('concour.index') }}">Concours </a></li>				                							                		
 							</ul>
 						</li>
-					  	--}}
-			          <li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>
+						<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
+						<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		
 		    	</div>

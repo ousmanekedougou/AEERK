@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\User\Education;
 use Illuminate\Http\Request;
 
-class FormationController extends Controller
+class EmploiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class FormationController extends Controller
      */
     public function index()
     {
-        $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.formation.index',compact('formations'));
+        $emplois = Education::where('type',2)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        return view('user.emploi.index',compact('emplois'));
     }
 
     /**
@@ -48,9 +48,9 @@ class FormationController extends Controller
      */
     public function show($id)
     {
-         $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        $show = Education::where('type',3)->where('status',1)->where('id',$id)->first();
-        return view('user.formation.show',compact('show','formations'));
+        $emplois = Education::where('type',2)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        $show = Education::where('type',2)->where('status',1)->where('id',$id)->first();
+        return view('user.emploi.show',compact('show','emplois'));
     }
 
     /**

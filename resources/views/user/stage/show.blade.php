@@ -1,4 +1,4 @@
- @extends('user.layouts.app',['title' => 'Formation'])
+ @extends('user.layouts.app',['title' => 'Stage'])
  @section('bg-img',asset('user/img/home-bg.jpg'))
 @section('head')
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,7 +19,7 @@
                     <h1 class="text-white">
                         {{$show->titre}}				
                     </h1>	
-                    <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('formation.index') }}">Offre formation</a></p>
+                    <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('stage.index') }}">Offre stage</a></p>
                 </div>	
             </div>
         </div>
@@ -40,8 +40,7 @@
                             <div class="jq-tab-menu">
                                 <div class="jq-tab-title active" data-tab="1">Description</div>
                                 <div class="jq-tab-title" data-tab="2">Detail Complet</div>
-                                <div class="jq-tab-title" data-tab="3">Postuler</div>
-                                
+                                <div class="jq-tab-title" data-tab="3">Pour postuler</div>
                                 {{--
                                 <div class="jq-tab-title" data-tab="4">Comments</div>
                                 <div class="jq-tab-title" data-tab="5">Reviews</div>
@@ -58,47 +57,6 @@
                                    <a href="{{$show->lien}}" target="_blank">Cliquer ici pour postuler</a>
                                 </div>
                                 {{--
-                                <div class="jq-tab-content" data-tab="3">
-                                    <ul class="course-list">
-                                        <li class="justify-content-between d-flex">
-                                            <p>Introduction Lesson</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-                                        <li class="justify-content-between d-flex">
-                                            <p>Basics of HTML</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-                                        <li class="justify-content-between d-flex">
-                                            <p>Getting Know about HTML</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-                                        <li class="justify-content-between d-flex">
-                                            <p>Tags and Attributes</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-                                        <li class="justify-content-between d-flex">
-                                            <p>Basics of CSS</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-                                        <li class="justify-content-between d-flex">
-                                            <p>Getting Familiar with CSS</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-                                        <li class="justify-content-between d-flex">
-                                            <p>Introduction to Bootstrap</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>																		
-                                        <li class="justify-content-between d-flex">
-                                            <p>Responsive Design</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-                                        <li class="justify-content-between d-flex">
-                                            <p>Canvas in HTML 5</p>
-                                            <a class="primary-btn text-uppercase" href="#">View Details</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
                                 <div class="jq-tab-content comment-wrap" data-tab="4">
                                     <div class="comments-area">
                                         <h4>05 Comments</h4>
@@ -345,33 +303,26 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Autres offres de formations de la memme categorie	</h1>
+								<h1 class="mb-10">Autres offres de stage de la memme categorie	</h1>
 							</div>
 						</div>
 					</div>	
 					<div class="row align-items-center">
-						@foreach($formations as $formation)
-							<div class="single-popular-carusel col-lg-3 col-md-6">
-								<div class="thumb-wrap relative">
-									<div class="thumb relative">
-										<div class="overlay overlay-bg"></div>	
-											<a href="{{ route('formation.show',$formation->id) }}"><img class="img-fluid" src="{{Storage::url($formation->image)}}" alt=""></a>
-									</div>
-									<div class="meta d-flex justify-content-between">
-										<p><span class="lnr lnr-clock"></span> {{$formation->created_at->diffForHumans()}} </p>
-									</div>									
+						@foreach($stages as $stage)
+						<div class="col-lg-6 pb-30">
+							<div class="single-carusel row align-items-center">
+								<div class="col-12 col-md-6 thumb">
+									<a href="{{route('stage.show',$stage->id)}}"><img class="img-fluid" src="{{Storage::url($stage->image)}}" alt=""></a>
 								</div>
-								<div class="details">
-									<a href="{{ route('formation.show',$formation->id) }}">
-										<h4>
-											{{$formation->titre}}
-										</h4>
-									</a>
+								<div class="detials col-12 col-md-6">
+									<p>{{$stage->created_at->diffForHumans()}}</p>
+									<a href="{{route('stage.show',$stage->id)}}"><h4>{{ $stage->titre }}</h4></a>
 									<p>
-										{{$formation->desc}}										
+										{{$stage->desc}}
 									</p>
 								</div>
 							</div>
+						</div>
 						@endforeach																			
 					</div>
 				</div>	

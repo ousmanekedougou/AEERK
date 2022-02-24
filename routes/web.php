@@ -12,7 +12,7 @@
         Route::post('/ancien/update','AncienController@update_certificat')->name('update_certificat');
         Route::resource('/recasement','RecasementController');
         Route::resource('/formation','FormationController');
-        Route::resource('/service','ServiceController');
+        Route::resource('/emploi','EmploiController');
         Route::resource('/about','AboutController');
         Route::resource('/article','ArticleController');
         Route::resource('/comment','CommentController');
@@ -23,8 +23,9 @@
         Route::get('/createPdf/{id}/{email}/{phone}','EtudiantCodificationController@createPdf')->name('createPdf');
         Route::get('/category/{id}','ArticleController@category')->name('article.category');
         Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
-        Route::resource('/realisation','RealisationController');
-        Route::resource('/education','EducationController');
+        Route::resource('/stage','StageController');
+        Route::resource('/bourse','BourseController');
+        Route::resource('/concour','ConcourController');
         Route::resource('/systeme','SystemeController');
 
 
@@ -44,8 +45,6 @@
         Route::resource('/post', 'Admin\PostController');
         Route::resource('/category', 'Admin\CategoryController');
         Route::resource('/tag', 'Admin\TagController');
-        Route::resource('/permission','Admin\PermissionController');
-        Route::resource('/role','Admin\RoleController');
         Route::resource('/option','Admin\OptionController');
         // Fin de tout ce qui est blog
 
@@ -67,7 +66,7 @@
         Route::post('/info/ajouter','Admin\InfoController@add_prix')->name('add_prix');
         Route::resource('/team', 'Admin\TeamController');
         Route::resource('/partener', 'Admin\PartenerController');
-        Route::resource('/gallery', 'Admin\GalleryController');
+        Route::resource('/formation', 'Admin\FormationController');
         Route::resource('/social', 'Admin\SocialController');
         Route::resource('/slider', 'Admin\SlideController');
         Route::resource('/personnel', 'Admin\PersonnelController');
@@ -75,16 +74,17 @@
         // Fin de tout ce qui est paramettres
 
         // les options des services
-        Route::resource('/service', 'Admin\ServiceController');
-        Route::resource('/activite', 'Admin\ActiviteController');
+        Route::resource('/emploi', 'Admin\EmploiController');
+        Route::resource('/concour', 'Admin\ConcourController');
         Route::resource('/abaout', 'Admin\AboutController');
         Route::resource('/realisation', 'Admin\RealisationController');
-        Route::resource('/historique', 'Admin\HistoriqueController');
+        Route::resource('/stage', 'Admin\StageController');
+        Route::resource('/bourse', 'Admin\BourseController');
         Route::resource('/contact', 'Admin\ContactController');
         Route::post('/contact/send', 'Admin\ContactController@post')->name('contact.post');
         Route::resource('/document', 'Admin\DocumentController');
         Route::resource('/education','Admin\EducationController');
-        Route::resource('/systeme','Admin\SystemeController');
+        Route::resource('/systeme','Admin\StageController');
         // fin des options des document
 
         // La partie des logements
@@ -129,9 +129,9 @@
         // fin des option de uesr
 
         // login admin
-        Route::get('/admin-login','Admin\Auth\LoginController@showLoginForm')->name('admin.login');
-        Route::post('/admin-login','Admin\Auth\LoginController@login')->name('admin.login');
-        Route::post('/admin-logout','Admin\Auth\LoginController@logout')->name('admin.logout');
+        Route::get('/login','Admin\Auth\LoginController@showLoginForm')->name('admin.login');
+        Route::post('/login','Admin\Auth\LoginController@login')->name('admin.login');
+        Route::post('/logout','Admin\Auth\LoginController@logout')->name('admin.logout');
         // fin des login admin
 
 

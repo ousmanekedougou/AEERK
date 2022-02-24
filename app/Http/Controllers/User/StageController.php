@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Departement;
 use App\Model\User\Education;
+use App\Model\User\Recrutement;
 use Illuminate\Http\Request;
 
-class FormationController extends Controller
+class StageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,8 @@ class FormationController extends Controller
      */
     public function index()
     {
-        $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.formation.index',compact('formations'));
+        $stages = Education::where('type',5)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        return view('user.stage.index',compact('stages'));
     }
 
     /**
@@ -35,9 +37,9 @@ class FormationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+      public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -48,9 +50,9 @@ class FormationController extends Controller
      */
     public function show($id)
     {
-         $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        $show = Education::where('type',3)->where('status',1)->where('id',$id)->first();
-        return view('user.formation.show',compact('show','formations'));
+        $stages = Education::where('type',5)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        $show = Education::where('type',5)->where('status',1)->where('id',$id)->first();
+        return view('user.stage.show',compact('show','stages'));
     }
 
     /**
