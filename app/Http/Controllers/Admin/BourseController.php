@@ -115,7 +115,7 @@ class BourseController extends Controller
             'title' => 'required|string',
             'lien' => 'required',
             'lien_name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,ijf',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,ijf',
             'desc' => 'required|string',
             'content' => 'required|string',
         ]);
@@ -140,7 +140,7 @@ class BourseController extends Controller
         $update->content = $request->content;
         $update->status = $status;
         $update->save();
-        Toastr::success('Votre bourse a ete mise a jour', 'Ajout Bourse', ["positionClass" => "toast-top-right"]);
+        Toastr::success('Votre bourse a ete mise a jour','Ajout Bourse', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.bourse.index');
     }
 

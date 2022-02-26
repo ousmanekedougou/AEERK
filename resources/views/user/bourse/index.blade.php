@@ -42,7 +42,7 @@
 						<div class="col-lg-6 pb-30">
 							<div class="single-carusel row align-items-center">
 								<div class="col-12 col-md-6 thumb">
-									<a href="{{route('bourse.show',$bourse->id)}}"><img class="img-fluid" src="{{Storage::url($bourse->image)}}" alt=""></a>
+									<a href="{{route('bourse.show',$bourse->id)}}"><img class="img-fluid" src="{{Storage::url($bourse->image)}}" alt="" style="width:263px;height:220px;"></a>
 								</div>
 								<div class="detials col-12 col-md-6">
 									<p>{{$bourse->created_at->diffForHumans()}}</p>
@@ -50,6 +50,7 @@
 									<p>
 										{{$bourse->desc}}
 									</p>
+									<a href="{{route('bourse.show',$bourse->id)}}" class="genric-btn primary-border small" style="border-radius:8px;margin-top:4px;">Details</a>
 								</div>
 							</div>
 						</div>

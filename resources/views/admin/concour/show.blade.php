@@ -22,11 +22,13 @@
                   <div class="row well well-sm no-shadow">
                     <div class="col-md-5">
                       <img src="{{ Storage::url($show->image) }}" alt="" srcset="" style="width:100%;height:auto;">
+                      {{--
                       <div class="row" style="margin-top: 20px;">
                           <span class="badge btn-primary" style="width:100%;">Nom du lien : {{$show->lien_name}}</span>
                           <br>
-                          <span class="badge btn-success text-truncate" style="margin-top: 5px;width:95%;">Lien : {{$show->lien}} </span>
+                          <span class="badge btn-success text-truncate" style="margin-top: 5px;width:95%;">Lien : {{$show->lien}}</span>
                       </div>
+                      --}}
                       <div class="row text-left" style="margin-top:10px;">
                         <div class="col-md-6">
                           <span class="badge btn-warning">Date de creation : {{$show->created_at->diffForHumans()}}</span>

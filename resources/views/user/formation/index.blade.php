@@ -43,7 +43,7 @@
 								<div class="thumb-wrap relative">
 									<div class="thumb relative">
 										<div class="overlay overlay-bg"></div>	
-											<a href="{{ route('formation.show',$formation->id) }}"><img class="img-fluid" src="{{Storage::url($formation->image)}}" alt=""></a>
+											<a href="{{ route('formation.show',$formation->id) }}"><img class="img-fluid" src="{{Storage::url($formation->image)}}" alt="" style="width:263px;height:220px;"></a>
 									</div>
 									<div class="meta d-flex justify-content-between">
 										<p><span class="lnr lnr-clock"></span> {{$formation->created_at->diffForHumans()}} </p>

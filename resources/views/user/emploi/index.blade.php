@@ -42,7 +42,7 @@
 						<div class="col-lg-6 pb-30">
 							<div class="single-carusel row align-items-center">
 								<div class="col-12 col-md-6 thumb">
-									<a href="{{route('emploi.show',$emploi->id)}}"><img class="img-fluid" src="{{Storage::url($emploi->image)}}" alt=""></a>
+									<a href="{{route('emploi.show',$emploi->id)}}"><img class="img-fluid" src="{{Storage::url($emploi->image)}}" alt="" style="width:263px;height:220px;"></a>
 								</div>
 								<div class="detials col-12 col-md-6">
 									<p>{{$emploi->created_at->diffForHumans()}}</p>

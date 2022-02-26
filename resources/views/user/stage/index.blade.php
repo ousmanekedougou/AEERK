@@ -42,7 +42,7 @@
 						<div class="col-lg-6 pb-30">
 							<div class="single-carusel row align-items-center">
 								<div class="col-12 col-md-6 thumb">
-									<a href="{{route('stage.show',$stage->id)}}"><img class="img-fluid" src="{{Storage::url($stage->image)}}" alt=""></a>
+									<a href="{{route('stage.show',$stage->id)}}"><img class="img-fluid" src="{{Storage::url($stage->image)}}" alt="" style="width:263px;height:220px;"></a>
 								</div>
 								<div class="detials col-12 col-md-6">
 									<p>{{$stage->created_at->diffForHumans()}}</p>

@@ -115,7 +115,7 @@ class FormationController extends Controller
             'title' => 'required|string',
             'lien' => 'required',
             'lien_name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,ijf',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,ijf',
             'desc' => 'required|string',
             'content' => 'required|string',
         ]);
