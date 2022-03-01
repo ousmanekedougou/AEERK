@@ -33,12 +33,12 @@
               
               <!-- debu du row -->
               <div class="row">
-                  <form  method="Post" action="{{ route('admin.emploi.store') }}" enctype="multipart/form-data">
+                <form  method="Post" action="{{ route('admin.emploi.store') }}" enctype="multipart/form-data">
                   
-              @csrf
+                  @csrf
                   <div class="col-lg-5">
 
-                <div class="form-group">
+                  <div class="form-group">
                     <label for="title">Nom de l'offre d'emploi</label>
                     <input type="text" name='title'  value="{{ old('title')  }}" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
                     @error('title')

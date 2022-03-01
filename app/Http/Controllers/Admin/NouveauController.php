@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\ValidateDocument;
 use Illuminate\Support\Facades\Storage;
 use App\Helpers\Sms;
+use App\Model\Admin\Immeuble_chambre;
 use App\Model\User\User;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -39,7 +40,8 @@ class NouveauController extends Controller
         $nouveauCount = Etudiant::where('codifier', '=', 0)
         ->where('ancienete', '=', 1)->get();
         $nouveau_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 1)->where('codifier', '=', 0)->get();
-        return view('admin.nouveau.index',compact('nouveau_bac','immeubles','nouveau_sms','nouveauCount'));
+        $departement = Departement::all();
+        return view('admin.nouveau.index',compact('nouveau_bac','immeubles','nouveau_sms','nouveauCount','departement'));
        
     }
 
@@ -153,7 +155,97 @@ class NouveauController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $this->validate($request , [
+            'genre' => 'required|numeric',
+            'prenom' => 'required|string',
+            'nom' => 'required|string',
+            'email' => 'required|string|unique:etudiants',
+            'phone' => 'required|string|unique:etudiants',
+            'commune' => 'required|string',
+        ]);
+        // dd($request->all());
+        $prix = Solde::select('prix_nouveau')->first();
+            // dd('duuiei');
+        $immeuble = Immeuble::where(['id' => $request->immeuble , 'status' => 1])->first();
+        $immeuble_chambre = Immeuble_chambre::select('chambre_id')->where('immeuble_id',$immeuble->id)->get();
+        foreach($immeuble_chambre as $imb_chm){
+            $chambre_vide = Chambre::where('is_pleine',0)->get();
+            foreach($chambre_vide as $chambres){
+                if($chambres->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
+                    $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
+                    if($nouveau->count() < $chambres->nombre){
+                        $codifier_nouveau = new Etudiant();
+                        $codifier_nouveau->genre = $request->genre;
+                        $codifier_nouveau->prenom = $request->prenom;
+                        $codifier_nouveau->nom = $request->nom;
+                        $codifier_nouveau->email = $request->email;
+                        $codifier_nouveau->phone = $request->phone;
+                        $codifier_nouveau->commune_id = $request->commune;
+                        $codifier_nouveau->status = 1;
+                        $codifier_nouveau->immeuble_id = $immeuble->id;
+                        $codifier_nouveau->ancienete = 1;
+                        $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
+                        $codifier_nouveau->prix = $prix->prix_nouveau;
+                        $codifier_nouveau->codifier = 1;
+                        $codifier_nouveau->save();
+
+                        $position = Chambre::where('id',$chambres->id)->first();
+                        $position_nombre = $position->position;
+                        $position->position = $position_nombre + 1;
+                        $position->save();
+
+                        $count = $codifier_nouveau->codification_count;
+                        $codifier_nouveau->codification_count = $count + 1;
+                        $codifier_nouveau->position = $position_nombre + 1;
+                        $codifier_nouveau->payment_methode = 'En Presentielle';
+                        $codifier_nouveau->save();
+
+                        Mail::to($codifier_nouveau->email)
+                        ->send(new AeerkEmailMessage($codifier_nouveau));
+                        Toastr::success('Votre etudiant a bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
+                        return back();
+                    }else{
+                        $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
+                        $is_pleine->is_pleine = 1;
+                        $is_pleine->save();
+                        $chambre_suivante = Chambre::where('is_pleine',0)->first();
+                        if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
+                            $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
+                            if($nouveau->count() < $chambres->nombre){
+                                $codifier_nouveau = new Etudiant();
+                                $codifier_nouveau->genre = $request->genre;
+                                $codifier_nouveau->prenom = $request->prenom;
+                                $codifier_nouveau->nom = $request->nom;
+                                $codifier_nouveau->email = $request->email;
+                                $codifier_nouveau->phone = $request->phone;
+                                $codifier_nouveau->status = 1;
+                                $codifier_nouveau->commune_id = $request->commune;
+                                $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
+                                $codifier_nouveau->prix = $prix->prix_nouveau;
+                                $codifier_nouveau->codifier = 1;
+                                $codifier_nouveau->save();
+                                
+                                $position = Chambre::where('id',$chambres->id)->first();
+                                $position_nombre = $position->position;
+                                $position->position = $position_nombre + 1;
+                                $position->save();
+
+                                $count = $codifier_nouveau->codification_count;
+                                $codifier_nouveau->codification_count = $count + 1;
+                                $codifier_nouveau->position = $position_nombre + 1;
+                                $codifier_nouveau->payment_methode = 'En Presentielle';
+                                $codifier_nouveau->save();
+
+                                Mail::to($codifier_nouveau->email)
+                                ->send(new AeerkEmailMessage($codifier_nouveau));
+                                Toastr::success('Votre etudiant a bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
+                                return back();
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -418,6 +510,8 @@ class NouveauController extends Controller
             }
         }
     }
+
+  
 
 
 

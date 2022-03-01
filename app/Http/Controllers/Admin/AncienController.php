@@ -301,29 +301,29 @@ class AncienController extends Controller
                         $codifier_ancien->payment_methode = 'Presentielle';
                         $codifier_ancien->save();
 
-                        // Message du sms
-                        $config = array(
-                            'clientId' => config('app.clientId'),
-                            'clientSecret' =>  config('app.clientSecret'),
-                        );
-                        $osms = new Sms($config);
+                        // // Message du sms
+                        // $config = array(
+                        //     'clientId' => config('app.clientId'),
+                        //     'clientSecret' =>  config('app.clientSecret'),
+                        // );
+                        // $osms = new Sms($config);
 
-                        $data = $osms->getTokenFromConsumerKey();
-                        $token = array(
-                            'token' => $data['access_token']
-                        );
-                        $phone = $codifier_ancien->phone;
-                        $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+                        // $data = $osms->getTokenFromConsumerKey();
+                        // $token = array(
+                        //     'token' => $data['access_token']
+                        // );
+                        // $phone = $codifier_ancien->phone;
+                        // $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
 
-                        $response = $osms->sendSms(
-                            // sender
-                            'tel:+' . $sendPhone->sendPhone,
-                            // receiver
-                            'tel:+' . $phone,
-                            // message
-                            $message,
-                            'AEERK'
-                        );
+                        // $response = $osms->sendSms(
+                        //     // sender
+                        //     'tel:+' . $sendPhone->sendPhone,
+                        //     // receiver
+                        //     'tel:+' . $phone,
+                        //     // message
+                        //     $message,
+                        //     'AEERK'
+                        // );
                         Mail::to($codifier_ancien->email)
                         ->send(new MessageEmailAeerk($codifier_ancien));
                         Toastr::success('Votre etudaint a ete codifier', 'Codification Etudiant', ["positionClass" => "toast-top-right"]);
@@ -362,29 +362,29 @@ class AncienController extends Controller
                         $codifier_ancien->payment_methode = 'Presentielle';
                         $codifier_ancien->save();
 
-                        // Message du sms
-                        $config = array(
-                            'clientId' => config('app.clientId'),
-                            'clientSecret' =>  config('app.clientSecret'),
-                        );
-                        $osms = new Sms($config);
+                        // // Message du sms
+                        // $config = array(
+                        //     'clientId' => config('app.clientId'),
+                        //     'clientSecret' =>  config('app.clientSecret'),
+                        // );
+                        // $osms = new Sms($config);
 
-                        $data = $osms->getTokenFromConsumerKey();
-                        $token = array(
-                            'token' => $data['access_token']
-                        );
-                        $phone = $codifier_ancien->phone;
-                        $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+                        // $data = $osms->getTokenFromConsumerKey();
+                        // $token = array(
+                        //     'token' => $data['access_token']
+                        // );
+                        // $phone = $codifier_ancien->phone;
+                        // $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
 
-                        $response = $osms->sendSms(
-                            // sender
-                            'tel:+' . $sendPhone->sendPhone,
-                            // receiver
-                            'tel:+' . $phone,
-                            // message
-                            $message,
-                            'AEERK'
-                        );
+                        // $response = $osms->sendSms(
+                        //     // sender
+                        //     'tel:+' . $sendPhone->sendPhone,
+                        //     // receiver
+                        //     'tel:+' . $phone,
+                        //     // message
+                        //     $message,
+                        //     'AEERK'
+                        // );
                         
                         Mail::to($codifier_ancien->email)
                         ->send(new MessageEmailAeerk($codifier_ancien));

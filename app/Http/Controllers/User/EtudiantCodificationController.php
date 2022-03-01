@@ -480,7 +480,13 @@ if ($invoice->confirm($token)) {
         //  $dompdf->stream();
 
         $etudiant = Etudiant::where(['id' => $id ,'email' => $email ,'phone' => $phone, 'codifier' => 1])->first();
-        $image = Storage::url($etudiant->image);
+        $image = '';
+        $imageStorage = Storage::url($etudiant->image);
+        if ($etudiant->image != null) {
+            $image = $imageStorage;
+        }else {
+            $image = 'image/3ccs.jpg';
+        }
         $pic = 'image/accueil.png';
         $info = Info::first();
         return view('user.pdf',compact('etudiant','image','pic','info'));

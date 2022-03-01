@@ -130,84 +130,59 @@ class EtudiantCodificationController extends Controller
         $prix = Solde::select('prix_nouveau')->first();
         $immeuble = Immeuble::where(['id' => $request->immeuble , 'status' => 1])->first();
         $chambre_nouveau = Etudiant::all();
-            $immeuble_chambre = Immeuble_chambre::select('chambre_id')->where('immeuble_id',$immeuble->id)->get();
-            foreach($immeuble_chambre as $imb_chm){
-                $chambre_vide = Chambre::where('is_pleine',0)->get();
-                foreach($chambre_vide as $chambres){
-                    if($chambres->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
-                        $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
-                        if($nouveau->count() < $chambres->nombre){
-                            $codifier_nouveau = Etudiant::where('id',$id)->first();
-                            $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
-                            $codifier_nouveau->prix = $prix->prix_nouveau;
-                            $codifier_nouveau->codifier = 1;
-                            $codifier_nouveau->save();
-                            // Nexmo::message()->send([
-                            //     'to' => '221782875971',
-                            //     'from' => '221781956168',
-                            //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                            // ]);
+        $immeuble_chambre = Immeuble_chambre::select('chambre_id')->where('immeuble_id',$immeuble->id)->get();
+        foreach($immeuble_chambre as $imb_chm){
+            $chambre_vide = Chambre::where('is_pleine',0)->get();
+            foreach($chambre_vide as $chambres){
+                if($chambres->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
+                    $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
+                    if($nouveau->count() < $chambres->nombre){
+                        $codifier_nouveau = Etudiant::where('id',$id)->first();
+                        $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
+                        $codifier_nouveau->prix = $prix->prix_nouveau;
+                        $codifier_nouveau->codifier = 1;
+                        $codifier_nouveau->save();
 
-                            // view()->shared('etudiants',$codifier_nouveau);
-                            // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
-                            // $file = $pdf->save('public/reglement');
-                            // $codifier_nouveau->update([
-                            //     'reglement' => $file
-                            // ]);
+                        $position = Chambre::where('id',$chambres->id)->first();
+                        $position_nombre = $position->position;
+                        $position->position = $position_nombre + 1;
+                        $position->save();
 
-                            $position = Chambre::where('id',$chambres->id)->first();
-                            $position_nombre = $position->position;
-                            $position->position = $position_nombre + 1;
-                            $position->save();
+                        Mail::to($codifier_nouveau->email)
+                        ->send(new AeerkEmailMessage($codifier_nouveau));
+                        Flashy::success('Vous avez ete codifier');
+                        Auth::logout();
+                        return redirect()->route('index')->with('success','Vous avez bien ete codifier, verifier votre adresse email');
+                    }else{
+                        $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
+                        $is_pleine->is_pleine = 1;
+                        $is_pleine->save();
+                        $chambre_suivante = Chambre::where('is_pleine',0)->first();
+                        if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
+                            $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
+                            if($nouveau->count() < $chambres->nombre){
+                                $codifier_nouveau = Etudiant::where('id',$id)->first();
+                                $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
+                                $codifier_nouveau->prix = $prix->prix_nouveau;
+                                $codifier_nouveau->codifier = 1;
+                                $codifier_nouveau->save();
+                                
+                                $position = Chambre::where('id',$chambres->id)->first();
+                                $position_nombre = $position->position;
+                                $position->position = $position_nombre + 1;
+                                $position->save();
 
-                            Mail::to($codifier_nouveau->email)
-                            ->send(new AeerkEmailMessage($codifier_nouveau));
-                            Flashy::success('Vous avez ete codifier');
-                            Auth::logout();
-                            return redirect()->route('index')->with('success','Vous avez bien ete codifier, verifier votre adresse email');
-                        }else{
-                            $is_pleine = Chambre::where('id',$imb_chm->chambre_id)->first();
-                            $is_pleine->is_pleine = 1;
-                            $is_pleine->save();
-                            $chambre_suivante = Chambre::where('is_pleine',0)->first();
-                            if($chambre_suivante->id == $imb_chm->chambre_id && $chambres->genre == $request->genre){
-                                $nouveau = Etudiant::where('chambre_id',$imb_chm->chambre_id)->get();
-                                if($nouveau->count() < $chambres->nombre){
-                                    $codifier_nouveau = Etudiant::where('id',$id)->first();
-                                    $codifier_nouveau->chambre_id = $imb_chm->chambre_id;
-                                    $codifier_nouveau->prix = $prix->prix_nouveau;
-                                    $codifier_nouveau->codifier = 1;
-                                    $codifier_nouveau->save();
-
-                                    // view()->shared('etudiants',$codifier_nouveau);
-                                    // $pdf = PDF::loadView('user.pdf',compact('codifier_nouveau'));
-                                    // $file = $pdf->save('public/reglement');
-                                    // $codifier_nouveau->update([
-                                    //     'reglement' => $file
-                                    // ]);
-
-                                    // Nexmo::message()->send([
-                                    //     'to' => '221782875971',
-                                    //     'from' => '221781956168',
-                                    //     'text' => 'AEERK : Salut vous avez ete codifier verifier votre compte gmail'
-                                    // ]);
-
-                                    $position = Chambre::where('id',$chambres->id)->first();
-                                    $position_nombre = $position->position;
-                                    $position->position = $position_nombre + 1;
-                                    $position->save();
-
-                                    Mail::to($codifier_nouveau->email)
-                                    ->send(new AeerkEmailMessage($codifier_nouveau));
-                                    Flashy::success('Vous avez ete codifier');
-                                    Auth::logout();
-                                    return redirect()->route('index');
-                                }
+                                Mail::to($codifier_nouveau->email)
+                                ->send(new AeerkEmailMessage($codifier_nouveau));
+                                Flashy::success('Vous avez ete codifier');
+                                Auth::logout();
+                                return redirect()->route('index');
                             }
                         }
                     }
                 }
             }
+        }
     }
 
 
