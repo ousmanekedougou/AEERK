@@ -421,13 +421,7 @@
                   {{ method_field('PUT') }}
                   <div class="modal-body">
                     <p>
-                      @foreach($immeuble as $imb_chambre)
-                        @foreach($modal_chambre->immeubles as $imbs)
-                          @if($imb_chambre->id == $imbs->id)
-                            <input type="hidden" value="{{$imbs->id}}" name="immeuble">
-                          @endif
-                        @endforeach
-                      @endforeach
+                      <input type="hidden" value="{{$modal_chambre->immeuble->id}}" name="immeuble">
                     </p>
                     <p>
                     <label for="slug">Nom de la chambre</label>
@@ -438,6 +432,7 @@
                         </span>
                       @enderror
                     </p>
+                    <p>
                     <label for="slug">Nombre de place</label>
                     <input type="number"  value="{{ old('nombre') ?? $modal_chambre->nombre }}" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="">
                       @error('nombre')
@@ -446,28 +441,30 @@
                         </span>
                       @enderror
                     </p>
+                    <p>
+                      <label for="slug">Le genre de la chambre</label>
+                      <div class="row">
+                        <div class="radio">
+                              <div class="col-lg-2">
+                                <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 1) {{ 'checked' }} @endif> Femme </label>
+                                @error('genre')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong class="message_error">{{ $message }}</strong>
+                                  </span>
+                                @enderror
+                              </div>
+                              <div class="col-lg-2">
+                                <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 2) {{ 'checked' }} @endif> Homme </label>
+                                @error('genre')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong class="message_error">{{ $message }}</strong>
+                                  </span>
+                                @enderror
+                              </div>
+                          </div>
+                      </div>
                     </p>
-                        <div class="row">
-                          <div class="radio">
-                                <div class="col-lg-2">
-                                  <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 1) {{ 'checked' }} @endif> Femme </label>
-                                  @error('genre')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong class="message_error">{{ $message }}</strong>
-                                    </span>
-                                  @enderror
-                                </div>
-                                <div class="col-lg-2">
-                                  <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 2) {{ 'checked' }} @endif> Homme </label>
-                                  @error('genre')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong class="message_error">{{ $message }}</strong>
-                                    </span>
-                                  @enderror
-                                </div>
-                            </div>
-                        </div>
-                      </p>
+                    {{--
                     <p>
                       <div class="radio pull-left">
                         <label style="margin-right:5px;">
@@ -484,6 +481,7 @@
                       </label>
                       </div>
                     </p>
+                    --}}
                   </div>
                   <div class="modal-footer">
                     <!-- <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button> -->

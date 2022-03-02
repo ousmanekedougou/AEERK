@@ -74,10 +74,12 @@
                       <td>{{ $ancien->phone }}</td>
 
                       <td>
+                        {{$ancien->chambre->immeuble->name}} : 
+                        {{--
                         @foreach($ancien->chambre->immeubles as $ac_imb)
                         {{$ac_imb->name}} : 
                         @endforeach
-                        
+                        --}}
                         {{$ancien->chambre->nom }}</td>
                       <td>
                         @if($ancien->position == 1)

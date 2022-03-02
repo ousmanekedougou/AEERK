@@ -57,10 +57,11 @@ class ChambreController extends Controller
         $add_chambre->nombre = $request->nombre;
         $add_chambre->status = 1;
         $add_chambre->genre = $request->genre;
+        $add_chambre->immeuble_id = $request->immeuble;
         $add_chambre->save();
-        $add_chambre->immeubles()->sync($request->immeuble);
         Toastr::success('Votre chambre a ete ajoute', 'Ajout Chambre', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('admin.logement.index');
+        return back();
+        // $add_chambre->immeubles()->sync($request->immeuble);
     }
 
     /**
@@ -100,15 +101,28 @@ class ChambreController extends Controller
             'genre' => 'required',
         ]);
         $statusNumber = '';
+        $is_peline = '';
+        $nombre = '';
         $update_chambre = Chambre::where('id',$id)->first();
+        
+        if ($request->nombre > $update_chambre->nombre) {
+            $is_peline = 0;
+            $nombre = $request->nombre;
+        }elseif($request->nombre < $update_chambre->nombre) {
+            $is_peline = $update_chambre->is_pleine;
+            $nombre = $update_chambre->nombre;
+            Toastr::error('Le nombre de place est invalide', 'Nomre de Places', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
         $update_chambre->nom = $request->name;
-        $update_chambre->nombre = $request->nombre;
-        $update_chambre->status = $request->status;
         $update_chambre->genre = $request->genre;
+        $update_chambre->nombre = $nombre;
+        $update_chambre->is_pleine = $is_peline;
+        $update_chambre->immeuble_id = $request->immeuble;
         $update_chambre->save();
-        $update_chambre->immeubles()->sync($request->immeuble);
         Toastr::success('Votre chambre a ete modifier', 'Modification Chambre', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('admin.logement.index');
+        return back();
+        // $update_chambre->immeubles()->sync($request->immeuble);
     }
 
     /**

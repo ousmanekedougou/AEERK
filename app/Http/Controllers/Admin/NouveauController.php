@@ -239,12 +239,12 @@ class NouveauController extends Controller
                         return back();
                     }
                 }else {
-                    Toastr::error('Il n\'existe pas de chambre plus cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
+                    Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
                     return back();
                 }
             }
         }else {
-            Toastr::error('Il n\'existe pas de chambre plus cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
+            Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
             return back();
         }
     }
@@ -396,7 +396,7 @@ class NouveauController extends Controller
         $prix = Solde::select('prix_nouveau')->first();
         $genre_nouveau = Etudiant::where('id',$id)->first();
         $nouveau = Etudiant::where('chambre_id',$request->chambre_id)->get();
-        $chambre = Chambre::where('id',$request->chambre_id)->where('genre',$genre_nouveau)->where('is_pleine',0)->first();
+        $chambre = Chambre::where('id',$request->chambre_id)->where('genre',$genre_nouveau->genre)->where('is_pleine',0)->first();
         if($chambre) {
             if($nouveau->count() < $chambre->nombre){
                 $codifier_nouveau = Etudiant::where('id',$id)->first();
@@ -453,7 +453,7 @@ class NouveauController extends Controller
                 $is_pleine->is_pleine = 1;
                 $is_pleine->save();
 
-                $chambre_suivante = Chambre::where('id',$request->chambre_id)->where('genre',$genre_nouveau)->where('is_pleine',0)->first();
+                $chambre_suivante = Chambre::where('id',$request->chambre_id)->where('genre',$genre_nouveau->genre)->where('is_pleine',0)->first();
                 if($chambre_suivante) {
                     $codifier_nouveau = Etudiant::where('id',$id)->first();
                     if ($codifier_nouveau->codification_count < 5) {
@@ -503,10 +503,13 @@ class NouveauController extends Controller
                         return back();
                     }
                 }else {
-                    Toastr::error('Il n\'existe pas de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
+                    Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
                     return back();
                 }
             }
+        }else {
+            Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
+            return back();
         }
     }
 

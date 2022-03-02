@@ -108,9 +108,12 @@
                           <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                           <td>{{ $nouveau->phone }}</td>
                           <td>
+                            {{$nouveau->chambre->immeuble->name}} : 
+                            {{--
                             @foreach($nouveau->chambre->immeubles as $ac_imb)
                             {{$ac_imb->name}} : 
                             @endforeach
+                            --}}
                             {{$nouveau->chambre->nom }}</td>
                           <td>
                             @if($nouveau->position == 1)
