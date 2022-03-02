@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 class Immeuble extends Model
 {
     public function chambres(){
-        return $this->belongsToMany(Chambre::class,'immeuble_chambres');
+        return $this->hasMany(Chambre::class);
+        // return $this->belongsToMany(Chambre::class,'immeuble_chambres');
     }
 
     protected $fillable = [

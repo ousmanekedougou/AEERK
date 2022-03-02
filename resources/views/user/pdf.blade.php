@@ -186,9 +186,12 @@ footer {
                 <div id="invoice">
                   <h2>{{$etudiant->prix }} FCFA</h2>
                   <div class="date">
+                        {{$etudiant->chambre->immeuble->name}}
+                        {{--
                           @foreach($etudiant->chambre->immeubles as $ac_imb)
                                   {{$ac_imb->name}} : 
                           @endforeach
+                          --}}
                           à  {{$etudiant->chambre->nom }}
                   </div>
                   <div class="date">

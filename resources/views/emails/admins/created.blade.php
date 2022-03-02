@@ -324,9 +324,12 @@
                                         @elseif($msg->status == 1 && $msg->codifier == 1 && $msg->prix > 0)
                                             <p style="line-height: 24px;margin-bottom:15px;">
                                                 Votre codification à bien été enrégistré, vous êtes à
+                                                {{$msg->chambre->immeuble->name}}
+                                                {{--
                                                 @foreach($msg->chambre->immeubles as $ac_imb)
                                                     {{$ac_imb->name}}
                                                 @endforeach
+                                                --}}
                                                     à la chambre {{$msg->chambre->nom }},
                                                     @if($msg->position == 1)
                                                         @if($msg->genre == 1)
@@ -353,7 +356,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="https://aeerk.herokuapp.com/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
+                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->email }}/{{ $msg->phone }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
                                                     </div>
                                                 </td>
                                             </tr>

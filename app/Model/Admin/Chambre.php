@@ -17,8 +17,9 @@ class Chambre extends Model
      protected $fillable = [
         'nom', 'nombre','genre','status','is_pleine','position'
     ];
-    public function immeubles(){
-        return $this->belongsToMany(Immeuble::class,'immeuble_chambres');
+    public function immeuble(){
+        return $this->belongsTo(Immeuble::class);
+        // return $this->belongsToMany(Immeuble::class,'immeuble_chambres');
     }
 
     public function recasement_nouveaus(){
