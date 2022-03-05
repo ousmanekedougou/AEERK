@@ -18,8 +18,8 @@ class CreateInfosTable extends Migration
                 $table->string('email');
                 $table->string('phone');
                 $table->string('adresse');
-                $table->string('fax');
-                $table->string('bp');
+                $table->string('fax')->nullable();
+                $table->string('bp')->nullable();
                 $table->timestamps();
         });
     }
