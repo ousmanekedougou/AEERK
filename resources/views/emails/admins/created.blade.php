@@ -65,9 +65,9 @@
             margin: 0;
             padding: 0;
             -webkit-font-smoothing: antialiased;
-            mso-margin-top-alt: 0px;
+            /* mso-margin-top-alt: 0px;
             mso-margin-bottom-alt: 0px;
-            mso-padding-alt: 0px 0px 0px 0px;
+            mso-padding-alt: 0px 0px 0px 0px; */
             
         }
 
@@ -213,8 +213,8 @@
                                 <tr>
                                     <td align="center" height="70" style="height:70px;">
                                         <a href="" style="display: block; border-style: none !important; border: 0 !important;text-decoration:none">
-                                        <h3 style="text-align: center;">AEERK KEDOUGOU</h3>
-                                        <!-- <img width="100" border="0" style="display: block; width: 100px;" src="https://mdbootstrap.com/img/logo/mdb-email.png" alt="" /> -->
+                                        <!-- <h3 style="text-align: center;">AEERK KEDOUGOU</h3> -->
+                                        <img border="0" style="display: block; width: 250px;height:auto" src="{{asset('user/img/accueil.png')}}" alt="" />
                                         </a>
                                     </td>
                                 </tr>
@@ -246,11 +246,7 @@
                             class="main-header">
                             <!-- section text ======-->
 
-                            <div style="line-height: 35px">
-
-                                Message du Bureau
-
-                            </div>
+                            <!-- <div style="line-height: 35px">Message du Bureau</div> -->
                         </td>
                     </tr>
 
@@ -280,7 +276,7 @@
                                         <!-- section text ======-->
 
                                         <p style="line-height: 24px; margin-bottom:15px;">
-                                        Salut
+                                        Bonjour
                                             @if($msg->genre == 1)
                                                 Mme  {{$msg->prenom}} {{$msg->nom}},
                                             @elseif($msg->genre == 2)
@@ -288,11 +284,15 @@
                                             @endif
                                         </p>
                                         @if($msg->status == 1 && $msg->codifier != 1 && $msg->prix == 0)
-                                        <p style="line-height: 24px;margin-bottom:15px;">
-                                           Nous vous invitons a aller jetter un coup d'oeil sur la page de documentation <a href="https://aeerk.herokuapp.com/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure des codification.
+                                        <p>
+                                            Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
+                                            Nous vous informons que vos documents déposés pour la codification ont étés accéptés. <br>
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivante pour se connécter.
+                                           Nous vous invitons a aller jetter un coup d'oeil sur la page de documentation <a href="https://aeerk.herokuapp.com/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure de codification en ligne.
+                                        </p>
+                                        <p style="line-height: 24px;margin-bottom:15px;">
+                                            <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivantes pour se connécter.
                                             <br>
                                             <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="https://aeerk.herokuapp.com/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
                                             <br>
@@ -317,7 +317,7 @@
                                             
                                         </p>
                                         <h3 style="font-weight:bold;text-decoration:underline;color:blue;text-align:center">Motif du rejet des documents :</h3>
-                                        <p>
+                                        <p style="line-height: 24px;margin-bottom:15px;">
                                             {{$msg->textmail}} <br> <br>
                                             Pour plus d'informations nous contacter sur l'adrésse mail suivante {{$info->email}} ou sur le {{$info->phone}}. 
                                        </p>

@@ -51,85 +51,87 @@ class AncienController extends Controller
         $etudiant  = Etudiant::where('codifier',0)->where('ancienete',2)->where('status','!=',0)->get();
          $sendPhone = User::first();
         foreach ($etudiant as $smsEtudiant) {
-            // Mail::to($sms->email)
-            // ->send(new MessageEmailAeerk($sms));
             if($request->sms == 1){
                 if ($smsEtudiant->status == 1) {
-                     $config = array(
-                        'clientId' => config('app.clientId'),
-                        'clientSecret' =>  config('app.clientSecret'),
-                    );
-                    $osms = new Sms($config);
+                    Mail::to($smsEtudiant->email)
+                    ->send(new MessageEmailAeerk($smsEtudiant));
+                    //  $config = array(
+                    //     'clientId' => config('app.clientId'),
+                    //     'clientSecret' =>  config('app.clientSecret'),
+                    // );
+                    // $osms = new Sms($config);
 
-                    $data = $osms->getTokenFromConsumerKey();
-                    $token = array(
-                        'token' => $data['access_token']
-                    );
-                    $phone = intval($smsEtudiant->phone);
-                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom,les documents que vous avez deposés pour les codifications ont été accéptées.Nous vous envérrons un méssage pour la date et les modalités des codification \nCordialement le Bureau de l'AEERK";
-                    $response = $osms->sendSms(
-                        // sender
-                        'tel:+' . $sendPhone->sendPhone,
-                        // receiver
-                        'tel:+' . $phone, 
-                        // message
-                        $message,
+                    // $data = $osms->getTokenFromConsumerKey();
+                    // $token = array(
+                    //     'token' => $data['access_token']
+                    // );
+                    // $phone = intval($smsEtudiant->phone);
+                    // $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom,les documents que vous avez deposés pour les codifications ont été accéptées.Nous vous envérrons un méssage pour la date et les modalités des codification \nCordialement le Bureau de l'AEERK";
+                    // $response = $osms->sendSms(
+                    //     // sender
+                    //     'tel:+' . $sendPhone->sendPhone,
+                    //     // receiver
+                    //     'tel:+' . $phone, 
+                    //     // message
+                    //     $message,
 
-                        'AEERK'
-                    );
+                    //     'AEERK'
+                    // );
                 }elseif ($smsEtudiant->status == 2) {
-                     $config = array(
-                        'clientId' => config('app.clientId'),
-                        'clientSecret' =>  config('app.clientSecret'),
-                    );
-                    $osms = new Sms($config);
+                    Mail::to($smsEtudiant->email)
+                    ->send(new MessageEmailAeerk($smsEtudiant));
+                    //  $config = array(
+                    //     'clientId' => config('app.clientId'),
+                    //     'clientSecret' =>  config('app.clientSecret'),
+                    // );
+                    // $osms = new Sms($config);
 
-                    $data = $osms->getTokenFromConsumerKey();
-                    // dd($data);
-                    $token = array(
-                        'token' => $data['access_token']
-                    );
-                    $phone = intval($smsEtudiant->phone);
-                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom les documents que vous avez deposés pour les codifications ont été rejetés\n\nMotif du rejet :\n$smsEtudiant->texmail.\nVeuiilez vous repprocher au-pres du bureau plus d'information. \nCordialement le Bureau de l'AEERK";
+                    // $data = $osms->getTokenFromConsumerKey();
+                    // // dd($data);
+                    // $token = array(
+                    //     'token' => $data['access_token']
+                    // );
+                    // $phone = intval($smsEtudiant->phone);
+                    // $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom les documents que vous avez deposés pour les codifications ont été rejetés\n\nMotif du rejet :\n$smsEtudiant->texmail.\nVeuiilez vous repprocher au-pres du bureau plus d'information. \nCordialement le Bureau de l'AEERK";
                         
-                    $response = $osms->sendSms(
-                        // sender
-                        'tel:+' . $sendPhone->sendPhone,
-                        // receiver
-                        'tel:+221782875971',
-                        // message
-                        $message,
+                    // $response = $osms->sendSms(
+                    //     // sender
+                    //     'tel:+' . $sendPhone->sendPhone,
+                    //     // receiver
+                    //     'tel:+221782875971',
+                    //     // message
+                    //     $message,
 
-                        'AEERK'
-                    );
+                    //     'AEERK'
+                    // );
                 }
             }elseif ($request->sms == 2) {
-                  if ($smsEtudiant->status == 1) {
-                    // Mail::to($smsEtudiant->email)
-                    // ->send(new MessageEmailAeerk($smsEtudiant));
-                    $config = array(
-                        'clientId' => config('app.clientId'),
-                        'clientSecret' =>  config('app.clientSecret'),
-                    );
-                    $osms = new Sms($config);
+                if ($smsEtudiant->status == 1) {
+                    Mail::to($smsEtudiant->email)
+                    ->send(new MessageEmailAeerk($smsEtudiant));
+                    // $config = array(
+                    //     'clientId' => config('app.clientId'),
+                    //     'clientSecret' =>  config('app.clientSecret'),
+                    // );
+                    // $osms = new Sms($config);
 
-                    $data = $osms->getTokenFromConsumerKey();
-                    $token = array(
-                        'token' => $data['access_token']
-                    );
-                    $phone = $smsEtudiant->phone;
-                    $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom.\nNous vous informons que la date des codification est fixe le 10/12/2022 a partire de 8:00.\nNous vous avons envoye un courier mail pour plus de details.\nCordialement le Bureau de l'AEERK";
+                    // $data = $osms->getTokenFromConsumerKey();
+                    // $token = array(
+                    //     'token' => $data['access_token']
+                    // );
+                    // $phone = $smsEtudiant->phone;
+                    // $message = "AEERK KEDOUGOU:\nSalut $smsEtudiant->prenom $smsEtudiant->nom.\nNous vous informons que la date des codification est fixe le 10/12/2022 a partire de 8:00.\nNous vous avons envoye un courier mail pour plus de details.\nCordialement le Bureau de l'AEERK";
 
-                    $response = $osms->sendSms(
-                        // sender
-                        'tel:+' . $sendPhone->sendPhone,
-                        // receiver
-                        'tel:+' . $phone,
-                        // message
-                        $message,
+                    // $response = $osms->sendSms(
+                    //     // sender
+                    //     'tel:+' . $sendPhone->sendPhone,
+                    //     // receiver
+                    //     'tel:+' . $phone,
+                    //     // message
+                    //     $message,
 
-                        'AEERK'
-                    );
+                    //     'AEERK'
+                    // );
                 }
             }
 
