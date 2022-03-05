@@ -22,17 +22,17 @@
 								
 								<div class="row">
 									@if($ancien->genre == 1)
-										<h3 class="pull-left" style="margin-bottom:10px;">M.{{ $ancien->prenom .' '. $ancien->nom}}</h3>
+										<h3 class="text-center" style="margin-bottom:10px;width:100%">M.{{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@else 
-										<h3 class="pull-left" style="margin-bottom:10px;">Mme {{ $ancien->prenom .' '. $ancien->nom}}</h3>
+										<h3 class="text-center" style="margin-bottom:10px;width:100%">Mme {{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@endif
 								</div>
-									<h5 class="pull-left" style="margin-bottom:10px;">Choisissez Votre Immeuble</h5>
+									<p class="text-center"> Vous allez codifier a {{$immeubles->name }} </p>
 									<form class="form-area contact-form text-right" action="{{ route('codifier_ancien',$ancien->id) }}" method="post">
 										@csrf
 										{{method_field('PUT')}}
+										{{--
 										<div class="input-group-icon mt-10">
-											<!-- <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div> -->
 											<div class="form-select" id="default-select">
 												<label for="" class="pull-right"></label>
 												<input type="hidden" value="{{ $ancien->genre }}" name="genre">
@@ -48,10 +48,10 @@
 												@enderror
 											</div>
 										</div>
-
+										--}}
 										<div class="">
 											{{-- <div class="alert-msg" style="text-align: left;"></div>  --}}
-											<button class="genric-btn primary my-4" type="submit">Codifier</button>											
+											<button class="genric-btn primary my-4 btn-block" type="submit">Valider la codification</button>											
 										</div>
 									</form>	
 						</div>

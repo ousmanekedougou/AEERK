@@ -174,12 +174,15 @@
                       </div>
               </div>
               @foreach($immeubles as $imb) 
-              <form action="{{ route('admin.codifier_ancien',$ancien->id) }}" method="post">
-              @csrf
-              {{method_field('PUT')}}
-              <div class="modal-body">
-                <p>
-                <h3 class="text-center">{{ $imb->name }}</h3>
+                @if($imb->id == $ancien->immeuble->id)
+                  <form action="{{ route('admin.codifier_ancien',$ancien->id) }}" method="post">
+                    @csrf
+                    {{method_field('PUT')}}
+                    <div class="modal-body">
+                      <p>
+                      <h3 class="text-center">{{ $ancien->immeuble->name }}</h3>
+                      {{--<input type="hidden" name="immeuble" value="{{ $immeubles->id }}">--}}
+                        {{--
                         <div class="form-group">
                           <label>Chambres</label>
                           <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
@@ -198,11 +201,13 @@
                             </span>
                           @enderror
                         </div>
-                </p>
+                        --}}
+                      </p>
 
-              <button type="submit" class="btn btn-primary">Codifier</button>
-              </div>
-              </form>
+                      <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
+                    </div>
+                  </form>
+                @endif
               @endforeach
               <div class="modal-footer">
                 <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>

@@ -162,16 +162,19 @@ class NouveauController extends Controller
             'email' => 'required|string|unique:etudiants',
             'phone' => 'required|string|unique:etudiants',
             'commune' => 'required|string',
+            'image' => 'dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
-        // dd($request->all());
         $prix = Solde::select('prix_nouveau')->first();
-            // dd('duuiei');
-        $immeuble = Immeuble::where(['id' => $request->immeuble , 'status' => 1])->first();
-        $chambre = Chambre::where('immeuble_id',$request->immeuble)->where('genre',$request->genre)->where('is_pleine',0)->first();
+        $immeuble = Immeuble::where('status',1)->first();
+        $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$request->genre)->where('is_pleine',0)->first();
         if($chambre){
-            $nouveau = Etudiant::where('chambre_id',$chambre->id)->get();
+            $nouveau = Etudiant::where('chambre_id',$chambre->id)->where('genre',$request->genre)->get();
             if($nouveau->count() < $chambre->nombre){
                 $codifier_nouveau = new Etudiant();
+                $imageName = '';
+                if ($request->hasFile('image')) {
+                    $imageName = $request->image->store('public/Nouveau');
+                }
                 $codifier_nouveau->genre = $request->genre;
                 $codifier_nouveau->prenom = $request->prenom;
                 $codifier_nouveau->nom = $request->nom;
@@ -184,6 +187,7 @@ class NouveauController extends Controller
                 $codifier_nouveau->chambre_id = $chambre->id;
                 $codifier_nouveau->prix = $prix->prix_nouveau;
                 $codifier_nouveau->codifier = 1;
+                $codifier_nouveau->image = $imageName;
                 $codifier_nouveau->save();
 
                 $position = Chambre::where('id',$chambre->id)->first();
@@ -194,7 +198,7 @@ class NouveauController extends Controller
                 $count = $codifier_nouveau->codification_count;
                 $codifier_nouveau->codification_count = $count + 1;
                 $codifier_nouveau->position = $position_nombre + 1;
-                $codifier_nouveau->payment_methode = 'En Presentielle';
+                $codifier_nouveau->payment_methode = 'Présentielle';
                 $codifier_nouveau->save();
 
                 Mail::to($codifier_nouveau->email)
@@ -202,14 +206,18 @@ class NouveauController extends Controller
                 Toastr::success('Votre etudiant a bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
                 return back();
             }else{
-                $is_pleine = Chambre::where('id',$chambre->id)->first();
-                $is_pleine->is_pleine = 1;
-                $is_pleine->save();
-                $chambre_suivante = Chambre::where('immeuble_id',$request->immeuble)->where('genre',$request->genre)->where('is_pleine',0)->first();
+                Chambre::where('id',$chambre->id)->update([
+                    'is_pleine' => 1
+                ]);
+                $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$request->genre)->where('is_pleine',0)->first();
                 if($chambre_suivante){
                     $nouveau = Etudiant::where('chambre_id',$chambre_suivante->id)->get();
                     if($nouveau->count() < $chambre_suivante->nombre){
                         $codifier_nouveau = new Etudiant();
+                        $imageName = '';
+                        if ($request->hasFile('image')) {
+                            $imageName = $request->image->store('public/Nouveau');
+                        }
                         $codifier_nouveau->genre = $request->genre;
                         $codifier_nouveau->prenom = $request->prenom;
                         $codifier_nouveau->nom = $request->nom;
@@ -220,6 +228,7 @@ class NouveauController extends Controller
                         $codifier_nouveau->chambre_id = $chambre_suivante->id;
                         $codifier_nouveau->prix = $prix->prix_nouveau;
                         $codifier_nouveau->codifier = 1;
+                        $codifier_nouveau->image = $imageName;
                         $codifier_nouveau->save();
                         
                         $position = Chambre::where('id',$chambre_suivante->id)->first();
@@ -230,7 +239,7 @@ class NouveauController extends Controller
                         $count = $codifier_nouveau->codification_count;
                         $codifier_nouveau->codification_count = $count + 1;
                         $codifier_nouveau->position = $position_nombre + 1;
-                        $codifier_nouveau->payment_methode = 'En Presentielle';
+                        $codifier_nouveau->payment_methode = 'Présentielle';
                         $codifier_nouveau->save();
 
                         Mail::to($codifier_nouveau->email)
@@ -244,7 +253,7 @@ class NouveauController extends Controller
                 }
             }
         }else {
-            Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
+            Toastr::error('Les chambres enregistre sont pleines','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
             return back();
         }
     }
@@ -390,16 +399,13 @@ class NouveauController extends Controller
 
     public function codifier_nouveau(Request $request, $id)
     {
-        $validator = $this->validate($request , [
-            'chambre_id' => 'required|string',
-        ]);
         $prix = Solde::select('prix_nouveau')->first();
-        $genre_nouveau = Etudiant::where('id',$id)->first();
-        $nouveau = Etudiant::where('chambre_id',$request->chambre_id)->get();
-        $chambre = Chambre::where('id',$request->chambre_id)->where('genre',$genre_nouveau->genre)->where('is_pleine',0)->first();
+        $codifier_nouveau = Etudiant::where('id',$id)->first();
+        $immeuble = Immeuble::where('status',1)->first();
+        $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_nouveau->genre)->where('is_pleine',0)->first();
         if($chambre) {
-            if($nouveau->count() < $chambre->nombre){
-                $codifier_nouveau = Etudiant::where('id',$id)->first();
+            $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_nouveau->genre)->get();
+            if($ancien->count() < $chambre->nombre){
                 if ($codifier_nouveau->codification_count < 5) {
                     $position = Chambre::where('id',$chambre->id)->first();
                     $position_nombre = $position->position;
@@ -412,7 +418,7 @@ class NouveauController extends Controller
                     $count = $codifier_nouveau->codification_count;
                     $codifier_nouveau->codification_count = $count + 1;
                     $codifier_nouveau->position = $position_nombre + 1;
-                    $codifier_nouveau->payment_methode = 'Presentielle';
+                    $codifier_nouveau->payment_methode = 'Présentielle';
                     $codifier_nouveau->save();
 
                     // // Message sms
@@ -442,20 +448,19 @@ class NouveauController extends Controller
                     Mail::to($codifier_nouveau->email)
                     ->send(new AeerkEmailMessage($codifier_nouveau));
                     Toastr::success('Votre etudiant a ete codifier','Codification Etudiant', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('admin.nouveau.index');
+                    return back();
                 }
                 else {
                     Toastr::error('Le quotta de codofication de cette etudiant est epuiser','Quota Etudiant', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('admin.home');
+                    return back();
                 }
             }else{
-                $is_pleine = Chambre::where('id',$chambre->id)->first();
-                $is_pleine->is_pleine = 1;
-                $is_pleine->save();
+                Chambre::where('id',$chambre->id)->update([
+                    'is_pleine' => 1
+                ]);
 
-                $chambre_suivante = Chambre::where('id',$request->chambre_id)->where('genre',$genre_nouveau->genre)->where('is_pleine',0)->first();
+                $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_nouveau->genre)->where('is_pleine',0)->first();
                 if($chambre_suivante) {
-                    $codifier_nouveau = Etudiant::where('id',$id)->first();
                     if ($codifier_nouveau->codification_count < 5) {
                         $position = Chambre::where('id',$chambre_suivante->id)->first();
                         $position_nombre = $position->position;
@@ -468,7 +473,7 @@ class NouveauController extends Controller
                         $count = $codifier_nouveau->codification_count;
                         $codifier_nouveau->codification_count = $count + 1;
                         $codifier_nouveau->position = $position_nombre + 1;
-                        $codifier_nouveau->payment_methode = 'Presentielle';
+                        $codifier_nouveau->payment_methode = 'Présentielle';
                         $codifier_nouveau->save();
                         // Message sms
                         // $config = array(
@@ -497,7 +502,7 @@ class NouveauController extends Controller
                         Mail::to($codifier_nouveau->email)
                         ->send(new AeerkEmailMessage($codifier_nouveau));
                         Toastr::success('Votre etudiant a ete codifier','Codification Etudiant', ["positionClass" => "toast-top-right"]);
-                        return redirect()->route('admin.nouveau.index');
+                        return back();
                     }else {
                         Toastr::error('Le quotta de codofication de cette etudiant est epuiser','Quota Etudiant', ["positionClass" => "toast-top-right"]);
                         return back();

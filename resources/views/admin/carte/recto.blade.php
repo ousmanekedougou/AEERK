@@ -15,36 +15,42 @@
         background: linear-gradient(to right, #ec2F4B, #009FFF); 
         } */
 
+        *{
+            box-sizing: border-box;
+        }
+
         body {
-        width: 100vw;
-        height: 100vh;
+       
         background-image: url('../img/graph-paper.svg');
         background-repeat: repeat;
-        padding: 20px;
+        padding: 0;
         box-sizing: border-box;
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
-        body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        .card-content-all {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 15px;
         }
 
         .card-container {
         background: #34495e;
-        border-radius: 20px;
-        width: 100%;
-        max-width: 600px;
+            /* border-radius: 20px; */
+        width: 497px;
+        height: auto;
         position: relative;
-        box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1); 
-        border-bottom: 6px solid #2c3e50;
-        border-right: 6px solid #2c3e50;
+        /* border: 2px solid black; */
+        /* box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1);  */
+            /* border-bottom: 6px solid #2c3e50;
+            border-right: 6px solid #2c3e50; */
         }
-          .header {
+        .header {
         margin: 0;
-        /* width: 100%; */
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -52,13 +58,20 @@
         position: absolute;
         left: 0;
         right: -6px;
-        font-size: 0.7rem;
         font-family: sans-serif;
         color: black;
         font-weight: bold;
-        background-color:#fff;
-        border-radius: 20px 20px 0px 0px;
-        min-width: 30%;
+        background-color:silver;
+        /* border-radius: 20px 20px 0px 0px; */
+        }
+        .header img{
+            margin-left: -20px;
+        }
+        .header .company{
+            margin-left: -9px;
+            width: 100%;
+            font-size: 0.5em;
+            font-weight: bold;
         }
 
         .card {
@@ -70,27 +83,51 @@
         .chip {
         position: absolute;
         top: 22%;
-        left: 5%;
-        width: 160px;
-        height: 180px;
+        left: 2%;
+        width: 150px;
+        height: 150px;
+        /* height: auto; */
+        border: 1px solid silver;
+        text-align: center;
+        }
+        .chip span{
+            text-align: center;
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            color: white;
         }
          .status {
         position: absolute;
-        top: 73%;
-        left: 13%;
+        top: 77%;
+        left: 5%;
         color: white;
         }
         .text_card{
         position: absolute;
         top: 17%;
-        left:33%;
+        left:39%;
         color: white;
         display:block;
         }
         .text_card .title{
-        font-size: 2.9em;
+        font-size: 2em;
         margin-top: 6px;
         margin-bottom: -10px;
+        font-weight: bold;
+        text-align: center;
+        }
+        .text_card .annee{
+            text-align: center;
+            margin-bottom: -5px;
+        }
+
+         .visa-recto {
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+        height: 30%;
+        border-radius: 100%;
         }
 
         .visa {
@@ -102,47 +139,26 @@
         }
 
         .text_card .user_first_name,.user_last_name,.user_phone,.user_city{
-            margin-bottom: -10px;
+            margin-bottom: -13px;
 
         }
-        .text_card .user_first_name,.user_last_name{
+        .text_card .annee{
             font-weight: bold;
         }
 
         .card_recto_footer{
             position: absolute;
-            top: 85%;
-            left:5%;
+            top: 90%;
+            left:1%;
             color: white;
         }
         .card_recto_footer span{
             display: block;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: underline;
         }
-         .card_recto_footer span i{
-            font-size: 10px;
-        }
-
-        /* .bank-name {
-        margin: 0;
-        display: inline-block;
-        padding: 10px 20px;
-        padding-left: 5%;
-        position: absolute;
-        top: 10%;
-        left: 0;
-        font-size: 1.5rem;
-        font-family: sans-serif;
-        color: black;
-        font-weight: bold;
-        background-color: white;
-        min-width: 30%;
-        border-top-right-radius: 50px;
-        border-bottom-right-radius: 50px;
-        } */
-
-      
-
+        
         .card-container {
         transition: 0.5s transform, 0.5s box-shadow;
         }
@@ -152,22 +168,24 @@
         }
         .text_verso_card{
         position: absolute;
-        top: 8%;
-        left:40%;
+        top: 1%;
+        left:36%;
         color: white;
         display:block;
+        font-size: 13px;
         }
 
         .verso_img{
             position: absolute;
-            top: 10%;
-            left: 5%;
-            height: 50%;
+            border-radius: 100%;
+            top: 5%;
+            left: 2%;
+            height: 55%;
         }
         .card_footer{
             position: absolute;
-            top: 70%;
-            left:5%;
+            top: 65%;
+            left:2%;
             color: white;
         }
         .card_footer span{
@@ -219,63 +237,445 @@
                 padding: 3px 8px;
             }
         }
+
+        .btn{
+        border: 1px solid blue;
+        border-radius: 4px;
+        padding: 10px;
+        color: white;
+        background-color: blue;
+        margin: 10px;
+        margin-top: 20px;
+        }
+        @media print {
+            #print_Button{
+                display: none;
+            }
+        }
     </style>
   </head>
-  <body>
-
-    <div class="card-container">
-        <!-- <p class="bank-name">Bank 1337</p> -->
-         <div class="header">
-            <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
-            <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
+  <body id="print">
+        
+    <div class="card-content-all">
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <img src="{{asset('user/img/accueil.png')}}" alt="" srcset="">
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
+            </div>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
         </div>
-        <div class="card">
-            <img class="chip" src="{{asset('user/img/diallo.png')}}"/>
-             <span class="status">Ancien</span>
-            <div class="text_card">
-                <p class="title">Carte Membre</p>
-                <p class="user_first_name">Ousmane  </p>
-                <p class="user_last_name">Diallo</p>
-                <p class="user_phone">774569087</p>
-                <p class="user_city">Département : Kedougou</p>
-                <p class="user_city">Commune :  Kedougou</p>
+
+        <div style="margin: 10px;"></div>
+
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
             </div>
-            <div class="card_recto_footer">
-                <span> <i class="fas fa-clock"> Date de délivrance : 12/12/2012</i> </span>
-                <span><i class="fas fa-hourglass-half"> Date d'éxpiration : 12/12/2021</i></span>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
             </div>
-            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
         </div>
     </div>
-
-    <div style="margin: 30px;"></div>
-
-     <div class="card-container">
-        <!-- <p class="bank-name">Bank 1337</p> -->
-         <div class="header verso_header">
-            
+    <div class="card-content-all">
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
+            </div>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
         </div>
-        <div class="card">
-            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-            <div class="text_verso_card">
-                <p>Cette carte est strictement pérsonnelle</p>
-                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                    si obtenue ou utilisé froduleusement.
-                </p>
-                <p>
-                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                </p>
+
+        <div style="margin: 10px;"></div>
+
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
             </div>
-            <div class="card_footer">
-                <span class="title">Pour tout renséignement</span>
-                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                <span><i class="fas fa-phone-alt"> 77-000-00-00 / 77-000-00-00</i></span>
-                <span><i class="fas fa-envelope"> aeerk@gmail.com</i></span>
-                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                  <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
             </div>
-            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+        </div>
+    </div>
+    <div class="card-content-all">
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
+            </div>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                  <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+
+        <div style="margin: 10px;"></div>
+
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
+            </div>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                  <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+    </div>
+    <div class="card-content-all">
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
+            </div>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                  <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+
+        <div style="margin: 10px;"></div>
+
+        <div class="card-container">
+            <!-- <p class="bank-name">Bank 1337</p> -->
+            <div class="header">
+                <div class="logo"><img src="{{asset('user/img/accueil.png')}}" alt="" srcset=""></div>
+                <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
+            </div>
+            <div class="card">
+                <!-- <img class="chip" src="{{asset('user/img/diallo.png')}}"/> -->
+                  <div class="chip"> <span>PHOTO</span> </div>
+                <!-- <span class="status">Ancien</span> -->
+                <div class="text_card">
+                    <p class="title">Carte Membre</p>
+                    <p class="annee">ANNEE : 2021-2022  </p>
+                    <p class="user_first_name">Prenom : .................................</p>
+                    <p class="user_last_name">Nom : .......................................</p>
+                    <p class="user_city">D.N.L : ..............................</p>
+                    <p class="user_phone">Tel : .............................</p>
+                </div>
+                <div class="card_recto_footer">
+                    <span> Cette carte n'est valable que pour l'annee en cours </span>
+                </div>
+                <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
         </div>
     </div>
     
+  
+    
+
+    {{--
+    <div class="card-content-all">
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+            <div style="margin: 10px;"></div>
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="card-content-all">
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+            <div style="margin: 10px;"></div>
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="card-content-all">
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+            <div style="margin: 10px;"></div>
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="card-content-all">
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+            <div style="margin: 10px;"></div>
+        <div class="card-container">
+            <div class="card">
+                <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                <div class="text_verso_card">
+                    <p>Cette carte est strictement pérsonnelle</p>
+                    <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                        si obtenue ou utilisé froduleusement.
+                    </p>
+                    <p>
+                        Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                    </p>
+                </div>
+                <div class="card_footer">
+                    <span class="title">Pour tout renséignement</span>
+                    <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                    <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                    <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                    <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+                <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+            </div>
+        </div>
+    </div>
+    --}}
+
+    <div><button  class="btn btn-success btn-xs" style="margin-top:10px" id="print_Button" onclick="printDiv()"><i class="fa fa-print">Telecharger le recu</i></button> </div>
+ <script type="text/javascript">
+        function printDiv(){
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+    </script>
   </body>
 </html>

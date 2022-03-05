@@ -425,7 +425,7 @@
 <!-- Modal Pour les Codification -->
 
 
-      <div class="modal fade" id="modal-default-edit-nouveau{{ $show_nouveau->id }}">
+      <div class="modal fade" id="modal-default-edit-show_nouveau{{ $show_nouveau->id }}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -433,36 +433,52 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Codifier Cet Etudiant</h4>
               </div>
-         
-              <form action="{{ route('admin.codifier_nouveau',$show_nouveau->id) }}" method="post">
-              @csrf
-              {{method_field('PUT')}}
-              <div class="modal-body">
-
-                <p>
-                  <h3 class="text-center">{{ $immeubles->name }}</h3>
-                  <div class="form-group">
-                    <label>Chambres</label>
-                    <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                      @foreach($immeubles->chambres  as $chm)
-                        @if($show_nouveau->genre == $chm->genre)
-                          <option value="{{$chm->id}}">{{$chm->nom}}</option>
-                        @endif
-                      @endforeach
-                    
-                    </select>
-                    @error('chambre_id')
-                      <span class="invalid-feedback" role="alert">
-                        <strong class="message_error text-danger">{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                </p>
-
+              <div class="row">
+                      <div class="col-sm-4 p-5">
+                      <img class="profile-user-img img-responsive" style="width:100%;margin-top:10px;margin-left:1px;" src="{{ Storage::url($show_nouveau->image) }}" alt="User profile picture">
+                      </div>
+                      <div class="col-sm-8 text-justify">
+                        <h3 class="profile-username">{{ $show_nouveau->prenom.' '.$show_nouveau->nom }}</h3>
+                        <p><b><i class="fa fa-envelope-o"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_nouveau->email }}</a></p>
+                        <p><b><i class="fa fa-phone"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $show_nouveau->phone }}</a></p>
+                        <p> <b><i class="fa fa-map-marker"></i></b>  <a class="pull-center text-muted text-bold tex-italic">{{ $show_nouveau->commune->name }}</a></p>
+                        <p>  <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $show_nouveau->immeuble->name }}</a></p>
+                      </div>
               </div>
+                <form action="{{ route('admin.codifier_nouveau',$show_nouveau->id) }}" method="post">
+                  @csrf
+                  {{method_field('PUT')}}
+                  <div class="modal-body">
+                    <p>
+                    <h3 class="text-center">{{ $show_nouveau->immeuble->name }}</h3>
+                    {{--<input type="hidden" name="immeuble" value="{{ $immeuble->id }}">--}}
+                      {{--
+                      <div class="form-group">
+                        <label>Chambres</label>
+                        <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
+                          @foreach($immeuble->chambres  as $chm)
+                            @if($show_nouveau->genre == $chm->genre)
+                              @if($chm->is_pleine == 0)
+                                <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                              @endif
+                            @endif
+                          @endforeach
+                        
+                        </select>
+                        @error('chambre_id')
+                          <span class="invalid-feedback" role="alert">
+                            <strong class="message_error text-danger">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </div>
+                      --}}
+                    </p>
+
+                    <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
+                  </div>
+                </form>
               <div class="modal-footer">
-                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-primary">Codifier</button>
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer la Fenetre</button>
               </div>
             </div>
             </form>

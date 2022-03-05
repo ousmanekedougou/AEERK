@@ -452,40 +452,40 @@
                         <p>  <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $show_ancien->immeuble->name }}</a></p>
                       </div>
               </div>
-              @foreach($immeubles as $imb) 
-              <form action="{{ route('admin.codifier_ancien',$show_ancien->id) }}" method="post">
-              @csrf
-              {{method_field('PUT')}}
-              <div class="modal-body">
-                <p>
-                <h3 class="text-center">{{ $imb->name }}</h3>
-                        <div class="form-group">
-                          <label>Chambres</label>
-                          <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                            @foreach($imb->chambres  as $chm)
-                              @if($show_ancien->genre == $chm->genre)
-                                @if($chm->is_pleine == 0)
-                                  <option value="{{$chm->id}}">{{$chm->nom}}</option>
-                                @endif
+                <form action="{{ route('admin.codifier_ancien',$show_ancien->id) }}" method="post">
+                  @csrf
+                  {{method_field('PUT')}}
+                  <div class="modal-body">
+                    <p>
+                    <h3 class="text-center">{{ $show_ancien->immeuble->name }}</h3>
+                    {{--<input type="hidden" name="immeuble" value="{{ $immeuble->id }}">--}}
+                      {{--
+                      <div class="form-group">
+                        <label>Chambres</label>
+                        <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
+                          @foreach($immeuble->chambres  as $chm)
+                            @if($show_ancien->genre == $chm->genre)
+                              @if($chm->is_pleine == 0)
+                                <option value="{{$chm->id}}">{{$chm->nom}}</option>
                               @endif
-                            @endforeach
-                          
-                          </select>
-                          @error('chambre_id')
-                            <span class="invalid-feedback" role="alert">
-                              <strong class="message_error text-danger">{{ $message }}</strong>
-                            </span>
-                          @enderror
-                        </div>
-                </p>
+                            @endif
+                          @endforeach
+                        
+                        </select>
+                        @error('chambre_id')
+                          <span class="invalid-feedback" role="alert">
+                            <strong class="message_error text-danger">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </div>
+                      --}}
+                    </p>
 
-              <button type="submit" class="btn btn-primary">Codifier</button>
-              </div>
-              </form>
-              @endforeach
+                    <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
+                  </div>
+                </form>
               <div class="modal-footer">
-                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
-             
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer la Fenetre</button>
               </div>
             </div>
             </form>

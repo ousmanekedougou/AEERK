@@ -50,13 +50,11 @@
 									</div>
 									<div class="text-center">
 										@if($nouveau->genre == 1)
-										<h4 class="text-center" style="margin-bottom:20px;margin-top:8px;">M.{{ $nouveau->prenom .' '. $nouveau->nom}}</h4>
+										<h3 class="text-center" style="margin-bottom:20px;margin-top:8px;width:100%">M.{{ $nouveau->prenom .' '. $nouveau->nom}}</h3>
 										@else 
-										<h4 class="text-center" style="margin-bottom:20px;margin-top:8px;">Mme {{ $nouveau->prenom .' '. $nouveau->nom}}</h4>
+										<h3 class="text-center" style="margin-bottom:20px;margin-top:8px;width:100%">Mme {{ $nouveau->prenom .' '. $nouveau->nom}}</h3>
 										@endif
 									</div>
-									<input type="hidden" value="{{ $nouveau->genre }}" name="genre">
-									<input type="hidden" value="{{ $immeubles->id }}" name="immeuble">
 									<p class="text-center"> Vous allez codifier a {{$immeubles->name }} </p>
 								
 								</div>

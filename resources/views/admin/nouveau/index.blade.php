@@ -18,12 +18,12 @@
         <!-- La partie des inscriptions -->
         <div class="">
           <!-- <span class="btn btn-primary btn-block">Liste D'inscription Des Nouveaux Bacheliers</span> -->
-          <span class="btn btn-primary btn-block">Page de codification des nouveaux</span>
+          <span class="btn btn-primary btn-block">Page de codification des nouveaux a l'immeuble {{ $immeubles->name }}</span>
 
           <div class="box-body">
-            <form action="{{ route('admin.nouveau.store') }}" method="post">
+            <form action="{{ route('admin.nouveau.store') }}" method="post" enctype="multipart/form-data">
               @csrf
-              <input type="hidden" name="immeuble" value="{{ $immeubles->id }}">
+              {{--<input type="hidden" name="immeuble" value="{{ $immeubles->id }}">--}}
               <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -81,6 +81,7 @@
                     </span>
                     @enderror
                   </div>
+                  
                   <div class="form-group">
                     <label for="commune">La commune de l'etudiant</label>
                     <select  value="{{ old('commune') }}" class="form-control @error('commune') is-invalid @enderror" id="commune" name="commune">
@@ -96,6 +97,16 @@
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
                     </span>
+                    @enderror
+                  </div>
+
+                  <div class="form-group">
+                    <label for="image">Image de l'etudiant</label>
+                   <input type="file"  value="{{ old('image')}}" class=" @error('image') is-invalid @enderror" id="image" name="image" placeholder="">
+                    @error('image')
+                      <span class="invalid-feedback" role="alert">
+                          <strong class="message_error text-danger">{{ $message }}</strong>
+                      </span>
                     @enderror
                   </div>
                   <div class="">
@@ -253,45 +264,56 @@
                 <h4 class="modal-title">Codifier Cet Etudiant</h4>
               </div>
               <div class="row">
-                      <div class="col-sm-4">
-                      <img class="profile-user-img img-responsive" style="width:100%;height:100%;margin-top:10px;margin-left:10px;" src="{{ Storage::url($nouveau->image) }}" alt="User profile picture">
+                      <div class="col-sm-4 p-5">
+                      <img class="profile-user-img img-responsive" style="width:100%;margin-top:10px;margin-left:1px;" src="{{ Storage::url($nouveau->image) }}" alt="User profile picture">
                       </div>
-                      <div class="col-sm-8">
+                      <div class="col-sm-8 text-justify">
                         <h3 class="profile-username">{{ $nouveau->prenom.' '.$nouveau->nom }}</h3>
                         <p><b><i class="fa fa-envelope-o"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $nouveau->email }}</a></p>
                         <p><b><i class="fa fa-phone"></i></b>  <a class="pull-center text-muted text-bold tex-italic">  {{ $nouveau->phone }}</a></p>
                         <p> <b><i class="fa fa-map-marker"></i></b>  <a class="pull-center text-muted text-bold tex-italic">{{ $nouveau->commune->name }}</a></p>
+                        <p>  <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $nouveau->immeuble->name }}</a></p>
                       </div>
               </div>
-              <form action="{{ route('admin.codifier_nouveau',$nouveau->id) }}" method="post">
-              @csrf
-              {{method_field('PUT')}}
-              <div class="modal-body">
+              @foreach($immeubles as $imb) 
+                @if($imb->id == $nouveau->immeuble->id)
+                  <form action="{{ route('admin.codifier_nouveau',$nouveau->id) }}" method="post">
+                    @csrf
+                    {{method_field('PUT')}}
+                    <div class="modal-body">
+                      <p>
+                      <h3 class="text-center">{{ $nouveau->immeuble->name }}</h3>
+                      {{--<input type="hidden" name="immeuble" value="{{ $immeubles->id }}">--}}
+                        {{--
+                        <div class="form-group">
+                          <label>Chambres</label>
+                          <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
+                            @foreach($imb->chambres  as $chm)
+                              @if($nouveau->genre == $chm->genre)
+                                @if($chm->is_pleine == 0)
+                                  <option value="{{$chm->id}}">{{$chm->nom}}</option>
+                                @endif
+                              @endif
+                            @endforeach
+                          
+                          </select>
+                          @error('chambre_id')
+                            <span class="invalid-feedback" role="alert">
+                              <strong class="message_error text-danger">{{ $message }}</strong>
+                            </span>
+                          @enderror
+                        </div>
+                        --}}
+                      </p>
 
-                <p>
-                  <h3 class="text-center">{{ $immeubles->name }}</h3>
-                  <div class="form-group">
-                    <label>Chambres</label>
-                    <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                      @foreach($immeubles->chambres  as $chm)
-                        @if($nouveau->genre == $chm->genre)
-                          <option value="{{$chm->id}}">{{$chm->nom}}</option>
-                        @endif
-                      @endforeach
-                    
-                    </select>
-                    @error('chambre_id')
-                      <span class="invalid-feedback" role="alert">
-                        <strong class="message_error text-danger">{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                </p>
-
-              </div>
+                      <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
+                    </div>
+                  </form>
+                @endif
+              @endforeach
               <div class="modal-footer">
-                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-primary">Codifier</button>
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
+             
               </div>
             </div>
             </form>

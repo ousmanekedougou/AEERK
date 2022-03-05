@@ -30,11 +30,11 @@ class AncienController extends Controller
     public function index()
     {
         $immeubles = Immeuble::where('status',2)->get();
-        $ancien_bac = Etudiant::where('codifier', '=', 0)
-        ->where('ancienete', '=', 2)->paginate(10);
-        $ancienCount = Etudiant::where('codifier', '=', 0)
-        ->where('ancienete', '=', 2)->get();
+        $ancien_bac = Etudiant::where('codifier', '=', 0)->where('ancienete', '=', 2)->paginate(10);
+
+        $ancienCount = Etudiant::where('codifier', '=', 0)->where('ancienete', '=', 2)->get();
         $ancien_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 2)->where('codifier', '=', 0)->get();
+
         return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms','ancienCount'));
     }
 
@@ -159,10 +159,10 @@ class AncienController extends Controller
      */
     public function show($id)
     {
-        $immeubles = Immeuble::where('status',2)->get();
         $departement = Departement::all();
-        $show_ancien = Etudiant::find($id);
-        return view('admin.ancien.show',compact('show_ancien','departement','immeubles'));
+        $show_ancien = Etudiant::where('id',$id)->first();
+        $immeuble = Immeuble::where('status',2)->where('id',$show_ancien->immeuble_id)->first();
+        return view('admin.ancien.show',compact('show_ancien','departement','immeuble'));
     }
 
     /**
@@ -273,16 +273,14 @@ class AncienController extends Controller
     
     public function codifier_ancien(Request $request, $id)
     {
-       $validator = $this->validate($request , [
-            'chambre_id' => 'required|string',
-        ]);
+       
         $prix = Solde::select('prix_ancien')->first();
-        $genre_ancien = Etudiant::where('id',$id)->first();
-        $ancien = Etudiant::where('chambre_id',$request->chambre_id)->get();
-        $chambre = Chambre::where('id',$request->chambre_id)->where('genre',$genre_ancien->genre)->where('is_pleine',0)->first();
+        $codifier_ancien = Etudiant::where('id',$id)->first();
+        $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
+        $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
         if($chambre) {
+            $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
             if($ancien->count() < $chambre->nombre){
-                $codifier_ancien = Etudiant::where('id',$id)->first();
                 if ($codifier_ancien->codification_count < 5) {
                     $position = Chambre::where('id',$chambre->id)->first();
                     $position_nombre = $position->position;
@@ -295,7 +293,7 @@ class AncienController extends Controller
                     $count = $codifier_ancien->codification_count;
                     $codifier_ancien->codification_count = $count + 1;
                     $codifier_ancien->position = $position_nombre + 1;
-                    $codifier_ancien->payment_methode = 'Presentielle';
+                    $codifier_ancien->payment_methode = 'Présentielle';
                     $codifier_ancien->save();
 
                     // // Message sms
@@ -332,13 +330,12 @@ class AncienController extends Controller
                     return back();
                 }
             }else{
-                $is_pleine = Chambre::where('id',$chambre->id)->first();
-                $is_pleine->is_pleine = 1;
-                $is_pleine->save();
+                Chambre::where('id',$chambre->id)->update([
+                    'is_pleine' => 1
+                ]);
 
-                $chambre_suivante = Chambre::where('id',$request->chambre_id)->where('genre',$genre_ancien->genre)->where('is_pleine',0)->first();
+                $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
                 if($chambre_suivante) {
-                    $codifier_ancien = Etudiant::where('id',$id)->first();
                     if ($codifier_ancien->codification_count < 5) {
                         $position = Chambre::where('id',$chambre_suivante->id)->first();
                         $position_nombre = $position->position;
@@ -351,7 +348,7 @@ class AncienController extends Controller
                         $count = $codifier_ancien->codification_count;
                         $codifier_ancien->codification_count = $count + 1;
                         $codifier_ancien->position = $position_nombre + 1;
-                        $codifier_ancien->payment_methode = 'Presentielle';
+                        $codifier_ancien->payment_methode = 'Présentielle';
                         $codifier_ancien->save();
                         // Message sms
                         // $config = array(

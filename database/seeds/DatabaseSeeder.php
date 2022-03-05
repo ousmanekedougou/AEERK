@@ -5,6 +5,7 @@ use App\Model\Admin\Role;
 use App\Model\Admin\Admin;
 use App\Model\Admin\Social;
 use App\Model\Admin\Category;
+use App\Model\Admin\Chambre;
 use App\Model\Admin\Commission;
 use App\Model\Admin\Commune;
 use App\Model\Admin\Departement;
@@ -29,11 +30,10 @@ class DatabaseSeeder extends Seeder
     {
            Info::create(
             [
-                'email' => 'aeerk@gmail.com',
-                'phone' => '77000000',
-                'adresse' => 'Medina',
-                'fax' => '000000',
-                'bp' => 'boite poste',
+                'email' => 'aeerk.sn@gmail.com',
+                'phone' => '770433235',
+                'adresse' => 'Rue 39x30 Medina-Dakar',
+                'bp' => '10500',
             ]);
 
             $com = [
@@ -134,15 +134,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
 
-            // $immeubles = [
-            //     'Immeuble 39' , 'Immeuble 43' , 'Immeuble Zone A'
-            // ];
-            // foreach($immeubles as $imb){
-            //     Immeuble::create([
-            //         'name' => $imb,
-            //         'status' => 1
-            //     ]);
-            // }
+        
 
             Immeuble::create([
                 'name' => 'Immeuble 43',
@@ -157,6 +149,11 @@ class DatabaseSeeder extends Seeder
                 'status' => 2
             ]);
 
+
+            Chambre::create([
+                'nom' => '1D1',
+                'nombre' => 5
+            ]);
 
 
             // Insertion Reseau Sociaux
@@ -262,11 +259,13 @@ class DatabaseSeeder extends Seeder
                 ]);
 
                 User::create([
-                   'email' => 'aeerk@gmail.com',
-                   'sendmail' => 'ousmanelaravel@gmail.com',
+                   'email' => 'aeerk.sn@gmail.com',
+                   'sendmail' => 'aeerk.sn@gmail.com',
                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
                    'lien' => 2,
                    'sendPhone' => 221781956168
                 ]);
+
+
     }
 }

@@ -116,11 +116,12 @@
                             <td>{{ $chm->nom }}</td>
                             <td >{{ $chm->nombre }}</td>
                             <td>
-                              @if($chm->status == 1)
-                                Codifiable
-                                @else 
-                                Non Codifiable
-                                @endif
+                              @if($chm->is_pleine == 1)
+                                <span class="badge btn btn-danger btn-xs"> Chambre Pleine </span>
+                              @else 
+                              <span class="badge btn btn-success btn-xs"> Disponible </span>
+                                
+                              @endif
                             </td>
                             <td>
                             <a style="margin-right:5px;" data-toggle="modal" data-id="{{$chm->id}}" data-name="{{$chm->name}}" data-target="#modal-default-chambre-{{ $chm->id }}"><i class="glyphicon glyphicon-edit"></i></a>

@@ -104,7 +104,8 @@ class CodificationController extends Controller
         return view('admin.carte.index');
     }
     public function recto(){
-        return view('admin.carte.recto');
+        $anciens = Etudiant::where('status',1)->where('codifier',1)->get();
+        return view('admin.carte.recto',compact('anciens'));
     }
 
    

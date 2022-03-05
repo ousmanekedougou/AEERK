@@ -151,7 +151,11 @@ footer {
         <div class="box-shadow">
             <header class="clearfix">
                 <div id="logo">
+                  @if($etudiant->image !== null)
                     <img src="{{$image}}" style="width: 100px;height:auto;">
+                  @else
+                    <img src="{{ asset('user/img/3ccs.jpg') }}" style="width: 100px;height:auto;">
+                  @endif
                 </div>
                 <div id="company">
                     <!-- <img src="{{$pic}}" width="147" height="30"> -->

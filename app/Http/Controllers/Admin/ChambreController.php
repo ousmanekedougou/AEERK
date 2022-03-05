@@ -100,11 +100,8 @@ class ChambreController extends Controller
             'nombre' => 'required|numeric',
             'genre' => 'required',
         ]);
-        $statusNumber = '';
         $is_peline = '';
-        $nombre = '';
         $update_chambre = Chambre::where('id',$id)->first();
-        
         if ($request->nombre > $update_chambre->nombre) {
             $is_peline = 0;
             $nombre = $request->nombre;
