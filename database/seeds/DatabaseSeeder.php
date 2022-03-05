@@ -150,10 +150,10 @@ class DatabaseSeeder extends Seeder
             ]);
 
 
-            Chambre::create([
-                'nom' => '1D1',
-                'nombre' => 5
-            ]);
+            // Chambre::create([
+            //     'nom' => '1D1',
+            //     'nombre' => 5
+            // ]);
 
 
             // Insertion Reseau Sociaux
