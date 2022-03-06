@@ -20,7 +20,7 @@ class ArticleController extends Controller
     {
         $categorys = Category::all();
         $tags = Tag::all();
-        $posts = Post::where('status',1)->paginate(10);
+        $posts = Post::where('status',1)->orderBy('id','DESC')->paginate(10);
         return view('user.article.index',compact('posts','categorys','tags'));
     }
 

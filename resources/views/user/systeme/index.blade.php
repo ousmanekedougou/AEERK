@@ -19,9 +19,9 @@
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="about-content col-lg-12">
 					<h1 class="text-white">
-						Comment ca marche				
+						Comment ça  marche			
 					</h1>	
-					<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('systeme.index') }}"> Comment ca marche</a></p>
+					<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('systeme.index') }}"> Comment ça  marche</a></p>
 				</div>	
 			</div>
 		</div>
@@ -80,7 +80,7 @@
 
 
 	<section class="mt-5">
-		<div class="container" style="">
+		<div class="container">
 				<div class="row">
 					<div class="col-lg-2"></div>
 					<div class="col-lg-8">
@@ -95,7 +95,7 @@
 	</section>	
 	
 	<section class="" >
-		<div class="container" style="">
+		<div class="container">
 			<div class="section-top-border">
 				<div class="row">
 					<div class="col-lg-2"></div>
