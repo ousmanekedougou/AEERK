@@ -97,12 +97,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <!-- <li><a href="{{ route ('admin.codification.index') }}"><i class="fa fa-circle-o"></i>Nouveaux</a></li>
-            <li><a href="{{ route ('admin.codification.create') }}"><i class="fa fa-circle-o"></i> Anciens </a></li> -->
             @foreach( all_immeuble() as $immeuble )
               <li><a href="{{ route ('admin.codification.show',$immeuble->id) }}"><i class="fa fa-building"></i> {{$immeuble->name}} </a></li>
             @endforeach
+            {{--
             <li><a href="{{ route ('admin.carte') }}"><i class="fa fa-id-card"></i> Impression des cartes </a></li> -->
+            --}}
           </ul>
         </li>
 

@@ -149,11 +149,282 @@ class DatabaseSeeder extends Seeder
                 'status' => 2
             ]);
 
+            // Immeuble 43 Premier
+            Chambre::create([
+                'nom' => '1D1',
+                'nombre' => 7,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => '1D2',
+                'nombre' => 8,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => '1D3',
+                'nombre' => 12,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+             Chambre::create([
+                'nom' => '1G1',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => '1G2',
+                'nombre' => 12,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            // Fin Immeuble 43 premier
 
-            // Chambre::create([
-            //     'nom' => '1D1',
-            //     'nombre' => 5
-            // ]);
+             // Immeuble 43 deuxieme
+            Chambre::create([
+                'nom' => '1D1',
+                'nombre' => 7,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => '1D2',
+                'nombre' => 8,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => '1D3',
+                'nombre' => 12,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+             Chambre::create([
+                'nom' => '1G1',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => '1G2',
+                'nombre' => 12,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            // Fin Immeuble 43 deuxieme
+
+
+             // Immeuble 39 Re des socces
+            Chambre::create([
+                'nom' => 'RD1',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+             Chambre::create([
+                'nom' => 'RD2',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+             Chambre::create([
+                'nom' => 'RD3',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            // Immeuble 39 fin Re de socce
+
+            // Immeuble 39 Premier
+             Chambre::create([
+                'nom' => '1D1',
+                'nombre' => 10,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '1D2',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '1D3',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '1D4',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+             Chambre::create([
+                'nom' => '1G1',
+                'nombre' => 10,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '1G2',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '1G3',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '1G4',
+                'nombre' => 5,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            // fin immeuble 39 premier
+            
+            // Immeuble 39 deuxieme
+             Chambre::create([
+                'nom' => '2D1',
+                'nombre' => 10,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '2D2',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '2D3',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '2D4',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+             Chambre::create([
+                'nom' => '2G1',
+                'nombre' => 10,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '2G2',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '2G3',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => '2G4',
+                'nombre' => 5,
+                'genre' => 1,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            // Fin immeuble 39 deuxieme
 
 
             // Insertion Reseau Sociaux

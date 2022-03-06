@@ -428,7 +428,7 @@ if ($invoice->confirm($token)) {
         //  $dompdf->render();
         //  $dompdf->stream();
 
-        $etudiant = Etudiant::where(['id' => $id ,'email' => $email ,'phone' => $phone, 'codifier' => 1])->first();
+        $etudiant = Etudiant::where(['id' => $id ,'email' => $email ,'phone' => $phone, 'codifier' => 1, 'status' => 1])->first();
         $image = Storage::url($etudiant->image);
         $pic = 'image/accueil.png';
         $info = Info::first();

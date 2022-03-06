@@ -15,13 +15,13 @@
     <section class="content">
       <section class="content-header">
         <div class="box-header">
-          Vos infos
+          <h3>Vos infos</h3>
           @if($infos->count() < 1)
           <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-infos">Ajouter Vos Infos</a>
             <!-- Default box -->
             @endif
         </div>
-      </section><br>
+      </section>
       <div class="box-body">
         <table id="example2" class="table text-center responsive-table table-bordered table-hover">
           <thead>
@@ -51,7 +51,7 @@
 
 
 
-
+      {{--
       <div class="box-body">
         <section class="content-header">
           <div class="box-header">
@@ -124,7 +124,7 @@
           </tbody>
         </table>
       </div>
-
+      --}}
       <div class="row">
         <section class="content-header">
           <div class="box-header">
@@ -296,365 +296,363 @@
 </div>
 {{-- Fin de la partie de la page codification --}}
 
-
-{{-- La parite des lies d'affichage pour la page d'acceuil --}}
-    <div class="box-body">
-      <section class="content-header">
-          <h1>Gestion de vos liens</h1>
-          <div class="box-header">
-          @if($soldes->count() < 1)
-          <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
-              <!-- Default box -->
-              @endif
-          </div>
-      </section><br>
-      <table id="example2" class="table text-center responsive-table table-bordered table-hover">
-          <thead>
-          <tr class="bg-primary">
-          <th>Inscription</th>
-          <th> Liens Inscription </th>
-          <th>Inscription Recasement</th>
-          <th>Codification</th>
-          <th> Liens Codification </th>
-          <th>Recasement</th>
-          </tr>
-          </thead>
-          <tbody>
-          @foreach($options as $option)
-              <tr>
-              <!-- Le td du register -->
-                <td>
-                @if($option->register == 1)
-                  <a data-toggle="modal" data-target="#modal-default-register_desactiver-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
-                  <div class="modal fade" id="modal-default-register_desactiver-{{$option->id}}">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Desactiver ce lien</h4>
+{{--
+      <div class="box-body">
+        <section class="content-header">
+            <h1>Gestion de vos liens</h1>
+            <div class="box-header">
+            @if($soldes->count() < 1)
+            <a class="col-lg-offset-5 btn btn-primary pull-right"data-toggle="modal" data-id="infos" data-name="infos" data-target="#modal-default-ajouter-solde">Ajouter Vos Prix</a>
+                <!-- Default box -->
+                @endif
+            </div>
+        </section><br>
+        <table id="example2" class="table text-center responsive-table table-bordered table-hover">
+            <thead>
+            <tr class="bg-primary">
+            <th>Inscription</th>
+            <th> Liens Inscription </th>
+            <th>Inscription Recasement</th>
+            <th>Codification</th>
+            <th> Liens Codification </th>
+            <th>Recasement</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($options as $option)
+                <tr>
+                <!-- Le td du register -->
+                  <td>
+                  @if($option->register == 1)
+                    <a data-toggle="modal" data-target="#modal-default-register_desactiver-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
+                    <div class="modal fade" id="modal-default-register_desactiver-{{$option->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Desactiver ce lien</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire desactiver ce lien
+                            </p>
+                          <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                              {{csrf_field()}}
+                              {{method_field('PUT')}}
+                            <input type="hidden" value="0" name="register">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-danger">Desactiver</button>
+                          </div>
+                          </form>
                         </div>
-                        <div class="modal-body">
-                          <p>
-                            Etes vous sure de voloire desactiver ce lien
-                          </p>
-                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                    
+
+                  @elseif($option->register == 0)
+                  <a data-toggle="modal" data-target="#modal-default-register_activer-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
+                    <div class="modal fade" id="modal-default-register_activer-{{$option->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Activer ce lien</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire activer ce lien
+                            </p>
+                          <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
                             {{csrf_field()}}
                             {{method_field('PUT')}}
-                          <input type="hidden" value="0" name="register">
+                            <input type="hidden" value="1" name="register">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-success">Activer</button>
+                          </div>
+                          </form>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-danger">Desactiver</button>
-                        </div>
-                        </form>
+                        <!-- /.modal-content -->
                       </div>
-                      <!-- /.modal-content -->
+                      <!-- /.modal-dialog -->
                     </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                  
-
-                @elseif($option->register == 0)
-                <a data-toggle="modal" data-target="#modal-default-register_activer-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
-                  <div class="modal fade" id="modal-default-register_activer-{{$option->id}}">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Activer ce lien</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            Etes vous sure de voloire activer ce lien
-                          </p>
-                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
-                          {{csrf_field()}}
-                          {{method_field('PUT')}}
-                          <input type="hidden" value="1" name="register">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-success">Activer</button>
-                        </div>
-                        </form>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                  @endif
-                </td>
-                <!-- Fin du td du register -->
-                  <!-- td des liens inscription des nouveaux et ancien -->
-                <td>
-                @if($option->register_nouveau == 1 && $option->register_ancien == 1)
-                  <a data-toggle="modal" data-target="#modal-default-desactiver_etudiant-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
-                  <div class="modal fade" id="modal-default-desactiver_etudiant-{{$option->id}}">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Activer ce lien</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            Etes vous sure de voloire activer ce lien
-                          </p>
-                        <form action="{{ route('admin.register_etudiant',$option->id) }}" method="post" style="display:none;">
-                          {{csrf_field()}}
-                          {{method_field('PUT')}}
-                          <input type="hidden" value="1" name="register">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-success">Activer</button>
-                        </div>
-                        </form>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-
-                  @elseif($option->register_nouveau == 0 && $option->register_ancien == 0)
-                  <a data-toggle="modal" data-target="#modal-default-activer-etudiant-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
-                  <div class="modal fade" id="modal-default-activer-etudiant-{{$option->id}}">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Desactiver ce lien</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            Etes vous sure de voloire desactiver ce lien
-                          </p>
-                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
-                          {{csrf_field()}}
-                          {{method_field('PUT')}}
-                          <input type="hidden" value="0" name="register">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-danger">Desactiver</button>
-                        </div>
-                        </form>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                  @endif
-                </td>
-                <!-- Fin du td inscription des nouveaux et anciens -->
-
-                <!-- td du lien inscription des recasements -->
-                <td>
-                @if($option->register_recasement == 1)
-                 <a data-toggle="modal" data-target="#modal-default-desactiver_recasement-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
-                  <div class="modal fade" id="modal-default-desactiver_recasement-{{$option->id}}">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Activer ce lien</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            Etes vous sure de voloire activer ce lien
-                          </p>
-                        <form action="{{ route('admin.register_recasement',$option->id) }}" method="post" style="display:none;">
-                          {{csrf_field()}}
-                          {{method_field('PUT')}}
-                          <input type="hidden" value="1" name="register">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-success">Activer</button>
-                        </div>
-                        </form>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-
-                  @elseif($option->register_recasement == 0)
-                   <a data-toggle="modal" data-target="#modal-default-activer-recasement-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
-                  <div class="modal fade" id="modal-default-activer-recasement-{{$option->id}}">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Desactiver ce lien</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            Etes vous sure de voloire desactiver ce lien
-                          </p>
-                        <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
-                          {{csrf_field()}}
-                          {{method_field('PUT')}}
-                          <input type="hidden" value="0" name="register">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-danger">Desactiver</button>
-                        </div>
-                        </form>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                  @endif
-                </td>
-                <!-- Fin du td lien inscription des recasements -->
-
-                  <!-- Le td de la codification -->
+                    @endif
+                  </td>
+                  <!-- Fin du td du register -->
+                    <!-- td des liens inscription des nouveaux et ancien -->
                   <td>
-                @if($option->codification == 1)
-                  <form id="codification" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="0" name="codification">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure de cacher ce lien ?')){
+                  @if($option->register_nouveau == 1 && $option->register_ancien == 1)
+                    <a data-toggle="modal" data-target="#modal-default-desactiver_etudiant-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
+                    <div class="modal fade" id="modal-default-desactiver_etudiant-{{$option->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Activer ce lien</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire activer ce lien
+                            </p>
+                          <form action="{{ route('admin.register_etudiant',$option->id) }}" method="post" style="display:none;">
+                            {{csrf_field()}}
+                            {{method_field('PUT')}}
+                            <input type="hidden" value="1" name="register">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-success">Activer</button>
+                          </div>
+                          </form>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
 
-                  event.preventDefault();document.getElementById('codification').submit();
+                    @elseif($option->register_nouveau == 0 && $option->register_ancien == 0)
+                    <a data-toggle="modal" data-target="#modal-default-activer-etudiant-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
+                    <div class="modal fade" id="modal-default-activer-etudiant-{{$option->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Desactiver ce lien</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire desactiver ce lien
+                            </p>
+                          <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                            {{csrf_field()}}
+                            {{method_field('PUT')}}
+                            <input type="hidden" value="0" name="register">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-danger">Desactiver</button>
+                          </div>
+                          </form>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                    @endif
+                  </td>
+                  <!-- Fin du td inscription des nouveaux et anciens -->
 
-                  }else{
-
-                      event.preventDefault();
-
-                  }
-                  
-                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
-
-                  @elseif($option->codification == 0)
-                  <form id="codification_2" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="1" name="codification">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
-
-                  event.preventDefault();document.getElementById('codification_2').submit();
-
-                  }else{
-
-                      event.preventDefault();
-
-                  }
-                  
-                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                  @endif
-                </td>
-                <!-- Fin du td de la codification -->
-
-                  <!-- td des liens codification des nouveaux et ancien -->
+                  <!-- td du lien inscription des recasements -->
                   <td>
-                @if($option->codification_nouveau == 1 && $option->codification_ancien == 1)
-                  <form id="codification_etudiant_1" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="0" name="codification_etudiant">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure de cacher ce lien ?')){
+                  @if($option->register_recasement == 1)
+                  <a data-toggle="modal" data-target="#modal-default-desactiver_recasement-{{$option->id}}" class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a>
+                    <div class="modal fade" id="modal-default-desactiver_recasement-{{$option->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Activer ce lien</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire activer ce lien
+                            </p>
+                          <form action="{{ route('admin.register_recasement',$option->id) }}" method="post" style="display:none;">
+                            {{csrf_field()}}
+                            {{method_field('PUT')}}
+                            <input type="hidden" value="1" name="register">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-success">Activer</button>
+                          </div>
+                          </form>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
 
-                  event.preventDefault();document.getElementById('codification_etudiant_1').submit();
+                    @elseif($option->register_recasement == 0)
+                    <a data-toggle="modal" data-target="#modal-default-activer-recasement-{{$option->id}}" class="btn btn-success btn-sm" ><i class="fa fa-edit"></i> Activer </a>
+                    <div class="modal fade" id="modal-default-activer-recasement-{{$option->id}}">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Desactiver ce lien</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Etes vous sure de voloire desactiver ce lien
+                            </p>
+                          <form action="{{ route('admin.register',$option->id) }}" method="post" style="display:none;">
+                            {{csrf_field()}}
+                            {{method_field('PUT')}}
+                            <input type="hidden" value="0" name="register">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-danger">Desactiver</button>
+                          </div>
+                          </form>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                    @endif
+                  </td>
+                  <!-- Fin du td lien inscription des recasements -->
 
-                  }else{
+                    <!-- Le td de la codification -->
+                    <td>
+                  @if($option->codification == 1)
+                    <form id="codification" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+                    <input type="hidden" value="0" name="codification">
+                    </form>
+                    <a href="" onclick="
+                    if(confirm('Etes vous sure de cacher ce lien ?')){
 
-                      event.preventDefault();
+                    event.preventDefault();document.getElementById('codification').submit();
 
-                  }
-                  
-                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+                    }else{
 
-                  @elseif($option->codification_nouveau == 0 && $option->codification_ancien == 0)
-                  <form id="codification_etudiant_2" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="1" name="codification_etudiant">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
+                        event.preventDefault();
 
-                  event.preventDefault();document.getElementById('codification_etudiant_2').submit();
+                    }
+                    
+                    " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
 
-                  }else{
+                    @elseif($option->codification == 0)
+                    <form id="codification_2" method="post" action="{{ route('admin.codification',$option->id) }}" style="display:none">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+                    <input type="hidden" value="1" name="codification">
+                    </form>
+                    <a href="" onclick="
+                    if(confirm('Etes vous sure d\'afficher ce lien ?')){
 
-                      event.preventDefault();
+                    event.preventDefault();document.getElementById('codification_2').submit();
 
-                  }
-                  
-                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                  @endif
-                </td>
-                <!-- Fin du td codification des nouveaux et anciens -->
+                    }else{
 
+                        event.preventDefault();
 
-                <!-- td du lien  des recasements -->
-                <td>
-                @if($option->recasement == 1)
-                  <form id="recasement_1" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="0" name="recasement_etudiant">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure de cacher ce lien ?')){
+                    }
+                    
+                    " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                    @endif
+                  </td>
+                  <!-- Fin du td de la codification -->
 
-                  event.preventDefault();document.getElementById('recasement_1').submit();
+                    <!-- td des liens codification des nouveaux et ancien -->
+                    <td>
+                  @if($option->codification_nouveau == 1 && $option->codification_ancien == 1)
+                    <form id="codification_etudiant_1" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+                    <input type="hidden" value="0" name="codification_etudiant">
+                    </form>
+                    <a href="" onclick="
+                    if(confirm('Etes vous sure de cacher ce lien ?')){
 
-                  }else{
+                    event.preventDefault();document.getElementById('codification_etudiant_1').submit();
 
-                      event.preventDefault();
+                    }else{
 
-                  }
-                  
-                  " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+                        event.preventDefault();
 
-                  @elseif($option->recasement == 0)
-                  <form id="recasement_2" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
-                  {{csrf_field()}}
-                  {{method_field('PUT')}}
-                  <input type="hidden" value="1" name="recasement_etudiant">
-                  </form>
-                  <a href="" onclick="
-                  if(confirm('Etes vous sure d\'afficher ce lien ?')){
+                    }
+                    
+                    " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
 
-                  event.preventDefault();document.getElementById('recasement_2').submit();
+                    @elseif($option->codification_nouveau == 0 && $option->codification_ancien == 0)
+                    <form id="codification_etudiant_2" method="post" action="{{ route('admin.codification_etudiant',$option->id) }}" style="display:none">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+                    <input type="hidden" value="1" name="codification_etudiant">
+                    </form>
+                    <a href="" onclick="
+                    if(confirm('Etes vous sure d\'afficher ce lien ?')){
 
-                  }else{
+                    event.preventDefault();document.getElementById('codification_etudiant_2').submit();
 
-                      event.preventDefault();
+                    }else{
 
-                  }
-                  
-                  " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
-                  @endif
-                </td>
-                <!-- Fin du td lien  des recasements -->
+                        event.preventDefault();
 
-              </tr>
-          @endforeach
-      
-      </table>
-    </div>
-{{-- Fin des liens d'affichage pour la page d'acceuil --}}
+                    }
+                    
+                    " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                    @endif
+                  </td>
+                  <!-- Fin du td codification des nouveaux et anciens -->
 
 
+                  <!-- td du lien  des recasements -->
+                  <td>
+                  @if($option->recasement == 1)
+                    <form id="recasement_1" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+                    <input type="hidden" value="0" name="recasement_etudiant">
+                    </form>
+                    <a href="" onclick="
+                    if(confirm('Etes vous sure de cacher ce lien ?')){
+
+                    event.preventDefault();document.getElementById('recasement_1').submit();
+
+                    }else{
+
+                        event.preventDefault();
+
+                    }
+                    
+                    " class="btn btn-danger btn-sm" ><i class="fa fa-edit"></i> Desactiver </a> 
+
+                    @elseif($option->recasement == 0)
+                    <form id="recasement_2" method="post" action="{{ route('admin.recasement_etudiant',$option->id) }}" style="display:none">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
+                    <input type="hidden" value="1" name="recasement_etudiant">
+                    </form>
+                    <a href="" onclick="
+                    if(confirm('Etes vous sure d\'afficher ce lien ?')){
+
+                    event.preventDefault();document.getElementById('recasement_2').submit();
+
+                    }else{
+
+                        event.preventDefault();
+
+                    }
+                    
+                    " class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Activer </a> 
+                    @endif
+                  </td>
+                  <!-- Fin du td lien  des recasements -->
+
+                </tr>
+            @endforeach
+        
+        </table>
+      </div>
+
+--}}
 
 
     </section>
