@@ -74,7 +74,7 @@
 											<img class="content-image img-fluid d-block mx-auto" src="{{asset('user/img/blog/cat-widget3.jpg')}}" alt="">
 										</div>
 										<div class="content-details">
-											<h4 class="content-title mx-auto text-uppercase">Education</h4>
+											<h4 class="content-title mx-auto text-uppercase">Divers</h4>
 											<span></span>
 											<p>Let the food be finished</p>
 										</div>
@@ -121,11 +121,11 @@
 									</div>
 									<div class="col-lg-9 col-md-9 ">
 										<div class="feature-img">
-											<img class="img-fluid" src="{{ Storage::url($post->image) }}" alt="">
+											<img class="img-fluid" src="{{ Storage::url($post->image) }}" alt="" style="width: 555px;height:auto;" >
 										</div>
 										<a class="posts-title" href="#" onclick="document.getElementById('update-form-{{$post->id}}').submit();"><h3>{{ $post->title }}</h3></a>
 										<p class="excert">
-											{!! $post->body !!}
+											{!! $post->resume !!}
 										</p>
 										<div class="row">
  											<div class="col-sm-3">

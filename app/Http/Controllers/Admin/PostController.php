@@ -58,10 +58,13 @@ class PostController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            // 'subtitle' => 'required',
-            // 'slug' => 'required',
-            'image' => 'required',
-            'body' => 'required'
+            'slug' => 'required',
+            'status' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,ijf',
+            'resume' => 'required',
+            'body' => 'required',
+            'category' => 'required',
+            'tags' => 'required'
         ]);
         $post = new Post;
        
@@ -69,12 +72,6 @@ class PostController extends Controller
         {
             $imageName = $request->image->store('public/Article');
         }
-
-        // $image = $request->image;
-        // $filname = $image->getClientOriginalName();
-        // $image_resize = Image::make($image->getRealPath());
-        // $image_resize->resize(555,280);
-        // $imageName = $image_resize->save(public_path("Article/".$filname));
 
         if ($request->slug == '') {
             $slugTitle = $request->title;
@@ -85,6 +82,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $slugTitle;
         $post->status = $request->status;
+        $post->resume = $request->resume;
         $post->body = $request->body;
         $post->save();
         $post->tags()->sync($request->tags);
@@ -130,8 +128,8 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $imgdel = $post->image;
-
-        if($request->image != '')
+        $imageName = '';
+        if($request->hasFile('image'))
         {
             $imageName = $request->image->store('public/Article');
             Storage::delete($imgdel); 
@@ -147,11 +145,11 @@ class PostController extends Controller
         $post->slug = $slugTitle;
         $post->status = $request->status;
         $post->image = $imageName;
+        $post->resume = $request->resume;
         $post->body = $request->body;
         $post->save();
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->category);
-        Storage::delete($imgdel); 
         Toastr::success('Votre article a ete modifier','Modification Article', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.post.index'));
     }

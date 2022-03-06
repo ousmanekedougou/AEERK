@@ -116,7 +116,7 @@
 										</div>
 										<a class="posts-title" href="{{ route('article.show',$post->slug) }}"><h3>{{ $post->title }}</h3></a>
 										<p class="excert">
-											{!! $post->body !!}
+											{!! $post->resume !!}
 										</p>
 										<a href="{{ route('article.show',$post->slug) }}" class="genric-btn primary">Details de l'article</a>
 									</div>

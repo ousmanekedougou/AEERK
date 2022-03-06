@@ -16,6 +16,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           @if(admin()->is_admin == 1 )
+          {{--
             <!-- Messages: style can be found in dropdown.less-->
             <li class="dropdown messages-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -247,6 +248,7 @@
                 <li class="footer"><a href="#">See All Messages</a></li>
               </ul>
             </li>
+          --}}
           @endif
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">

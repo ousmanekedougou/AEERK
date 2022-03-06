@@ -26,15 +26,15 @@
 							<div class="single-post row">
 								<div class="col-lg-12">
 									<div class="feature-img">
-										<img class="img-fluid" src="{{ Storage::url($slugs->image) }}" alt="">
+										<img class="img-fluid" src="{{ Storage::url($slugs->image) }}" alt="" style="width: 750px;height:auto;">
 									</div>									
 								</div>
 								<div class="col-lg-3  col-md-3 meta-details">
-								<ul class="tags">
+									<ul class="tags">
 										@foreach($slugs->tags as $post_tag)
 										<li><a href="#">{{ $post_tag->name }},</a></li>
 										@endforeach
-										
+											
 									</ul>
 									<div class="user-details row">
 										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span class="lnr lnr-user"></span></p>
@@ -51,7 +51,10 @@
 								</div>
 								<div class="col-lg-9 col-md-9">
 									<h3 class="mt-20 mb-20">{{ $slugs->title }}</h3>
-									<p class="excert">
+									<p class="excert text-justify">
+										{!! $slugs->resume !!}
+									</p>
+									<p class="excert text-justify">
 										{!! $slugs->body !!}
 									</p>
 									<div class="row">
