@@ -49,6 +49,7 @@ class AncienController extends Controller
     {
         $validator = $this->validate($request , [
             'genre' => 'required',
+            'niveau' => 'required',
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'email' => 'required|email|unique:etudiants',
@@ -67,6 +68,7 @@ class AncienController extends Controller
         $imageName = '';
         $photocopieName = '';
         $certificatName = '';
+        $countCodification = '';
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Ancien');
         }
@@ -89,6 +91,7 @@ class AncienController extends Controller
             Toastr::error('votre numero de telephone est invalid', 'Error Telepone', ["positionClass" => "toast-top-right"]);
             return back();
         }
+
         $add_ancien->genre = $request->genre;
         $add_ancien->nom = $request->nom;
         $add_ancien->prenom = $request->prenom;
@@ -101,6 +104,7 @@ class AncienController extends Controller
         $add_ancien->commune_id = $request->commune;
         $add_ancien->immeuble_id = $request->immeuble;
         $add_ancien->status = 0;
+        $add_ancien->codification_count = $request->niveau;
         $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
 

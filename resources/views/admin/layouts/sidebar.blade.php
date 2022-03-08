@@ -130,7 +130,20 @@
           <ul class="treeview-menu">
             <li><a href="{{ route ('admin.comission.index') }}"><i class="fa fa-circle-o"></i> Commissions</a></li>
             <li><a href="{{ route ('admin.localite.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Localite</span></a></li>
-            <li><a href="{{ route ('admin.logement.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Logements</span></a></li>
+          </ul>
+        </li>
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-building"></i> <span>Logements</span>
+            <span class="pull-right-container">
+            <span class="label label-warning pull-right">4</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.logement.index') }}"><i class=" fa fa-building text-primary"></i> <span>Les immeubles</span></a></li>
+            @foreach( all_immeuble() as $immeuble )
+              <li><a href="{{ route ('admin.chambre.show',$immeuble->id) }}"><i class="fa fa-circle-o"></i>Chambres {{$immeuble->name}} </a></li>
+            @endforeach
           </ul>
         </li>
         @endif
@@ -153,9 +166,6 @@
             </ul>
           </li>
         @endif
-
-
-
       </ul>
     </section>
     <!-- /.sidebar -->

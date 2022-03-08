@@ -77,8 +77,6 @@
 	</section> -->
 	<!-- End feature Area -->	
 
-
-
 	<section class="mt-5">
 		<div class="container">
 				<div class="row">
@@ -137,8 +135,6 @@
 			</div>
 		</div>
 	</section>
-
-
 
  @endsection
 

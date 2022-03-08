@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Etudiant;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 class ChambreController extends Controller
@@ -48,7 +49,6 @@ class ChambreController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            'immeuble' => 'required',
             'nombre' => 'required|numeric',
             'genre' => 'required',
         ]);
@@ -72,7 +72,8 @@ class ChambreController extends Controller
      */
     public function show($id)
     {
-        //
+        $immeuble = Immeuble::where('id',$id)->first();
+        return view('admin.logement.show',compact('immeuble'));
     }
 
     /**
@@ -83,7 +84,9 @@ class ChambreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $chambre = Chambre::where('id',$id)->first();
+        $ancien_bac = Etudiant::where('chambre_id',$id)->where('codifier',1)->get();
+        return view('admin.logement.etudiant',compact('ancien_bac','chambre'));
     }
 
     /**
@@ -111,6 +114,7 @@ class ChambreController extends Controller
             Toastr::error('Le nombre de place est invalide', 'Nomre de Places', ["positionClass" => "toast-top-right"]);
             return back();
         }
+        
         $update_chambre->nom = $request->name;
         $update_chambre->genre = $request->genre;
         $update_chambre->nombre = $nombre;

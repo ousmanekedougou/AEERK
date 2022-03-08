@@ -292,6 +292,7 @@ class AncienController extends Controller
                     $codifier_ancien->chambre_id = $chambre->id;
                     $codifier_ancien->prix = $prix->prix_ancien;
                     $codifier_ancien->codifier = 1;
+                    
                     $count = $codifier_ancien->codification_count;
                     $codifier_ancien->codification_count = $count + 1;
                     $codifier_ancien->position = $position_nombre + 1;

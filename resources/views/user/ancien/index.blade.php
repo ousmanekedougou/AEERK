@@ -67,31 +67,51 @@
 									@csrf
 							
 									<div class="row" >
-										<div class="col-sm-6 d-flex justify-content-between">
-											<div class="switch-wrap d-flex justify-content-between">
-												<p class="label_form ">Femme</p>
-												<div class="primary-switch ml-1 mt-1 bg-secondary">
-													<input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class=" @error('genre') is-invalid @enderror" value="1" id="success-switch">
-													<label class="label_form" for="success-switch"></label>
-													@error('genre')
-													<span class="invalid-feedback" role="alert">
-														<strong class="message_error">{{ $message }}</strong>
-													</span>
-													@enderror
+										<div class="col-sm-6 ">
+											<label class="label_form" for="niveau">Votre Civilite</label>
+											<div  class="d-flex justify-content-between">
+												<div class="switch-wrap d-flex justify-content-between">
+													<p class="label_form">Femme</p>
+													<div class="primary-switch ml-1 mt-1 bg-secondary">
+														<input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class=" @error('genre') is-invalid @enderror" value="1" id="success-switch">
+														<label class="label_form" for="success-switch"></label>
+														@error('genre')
+														<span class="invalid-feedback" role="alert">
+															<strong class="message_error">{{ $message }}</strong>
+														</span>
+														@enderror
+													</div>
+												</div>
+												<div class="switch-wrap d-flex justify-content-between mr-5">
+													<p class="label_form mr-1">Homme</p>
+													<div class="confirm-switch mt-1 bg-secondary mr-5">
+														<input type="radio" value="{{ old('genre') ?? 2 }}" class=" @error('genre') is-invalid @enderror mr-4" name="genre" value ="2" id="info-switch">
+														<label class="label_form" for="info-switch"></label>
+														@error('genre')
+														<span class="invalid-feedback" role="alert">
+															<strong class="message_error">{{ $message }}</strong>
+														</span>
+														@enderror
+													</div>
 												</div>
 											</div>
-											<div class="switch-wrap d-flex justify-content-between">
-												<p class="label_form mr-1">Homme</p>
-												<div class="confirm-switch mt-1 bg-secondary">
-													<input type="radio" value="{{ old('genre') ?? 2 }}" class=" @error('genre') is-invalid @enderror" name="genre" value ="2" id="info-switch">
-													<label class="label_form" for="info-switch"></label>
-													@error('genre')
-													<span class="invalid-feedback" role="alert">
-														<strong class="message_error">{{ $message }}</strong>
-													</span>
+										</div>
+										<div class="col-sm-6">
+												<label class="label_form" for="niveau">Votre Niveau d'etude</label>
+												<div class="form-select">
+													<select value="{{ old('niveau') }}" class="form-control @error('niveau') is-invalid @enderror" name="niveau" >
+														<option value="1">Licence 2 / BTS</option>
+														<option value="2">Licence 3</option>
+														<option value="3">Master 1</option>
+														<option value="4">Master 2</option>
+														<option value="5">Autres</option>
+													</select>
+													@error('niveau')
+														<span class="invalid-feedback" role="alert">
+															<strong class="message_error">{{ $message }}</strong>
+														</span>
 													@enderror
 												</div>
-											</div>
 										</div>
 									</div>
 
@@ -223,7 +243,7 @@
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label class="label_form" for="">Votre Photo Format (CNI)</label>
+												<label class="label_form" for="">Votre Photo Format (CNI)</label>
 												<input type="file" name="image" value="{{ old('image') }}" class="form-control @error('image') is-invalid @enderror" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('image')
 													<span class="invalid-feedback" role="alert">
@@ -234,7 +254,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-											<label class="label_form" for="">Votre Photocopie de CNI</label>
+												<label class="label_form" for="">Votre Photocopie de CNI</label>
 												<input type="file" name="photocopie" value="{{ old('photocopie') }}" class="form-control @error('photocopie') is-invalid @enderror" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('photocopie')
 													<span class="invalid-feedback" role="alert">
@@ -254,7 +274,6 @@
 							<div class="col-lg-3 col-md-3 col-sm-3 mt-sm-30 element-wrap">
 							</div>
 
-							
 						</div>
 						
 					</div>
