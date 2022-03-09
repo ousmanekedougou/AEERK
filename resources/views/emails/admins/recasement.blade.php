@@ -17,15 +17,14 @@
             margin: 0;
             padding: 0;
             -webkit-font-smoothing: antialiased;
-            mso-margin-top-alt: 0px;
+            /* mso-margin-top-alt: 0px;
             mso-margin-bottom-alt: 0px;
-            mso-padding-alt: 0px 0px 0px 0px;
+            mso-padding-alt: 0px 0px 0px 0px; */
             
         }
 
         .container{
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-            margin:20px 350px 10px 350px;
         }
 
         p,
@@ -165,9 +164,9 @@
 
                                 <tr>
                                     <td align="center" height="70" style="height:70px;">
-                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;text-decoration: none;">
-                                        <h3 style="text-align: center;">AEERK KEDOUGOU</h3>
-                                        <!-- <img width="100" border="0" style="display: block; width: 100px;" src="https://mdbootstrap.com/img/logo/mdb-email.png" alt="" /> -->
+                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;text-decoration:none">
+                                        <!-- <h3 style="text-align: center;">AEERK KEDOUGOU</h3> -->
+                                        <img border="0" style="display: block; width: 250px;height:auto" src="{{asset('user/img/accueil.png')}}" alt="" />
                                         </a>
                                     </td>
                                 </tr>
@@ -199,11 +198,7 @@
                             class="main-header">
                             <!-- section text ======-->
 
-                            <div style="line-height: 35px">
-
-                                Message du Bureau
-
-                            </div>
+                            <!-- <div style="line-height: 35px">Message du Bureau</div> -->
                         </td>
                     </tr>
 
@@ -231,13 +226,35 @@
                                 <tr>
                                     <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                         <!-- section text ======-->
+
+                                        <p style="line-height: 24px; margin-bottom:15px;">
+                                        Bonjour
+                                            @if($msg->genre == 1)
+                                                Mme  {{$msg->prenom}} {{$msg->nom}},
+                                            @elseif($msg->genre == 2)
+                                                Mr {{$msg->prenom}} {{$msg->nom}},
+                                            @endif
+                                        </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            Objet : {{ $subject }} <br>
-                                            {{$msg}}
+                                            Vous avez bien été recaser à
+                                            {{$msg->chambre->immeuble->name}} à la chambre {{$msg->chambre->nom }},
+                                            @if($msg->position == 1)
+                                                @if($msg->genre == 1)
+                                                    vous êtes la  {{$msg->position }}ere à être recaser dans cette chambre
+                                                @elseif($msg->genre == 2)
+                                                    vous êtes le  {{$msg->position }}er à être recaser dans cette chambre
+                                                @endif
+                                            @else
+                                                @if($msg->genre == 1)
+                                                    vous êtes la  {{$msg->position }}eme à être recaser dans cette chambre
+                                                @elseif($msg->genre == 2)
+                                                    vous êtes le  {{$msg->position }}em à être recaser dans cette chambre
+                                                @endif
+                                            @endif
                                         </p>
                                         <p style="line-height: 24px">
                                             Cordialement,</br>
-                                            Le President de la commission sociale
+                                            Le bureau de l'AEERK
                                         </p>
 
                                     </td>
@@ -270,3 +287,5 @@
 </body>
 
 </html>
+
+

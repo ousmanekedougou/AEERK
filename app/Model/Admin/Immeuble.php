@@ -19,13 +19,7 @@ class Immeuble extends Model
     protected $fillable = [
         'name', 'address','status' 
     ];
-    public function anciens(){
-        $this->hasMany(Ancien::class);
-    }
-    public function nouveaus(){
-        $this->hasMany(Nouveau::class);
-    }
-
+    
     public function recasements(){
         return $this->hasMany(Recasement::class);
     }

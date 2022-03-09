@@ -34,7 +34,7 @@
                   @foreach($immeuble as $all_immeuble)
                     <tr>
                     <td>{{ ++$i }}</td>
-                    <td><img style="width:70px; height:auto;" class="" src="{{ Storage::url($all_immeuble->image) }}" alt="" srcset=""></td>
+                    <td><img class="img-thumbnail" style="width:50px; height:50px;border-radius:100%;" class="" src="{{ Storage::url($all_immeuble->image) }}" alt="" srcset=""></td>
                       <td>{{ $all_immeuble->name }}</td>
                       <td>{{ $all_immeuble->address }}</td>
                       <td>
@@ -44,7 +44,7 @@
                         Pour les anciens
                         @endif
                       </td>
-                      <td><a href="{{ route('admin.chambre.show',$all_immeuble->id) }}"><i class="fa fa-eye"></i> Chambres</a></td>
+                      <td><a href="{{ route('admin.chambre.show',$all_immeuble->id) }}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Chambres</a></td>
                       <td>
                         <a style="margin-right:5px;" data-toggle="modal" data-id="{{$all_immeuble->id}}" data-name="{{$all_immeuble->name}}" data-target="#modal-default-{{ $all_immeuble->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                       

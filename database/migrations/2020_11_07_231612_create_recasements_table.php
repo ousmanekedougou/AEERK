@@ -20,11 +20,13 @@ class CreateRecasementsTable extends Migration
             $table->string('prenom');
             $table->string('email')->unique();
             $table->string('phone')->unique();
+            $table->string('cni')->unique()->nullable();
             $table->string('image');
             $table->integer('chambre_id')->default(0);
             $table->integer('immeuble_id')->default(0);
             $table->boolean('recaser')->default(false);
             $table->boolean('status')->default(false);
+            $table->integer('position')->default(0);
             $table->timestamps();
         });
     }

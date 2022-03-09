@@ -9,7 +9,8 @@ use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\MessageEmailAeerk;
+use App\Mail\RecasementEmail;
+use App\Model\Admin\Chambre;
 use Brian2694\Toastr\Facades\Toastr;
 
 class RecasementController extends Controller
@@ -75,6 +76,9 @@ class RecasementController extends Controller
      */
     public function edit($id)
     {
+        $immeuble = Immeuble::where('id',$id)->first();
+        $recaser = Recasement::where('immeuble_id',$immeuble->id)->where('recaser','=',1)->paginate(10);
+        return view('admin.recasement.recaser',compact('recaser','immeuble'));
     }
 
     /**
@@ -87,42 +91,66 @@ class RecasementController extends Controller
     public function update(Request $request, $id)
     {
         $validator = $this->validate($request,[
-            'chambre_id' => 'required|numeric'
+            'immeuble' => 'required|numeric'
         ]);
-        $chambre_ancien = Recasement::select('chambre_id')->get();
-        foreach($chambre_ancien as $chambres)
-        {
-            if ($chambres->chambre_id == $request->chambre_id) 
+        // dd($request->all());
+        $recaser_ancien = Recasement::where('id',$id)->first();
+        $chambre = Chambre::where('immeuble_id',$request->immeuble)->where('genre',$recaser_ancien->genre)->where('is_pleine',0)->first();
+            if ($chambre) 
             {
-                if($chambre_ancien->count() < $chambres->chambre->nombre){
-                    $recaser_ancien = Recasement::where('id',$id)->first();
-                    $recaser_ancien->chambre_id = $request->chambre_id;
+                $chambre_ancien = Recasement::where('chambre_id',$chambre->id)->get();
+                if($chambre_ancien->count() < $chambre->nombre){
+
+                    $position = Chambre::where('id',$chambre->id)->first();
+                    $position_nombre = $position->position;
+                    $position->position = $position_nombre + 1;
+                    $position->save();
+
+                    $recaser_ancien->chambre_id = $chambre->id;
+                    $recaser_ancien->immeuble_id = $chambre->immeuble->id;
                     $recaser_ancien->recaser = 1;
+                    $recaser_ancien->position = $position_nombre + 1;
                     $recaser_ancien->save();
+                    // if ($chambre->nombre == $position->position) {
+                    //     Chambre::where('id',$chambre->id)->update([
+                    //     'is_pleine' => 1
+                    //     ]);
+                    // }
                     Mail::to($recaser_ancien->email)
-                    ->send(new MessageEmailAeerk($recaser_ancien));
+                    ->send(new RecasementEmail($recaser_ancien));
                     Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('admin.ancien.index');
+                    return redirect()->route('admin.recasement.edit',$recaser_ancien->immeuble_id);
                 }else{
-                    Toastr::success('Cette Chambre est pleine','Status Chambre', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('admin.recasement.create');
-                }
+                    Chambre::where('id',$chambre->id)->update([
+                        'is_pleine' => 1
+                    ]);
+                    $chambre_libre = Chambre::where('immeuble_id',$request->immeuble)->where('genre',$recaser_ancien->genre)->where('is_pleine',0)->first();
+                    if ($chambre_libre) {
+
+                        $position = Chambre::where('id',$chambre_libre->id)->first();
+                        $position_nombre = $position->position;
+                        $position->position = $position_nombre + 1;
+                        $position->save();
+
+                        $recaser_ancien->chambre_id = $chambre->id;
+                        $recaser_ancien->immeuble_id = $chambre->immeuble->id;
+                        $recaser_ancien->recaser = 1;
+                        $recaser_ancien->position = $position_nombre + 1;
+                        $recaser_ancien->save();
+
+                        Mail::to($recaser_ancien->email)
+                        ->send(new RecasementEmail($recaser_ancien));
+                        Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
+                        return redirect()->route('admin.recasement.edit',$recaser_ancien->immeuble_id);
+                    }
+                        Toastr::success('Cette Chambre est pleine','Status Chambre', ["positionClass" => "toast-top-right"]);
+                        return back();
+                    }
             }
-            else if ($chambres->chambre_id == 0){
-                $chambre_null = Recasement::where('chambre_id',0)->first();
-                if ($chambre_null) {
-                    $recaser_ancien = Recasement::where('id',$id)->first();
-                    $recaser_ancien->chambre_id = $request->chambre_id;
-                    $recaser_ancien->recaser = 1;
-                    $recaser_ancien->save();
-                    Mail::to($recaser_ancien->email)
-                    ->send(new MessageEmailAeerk($recaser_ancien));
-                    Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('admin.recasement.create');
-                }
-                
+            else{
+                Toastr::error('Les chambres enregistre sont pleines','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
+                return back();
             }
-        }
     }
 
     /**

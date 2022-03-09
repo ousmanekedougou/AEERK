@@ -1,51 +1,3 @@
-    {{--
-        @component('mail::message')
-        # AEERK KEDOUGOU
-        Salut 
-        @if($msg->genre == 1)
-            M.{{$msg->prenom}} {{$msg->nom}}
-        @elseif($msg->genre == 2)
-            Mme.{{$msg->prenom}} {{$msg->nom}}
-        @endif
-        @if($msg->status == 1 && $msg->codifier != 1 && $msg->prix == 0)
-            
-        @component('mail::panel')
-            Le Bureau de l'AEERK vous informe que vos document ont ete valide <br>
-            Vous pouver desormer codifier en ligine via le lien ci dessous
-            <br>
-            Remarque : Apres avoir codifier nous vous prions de verifier votre compte email pour recevoire la notification qui vous informera votre chambre.
-        @endcomponent
-
-        @component('mail::button', ['url' => 'http://aeerk.herokuapp.com/codification'])
-            Veullez Vous Codifier
-        @endcomponent
-
-        @elseif($msg->status == 2 )
-
-        @component('mail::panel')
-            Le Bureau de l'AEERK vous informe que vos document ont ete refuse <br>
-            Vous pouvez vous raprocher au pres du bureau pour plus d'information <br>
-            Nous contactez sur le 77000000 / 7800000 ou l'adresse suivante aeerk@gmail.com. 
-        @endcomponent
-
-        @elseif($msg->status == 1 && $msg->codifier == 1 && $msg->prix > 0)
-            @component('mail::panel')
-                    Nous vous informons que vous avez ete codifier a 
-                @foreach($msg->chambre->immeubles as $ac_imb)
-                    {{$ac_imb->name}}
-                @endforeach
-                    a la chambre {{$msg->chambre->nom }}
-                    @if($msg->position == 1)
-                        a la {{$msg->chambre->position }}ere place
-                    @else
-                        a la {{$msg->chambre->position }}em place
-                    @endif
-            @endcomponent
-        @endif
-        Merci,Le President de la commission sociale
-        @endcomponent
-    --}}
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:v="urn:schemas-microsoft-com:vml">
 
@@ -284,66 +236,53 @@
                                             @endif
                                         </p>
                                         @if($msg->status == 1 && $msg->codifier != 1 && $msg->prix == 0)
-                                        <p>
-                                            Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
-                                            Nous vous informons que vos documents déposés pour la codification ont étés accéptés. <br>
+                                            <p>
+                                                Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
+                                                Nous vous informons que vos documents déposés pour la codification ont étés accéptés. <br>
+                                            </p>
+                                            <p style="line-height: 24px;margin-bottom:15px;">
+                                            Nous vous invitons a aller jetter un coup d'oeil sur la page de documentation <a href="http://localhost:8000/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure de codification en ligne.
+                                            </p>
+                                            <p style="line-height: 24px;margin-bottom:15px;">
+                                                <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivantes pour se connécter.
+                                                <br>
+                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="http://localhost:8000/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
+                                                <br>
+                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>{{$user->email}} 
+                                                <br>
+                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>{{$user->text_dechifre}}
+                                            </p>
+                                            <p style="line-height: 24px;margin-bottom:15px;">
+                                                Et si vous n'aviez pas compris la procedure approchez vous au pres du bureau pour effectuer la codification en presentielle.
+                                            </p>
+                                        @elseif($msg->status == 2 && $msg->codifier != 1 && $msg->prix == 0)
+                                            <p style="line-height: 24px;margin-bottom:15px;">
+                                                Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
+                                                Nous vous informons que vos documents déposés pour la codification n'ont pas étés accéptés. <br>
+                                                
+                                            </p>
+                                            <h3 style="font-weight:bold;text-decoration:underline;color:blue;text-align:center">Motif du rejet des documents :</h3>
+                                            <p style="line-height: 24px;margin-bottom:15px;">
+                                                {{$msg->textmail}} <br> <br>
+                                                Pour plus d'informations nous contacter sur l'adrésse mail suivante {{$info->email}} ou sur le {{$info->phone}}. 
                                         </p>
-                                        <p style="line-height: 24px;margin-bottom:15px;">
-                                           Nous vous invitons a aller jetter un coup d'oeil sur la page de documentation <a href="http://localhost:8000/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure de codification en ligne.
-                                        </p>
-                                        <p style="line-height: 24px;margin-bottom:15px;">
-                                            <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivantes pour se connécter.
-                                            <br>
-                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="http://localhost:8000/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
-                                            <br>
-                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>{{$user->email}} 
-                                            <br>
-                                            <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>{{$user->text_dechifre}}
-                                        </p>
-                                        {{--
-                                        <p style="line-height: 24px; margin-bottom:20px;">
-                                            @component('mail::button', ['url' => 'https://aeerk.herokuapp.com/codification'])
-                                                Codification en ligne
-                                            @endcomponent
-                                        </p>
-                                        --}}
-                                        <p style="line-height: 24px;margin-bottom:15px;">
-                                           Et si vous n'aviez pas compris la procedure approchez vous au pres du bureau pour effectuer la codification en presentielle.
-                                        </p>
-                                        @elseif($msg->status == 2 )
-                                        <p style="line-height: 24px;margin-bottom:15px;">
-                                            Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>
-                                            Nous vous informons que vos documents déposés pour la codification n'ont pas étés accéptés. <br>
-                                            
-                                        </p>
-                                        <h3 style="font-weight:bold;text-decoration:underline;color:blue;text-align:center">Motif du rejet des documents :</h3>
-                                        <p style="line-height: 24px;margin-bottom:15px;">
-                                            {{$msg->textmail}} <br> <br>
-                                            Pour plus d'informations nous contacter sur l'adrésse mail suivante {{$info->email}} ou sur le {{$info->phone}}. 
-                                       </p>
                                         @elseif($msg->status == 1 && $msg->codifier == 1 && $msg->prix > 0)
                                             <p style="line-height: 24px;margin-bottom:15px;">
                                                 Votre codification à bien été enrégistré, vous êtes à
-                                                {{$msg->chambre->immeuble->name}}
-                                                {{--
-                                                @foreach($msg->chambre->immeubles as $ac_imb)
-                                                    {{$ac_imb->name}}
-                                                @endforeach
-                                                --}}
-                                                    à la chambre {{$msg->chambre->nom }},
-                                                    @if($msg->position == 1)
-                                                        @if($msg->genre == 1)
-                                                            vous êtes la  {{$msg->position }}ere à être codifier dans cette chambre
-                                                        @elseif($msg->genre == 2)
-                                                            vous êtes le  {{$msg->position }}er à être codifier dans cette chambre
-                                                        @endif
-                                                    @else
-                                                        @if($msg->genre == 1)
-                                                            vous êtes la  {{$msg->position }}eme à être codifier dans cette chambre
-                                                        @elseif($msg->genre == 2)
-                                                            vous êtes le  {{$msg->position }}em à être codifier dans cette chambre
-                                                        @endif
+                                                {{$msg->chambre->immeuble->name}} à la chambre {{$msg->chambre->nom }},
+                                                @if($msg->position == 1)
+                                                    @if($msg->genre == 1)
+                                                        vous êtes la  {{$msg->position }}ere à être codifier dans cette chambre
+                                                    @elseif($msg->genre == 2)
+                                                        vous êtes le  {{$msg->position }}er à être codifier dans cette chambre
                                                     @endif
+                                                @else
+                                                    @if($msg->genre == 1)
+                                                        vous êtes la  {{$msg->position }}eme à être codifier dans cette chambre
+                                                    @elseif($msg->genre == 2)
+                                                        vous êtes le  {{$msg->position }}em à être codifier dans cette chambre
+                                                    @endif
+                                                @endif
                                             </p>
                                         <table border="0" align="center" style="text-align: justify;" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 

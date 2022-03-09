@@ -161,6 +161,7 @@ class NouveauController extends Controller
             'nom' => 'required|string',
             'email' => 'required|string|unique:etudiants',
             'phone' => 'required|string|unique:etudiants',
+            'cni' => 'required|string|unique:etudiants',
             'commune' => 'required|string',
         ]);
         // dd($request->all());
@@ -180,6 +181,7 @@ class NouveauController extends Controller
                         $codifier_nouveau->nom = $request->nom;
                         $codifier_nouveau->email = $request->email;
                         $codifier_nouveau->phone = $request->phone;
+                        $codifier_nouveau->cni = $request->cni;
                         $codifier_nouveau->commune_id = $request->commune;
                         $codifier_nouveau->status = 1;
                         $codifier_nouveau->immeuble_id = $immeuble->id;

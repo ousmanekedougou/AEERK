@@ -299,6 +299,12 @@ class AncienController extends Controller
                     $codifier_ancien->payment_methode = 'Présentielle';
                     $codifier_ancien->save();
 
+                    // if ($chambre->nombre == $position->position) {
+                    //     Chambre::where('id',$chambre->id)->update([
+                    //     'is_pleine' => 1
+                    //     ]);
+                    // }
+
                     // // Message sms
                     //   $config = array(
                     //     'clientId' => config('app.clientId'),

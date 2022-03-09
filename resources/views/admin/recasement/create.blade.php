@@ -67,34 +67,31 @@
             <!-- debut du col 6 -->
             <div class="col-md-9">
               <!-- remplissage de l'immeuble 39 -->
-                  @foreach($immeubles as $imb)  
                     <form action="{{ route('admin.recasement.update',$show_nouveau->id) }}" method="post">
                       @csrf 
                       {{ method_field('PUT') }}
-                    
-                      <h3 class="text-center">{{ $imb->name }}</h3>
-                      <input type="hidden" value="1" name="distinct">
-                        <div class="form-group">
-                          <label>Chambres</label>
-                          <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                            <option selected>Choisir la chambre</option>
-                            @foreach($imb->chambres  as $chm)
-                              @if($show_nouveau->genre == $chm->genre)
-                                <option value="{{$chm->id}}">{{$chm->nom}}</option>
-                              @endif
-                            @endforeach
-                          
-                          </select>
-                          @error('chambre_id')
-                            <span class="invalid-feedback" role="alert">
-                              <strong class="message_error text-danger">{{ $message }}</strong>
-                            </span>
-                          @enderror
+                        <div class="form-group" style="padding: 30px;">
+                            <div class="text-center">
+                              @foreach($immeubles as $imb)  
+                                <label  style="font-weight:bold; margin-right:20px;margin-left:20px;">
+                                    <input type="radio"  value="{{ $imb->id }}" class="@error('immeuble') is-invalid @enderror" id="immeuble"  name="immeuble"> 
+                                    {{ $imb->name }}
+                                  
+                                </label>
+                              @endforeach
+                              <br>
+                              @error('immeuble')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong class="message_error text-danger">{{ $message }}</strong>
+                                </span>
+                              @enderror
+                            </div>
                         </div>
-                        <input type="submit" value="Recaser" class="btn btn-primary">
-                        <a class="btn btn-warning" href="{{ route('admin.recasement.index') }}">Retoure</a>
+                        <div class="form-group text-center">
+                          <input type="submit" value="Recaser" class="btn btn-primary" style="margin-right: 20px;">
+                          <a class="btn btn-warning" href="{{ route('admin.recasement.index') }}" style="margin-left: 20px;">Retoure</a>
+                        </div>
                     </form>
-                    @endforeach
                 <!-- fin du remplissage de l'immeuble 39 -->
 
             </div>

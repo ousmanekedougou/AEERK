@@ -116,7 +116,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route ('admin.recasement.index') }}"><i class="fa fa-circle-o"></i> Etudiant Incrits</a></li>
-            <li><a href="{{ route ('admin.recasement.create') }}"><i class="fa fa-circle-o"></i> Etudiant Recaser</a></li>
+            @foreach( all_immeuble() as $immeuble )
+              <li><a href="{{ route ('admin.recasement.edit',$immeuble->id) }}"><i class="fa fa-circle-o"></i>Recaser {{$immeuble->name}} </a></li>
+            @endforeach
           </ul>
         </li>
 

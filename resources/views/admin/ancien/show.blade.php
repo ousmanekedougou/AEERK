@@ -122,59 +122,40 @@
                     <div class="box-footer">
                     @if($show_ancien->codifier == 0 )
                       <div class="pull-right">
-                        <form id="delete-form-{{$show_ancien->id}}" action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post">
-                          @csrf 
-                          {{ method_field('PUT') }}
-                          <input type="hidden" name="token" value="{{csrf_token()}}">
-                          <label style="margin-right: 20px;">
-                            <input type="radio" value="1" name="status" class="flat-red"
-                              @if($show_ancien->status == 1)
-                              checked
-                              @endif
-                            >
+                        <label style="margin-right: 20px;">
+                          <input type="radio" data-toggle="modal" data-target="#modal-default-{{$show_ancien->id}}" value="1" name="status" class="flat-red"
                             @if($show_ancien->status == 1)
-                            <span class="text-success"> A ete Valider</span>
-                            @else 
-                            <span class="text-warning"> Valider</span>
+                            checked
                             @endif
-                          </label>
-                          <label>
-                            <input type="radio" value="2" name="status" data-toggle="modal" data-id="modalSms" data-name="modalSms" data-target="#modalSms"  class="flat-red" style="margin-left:20px;" 
-                            @if($show_ancien->status == 2)
-                              checked
-                              @endif
-                            >
-                            @if($show_ancien->status == 2)
-                            <span class="text-success">A ete Ommis</span>
-                            @else 
-                            <span class="text-warning">Ommetre</span>
+                          >
+                          @if($show_ancien->status == 1)
+                          <span class="text-success"> A été Valider</span>
+                          @else 
+                          <span class="text-warning"> Valider</span>
+                          @endif
+                        </label>
+                        <label class="">
+                          <input type="radio" value="2" name="status" data-toggle="modal" data-id="modalSms" data-name="modalSms" data-target="#modalSms"  class="flat-red" style="margin-left:20px;" 
+                          @if($show_ancien->status == 2)
+                            checked
                             @endif
-                          </label>
-                          <button  onclick="
-                          if(confirm('Etes Vous Sur de cette option ?')){
-
-                          event.preventDefault();document.getElementById('delete-form-{{$show_ancien->id}}').submit();
-
-                          }else{
-
-                            event.preventDefault();
-
-                          }"
-                          type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
-                        </form>
+                          >
+                          @if($show_ancien->status == 2)
+                          <span class="text-danger">A été rejeté</span>
+                          @else 
+                          <span class="text-warning">Rejeter</span>
+                          @endif
+                        </label>
                       </div>
                       @endif
                     <div class="pull-left">
                     <a style="margin-right:5px;" href="{{ route('admin.ancien.index') }}" class="btn btn-warning btn-xs"><i class="fa fa-share"></i> Retoure</a>
                       @if($show_ancien->status == 1 && $show_ancien->codifier == 0)
-                        <!-- <a style="margin-right:5px;" class="btn btn-success btn-xs" href="{{ route ('admin.ancien.edit',$show_ancien->id) }}">Codifier <i class="fa fa-edit"></i></a> -->
                         <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_ancien->id}}" data-name="{{$show_ancien->name}}" data-target="#modal-default-edit-show_ancien{{ $show_ancien->id }}">Codifier <i class="fa fa-edit"></i></a></a>
                       @elseif($show_ancien->status == 1 && $show_ancien->codifier == 0)
                         <span class="btn btn-success btn-xs">{{ $show_ancien->prenom }} {{$show_ancien->nom}} a ete codifier a {{ $show_ancien->chambre->name }}</span>
                       @endif
                     </div>
-                      <!-- <a href="#"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
-                      <a href="#"  class="btn btn-default btn-xs"><i class="fa fa-print"></i> Print</a> -->
                     </div>
                   </div>
                   <!-- /.user-block -->
@@ -497,39 +478,69 @@
 <!-- Fin du modal pour la codification des anciens -->
 
 
-      <div class="modal fade" id="modalSms">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Text detailler des documents a modifier </h4>
-            </div>
-            <form action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="modalSms">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center">Vous allez rejeter les documente de {{$show_ancien->prenom}} {{$show_ancien->nom}}</h4>
+          </div>
+          <h5 class="text-center">Veuillez decrire ici les motifs du rejet de ces documents</h5>
+          <form action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post" enctype="multipart/form-data">
+          @csrf
+          {{ method_field('PUT') }}
+          <input type="hidden" value="2" name="status" class="flat-red">
+          <div class="modal-body">
+            <p>
+            <textarea id="editor1" name="body" value="{{ old('body')}}" class="form-control @error('body') textarea is-invalid @enderror" id="body" placeholder=""
+              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              @error('body')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="message_error">{{ $message }}</strong>
+                </span>
+              @enderror
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+          </div>
+        </div>
+        </form>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <!-- Application des modification -->
+    <div class="modal fade" id="modal-default-{{$show_ancien->id}}">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Validation de l'etudiant</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Etes vous sure de voloire valider {{$show_ancien->prenom}} {{$show_ancien->nom}}
+            </p>
+          <form action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post" style="display:none;">
             @csrf
             {{ method_field('PUT') }}
-            <input type="hidden" value="2" name="status" class="flat-red">
-            <div class="modal-body">
-              <p>
-              <textarea id="editor1" name="body" value="{{ old('body')}}" class="form-control @error('body') textarea is-invalid @enderror" id="body" placeholder=""
-                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                @error('body')
-                  <span class="invalid-feedback" role="alert">
-                      <strong class="message_error">{{ $message }}</strong>
-                  </span>
-                @enderror
-              </p>
-            </div>
-            <div class="modal-footer">
-              <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-              <button type="submit" class="btn btn-primary">Modifier</button>
-            </div>
+            <input type="hidden" value="1" name="status" class="flat-red">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-success">Valider</button>
           </div>
           </form>
-          <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
+        <!-- /.modal-content -->
       </div>
+      <!-- /.modal-dialog -->
+    </div>
 
 @endsection
 

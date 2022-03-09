@@ -82,7 +82,7 @@
                 <tbody>
                 @foreach($ancien_bac as $ancien)
                   <tr>
-                    <td><img src="{{ Storage::url($ancien->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
+                    <td><img class="img-thumbnail" src="{{ Storage::url($ancien->image) }}" style="width:45px;height:45px;border-radius:100%;" alt="" srcset=""></td>
                     <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
                     <td>{{ $ancien->phone }}</td>
                     <td>{{ $ancien->immeuble->name }}</td>

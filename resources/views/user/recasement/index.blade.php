@@ -28,7 +28,7 @@
 			</section>
      		 <!-- End banner Area -->	
 
-			<section class="feature-area pb-120">
+			<section class="feature-area" style="margin-bottom: -30px;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
@@ -76,84 +76,56 @@
 			</section>
       
 
-      		<section class="feature-area pb-120">
+      		<section class="feature-area" style="margin-top: -30px;">
 				<div class="container">
 					<div class="section-top-border">
 						<div class="row">
-							<div class="col-lg-2 col-md-2 ">
+							<div class="col-lg-3 col-md-3 ">
 							</div>
 
-							<div class="col-lg-8 col-md-8 " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;padding:20px;background-color:white;color:black;">
+							<div class="col-lg-6 col-md-6 " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;padding:20px;background-color:white;color:black;">
 								<div class="">
-								<!-- <h3 class="mb-30 ">S'inscrire Pour Les Recasements</h3> -->
-								<form action="{{ route('recasement.store') }}" method="POST">
-									@csrf
-									<div class="single-element-widget"  style="width:40%;padding:10px;">
-									<h3 class="mb-30 ">Precisez votre status</h3>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p class="">Vous etes un nouveau</p>
-										<div class="primary-switch bg-secondary">
-											<input type="radio" required name="status" value="{{ old('status') ?? 1 }}" class=" @error('status') is-invalid @enderror" id="default-switch">
-											<label for="default-switch"></label>
-											@error('status')
-											<span class="invalid-feedback" role="alert">
-												<strong class="message_error">{{ $message }}</strong>
-											</span>
-											@enderror
-										</div>
-									</div>
-									<div class="switch-wrap d-flex justify-content-between">
-										<p  class="">Vous etes un ancien</p>
-										<div class="confirm-switch bg-secondary">
-											<input type="radio" required value="{{ old('status') ?? 2 }}" class=" @error('status') is-invalid @enderror"  name="status" id="primary-switch">
-											<label for="primary-switch"></label>
-											@error('status')
+									<h3 class="mb-30 text-center">S'inscrire Pour Les Recasements</h3>
+									<form action="{{ route('recasement.store') }}" method="POST">
+										@csrf
+										<div class="mt-10">
+											<label for="email" style="font-weight: bold;">Votre adresse email</label>
+											<input type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
+											@error('email')
 												<span class="invalid-feedback" role="alert">
 													<strong class="message_error">{{ $message }}</strong>
 												</span>
 											@enderror
 										</div>
-									</div>
-								</div>
-											<div class="mt-10">
-											<label for="email">Votre adresse email</label>
-												<input type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
-												@error('email')
+										<div class="mt-10">
+											<label for="phone" style="font-weight: bold;">Votre numero de telephone</label>
+											<input type="number" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
+											@error('phone')
+												<span class="invalid-feedback" role="alert">
+													<strong class="message_error">{{ $message }}</strong>
+												</span>
+											@enderror
+										</div>
+										<div class="input-group-icon mt-10 mb-5">
+											<div class="form-select">
+											<label for="immeuble" style="font-weight: bold;">Choisissez votre immeuble</label>
+												<select  value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" name="immeuble">
+													@foreach($immeuble as $imb)
+													<option  value="{{ $imb->id }}">{{$imb->name}}</option>
+													@endforeach
+												</select>
+												@error('immeuble')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
 													</span>
 												@enderror
 											</div>
-											<div class="mt-10">
-											<label for="phone">Votre numero de telephone</label>
-												<input type="number" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
-												@error('phone')
-													<span class="invalid-feedback" role="alert">
-														<strong class="message_error">{{ $message }}</strong>
-													</span>
-												@enderror
-											</div>
-											<div class="input-group-icon mt-10 mb-5">
-													<div class="form-select">
-													<label for="immeuble">Choisissez votre immeuble</label>
-														<select  value="{{ old('immeuble') }}" class="form-control @error('immeuble') is-invalid @enderror" name="immeuble">
-															
-															@foreach($immeuble as $imb)
-															<option  value="{{ $imb->id }}">{{$imb->name}}</option>
-															@endforeach
-														</select>
-														@error('immeuble')
-															<span class="invalid-feedback" role="alert">
-																<strong class="message_error">{{ $message }}</strong>
-															</span>
-														@enderror
-													</div>
-												</div>
-										
-									<div class="mt-10">
-										<input type="submit" value="Enregistre l'inscription" class="btn btn-primary btn-block">
-									</div>
-								</form>
+										</div>
+											
+										<div class="mt-10">
+											<input type="submit" value="Enregistre l'inscription" class="btn btn-primary btn-block">
+										</div>
+									</form>
 								</div>
 							</div>
 

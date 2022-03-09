@@ -13,7 +13,7 @@
                   <section class="content-header">
                       <!-- Default box -->
       <div class="box-header">
-        <h3 class="box-title">Les etudiants recase</h3>
+        <h3 class="box-title btn btn-primary btn-block">Les etudiants qui ont etes recase a {{ $immeuble->name }}</h3>
       </div>
                       <!-- /.col -->
         <div class="">
@@ -34,14 +34,12 @@
                   <tbody>
                   @foreach($recaser as $rec)
                     <tr>
-                      <td><img src="{{ Storage::url($rec->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
+                      <td><img class="img-thumbnail" style="width:45px; height:45px;border-radius:100%;" src="{{ Storage::url($rec->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
                       <td>{{ $rec->prenom .' '.$rec->nom }}</td>
                       <td>{{ $rec->email }}</td>
                       <td>{{ $rec->phone }}</td>
                       <td>
-                        @foreach($rec->chambre->immeubles as $ac_imb)
-                        {{$ac_imb->name}} : 
-                        @endforeach
+                        {{$rec->immeuble->name}} : 
                         
                         {{$rec->chambre->nom }}</td>
                     </tr>

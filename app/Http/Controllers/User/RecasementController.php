@@ -44,54 +44,32 @@ class RecasementController extends Controller
     public function store(Request $request)
     {
         $validator = $this->validate($request,[
-            'status' => 'required|numeric',
             'email' => 'required|email|unique:recasements',
             'phone' => 'required|numeric|unique:recasements',
             'immeuble' => 'required|numeric',
         ]);
-        if ($request->status == 1) {
-            $nouveaux = Etudiant::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1,'ancienete' => 1])->first();
-            
-            if ($nouveaux) {
-                $nouveaux_recaser = new Recasement;
-                $nouveaux_recaser->genre = $nouveaux->genre;
-                $nouveaux_recaser->nom = $nouveaux->nom;
-                $nouveaux_recaser->prenom = $nouveaux->prenom;
-                $nouveaux_recaser->email = $nouveaux->email;
-                $nouveaux_recaser->phone = $nouveaux->phone;
-                $nouveaux_recaser->image = $nouveaux->image;
-                $nouveaux_recaser->immeuble_id = $request->immeuble;
-                $nouveaux_recaser->status = 0;
-                $nouveaux_recaser->recaser = 0;
-                $nouveaux_recaser->save();
-                Toastr::sucess('Votre inscription a ete enregistre','Inscription Valider', ["positionClass" => "toast-top-right"]);
+            $etudiant = Etudiant::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1])->where('prix' ,'>',0)->first();
+            if ($etudiant) {
+                $etudiant_recaser = new Recasement;
+                $etudiant_recaser->genre = $etudiant->genre;
+                $etudiant_recaser->nom = $etudiant->nom;
+                $etudiant_recaser->prenom = $etudiant->prenom;
+                $etudiant_recaser->email = $etudiant->email;
+                $etudiant_recaser->phone = $etudiant->phone;
+                $etudiant_recaser->cni = $etudiant->cni;
+                $etudiant_recaser->image = $etudiant->image;
+                $etudiant_recaser->immeuble_id = $request->immeuble;
+                $etudiant_recaser->status = 0;
+                $etudiant_recaser->recaser = 0;
+                $etudiant_recaser->save();
+                Toastr::success('Votre inscription a ete enregistre','Inscription Valider', ["positionClass" => "toast-top-right"]);
                 return back();
             } else {
                 Toastr::error('Vous n\'aviez pas codifier','Error Codification', ["positionClass" => "toast-top-right"]);
                 return back();
             }
 
-        }elseif ($request->status == 2) {
-            $anciens = Etudiant::where(['email'=>$request->email,'phone'=>$request->phone,'codifier'=>1,'ancienete' => 2])->first();
-            if ($anciens) {
-                $anciens_recaser = new Recasement;
-                $anciens_recaser->genre = $anciens->genre;
-                $anciens_recaser->nom = $anciens->nom;
-                $anciens_recaser->prenom = $anciens->prenom;
-                $anciens_recaser->email = $anciens->email;
-                $anciens_recaser->phone = $anciens->phone;
-                $anciens_recaser->image = $anciens->image;
-                $anciens_recaser->immeuble_id = $request->immeuble;
-                $anciens_recaser->status = 0;
-                $anciens_recaser->recaser = 0;
-                $anciens_recaser->save();
-                Toastr::sucess('Votre inscription a ete enregistre','Inscription Valider', ["positionClass" => "toast-top-right"]);
-                return back();
-            } else {
-                Toastr::error('Vous n\'aviez pas codifier','Error Codification', ["positionClass" => "toast-top-right"]);
-                return back();
-            }
-        }
+    
     }
 
     /**

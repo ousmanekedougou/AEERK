@@ -21,21 +21,9 @@ class Chambre extends Model
         return $this->belongsTo(Immeuble::class);
         // return $this->belongsToMany(Immeuble::class,'immeuble_chambres');
     }
-
-    public function recasement_nouveaus(){
-        return $this->hasMany(Recasement_ancien::class);
-    }
-
+    
     public function recasements(){
         return $this->hasMany(Recasement::class);
-    }
-
-    public function anciens(){
-        return $this->hasMany(Ancien::class);
-    }
-
-    public function nouveaus(){
-        return $this->hasMany(Nouveau::class);
     }
 
     public function etudiants(){

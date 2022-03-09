@@ -23,7 +23,6 @@
           <div class="box-body">
             <form action="{{ route('admin.nouveau.store') }}" method="post" enctype="multipart/form-data">
               @csrf
-              {{--<input type="hidden" name="immeuble" value="{{ $immeubles->id }}">--}}
               
               <div class="row">
                 <div class="col-md-3"></div>
@@ -77,6 +76,16 @@
                     <label for="phone">Numero de telephone</label>
                     <input type="number" name='phone'  value="{{ old('phone')  }}" class="form-control @error('phone') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
                     @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="message_error text-danger">{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+
+                   <div class="form-group">
+                    <label for="cni">Numero de votre CNI</label>
+                    <input type="number" name='cni'  value="{{ old('cni')  }}" class="form-control @error('cni') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
+                    @error('cni')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error text-danger">{{ $message }}</strong>
                     </span>
@@ -185,7 +194,7 @@
                       <tbody>
                       @foreach($nouveau_bac as $nouveau)
                         <tr>
-                          <td><img src="{{ Storage::url($nouveau->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
+                          <td><img class="img-thumbnail" src="{{ Storage::url($nouveau->image) }}" style="width:45px;height:45px;border-radius:100%;" alt="" srcset=""></td>
                           <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                           <td>{{ $nouveau->phone }}</td>
                             <td><a href="{{ route ('admin.nouveau.show',$nouveau->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
@@ -255,6 +264,7 @@
 
 
 <!-- Modal du update des soldes -->
+    {{--
     @foreach($nouveau_bac as $nouveau)
       <div class="modal fade" id="modal-default-edit-nouveau{{ $nouveau->id }}">
           <div class="modal-dialog">
@@ -284,27 +294,6 @@
                     <div class="modal-body">
                       <p>
                       <h3 class="text-center">{{ $nouveau->immeuble->name }}</h3>
-                      {{--<input type="hidden" name="immeuble" value="{{ $immeubles->id }}">--}}
-                        {{--
-                        <div class="form-group">
-                          <label>Chambres</label>
-                          <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                            @foreach($imb->chambres  as $chm)
-                              @if($nouveau->genre == $chm->genre)
-                                @if($chm->is_pleine == 0)
-                                  <option value="{{$chm->id}}">{{$chm->nom}}</option>
-                                @endif
-                              @endif
-                            @endforeach
-                          
-                          </select>
-                          @error('chambre_id')
-                            <span class="invalid-feedback" role="alert">
-                              <strong class="message_error text-danger">{{ $message }}</strong>
-                            </span>
-                          @enderror
-                        </div>
-                        --}}
                       </p>
 
                       <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
@@ -323,6 +312,7 @@
           <!-- /.modal-dialog -->
       </div>
     @endforeach
+    --}}
 <!-- Fin du modal update  des soldes -->
 
 

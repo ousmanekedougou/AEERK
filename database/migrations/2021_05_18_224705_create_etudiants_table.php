@@ -27,6 +27,7 @@ class CreateEtudiantsTable extends Migration
             $table->string('extrait')->nullable();
             $table->string('image')->nullable();
             $table->string('attestation')->nullable();
+            $table->string('cni',13)->unique()->nullable();
             $table->integer('commune_id')->default(0);
             $table->integer('immeuble_id')->default(0);
             $table->integer('chambre_id')->default(0);

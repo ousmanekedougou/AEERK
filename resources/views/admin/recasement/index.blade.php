@@ -38,7 +38,7 @@
                 <tbody>
                 @foreach($nouveau_bac as $nouveau)
                   <tr>
-                    <td><img src="{{ Storage::url($nouveau->image) }}" style="width:60px;height:auto;" alt="" srcset=""></td>
+                    <td><img class="img-thumbnail" src="{{ Storage::url($nouveau->image) }}" style="width:45px;height:45px;border-radius:100%;" alt="" srcset=""></td>
                     <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                     <td>{{ $nouveau->phone }}</td>
                     <td>{{ $nouveau->immeuble->name }}</td>

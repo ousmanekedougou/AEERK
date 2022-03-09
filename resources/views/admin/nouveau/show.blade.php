@@ -122,44 +122,71 @@
                     <div class="box-footer">
                     @if($show_nouveau->codifier == 0)
                       <div class="pull-right">
-                      <form id="delete-form-{{$show_nouveau->id}}" action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post">
-                        @csrf 
-                        {{ method_field('PUT') }}
-                      <label style="margin-right: 20px;">
-                          <input type="radio" value="1" name="status" class="flat-red"
+                        <form id="delete-form-{{$show_nouveau->id}}" action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post">
+                            @csrf 
+                            {{ method_field('PUT') }}
+                          <label style="margin-right: 20px;">
+                              <input type="radio" value="1" name="status" class="flat-red"
+                                @if($show_nouveau->status == 1)
+                                checked
+                                @endif
+                              >
+                              @if($show_nouveau->status == 1)
+                              <span class="text-success"> Deja Valider</span>
+                              @else 
+                              <span class="text-warning"> Valider</span>
+                              @endif
+                            </label>
+                            <label>
+                              <input type="radio" value="2" data-toggle="modal" data-id="modalSms" data-name="modalSms" data-target="#modalSms" name="status" class="flat-red"
+                              @if($show_nouveau->status == 2)
+                                checked
+                                @endif
+                              >
+                              @if($show_nouveau->status == 2)
+                              <span class="text-success">Deja Ommis</span>
+                              @else 
+                              <span class="text-warning">Ommetre</span>
+                              @endif
+                            </label>
+                            <button  onclick="
+                          if(confirm('Etes Vous Sur de cette option ?')){
+
+                          event.preventDefault();document.getElementById('delete-form-{{$show_nouveau->id}}').submit();
+
+                          }else{
+
+                            event.preventDefault();
+
+                          }" type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
+                        </form>
+                      </div>
+
+                      <div class="pull-right">
+                        <label style="margin-right: 20px;">
+                          <input type="radio" data-toggle="modal" data-target="#modal-default-{{$show_nouveau->id}}" value="1" name="status" class="flat-red"
                             @if($show_nouveau->status == 1)
                             checked
                             @endif
                           >
                           @if($show_nouveau->status == 1)
-                          <span class="text-success"> Deja Valider</span>
+                          <span class="text-success"> A été Valider</span>
                           @else 
                           <span class="text-warning"> Valider</span>
                           @endif
                         </label>
-                        <label>
-                          <input type="radio" value="2" data-toggle="modal" data-id="modalSms" data-name="modalSms" data-target="#modalSms" name="status" class="flat-red"
+                        <label class="">
+                          <input type="radio" value="2" name="status" data-toggle="modal" data-id="modalSms" data-name="modalSms" data-target="#modalSms"  class="flat-red" style="margin-left:20px;" 
                           @if($show_nouveau->status == 2)
                             checked
                             @endif
                           >
                           @if($show_nouveau->status == 2)
-                          <span class="text-success">Deja Ommis</span>
+                          <span class="text-danger">A été rejeté</span>
                           @else 
-                          <span class="text-warning">Ommetre</span>
+                          <span class="text-warning">Rejeter</span>
                           @endif
                         </label>
-                        <button  onclick="
-                      if(confirm('Etes Vous Sur de cette option ?')){
-
-                      event.preventDefault();document.getElementById('delete-form-{{$show_nouveau->id}}').submit();
-
-                      }else{
-
-                        event.preventDefault();
-
-                      }" type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
-                      </form>
                       </div>
                     @endif
                   <div class="pull-left">
@@ -523,6 +550,36 @@
           </div>
           <!-- /.modal-dialog -->
         </div>
+
+
+         <!-- Application des modification -->
+    <div class="modal fade" id="modal-default-{{$show_nouveau->id}}">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Validation de l'etudiant</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Etes vous sure de voloire valider {{$show_nouveau->prenom}} {{$show_nouveau->nom}}
+            </p>
+          <form action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post" style="display:none;">
+            @csrf
+            {{ method_field('PUT') }}
+            <input type="hidden" value="1" name="status" class="flat-red">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-success">Valider</button>
+          </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
 
 @endsection
 

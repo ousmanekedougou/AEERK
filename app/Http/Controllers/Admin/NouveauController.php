@@ -161,8 +161,9 @@ class NouveauController extends Controller
             'nom' => 'required|string',
             'email' => 'required|string|unique:etudiants',
             'phone' => 'required|string|unique:etudiants',
+            'cni' => 'required|string|unique:etudiants',
             'commune' => 'required|string',
-            'image' => 'dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+            // 'image' => 'dimensions:min_width=50,min_height=100|image|mimes:jpeg,png,jpg,gif,ijf',
         ]);
         $prix = Solde::select('prix_nouveau')->first();
         $immeuble = Immeuble::where('status',1)->first();
@@ -175,11 +176,30 @@ class NouveauController extends Controller
                 if ($request->hasFile('image')) {
                     $imageName = $request->image->store('public/Nouveau');
                 }
+                $phoneFinale = '';
+                $phoneComplet = '221'.$request->phone;
+                if (strlen($request->phone) == 12 ) {
+                    $phoneFinale = $request->phone;
+                }elseif (strlen($request->phone) == 9) {
+                    $phoneFinale = $phoneComplet;
+                }else {
+                    Toastr::error('votre numero de telephone est invalid', 'Error Telepone', ["positionClass" => "toast-top-right"]);
+                    return back();
+                }
+
+                 $cniFinale = '';
+                if (strlen($request->cni) == 13 ) {
+                    $cniFinale = $request->cni;
+                }else {
+                    Toastr::error('votre numero de Carte d\'identite n\'est pas au complet', 'Error Carte D\'identite', ["positionClass" => "toast-top-right"]);
+                    return back();
+                }
                 $codifier_nouveau->genre = $request->genre;
                 $codifier_nouveau->prenom = $request->prenom;
                 $codifier_nouveau->nom = $request->nom;
                 $codifier_nouveau->email = $request->email;
-                $codifier_nouveau->phone = $request->phone;
+                $codifier_nouveau->phone = $phoneFinale;
+                $codifier_nouveau->cni = $cniFinale;
                 $codifier_nouveau->commune_id = $request->commune;
                 $codifier_nouveau->status = 1;
                 $codifier_nouveau->immeuble_id = $immeuble->id;

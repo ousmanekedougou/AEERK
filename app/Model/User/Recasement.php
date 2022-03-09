@@ -14,15 +14,6 @@ class Recasement extends Model
     public function chambre(){
         return $this->belongsTo(Chambre::class);
     }
-    public function chambre39(){
-        return $this->belongsTo(Chambre39::class);
-    }
-    public function chambre43(){
-        return $this->belongsTo(Chambre43::class);
-    }
-    public function chambrezone(){
-        return $this->belongsTo(Chambrezone::class);
-    }
 
     public function immeuble(){
         return $this->belongsTo(Immeuble::class);
