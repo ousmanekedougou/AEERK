@@ -9,9 +9,9 @@
      <div class="content-wrapper">
     <!-- Content Header (Page header) -->
    <section class="content-header">
-      <h1>
+      <h1 class="text-uppercase">
         Tableau de bord
-        <small>Appercue des informations</small>
+        <small>Appérçue des informations</small>
       </h1>
     </section>
 
@@ -140,7 +140,7 @@
               <span class="info-box-icon"><i class="fa fa-check-square-o"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Valider</span>
+                <span class="info-box-text">Total Validés</span>
                 <span class="info-box-number">{{ $nouveau_total_valider->count() }}</span>
 
                 <div class="progress">
@@ -159,7 +159,7 @@
               <span class="info-box-icon"><i class="fa fa-close "></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Ommis</span>
+                <span class="info-box-text">Total Rejetés</span>
                 <span class="info-box-number">{{$nouveau_total_ommis->count()}}</span>
 
                 <div class="progress">
@@ -179,7 +179,7 @@
               <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Codifier</span>
+                <span class="info-box-text">Total Codifiés</span>
                 <span class="info-box-number">{{$nouveau_total_codifier->count()}}</span>
 
                 <div class="progress">
@@ -227,7 +227,7 @@
               <span class="info-box-icon"><i class="fa fa-check-square-o"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Valider</span>
+                <span class="info-box-text">Total Validés</span>
                 <span class="info-box-number">{{ $ancien_total_valider->count() }}</span>
 
                 <div class="progress">
@@ -246,7 +246,7 @@
             <span class="info-box-icon"><i class="fa fa-close "></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Total Ommis</span>
+              <span class="info-box-text">Total Rejetés</span>
               <span class="info-box-number">{{$ancien_total_ommis->count()}}</span>
 
               <div class="progress">
@@ -265,7 +265,7 @@
             <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Total Codifier</span>
+              <span class="info-box-text">Total Codifiés</span>
               <span class="info-box-number">{{$ancien_total_codifier->count()}}</span>
 
               <div class="progress">
@@ -312,7 +312,7 @@
             
               <span class="info-box-icon" style="color: white;"><i class="fa fa-thumbs-up"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Total Recaser</span>
+                <span class="info-box-text">Total Recasés</span>
                 <span class="info-box-number">{{ $recaser->count() }}</span>
 
                 <div class="progress">

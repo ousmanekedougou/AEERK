@@ -26,6 +26,7 @@
                 <th>Adresse</th>
                 <th>Reserve</th>
                 <th>Chambres</th>
+                <th>Etudiants</th>
                 <th>Options</th>
               </tr>
               </thead>
@@ -45,6 +46,7 @@
                         @endif
                       </td>
                       <td><a href="{{ route('admin.chambre.show',$all_immeuble->id) }}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Chambres</a></td>
+                      <td><a href="{{ route('admin.codification.show',$all_immeuble->id) }}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Etudiants</a></td>
                       <td>
                         <a style="margin-right:5px;" data-toggle="modal" data-id="{{$all_immeuble->id}}" data-name="{{$all_immeuble->name}}" data-target="#modal-default-{{ $all_immeuble->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                       

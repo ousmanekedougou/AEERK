@@ -64,14 +64,9 @@ class CodificationController extends Controller
      */
     public function show($id)
     {
-        $immeubles = Immeuble::all();
-        foreach($immeubles as $imb){
-            if ($imb->id == $id) {
-                $immeubles = Immeuble::find($imb->id);
-                    $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1 , 'immeuble_id' => $id])->paginate(5);
-                    return view('admin.codification.index_ancien',compact('ancien_bac','immeubles'));
-            }
-        }
+        $immeubles = Immeuble::where('id',$id)->first();
+        $ancien_bac = Etudiant::where(['status'=>1,'codifier'=>1 , 'immeuble_id' => $id])->paginate(5);
+        return view('admin.codification.index_ancien',compact('ancien_bac','immeubles'));
     }
 
     /**

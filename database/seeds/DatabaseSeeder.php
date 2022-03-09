@@ -693,15 +693,6 @@ class DatabaseSeeder extends Seeder
                 'position' => 0,
                 'immeuble_id' => 2
             ]);
-            Chambre::create([
-                'nom' => '5D4',
-                'nombre' => 5,
-                'genre' => 2,
-                'status' => 1,
-                'is_pleine' => 0,
-                'position' => 0,
-                'immeuble_id' => 2
-            ]);
             // fin immeuble 39 cinquieme
 
 // ____________________________________________Fin de l'ajout pour immeuble 39________________________________
