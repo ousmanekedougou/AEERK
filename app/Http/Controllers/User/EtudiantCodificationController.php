@@ -171,47 +171,57 @@ class EtudiantCodificationController extends Controller
                     $invoice->addCustomData("phone", $codifier_nouveau->phone);
                     $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
                     $invoice->addChannels(['wave-senegal']);
+
+                    $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_nouveau->genre)->get();
+                    if ($chambre->nombre == $chambre_ancien_count->count()) {
+                        Chambre::where('id',$chambre->id)->update([
+                            'is_pleine' => 1
+                        ]);
+                    }
+
                     if($invoice->create()) {
                         return redirect(url($invoice->getInvoiceUrl()));
                     }else{
                         dd($invoice->response_text);
                     }
+
+                   
                 }else {
                     Auth::logout();
                     Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('index');
                 }
             }else{
-                Chambre::where('id',$chambre->id)->update([
-                    'is_pleine' => 1
-                ]);
-                $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_nouveau->genre)->where('is_pleine',0)->first();
-                if ($chambre_suivante) {
-                    if ($codifier_nouveau->codification_count < 5) {
-                        $invoice = new CheckoutInvoice();
-                        $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
-                        $invoice->setTotalAmount($prix->prix_nouveau);
-                        $invoice->addCustomData("id", $id);
-                        $invoice->addCustomData("chambre_id", $chambre_suivante->id);
-                        $invoice->addCustomData("email", $codifier_nouveau->email);
-                        $invoice->addCustomData("phone", $codifier_nouveau->phone);
-                        $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
-                        $invoice->addChannels(['wave-senegal']);
-                        if($invoice->create()) {
-                            return redirect(url($invoice->getInvoiceUrl()));
-                        }else{
-                            dd($invoice->response_text);
-                        }
-                    }else {
-                        Auth::logout();
-                        Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
-                        return redirect()->route('index');
-                    }
-                }else {
-                    Auth::logout();
-                    Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('index');
-                }
+                // Chambre::where('id',$chambre->id)->update([
+                //     'is_pleine' => 1
+                // ]);
+                // $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_nouveau->genre)->where('is_pleine',0)->first();
+                // if ($chambre_suivante) {
+                //     if ($codifier_nouveau->codification_count < 5) {
+                //         $invoice = new CheckoutInvoice();
+                //         $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
+                //         $invoice->setTotalAmount($prix->prix_nouveau);
+                //         $invoice->addCustomData("id", $id);
+                //         $invoice->addCustomData("chambre_id", $chambre_suivante->id);
+                //         $invoice->addCustomData("email", $codifier_nouveau->email);
+                //         $invoice->addCustomData("phone", $codifier_nouveau->phone);
+                //         $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
+                //         $invoice->addChannels(['wave-senegal']);
+                //         if($invoice->create()) {
+                //             return redirect(url($invoice->getInvoiceUrl()));
+                //         }else{
+                //             dd($invoice->response_text);
+                //         }
+                //     }else {
+                //         Auth::logout();
+                //         Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                //         return redirect()->route('index');
+                //     }
+                // }else {
+                //     Auth::logout();
+                //     Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
+                //     return redirect()->route('index');
+                // }
             }
         }else {
             Auth::logout();
@@ -243,47 +253,56 @@ class EtudiantCodificationController extends Controller
                     $invoice->addCustomData("phone", $codifier_ancien->phone);
                     $invoice->addCustomData("codifier", $codifier_ancien->codifier);
                     $invoice->addChannels(['wave-senegal']);
+
+                    $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
+                    if ($chambre->nombre == $chambre_ancien_count->count()) {
+                        Chambre::where('id',$chambre->id)->update([
+                        'is_pleine' => 1
+                        ]);
+                    }
+
                     if($invoice->create()) {
                         return redirect(url($invoice->getInvoiceUrl()));
                     }else{
                         dd($invoice->response_text);
                     }
+                   
                 }else {
                     Auth::logout();
                     Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('index');
                 }
             }else{
-                Chambre::where('id',$chambre->id)->update([
-                    'is_pleine' => 1
-                ]);
-                $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
-                if ($chambre_suivante) {
-                    if ($codifier_ancien->codification_count < 5) {
-                        $invoice = new CheckoutInvoice();
-                        $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
-                        $invoice->setTotalAmount($prix->prix_ancien);
-                        $invoice->addCustomData("id", $id);
-                        $invoice->addCustomData("chambre_id", $chambre_suivante->id);
-                        $invoice->addCustomData("email", $codifier_ancien->email);
-                        $invoice->addCustomData("phone", $codifier_ancien->phone);
-                        $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                        $invoice->addChannels(['wave-senegal']);
-                        if($invoice->create()) {
-                            return redirect(url($invoice->getInvoiceUrl()));
-                        }else{
-                            dd($invoice->response_text);
-                        }
-                    }else {
-                        Auth::logout();
-                        Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
-                        return redirect()->route('index');
-                    }
-                }else {
-                    Auth::logout();
-                    Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('index');
-                }
+                // Chambre::where('id',$chambre->id)->update([
+                //     'is_pleine' => 1
+                // ]);
+                // $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
+                // if ($chambre_suivante) {
+                //     if ($codifier_ancien->codification_count < 5) {
+                //         $invoice = new CheckoutInvoice();
+                //         $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
+                //         $invoice->setTotalAmount($prix->prix_ancien);
+                //         $invoice->addCustomData("id", $id);
+                //         $invoice->addCustomData("chambre_id", $chambre_suivante->id);
+                //         $invoice->addCustomData("email", $codifier_ancien->email);
+                //         $invoice->addCustomData("phone", $codifier_ancien->phone);
+                //         $invoice->addCustomData("codifier", $codifier_ancien->codifier);
+                //         $invoice->addChannels(['wave-senegal']);
+                //         if($invoice->create()) {
+                //             return redirect(url($invoice->getInvoiceUrl()));
+                //         }else{
+                //             dd($invoice->response_text);
+                //         }
+                //     }else {
+                //         Auth::logout();
+                //         Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                //         return redirect()->route('index');
+                //     }
+                // }else {
+                //     Auth::logout();
+                //     Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
+                //     return redirect()->route('index');
+                // }
             }
         }else {
             Auth::logout();

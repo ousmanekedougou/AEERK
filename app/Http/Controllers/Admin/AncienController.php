@@ -299,11 +299,12 @@ class AncienController extends Controller
                     $codifier_ancien->payment_methode = 'Présentielle';
                     $codifier_ancien->save();
 
-                    // if ($chambre->nombre == $position->position) {
-                    //     Chambre::where('id',$chambre->id)->update([
-                    //     'is_pleine' => 1
-                    //     ]);
-                    // }
+                    $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
+                    if ($chambre->nombre == $chambre_ancien_count->count()) {
+                        Chambre::where('id',$chambre->id)->update([
+                        'is_pleine' => 1
+                        ]);
+                    }
 
                     // // Message sms
                     //   $config = array(
@@ -339,62 +340,63 @@ class AncienController extends Controller
                     return back();
                 }
             }else{
-                Chambre::where('id',$chambre->id)->update([
-                    'is_pleine' => 1
-                ]);
+                // Chambre::where('id',$chambre->id)->update([
+                //     'is_pleine' => 1
+                // ]);
 
-                $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
-                if($chambre_suivante) {
-                    if ($codifier_ancien->codification_count < 5) {
-                        $position = Chambre::where('id',$chambre_suivante->id)->first();
-                        $position_nombre = $position->position;
-                        $position->position = $position_nombre + 1;
-                        $position->save();
+                // $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
+                // if($chambre_suivante) {
+                //     if ($codifier_ancien->codification_count < 5) {
 
-                        $codifier_ancien->chambre_id = $chambre_suivante->id;
-                        $codifier_ancien->prix = $prix->prix_ancien;
-                        $codifier_ancien->codifier = 1;
-                        $count = $codifier_ancien->codification_count;
-                        $codifier_ancien->codification_count = $count + 1;
-                        $codifier_ancien->position = $position_nombre + 1;
-                        $codifier_ancien->payment_methode = 'Présentielle';
-                        $codifier_ancien->save();
-                        // Message sms
-                        // $config = array(
-                        //     'clientId' => config('app.clientId'),
-                        //     'clientSecret' =>  config('app.clientSecret'),
-                        // );
-                        // $osms = new Sms($config);
+                //         $position = Chambre::where('id',$chambre_suivante->id)->first();
+                //         $position_nombre = $position->position;
+                //         $position->position = $position_nombre + 1;
+                //         $position->save();
 
-                        // $data = $osms->getTokenFromConsumerKey();
-                        // $token = array(
-                        //     'token' => $data['access_token']
-                        // );
-                        // $phone = $codifier_ancien->phone;
-                        // $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
-                        // $sendPhone = User::first();
-                        // $response = $osms->sendSms(
-                        //     // sender
-                        //     'tel:+' . $sendPhone->sendPhone,
-                        //     // receiver
-                        //     'tel:+' . $phone,
-                        //     // message
-                        //     $message,
-                        //     'AEERK'
-                        // );
+                //         $codifier_ancien->chambre_id = $chambre_suivante->id;
+                //         $codifier_ancien->prix = $prix->prix_ancien;
+                //         $codifier_ancien->codifier = 1;
+                //         $count = $codifier_ancien->codification_count;
+                //         $codifier_ancien->codification_count = $count + 1;
+                //         $codifier_ancien->position = $position_nombre + 1;
+                //         $codifier_ancien->payment_methode = 'Présentielle';
+                //         $codifier_ancien->save();
+                //         // Message sms
+                //         // $config = array(
+                //         //     'clientId' => config('app.clientId'),
+                //         //     'clientSecret' =>  config('app.clientSecret'),
+                //         // );
+                //         // $osms = new Sms($config);
 
-                        Mail::to($codifier_ancien->email)
-                        ->send(new MessageEmailAeerk($codifier_ancien));
-                        Toastr::success('Votre etudiant a ete codifier','Codification Etudiant', ["positionClass" => "toast-top-right"]);
-                        return back();
-                    }else {
-                        Toastr::error('Le quotta de codofication de cette etudiant est epuiser','Quota Etudiant', ["positionClass" => "toast-top-right"]);
-                        return back();
-                    }
-                }else {
-                    Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
-                    return back();
-                }
+                //         // $data = $osms->getTokenFromConsumerKey();
+                //         // $token = array(
+                //         //     'token' => $data['access_token']
+                //         // );
+                //         // $phone = $codifier_ancien->phone;
+                //         // $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
+                //         // $sendPhone = User::first();
+                //         // $response = $osms->sendSms(
+                //         //     // sender
+                //         //     'tel:+' . $sendPhone->sendPhone,
+                //         //     // receiver
+                //         //     'tel:+' . $phone,
+                //         //     // message
+                //         //     $message,
+                //         //     'AEERK'
+                //         // );
+
+                //         Mail::to($codifier_ancien->email)
+                //         ->send(new MessageEmailAeerk($codifier_ancien));
+                //         Toastr::success('Votre etudiant a ete codifier','Codification Etudiant', ["positionClass" => "toast-top-right"]);
+                //         return back();
+                //     }else {
+                //         Toastr::error('Le quotta de codofication de cette etudiant est epuiser','Quota Etudiant', ["positionClass" => "toast-top-right"]);
+                //         return back();
+                //     }
+                // }else {
+                //     Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
+                //     return back();
+                // }
             }
         }else {
             Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);

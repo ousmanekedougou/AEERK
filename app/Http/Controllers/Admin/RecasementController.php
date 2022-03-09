@@ -111,41 +111,45 @@ class RecasementController extends Controller
                     $recaser_ancien->recaser = 1;
                     $recaser_ancien->position = $position_nombre + 1;
                     $recaser_ancien->save();
-                    // if ($chambre->nombre == $position->position) {
-                    //     Chambre::where('id',$chambre->id)->update([
-                    //     'is_pleine' => 1
-                    //     ]);
-                    // }
+
+                    $chambre_ancien_count = Recasement::where('chambre_id',$chambre->id)->where('genre',$recaser_ancien->genre)->get();
+                    if ($chambre->nombre == $chambre_ancien_count->count()) {
+                        Chambre::where('id',$chambre->id)->update([
+                        'is_pleine' => 1
+                        ]);
+                    }
+
                     Mail::to($recaser_ancien->email)
                     ->send(new RecasementEmail($recaser_ancien));
                     Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('admin.recasement.edit',$recaser_ancien->immeuble_id);
-                }else{
-                    Chambre::where('id',$chambre->id)->update([
-                        'is_pleine' => 1
-                    ]);
-                    $chambre_libre = Chambre::where('immeuble_id',$request->immeuble)->where('genre',$recaser_ancien->genre)->where('is_pleine',0)->first();
-                    if ($chambre_libre) {
+                }
+                // else{
+                //     Chambre::where('id',$chambre->id)->update([
+                //         'is_pleine' => 1
+                //     ]);
+                //     $chambre_libre = Chambre::where('immeuble_id',$request->immeuble)->where('genre',$recaser_ancien->genre)->where('is_pleine',0)->first();
+                //     if ($chambre_libre) {
+                //         $position = Chambre::where('id',$chambre_libre->id)->first();
+                //         $position_nombre = $position->position;
+                //         $position->position = $position_nombre + 1;
+                //         $position->save();
 
-                        $position = Chambre::where('id',$chambre_libre->id)->first();
-                        $position_nombre = $position->position;
-                        $position->position = $position_nombre + 1;
-                        $position->save();
+                //         $recaser_ancien->chambre_id = $chambre->id;
+                //         $recaser_ancien->immeuble_id = $chambre->immeuble->id;
+                //         $recaser_ancien->recaser = 1;
+                //         $recaser_ancien->position = $position_nombre + 1;
+                //         $recaser_ancien->save();
 
-                        $recaser_ancien->chambre_id = $chambre->id;
-                        $recaser_ancien->immeuble_id = $chambre->immeuble->id;
-                        $recaser_ancien->recaser = 1;
-                        $recaser_ancien->position = $position_nombre + 1;
-                        $recaser_ancien->save();
-
-                        Mail::to($recaser_ancien->email)
-                        ->send(new RecasementEmail($recaser_ancien));
-                        Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
-                        return redirect()->route('admin.recasement.edit',$recaser_ancien->immeuble_id);
-                    }
-                        Toastr::success('Cette Chambre est pleine','Status Chambre', ["positionClass" => "toast-top-right"]);
-                        return back();
-                    }
+                //         Mail::to($recaser_ancien->email)
+                //         ->send(new RecasementEmail($recaser_ancien));
+                //         Toastr::success('Cette etudiant a ete recaser','Recasement Etudiant', ["positionClass" => "toast-top-right"]);
+                //         return redirect()->route('admin.recasement.edit',$recaser_ancien->immeuble_id);
+                //     }else {
+                //         Toastr::success('Cette Chambre est pleine','Status Chambre', ["positionClass" => "toast-top-right"]);
+                //         return back();
+                //     }
+                // }
             }
             else{
                 Toastr::error('Les chambres enregistre sont pleines','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
