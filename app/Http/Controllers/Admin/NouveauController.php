@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\Model\User\Etudiant;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ValidateDocument;
 use Illuminate\Support\Facades\Storage;
@@ -20,6 +21,7 @@ use App\Helpers\Sms;
 use App\Model\Admin\Immeuble_chambre;
 use App\Model\User\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Hash;
 
 class NouveauController extends Controller
 {
@@ -214,10 +216,8 @@ class NouveauController extends Controller
                 $codifier_nouveau->prix = $prix->prix_nouveau;
                 $codifier_nouveau->codifier = 1;
                 $codifier_nouveau->image = $imageName;
-                $codifier_nouveau->save();
-
-                
-
+                $codifier_nouveau->codification_token = str_replace('/','',Hash::make(Str::random(40).'nouveau'.$codifier_nouveau->email));
+                // $codifier_nouveau->save();
                 $count = $codifier_nouveau->codification_count;
                 $codifier_nouveau->codification_count = $count + 1;
                 $codifier_nouveau->position = $position_nombre + 1;
@@ -389,13 +389,11 @@ class NouveauController extends Controller
     public function update_nouveau(Request $request, $id)
     {
         $update_nouveau = Etudiant::find($id);
-        $immeuble = Immeuble::where('status',1)->first();
         $update_nouveau->nom = $request->nom;
         $update_nouveau->prenom = $request->prenom;
         $update_nouveau->email = $request->email;
         $update_nouveau->phone = $request->phone;
         $update_nouveau->commune_id = $request->commune;
-        $update_nouveau->immeuble_id = $immeuble ->id;
         $update_nouveau->save();
         Toastr::success('Votre etudiant a ete modifier','Modification Etudiant', ["positionClass" => "toast-top-right"]);
         return back();
@@ -453,6 +451,7 @@ class NouveauController extends Controller
                     $codifier_nouveau->codification_count = $count + 1;
                     $codifier_nouveau->position = $position_nombre + 1;
                     $codifier_nouveau->payment_methode = 'Présentielle';
+                    $codifier_nouveau->codification_token = str_replace('/','',Hash::make(Str::random(40).'nouveau'.$codifier_nouveau->email));
                     $codifier_nouveau->save();
 
                     $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->get();

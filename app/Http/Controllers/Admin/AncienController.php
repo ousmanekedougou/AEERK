@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Storage;
 use App\Helpers\Sms;
+use Illuminate\Support\Str;
 use App\Model\User\User;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Hash;
 
 class AncienController extends Controller
 {
@@ -164,7 +166,8 @@ class AncienController extends Controller
         $departement = Departement::all();
         $show_ancien = Etudiant::where('id',$id)->first();
         $immeuble = Immeuble::where('status',2)->where('id',$show_ancien->immeuble_id)->first();
-        return view('admin.ancien.show',compact('show_ancien','departement','immeuble'));
+         $immeubles = Immeuble::where('status',2)->get();
+        return view('admin.ancien.show',compact('show_ancien','departement','immeuble','immeubles'));
     }
 
     /**
@@ -234,13 +237,13 @@ class AncienController extends Controller
     public function update_ancien(Request $request, $id)
     {
         $update_ancien = Etudiant::find($id);
-        $immeuble = Immeuble::where('status',true)->first();
+        $immeuble = Immeuble::where('id',$request->immeuble)->where('status',2)->first();
         $update_ancien->nom = $request->nom;
         $update_ancien->prenom = $request->prenom;
         $update_ancien->email = $request->email;
         $update_ancien->phone = $request->phone;
         $update_ancien->commune_id = $request->commune;
-        $update_ancien->immeuble_id = $immeuble ->id;
+        $update_ancien->immeuble_id = $immeuble->id;
         $update_ancien->save();
         Toastr::success('Votre etudaint a ete modifier', 'Modification Etudiant', ["positionClass" => "toast-top-right"]);
         return back();
@@ -297,6 +300,7 @@ class AncienController extends Controller
                     $codifier_ancien->codification_count = $count + 1;
                     $codifier_ancien->position = $position_nombre + 1;
                     $codifier_ancien->payment_methode = 'Présentielle';
+                    $codifier_ancien->codification_token = str_replace('/','',Hash::make(Str::random(40).'ancien'.$codifier_ancien->email));
                     $codifier_ancien->save();
 
                     $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();

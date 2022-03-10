@@ -24,6 +24,7 @@ use Paydunya\Checkout\CheckoutInvoice;
 use App\Helpers\Sms;
 use App\Model\Admin\Info;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Hash;
 
 class EtudiantCodificationController extends Controller
 {
@@ -105,7 +106,12 @@ class EtudiantCodificationController extends Controller
             if($ancien){
                 if ($ancien->codification_count < 5 ) {
                     $immeubles = Immeuble::where('status',2)->where('id',$ancien->immeuble_id)->first();
-                    return view('user.codification.ancien',compact('ancien','immeubles'));
+                    if ($immeubles) {
+                        return view('user.codification.ancien',compact('ancien','immeubles'));
+                    }else {
+                        Toastr::error('Vous n\'aviez pas choisi cet immeuble', 'Error de choix', ["positionClass" => "toast-top-right"]);
+                        return back();
+                    }
                 }else {
                     Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
                     return back();
@@ -367,6 +373,7 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->codification_count = $count + 1;
     $codifier_ancien->position = $position_nombre + 1;
     $codifier_ancien->payment_methode = 'En ligne';
+    $codifier_ancien->codification_token = str_replace('/','',Hash::make(Str::random(40).'etudiant'.$codifier_ancien->email));
     $codifier_ancien->save();
 
     Mail::to($codifier_ancien->email)
@@ -392,8 +399,17 @@ if ($invoice->confirm($token)) {
     // );
     Auth::logout();
     Toastr::success('Vous avez bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
-    // return redirect()->route('index');
-    return redirect()->route('createPdf',['id' => $codifier_ancien->id,'email' => $codifier_ancien->email,'phone' => $codifier_ancien->phone]);
+    return redirect()->route('index')->with([
+        'codifier' => 'codifier',
+        'name' => "$codifier_ancien->prenom $codifier_ancien->nom",
+        'immeuble' => $codifier_ancien->immeuble->name,
+        'chambre' => $codifier_ancien->chambre->nom,
+        'position' => $codifier_ancien->position,
+        'id' => $codifier_ancien->id,
+        'codification_token' => $codifier_ancien->codification_token,
+        
+    ]);
+    // return redirect()->route('createPdf',['id' => $codifier_ancien->id,'email' => $codifier_ancien->email,'phone' => $codifier_ancien->phone]);
     }elseif ($invoice->getStatus() == "cancelled") {
         Auth::logout();
         Toastr::error('Votre codification a echouer','Error Codification', ["positionClass" => "toast-top-right"]);
@@ -422,7 +438,7 @@ if ($invoice->confirm($token)) {
         //
     }
 
-    public function createPdf($id,$email,$phone){
+    public function createPdf($id,$codification_token){
         //  $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
          
         //  $image_etudiant = Storage::url($etudiant->image);
@@ -447,11 +463,16 @@ if ($invoice->confirm($token)) {
         //  $dompdf->render();
         //  $dompdf->stream();
 
-        $etudiant = Etudiant::where(['id' => $id ,'email' => $email ,'phone' => $phone, 'codifier' => 1, 'status' => 1])->first();
+        $etudiant = Etudiant::where(['id' => $id ,'codification_token' => $codification_token, 'codifier' => 1, 'status' => 1])->first();
+        if ($etudiant) {
         $image = Storage::url($etudiant->image);
         $pic = 'image/accueil.png';
         $info = Info::first();
         return view('user.pdf',compact('etudiant','image','pic','info'));
+        }else {
+            Toastr::error('Votre recue est indisponible', 'Error Recue', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('index');
+        }
         
     }
 }

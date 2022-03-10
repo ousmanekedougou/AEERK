@@ -46,7 +46,37 @@
     </div>
   @endif
 
-
+  @if (session('codifier'))
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content bg-success text-white">
+          <div class="modal-header">
+            @if(session('name'))
+              <h5 class="modal-title text-white">Salut {!! session('name') !!}</h5>
+						@endif
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="text-bold">
+              Votre codification dans @if(session('immeuble')) {!! session('immeuble') !!} @endif à bien été enrégistré,vous étes
+              a la chambre @if(session('chambre')) {!! session('chambre') !!} @endif. <br>
+              La notification email que vous venez de recevoir contient les détails de votre codification et votre place dans cette chambre
+            </p>
+            <p>
+              Vous pouvez télécharger votre reçue et le réglement de codification en cliquant sur le lien ci-dessous, <br>
+              Cordialement le Bureau
+            </p>
+            
+          </div>
+          <div class="modal-footer text-center">
+            <a href="http://localhost:8000/createPdf/{{session('id')}}/{{session('codification_token')}}" style="width:100%;background-color:white;color:black;border-radius:8px;padding:10px;">
+             <i class="fa fa-download"></i>  Télécharger votre reçue et le réglement
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
 
 
   <div id="myModal" class="modal fade">
@@ -62,12 +92,12 @@
               L'AEERK (Association Des Eléves Et Etudiants Ressortissants De Kédougou) lance sa phase d'inscription pour les codifications.
             </p>
             <p>
-              Pour plus d'information sur les modalités de codification veuillez clicker sur <a href="{{ route('systeme.index') }}">les informations demander</a>.
-              <br> Si toute fois vous avez assimiler ce programme vous pouvez vous inscrire selon votre status en cliquant sur les liens ci-dessous
+              Pour plus d'information sur les modalités de codification veuillez cliquer sur <a href="{{ route('systeme.index') }}">les informations demander</a>.
+              <br> Si toute fois vous avez assimiler ce procéssus vous pouvez vous inscrire selon votre status en cliquant sur les liens ci-dessous
             </p>
             
           </div>
-           <div class="modal-footer text-center">
+          <div class="modal-footer text-center">
              <div style="display: flex;width:100%">
               <p style="width: 50%;">
                  <a href="{{ route('nouveau.index') }}" class="">Inscription Nouveaux</a>

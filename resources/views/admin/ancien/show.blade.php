@@ -231,7 +231,7 @@
                          @foreach($departement as $dep)
                             <optgroup label="{{ $dep->name }}">
                               @foreach($dep->communes as $dep_com)
-                              <option value="{{ $dep_com->id }}">{{$dep_com->name}}</option>
+                                <option value="{{ $dep_com->id }}" @if($dep_com->id == $show_ancien->commune_id) selected @endif >{{$dep_com->name}}</option>
                               @endforeach
                             </optgroup>
 													@endforeach
@@ -239,6 +239,23 @@
                       <span class="invalid-feedback" role="alert">
                           <strong class="message_error">{{ $message }}</strong>
                       </span>
+                      @enderror
+                      </select>
+                    </div>
+                  </div>
+
+                    <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Immeuble</label>
+
+                    <div class="col-sm-10">
+                      <select name="immeuble" value="{{  old('immeuble')}}" class="form-control @error('immeuble') is-invalid @enderror" id="">
+                        @foreach($immeubles as $immeuble)
+                          <option value="{{ $immeuble->id }}" @if($immeuble->id == $show_ancien->immeuble_id) selected @endif >{{$immeuble->name}}</option>
+                        @endforeach
+                        @error('immeuble')
+                        <span class="invalid-feedback" role="alert">
+                            <strong class="message_error">{{ $message }}</strong>
+                        </span>
                       @enderror
                       </select>
                     </div>

@@ -22,9 +22,9 @@
 								
 								<div class="row">
 									@if($ancien->genre == 1)
-										<h3 class="text-center" style="margin-bottom:10px;width:100%">M.{{ $ancien->prenom .' '. $ancien->nom}}</h3>
-									@else 
 										<h3 class="text-center" style="margin-bottom:10px;width:100%">Mme {{ $ancien->prenom .' '. $ancien->nom}}</h3>
+									@else 
+										<h3 class="text-center" style="margin-bottom:10px;width:100%">Mr {{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@endif
 								</div>
 									<p class="text-center"> Vous allez codifier a {{$immeubles->name }} </p>

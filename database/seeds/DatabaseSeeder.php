@@ -989,7 +989,7 @@ class DatabaseSeeder extends Seeder
                // Immeuble Zone A cinquieme
             Chambre::create([
                 'nom' => '5A1',
-                'nombre' => 8,
+                'nombre' => 4,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -1015,8 +1015,8 @@ class DatabaseSeeder extends Seeder
                 'immeuble_id' => 3
             ]);
              Chambre::create([
-                'nom' => '5B1',
-                'nombre' => 8,
+                'nom' => '5A4',
+                'nombre' => 4,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,

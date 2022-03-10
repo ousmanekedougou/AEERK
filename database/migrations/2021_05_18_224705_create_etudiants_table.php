@@ -39,6 +39,7 @@ class CreateEtudiantsTable extends Migration
             $table->integer('position')->default(0);
             $table->string('payment_methode')->nullable();
             $table->text('textmail')->nullable();
+            $table->string('codification_token')->nullable()->unique();
             $table->timestamps();
         });
     }
