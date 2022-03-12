@@ -100,9 +100,10 @@
             @foreach( all_immeuble() as $immeuble )
               <li><a href="{{ route ('admin.codification.show',$immeuble->id) }}"><i class="fa fa-building"></i> {{$immeuble->name}} </a></li>
             @endforeach
-            {{--
-            <li><a href="{{ route ('admin.carte') }}"><i class="fa fa-id-card"></i> Impression des cartes </a></li> -->
-            --}}
+            
+            <li><a href="{{ route ('admin.carte.recto') }}"><i class="fa fa-id-card"></i> Carte Recto </a></li> 
+            <li><a href="{{ route ('admin.carte.verso') }}"><i class="fa fa-id-card"></i> Cartes Verso </a></li> 
+            
           </ul>
         </li>
 

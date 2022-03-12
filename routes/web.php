@@ -27,14 +27,13 @@
         Route::resource('/bourse','BourseController');
         Route::resource('/concour','ConcourController');
         Route::resource('/systeme','SystemeController');
-
-
-      
+        Route::get('/recrutement','RecrutementController@index')->name('recrutement.index');
+        Route::post('/recrutement','RecrutementController@index')->name('recrutement.store');
     });
 
-    Route::get('/pdf',function(){
-        return view('user.pdf');
-    });
+    // Route::get('/pdf',function(){
+    //     return view('user.pdf');
+    // });
 
     Auth::routes();
 
@@ -105,8 +104,8 @@
         Route::resource('/inscription', 'Admin\InscriptionController');
         Route::resource('/codification', 'Admin\CodificationController');
         Route::get('/downloadPDF', 'Admin\CodificationController@downloadPDF')->name('downloadPDF');
-        Route::get('/carte', 'Admin\CodificationController@carte')->name('carte');
-        Route::get('/carte/recto', 'Admin\CodificationController@recto')->name('recto');
+        Route::get('/carte', 'Admin\CodificationController@recto')->name('carte.recto');
+        Route::get('/carte/verso', 'Admin\CodificationController@verso')->name('carte.verso');
 
         Route::put('/ancien/{id}/codifier_ancien', 'Admin\AncienController@codifier_ancien')->name('codifier_ancien');
         Route::put('/nouveau/{id}/codifier_nouveau', 'Admin\NouveauController@codifier_nouveau')->name('codifier_nouveau');

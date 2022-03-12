@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Carte Membre</title>
+    <title>Carte Verso</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
@@ -214,7 +214,7 @@
         }
         .card_footer .title{
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-top: -9px;
         }
         .card_footer span i{
             font-size: 10px;
@@ -276,236 +276,217 @@
     </style>
   </head>
   <body class="container" id="print">
-        
-    <div class="row">
-        @foreach($etudiants as $etudiant)
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
-            <div class="row card-contour">
-                <div class="card-container">
-                    <div class="carte_header">
-                        <img src="{{asset('user/img/accueil.png')}}" alt="" srcset="">
-                        <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
-                    </div>
-                    <div class="card">
-                        <img class="chip" src="{{Storage::url($etudiant->image)}}"/>
-                        <!-- <div class="chip"> <span>PHOTO</span> </div> -->
-                        <span class="status">@if($etudiant->ancienete == 1) Nouveau @else Ancien @endif</span>
-                        <div class="text_card">
-                            <p class="title">Carte Membre</p>
-                            <p class="annee">2021/2022  </p>
-                            <p class="user_first_name">Prenom : {{ $etudiant->prenom }}</p>
-                            <p class="user_last_name">Nom : {{$etudiant->nom}}</p>
-                            <p class="user_city">D.N.L : le 19/12/20202</p>
-                            <p class="user_phone">Tel : +{{$etudiant->phone}}</p>
-                        </div>
-                        <div class="card_recto_footer">
-                            <span class="chambre"> No Chambre : {{$etudiant->chambre->nom}}  ({{$etudiant->chambre->immeuble->name}})</span>
-                            <span class="carte_etudiant">No carte etudiant : ..................................................</span>
-                        </div>
-                        <img class="visa-recto"src="{{asset('user/img/3ccs.jpg')}}">
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
     
-  
-    
-
-    {{--
-        <div class="card-content-all">
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
                     </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
-                    </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
                 </div>
             </div>
-                <div style="margin: 10px;"></div>
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
                     </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
                     </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                <div class="row card-contour">
+                    <div class="card-container">
+                        <div class="card">
+                            <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
+                            <div class="text_verso_card">
+                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
+                                    si obtenue ou utilisé froduleusement.
+                                </p>
+                                <p>
+                                    Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
+                                </p>
+                            </div>
+                            <div class="card_footer">
+                                <span class="title">Pour tout renséignement</span>
+                                <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
+                                <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
+                                <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
+                                <span><i class="fas fa-link"> www.aeerk.com</i></span>
+                            </div>
+                            <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="card-content-all">
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
-                    </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
-                    </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
-                </div>
-            </div>
-                <div style="margin: 10px;"></div>
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
-                    </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
-                    </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
-                </div>
-            </div>
-        </div>
-
-        <div class="card-content-all">
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
-                    </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
-                    </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
-                </div>
-            </div>
-                <div style="margin: 10px;"></div>
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
-                    </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
-                    </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
-                </div>
-            </div>
-        </div>
-
-        <div class="card-content-all">
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
-                    </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
-                    </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
-                </div>
-            </div>
-                <div style="margin: 10px;"></div>
-            <div class="card-container">
-                <div class="card">
-                    <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
-                    <div class="text_verso_card">
-                        <p>Cette carte est strictement pérsonnelle</p>
-                        <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
-                            si obtenue ou utilisé froduleusement.
-                        </p>
-                        <p>
-                            Elle est sous la résponsabilite de l'étudiant avec toutes les conséquences de droit.
-                        </p>
-                    </div>
-                    <div class="card_footer">
-                        <span class="title">Pour tout renséignement</span>
-                        <span> <i class="fas fa-map-marker-alt"> Médina Rue 39x30 Dakar,Sénégal</i> </span>
-                        <span><i class="fas fa-phone-alt"> 77 043 32 35 / 78 201 47 72</i></span>
-                        <span><i class="fas fa-envelope"> aeerk-sn@gmail.com</i></span>
-                        <span><i class="fas fa-link"> www.aeerk.com</i></span>
-                    </div>
-                    <img class="visa"src="{{asset('user/img/3ccs.jpg')}}">
-                </div>
-            </div>
-        </div>
-    --}}
 
     <div><button  class="btn btn-success btn-xs" style="margin-top:10px" id="print_Button" onclick="printDiv()"><i class="fa fa-print">Telecharger le recu</i></button> </div>
  <script type="text/javascript">
