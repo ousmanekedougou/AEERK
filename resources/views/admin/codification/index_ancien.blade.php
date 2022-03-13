@@ -91,8 +91,8 @@
                       <td>{{ $ancien->prix }}</td>
                       <td>{{ $ancien->payment_methode }}</td>
                       <td>
-                      <a class="btn btn-danger btn-xs text-center" 
-                      data-toggle="modal" data-target="#modal-default-{{$ancien->id}}"><i class="fa fa-trash"></i></a></span>
+                      <a href="{{ route('admin.codification.edit',$ancien->id) }}" class="btn btn-warning btn-xs text-center"><i class="fa fa-eye"></i></a></span>
+                      <a class="btn btn-danger btn-xs text-center" data-toggle="modal" data-target="#modal-default-{{$ancien->id}}"><i class="fa fa-trash"></i></a></span>
                       <div class="modal fade" id="modal-default-{{$ancien->id}}">
                         <div class="modal-dialog modal-sm">
                           <div class="modal-content">

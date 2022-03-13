@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Departement;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Illuminate\Support\Str;
@@ -77,7 +78,11 @@ class CodificationController extends Controller
      */
     public function edit($id)
     {
-       
+        $departement = Departement::all();
+        $show_ancien = Etudiant::where('id',$id)->first();
+        $immeuble = Immeuble::where('status',2)->where('id',$show_ancien->immeuble_id)->first();
+         $immeubles = Immeuble::where('status',2)->get();
+        return view('admin.codification.show',compact('show_ancien','departement','immeuble','immeubles'));
     }
 
 
