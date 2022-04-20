@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\Model\User\Etudiant;
 use App\Helpers\Sms;
+use App\Model\Admin\Faculty;
 use Brian2694\Toastr\Facades\Toastr;
 
 class AncienController extends Controller
@@ -24,8 +25,10 @@ class AncienController extends Controller
     public function index()
     {
         $departement = Departement::all();
-        $immeuble = Immeuble::where('status',2)->get();
-        return view('user.ancien.index',compact('departement','immeuble'));
+        $puliques = Faculty::where('for',0)->get();
+        $prives = Faculty::where('for',1)->get();
+        $immeuble = Immeuble::all();
+        return view('user.ancien.index',compact('departement','immeuble','puliques','prives'));
     }
 
     /**
@@ -56,10 +59,12 @@ class AncienController extends Controller
             'phone' => 'required|unique:etudiants|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'commune' => 'required|numeric',
             'immeuble' => 'required|numeric',
-            'extrait' => 'required|mimes:PDF,pdf',
-            'certificat' => 'required|mimes:pdf,PDF',
+            'filliere' => 'required|numeric',
+            // 'extrait' => 'required|mimes:PDF,pdf',
+            // 'certificat' => 'required|mimes:pdf,PDF',
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
             'photocopie' => 'required|mimes:pdf,PDF',
+            // 'relever' => 'required|mimes:pdf,PDF',
         ]);
         // dd($request->ccode);
         $add_ancien = new Etudiant;
@@ -80,6 +85,9 @@ class AncienController extends Controller
         }
         if ($request->hasFile('photocopie')) {
             $photocopieName = $request->photocopie->store('public/Ancien');
+        }
+         if ($request->hasFile('relever')) {
+            $releverName = $request->relever->store('public/Nouveau');
         }
         $phoneFinale = '';
         $phoneComplet = '221'.$request->phone;
@@ -105,6 +113,8 @@ class AncienController extends Controller
         $add_ancien->immeuble_id = $request->immeuble;
         $add_ancien->status = 0;
         $add_ancien->codification_count = $request->niveau;
+        $add_ancien->faculty_id = $request->filliere;
+        $add_ancien->relever = $releverName;
         $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
 

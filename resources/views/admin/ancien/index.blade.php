@@ -74,6 +74,7 @@
                   <th>Prenom et nom</th>
                   <th>Telephone</th>
                   <th>Immeuble Choisi</th>
+                  <th>Niveau</th>
                   <th>Voire</th>
                   <th>Traitement</th>
                   <th>Options</th>
@@ -85,6 +86,19 @@
                     <td><img class="img-thumbnail" src="{{ Storage::url($ancien->image) }}" style="width:45px;height:45px;border-radius:100%;" alt="" srcset=""></td>
                     <td>{{ $ancien->prenom .' '.$ancien->nom }}</td>
                     <td>{{ $ancien->phone }}</td>
+                    <td>
+                      @if($ancien->codification_count == 1)
+                        Licence 1
+                      @elseif($ancien->codification_count == 2)
+                        Licence 2
+                      @elseif($ancien->codification_count == 3)
+                        Licence 3
+                      @elseif($ancien->codification_count == 4)
+                        Masters 1
+                      @elseif($ancien->codification_count == 5)
+                        Masters 2
+                      @endif
+                    </td>
                     <td>{{ $ancien->immeuble->name }}</td>
                     <td><a href="{{ route ('admin.ancien.show',$ancien->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
                     </td>

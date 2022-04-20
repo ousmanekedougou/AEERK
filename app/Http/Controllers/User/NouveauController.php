@@ -104,6 +104,7 @@ class NouveauController extends Controller
             $add_nouveau->commune_id = $request->commune;
             $add_nouveau->immeuble_id =  $immeuble->id;
             $add_nouveau->status = 0;
+            $add_nouveau->codification_count = 1;
             $add_nouveau->ancienete = NOUVEAU;
             $add_nouveau->save();
             $numero_bureau = Solde::first();

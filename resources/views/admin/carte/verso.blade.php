@@ -284,7 +284,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>
@@ -310,7 +310,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>
@@ -336,7 +336,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>
@@ -362,7 +362,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>
@@ -388,7 +388,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>
@@ -414,7 +414,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>
@@ -440,7 +440,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>
@@ -466,7 +466,7 @@
                         <div class="card">
                             <img class="verso_img" src="{{asset('user/img/3ccs.jpg')}}"/>
                             <div class="text_verso_card">
-                                <p>Cette carte est strictement pérsonnelle</p>
+                                <p>Cette carte est strictement pérsonnélle</p>
                                 <p>Elle demeure la proprieté de l'association AEERK qui peut l'annuler ou en reprendre posséssion en tout temps
                                     si obtenue ou utilisé froduleusement.
                                 </p>

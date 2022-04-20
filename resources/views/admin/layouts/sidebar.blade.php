@@ -58,6 +58,7 @@
         </li>
         @endif
 
+        {{--
         @if (admin()->is_admin == 4 || admin()->is_admin == 1)
         <li class="treeview">
           <a href="#">
@@ -74,6 +75,7 @@
           </ul>
         </li>
         @endif
+        --}}
 
         @if (admin()->is_admin == 2 || admin()->is_admin == 1)
         <li class="treeview">
@@ -100,13 +102,23 @@
             @foreach( all_immeuble() as $immeuble )
               <li><a href="{{ route ('admin.codification.show',$immeuble->id) }}"><i class="fa fa-building"></i> {{$immeuble->name}} </a></li>
             @endforeach
-            
-            <li><a href="{{ route ('admin.carte.recto') }}"><i class="fa fa-id-card"></i> Carte Recto </a></li> 
-            <li><a href="{{ route ('admin.carte.verso') }}"><i class="fa fa-id-card"></i> Cartes Verso </a></li> 
-            
           </ul>
         </li>
 
+        {{--
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-graduation-cap"></i> <span>Carte Membres</span>
+            <span class="pull-right-container">
+            <span class="label label-warning pull-right">4</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.carte.recto') }}"><i class="fa fa-id-card"></i> Carte Récto </a></li> 
+            <li><a href="{{ route ('admin.carte.verso') }}"><i class="fa fa-id-card"></i> Cartes Vérso </a></li> 
+          </ul>
+        </li>
+        --}}
 
         <li class="treeview">
           <a href="#">
@@ -135,7 +147,7 @@
             <li><a href="{{ route ('admin.localite.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Localite</span></a></li>
           </ul>
         </li>
-         <li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Logements</span>
             <span class="pull-right-container">
@@ -152,6 +164,7 @@
         @endif
 
         @if (admin()->is_admin == 3 || admin()->is_admin == 1)
+        {{--
           <li class="treeview">
             <a href="#">
               <i class="fa fa-building"></i> <span>Education</span>
@@ -166,6 +179,31 @@
               <li><a href="{{ route('admin.concour.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Concours</span></a></li>
               <li><a href="{{ route('admin.stage.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Stage</span></a></li>
               <li><a href="{{ route('admin.realisation.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Recrutement</span></a></li>
+            </ul>
+          </li>
+        --}}
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-building"></i> <span>Bibliothèque</span>
+              <span class="pull-right-container">
+              <span class="label label-warning pull-right">4</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bibliothèque</span></a></li>
+              <li><a href="{{ route('admin.filliere.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Fillieres</span></a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-building"></i> <span>Fillieres</span>
+              <span class="pull-right-container">
+              <span class="label label-warning pull-right">4</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ route('admin.filliere.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Université Publiques</span></a></li>
+              <li><a href="{{ route('admin.filliere.create') }}"><i class="fa fa-circle-o text-primary"></i> <span>Université Privés</span></a></li>
             </ul>
           </li>
         @endif

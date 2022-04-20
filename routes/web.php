@@ -84,6 +84,13 @@
         Route::resource('/document', 'Admin\DocumentController');
         Route::resource('/education','Admin\EducationController');
         Route::resource('/systeme','Admin\StageController');
+
+        Route::resource('/filliere','Admin\FacultyController');
+        Route::get('/filliere/licence1/{id}', 'Admin\FacultyController@licence1')->name('filliere.licence1');
+        Route::get('/filliere/licence2/{id}', 'Admin\FacultyController@licence2')->name('filliere.licence2');
+        Route::get('/filliere/licence3/{id}', 'Admin\FacultyController@licence3')->name('filliere.licence3');
+        Route::get('/filliere/master1/{id}', 'Admin\FacultyController@master1')->name('filliere.master1');
+        Route::get('/filliere/master2/{id}', 'Admin\FacultyController@master2')->name('filliere.master2');
         // fin des options des document
 
         // La partie des logements

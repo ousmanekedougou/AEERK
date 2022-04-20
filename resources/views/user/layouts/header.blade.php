@@ -27,14 +27,16 @@
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
 					<li class="{{ set_active_roote('index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> Accueil</a></li>
-					{{--<li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-eject fa_ajout"></i> A Propos</a></li>--}} 
-					{{--<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça  marche</a></li>--}}
+					<li class="{{ set_active_roote('about.index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> A propos</a></li>
+					{{--
 					<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Codification</a>
 						<ul>
-						<li><a href="{{ route('nouveau.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Nouveau</a></li>
-						<li><a href="{{ route('ancien.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
+							<li><a href="{{ route('nouveau.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Nouveau</a></li>
+							<li><a href="{{ route('ancien.create') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
 						</ul>
-					</li>	
+					</li>
+					--}}
+					{{--	
 					<li class="menu-has-children"><a href=""><i class="fa fa-graduation-cap fa_ajout"></i> Espace Etudiant</a>
 						<ul class="">
 							<li class="menu-has-children"><a href="{{ route('bourse.index') }}">Offres de Bourses </a></li>						                						                		
@@ -45,6 +47,9 @@
 						</ul>
 					</li>
 					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
+					--}}
+					<li class="{{ set_active_roote('ancien.index') }}"><a href="{{ route('ancien.index') }}"><i class="fa fa-flag fa_ajout"></i> Inscription</a></li>
+					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Bibliothèque</a></li>
 					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>
 				</ul>
 			</nav><!-- #nav-menu-container -->		    		

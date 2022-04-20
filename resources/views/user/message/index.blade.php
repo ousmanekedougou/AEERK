@@ -78,40 +78,40 @@
     </div>
   @endif
 
-
-  <div id="myModal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Note d'information pour les codifications</h5>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body">
-            <p class="text-bold">
-              Chers étudiants,<br>
-              L'AEERK (Association Des Eléves Et Etudiants Ressortissants De Kédougou) lance sa phase d'inscription pour les codifications.
-            </p>
-            <p>
-              Pour plus d'information sur les modalités de codification veuillez cliquer sur <a href="{{ route('systeme.index') }}">les informations demander</a>.
-              <br> Si toute fois vous avez assimiler ce procéssus vous pouvez vous inscrire selon votre status en cliquant sur les liens ci-dessous
-            </p>
-            
-          </div>
-          <div class="modal-footer text-center">
-             <div style="display: flex;width:100%">
-              <p style="width: 50%;">
-                 <a href="{{ route('nouveau.index') }}" class="">Inscription Nouveaux</a>
+  {{--
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Note d'information pour les codifications</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p class="text-bold">
+                Chers étudiants,<br>
+                L'AEERK (Association Des Eléves Et Etudiants Ressortissants De Kédougou) lance sa phase d'inscription pour les codifications.
+              </p>
+              <p>
+                Pour plus d'information sur les modalités de codification veuillez cliquer sur <a href="{{ route('systeme.index') }}">les informations demander</a>.
+                <br> Si toute fois vous avez assimiler ce procéssus vous pouvez vous inscrire selon votre status en cliquant sur les liens ci-dessous
               </p>
               
-               <p style="width: 50%;">
-                 <a href="{{ route('ancien.index') }}" class="">Inscription Anciens</a>
-               </p>
-             </div>
+            </div>
+            <div class="modal-footer text-center">
+              <div style="display: flex;width:100%">
+                <p style="width: 50%;">
+                  <a href="{{ route('nouveau.index') }}" class="">Inscription Nouveaux</a>
+                </p>
+                
+                <p style="width: 50%;">
+                  <a href="{{ route('ancien.index') }}" class="">Inscription Anciens</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-  </div>
-
+    </div>
+  --}}
   @if (session('error'))
     <div id="myModal" class="modal fade">
       <div class="modal-dialog">

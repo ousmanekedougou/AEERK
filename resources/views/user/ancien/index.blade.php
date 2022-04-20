@@ -66,7 +66,7 @@
 								<form action="{{ route('ancien.store') }}" method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
 									@csrf
 							
-									<div class="row" >
+									<div class="row">
 										<div class="col-sm-6 ">
 											<label class="label_form" for="niveau">Votre Civilite</label>
 											<div  class="d-flex justify-content-between">
@@ -95,23 +95,6 @@
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="col-sm-6">
-												<label class="label_form" for="niveau">Votre Niveau d'etude</label>
-												<div class="form-select">
-													<select value="{{ old('niveau') }}" class="form-control @error('niveau') is-invalid @enderror" name="niveau" >
-														<option value="1">Licence 2 / BTS</option>
-														<option value="2">Licence 3</option>
-														<option value="3">Master 1</option>
-														<option value="4">Master 2</option>
-														<option value="5">Autres</option>
-													</select>
-													@error('niveau')
-														<span class="invalid-feedback" role="alert">
-															<strong class="message_error">{{ $message }}</strong>
-														</span>
-													@enderror
-												</div>
 										</div>
 									</div>
 
@@ -212,26 +195,42 @@
 										</div>
 										
 									</div>
-									
-
+								
 									<br>
 									<div class="row">
-										<div class="col-md-6 col-sm-6 col-lg-6">
-											<div class="mt-10">
-												<label class="label_form" for="">Votre Attestation Du Baccalaureat</label>
-												<input type="file" value="{{ old('extrait') }}" class="form-control @error('extrait') is-invalid @enderror" name="extrait" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
-												@error('extrait')
+										<div class="col-sm-6">
+											<label class="label_form" for="filliere">Renseigner votre filliere</label>
+											<div class="form-select">
+												<select value="{{ old('filliere') }}" class="form-control @error('filliere') is-invalid @enderror" name="filliere" >
+													<optgroup label="Universités Publiques">
+														@foreach($puliques as $pulic)
+															<option value="{{ $pulic->id }}"> {{ $pulic->name }} </option>
+														@endforeach
+													</optgroup>
+													<optgroup label="Universités Prives">
+														@foreach($prives as $pri)
+															<option value="{{ $pri->id }}"> {{ $pri->name }} </option>
+														@endforeach
+													</optgroup>
+												</select>
+												@error('filliere')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
 													</span>
 												@enderror
 											</div>
 										</div>
-										<div class="col-md-6 col-sm-6 col-lg-6">
-											<div class="mt-10">
-												<label class="label_form" for="">Votre Certificat D'inscription</label>
-												<input type="file" name="certificat" value="{{ old('certificat') }}" class="form-control @error('certificat') is-invalid @enderror"  placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
-												@error('certificat')
+										<div class="col-sm-6">
+											<label class="label_form" for="niveau">Votre Niveau d'etude</label>
+											<div class="form-select">
+												<select value="{{ old('niveau') }}" class="form-control @error('niveau') is-invalid @enderror" name="niveau" >
+													<option value="1">Licence 1 </option>
+													<option value="2">Licence 2 / BTS</option>
+													<option value="3">Licence 3</option>
+													<option value="4">Master 1</option>
+													<option value="5">Master 2</option>
+												</select>
+												@error('niveau')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
 													</span>
@@ -239,7 +238,6 @@
 											</div>
 										</div>
 									</div>
-									<br>
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
@@ -264,7 +262,50 @@
 											</div>
 										</div>
 									</div>
+									
+									<br>
+									<p class="text-italic text-primary text-bold">
+										Les documents suivants tel que l'attestation du baccalaurea et le certificat d'inscription ne sont obligatoire que pour les etudiant qui ont obtenu le bac en 2015
+									</p>
+									<div class="row">
+										<div class="col-md-6 col-sm-6 col-lg-6">
+											<div class="mt-10">
+												<label class="label_form" for="">Votre Attestation Du Baccalaureat</label>
+												<input type="file" value="{{ old('extrait') }}" class="form-control @error('extrait') is-invalid @enderror" name="extrait" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+												@error('extrait')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error">{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6 col-lg-6">
+											<div class="mt-10">
+												<label class="label_form" for="">Votre Certificat D'inscription</label>
+												<input type="file" name="certificat" value="{{ old('certificat') }}" class="form-control @error('certificat') is-invalid @enderror"  placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+												@error('certificat')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error">{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+										</div>
+									</div>
 
+									<div class="row">
+										<div class="col-md-6">
+											<div class="mt-10">
+											<label class="label_form" for="">Votre relever de note de l'annee 2021</label>
+												<input type="file" name="relever" value="{{ old('relever') }}" class="form-control @error('relever') is-invalid @enderror" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+												@error('relever')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error">{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+										</div>
+									</div>
+									
 									<div class="mt-10">
 										<input type="submit" value="Enregistrez l'inscription" class="btn btn-primary btn-block ">
 									</div>

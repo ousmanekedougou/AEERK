@@ -186,6 +186,7 @@
                         <th>Image</th>
                         <th>Prenom et nom</th>
                         <th>Telephone</th>
+                        <th>Niveau</th>
                         <th>Voire</th>
                         <th>Traitement</th>
                         <th>Options</th>
@@ -197,6 +198,11 @@
                           <td><img class="img-thumbnail" src="{{ Storage::url($nouveau->image) }}" style="width:45px;height:45px;border-radius:100%;" alt="" srcset=""></td>
                           <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                           <td>{{ $nouveau->phone }}</td>
+                          <td>
+                            @if($ancien->codification_count == 1)
+                              Licence 1
+                            @endif
+                          </td>
                             <td><a href="{{ route ('admin.nouveau.show',$nouveau->id) }}"><span class="btn btn-warning btn-xs">Voire</span></a></td>
                             </td>
                           <td>

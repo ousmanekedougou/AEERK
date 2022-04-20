@@ -119,6 +119,7 @@
             display:block;
         }
         .text_card .title{
+            color: #d4fd39;
             font-size: 2.3em;
             margin-bottom: -5px;
             font-weight: bold;
@@ -126,6 +127,7 @@
             margin-left: 20px;
         }
         .text_card .annee{
+            color: #d4fd39;
             text-align: center;
             margin-bottom: -5px;
             margin-left: 20px;
@@ -281,7 +283,7 @@
             <div class="row card-contour">
                 <div class="card-container">
                     <div class="carte_header">
-                        <img src="{{asset('user/img/accueil.png')}}" alt="" srcset="">
+                        <img src="{{asset('admin/dist/img/admin.png')}}" alt="" srcset="">
                         <div class="company">Association des élèves et étudiants ressortissants de kédougou</div>
                     </div>
                     <div class="card">
@@ -309,8 +311,8 @@
     </div>
     
 
-    <div><button  class="btn btn-success btn-xs" style="margin-top:10px" id="print_Button" onclick="printDiv()"><i class="fa fa-print">Telecharger le recu</i></button> </div>
- <script type="text/javascript">
+    <div><button  class="btn btn-success btn-xs" style="margin-top:10px" id="print_Button" onclick="printDiv()"><i class="fa fa-print">Télécharger le reçu</i></button> </div>
+    <script type="text/javascript">
         function printDiv(){
             var printContents = document.getElementById('print').innerHTML;
             var originalContents = document.body.innerHTML;

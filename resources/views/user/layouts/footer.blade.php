@@ -1,6 +1,6 @@
 
 	<!-- Start cta-two Area -->
-	<!-- <section class="cta-two-area">
+	 <section class="cta-two-area">
 		<div class="slider_container">
 				<h1 class="slider_h1">Nos Partenaires</h1>
 				<div class="logo-slider">
@@ -12,9 +12,9 @@
 					<div class="item"><a href=""><img src="{{ asset('user/img/part/7.png') }}" alt=""></a></div>
 				</div>
 		</div>	
-	</section> -->
+	</section> 
 			<!-- End cta-two Area -->
-{!! Toastr::message() !!}
+<!-- {!! Toastr::message() !!} -->
 	
 	<!-- start footer Area -->		
         <footer class="footer-area ">

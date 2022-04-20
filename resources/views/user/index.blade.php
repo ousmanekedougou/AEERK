@@ -59,16 +59,15 @@
 		<div class="overlay overlay-bg"></div>	
 		<div class="container">
 			<div class="row fullscreen d-flex align-items-center justify-content-between">
-				<div class="banner-content col-lg-9 col-md-12">
-					<h1 class="text-uppercase" style="width: 100%;">
-					PLATEFORME DE L'AEERK 
+				<div class="banner-content col-lg-12 col-md-12 text-center">
+					<h1 class="text-uppercase text-center" style="width: 100%;">
+					PORTAILLE DE L'AEERK 
 					</h1>
 					<h3 class="text-uppercase text-white">Codifier en toute sécurité</h3>
-					<p class="pt-10 pb-10 text-white">
-						In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
+					<p class="pt-10 pb-10 text-white text-center text-uppercase text-bold">
+						(Association des eleves et etudiants ressortissants de kedougou)
 					</p>
 					<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase text-center" style="border-radius: 5px;"> <i class="fa fa-cog fa_ajout"></i>  Comment ça  marche</a>
-					
 				</div>										
 			</div>
 		</div>					
@@ -123,7 +122,7 @@
 
 	
 	<!-- Nos activites officiell-->
-	{{-- <section class="upcoming-event-area section-gap">
+	 <section class="upcoming-event-area section-gap">
 		<div class="container">
 			<div class="row d-flex justify-content-center">
 				<div class="menu-content pb-70 col-lg-8">
@@ -216,7 +215,7 @@
 				</div>
 			</div>
 		</div>	
-	</section> --}}
+	</section> 
 	<!-- Fin de nos activite officielle-->
 
 	
@@ -225,7 +224,7 @@
 	
 
 	<!-- Start search-course Area -->
-		<section class="search-course-area relative">
+	<section class="search-course-area relative">
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
 			<div class="row justify-content-between align-items-center">
@@ -236,14 +235,14 @@
 					<div class="row details-content">
 						<div class="col single-detials">
 							<span class="lnr lnr-graduation-hat"></span>
-							<a href="{{ route('emploi.index')}}"><h4>Offres d'emplois</h4></a>		
+							<a href="{{ route('emploi.index')}}"><h4>Boite a idees</h4></a>		
 							<p class="text-white text-justify">
 								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 							</p>						
 						</div>
 						<div class="col single-detials">
 							<span class="lnr lnr-license"></span>
-							<a href="{{ route('stage.index')}}"><h4>Offres de stages</h4></a>		
+							<a href="{{ route('stage.index')}}"><h4>Une biblioteque</h4></a>		
 							<p class="text-white text-justify">
 								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 							</p>						
@@ -308,9 +307,9 @@
 	
 	
 
-	
+	{{--
 	<!-- Start blog Area -->
-	{{-- <section class="blog-area section-gap" id="blog" style="margin-top: -150px;">
+	<section class="blog-area section-gap" id="blog" style="margin-top: -50px;">
 		<div class="container">
 			<div class="row d-flex justify-content-center">
 				<div class="menu-content pb-70 col-lg-8">
@@ -345,12 +344,12 @@
 			@endforeach	
 			</div>
 		</div>	
-	</section> --}}
+	</section> 
 	<!-- End blog Area -->	
-
+	--}}
 	{{--
 	<!-- Nos partenaire -->
-		<section class="upcoming-event-area section-gap" style="margin-top: -130px;">
+	<section class="upcoming-event-area section-gap" style="margin-top: -130px;">
 
 		<div class="container">
 			<div class="row d-flex justify-content-center">
@@ -372,7 +371,7 @@
 	--}}
 
 		<!--  les temoignages -->
-	{{-- <section class="review-area section-gap relative" style="margin-top: -100px;">
+	<section class="review-area section-gap relative" style="margin-top:50px;">
 		<h3 class="text-center" style="margin-top:-100px;margin-bottom: 15px;">Les Temoignages</h3>		
 		<div class="overlay overlay-bg"></div>
 		<div class="container">		
@@ -398,7 +397,7 @@
 				</div>
 			</div>
 		</div>	
-	</section> --}}
+	</section>
 	<!--  les temoignages -->	
 
 	
