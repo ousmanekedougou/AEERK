@@ -27,6 +27,7 @@
                       <th>Nom</th>
                       <th>Nombre</th>
                       <th>Status</th>
+                      <th>Pour</th>
                       <th>Genre</th>
                       <th>Etudiants</th>
                       <th>Options</th>
@@ -44,6 +45,14 @@
                                 <span class="badge btn btn-danger btn-xs"> Chambre Pleine </span>
                               @else 
                               <span class="badge btn btn-success btn-xs"> Disponible </span>
+                                
+                              @endif
+                            </td>
+                            <td>
+                              @if($chm->status == 0)
+                                <span class="badge btn btn-info btn-xs"> Masters 1 et moins </span>
+                              @else 
+                              <span class="badge btn btn-success btn-xs"> Msaters 2 </span>
                                 
                               @endif
                             </td>
@@ -187,6 +196,25 @@
                         </div>
                     </div>
                   </p>
+                   <p>
+                      <div class="row">
+                        <div class="radio pull-left">
+                          <label style="margin-right:5px;">
+                              <input type="radio" value="{{ old('status') ?? 0 }}" class="@error('status') is-invalid @enderror"  name="status"  > 
+                                Master 1 et moins
+                          </label>
+                          <label style="margin-left:5px;">
+                            <input type="radio" value="{{ old('status') ?? 1 }}" class="@error('status') is-invalid @enderror"  name="status"   > 
+                              Masters 2
+                          </label>
+                          @error('status')
+                            <span class="invalid-feedback" role="alert">
+                                <strong class="message_error">{{ $message }}</strong>
+                            </span>
+                          @enderror
+                      </div>
+                      </div>
+                    </p>
                 </div>
                 <div class="modal-footer">
                   <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
@@ -258,27 +286,34 @@
                           </div>
                       </div>
                     </p>
-                    {{--
+                    
                     <p>
-                      <div class="radio pull-left">
+                      <div class="row">
+                        <div class="radio pull-left">
                         <label style="margin-right:5px;">
                           
-                            <input type="radio" value="0"  name="status"  
+                            <input type="radio" name="status" value="{{ old('status') ?? 0 }}" class="@error('status') is-invalid @enderror" 
                             @if ($modal_chambre->status == 0) {{ 'checked' }} @endif > 
-                              Non Codifiable
+                              Masters 1 et moins
                         </label>
                         <label style="margin-left:5px;">
                           
-                          <input type="radio" value="1"  name="status"  
+                          <input type="radio"  name="status" value="{{ old('status') ?? 1 }}" class="@error('status') is-invalid @enderror" 
                           @if ($modal_chambre->status == 1) {{ 'checked' }} @endif > 
-                            Codifiable
-                      </label>
+                            Masters 2
+                        </label>
+                        @error('status')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </div>
                       </div>
                     </p>
-                    --}}
+                    
                   </div>
                   <div class="modal-footer">
-                    <!-- <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button> -->
+                    <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-primary">Modifier</button>
                   </div>
                 </div>

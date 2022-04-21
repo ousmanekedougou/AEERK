@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
 
             Immeuble::create([
                 'name' => 'Immeuble 43',
-                'status' => 1
+                'status' => 2
             ]);
             Immeuble::create([
                 'name' => 'Immeuble 39',
@@ -146,7 +146,7 @@ class DatabaseSeeder extends Seeder
             ]);
             Immeuble::create([
                 'name' => 'Immeuble Zone A',
-                'status' => 2
+                'status' => 1
             ]);
 // _________________________________Debut de l'ajout des immeuble pour 43______________________________________
             // Immeuble 43 Premier
@@ -154,7 +154,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1D1',
                 'nombre' => 6,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1D2',
                 'nombre' => 6,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -172,7 +172,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1D3',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -181,7 +181,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1G1',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -190,7 +190,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1G2',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -202,7 +202,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2D1',
                 'nombre' => 6,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -211,7 +211,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2D2',
                 'nombre' => 6,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -220,7 +220,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2D3',
                 'nombre' => 8,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -229,7 +229,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2G1',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -238,7 +238,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2G2',
                 'nombre' => 8,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -250,7 +250,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3D1',
                 'nombre' => 6,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -259,7 +259,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3D2',
                 'nombre' => 6,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -268,7 +268,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3D3',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -277,7 +277,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3G1',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -286,7 +286,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3G2',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -298,7 +298,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4D1',
                 'nombre' => 6,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -307,7 +307,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4D2',
                 'nombre' => 6,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -316,7 +316,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4G1',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
@@ -325,22 +325,55 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4G2',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 1
             ]);
             // Fin Immeuble 43 quatrieme
+
+              Chambre::create([
+                'nom' => 'Rez salle 1',
+                'nombre' => 6,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => 'Rez salle 2',
+                'nombre' => 6,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+            Chambre::create([
+                'nom' => 'Rez salle 3',
+                'nombre' => 12,
+                'genre' => 2,
+                'status' => 1,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 1
+            ]);
+
+            //Immeuble 43 Rez de socces
+
+            //Fin de immeuble 43 Rez de socces
+
 // ___________________________________Fin de l'ajout des chambre pour Immeuble 43__________________________
 
 
 // _____________________________________Debut de l'ajout pour Immeuble 39_____________________________________
-             // Immeuble 39 Re des socces
+             // Immeuble 39 Rez des socces
             Chambre::create([
                 'nom' => 'RD1',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -349,7 +382,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RD2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -358,7 +391,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RD3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -370,7 +403,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1D1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -379,7 +412,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1D2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -388,7 +421,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1D3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -396,6 +429,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '1D4',
                 'nombre' => 4,
+                'genre' => 2,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 1D',
+                'nombre' => 2,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -406,7 +448,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1G1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -415,7 +457,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1G2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -424,7 +466,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1G3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -432,6 +474,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '1G4',
                 'nombre' => 4,
+                'genre' => 2,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 1G',
+                'nombre' => 2,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -445,7 +496,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2D1',
                 'nombre' => 8,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -454,7 +505,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2D2',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -463,7 +514,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2D3',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -472,16 +523,25 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2D4',
                 'nombre' => 4,
                 'genre' => 1,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 2D',
+                'nombre' => 2,
+                'genre' => 1,
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
             ]);
              Chambre::create([
-                'nom' => '3G1',
+                'nom' => '2G1',
                 'nombre' => 8,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -490,7 +550,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2G2',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -499,7 +559,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2G3',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -507,6 +567,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '2G4',
                 'nombre' => 4,
+                'genre' => 1,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 2G',
+                'nombre' => 2,
                 'genre' => 1,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -520,7 +589,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3D1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -529,7 +598,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3D2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -538,7 +607,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3D3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -546,6 +615,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '3D4',
                 'nombre' => 4,
+                'genre' => 2,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 3D',
+                'nombre' => 2,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -556,7 +634,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3G1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -565,7 +643,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3G2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -574,7 +652,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3G3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -582,6 +660,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '3G4',
                 'nombre' => 4,
+                'genre' => 2,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 3G',
+                'nombre' => 2,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -595,7 +682,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4D1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -604,7 +691,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4D2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -613,7 +700,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4D3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -621,6 +708,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '4D4',
                 'nombre' => 4,
+                'genre' => 2,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 4D',
+                'nombre' => 2,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -631,7 +727,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4G1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -640,7 +736,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4G2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -649,7 +745,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4G3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -657,6 +753,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '4G4',
                 'nombre' => 4,
+                'genre' => 2,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 4G',
+                'nombre' => 2,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -670,7 +775,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '5D1',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -679,7 +784,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '5D2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 2
@@ -687,6 +792,15 @@ class DatabaseSeeder extends Seeder
             Chambre::create([
                 'nom' => '5D3',
                 'nombre' => 4,
+                'genre' => 2,
+                'status' => 0,
+                'is_pleine' => 0,
+                'position' => 0,
+                'immeuble_id' => 2
+            ]);
+            Chambre::create([
+                'nom' => 'Cuisine 5D',
+                'nombre' => 2,
                 'genre' => 2,
                 'status' => 1,
                 'is_pleine' => 0,
@@ -704,7 +818,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RA1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -713,7 +827,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RA2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -722,7 +836,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RA3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -731,7 +845,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RB1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -740,7 +854,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RB2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -749,7 +863,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => 'RB3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -762,7 +876,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1A1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -771,7 +885,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1A2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -780,7 +894,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1A3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -789,7 +903,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1B1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -798,7 +912,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1B2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -807,7 +921,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '1B3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -819,7 +933,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2A1',
                 'nombre' => 8,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -828,7 +942,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2A2',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -837,7 +951,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2A3',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -846,7 +960,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2B1',
                 'nombre' => 8,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -855,7 +969,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2B2',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -864,7 +978,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '2B3',
                 'nombre' => 4,
                 'genre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -877,7 +991,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3A1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -886,7 +1000,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3A2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -895,7 +1009,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3A3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -904,7 +1018,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3B1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -913,7 +1027,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3B2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -922,7 +1036,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '3B3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -934,7 +1048,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4A1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -943,7 +1057,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4A2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -952,7 +1066,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4A3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -961,7 +1075,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4B1',
                 'nombre' => 8,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -970,7 +1084,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4B2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -979,7 +1093,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '4B3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -991,7 +1105,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '5A1',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -1000,7 +1114,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '5A2',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -1009,7 +1123,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '5A3',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3
@@ -1018,7 +1132,7 @@ class DatabaseSeeder extends Seeder
                 'nom' => '5A4',
                 'nombre' => 4,
                 'genre' => 2,
-                'status' => 1,
+                'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
                 'immeuble_id' => 3

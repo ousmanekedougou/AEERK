@@ -51,11 +51,12 @@ class ChambreController extends Controller
             'name' => 'required',
             'nombre' => 'required|numeric',
             'genre' => 'required',
+            'status' => 'required',
         ]);
         $add_chambre = new Chambre;
         $add_chambre->nom = $request->name;
         $add_chambre->nombre = $request->nombre;
-        $add_chambre->status = 1;
+        $add_chambre->status = $request->status;
         $add_chambre->genre = $request->genre;
         $add_chambre->immeuble_id = $request->immeuble;
         $add_chambre->save();
@@ -102,8 +103,10 @@ class ChambreController extends Controller
             'name' => 'required',
             'nombre' => 'required|numeric',
             'genre' => 'required',
+            'status' => 'required',
         ]);
         $is_peline = '';
+        $nombre = '';
         $update_chambre = Chambre::where('id',$id)->first();
         if ($request->nombre > $update_chambre->nombre) {
             $is_peline = 0;
@@ -120,6 +123,8 @@ class ChambreController extends Controller
         $update_chambre->nombre = $nombre;
         $update_chambre->is_pleine = $is_peline;
         $update_chambre->immeuble_id = $request->immeuble;
+        $update_chambre->status = $request->status;
+        
         $update_chambre->save();
         Toastr::success('Votre chambre a ete modifier', 'Modification Chambre', ["positionClass" => "toast-top-right"]);
         return back();

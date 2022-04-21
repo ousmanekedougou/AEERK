@@ -166,7 +166,7 @@ class AncienController extends Controller
         $departement = Departement::all();
         $show_ancien = Etudiant::where('id',$id)->first();
         $immeuble = Immeuble::where('status',2)->where('id',$show_ancien->immeuble_id)->first();
-         $immeubles = Immeuble::where('status',2)->get();
+        $immeubles = Immeuble::where('status',2)->get();
         return view('admin.ancien.show',compact('show_ancien','departement','immeuble','immeubles'));
     }
 
@@ -282,11 +282,16 @@ class AncienController extends Controller
         $prix = Solde::select('prix_ancien')->first();
         $codifier_ancien = Etudiant::where('id',$id)->first();
         $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
-        $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
+        $chambre = '';
+        if ($codifier_ancien->codification_count < 5) {
+            $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',0)->first();
+        }else {
+            $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',1)->first();
+        }
+        // dd($chambre);
         if($chambre) {
             $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
             if($ancien->count() < $chambre->nombre){
-                if ($codifier_ancien->codification_count < 5) {
                     $position = Chambre::where('id',$chambre->id)->first();
                     $position_nombre = $position->position;
                     $position->position = $position_nombre + 1;
@@ -338,11 +343,7 @@ class AncienController extends Controller
                     ->send(new MessageEmailAeerk($codifier_ancien));
                     Toastr::success('Votre etudiant a ete codifier','Codification Etudiant', ["positionClass" => "toast-top-right"]);
                     return back();
-                }
-                else {
-                    Toastr::error('Le quotta de codofication de cette etudiant est epuiser','Quota Etudiant', ["positionClass" => "toast-top-right"]);
-                    return back();
-                }
+                
             }else{
                 // Chambre::where('id',$chambre->id)->update([
                 //     'is_pleine' => 1

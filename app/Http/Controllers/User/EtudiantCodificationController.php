@@ -245,11 +245,18 @@ class EtudiantCodificationController extends Controller
         $prix = Solde::select('prix_ancien')->first();
         $codifier_ancien = Etudiant::where('id',$id)->first();
         $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
-        $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
+        // $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
+        $chambre = '';
+        if ($codifier_ancien->codification_count < 5) {
+            $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',0)->first();
+        }else {
+            $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',1)->first();
+        }
+        // dd($chambre);
         if($chambre){
             $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
             if($ancien->count() < $chambre->nombre){
-                if ($codifier_ancien->codification_count < 5) {
+                // if ($codifier_ancien->codification_count < 5) {
                     $invoice = new CheckoutInvoice();
                     $invoice->addItem("AEERK CODIFICATION", 1,$prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
                     $invoice->setTotalAmount($prix->prix_ancien);
@@ -273,11 +280,11 @@ class EtudiantCodificationController extends Controller
                         dd($invoice->response_text);
                     }
                    
-                }else {
-                    Auth::logout();
-                    Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
-                    return redirect()->route('index');
-                }
+                // }else {
+                //     Auth::logout();
+                //     Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
+                //     return redirect()->route('index');
+                // }
             }else{
                 // Chambre::where('id',$chambre->id)->update([
                 //     'is_pleine' => 1
