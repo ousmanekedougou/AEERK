@@ -74,37 +74,47 @@ class FacultyController extends Controller
     public function licence1($id)
     {
         $ancien_bac = Etudiant::where('faculty_id',$id)->where('codification_count',1)->paginate(10);
+        $ancien_count = Etudiant::where('faculty_id',$id)->where('codification_count',1)->get();
         $filliere = Faculty::where('id',$id)->first();
         $niveau = 1;
-        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau'));
+        $count = $ancien_count->count();
+        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau','count'));
     }
      public function licence2($id)
     {
         $ancien_bac = Etudiant::where('faculty_id',$id)->where('codification_count',2)->paginate(10);
+        $ancien_count = Etudiant::where('faculty_id',$id)->where('codification_count',2)->get();
         $filliere = Faculty::where('id',$id)->first();
         $niveau = 2;
-        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau'));
+        $count = $ancien_count->count();
+        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau','count'));
     }
      public function licence3($id)
     {
         $ancien_bac = Etudiant::where('faculty_id',$id)->where('codification_count',3)->paginate(10);
+        $ancien_count = Etudiant::where('faculty_id',$id)->where('codification_count',3)->get();
         $filliere = Faculty::where('id',$id)->first();
         $niveau = 3;
-        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau'));
+        $count = $ancien_count->count();
+        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau','count'));
     }
      public function master1($id)
     {
         $ancien_bac = Etudiant::where('faculty_id',$id)->where('codification_count',4)->paginate(10);
+        $ancien_count = Etudiant::where('faculty_id',$id)->where('codification_count',4)->get();
         $filliere = Faculty::where('id',$id)->first();
         $niveau = 4;
-        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau'));
+        $count = $ancien_count->count();
+        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau','count'));
     }
      public function master2($id)
     {
         $ancien_bac = Etudiant::where('faculty_id',$id)->where('codification_count',5)->paginate(10);
+        $ancien_count = Etudiant::where('faculty_id',$id)->where('codification_count',5)->get();
         $filliere = Faculty::where('id',$id)->first();
         $niveau = 5;
-        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau'));
+        $count = $ancien_count->count();
+        return view('admin.faculty.show',compact('ancien_bac','filliere','niveau','count'));
     }
 
     /**

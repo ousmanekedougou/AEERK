@@ -300,9 +300,16 @@ class AncienController extends Controller
                     $codifier_ancien->chambre_id = $chambre->id;
                     $codifier_ancien->prix = $prix->prix_ancien;
                     $codifier_ancien->codifier = 1;
+
+                    $count = '';
+                    $count_code = $codifier_ancien->codification_count;
+                    if ($count_code < 5) {
+                        $count = $count_code + 1;
+                    }else {
+                        $count = 5;
+                    }
                     
-                    $count = $codifier_ancien->codification_count;
-                    $codifier_ancien->codification_count = $count + 1;
+                    $codifier_ancien->codification_count = $count;
                     $codifier_ancien->position = $position_nombre + 1;
                     $codifier_ancien->payment_methode = 'Présentielle';
                     $codifier_ancien->codification_token = str_replace('/','',Hash::make(Str::random(40).'ancien'.$codifier_ancien->email));

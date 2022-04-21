@@ -376,8 +376,17 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->prix = $invoice->getTotalAmount();
     $codifier_ancien->codifier = 1;
 
-    $count = $codifier_ancien->codification_count;
-    $codifier_ancien->codification_count = $count + 1;
+    // $count = $codifier_ancien->codification_count;
+    // $codifier_ancien->codification_count = $count + 1;
+
+    $count = '';
+    $count_code = $codifier_ancien->codification_count;
+    if ($count_code < 5) {
+        $count = $count_code + 1;
+    }else {
+        $count = 5;
+    }
+    $codifier_ancien->codification_count = $count;
     $codifier_ancien->position = $position_nombre + 1;
     $codifier_ancien->payment_methode = 'En ligne';
     $codifier_ancien->codification_token = str_replace('/','',Hash::make(Str::random(40).'etudiant'.$codifier_ancien->email));

@@ -17,119 +17,8 @@
       <section class="content">
         <!-- La partie des inscriptions -->
         <div class="">
-          <!-- <span class="btn btn-primary btn-block">Liste D'inscription Des Nouveaux Bacheliers</span> -->
-          <span class="btn btn-primary btn-block">Page de codification des nouveaux a l'immeuble {{ $immeubles->name }}</span>
-
-          <div class="box-body">
-            <form action="{{ route('admin.nouveau.store') }}" method="post" enctype="multipart/form-data">
-              @csrf
-              
-              <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label style="margin-right: 10px;">
-                      <input type="radio" name="genre" class="flat-red" value="{{ old('genre') ?? 1 }}" class=" @error('genre') is-invalid @enderror">
-                      Femme
-                    </label>
-                    <label style="margin-left: 20px;">
-                      <input type="radio" name="genre" class="flat-red" value="{{ old('genre') ?? 2 }}" class=" @error('genre') is-invalid @enderror">
-                      Homme
-                    </label>
-                      @error('genre')
-                        <span class="invalid-feedback text-danger" role="alert" style="margin-left: 20px;">
-                          <strong class="message_error">{{ $message }}</strong>
-                        </span>
-                      @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="prenom">Prenom de l'etudiant</label>
-                    <input type="text" name='prenom'  value="{{ old('prenom')  }}" class="form-control @error('prenom') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
-                    @error('prenom')
-                    <span class="invalid-feedback" role="alert">
-                        <strong class="message_error text-danger">{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-
-                  <div class="form-group">
-                    <label for="nom">Nom de l'etudiant</label>
-                    <input type="text" name='nom'  value="{{ old('nom')  }}" class="form-control @error('nom') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
-                    @error('nom')
-                    <span class="invalid-feedback" role="alert">
-                        <strong class="message_error text-danger">{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-
-                  <div class="form-group">
-                    <label for="email">Email de l'etudiant</label>
-                    <input type="email" name='email'  value="{{ old('email')  }}" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong class="message_error text-danger">{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-
-                  <div class="form-group">
-                    <label for="phone">Numero de telephone</label>
-                    <input type="number" name='phone'  value="{{ old('phone')  }}" class="form-control @error('phone') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
-                    @error('phone')
-                    <span class="invalid-feedback" role="alert">
-                        <strong class="message_error text-danger">{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-
-                   <div class="form-group">
-                    <label for="cni">Numero de votre CNI</label>
-                    <input type="number" name='cni'  value="{{ old('cni')  }}" class="form-control @error('cni') is-invalid @enderror" id="exampleInputEmail1" placeholder="">
-                    @error('cni')
-                    <span class="invalid-feedback" role="alert">
-                        <strong class="message_error text-danger">{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="commune">La commune de l'etudiant</label>
-                    <select  value="{{ old('commune') }}" class="form-control @error('commune') is-invalid @enderror" id="commune" name="commune">
-                      @foreach($departement as $dep)
-                        <optgroup label="Departement de {{ $dep->name }}">
-                          @foreach($dep->communes as $dep_com)
-                          <option value="{{ $dep_com->id }}">{{$dep_com->name}}</option>
-                          @endforeach
-                        </optgroup>
-                      @endforeach
-                    </select>
-                    @error('commune')
-                    <span class="invalid-feedback" role="alert">
-                        <strong class="message_error">{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
-
-                  <div class="form-group">
-                    <label for="image">Image de l'etudiant</label>
-                   <input type="file"  value="{{ old('image')}}" class=" @error('image') is-invalid @enderror" id="image" name="image" placeholder="">
-                    @error('image')
-                      <span class="invalid-feedback" role="alert">
-                          <strong class="message_error text-danger">{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="">
-                    <button type="submit" class="btn btn-success btn-block">Enregistrer la codification</button>
-                  </div>
-                </div>
-                <div class="col-md-3"></div>
-              </div>
-             
-            </form>
-          </div>
-
-          {{--
+          <span class="btn btn-primary btn-block">Liste D'inscription Des Nouveaux Bacheliers</span>
+          <br>
             @if($nouveau_sms->count() == $nouveauCount->count())
               <span class="etudiant_migration"  style="float:right;">
                 <a class="btn btn-success" data-toggle="modal" data-target="#modal-default-migraion"><i class="fa fa-envelope-square"> Message</i></a>
@@ -175,6 +64,7 @@
                   </div>
               </span>
             @endif
+            <br><br>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="nav-tabs-custom">
@@ -258,7 +148,7 @@
                 </div>
               </div>
             </div>
-          --}}
+          
           <!-- /.box-body -->
         </div>
         <!-- Fin de la partie des inscriptions -->
@@ -270,7 +160,7 @@
 
 
 <!-- Modal du update des soldes -->
-    {{--
+    
     @foreach($nouveau_bac as $nouveau)
       <div class="modal fade" id="modal-default-edit-nouveau{{ $nouveau->id }}">
           <div class="modal-dialog">
@@ -318,7 +208,7 @@
           <!-- /.modal-dialog -->
       </div>
     @endforeach
-    --}}
+    
 <!-- Fin du modal update  des soldes -->
 
 

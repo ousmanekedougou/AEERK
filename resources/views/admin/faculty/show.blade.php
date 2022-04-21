@@ -10,7 +10,7 @@
     <div class="content-wrapper">
 
       <section class="content-header">
-        <span class="btn btn-primary btn-block">Etudiants de la filliere {{$filliere->name}} :
+        <span class="btn btn-primary btn-block">{{ $count }} etudiants de la filliere {{$filliere->name}} :
           @if($niveau == 1)
             Licence 1
           @elseif($niveau == 2)

@@ -207,7 +207,7 @@
 															<option value="{{ $pulic->id }}"> {{ $pulic->name }} </option>
 														@endforeach
 													</optgroup>
-													<optgroup label="Universités Prives">
+													<optgroup label="Universités Privés">
 														@foreach($prives as $pri)
 															<option value="{{ $pri->id }}"> {{ $pri->name }} </option>
 														@endforeach
@@ -265,7 +265,7 @@
 									
 									<br>
 									<p class="text-italic text-primary text-bold">
-										Les documents suivants tel que l'attestation du baccalaurea et le certificat d'inscription ne sont obligatoire que pour les etudiant qui ont obtenu le bac en 2015
+										Les documents suivants tel que l'attestation du baccalaurea et le certificat d'inscription et le relever de note ne sont obligatoire que pour les etudiant qui ont obtenu le bac en 2015
 									</p>
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
