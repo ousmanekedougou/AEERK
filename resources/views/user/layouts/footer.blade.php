@@ -85,10 +85,10 @@
 					</div>											
 				</div> -->
 				<div class="footer-bottom row align-items-center justify-content-between">
-					<p class="footer-text m-0 col-lg-6 col-md-12 text-center">
-						Copyright &copy; 2021-{{ Carbon\carbon::now()->year }} | Plateforme de codification de <span class="text-primary"> L'AEERK</span> <a style="opacity: 0;" href="{{ route('admin.admin.login') }}" target="_blank">L'AEERK</a>
+					<p class="footer-text m-0 col-lg-8 col-md-12 text-center">
+						Copyright &copy; 2021-{{ Carbon\carbon::now()->year }} | Designed by Ousmane Diallo <span class="text-primary"> 781956168 - yabaye07@gmail.com</span> <a style="opacity: 0;" href="{{ route('admin.admin.login') }}" target="_blank">L'AEERK</a>
 					</p>
-					<div class="col-lg-6 col-sm-12 footer-social">
+					<div class="col-lg-4 col-sm-12 footer-social">
 						<a href="#"><i class="fa fa-facebook"></i></a>
 						<a href="#"><i class="fa fa-twitter"></i></a>
 						<a href="#"><i class="fa fa-instagram"></i></a>

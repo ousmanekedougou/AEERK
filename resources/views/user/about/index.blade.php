@@ -32,41 +32,15 @@
 	<section class="feature-area pb-120">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-12">
 					<div class="single-feature">
 						<div class="title">
-							<h4>Missions</h4>
+							<h4>Qui sommes nous ?</h4>
 						</div>
 						<div class="desc-wrap">
 							<p>
 								Usage of the Internet is becoming more common due to rapid advancement
 								of technology.
-							</p>
-							<a href="#">Join Now</a>									
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-feature">
-						<div class="title">
-							<h4>Visions</h4>
-						</div>
-						<div class="desc-wrap">
-							<p>
-								For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
-							</p>
-							<a href="#">Join Now</a>									
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-feature">
-						<div class="title">
-							<h4>Objectifs</h4>
-						</div>
-						<div class="desc-wrap">
-							<p>
-								If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
 							</p>
 							<a href="#">Join Now</a>									
 						</div>
@@ -85,7 +59,7 @@
 					<img class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
 				</div>
 				<div class="col-lg-7 info-area-right">
-					<h1>Mot Du President</h1>
+					<h1 class="text-center">Mot Du President</h1>
 					<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
 					<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
 					
@@ -99,34 +73,59 @@
 	<!-- End info Area -->	
 
 
-
-	<!-- Start info Area -->
-	<!-- <section class="info-area">
+<section class="feature-area pb-120">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-5 info-area-left">
-					<img class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<div class="title" style="background-color: #3753db;">
+							<h4>Missions</h4>
+						</div>
+						<div class="desc-wrap">
+							<p>
+								Usage of the Internet is becoming more common due to rapid advancement
+								of technology.
+							</p>
+							<a href="#">Join Now</a>									
+						</div>
+					</div>
 				</div>
-				<div class="col-lg-7 info-area-right">
-					<h3>Le President de l'AEERK</h3>
-					<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
-					<br>
-					<p>
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-					</p>
-					
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<div class="title" style="background-color: #3753db;">
+							<h4>Visions</h4>
+						</div>
+						<div class="desc-wrap">
+							<p>
+								For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
+							</p>
+							<a href="#">Join Now</a>									
+						</div>
+					</div>
 				</div>
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<div class="title" style="background-color: #3753db;">
+							<h4>Objectifs</h4>
+						</div>
+						<div class="desc-wrap">
+							<p>
+								If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+							</p>
+							<a href="#">Join Now</a>									
+						</div>
+					</div>
+				</div>												
 			</div>
 		</div>	
-	</section> -->
-	<!-- End info Area -->
+	</section>
 
 
 
 	<!-- Start course-mission Area -->
 	<section class="course-mission-area pb-120">
 		<div class="container">
-			<h3 class="mb-30">Nos secteurs d'activite</h3>
+			<h3 class="mb-30 text-center">Nos activites</h3>
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-12">
 					<blockquote class="generic-blockquote text-justify">
@@ -136,7 +135,7 @@
 			</div>		
 
 			<div class="row">
-				<div class="col-md-7 accordion-left">
+				<div class="col-md-6 accordion-left">
 					<!-- accordion 2 start-->
 					<dl class="accordion">
 						<dt>
@@ -158,19 +157,34 @@
 						</dt>
 						<dd>
 							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-						</dd>
-						<dt>
-							<a href="" class="text-uppercase" style="font-weight: 700;">Commission D'organisation</a>
-						</dt>
-						<dd>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-						</dd>                                    
+						</dd>                                
 					</dl>
 					<!-- accordion 2 end-->
 				</div>
-				<div class="col-md-5 video-right justify-content-center align-items-center d-flex relative">
-					<div class="overlay overlay-bg"></div>
-						<a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid mx-auto" src="img/play.png" alt=""></a>
+				<div class="col-md-6 accordion-right">
+					<dl class="accordion">
+						<dt>
+							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Organisation</a>
+						</dt>
+						<dd>
+							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
+							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
+							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
+						</dd>
+						<dt>
+							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Culturelle</a>
+						</dt>
+						<dd>
+							Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
+						</dd>
+						<dt>
+							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Femminine</a>
+						</dt>
+						<dd>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
+						</dd>                                  
+					</dl>
+					
 				</div>
 			</div>
 		</div>	
@@ -178,201 +192,47 @@
 	<!-- End course-mission Area -->
 
 	<!-- Start popular-course Area -->
-		<section class="popular-course-area section-gap" style="margin-top: -150px;">
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-					<div class="menu-content pb-70 col-lg-8">
-						<div class="title text-center">
-							<h1 class="mb-10">Le personnelle du bureau</h1>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sit?</p>
-						</div>
-					</div>
-				</div>						
-				<div class="row">
-					<div class="active-popular-carusel">
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn Designing
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>	
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn React js beginners
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>	
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn Photography
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>	
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn Surveying
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn Designing
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>	
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn React js beginners
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>	
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn Photography
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>	
-						<div class="single-popular-carusel">
-							<div class="thumb-wrap relative">
-								<div class="thumb relative">
-									<div class="overlay overlay-bg"></div>	
-									<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
-								</div>
-								<div class="meta d-flex justify-content-between">
-									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
-									<h4>$150</h4>
-								</div>									
-							</div>
-							<div class="details">
-								<a href="#">
-									<h4>
-										Learn Surveying
-									</h4>
-								</a>
-								<p>
-									When television was young, there was a hugely popular show based on the still popular fictional characte										
-								</p>
-							</div>
-						</div>							
+	<section class="upcoming-event-area section-gap" style="margin-top: -150px;">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="menu-content pb-70 col-lg-8">
+					<div class="title text-center">
+						<h1 class="mb-10">Notre Personnelle</h1>
+						<p>If you are a serious astronomy fanatic like a lot of us</p>
 					</div>
 				</div>
-			</div>	
-		</section>
+			</div>								
+			<div class="row">
+				<div class="active-upcoming-event-carusel">
+					@foreach($teams as $team)
+					<div class="single-carusel row align-items-center">
+						<div class="col-12 col-md-6 thumb">
+							<img class="img-fluid" src="{{ Storage::url($team->image) }}" alt="">
+						</div>
+						<div class="detials col-12 col-md-6">
+							<a href="#"><h4>{{ $team->nom }}</h4></a>
+							<p>
+								Etudiant et membre du bureau
+							</p>
+							<p>Commission : 
+								@foreach($team->poste->commissions as $post_com)
+									{{$post_com->name}} 
+								@endforeach
+							</p>
+							<p>
+								Poste : {{$team->poste->name}} 
+							</p>
+						</div>
+					</div>	
+					@endforeach																				
+				</div>
+			</div>
+		</div>	
+	</section> 
 	<!-- End popular-course Area -->
 
 	<!-- Start search-course Area -->
+	{{--
 		<section class="search-course-area relative" style="margin-bottom:100px;">
 			<div class="overlay overlay-bg"></div>
 			<div class="container">
@@ -450,6 +310,7 @@
 				</div>
 			</div>	
 		</section>
+	--}}
 	<!-- End search-course Area -->
 
 

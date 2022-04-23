@@ -9,6 +9,7 @@ use App\Model\Admin\Solde;
 use App\Model\Admin\Departement;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Faculty;
 use App\Model\User\Etudiant;
 use Brian2694\Toastr\Facades\Toastr;
 use Nexmo\Laravel\Facade\Nexmo;
@@ -22,7 +23,9 @@ class NouveauController extends Controller
     public function index()
     {
         $departement = Departement::all();
-        return view('user.nouveau.index',compact('departement'));
+        $puliques = Faculty::where('for',0)->get();
+        $prives = Faculty::where('for',1)->get();
+        return view('user.nouveau.index',compact('departement','puliques','prives'));
     }
 
     /**
@@ -50,10 +53,11 @@ class NouveauController extends Controller
             'email' => 'required|email|unique:etudiants',
             'phone' => 'required|unique:etudiants|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'commune' => 'required|numeric',
-            'extrait' => 'required|mimes:pdf,PDF',
-            'relever' => 'required|mimes:pdf,PDF',
-            'attestation' => 'required|mimes:pdf,PDF',
+            // 'extrait' => 'required|mimes:pdf,PDF',
+            // 'relever' => 'required|mimes:pdf,PDF',
+            // 'attestation' => 'required|mimes:pdf,PDF',
             'photocopie' => 'required|mimes:pdf,PDF',
+            'filliere' => 'required|numeric',
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
         // dd($request->all());
@@ -90,7 +94,6 @@ class NouveauController extends Controller
             Toastr::error('votre numero de telephone est invalid', 'Error Telepone', ["positionClass" => "toast-top-right"]);
         }
         if ($immeuble) {
-            # code...
             $add_nouveau->genre = $request->genre;
             $add_nouveau->nom = $request->nom;
             $add_nouveau->prenom = $request->prenom;
@@ -104,6 +107,7 @@ class NouveauController extends Controller
             $add_nouveau->commune_id = $request->commune;
             $add_nouveau->immeuble_id =  $immeuble->id;
             $add_nouveau->status = 0;
+            $add_nouveau->faculty_id = $request->filliere;
             $add_nouveau->codification_count = 1;
             $add_nouveau->ancienete = NOUVEAU;
             $add_nouveau->save();

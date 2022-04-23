@@ -28,7 +28,7 @@
 			</section>
       <!-- End banner Area -->	
 
-	<!-- <section class="feature-area pb-120">
+	<section class="feature-area pb-120">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -47,7 +47,7 @@
 				</div>									
 			</div>
 		</div>	
-	</section> -->
+	</section>
       
 
       		<section class="feature-area pb-120">
@@ -60,7 +60,7 @@
 							</div>
 
 							<div class="col-lg-8 col-md-8" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
-								<h3 class="mb-30 text-center">S'inscrire Pour la codifications</h3>
+								
 								<form action="{{ route('nouveau.store') }}" method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
 									@csrf
 									<div class="row">
@@ -90,7 +90,7 @@
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
 											<label class="label_form" for="prenom">Votre Prenom</label>
-												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
+												<input type="text"  value="{{ old('prenom') }}" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="Votre prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre prenom'" required class="single-input">
 												@error('prenom')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
@@ -101,7 +101,7 @@
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
 											<label class="label_form" for="nom">Votre Nom  </label>
-												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
+												<input type="text"  value="{{ old('nom') }}" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Votre nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre nom'" required class="single-input">
 												@error('nom')
 													<span class="invalid-feedback" role="alert">
 														<strong class="message_error">{{ $message }}</strong>
@@ -163,6 +163,34 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-sm-6">
+											<div class="input-group-icon mt-10">
+												<label class="label_form" for="filliere">Renseigner votre filliere</label>
+												<div class="form-select">
+													<select value="{{ old('filliere') }}" class="form-control @error('filliere') is-invalid @enderror" name="filliere" >
+														<optgroup label="Universités Publiques">
+															@foreach($puliques as $pulic)
+																<option value="{{ $pulic->id }}"> {{ $pulic->name }} </option>
+															@endforeach
+														</optgroup>
+														<optgroup label="Universités Privés">
+															@foreach($prives as $pri)
+																<option value="{{ $pri->id }}"> {{ $pri->name }} </option>
+															@endforeach
+														</optgroup>
+													</select>
+													@error('filliere')
+														<span class="invalid-feedback" role="alert">
+															<strong class="message_error">{{ $message }}</strong>
+														</span>
+													@enderror
+												</div>
+											</div>
+										</div>
+										
+									
+									</div>
+									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
 											<label class="label_form" for="">Votre Photo Format (CNI)</label>
@@ -174,23 +202,7 @@
 												@enderror
 											</div>
 										</div>
-									
-									</div>
-									
-
-									<br>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="mt-10">
-												<label class="label_form" for="">Photocopie CNI ou Extrait D'un De Vos Parents</label>
-												<input type="file" value="{{ old('extrait') }}" class="form-control @error('extrait') is-invalid @enderror" name="extrait" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
-												@error('extrait')
-													<span class="invalid-feedback" role="alert">
-														<strong class="message_error">{{ $message }}</strong>
-													</span>
-												@enderror
-											</div>
-										</div>
+										
 										<div class="col-md-6">
 											<div class="mt-10">
 											<label class="label_form" for="">Votre Photocopie de CNI</label>
@@ -204,11 +216,25 @@
 										</div>
 									
 									</div>
+									{{--
+									<div class="row">
+										<div class="col-md-6">
+											<div class="mt-10">
+												<label class="label_form" for="">Photocopie CNI ou Extrait d'un Parents</label>
+												<input type="file" value="{{ old('extrait') }}" class="form-control @error('extrait') is-invalid @enderror" name="extrait" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+												@error('extrait')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error">{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+										</div>
+									</div>
 									<br>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
-											<label class="label_form" for="">Votre Votre Relever De Note Du Baccalaureat</label>
+											<label class="label_form" for="">Votre Relever De Note Du Baccalaureat</label>
 												<input type="file" name="relever" value="{{ old('relever') }}" class="form-control @error('relever') is-invalid @enderror" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('relever')
 													<span class="invalid-feedback" role="alert">
@@ -229,6 +255,7 @@
 											</div>
 										</div>
 									</div>
+									--}}
 									<div class="mt-10">
 										<input type="submit" value="Enregistrez l'inscription" class="btn btn-primary btn-block">
 									</div>

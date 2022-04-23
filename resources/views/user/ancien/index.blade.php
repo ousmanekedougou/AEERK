@@ -29,7 +29,7 @@
 			<!-- End banner Area -->	
 
 
-			<!-- <section class="feature-area pb-120">
+			<section class="feature-area pb-120">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
@@ -48,7 +48,7 @@
 						</div>												
 					</div>
 				</div>	
-			</section> -->
+			</section>
       
 
       		<section class="feature-area pb-120">
@@ -62,7 +62,7 @@
 
 							
 							<div class="col-lg-8 col-md-8 col-sm-8" style="background-color:#fff;padding:20px;margin:3px;border-radius:3px;">
-								<h3 class="mb-30 text-center">S'inscrire Pour la codifications</h3>
+								
 								<form action="{{ route('ancien.store') }}" method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
 									@csrf
 							
@@ -224,7 +224,6 @@
 											<label class="label_form" for="niveau">Votre Niveau d'etude</label>
 											<div class="form-select">
 												<select value="{{ old('niveau') }}" class="form-control @error('niveau') is-invalid @enderror" name="niveau" >
-													<option value="1">Licence 1 </option>
 													<option value="2">Licence 2 / BTS</option>
 													<option value="3">Licence 3</option>
 													<option value="4">Master 1</option>
@@ -262,7 +261,7 @@
 											</div>
 										</div>
 									</div>
-									
+									{{--
 									<br>
 									<p class="text-italic text-primary text-bold">
 										Les documents suivants tel que l'attestation du baccalaurea et le certificat d'inscription et le relever de note ne sont obligatoire que pour les etudiant qui ont obtenu le bac en 2015
@@ -305,7 +304,7 @@
 											</div>
 										</div>
 									</div>
-									
+									--}}
 									<div class="mt-10">
 										<input type="submit" value="Enregistrez l'inscription" class="btn btn-primary btn-block ">
 									</div>

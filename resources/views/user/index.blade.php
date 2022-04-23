@@ -122,100 +122,201 @@
 
 	
 	<!-- Nos activites officiell-->
-	 <section class="upcoming-event-area section-gap">
-		<div class="container">
-			<div class="row d-flex justify-content-center">
-				<div class="menu-content pb-70 col-lg-8">
-					<div class="title text-center">
-						<h1 class="mb-10">Nos Activites</h1>
-						<p>If you are a serious astronomy fanatic like a lot of us</p>
+		<section class="popular-course-area section-gap" style="margin-top: -150px;">
+			<div class="container">
+				<div class="row d-flex justify-content-center">
+					<div class="menu-content pb-70 col-lg-8">
+						<div class="title text-center">
+							<h1 class="mb-10">Le personnelle du bureau</h1>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sit?</p>
+						</div>
+					</div>
+				</div>						
+				<div class="row">
+					<div class="active-popular-carusel">
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Designing
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn React js beginners
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Photography
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Surveying
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p1.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Designing
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p2.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn React js beginners
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p3.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Photography
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>	
+						<div class="single-popular-carusel">
+							<div class="thumb-wrap relative">
+								<div class="thumb relative">
+									<div class="overlay overlay-bg"></div>	
+									<img class="img-fluid" src="{{asset('user/img/p4.jpg')}}" alt="">
+								</div>
+								<div class="meta d-flex justify-content-between">
+									<p><span class="lnr lnr-users"></span> 355 <span class="lnr lnr-bubble"></span>35</p>
+									<h4>$150</h4>
+								</div>									
+							</div>
+							<div class="details">
+								<a href="#">
+									<h4>
+										Learn Surveying
+									</h4>
+								</a>
+								<p>
+									When television was young, there was a hugely popular show based on the still popular fictional characte										
+								</p>
+							</div>
+						</div>							
 					</div>
 				</div>
-			</div>								
-			<div class="row">
-				<div class="active-upcoming-event-carusel">
-					<div class="single-carusel row align-items-center">
-						<div class="col-12 col-md-6 thumb">
-							<img class="img-fluid" src="{{ asset('user/img/e1.jpg') }}" alt="">
-						</div>
-						<div class="detials col-12 col-md-6">
-							<p>25th February, 2018</p>
-							<a href="#"><h4>The Universe Through
-							A Child S Eyes</h4></a>
-							<p>
-								For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-							</p>
-						</div>
-					</div>
-					<div class="single-carusel row align-items-center">
-						<div class="col-12 col-md-6 thumb">
-							<img class="img-fluid" src="{{asset('user/img/e2.jpg')}}" alt="">
-						</div>
-						<div class="detials col-12 col-md-6">
-							<p>25th February, 2018</p>
-							<a href="#"><h4>The Universe Through
-							A Child S Eyes</h4></a>
-							<p>
-								For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-							</p>
-						</div>
-					</div>	
-					<div class="single-carusel row align-items-center">
-						<div class="col-12 col-md-6 thumb">
-							<img class="img-fluid" src="{{asset('user/img/e1.jpg')}}" alt="">
-						</div>
-						<div class="detials col-12 col-md-6">
-							<p>25th February, 2018</p>
-							<a href="#"><h4>The Universe Through
-							A Child S Eyes</h4></a>
-							<p>
-								For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-							</p>
-						</div>
-					</div>	
-					<div class="single-carusel row align-items-center">
-						<div class="col-12 col-md-6 thumb">
-							<img class="img-fluid" src="{{asset('user/img/e1.jpg')}}" alt="">
-						</div>
-						<div class="detials col-12 col-md-6">
-							<p>25th February, 2018</p>
-							<a href="#"><h4>The Universe Through
-							A Child S Eyes</h4></a>
-							<p>
-								For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-							</p>
-						</div>
-					</div>
-					<div class="single-carusel row align-items-center">
-						<div class="col-12 col-md-6 thumb">
-							<img class="img-fluid" src="{{asset('user/img/e2.jpg')}}" alt="">
-						</div>
-						<div class="detials col-12 col-md-6">
-							<p>25th February, 2018</p>
-							<a href="#"><h4>The Universe Through
-							A Child S Eyes</h4></a>
-							<p>
-								For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-							</p>
-						</div>
-					</div>	
-					<div class="single-carusel row align-items-center">
-						<div class="col-12 col-md-6 thumb">
-							<img class="img-fluid" src="{{asset('user/img/e1.jpg')}}" alt="">
-						</div>
-						<div class="detials col-12 col-md-6">
-							<p>25th February, 2018</p>
-							<a href="#"><h4>The Universe Through
-							A Child S Eyes</h4></a>
-							<p>
-								For most of us, the idea of astronomy is something we directly connect to “stargazing”, telescopes and seeing magnificent displays in the heavens.
-							</p>
-						</div>
-					</div>																						
-				</div>
-			</div>
-		</div>	
-	</section> 
+			</div>	
+		</section>
+
+
+	
 	<!-- Fin de nos activite officielle-->
 
 	
