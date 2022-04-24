@@ -73,6 +73,7 @@ class AncienController extends Controller
         $imageName = '';
         $photocopieName = '';
         $certificatName = '';
+         $releverName = '';
         $countCodification = '';
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Ancien');

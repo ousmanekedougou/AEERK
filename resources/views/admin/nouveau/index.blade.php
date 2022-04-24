@@ -89,7 +89,7 @@
                           <td>{{ $nouveau->prenom .' '.$nouveau->nom }}</td>
                           <td>{{ $nouveau->phone }}</td>
                           <td>
-                            @if($ancien->codification_count == 1)
+                            @if($nouveau->codification_count == 1)
                               Licence 1
                             @endif
                           </td>
