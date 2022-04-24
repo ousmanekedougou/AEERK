@@ -182,6 +182,7 @@
                         <p>  <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $nouveau->immeuble->name }}</a></p>
                       </div>
               </div>
+              {{--
               @foreach($immeubles as $imb) 
                 @if($imb->id == $nouveau->immeuble->id)
                   <form action="{{ route('admin.codifier_nouveau',$nouveau->id) }}" method="post">
@@ -197,6 +198,7 @@
                   </form>
                 @endif
               @endforeach
+              --}}
               <div class="modal-footer">
                 <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
              

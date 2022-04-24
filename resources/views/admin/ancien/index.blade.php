@@ -215,7 +215,7 @@
                             </span>
                           @enderror
                         </div>
-                        --}}
+                      --}}
                       </p>
 
                       <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
