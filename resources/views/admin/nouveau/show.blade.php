@@ -121,6 +121,7 @@
                     </div>
                     <div class="box-footer">
                     @if($show_nouveau->codifier == 0)
+                      {{--
                       <div class="pull-right">
                         <form id="delete-form-{{$show_nouveau->id}}" action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post">
                             @csrf 
@@ -161,6 +162,7 @@
                           }" type="submit" class="btn btn-success btn-xs" style=" margin-left:20px;"> Appliquer</button>
                         </form>
                       </div>
+                      --}}
 
                       <div class="pull-right">
                         <label style="margin-right: 20px;">
@@ -191,8 +193,10 @@
                     @endif
                   <div class="pull-left">
                   <a style="margin-right:5px;" href="{{ route('admin.nouveau.index') }}" class="btn btn-warning btn-xs"><i class="fa fa-share"></i> Retoure</a>
-                      @if($show_nouveau->status == 1)
-                        <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-default-edit-nouveau{{ $show_nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
+                      @if($show_nouveau->status == 1 && $show_nouveau->codifier == 0)
+                        <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-default-edit-show_nouveau{{ $show_nouveau->id }}">Codifier <i class="fa fa-edit"></i></a></a>
+                      @elseif($show_nouveau->status == 1 && $show_nouveau->codifier == 0)
+                        <span class="btn btn-success btn-xs">{{ $show_nouveau->prenom }} {{$show_nouveau->nom}} a ete codifier a {{ $show_nouveau->chambre->name }}</span>
                       @endif
                   </div>
                       <!-- <a href="#"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
@@ -261,6 +265,31 @@
                           <strong class="message_error">{{ $message }}</strong>
                       </span>
                       @enderror
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Fillieres</label>
+
+                    <div class="col-sm-10">
+                      <select name="filliere"   value="{{  old('filliere')}}" class="form-control @error('filliere') is-invalid @enderror" id="">
+                          <optgroup label="Fillieres Publiques">
+                            @foreach($puliques as $publ)
+                              <option value="{{ $publ->id }}" @if($publ->id == $show_nouveau->faculty_id) selected @endif >{{$publ->name}}</option>
+                            @endforeach
+                          </optgroup>
+
+                          <optgroup label="Fillieres Prive">
+                            @foreach($prives as $prive)
+                              <option value="{{ $prive->id }}" @if($prive->id == $show_nouveau->faculty_id) selected @endif >{{$prive->name}}</option>
+                            @endforeach
+                          </optgroup>
+                        @error('filliere')
+                      <span class="invalid-feedback" role="alert">
+                          <strong class="message_error">{{ $message }}</strong>
+                      </span>
+                      @enderror
+                      </select>
                     </div>
                   </div>
 

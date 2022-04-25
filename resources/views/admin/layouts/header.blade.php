@@ -253,14 +253,21 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ Storage::url(Auth::guard('admin')->user()->image)}}" class="user-image" alt="User Image">
+              @if(Auth::guard('admin')->user()->image != null)
+                <img src="{{ Storage::url(Auth::guard('admin')->user()->image)}}" class="user-image" alt="User Image">
+              @else
+                <img src="{{ asset('admin/dist/img/profil.gif')}}" class="user-image" alt="User Image">
+              @endif
               <span class="hidden-xs">{{ Auth::guard('admin')->user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ Storage::url(Auth::guard('admin')->user()->image)}}" class="img-circle" alt="User Image">
-
+                @if(Auth::guard('admin')->user()->image != null)
+                  <img src="{{ Storage::url(Auth::guard('admin')->user()->image)}}" class="img-circle" alt="User Image">
+                @else
+                  <img src="{{ asset('admin/dist/img/profil.gif')}}" class="img-circle" alt="User Image">
+                @endif
                 <p>
                   {{ Auth::guard('admin')->user()->name }} - Admin
                   <small>Membre depuis {{ Auth::guard('admin')->user()->created_at->toFormattedDateString() }}</small>

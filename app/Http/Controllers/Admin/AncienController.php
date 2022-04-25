@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Model\User\Etudiant;
 use Illuminate\Support\Facades\Storage;
 use App\Helpers\Sms;
+use App\Model\Admin\Faculty;
 use Illuminate\Support\Str;
 use App\Model\User\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -167,7 +168,10 @@ class AncienController extends Controller
         $show_ancien = Etudiant::where('id',$id)->first();
         $immeuble = Immeuble::where('status',2)->where('id',$show_ancien->immeuble_id)->first();
         $immeubles = Immeuble::where('status',2)->get();
-        return view('admin.ancien.show',compact('show_ancien','departement','immeuble','immeubles'));
+
+        $puliques = Faculty::where('for',0)->get();
+        $prives = Faculty::where('for',1)->get();
+        return view('admin.ancien.show',compact('show_ancien','departement','immeuble','immeubles','puliques','prives'));
     }
 
     /**
@@ -242,6 +246,7 @@ class AncienController extends Controller
         $update_ancien->prenom = $request->prenom;
         $update_ancien->email = $request->email;
         $update_ancien->phone = $request->phone;
+        $update_ancien->faculty_id = $request->filliere;
         $update_ancien->commune_id = $request->commune;
         $update_ancien->immeuble_id = $immeuble->id;
         $update_ancien->save();

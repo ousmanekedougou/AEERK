@@ -67,7 +67,7 @@
 					<p class="pt-10 pb-10 text-white text-center text-uppercase text-bold">
 						(Association des eleves et etudiants ressortissants de kedougou)
 					</p>
-					<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase text-center" style="border-radius: 5px;"> <i class="fa fa-cog fa_ajout"></i>  Comment ça  marche</a>
+					{{--<a href="{{ route('systeme.index') }}" class="primary-btn text-uppercase text-center" style="border-radius: 5px;"> <i class="fa fa-cog fa_ajout"></i>  Comment ça  marche</a>--}}
 				</div>										
 			</div>
 		</div>					
@@ -79,38 +79,24 @@
 	<section class="feature-area" style="margin-bottom: 50px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<div class="single-feature">
 						<div class="desc-wrap">
 							<p>
-								<img src="{{ asset('user/img/3ccs.jpg') }}" alt="" srcset="">
+								<img src="{{ asset('user/img/3ccs.jpg') }}" style="width: 100%;height:auto;" alt="" srcset="">
 							</p>								
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-8">
 					<div class="single-feature">
 						<div class="title">
-							<h4>Présentation de la plateforme</h4>
+							<h4>AEERK (Association des Eleves et Etudiants Ressortissants de Kedougou)</h4>
 						</div>
 						<div class="desc-wrap">
 							<p class="text-justify">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure duuj hjjjjj rjjjr jrjjkr 
-							</p>
-							<a href="">Voire</a>									
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-feature">
-						<div class="title">
-							<h4>Instructions</h4>
-						</div>
-						<div class="desc-wrap">
-							<p class="text-justify">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum iure duuj hjjjjj rjjjr jrjjkr 
-							</p>
-							<a href="">Voire</a>									
+							</p>									
 						</div>
 					</div>
 				</div>											
@@ -122,7 +108,7 @@
 
 	
 	<!-- Nos activites officiell-->
-		<section class="popular-course-area section-gap" style="margin-top: -150px;">
+		<section class="popular-course-area section-gap" style="margin-top: -100px;">
 			<div class="container">
 				<div class="row d-flex justify-content-center">
 					<div class="menu-content pb-70 col-lg-8">

@@ -27,7 +27,7 @@ class AncienController extends Controller
         $departement = Departement::all();
         $puliques = Faculty::where('for',0)->get();
         $prives = Faculty::where('for',1)->get();
-        $immeuble = Immeuble::all();
+        $immeuble = Immeuble::where('status',2)->get();
         return view('user.ancien.index',compact('departement','immeuble','puliques','prives'));
     }
 
@@ -63,33 +63,33 @@ class AncienController extends Controller
             // 'extrait' => 'required|mimes:PDF,pdf',
             // 'certificat' => 'required|mimes:pdf,PDF',
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
-            'photocopie' => 'required|mimes:pdf,PDF',
+            // 'photocopie' => 'required|mimes:pdf,PDF',
             // 'relever' => 'required|mimes:pdf,PDF',
         ]);
         // dd($request->ccode);
         $add_ancien = new Etudiant;
         define('ANCIENETE',2);
-        $extraitName = '';
         $imageName = '';
-        $photocopieName = '';
-        $certificatName = '';
-         $releverName = '';
+        // $extraitName = '';
+        // $photocopieName = '';
+        // $certificatName = '';
+        // $releverName = '';
         $countCodification = '';
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Ancien');
         }
-        if ($request->hasFile('extrait')) {
-            $extraitName = $request->extrait->store('public/Ancien');
-        }
-        if ($request->hasFile('certificat')) {
-            $certificatName = $request->certificat->store('public/Ancien');
-        }
-        if ($request->hasFile('photocopie')) {
-            $photocopieName = $request->photocopie->store('public/Ancien');
-        }
-         if ($request->hasFile('relever')) {
-            $releverName = $request->relever->store('public/Nouveau');
-        }
+        // if ($request->hasFile('extrait')) {
+        //     $extraitName = $request->extrait->store('public/Ancien');
+        // }
+        // if ($request->hasFile('certificat')) {
+        //     $certificatName = $request->certificat->store('public/Ancien');
+        // }
+        // if ($request->hasFile('photocopie')) {
+        //     $photocopieName = $request->photocopie->store('public/Ancien');
+        // }
+        //  if ($request->hasFile('relever')) {
+        //     $releverName = $request->relever->store('public/Nouveau');
+        // }
         $phoneFinale = '';
         $phoneComplet = '221'.$request->phone;
         if (strlen($request->phone) == 12 ) {
@@ -107,15 +107,15 @@ class AncienController extends Controller
         $add_ancien->email = $request->email;
         $add_ancien->phone = $phoneFinale;
         $add_ancien->image = $imageName;
-        $add_ancien->bac = $extraitName;
-        $add_ancien->certificat = $certificatName;
-        $add_ancien->photocopie = $photocopieName;
+        // $add_ancien->bac = $extraitName;
+        // $add_ancien->certificat = $certificatName;
+        // $add_ancien->photocopie = $photocopieName;
+        // $add_ancien->relever = $releverName;
         $add_ancien->commune_id = $request->commune;
         $add_ancien->immeuble_id = $request->immeuble;
         $add_ancien->status = 0;
         $add_ancien->codification_count = $request->niveau;
         $add_ancien->faculty_id = $request->filliere;
-        $add_ancien->relever = $releverName;
         $add_ancien->ancienete = ANCIENETE;
         $add_ancien->save();
 

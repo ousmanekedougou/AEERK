@@ -244,7 +244,32 @@
                     </div>
                   </div>
 
-                    <div class="form-group">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Fillieres</label>
+
+                    <div class="col-sm-10">
+                      <select name="filliere"   value="{{  old('filliere')}}" class="form-control @error('filliere') is-invalid @enderror" id="">
+                          <optgroup label="Fillieres Publiques">
+                            @foreach($puliques as $publ)
+                              <option value="{{ $publ->id }}" @if($publ->id == $show_ancien->faculty_id) selected @endif >{{$publ->name}}</option>
+                            @endforeach
+                          </optgroup>
+
+                          <optgroup label="Fillieres Prive">
+                            @foreach($prives as $prive)
+                              <option value="{{ $prive->id }}" @if($prive->id == $show_ancien->faculty_id) selected @endif >{{$prive->name}}</option>
+                            @endforeach
+                          </optgroup>
+                        @error('filliere')
+                      <span class="invalid-feedback" role="alert">
+                          <strong class="message_error">{{ $message }}</strong>
+                      </span>
+                      @enderror
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Immeuble</label>
 
                     <div class="col-sm-10">

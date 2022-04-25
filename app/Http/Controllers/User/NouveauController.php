@@ -56,7 +56,7 @@ class NouveauController extends Controller
             // 'extrait' => 'required|mimes:pdf,PDF',
             // 'relever' => 'required|mimes:pdf,PDF',
             // 'attestation' => 'required|mimes:pdf,PDF',
-            'photocopie' => 'required|mimes:pdf,PDF',
+            // 'photocopie' => 'required|mimes:pdf,PDF',
             'filliere' => 'required|numeric',
             'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
         ]);
@@ -64,26 +64,26 @@ class NouveauController extends Controller
         $immeuble = Immeuble::where('status',1)->first();
         $add_nouveau = new Etudiant;
         define('NOUVEAU',1);
-        $extraitName = '';
         $imageName = '';
-        $photocopieName = '';
-        $attestationName = '';
-        $releverName = '';
+        // $extraitName = '';
+        // $photocopieName = '';
+        // $attestationName = '';
+        // $releverName = '';
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public/Nouveau');
         }
-        if ($request->hasFile('extrait')) {
-            $extraitName = $request->extrait->store('public/Nouveau');
-        }
-        if ($request->hasFile('attestation')) {
-            $attestationName = $request->attestation->store('public/Nouveau');
-        }
-        if ($request->hasFile('photocopie')) {
-            $photocopieName = $request->photocopie->store('public/Nouveau');
-        }
-        if ($request->hasFile('relever')) {
-            $releverName = $request->relever->store('public/Nouveau');
-        }
+        // if ($request->hasFile('extrait')) {
+        //     $extraitName = $request->extrait->store('public/Nouveau');
+        // }
+        // if ($request->hasFile('attestation')) {
+        //     $attestationName = $request->attestation->store('public/Nouveau');
+        // }
+        // if ($request->hasFile('photocopie')) {
+        //     $photocopieName = $request->photocopie->store('public/Nouveau');
+        // }
+        // if ($request->hasFile('relever')) {
+        //     $releverName = $request->relever->store('public/Nouveau');
+        // }
         $phoneFinale = '';
         $phoneComplet = '221'.$request->phone;
         if (strlen($request->phone) == 12 ) {
@@ -100,10 +100,10 @@ class NouveauController extends Controller
             $add_nouveau->email = $request->email;
             $add_nouveau->phone = $phoneFinale;
             $add_nouveau->image = $imageName;
-            $add_nouveau->extrait = $extraitName;
-            $add_nouveau->attestation = $attestationName;
-            $add_nouveau->photocopie = $photocopieName;
-            $add_nouveau->relever = $releverName;
+            // $add_nouveau->extrait = $extraitName;
+            // $add_nouveau->attestation = $attestationName;
+            // $add_nouveau->photocopie = $photocopieName;
+            // $add_nouveau->relever = $releverName;
             $add_nouveau->commune_id = $request->commune;
             $add_nouveau->immeuble_id =  $immeuble->id;
             $add_nouveau->status = 0;

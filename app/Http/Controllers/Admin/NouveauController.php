@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\ValidateDocument;
 use Illuminate\Support\Facades\Storage;
 use App\Helpers\Sms;
+use App\Model\Admin\Faculty;
 use App\Model\Admin\Immeuble_chambre;
 use App\Model\User\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -302,7 +303,9 @@ class NouveauController extends Controller
         $immeubles = Immeuble::where('status',1)->first();
         $departement = Departement::all();
         $show_nouveau = Etudiant::find($id);
-        return view('admin.nouveau.show',compact('show_nouveau','departement','immeubles'));
+        $puliques = Faculty::where('for',0)->get();
+        $prives = Faculty::where('for',1)->get();
+        return view('admin.nouveau.show',compact('show_nouveau','departement','immeubles','puliques','prives'));
     }
 
     /**
@@ -394,6 +397,7 @@ class NouveauController extends Controller
         $update_nouveau->email = $request->email;
         $update_nouveau->phone = $request->phone;
         $update_nouveau->commune_id = $request->commune;
+        $update_nouveau->faculty_id = $request->filliere;
         $update_nouveau->save();
         Toastr::success('Votre etudiant a ete modifier','Modification Etudiant', ["positionClass" => "toast-top-right"]);
         return back();
