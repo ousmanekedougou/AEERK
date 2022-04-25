@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware(['auth:admin','isEduc']);
+    }
     /**
      * Display a listing of the resource.
      *

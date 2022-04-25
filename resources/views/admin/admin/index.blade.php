@@ -59,7 +59,7 @@
                   </td>
                   <td>{{ $admin->status? 'Active' : 'Desactive' }}</td>
                   <td>
-                    @if($admin->is_admin != 1)
+                    @if($admin->is_admin != 1 && $admin->is_admin < 5)
                     <a href="" data-toggle="modal" data-id="" data-name="" data-target="#modal-default-update-admin-{{$admin->id}}"><i class="glyphicon glyphicon-edit"></i></a>
                     @elseif($admin->is_admin == 1)
                       Super Admin

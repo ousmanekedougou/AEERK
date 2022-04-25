@@ -32,7 +32,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- <li class="header">PARAMETRES</li> -->
-        @if (admin()->is_admin == 1)
+        @if (admin()->is_admin == 1 || admin()->is_admin == 5)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-group"></i>
@@ -64,7 +64,7 @@
         @endif
 
         {{--
-        @if (admin()->is_admin == 4 || admin()->is_admin == 1)
+        @if (admin()->is_admin == 4 || admin()->is_admin == 1 || admin()->is_admin == 5)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-rss"></i>
@@ -82,7 +82,7 @@
         @endif
         --}}
 
-        @if (admin()->is_admin == 2 || admin()->is_admin == 1)
+        @if (admin()->is_admin == 2 || admin()->is_admin == 1 || admin()->is_admin == 5)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user-plus"></i> <span>Inscription Codification</span>
@@ -168,7 +168,7 @@
         </li>
         @endif
 
-        @if (admin()->is_admin == 3 || admin()->is_admin == 1)
+        @if (admin()->is_admin == 3 || admin()->is_admin == 1 || admin()->is_admin == 5)
         {{--
           <li class="treeview">
             <a href="#">

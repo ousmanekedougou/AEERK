@@ -18,7 +18,7 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('admin')->user()->is_admin == 1 ) {
+        if (Auth::guard('admin')->user()->is_admin == 1 || Auth::guard('admin')->user()->is_admin == 5) {
             return $next($request);
         }else {
             Toastr::error('Vous n\'aviez pas acces a cette page', 'Error Page', ["positionClass" => "toast-top-right"]);

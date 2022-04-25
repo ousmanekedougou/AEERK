@@ -67,11 +67,21 @@ class DatabaseSeeder extends Seeder
 
               
             Admin::create([
-                'name' => 'Diallo Ousmane',
-                'email' => 'yabaye07@gmail.com',
+                'name' => 'aeerk Kedougou',
+                'email' => 'aeerk.sn@gmail.com',
                 'phone' => '7700000000',
                 'status' => 1,
                 'is_admin' => 1,
+                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
+            ]);
+
+            Admin::create([
+                'name' => 'Ousmane Diallo',
+                'email' => 'laravel@gmail.com',
+                'phone' => '700000000',
+                'status' => 1,
+                'is_admin' => 5,
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'image' => 'public/Admin/Uaal6DhRm3YX7ySbmGURFHrA8fl2VY42aWLdGZM5.jpeg'
             ]);
@@ -138,7 +148,7 @@ class DatabaseSeeder extends Seeder
 
             Immeuble::create([
                 'name' => 'Immeuble 43',
-                'status' => 2
+                'status' => 1
             ]);
             Immeuble::create([
                 'name' => 'Immeuble 39',
@@ -146,7 +156,7 @@ class DatabaseSeeder extends Seeder
             ]);
             Immeuble::create([
                 'name' => 'Immeuble Zone A',
-                'status' => 1
+                'status' => 2
             ]);
 // _________________________________Debut de l'ajout des immeuble pour 43______________________________________
             // Immeuble 43 Premier

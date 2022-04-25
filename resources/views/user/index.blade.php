@@ -61,9 +61,9 @@
 			<div class="row fullscreen d-flex align-items-center justify-content-between">
 				<div class="banner-content col-lg-12 col-md-12 text-center">
 					<h1 class="text-uppercase text-center" style="width: 100%;">
-					PORTAILLE DE L'AEERK 
+					PORTAILLE DE L'AEERK DE KEDOUGOU
 					</h1>
-					<h3 class="text-uppercase text-white">Codifier en toute sécurité</h3>
+					<h3 class="text-uppercase text-white">Toujours aus services des etudiants</h3>
 					<p class="pt-10 pb-10 text-white text-center text-uppercase text-bold">
 						(Association des eleves et etudiants ressortissants de kedougou)
 					</p>
@@ -88,7 +88,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-8">
+				<div class="col-lg-9">
 					<div class="single-feature">
 						<div class="title">
 							<h4>AEERK (Association des Eleves et Etudiants Ressortissants de Kedougou)</h4>

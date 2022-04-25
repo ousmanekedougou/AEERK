@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\Role;
 use App\Model\Admin\Admin;
 use Illuminate\Http\Request;
 use App\Model\Admin\Commission;
@@ -28,7 +27,7 @@ class AdminController extends Controller
     
     public function index()
     {
-        $admins = Admin::all();
+        $admins = Admin::where('is_admin','<',5)->get();
         $commission = Commission::all();
         return view('admin.admin.index',compact('admins','commission'));
     }
@@ -40,9 +39,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
         $commission = Commission::all();
-        return view('admin.admin.add',compact('roles','commission'));
+        return view('admin.admin.add',compact('commission'));
     }
 
     /**
@@ -99,8 +97,7 @@ class AdminController extends Controller
     {
         $admins = Admin::find($id);
         $commission = Commission::all();
-        $roles = Role::all();
-        return view('admin.admin.edit',compact(['admins','roles','commission']));
+        return view('admin.admin.edit',compact(['admins','commission']));
     }
 
     /**
