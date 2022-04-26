@@ -15,8 +15,9 @@ class EmploiController extends Controller
      */
     public function index()
     {
-        $emplois = Education::where('type',2)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.emploi.index',compact('emplois'));
+        return back();
+        // $emplois = Education::where('type',2)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        // return view('user.emploi.index',compact('emplois'));
     }
 
     /**

@@ -1,4 +1,5 @@
 
+	{{--
 	<!-- Start cta-two Area -->
 	 <section class="cta-two-area">
 		<div class="slider_container">
@@ -13,6 +14,7 @@
 				</div>
 		</div>	
 	</section> 
+	--}}
 			<!-- End cta-two Area -->
 <!-- {!! Toastr::message() !!} -->
 	

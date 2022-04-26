@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
            Info::create(
             [
                 'email' => 'aeerk.sn@gmail.com',
-                'phone' => '770433235',
+                'phone' => '782238288',
                 'adresse' => 'Rue 39x30 Medina-Dakar',
                 'bp' => '10500',
             ]);

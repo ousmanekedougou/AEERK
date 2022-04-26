@@ -15,8 +15,9 @@ class ConcourController extends Controller
      */
     public function index()
     {
-        $concours = Education::where('type',4)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.concour.index',compact('concours'));
+        return back();
+        // $concours = Education::where('type',4)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        // return view('user.concour.index',compact('concours'));
     }
 
     /**

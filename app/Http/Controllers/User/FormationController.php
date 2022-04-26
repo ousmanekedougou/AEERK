@@ -15,8 +15,9 @@ class FormationController extends Controller
      */
     public function index()
     {
-        $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.formation.index',compact('formations'));
+        return back();
+        // $formations = Education::where('type',3)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        // return view('user.formation.index',compact('formations'));
     }
 
     /**

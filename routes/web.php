@@ -29,6 +29,7 @@
         Route::resource('/systeme','SystemeController');
         Route::get('/recrutement','RecrutementController@index')->name('recrutement.index');
         Route::post('/recrutement','RecrutementController@index')->name('recrutement.store');
+        Route::get('/bibliotheque','BibliothequeController@index')->name('bibliotheque.index');
     });
 
     // Route::get('/pdf',function(){

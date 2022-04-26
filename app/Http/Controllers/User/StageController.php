@@ -17,8 +17,9 @@ class StageController extends Controller
      */
     public function index()
     {
-        $stages = Education::where('type',5)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.stage.index',compact('stages'));
+        return back();
+        // $stages = Education::where('type',5)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        // return view('user.stage.index',compact('stages'));
     }
 
     /**

@@ -15,8 +15,9 @@ class BourseController extends Controller
      */
     public function index()
     { 
-        $bourses = Education::where('type',1)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
-        return view('user.bourse.index',compact('bourses'));
+        return back();
+        // $bourses = Education::where('type',1)->where('status',1)->orderBy('created_at','DESC')->paginate(10);
+        // return view('user.bourse.index',compact('bourses'));
     }
 
     /**

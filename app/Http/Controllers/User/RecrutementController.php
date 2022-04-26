@@ -12,10 +12,11 @@ class RecrutementController extends Controller
 {
       public function index()
     {
-        $fillieres = 1;
-        $etablissements = 1;
-        $departements = Departement::all();
-        return view('user.recrutement.index',compact('fillieres','etablissements','departements'));
+        return back();
+        // $fillieres = 1;
+        // $etablissements = 1;
+        // $departements = Departement::all();
+        // return view('user.recrutement.index',compact('fillieres','etablissements','departements'));
     }
 
       public function store(Request $request)

@@ -80,13 +80,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
-					<div class="single-feature">
-						<div class="desc-wrap">
-							<p>
-								<img src="{{ asset('user/img/3ccs.jpg') }}" style="width: 100%;height:auto;" alt="" srcset="">
-							</p>								
-						</div>
-					</div>
+					<img src="{{ asset('user/img/3ccs.jpg') }}" style="width: 100%;height:auto;" alt="" srcset="">
 				</div>
 				<div class="col-lg-9">
 					<div class="single-feature">
@@ -113,7 +107,7 @@
 				<div class="row d-flex justify-content-center">
 					<div class="menu-content pb-70 col-lg-8">
 						<div class="title text-center">
-							<h1 class="mb-10">Le personnelle du bureau</h1>
+							<h1 class="mb-10">Quelques documents</h1>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sit?</p>
 						</div>
 					</div>
@@ -322,14 +316,14 @@
 					<div class="row details-content">
 						<div class="col single-detials">
 							<span class="lnr lnr-graduation-hat"></span>
-							<a href="{{ route('emploi.index')}}"><h4>Boite a idees</h4></a>		
+							<a href=""><h4>Boite a idees</h4></a>		
 							<p class="text-white text-justify">
 								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 							</p>						
 						</div>
 						<div class="col single-detials">
 							<span class="lnr lnr-license"></span>
-							<a href="{{ route('stage.index')}}"><h4>Une biblioteque</h4></a>		
+							<a href=""><h4>Une biblioteque</h4></a>		
 							<p class="text-white text-justify">
 								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 							</p>						
@@ -339,14 +333,14 @@
 					<div class="row details-content">
 						<div class="col single-detials">
 							<span class="lnr lnr-graduation-hat"></span>
-							<a href="{{ route('formation.index')}}"><h4>Formations</h4></a>		
+							<a href=""><h4>Formations</h4></a>		
 							<p class="text-white text-justify">
 								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 							</p>						
 						</div>
 						<div class="col single-detials">
 							<span class="lnr lnr-license"></span>
-							<a href="{{ route('concour.index')}}"><h4>Concours</h4></a>		
+							<a href=""><h4>Concours</h4></a>		
 							<p class="text-white text-justify">
 								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 							</p>						
