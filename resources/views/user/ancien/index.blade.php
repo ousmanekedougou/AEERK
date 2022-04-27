@@ -6,6 +6,7 @@
     .fa-thumbs-up:hover{
         color:red;
     }
+	.banner-area{background:url('user/img/etudiants-kdg.jpg') right;background-size:cover}
   </style>
   	{{--<link rel="stylesheet" href="{{asset('user/build/css/demo.css')}}">--}}
 	<link rel="stylesheet" href="{{asset('user/build/css/intlTelInput.min.css')}}">
