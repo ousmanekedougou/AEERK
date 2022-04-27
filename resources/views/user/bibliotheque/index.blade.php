@@ -10,6 +10,7 @@
 		color: black;
 		text-decoration: underline;
 	}
+	.banner-area{background:url('user/img/bibl.jpg') right;background-size:cover}
   </style>
 @endsection
  @section('main-content')

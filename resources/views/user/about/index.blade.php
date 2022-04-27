@@ -8,6 +8,7 @@
     .fa-thumbs-up:hover{
         color:red;
     }
+	.banner-area{background:url('user/img/about-us.jpg') right;background-size:cover}
   </style>
 @endsection
  @section('main-content')
