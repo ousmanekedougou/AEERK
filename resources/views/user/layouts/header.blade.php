@@ -49,7 +49,7 @@
 					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
 					--}}
 					<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça marche</a></li>
-					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('bibliotheque.index') }}"><i class="fa fa-address-book fa_ajout"></i> Bibliothèque</a></li>
+					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('bibliotheque.index') }}"><i class="fa fa-book fa_ajout"></i> Bibliothèque</a></li>
 					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>
 				</ul>
 			</nav><!-- #nav-menu-container -->		    		

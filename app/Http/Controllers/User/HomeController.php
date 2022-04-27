@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Model\User\Document;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $documents = Document::where('status',1)->limit(8)->get();
+        return view('user.index',compact('documents'));
     }
 
     /**

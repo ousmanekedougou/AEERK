@@ -40,14 +40,17 @@
 						<div class="desc-wrap">
 							<div class="row" style="padding-top:10px;">
 								<div class="col-lg-3 text-center">
-									<div class="single-element-widget">
-										<h6 class="text-center">Categories</h6>
-										<div class="default-select" id="default-select">
-											@foreach($categories as $cate)
-												<a href="{{ route('bibliotheque.show',$cate->slug) }}">{{$cate->name}}</a> 
-											@endforeach
-										</div>
-									</div>
+									<nav id="nav-menu-container">
+										<ul class="nav-menu">
+											<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Categories</a>
+											<ul class="text-center">
+												@foreach($categories as $cate)
+													<li><a href="{{ route('bibliotheque.show',$cate->slug) }}">{{$cate->name}}</a></li>
+													@endforeach
+												</ul>
+											</li>
+										</ul>
+									</nav>
 								</div>
 								<div class="col-lg-9">
 									<form action="#">
