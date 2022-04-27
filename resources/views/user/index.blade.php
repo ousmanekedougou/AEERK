@@ -119,7 +119,7 @@
 								<div class="thumb-wrap relative">
 									<div class="thumb relative">
 										<div class="overlay overlay-bg"></div>	
-										<img class="img-fluid" src="{{$doc->image}}" alt="">
+										<img class="img-fluid" src="{{Storage::url($doc->image)}}" alt="">
 									</div>								
 								</div>
 								<div class="details">
