@@ -30,6 +30,7 @@
         Route::get('/recrutement','RecrutementController@index')->name('recrutement.index');
         Route::post('/recrutement','RecrutementController@index')->name('recrutement.store');
         Route::get('/bibliotheque','BibliothequeController@index')->name('bibliotheque.index');
+        Route::get('/bibliotheque/category/{slug}','BibliothequeController@show')->name('bibliotheque.show');
     });
 
     // Route::get('/pdf',function(){

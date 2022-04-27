@@ -216,11 +216,13 @@
                             <input type="radio" name="role" value="3" id=""> Pedagogie 
                           </label>
                         </div>
+                        {{--
                          <div class="col-lg-3">
                           <label class="col-form-label text-md-right" for="role"> 
                             <input type="radio" name="role" value="4" id=""> Article 
                           </label>
                         </div>
+                        --}}
                       </div>
                   </div>
                 </div>
@@ -275,11 +277,13 @@
                             <input type="radio" name="role" value="3" id=""  @if($admin->is_admin == 3) checked @endif > Pedagogie 
                           </label>
                         </div>
-                         <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
+                        {{--
+                        <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                           <label class="col-form-label text-md-right" for="role"> 
                             <input type="radio" name="role" value="4" id=""  @if($admin->is_admin == 4) checked @endif > Article 
                           </label>
                         </div>
+                        --}}
                       </div>
                   </div>
                 </div>

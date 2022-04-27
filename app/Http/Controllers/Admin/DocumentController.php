@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Model\Admin\Document;
-use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Model\User\Document;
+use App\Model\User\Type;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -25,13 +25,13 @@ class DocumentController extends Controller
 
     public function index() {
         
-        $document_all = Document::all();
+        $document_all = Type::all();
         return view('admin.document.index',compact('document_all'));
     }
     
     public function create()
     {
-        return view('admin.document.add');
+        
     }
 
     /**
@@ -42,26 +42,62 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $this->validate($request,[
-            'libele' => 'required|string',
-            'type' => 'required|string',
-            'image' => 'required|mimes:pdf,PDF',
-            'resume' => 'required|string',
-        ]);
+        if ($request->forme == 1) {
+            $validator = $this->validate($request,[
+            'name' => 'required|string',
+            'slug' => 'string|unique:documents',
+            ]);
 
-        $add_doc = new Document();
-        if ($request->hasFile('image')) {
-            $imageName = $request->image->store('public/Document');
+            Type::create([
+                'name' => $request->name,
+                'slug' => $request->name,
+            ]);
+
+            Toastr::success('Votre categorie a ete ajouter', 'Ajout de categorie', ["positionClass" => "toast-top-right"]);
+            return back();
+        }elseif ($request->forme == 2) {
+            $validator = $this->validate($request,[
+                'title' => 'required|string',
+                'sujet' => 'required|string',
+                'auteur' => 'required|string',
+                'date' => 'required|date',
+                'image' => 'required|mimes:jpeg,png,jpg,gif,ijf',
+                'file' => 'required|mimes:pdf,PDF',
+                'resume' => 'required|string',
+            ]);
+            // dd($request->all());
+
+            $imageName = '';
+            $fileName = '';
+
+            $add_doc = new Document();
+            if ($request->hasFile('image')) {
+                $imageName = $request->image->store('public/Document');
+            }
+            if ($request->hasFile('file')) {
+                $fileName = $request->file->store('public/Document');
+            }
+            $status = '';
+            if($request->status != null){
+                $status = $request->status;
+            }else {
+                $status = 0;
+            }
+
+            $add_doc->title = $request->title;
+            $add_doc->auteur = $request->auteur;
+            $add_doc->subject = $request->sujet;
+            $add_doc->type_id = $request->type;
+            $add_doc->status = $status;
+            $add_doc->pub_at = $request->date;
+            $add_doc->slug = $request->title.'/'.$request->type.'/'.$request->sujet;
+            $add_doc->image = $imageName;
+            $add_doc->file = $fileName;
+            $add_doc->desc = $request->resume;
+            $add_doc->save();
+            Toastr::success('Votre document a ete ajouter', 'Ajout Document', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('admin.document.index');
         }
-
-        $add_doc->libele = $request->libele;
-        $add_doc->type = $request->type;
-        $add_doc->resume = $request->resume;
-        $add_doc->status = $request->status;
-        $add_doc->image = $imageName;
-        $add_doc->save();
-        Toastr::success('Votre document a ete ajouter', 'Ajout Document', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('admin.document.index');
     }
 
     /**
@@ -72,7 +108,9 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        //
+        $type = Type::where('id',$id)->first();
+        $documents = Document::where('type_id',$id)->paginate(10);
+        return view('admin.document.show',compact('documents','type'));
     }
 
     /**
@@ -96,22 +134,57 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_doc = Document::find($id);
-        $docment = $update_doc->image;
-        if ($request->hasFile('image')) {
-            $imageName = $request->image->store('public/Document');
-            Storage::delete($docment);
-        }elseif ($request->image == Null){
-            $imageName = $update_doc->image;
+        if ($request->forme == 1) {
+            Type::where('id',$id)->update([
+                'name' => $request->name,
+                'slug' => $request->name,
+            ]);
+            Toastr::success('Votre categorie a ete modifier', 'Modification de categorie', ["positionClass" => "toast-top-right"]);
+            return back();
+        }else {
+            // dd($request->all());
+            $update_doc = Document::where('id',$id)->first();
+            $docment = $update_doc->image;
+            $imageName = '';
+            $fileName = '';
+            $dateUpdate = '';
+            if ($request->hasFile('image')) {
+                $imageName = $request->image->store('public/Document');
+                Storage::delete($docment);
+            }elseif ($request->image == Null){
+                $imageName = $update_doc->image;
+            }
+            $file_doc = $update_doc->file;
+            if ($request->hasFile('file')) {
+                $fileName = $request->file->store('public/Document');
+                Storage::delete($file_doc);
+            }elseif ($request->file == Null){
+                $fileName = $update_doc->file;
+            }
+             $status = '';
+            if($request->status != null){
+                $status = $request->status;
+            }else {
+                $status = 0;
+            }
+            if ($request->date == null) {
+                $dateUpdate = $update_doc->pub_at;
+            }else {
+                $dateUpdate = $request->date;
+            }
+            $update_doc->title = $request->title;
+            $update_doc->auteur = $request->auteur;
+            $update_doc->desc = $request->resume;
+            $update_doc->status = $status;
+            $update_doc->pub_at = $dateUpdate;
+            $update_doc->slug = $request->title.'/'.$request->type.'/'.$request->sujet;
+
+            $update_doc->image = $imageName;
+            $update_doc->file = $fileName;
+            $update_doc->save();
+            Toastr::success('Votre document a ete modifier', 'Modification Document', ["positionClass" => "toast-top-right"]);
+            return back();
         }
-        $update_doc->libele = $request->libele;
-        $update_doc->type = $request->type;
-        $update_doc->resume = $request->resume;
-        $update_doc->status = $request->status;
-        $update_doc->image = $imageName;
-        $update_doc->save();
-        Toastr::success('Votre document a ete modifier', 'Modification Document', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('admin.document.index');
     }
 
     /**
@@ -120,15 +193,25 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $doc_delete = Document::find($id);
-        $doc_img = $doc_delete->image;
-        Storage::delete($doc_img);
-        $doc_delete->delete();
-        Toastr::success('Votre document a ete supprimer', 'Suppression Document', ["positionClass" => "toast-top-right"]);
-        return back();
+        if ($request->forme == 1) {
+            Type::find($id)->delete();
+            Toastr::success('Votre categorie a ete supprimer', 'Suppression Categorie', ["positionClass" => "toast-top-right"]);
+            return back();
+        }else {
+            $doc_delete = Document::find($id);
+            $doc_img = $doc_delete->image;
+            $doc_file = $doc_delete->file;
+            Storage::delete($doc_img);
+            Storage::delete($doc_file);
+            $doc_delete->delete();
+            Toastr::success('Votre document a ete supprimer', 'Suppression Document', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
     }
 
 
 }
+
+

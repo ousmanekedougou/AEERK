@@ -20,8 +20,11 @@ class CreateDocumentsTable extends Migration
             $table->string('auteur');
             $table->date('pub_at');
             $table->longText('desc');
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('file');
             $table->integer('type_id');
+            $table->string('slug');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

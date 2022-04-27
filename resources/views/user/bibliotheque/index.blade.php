@@ -40,15 +40,11 @@
 							<div class="row" style="padding-top:10px;">
 								<div class="col-lg-3 text-center">
 									<div class="single-element-widget">
-										<h6 class="text-left">Categories</h6>
+										<h6 class="text-center">Categories</h6>
 										<div class="default-select" id="default-select">
-											<select>
-												<option value="1">English</option>
-												<option value="1">Spanish</option>
-												<option value="1">Arabic</option>
-												<option value="1">Portuguise</option>
-												<option value="1">Bengali</option>
-											</select>
+											@foreach($categories as $cate)
+												<a href="{{ route('bibliotheque.show',$cate->slug) }}">{{$cate->name}}</a> 
+											@endforeach
 										</div>
 									</div>
 								</div>
@@ -76,26 +72,27 @@
 				<div class="row">
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
-						
+						@foreach($documents as $doc)
 						<div class="row">
 							<div class="col-lg-3">
-								<img src="{{ asset('user/img/3ccs.jpg') }}" style="width: 100%;height:auto;" alt="" srcset="">
+								<img src="{{Storage::url($doc->image)}}" style="width: 100%;height:auto;" alt="" srcset="">
 							</div>
 							<div class="col-lg-9" style="padding-top: 5px;">
-								<h6 class="mb-30 text-uppercase" style="margin-bottom: -2px;">Titre du documets</h6>
-								<div> <span class="prefix">Auteur : </span> Ousmane Diallo </div>
-								<div> <span class="prefix">Suject : </span> Sur l'emmigration des jeunnes </div>
-								<div> <span class="prefix">Date de publication : </span> le 20/12/1900 </div>
-								<div> <span class="prefix"> Resume : </span> 
-									<div>
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore corrupti maxime provident! Velit, rem voluptatibus. Excepturi quasi enim porro ipsam, magni recusandae, totam quidem dolorum, ut consequuntur perferendis illum voluptate.
-										<div class="button-group-area">
-											<a href="#" class="genric-btn primary-border radius arrow small">Voire le documet<span class="lnr lnr-arrow-right"></span></a>
-										</div>
+								<h6 class="mb-30 text-uppercase" style="margin-bottom: -2px;">{{$doc->title}}</h6>
+								<div> <span class="prefix">Auteur : </span> {{$doc->auteur}} </div>
+								<div> <span class="prefix">Suject : </span> {{$doc->subject}} </div>
+								<div> <span class="prefix">Date de publication : </span> {{$doc->pub_at}} </div>
+								<div>
+									<span class="prefix"> Resume : </span> 
+									{!! $doc->desc !!}
+									<div class="button-group-area">
+										<a href="{{Storage::url($doc->file)}}" class="genric-btn primary-border radius arrow small">Voire le documet<span class="lnr lnr-arrow-right"></span></a>
 									</div>
 								</div>
 							</div>
 						</div>
+						<br>
+						@endforeach
 					</div>
 					<div class="col-lg-1"></div>
 				</div>

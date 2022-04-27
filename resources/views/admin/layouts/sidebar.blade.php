@@ -195,8 +195,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href=""><i class="fa fa-circle-o text-primary"></i> <span>Bibliothèque</span></a></li>
-              <li><a href="{{ route('admin.filliere.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Fillieres</span></a></li>
+              <li><a href="{{ route('admin.document.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Bibliothèque</span></a></li>
             </ul>
           </li>
           <li class="treeview">
