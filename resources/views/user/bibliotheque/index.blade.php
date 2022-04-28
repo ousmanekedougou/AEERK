@@ -53,10 +53,18 @@
 									</nav>
 								</div>
 								<div class="col-lg-9">
-									<form action="#">
+									<form action="{{ route('bibliotheque.search') }}" method="post">
+										@csrf
 										<div class="row">
-											<div class="col-lg-9"><input type="text"  name="search" placeholder="Rechercher votre documents" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Rechercher votre documents'" required class="single-input-primary" style="border: 1px solid blue;"></div>
-											<div class="col-lg-3" style="padding:0px;margin-left:-53px;"><button style="" type="submit" class="genric-btn primary-border radius arrow">Rechercher <span class="lnr lnr-search"></span></button></div>
+											<div class="col-lg-9">
+												<input type="text" value="{{ old('q') }}" class="single-input-primary form-control @error('q') is-invalid @enderror"  name="q" placeholder="Rechercher votre documents" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Rechercher votre documents'" required style="border: 1px solid blue;">
+												@error('q')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error">{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+											<div class="col-lg-3" style="padding:0px;margin-left:-53px;"><button type="submit" class="genric-btn primary-border radius arrow">Rechercher <span class="lnr lnr-search"></span></button></div>
 										</div>
 									</form>
 								</div>									
@@ -79,6 +87,7 @@
 						@foreach($documents as $doc)
 						<div class="row">
 							<div class="col-lg-3">
+								
 								<img src="{{Storage::url($doc->image)}}" style="width: 100%;height:auto;" alt="" srcset="">
 							</div>
 							<div class="col-lg-9" style="padding-top: 5px;">
