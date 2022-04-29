@@ -88,7 +88,7 @@
 						<div class="row">
 							<div class="col-lg-3">
 								
-								<img src="{{Storage::url($doc->image)}}" style="width: 100%;height:auto;" alt="" srcset="">
+								<img src="{{Storage::disk('public')->url("{$doc->image}")}}" style="width: 100%;height:auto;" alt="" srcset="">
 							</div>
 							<div class="col-lg-9" style="padding-top: 5px;">
 								<h6 class="mb-30 text-uppercase" style="margin-bottom: -2px;">{{$doc->title}}</h6>
