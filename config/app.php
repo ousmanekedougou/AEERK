@@ -167,6 +167,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -175,6 +176,7 @@ return [
         MercurySeries\Flashy\FlashyServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -240,6 +242,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         "PDF" => Barryvdh\DomPDF\Facade::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 
