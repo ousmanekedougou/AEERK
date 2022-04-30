@@ -72,10 +72,10 @@ class DocumentController extends Controller
 
             $add_doc = new Document();
             if ($request->hasFile('image')) {
-                $imageName = $request->image->store('public/Document');
+                $imageName = $request->image->store('public/storage/Document');
             }
             if ($request->hasFile('file')) {
-                $fileName = $request->file->store('public/Document');
+                $fileName = $request->file->store('public/storage/Document');
             }
             $status = '';
             if($request->status != null){
