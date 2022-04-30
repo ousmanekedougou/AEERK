@@ -109,7 +109,8 @@ class DocumentController extends Controller
     public function show($id)
     {
         $type = Type::where('id',$id)->first();
-        $documents = Document::where('type_id',$id)->paginate(10);
+        $documents = Document::where('type_id',$id)->get();
+        dd($documents);
         return view('admin.document.show',compact('documents','type'));
     }
 
