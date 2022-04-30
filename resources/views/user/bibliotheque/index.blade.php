@@ -98,7 +98,7 @@
 									<span class="prefix"> Resume : </span> 
 									{!! $doc->desc !!}
 									<div class="button-group-area">
-										<a href="{{Storage::url($doc->file)}}" class="genric-btn primary-border radius arrow small">Voire le documet<span class="lnr lnr-arrow-right"></span></a>
+										<a href="{{Storage::url($doc->file)}}" target="_blank" class="genric-btn primary-border radius arrow small">Voire le documet<span class="lnr lnr-arrow-right"></span></a>
 									</div>
 								</div>
 							</div>
