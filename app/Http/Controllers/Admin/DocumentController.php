@@ -62,22 +62,23 @@ class DocumentController extends Controller
                 'sujet' => 'required|string',
                 'auteur' => 'required|string',
                 'date' => 'required|date',
-                // 'image' => 'required|mimes:jpeg,png,jpg,gif,ijf',
+                'image' => 'required|mimes:jpeg,png,jpg,gif,ijf',
                 'file' => 'required|mimes:pdf,PDF',
                 'resume' => 'required|string',
             ]);
             // dd($request->all());
 
-            // $imageName = '';
+            $imageName = '';
             $fileName = '';
 
             $add_doc = new Document();
-            // if ($request->hasFile('image')) {
-            //     $imageName = $request->image->store('public/Document');
-            // }
-            $imagePath = $request->file('image')->store('public');
-            $image = Image::make(Storage::get($imagePath))->resize(320,240)->encode();
-            Storage::put($imagePath,$image);
+            if ($request->hasFile('image')) {
+                $imageName = $request->image->store('public/Document');
+            }
+            
+            // $imageName = $request->file('image')->store('public');
+            // $image = Image::make(Storage::get($imageName))->resize(320,240)->encode();
+            // Storage::put($imageName,$image);
 
             if ($request->hasFile('file')) {
                 $fileName = $request->file->store('public/Document');
@@ -96,7 +97,7 @@ class DocumentController extends Controller
             $add_doc->status = $status;
             $add_doc->pub_at = $request->date;
             $add_doc->slug = $request->title.'/'.$request->type.'/'.$request->sujet;
-            $add_doc->image = $imagePath;
+            $add_doc->image = $imageName;
             $add_doc->file = $fileName;
             $add_doc->desc = $request->resume;
             $add_doc->save();
