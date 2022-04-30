@@ -72,10 +72,10 @@ class DocumentController extends Controller
 
             $add_doc = new Document();
             if ($request->hasFile('image')) {
-                $imageName = $request->image->store('public/storage/Document');
+                $imageName = $request->image->store('public/Document');
             }
             if ($request->hasFile('file')) {
-                $fileName = $request->file->store('public/storage/Document');
+                $fileName = $request->file->store('public/Document');
             }
             $status = '';
             if($request->status != null){
@@ -109,8 +109,7 @@ class DocumentController extends Controller
     public function show($id)
     {
         $type = Type::where('id',$id)->first();
-        $documents = Document::where('type_id',$id)->get();
-        dd($documents);
+        $documents = Document::where('type_id',$id)->paginate(10);
         return view('admin.document.show',compact('documents','type'));
     }
 
