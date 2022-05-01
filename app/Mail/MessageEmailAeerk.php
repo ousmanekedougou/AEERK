@@ -35,7 +35,6 @@ class MessageEmailAeerk extends Mailable
      */
     public function build()
     {
-        
         $user = User::first();
         $info = Info::first();
         return $this->from($user->sendmail)->markdown('emails.admins.created',compact('info','user'));
