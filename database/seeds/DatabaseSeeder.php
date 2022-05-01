@@ -9,6 +9,7 @@ use App\Model\Admin\Chambre;
 use App\Model\Admin\Commission;
 use App\Model\Admin\Commune;
 use App\Model\Admin\Departement;
+use App\Model\Admin\Faculty;
 use App\Model\Admin\Immeuble;
 use App\Model\Admin\Info;
 use App\Model\Admin\Permission;
@@ -34,6 +35,42 @@ class DatabaseSeeder extends Seeder
                 'phone' => '782238288',
                 'adresse' => 'Rue 39x30 Medina-Dakar',
                 'bp' => '10500',
+            ]);
+
+            Faculty::create([
+                'name' => 'Faculté de Médecine, de Pharmacie et d\'Odontostomatologie.',
+                'for' => 0,
+                'slug' => 'Faculté de Médecine, de Pharmacie et d\'Odontostomatologie.'
+            ]);
+
+            Faculty::create([
+                'name' => 'Faculté des Lettres et Sciences Humaines',
+                'for' => 0,
+                'slug' => 'Faculté des Lettres et Sciences Humaines'
+            ]);
+
+            Faculty::create([
+                'name' => 'Faculté des Sciences Juridiques et Politiques',
+                'for' => 0,
+                'slug' => 'Faculté des Sciences Juridiques et Politiques'
+            ]);
+
+            Faculty::create([
+                'name' => 'Faculté des Sciences et Techniques',
+                'for' => 0,
+                'slug' => 'Faculté des Sciences et Techniques'
+            ]);
+
+            Faculty::create([
+                'name' => 'Faculté des Sciences et Technologies de l\'Education et de la Formation',
+                'for' => 0,
+                'slug' => 'Faculté des Sciences et Technologies de l\'Education et de la Formation'
+            ]);
+
+            Faculty::create([
+                'name' => 'Faculté des Sciences Economiques et de Gestion',
+                'for' => 0,
+                'slug' => 'Faculté des Sciences Economiques et de Gestion'
             ]);
 
             $com = [

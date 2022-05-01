@@ -125,6 +125,7 @@
         </table>
       </div>
       --}}
+      {{--
       <div class="row">
         <section class="content-header">
           <div class="box-header">
@@ -184,7 +185,7 @@
             </div>
           @endforeach
       </div>
-
+      --}}
 {{-- la partie des numero et prix de codification --}}
       <div class="box-body">
         <section class="content-header">

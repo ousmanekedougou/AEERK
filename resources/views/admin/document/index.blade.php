@@ -171,7 +171,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                  <button type="submit" class="btn btn-primary">Ajouter</button>
+                  <button type="submit" class="btn btn-primary">Modifier</button>
                 </div>
               </div>
               </form>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                  <button type="submit" class="btn btn-primary">Modifier</button>
+                  <button type="submit" class="btn btn-primary">Ajouter</button>
                 </div>
               </div>
               </form>
