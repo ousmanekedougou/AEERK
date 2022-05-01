@@ -38,9 +38,9 @@ class DatabaseSeeder extends Seeder
             ]);
 
             Faculty::create([
-                'name' => 'Faculté de Médecine, de Pharmacie et d\'Odontostomatologie.',
+                'name' => 'Faculté de Médecine, de Pharmacie et d\'Odontostomatologie',
                 'for' => 0,
-                'slug' => 'Faculté de Médecine, de Pharmacie et d\'Odontostomatologie.'
+                'slug' => 'Faculté de Médecine, de Pharmacie et d\'Odontostomatologie'
             ]);
 
             Faculty::create([
