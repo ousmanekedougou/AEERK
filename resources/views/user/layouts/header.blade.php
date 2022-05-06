@@ -27,7 +27,7 @@
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
 					<li class="{{ set_active_roote('index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> Accueil</a></li>
-					<li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-home fa_ajout"></i> A propos</a></li>
+					<li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-address-card fa_ajout"></i> A propos</a></li>
 					
 					<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Inscription</a>
 						<ul>
