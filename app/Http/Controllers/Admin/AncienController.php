@@ -138,7 +138,7 @@ class AncienController extends Controller
                 }
             }
 
-            // La partie des sms
+            // La partie des sms de orange
         }
         Toastr::success('Votre message a ete envoyer', 'Envoi Message Sms', ["positionClass" => "toast-top-right"]);
         return back();
@@ -293,7 +293,6 @@ class AncienController extends Controller
         }else {
             $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',1)->first();
         }
-        // dd($chambre);
         if($chambre) {
             $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
             if($ancien->count() < $chambre->nombre){
