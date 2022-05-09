@@ -27,12 +27,10 @@ class InfoController extends Controller
     public function index()
     {
         $infos = Info::first();
-        $partener = Partenaire::all();
-        $social_reseau = Social::all();
         $soldes = Solde::first();
         $options = Option::all();
         $autorisation = User::first();
-        return view('admin.info.index',compact('infos','social_reseau','partener','soldes','options','autorisation'));
+        return view('admin.info.index',compact('infos','soldes','options','autorisation'));
        
     }
 

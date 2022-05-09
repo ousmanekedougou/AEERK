@@ -93,8 +93,8 @@
                   <span class="info-box-icon"><i class="glyphicon glyphicon-flag"></i></span>
 
                   <div class="info-box-content">
-                    <span class="info-box-text">Total Partenaires</span>
-                    <span class="info-box-number">{{$partenaire_all->count()}}</span>
+                    <span class="info-box-text">Autres Options</span>
+                    <span class="info-box-number"></span>
 
                     <div class="progress">
                       <div class="progress-bar" style="width: 20%"></div>

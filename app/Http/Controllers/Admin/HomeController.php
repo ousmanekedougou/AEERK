@@ -26,7 +26,6 @@ class HomeController extends Controller {
         $contact_lue = Contact::where('status',1)->get();
         $admin_all = Admin::all();
         $team_all = Team::all();
-        $partenaire_all = Partenaire::all();
         
         $nouveau_total_inscrit = Etudiant::where(['ancienete' => 1 , 'status' => 0])->get();
         $nouveau_total_valider = Etudiant::where(['ancienete' => 1 , 'status' => 1])->get();
@@ -49,7 +48,7 @@ class HomeController extends Controller {
             
             'ancien_total_inscrit','ancien_total_valider','ancien_total_ommis','ancien_total_codifier',
 
-            'contact_nomLue','contact_lue','admin_all','team_all','partenaire_all','inscription_recasement','recaser',
+            'contact_nomLue','contact_lue','admin_all','team_all','inscription_recasement','recaser',
             'immeuble_nouveau'
 
             ]

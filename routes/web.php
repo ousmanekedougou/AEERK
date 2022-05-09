@@ -11,47 +11,26 @@
         Route::post('/temoignage','TemoignageController@post')->name('temoignage.post');
         Route::post('/ancien/update','AncienController@update_certificat')->name('update_certificat');
         Route::resource('/recasement','RecasementController');
-        Route::resource('/formation','FormationController');
-        Route::resource('/emploi','EmploiController');
         Route::resource('/about','AboutController');
-        Route::resource('/article','ArticleController');
-        Route::resource('/comment','CommentController');
         Route::resource('/codification','EtudiantCodificationController');
         Route::get('/reponse','EtudiantCodificationController@reponse')->name('codification.reponse');
         Route::get('/payment','EtudiantCodificationController@payment')->name('codification.payment');
         Route::put('/codification/{id}/codifier_ancien','EtudiantCodificationController@codifier_ancien')->name('codifier_ancien');
         Route::get('/createPdf/{id}/{codification_token}','EtudiantCodificationController@createPdf')->name('createPdf');
-        Route::get('/category/{id}','ArticleController@category')->name('article.category');
-        Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
-        Route::resource('/stage','StageController');
-        Route::resource('/bourse','BourseController');
-        Route::resource('/concour','ConcourController');
+      
         Route::resource('/systeme','SystemeController');
-        Route::get('/recrutement','RecrutementController@index')->name('recrutement.index');
-        Route::post('/recrutement','RecrutementController@index')->name('recrutement.store');
         Route::get('/bibliotheque','BibliothequeController@index')->name('bibliotheque.index');
         Route::get('/bibliotheque/category/{slug}','BibliothequeController@show')->name('bibliotheque.show');
         Route::post('/bibliotheque/search','BibliothequeController@search')->name('bibliotheque.search');
     });
 
-    // Route::get('/pdf',function(){
-    //     return view('user.pdf');
-    // });
+    
 
     Auth::routes();
 
     Route::prefix('/admin')->name('admin.')->group(function() 
     {
         Route::get('/home', 'Admin\HomeController@index')->name('home');
-        // Tout ce qui est blog
-        Route::resource('/post', 'Admin\PostController');
-        Route::resource('/category', 'Admin\CategoryController');
-        Route::resource('/tag', 'Admin\TagController');
-        Route::resource('/option','Admin\OptionController');
-        // Fin de tout ce qui est blog
-
-      
-
         // Tout ce qui est Parametre
         Route::resource('/info', 'Admin\InfoController');
         Route::put('/info/{id}/solde','Admin\InfoController@solde')->name('solde');
@@ -64,29 +43,14 @@
 
         Route::put('/info/{id}/autorisation','Admin\InfoController@autorisation')->name('autorisation');
 
-        
         Route::post('/info/ajouter','Admin\InfoController@add_prix')->name('add_prix');
         Route::resource('/team', 'Admin\TeamController');
-        Route::resource('/partener', 'Admin\PartenerController');
-        Route::resource('/formation', 'Admin\FormationController');
-        Route::resource('/social', 'Admin\SocialController');
-        Route::resource('/slider', 'Admin\SlideController');
-        Route::resource('/personnel', 'Admin\PersonnelController');
-        Route::resource('/disigne', 'Admin\DisigneController');
         // Fin de tout ce qui est paramettres
 
         // les options des services
-        Route::resource('/emploi', 'Admin\EmploiController');
-        Route::resource('/concour', 'Admin\ConcourController');
-        Route::resource('/abaout', 'Admin\AboutController');
-        Route::resource('/realisation', 'Admin\RealisationController');
-        Route::resource('/stage', 'Admin\StageController');
-        Route::resource('/bourse', 'Admin\BourseController');
         Route::resource('/contact', 'Admin\ContactController');
         Route::post('/contact/send', 'Admin\ContactController@post')->name('contact.post');
         Route::resource('/document', 'Admin\DocumentController');
-        Route::resource('/education','Admin\EducationController');
-        Route::resource('/systeme','Admin\StageController');
 
         Route::resource('/filliere','Admin\FacultyController');
         Route::get('/filliere/licence1/{id}', 'Admin\FacultyController@licence1')->name('filliere.licence1');
@@ -114,8 +78,6 @@
         Route::resource('/inscription', 'Admin\InscriptionController');
         Route::resource('/codification', 'Admin\CodificationController');
         Route::get('/downloadPDF', 'Admin\CodificationController@downloadPDF')->name('downloadPDF');
-        Route::get('/carte', 'Admin\CodificationController@recto')->name('carte.recto');
-        Route::get('/carte/verso', 'Admin\CodificationController@verso')->name('carte.verso');
 
         Route::put('/ancien/{id}/codifier_ancien', 'Admin\AncienController@codifier_ancien')->name('codifier_ancien');
         Route::put('/nouveau/{id}/codifier_nouveau', 'Admin\NouveauController@codifier_nouveau')->name('codifier_nouveau');

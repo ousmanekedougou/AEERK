@@ -16,19 +16,6 @@
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-      {{--
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-      --}}
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- <li class="header">PARAMETRES</li> -->
@@ -63,24 +50,6 @@
         </li>
         @endif
 
-        {{--
-        @if (admin()->is_admin == 4 || admin()->is_admin == 1 || admin()->is_admin == 5)
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-rss"></i>
-            <span>Articles</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">3</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route ('admin.post.index') }}"><i class="fa fa-circle-o"></i>Artcles</a></li>
-            <li><a href="{{ route ('admin.category.index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
-            <li><a href="{{ route ('admin.tag.index') }}"><i class="fa fa-circle-o"></i>Etiquettes</a></li>
-          </ul>
-        </li>
-        @endif
-        --}}
 
         @if (admin()->is_admin == 2 || admin()->is_admin == 1 || admin()->is_admin == 5)
         <li class="treeview">
@@ -109,22 +78,6 @@
             @endforeach
           </ul>
         </li>
-
-        {{--
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-graduation-cap"></i> <span>Carte Membres</span>
-            <span class="pull-right-container">
-            <span class="label label-warning pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route ('admin.carte.recto') }}"><i class="fa fa-id-card"></i> Carte Récto </a></li> 
-            <li><a href="{{ route ('admin.carte.verso') }}"><i class="fa fa-id-card"></i> Cartes Vérso </a></li> 
-          </ul>
-        </li>
-        --}}
-
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user-plus"></i> <span>Recasement</span>
@@ -169,24 +122,6 @@
         @endif
 
         @if (admin()->is_admin == 3 || admin()->is_admin == 1 || admin()->is_admin == 5)
-        {{--
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-building"></i> <span>Education</span>
-              <span class="pull-right-container">
-              <span class="label label-warning pull-right">4</span>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="{{ route ('admin.emploi.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Empois</span></a></li>
-              <li><a href="{{ route ('admin.formation.index') }}"><i class="fa fa-circle-o"></i>Formation</a></li>
-              <li><a href="{{ route('admin.bourse.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Bourses D'etude</span></a></li>
-              <li><a href="{{ route('admin.concour.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Concours</span></a></li>
-              <li><a href="{{ route('admin.stage.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Stage</span></a></li>
-              <li><a href="{{ route('admin.realisation.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Recrutement</span></a></li>
-            </ul>
-          </li>
-        --}}
           <li class="treeview">
             <a href="#">
               <i class="fa fa-building"></i> <span>Bibliothèque</span>
