@@ -29,7 +29,7 @@
 							<div class="thumb">
 								<img class="img-fluid" src="{{Storage::url($doc->image)}}" alt="">								
 							</div>
-							<p class="meta">{{ $doc->created_at->toFormattedDateString() }}  |  Auteur <a href="#">{{$doc->auteur}}</a></p>
+							<p class="meta">{{ $doc->pub_at }}  |  Auteur <a href="#">{{$doc->auteur}}</a></p>
 							<a href="{{Storage::url($doc->file)}}" target="_blank">
 								<h5>{{$doc->title}}</h5>
 							</a>
