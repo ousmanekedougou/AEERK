@@ -141,12 +141,14 @@
 												</form>  
 												<a onclick="document.getElementById('update-form-{{$post->id}}').submit();"> <span class="genric-btn primary">Details</span> </a>
 											 </div>
- 											<div class="col-sm-9 text-right"> 
+											 {{--
+ 											<div class="col-lg-9 text-right"> 
 												<button class=" genric-btn primary share_facebook" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-facebook-square"></i></button>
 												<button class=" genric-btn primary share_twitter" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-twitter"></i></button>
 												<button class=" genric-btn primary share_gplus" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-google-plus"></i></button>
 												<button class=" genric-btn primary share_linkedin" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-linkedin"></i></button>
 											</div>
+											--}}
 										</div>
 										
 									</div>

@@ -1,5 +1,8 @@
 @extends('admin.layouts.app')
-
+@section('headsection')
+<link rel="stylesheet" href="{{asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('admin/dist/css/table.css') }}">
+@endsection
 @section('main-content')
 
 
@@ -13,16 +16,14 @@
         <!-- Debut de la div -->
         <div class="box-body">
         <div class="">
-          <div class="box-header">
-          <a class="col-lg-offset-5 pull-right btn btn-primary mr-5" data-toggle="modal" data-id="add-immeuble" data-name="add-immeuble" data-target="#modal-default-ajouter-immeuble">Ajouter une categorie</a>
-          </div>
+          <div class="box-header"> </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table text-center responsive-table table-bordered table-striped">
                 <thead>
                 <tr class="bg-primary">
                   <th>S.No</th>
-                  <th>Nom</th>
+                  <th>Facultes</th>
                   <th>Livres</th>
                   <th>Options</th>
                 </tr>
@@ -33,8 +34,8 @@
                       <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $document->name }}</td>
-                        <td><a href="{{ route('admin.document.show',$document->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i> Voir livres</a>
-                        <a href="" class="btn btn-xs btn-success" data-toggle="modal" data-id="{{$document->id}}" data-name="{{$document->name}}" data-target="#modal-documentAdd-{{ $document->id }}"><i class="fa fa-plus"></i> Ajouter un livre</a></td>
+                        <td><a href="{{ route('admin.document.show',$document->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i> Voir</a>
+                        <a href="" class="btn btn-xs btn-success" data-toggle="modal" data-id="{{$document->id}}" data-name="{{$document->name}}" data-target="#modal-documentAdd-{{ $document->id }}"><i class="fa fa-plus"></i> Ajouter</a></td>
                         <td>
                           <a style="margin-right:5px;" data-toggle="modal" data-id="{{$document->id}}" data-name="{{$document->name}}" data-target="#modal-default-{{ $document->id }}"><i class="glyphicon glyphicon-edit"></i></a>
                         
@@ -83,105 +84,6 @@
     <!-- /.content-wrapper -->
 
 
-     {{-- Ajouter un categorie --}}
-          <div class="modal fade" id="modal-default-ajouter-immeuble">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Ajouter une categorie</h4>
-                </div>
-                <form action="{{ route('admin.document.store') }}" method="post">
-                @csrf
-                <input type="hidden" name="forme" value="1">
-                <div class="modal-body">
-                  <p>
-                  <label for="name">Nom de votre categorie</label>
-                  <input type="text"  value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="">
-                    @error('name')
-                      <span class="invalid-feedback" role="alert">
-                          <strong class="message_error">{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </p>
-                  {{--
-                  <p>
-                    <div class="pull-left radio">
-                      <label  style="font-weight:bold; margin-right:14px">
-                          <input type="radio"  value="1" class="@error('status') is-invalid @enderror" id="status"  name="status"> 
-                          Nouveau
-                          @error('status')
-                          <span class="invalid-feedback" role="alert">
-                              <strong class="message_error">{{ $message }}</strong>
-                          </span>
-                        @enderror
-                      </label>
-
-                      <label style="font-weight:bold;margin-left:14px;">
-                           <input type="radio"  value="2" class="@error('status') is-invalid @enderror" id="status"  name="status"> 
-                        Anciens
-                        @error('status')
-                        <span class="invalid-feedback" role="alert">
-                            <strong class="message_error">{{ $message }}</strong>
-                        </span>
-                      @enderror
-                      </label>
-                    </div>
-                  <br>
-                  </p>
-                  --}}
-                </div>
-                <div class="modal-footer">
-                  <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                  <button type="submit" class="btn btn-primary">Ajouter</button>
-                </div>
-              </div>
-              </form>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
-    {{-- Fin D'ajout de categorie --}}
-
-
-        
-        @foreach($document_all as $modal_immeuble)
-          <div class="modal fade" id="modal-default-{{ $modal_immeuble->id }}">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Editer Votre categorie</h4>
-                </div>
-                <form action="{{ route('admin.document.update',$modal_immeuble->id) }}" method="post" enctype="multipart/form-data">
-                @csrf
-                {{ method_field('PUT') }}
-                <div class="modal-body">
-                  <p>
-                    <input type="hidden" name="forme" value="1">
-                  <input type="text"  value="{{ old('name') ?? $modal_immeuble->name }}" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="">
-                    @error('name')
-                      <span class="invalid-feedback" role="alert">
-                          <strong class="message_error">{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                  <button type="submit" class="btn btn-primary">Modifier</button>
-                </div>
-              </div>
-              </form>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
-        @endforeach
-
-
          @foreach($document_all as $document)
           <div class="modal fade" id="modal-documentAdd-{{ $document->id }}">
             <div class="modal-dialog modal-lg">
@@ -194,8 +96,7 @@
                 <form action="{{ route('admin.document.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                  <input type="hidden" name="forme" value="2">
-                  <input type="hidden" name="type" value="{{ $document->id }}">
+                  <input type="hidden" name="faculty" value="{{ $document->id }}">
                   <div class="row">
                     <div class="col-md-6">
                       <p>
@@ -291,5 +192,27 @@
         @endforeach
 
 
+
+@endsection
+
+
+@section('footersection')
+
+<script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('admin/dist/js/table.js') }}"></script>
+<script>
+ $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 
 @endsection

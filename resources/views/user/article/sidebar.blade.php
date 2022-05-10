@@ -73,10 +73,13 @@
 									<div class="form-group d-flex flex-row">
 									   	<div class="col-autos">
 									      <div class="input-group">
-									        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre email'" >
-									      </div>
+											<form id="add-form-news-1" method="post" action="{{ route('article.store') }}">
+												@csrf
+									        	<input type="email" name="email" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre email'" >
+											</form>
+										  </div>
 									    </div>
-									    <a href="#" class="bbtns">S'inscrire</a>
+									    <a href="" onclick="document.getElementById('add-form-news-1').submit();" class="bbtns">S'inscrire</a>
 									</div>	
 									<p class="text-bottom">
 										Vous pouvez vous désabonner à tout moment

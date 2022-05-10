@@ -31,6 +31,7 @@
 	</section>
 	<!-- End banner Area -->
 
+
 	<!-- Start feature Area -->
 	<section class="feature-area pb-120">
 		<div class="container">
@@ -39,20 +40,7 @@
 					<div class="single-feature">
 						<div class="desc-wrap">
 							<div class="row" style="padding-top:10px;">
-								<div class="col-lg-3 text-center">
-									<nav id="nav-menu-container">
-										<ul class="nav-menu">
-											<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Categories</a>
-											<ul class="text-center">
-												@foreach($categories as $cate)
-													<li><a href="{{ route('bibliotheque.show',$cate->slug) }}">{{$cate->name}}</a></li>
-													@endforeach
-												</ul>
-											</li>
-										</ul>
-									</nav>
-								</div>
-								<div class="col-lg-9">
+								<div class="col-lg-12">
 									<form action="{{ route('bibliotheque.search') }}" method="post">
 										@csrf
 										<div class="row">
@@ -77,7 +65,39 @@
 	</section>
 	<!-- End feature Area -->	
 
-	
+
+
+	<!-- Start feature Area -->
+	<section class="feature-area pb-70">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="menu-content pb-70 col-lg-8">
+					<div class="title text-center">
+						<h1 class="mb-10">Des livres pour toute les facultes</h1>
+					</div>
+				</div>
+			</div>	
+			<div class="row">
+				@foreach($facultes as $faculty)
+				<div class="col-lg-4">
+					<div class="single-feature">
+						<div class="desc-wrap">
+							<h4>{{$faculty->name}}</h4>
+							<br>
+							<a href="{{ route('bibliotheque.show',$faculty->id) }}">Voir les livres</a>									
+						</div>
+					</div>
+				<br>
+				</div>
+				@endforeach											
+			</div>
+		</div>	
+	</section>
+	<!-- End feature Area -->
+
+
+
+	{{--
 	<section class="" style="margin-top: -100px;">
 		<div class="container">
 			<div class="section-top-border">
@@ -111,6 +131,7 @@
 			</div>
 		</div>
 	</section>
+	--}}
 
  @endsection
 

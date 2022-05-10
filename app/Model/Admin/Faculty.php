@@ -2,6 +2,7 @@
 
 namespace App\Model\Admin;
 
+use App\Model\User\Document;
 use App\Model\User\Etudiant;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,5 +14,9 @@ class Faculty extends Model
 
     public function etudiants(){
         return $this->hasMany(Etudiant::class);
+    }
+
+    public function documents(){
+        return $this->hasMany(Document::class);
     }
 }

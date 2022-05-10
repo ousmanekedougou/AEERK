@@ -76,7 +76,7 @@
 	@include('user.message.index')
 	<!-- End banner Area -->
 
-	<section class="feature-area" style="margin-bottom: 50px;">
+	<section class="feature-area" style="margin-bottom: 30px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
@@ -98,6 +98,48 @@
 		</div>	
 	</section>
 
+
+	<!-- Start popular-course Area -->
+			<section class="popular-course-area section-gap" style="margin-top: -60px;">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Nos Derniers Articles</h1>
+								<p>Decouvrez toute l'actualite du pays</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="active-popular-carusel">
+							@foreach(all_article() as $article)
+								<div class="single-popular-carusel single-blog">
+									<div class="thumb relative">
+										<img class="img-fluid" src="{{ Storage::url($article->image) }}" alt="">								
+									</div>
+									<p class="meta">25 April, 2018  |  Auteur <a href="#">Bureau</a></p>
+									<a href="#"  onclick="document.getElementById('update-forms-{{$article->id}}').submit();">
+										<h5>{{$article->title}}</h5>
+									</a>
+									<form id="update-forms-{{$article->id}}" method="post" action="{{ route('article.update',$article->id) }}" style="display:none">
+										{{csrf_field()}}
+										{{method_field('PUT')}}
+									</form>  
+									<p>
+										{!! $article->resume !!}
+									</p>
+									<form id="update-form-{{$article->id}}" method="post" action="{{ route('article.update',$article->id) }}" style="display:none">
+										{{csrf_field()}}
+										{{method_field('PUT')}}
+									</form>  
+									<a href="#" onclick="document.getElementById('update-form-{{$article->id}}').submit();" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>	
+								</div>
+							@endforeach							
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End popular-course Area -->
 	
 
 	
@@ -108,7 +150,7 @@
 					<div class="menu-content pb-70 col-lg-8">
 						<div class="title text-center">
 							<h1 class="mb-10">Quelques documents</h1>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sit?</p>
+							<p>Une bibliotheque a votre disposition</p>
 						</div>
 					</div>
 				</div>						
@@ -138,9 +180,6 @@
 				</div>
 			</div>	
 		</section>
-
-
-	
 	<!-- Fin de nos activite officielle-->
 
 	
@@ -216,71 +255,6 @@
 	<!-- End search-course Area -->
 
 
-	
-	
-
-	{{--
-	<!-- Start blog Area -->
-	<section class="blog-area section-gap" id="blog" style="margin-top: -50px;">
-		<div class="container">
-			<div class="row d-flex justify-content-center">
-				<div class="menu-content pb-70 col-lg-8">
-					<div class="title text-center">
-						<h1 class="mb-10">Nos Derniers Articles</h1>
-						<p>In the history of modern astronomy there is.</p>
-					</div>
-				</div>
-			</div>					
-			<div class="row">
-			@foreach(all_article() as $article)
-				<div class="col-lg-3 col-md-6 single-blog">
-					<div class="thumb">
-						<img class="img-fluid" src="{{ Storage::url($article->image) }}" alt="">								
-					</div>
-					<p class="meta">25 April, 2018  |  By <a href="#">Mark Wiens</a></p>
-					<a  onclick="document.getElementById('update-forms-{{$article->id}}').submit();">
-						<h5>{{$article->title}}</h5>
-					</a>
-					<form id="update-forms-{{$article->id}}" method="post" action="{{ route('article.update',$article->id) }}" style="display:none">
-						{{csrf_field()}}
-						{{method_field('PUT')}}
-					</form>  
-					<p>
-					</p>
-					<form id="update-form-{{$article->id}}" method="post" action="{{ route('article.update',$article->id) }}" style="display:none">
-						{{csrf_field()}}
-						{{method_field('PUT')}}
-					</form>  
-					<a onclick="document.getElementById('update-form-{{$article->id}}').submit();" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>		
-				</div>
-			@endforeach	
-			</div>
-		</div>	
-	</section> 
-	<!-- End blog Area -->	
-	--}}
-	{{--
-	<!-- Nos partenaire -->
-	<section class="upcoming-event-area section-gap" style="margin-top: -130px;">
-
-		<div class="container">
-			<div class="row d-flex justify-content-center">
-				<div class="menu-content pb-70 col-lg-8">
-					<div class="title text-center">
-						<h1 class="mb-10">
-							Nos Partenaires</h1>
-						<!-- <p>Si vous etes un membre de l'association ou un natif de la region</p> -->
-					</div>
-				</div>
-			</div>
-			<div class="logo-slider" style="margin-top: -50px;">
-				@foreach(all_part() as $partenaire)
-					<div class="item"><a href="#"><img src="{{ Storage::url($partenaire->image) }}" alt="" srcset=""></a></div>
-				@endforeach
-			</div>
-		</div>
-	</section> 
-	--}}
 
 		<!--  les temoignages -->
 	<section class="review-area section-gap relative" style="margin-top:50px;">

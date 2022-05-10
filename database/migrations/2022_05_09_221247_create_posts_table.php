@@ -14,8 +14,8 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-             $table->string('title',255);
+            $table->bigIncrements('id');
+            $table->string('title',255);
             $table->string('slug',100);
             $table->text('resume');
             $table->longText('body');
@@ -25,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->integer('like')->nullable();
             $table->integer('dislike')->nullable();
             $table->integer('view')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->timestamps();
         });
     }

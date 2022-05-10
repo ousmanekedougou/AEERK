@@ -57,6 +57,7 @@
 									<p class="excert text-justify">
 										{!! $slugs->body !!}
 									</p>
+									{{--
 									<div class="row">
 										<div class="col-sm-12 text-center"> 
 											<button class=" genric-btn primary button share_facebook" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-facebook-square"></i></button>
@@ -65,6 +66,7 @@
 											<button class=" genric-btn primary button share_linkedin" data-url="https://www.youtube.com/watch?v=EUrmQkd8RsM"><i class="fa fa-linkedin"></i></button>
 										</div>
 									</div>
+									--}}
 								</div>
 							</div>
 							

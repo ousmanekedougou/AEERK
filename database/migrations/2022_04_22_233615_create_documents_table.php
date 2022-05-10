@@ -22,7 +22,7 @@ class CreateDocumentsTable extends Migration
             $table->longText('desc');
             $table->string('image')->nullable();
             $table->string('file');
-            $table->integer('type_id');
+            $table->integer('faculty_id');
             $table->string('slug');
             $table->boolean('status')->default(0);
             $table->timestamps();

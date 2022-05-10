@@ -33,8 +33,7 @@
                           </div>
                           <div class="col-md-12">
                             <div class="card-body">
-                              <!-- <p class="card-text"> {!! $post->body !!}</p> -->
-                              <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, facere.</p>
+                              <p class="card-text"> <span class="text-bold">Resumer : </span> {!! $post->resume !!}</p>
                               
                               <p class="card-text text-center">
                                 <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-facebook"></i> 12</button> 

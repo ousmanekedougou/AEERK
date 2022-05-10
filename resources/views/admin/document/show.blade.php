@@ -116,13 +116,13 @@
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Ajouter un document</h4>
+                  <h4 class="modal-title">Modifier un document</h4>
                 </div>
                 <form action="{{ route('admin.document.update',$document->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PUT') }}
+                <input type="hidden" name="type" value="{{ $type->id }}">
                 <div class="modal-body">
-                  <input type="hidden" name="forme" value="2">
                   <div class="row">
                     <div class="col-md-6">
                       <p>
