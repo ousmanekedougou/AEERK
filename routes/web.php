@@ -12,6 +12,10 @@
         Route::post('/ancien/update','AncienController@update_certificat')->name('update_certificat');
         Route::resource('/recasement','RecasementController');
         Route::resource('/about','AboutController');
+        Route::resource('/article','ArticleController');
+        Route::resource('/comment','CommentController');
+        Route::get('/category/{id}','ArticleController@category')->name('article.category');
+        Route::get('/etiquette/{id}','ArticleController@etiquette')->name('article.etiquette');
         Route::resource('/codification','EtudiantCodificationController');
         Route::get('/reponse','EtudiantCodificationController@reponse')->name('codification.reponse');
         Route::get('/payment','EtudiantCodificationController@payment')->name('codification.payment');
@@ -31,6 +35,13 @@
     Route::prefix('/admin')->name('admin.')->group(function() 
     {
         Route::get('/home', 'Admin\HomeController@index')->name('home');
+        // Tout ce qui est blog
+        Route::resource('/post', 'Admin\PostController');
+        Route::resource('/category', 'Admin\CategoryController');
+        Route::resource('/tag', 'Admin\TagController');
+        Route::resource('/option','Admin\OptionController');
+        // Fin de tout ce qui est blog
+
         // Tout ce qui est Parametre
         Route::resource('/info', 'Admin\InfoController');
         Route::put('/info/{id}/solde','Admin\InfoController@solde')->name('solde');

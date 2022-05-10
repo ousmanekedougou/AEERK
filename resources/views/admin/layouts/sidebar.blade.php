@@ -19,7 +19,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- <li class="header">PARAMETRES</li> -->
-        @if (admin()->is_admin == 1 || admin()->is_admin == 5)
+        @if (admin()->is_admin == 1)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-group"></i>
@@ -50,8 +50,27 @@
         </li>
         @endif
 
+        
+        @if (admin()->is_admin == 4 || admin()->is_admin == 1 || admin()->is_admin == 5)
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-rss"></i>
+            <span>Articles</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route ('admin.post.index') }}"><i class="fa fa-circle-o"></i>Artcles</a></li>
+            <li><a href="{{ route ('admin.category.index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
+            <li><a href="{{ route ('admin.tag.index') }}"><i class="fa fa-circle-o"></i>Etiquettes</a></li>
+          </ul>
+        </li>
+        @endif
+        
 
-        @if (admin()->is_admin == 2 || admin()->is_admin == 1 || admin()->is_admin == 5)
+
+        @if (admin()->is_admin == 2 || admin()->is_admin == 1)
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user-plus"></i> <span>Inscription Codification</span>
@@ -121,7 +140,7 @@
         </li>
         @endif
 
-        @if (admin()->is_admin == 3 || admin()->is_admin == 1 || admin()->is_admin == 5)
+        @if (admin()->is_admin == 3 || admin()->is_admin == 1)
           <li class="treeview">
             <a href="#">
               <i class="fa fa-building"></i> <span>Bibliothèque</span>

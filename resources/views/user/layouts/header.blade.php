@@ -36,20 +36,10 @@
 						</ul>
 					</li>
 					
-					{{--	
-					<li class="menu-has-children"><a href=""><i class="fa fa-graduation-cap fa_ajout"></i> Espace Etudiant</a>
-						<ul class="">
-							<li class="menu-has-children"><a href="{{ route('bourse.index') }}">Offres de Bourses </a></li>						                						                		
-							<li class="menu-has-children"><a href="{{ route('emploi.index') }}">Offres d'emplois </a></li>						                						                		
-							<li class="menu-has-children"><a href="{{ route('stage.index') }}">Offres de Stages </a></li>						                						                		
-							<li class="menu-has-children"><a href="{{ route('formation.index') }}">Offres de Formations </a></li>						                						                		
-							<li class="menu-has-children"><a href="{{ route('concour.index') }}">Concours </a></li>				                							                		
-						</ul>
-					</li>
-					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
-					--}}
+					
 					<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça marche</a></li>
 					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('bibliotheque.index') }}"><i class="fa fa-book fa_ajout"></i> Bibliothèque</a></li>
+					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
 					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>
 				</ul>
 			</nav><!-- #nav-menu-container -->		    		

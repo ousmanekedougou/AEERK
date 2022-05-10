@@ -153,44 +153,31 @@
 		<div class="overlay overlay-bg"></div>
 		<div class="container">
 			<div class="row justify-content-between align-items-center">
-				<div class="col-lg-8 col-md-8 search-course-left">
-					<h1 class="text-white">
-						Restez informer de tout les offres
-					</h1>
-					<div class="row details-content">
-						<div class="col single-detials">
-							<span class="lnr lnr-graduation-hat"></span>
-							<a href=""><h4>Boite a idees</h4></a>		
-							<p class="text-white text-justify">
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
+				<div class="col-lg-6 col-md-6 search-course-left">
+							<h1 class="text-white">
+								Get reduced fee <br>
+								during this Summer!
+							</h1>
+							<p>
+								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+							</p>
+							<div class="row details-content">
+								<div class="col single-detials">
+									<span class="lnr lnr-graduation-hat"></span>
+									<a href="#"><h4>Expert Instructors</h4></a>		
+									<p>
+										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									</p>						
+								</div>
+								<div class="col single-detials">
+									<span class="lnr lnr-license"></span>
+									<a href="#"><h4>Certification</h4></a>		
+									<p>
+										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									</p>						
+								</div>								
+							</div>
 						</div>
-						<div class="col single-detials">
-							<span class="lnr lnr-license"></span>
-							<a href=""><h4>Une biblioteque</h4></a>		
-							<p class="text-white text-justify">
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
-						</div>								
-					</div>
-
-					<div class="row details-content">
-						<div class="col single-detials">
-							<span class="lnr lnr-graduation-hat"></span>
-							<a href=""><h4>Formations</h4></a>		
-							<p class="text-white text-justify">
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
-						</div>
-						<div class="col single-detials">
-							<span class="lnr lnr-license"></span>
-							<a href=""><h4>Concours</h4></a>		
-							<p class="text-white text-justify">
-								Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-							</p>						
-						</div>								
-					</div>
-				</div>
 				<div class="col-lg-4 col-md-4 search-course-right section-gap">
 					<form class="form-wrap"  method="POST" action="{{ route('temoignage.post') }}">
 						@csrf
@@ -324,6 +311,23 @@
 		</div>	
 	</section>
 	<!--  les temoignages -->	
+
+	<!-- Start cta-one Area -->
+			<section class="cta-one-area relative section-gap">
+				<div class="container">
+					<div class="overlay overlay-bg"></div>
+					<div class="row justify-content-center">
+						<div class="wrap">
+							<h1 class="text-white">Become an instructor</h1>
+							<p>
+								There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station whether that is on the deck.
+							</p>
+							<a class="primary-btn wh" href="#">Apply for the post</a>								
+						</div>					
+					</div>
+				</div>	
+			</section>
+			<!-- End cta-one Area -->
 
 	
 

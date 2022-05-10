@@ -36,6 +36,14 @@ if(!function_exists('all_category')){
     }
 }
 
+if(!function_exists('all_article_populaire')){
+    function all_article_populaire()
+    {
+        $article_pop = Post::where('status',1)->where('view','>',100)->limit(5)->get();
+        return $article_pop;
+    }
+}
+
 
 if(!function_exists('all_tag')){
     function all_tag()
@@ -73,13 +81,6 @@ if(!function_exists('all_temoignage')){
     }
 }
 
-if(!function_exists('all_part')){
-    function all_part()
-    {
-        $part = Partenaire::all();
-        return $part;
-    }
-}
 
 if(!function_exists('all_article')){
     function all_article()

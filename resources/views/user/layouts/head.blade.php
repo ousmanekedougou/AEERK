@@ -12,7 +12,7 @@
 		<meta charset="UTF-8">
 		<!-- Site Title -->
 		<title> {{ page_title($title ?? '') }}</title>
-
+		
 		<link rel="stylesheet" href="{{asset('user/css/slick.min.css')}}">
 		<link rel="stylesheet" href="{{asset('user/css/slick-theme.min.css')}}">	
 		<link rel="stylesheet" href="{{asset('user/css/toastr.min.css')}}">	
