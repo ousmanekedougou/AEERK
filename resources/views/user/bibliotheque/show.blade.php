@@ -12,10 +12,41 @@
 @endsection
  @section('main-content')
 
-	  
 
+<!-- Start blog Area -->
+			<section class="blog-area section-gap mb-50 mt-80" id="blog">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h2 class="mb-10">Faculte : {{$faculty->name}}</h2>
+							</div>
+						</div>
+					</div>					
+					<div class="row">
+						@foreach($documents as $doc)
+						<div class="col-lg-3 col-md-6 single-blog">
+							<div class="thumb">
+								<img class="img-fluid" src="{{Storage::url($doc->image)}}" alt="">								
+							</div>
+							<p class="meta">{{ $doc->created_at->toFormattedDateString() }}  |  Auteur <a href="#">{{$doc->auteur}}</a></p>
+							<a href="{{Storage::url($doc->file)}}" target="_blank">
+								<h5>{{$doc->title}}</h5>
+							</a>
+							<p>
+								{!! $doc->subject !!}
+							</p>
+							<a href="{{Storage::url($doc->file)}}" target="_blank" class="details-btn d-flex justify-content-center align-items-center"><span class="details">Ovrir</span><span class="lnr lnr-arrow-right"></span></a>		
+						</div>
+						@endforeach							
+					</div>
+				</div>	
+			</section>
+			<!-- End blog Area -->	
+	  
+{{--
 	<!-- Start top-category-widget Area -->
-		<section class="top-category-widget-area pb-120 mb-50" style="padding-top: 160px;">
+		<section class="top-category-widget-area pt-120 pb-120 mb-50">
 			<div class="container">
 				<div class="row">
 					@foreach($documents as $doc)		
@@ -43,7 +74,7 @@
 			</div>	
 		</section>
 	<!-- End top-category-widget Area -->
-			
+--}}
 
  @endsection
 

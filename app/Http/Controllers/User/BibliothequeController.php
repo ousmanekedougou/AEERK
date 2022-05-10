@@ -17,8 +17,9 @@ class BibliothequeController extends Controller
     }
 
     public function show($id){
+        $faculty = Faculty::where('id',$id)->first();
         $documents = Document::where('faculty_id',$id)->where('status',1)->paginate(10);
-        return view('user.bibliotheque.show',compact('documents'));
+        return view('user.bibliotheque.show',compact('documents','faculty'));
     }
 
     public function search(){
