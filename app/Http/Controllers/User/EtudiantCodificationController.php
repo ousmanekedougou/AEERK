@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\User;
 use App\Model\Admin\Solde;
-use App\Model\User\Ancien;
-use App\Model\User\Nouveau;
 use App\Model\Admin\Chambre;
 use Illuminate\Http\Request;
 use App\Model\Admin\Immeuble;
-use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Model\Admin\Immeuble_chambre;
 use App\Mail\MessageEmailAeerk;
 use App\Mail\AeerkEmailMessage;
 use App\Model\User\Etudiant;
@@ -197,37 +193,6 @@ class EtudiantCodificationController extends Controller
                     Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
                     return redirect()->route('index');
                 }
-            }else{
-                // Chambre::where('id',$chambre->id)->update([
-                //     'is_pleine' => 1
-                // ]);
-                // $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_nouveau->genre)->where('is_pleine',0)->first();
-                // if ($chambre_suivante) {
-                //     if ($codifier_nouveau->codification_count < 5) {
-                //         $invoice = new CheckoutInvoice();
-                //         $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
-                //         $invoice->setTotalAmount($prix->prix_nouveau);
-                //         $invoice->addCustomData("id", $id);
-                //         $invoice->addCustomData("chambre_id", $chambre_suivante->id);
-                //         $invoice->addCustomData("email", $codifier_nouveau->email);
-                //         $invoice->addCustomData("phone", $codifier_nouveau->phone);
-                //         $invoice->addCustomData("codifier", $codifier_nouveau->codifier);
-                //         $invoice->addChannels(['wave-senegal']);
-                //         if($invoice->create()) {
-                //             return redirect(url($invoice->getInvoiceUrl()));
-                //         }else{
-                //             dd($invoice->response_text);
-                //         }
-                //     }else {
-                //         Auth::logout();
-                //         Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
-                //         return redirect()->route('index');
-                //     }
-                // }else {
-                //     Auth::logout();
-                //     Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
-                //     return redirect()->route('index');
-                // }
             }
         }else {
             Auth::logout();
@@ -241,81 +206,40 @@ class EtudiantCodificationController extends Controller
 
     public function codifier_ancien(Request $request,$id)
     {
-    
         $prix = Solde::select('prix_ancien')->first();
         $codifier_ancien = Etudiant::where('id',$id)->first();
         $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
-        // $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
         $chambre = '';
         if ($codifier_ancien->codification_count < 5) {
             $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',0)->first();
         }else {
             $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',1)->first();
         }
-        // dd($chambre);
         if($chambre){
             $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
             if($ancien->count() < $chambre->nombre){
-                // if ($codifier_ancien->codification_count < 5) {
-                    $invoice = new CheckoutInvoice();
-                    $invoice->addItem("AEERK CODIFICATION", 1,$prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
-                    $invoice->setTotalAmount($prix->prix_ancien);
-                    $invoice->addCustomData("id", $id);
-                    $invoice->addCustomData("chambre_id", $chambre->id);
-                    $invoice->addCustomData("email", $codifier_ancien->email);
-                    $invoice->addCustomData("phone", $codifier_ancien->phone);
-                    $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                    $invoice->addChannels(['wave-senegal']);
+                $invoice = new CheckoutInvoice();
+                $invoice->addItem("AEERK CODIFICATION", 1,$prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
+                $invoice->setTotalAmount($prix->prix_ancien);
+                $invoice->addCustomData("id", $id);
+                $invoice->addCustomData("chambre_id", $chambre->id);
+                $invoice->addCustomData("email", $codifier_ancien->email);
+                $invoice->addCustomData("phone", $codifier_ancien->phone);
+                $invoice->addCustomData("codifier", $codifier_ancien->codifier);
+                $invoice->addChannels(['wave-senegal']);
 
-                    $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
-                    if ($chambre->nombre == $chambre_ancien_count->count()) {
-                        Chambre::where('id',$chambre->id)->update([
-                        'is_pleine' => 1
-                        ]);
-                    }
+                $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
+                if ($chambre->nombre == $chambre_ancien_count->count()) {
+                    Chambre::where('id',$chambre->id)->update([
+                    'is_pleine' => 1
+                    ]);
+                }
 
-                    if($invoice->create()) {
-                        return redirect(url($invoice->getInvoiceUrl()));
-                    }else{
-                        dd($invoice->response_text);
-                    }
-                   
-                // }else {
-                //     Auth::logout();
-                //     Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
-                //     return redirect()->route('index');
-                // }
-            }else{
-                // Chambre::where('id',$chambre->id)->update([
-                //     'is_pleine' => 1
-                // ]);
-                // $chambre_suivante = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->first();
-                // if ($chambre_suivante) {
-                //     if ($codifier_ancien->codification_count < 5) {
-                //         $invoice = new CheckoutInvoice();
-                //         $invoice->addItem("AEERK CODIFICATION", 1, $prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
-                //         $invoice->setTotalAmount($prix->prix_ancien);
-                //         $invoice->addCustomData("id", $id);
-                //         $invoice->addCustomData("chambre_id", $chambre_suivante->id);
-                //         $invoice->addCustomData("email", $codifier_ancien->email);
-                //         $invoice->addCustomData("phone", $codifier_ancien->phone);
-                //         $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                //         $invoice->addChannels(['wave-senegal']);
-                //         if($invoice->create()) {
-                //             return redirect(url($invoice->getInvoiceUrl()));
-                //         }else{
-                //             dd($invoice->response_text);
-                //         }
-                //     }else {
-                //         Auth::logout();
-                //         Toastr::error('Votre quota de codification est epuiser', 'Quota Epuiser', ["positionClass" => "toast-top-right"]);
-                //         return redirect()->route('index');
-                //     }
-                // }else {
-                //     Auth::logout();
-                //     Toastr::error('Cet immeuble est plein', 'Error Chambre', ["positionClass" => "toast-top-right"]);
-                //     return redirect()->route('index');
-                // }
+                if($invoice->create()) {
+                    return redirect(url($invoice->getInvoiceUrl()));
+                }else{
+                    dd($invoice->response_text);
+                }
             }
         }else {
             Auth::logout();
@@ -329,34 +253,6 @@ $token = $_GET['token'];
 
 $invoice = new CheckoutInvoice();
 if ($invoice->confirm($token)) {
-
-  // Récupérer le statut du paiement
-  // Le statut du paiement peut être soit completed, pending, cancelled
-  //   echo $invoice->getStatus();
-
-  // Vous pouvez récupérer le nom, l'adresse email et le
-  // numéro de téléphone du client en utilisant
-  // les méthodes suivantes
- //   echo $invoice->getCustomerInfo('name');
- //   echo $invoice->getCustomerInfo('email');
- //   echo $invoice->getCustomerInfo('phone');
-
-  // Les méthodes qui suivent seront disponibles si et
-  // seulement si le statut du paiement est égal à "completed".
-
-  // Récupérer l'URL du reçu PDF électronique pour téléchargement
- //   echo $invoice->getReceiptUrl();
-
-  // Récupérer n'importe laquelle des données personnalisées que
-  // vous avez eu à rajouter précédemment à la facture.
-  // Merci de vous assurer à utiliser les mêmes clés que celles utilisées
-  // lors de la configuration.
-    // echo $invoice->getCustomData("id");
-    // echo $invoice->getCustomData("chambre_id");
-    // echo $invoice->getCustomData("chambres");
-    // echo $invoice->getCustomData("email");
-    // echo $invoice->getCustomData("phone");
-    // echo $invoice->getCustomData("codifier");
 
   if ($invoice->getStatus() == "completed") {
 
@@ -375,10 +271,6 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->chambre_id = $invoice->getCustomData("chambre_id");
     $codifier_ancien->prix = $invoice->getTotalAmount();
     $codifier_ancien->codifier = 1;
-
-    // $count = $codifier_ancien->codification_count;
-    // $codifier_ancien->codification_count = $count + 1;
-
     $count = '';
     $count_code = $codifier_ancien->codification_count;
     if ($count_code < 5) {
@@ -394,25 +286,6 @@ if ($invoice->confirm($token)) {
 
     Mail::to($codifier_ancien->email)
     ->send(new MessageEmailAeerk($codifier_ancien));
-    // $config = array(
-    //     'clientId' => config('app.clientId'),
-    //     'clientSecret' =>  config('app.clientSecret'),
-    // );
-    // $osms = new Sms($config);
-
-    // $data = $osms->getTokenFromConsumerKey();
-    // $token = array(
-    //     'token' => $data['access_token']
-    // );
-    // $phone = $codifier_ancien->phone;
-    // $message = "AEERK KEDOUGOU:\nSalut $codifier_ancien->prenom $codifier_ancien->nom.\nVous avez bien ete codifier,veuillez vous connecter sur votre compte gmail pour les details.\nCordialement le Bureau de l'AEERK";
-    // $sendPhone = User::first();
-    // $response = $osms->sendSms(
-    //     'tel:+' . $sendPhone->sendPhone,
-    //     'tel:+' . $phone,
-    //     $message,
-    //     'AEERK'
-    // );
     Auth::logout();
     Toastr::success('Vous avez bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
     return redirect()->route('index')->with([
@@ -425,7 +298,6 @@ if ($invoice->confirm($token)) {
         'codification_token' => $codifier_ancien->codification_token,
         
     ]);
-    // return redirect()->route('createPdf',['id' => $codifier_ancien->id,'email' => $codifier_ancien->email,'phone' => $codifier_ancien->phone]);
     }elseif ($invoice->getStatus() == "cancelled") {
         Auth::logout();
         Toastr::error('Votre codification a echouer','Error Codification', ["positionClass" => "toast-top-right"]);
@@ -455,30 +327,6 @@ if ($invoice->confirm($token)) {
     }
 
     public function createPdf($id,$codification_token){
-        //  $etudiant = Etudiant::where(['id' => $id ,'email' => $email , 'phone' => $phone , 'codifier' => 1])->first();
-         
-        //  $image_etudiant = Storage::url($etudiant->image);
-        //  $imge_s = str_replace("/storage/",'',$image_etudiant);
-
-        //  $img = 'storage/app/public/'.$imge_s;
-        //  $path_img = base_path($img);
-        //  $type_img = pathinfo($path_img , PATHINFO_EXTENSION);
-        //  $data_img = file_get_contents($path_img);
-        //  $image = "data:image/" .$type_img. ';base64,' . base64_encode($data_img);
-
-        //  $logo = 'image/accueil.png';
-        //  $path = base_path($logo);
-        //  $type = pathinfo($path , PATHINFO_EXTENSION);
-        //  $data = file_get_contents($path);
-        //  $pic = "data:image/" .$type. ';base64,' . base64_encode($data);
-
-        //  $output = view('user.pdf',compact('etudiant','image','pic'));
-        //  $dompdf = new Dompdf();
-        //  $dompdf->loadHtml($output);
-        //  $dompdf->setPaper('A4','landscape');
-        //  $dompdf->render();
-        //  $dompdf->stream();
-
         $etudiant = Etudiant::where(['id' => $id ,'codification_token' => $codification_token, 'codifier' => 1, 'status' => 1])->first();
         if ($etudiant) {
         $image = Storage::url($etudiant->image);

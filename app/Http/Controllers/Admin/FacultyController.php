@@ -49,10 +49,11 @@ class FacultyController extends Controller
             'for' => 'required|boolean',
         ]);
         $slug = '';
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
         if ($request->for == 0) {
-            $slug = $request->name.'/publuque';
+            $slug = str_replace($vowels,'',$request->name).'/publuque';
         }else {
-            $request->name.'/prive';
+            $slug = str_replace($vowels,'',$request->name).'/prive';
         }
 
         Faculty::create([
@@ -146,10 +147,11 @@ class FacultyController extends Controller
             'for' => 'required|boolean',
         ]);
         $slug = '';
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
         if ($request->for == 0) {
-            $slug = $request->name.'/publuque';
+            $slug = str_replace($vowels,'',$request->name).'/publuque';
         }else {
-            $request->name.'/prive';
+            $slug = str_replace($vowels,'',$request->name).'/prive';
         }
 
         Faculty::where('id',$id)->update([

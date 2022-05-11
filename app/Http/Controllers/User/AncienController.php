@@ -167,28 +167,28 @@ class AncienController extends Controller
             'update_email' => 'required|email',
             'update_phone' => 'required|numeric',
             'update_certificat' => 'required|mimes:pdf,PDF',
-            'update_image' => 'image|mimes:jpeg,png,jpg,gif,ijf',
+            'update_relever' => 'image|mimes:jpeg,png,jpg,gif,ijf',
             'immeuble' => 'required|numeric'
         ]);
         $ancien_existant = Etudiant::where(['email' => $request->update_email , 'phone' => $request->update_phone ,
         'codifier' => 1 , 'ancienete' => 2])->first();
 
-        $imageName = '';
+        $releverName = '';
         $certificatName = '';
-        if ($request->hasFile('update_image')) {
-            if ($request->update_image == Null) {
-                $imageName = $ancien_existant->image;
+        if ($request->hasFile('update_relever')) {
+            if ($request->update_relever == Null) {
+                $releverName = $ancien_existant->image;
             }else{
-                $imageName = $request->update_image->store('public/Ancien');
+                $releverName = $request->update_relever->store('public/Ancien');
             }
         }
         if ($request->hasFile('update_certificat')) {
             $certificatName = $request->update_certificat->store('public/Ancien');
         }
         if ($ancien_existant){
-            if ($ancien_existant->codification_count < 5) {
+            if ($ancien_existant->codification_count < 7) {
                 $ancien_existant->certificat = $certificatName;
-                $ancien_existant->image = $imageName;
+                $ancien_existant->relever = $releverName;
                 $ancien_existant->status = false;
                 $ancien_existant->codifier = 0;
                 $ancien_existant->prix = 0;

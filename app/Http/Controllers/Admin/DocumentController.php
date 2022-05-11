@@ -78,7 +78,8 @@ class DocumentController extends Controller
             $add_doc->faculty_id = $request->faculty;
             $add_doc->status = $status;
             $add_doc->pub_at = $request->date;
-            $add_doc->slug = $request->title.'/'.$request->type.'/'.$request->sujet;
+            $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+            $add_doc->slug = str_replace($vowels,'',$request->title.'/'.$request->type.'/'.$request->sujet);
             $add_doc->image = $imageName;
             $add_doc->file = $fileName;
             $add_doc->desc = $request->resume;
@@ -157,7 +158,8 @@ class DocumentController extends Controller
             $update_doc->status = $status;
             $update_doc->subject = $request->sujet;
             $update_doc->pub_at = $dateUpdate;
-            $update_doc->slug = $request->title.'/'.$request->type.'/'.$request->sujet;
+            $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+            $update_doc->slug = str_replace($vowels,'',$request->title.'/'.$request->type.'/'.$request->sujet);
 
             $update_doc->image = $imageName;
             $update_doc->file = $fileName;

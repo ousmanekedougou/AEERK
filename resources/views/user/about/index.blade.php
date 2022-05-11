@@ -136,6 +136,17 @@
 			</div>		
 
 			<div class="row">
+			</div>
+		</div>	
+	</section>
+	<!-- End course-mission Area -->
+
+
+	<!-- Start course-mission Area -->
+	<section class="course-mission-area pb-120">
+		<div class="container">
+			<h3 class="mb-30 text-center">Nos domaines d'interventions</h3>	
+			<div class="row">
 				<div class="col-md-6 accordion-left">
 					<!-- accordion 2 start-->
 					<dl class="accordion">

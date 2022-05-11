@@ -92,7 +92,7 @@
 						<div class="desc-wrap">
 							<h4>{{$faculty->name}}</h4>
 							<br>
-							<a href="{{ route('bibliotheque.show',$faculty->id) }}">Voir les livres</a>									
+							<a href="{{ route('bibliotheque.show',$faculty->slug) }}">Voir les livres</a>									
 						</div>
 					</div>
 				<br>

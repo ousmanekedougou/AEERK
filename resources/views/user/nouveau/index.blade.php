@@ -29,7 +29,7 @@
 			</section>
       <!-- End banner Area -->	
 
-	<section class="feature-area pb-120">
+	<section class="feature-area pb-30">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">

@@ -53,7 +53,8 @@ class TagController extends Controller
         ]);
         $tag = new Tag;
         $tag->name = $request->name;
-        $tag->slug = $request->slug;
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+        $tag->slug = str_replace($vowels,'',$request->slug);
         $tag->save();
         Toastr::success('Votre tag a ete ajouter','Ajout Tag', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.tag.index'));
@@ -98,7 +99,8 @@ class TagController extends Controller
         ]);
         $tag = Tag::find($id);
         $tag->name = $request->name;
-        $tag->slug = $request->slug;
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+        $tag->slug = str_replace($vowels,'',$request->slug);
         $tag->save();
         Toastr::success('Votre tag a ete modifier','Modification Tag', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.tag.index'));

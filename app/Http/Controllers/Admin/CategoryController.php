@@ -53,7 +53,8 @@ class CategoryController extends Controller
         ]);
         $category = new Category;
         $category->name = $request->name;
-        $category->slug = $request->slug;
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+        $category->slug = str_replace($vowels,'',$request->slug);
         $category->save();
         Toastr::success('Votre Categorie a ete ajoute', 'Ajout Category', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.category.index'));
@@ -98,7 +99,8 @@ class CategoryController extends Controller
         ]);
         $category = Category::find($id);
         $category->name = $request->name;
-        $category->slug = $request->slug;
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+        $category->slug = str_replace($vowels,'',$request->slug);
         $category->save();
         Toastr::success('Votre Categorie a ete modifier', 'Modification Category', ["positionClass" => "toast-top-right"]);
         return redirect(route('admin.category.index'));

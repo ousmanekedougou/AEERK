@@ -80,7 +80,8 @@ class PostController extends Controller
         }
         $post->image = $imageName;
         $post->title = $request->title;
-        $post->slug = $slugTitle;
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+        $post->slug = str_replace($vowels,'',$slugTitle);
         $post->status = $request->status;
         $post->resume = $request->resume;
         $post->body = $request->body;
@@ -142,7 +143,8 @@ class PostController extends Controller
             $slugTitle = $request->slug;
         }
         $post->title = $request->title;
-        $post->slug = $slugTitle;
+        $vowels = array(":", ",", "-", "/", "%", ";", "(", ")", "[", "]","_","è","é","{","}");
+        $post->slug = str_replace($vowels,'',$slugTitle);
         $post->status = $request->status;
         $post->image = $imageName;
         $post->resume = $request->resume;
