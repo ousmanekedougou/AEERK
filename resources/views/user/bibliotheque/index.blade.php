@@ -10,7 +10,18 @@
 		color: black;
 		text-decoration: underline;
 	}
+	 .single-feature .title{
+		 background-color: #3753db;
+	 }
 	.banner-area{background:url('user/img/bibl.jpg') right;background-size:cover}
+	@media (max-width: 768px) {
+		form .row .recherche_bibliotheque{
+			visibility: hidden;
+			opacity: 0;
+			width: 0px;
+			height: 0px;
+		}
+	}
   </style>
 @endsection
  @section('main-content')
@@ -33,18 +44,21 @@
 
 
 	<!-- Start feature Area -->
-	<section class="feature-area pb-120">
+	<section class="feature-area pb-120" >
 		<div class="container">
 			<div class="row mt-4">
 				<div class="col-lg-12">
 					<div class="single-feature">
+						<div class="title">
+							<h4 class="text-uppercase">Des livres pour toutes les facultes</h4>
+						</div>
 						<div class="desc-wrap">
 							<div class="row" style="padding-top:10px;">
 								<div class="col-lg-12">
 									<form action="{{ route('bibliotheque.search') }}" method="post">
 										@csrf
 										<div class="row">
-											<div class="col-lg-9">
+											<div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
 												<input type="text" value="{{ old('q') }}" class="single-input-primary form-control @error('q') is-invalid @enderror"  name="q" placeholder="Rechercher votre documents" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Rechercher votre documents'" required style="border: 1px solid blue;">
 												@error('q')
 													<span class="invalid-feedback" role="alert">
@@ -52,7 +66,7 @@
 													</span>
 												@enderror
 											</div>
-											<div class="col-lg-3" style="padding:0px;margin-left:-53px;"><button type="submit" class="genric-btn primary-border radius arrow">Rechercher <span class="lnr lnr-search"></span></button></div>
+											<div class="col-lg-3 recherche_bibliotheque" style="padding:0px;margin-left:-53px;"><button type="submit" class="genric-btn primary-border radius arrow">Rechercher <span class="lnr lnr-search"></span></button></div>
 										</div>
 									</form>
 								</div>									
@@ -70,13 +84,7 @@
 	<!-- Start feature Area -->
 	<section class="feature-area pb-70">
 		<div class="container">
-			<div class="row d-flex justify-content-center">
-				<div class="menu-content pb-70 col-lg-8">
-					<div class="title text-center">
-						<h1 class="mb-10">Des livres pour toute les facultes</h1>
-					</div>
-				</div>
-			</div>	
+			
 			<div class="row">
 				@foreach($facultes as $faculty)
 				<div class="col-lg-4">
