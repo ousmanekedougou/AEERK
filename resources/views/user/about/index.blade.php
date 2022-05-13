@@ -147,57 +147,21 @@
 		<div class="container">
 			<h3 class="mb-30 text-center">Nos domaines d'interventions</h3>	
 			<div class="row">
+				@foreach($commissions as $com)
 				<div class="col-md-6 accordion-left">
 					<!-- accordion 2 start-->
 					<dl class="accordion">
 						<dt>
-							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Social</a>
+							<a href="" class="text-uppercase" style="font-weight: 700;">{{$com->name}}</a>
 						</dt>
 						<dd>
-							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-						</dd>
-						<dt>
-							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Pedagogique</a>
-						</dt>
-						<dd>
-							Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
-						</dd>
-						<dt>
-							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Sportive</a>
-						</dt>
-						<dd>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-						</dd>                                
+							{!! $com->desc !!}
+						</dd>                               
 					</dl>
 					<!-- accordion 2 end-->
 				</div>
-				<div class="col-md-6 accordion-right">
-					<dl class="accordion">
-						<dt>
-							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Organisation</a>
-						</dt>
-						<dd>
-							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-							Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-						</dd>
-						<dt>
-							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Culturelle</a>
-						</dt>
-						<dd>
-							Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
-						</dd>
-						<dt>
-							<a href="" class="text-uppercase" style="font-weight: 700;">Commission Femminine</a>
-						</dt>
-						<dd>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-						</dd>                                  
-					</dl>
-					
-				</div>
+				@endforeach
+				
 			</div>
 		</div>	
 	</section>

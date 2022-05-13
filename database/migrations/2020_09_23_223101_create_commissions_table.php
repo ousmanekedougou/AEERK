@@ -17,6 +17,7 @@ class CreateCommissionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('status')->default(true);
+            $table->longText('desc');
             $table->timestamps();
         });
     }

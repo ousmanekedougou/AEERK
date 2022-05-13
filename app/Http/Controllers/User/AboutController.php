@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Commission;
 use App\Model\Admin\Team;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,8 @@ class AboutController extends Controller
     public function index()
     {
         $teams = Team::all();
-        return view('user.about.index',compact('teams'));
+        $commissions = Commission::all();
+        return view('user.about.index',compact('teams','commissions'));
     }
 
     /**

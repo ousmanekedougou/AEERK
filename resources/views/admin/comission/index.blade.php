@@ -168,12 +168,23 @@
               @csrf
               <div class="modal-body">
                 <p>
+                  <label for="">Nom de la commission</label>
                 <input type="text"  value="{{ old('name')}}" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="">
                   @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong class="message_error">{{ $message }}</strong>
                     </span>
                   @enderror
+                </p>
+                <p>
+                  <label for="">Description de la commission</label>
+                   <textarea id="editor1" class="textarea @error('desc') is-invalid @enderror" value="{{ old('desc')}}" name="desc" placeholder=""
+                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    @error('desc')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error text-danger">{{ $message }}</strong>
+													</span>
+												@enderror
                 </p>
               </div>
               <div class="modal-footer">
@@ -207,6 +218,18 @@
                         <strong class="message_error">{{ $message }}</strong>
                     </span>
                   @enderror
+                </p>
+                 <p>
+                  <label for="">Description de la commission</label>
+                   <textarea id="editor1" class="textarea @error('desc') is-invalid @enderror" value="{{ old('desc') ?? $modal_com->desc}}" name="desc" placeholder=""
+                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                    {!! $modal_com->desc !!}
+                  </textarea>
+                    @error('desc')
+													<span class="invalid-feedback" role="alert">
+														<strong class="message_error text-danger">{{ $message }}</strong>
+													</span>
+												@enderror
                 </p>
               </div>
               <div class="modal-footer">
@@ -333,3 +356,4 @@
 </script>
 <script src="{{ asset('admin/dist/js/table.js') }}"></script>
 @endsection
+

@@ -68,17 +68,23 @@ class DatabaseSeeder extends Seeder
             ]);
 
             $com = [
-                'Social',
-                'Pedagogique',
-                'Sportive',
-                'Culturelle',
-                'Organisation'
+                'Commission Social',
+                'Commission Pedagogique',
+                'Commission Sportive',
+                'Commission Organisation',
+                'Commission Femminine',
+                'Commissaire au compte ',
+                'Pres-Infos',
+                'Tresorier',
             ];
 
             foreach ($com as $c) { 
                 Commission::create([
                     'name' => $c,
-                    'status' => 1
+                    'status' => 1,
+                    'desc' => "
+                        <p></p><div><div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quo repellendus exercitationem tenetur. Fugit architecto facere totam voluptatem reiciendis quo voluptatum, ipsam dolore commodi maiores, repudiandae quia suscipit itaque. Quia.</div></div><b></b><div><div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quo repellendus exercitationem tenetur. Fugit architecto facere totam voluptatem reiciendis quo voluptatum, ipsam dolore commodi maiores, repudiandae quia suscipit itaque. Quia.</div></div><b></b><br><p></p><br>
+                    "
                 ]);
             }
 

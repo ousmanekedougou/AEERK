@@ -51,6 +51,7 @@ class ComissionController extends Controller
         ]);
         $add_commission = new Commission;
         $add_commission->name = $request->name;
+        $add_commission->desc = $request->desc;
         $add_commission->save();
         Toastr::success('Votre commission a ete ajoute', 'Ajout Commission', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.comission.index');
@@ -92,6 +93,7 @@ class ComissionController extends Controller
         ]);
         $add_commission = Commission::find($id);
         $add_commission->name = $request->name;
+        $add_commission->desc = $request->desc;
         $add_commission->save();
         Toastr::success('Votre commission a ete modifier', 'Modification Commission', ["positionClass" => "toast-top-right"]);
         return redirect()->route('admin.comission.index');
