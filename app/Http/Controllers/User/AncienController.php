@@ -24,11 +24,16 @@ class AncienController extends Controller
      */
     public function index()
     {
-        $departement = Departement::all();
-        $puliques = Faculty::where('for',0)->get();
-        $prives = Faculty::where('for',1)->get();
-        $immeuble = Immeuble::where('status',2)->get();
-        return view('user.ancien.index',compact('departement','immeuble','puliques','prives'));
+        if (lien_front()->lien_front == 1) {
+            $departement = Departement::all();
+            $puliques = Faculty::where('for',0)->get();
+            $prives = Faculty::where('for',1)->get();
+            $immeuble = Immeuble::where('status',2)->get();
+            return view('user.ancien.index',compact('departement','immeuble','puliques','prives'));
+        }else {
+            Toastr::warning('L\'access de cette page est desctiver', 'Access Desactiver', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
     }
 
     /**
@@ -38,8 +43,16 @@ class AncienController extends Controller
      */
     public function create()
     {
-        $immeuble = Immeuble::where('status',2)->get();
-        return view('user.ancien.update',compact('immeuble'));
+        if (lien_front()->lien_front == 1) {
+            $departement = Departement::all();
+            $puliques = Faculty::where('for',0)->get();
+            $prives = Faculty::where('for',1)->get();
+            $immeuble = Immeuble::where('status',2)->get();
+            return view('user.ancien.create',compact('departement','immeuble','puliques','prives'));
+        }else {
+            Toastr::warning('L\'access de cette page est desctiver', 'Access Desactiver', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
     }
 
     /**
@@ -50,81 +63,86 @@ class AncienController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $this->validate($request , [
-            'genre' => 'required',
-            'niveau' => 'required',
-            'nom' => 'required|string',
-            'prenom' => 'required|string',
-            'email' => 'required|email|unique:etudiants',
-            'phone' => 'required|unique:etudiants|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'commune' => 'required|numeric',
-            'immeuble' => 'required|numeric',
-            'filliere' => 'required|numeric',
-            // 'extrait' => 'required|mimes:PDF,pdf',
-            // 'certificat' => 'required|mimes:pdf,PDF',
-            'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
-            // 'photocopie' => 'required|mimes:pdf,PDF',
-            // 'relever' => 'required|mimes:pdf,PDF',
-        ]);
-        // dd($request->ccode);
-        $add_ancien = new Etudiant;
-        define('ANCIENETE',2);
-        $imageName = '';
-        // $extraitName = '';
-        // $photocopieName = '';
-        // $certificatName = '';
-        // $releverName = '';
-        $countCodification = '';
-        if ($request->hasFile('image')) {
-            $imageName = $request->image->store('public/Ancien');
-        }
-        // if ($request->hasFile('extrait')) {
-        //     $extraitName = $request->extrait->store('public/Ancien');
-        // }
-        // if ($request->hasFile('certificat')) {
-        //     $certificatName = $request->certificat->store('public/Ancien');
-        // }
-        // if ($request->hasFile('photocopie')) {
-        //     $photocopieName = $request->photocopie->store('public/Ancien');
-        // }
-        //  if ($request->hasFile('relever')) {
-        //     $releverName = $request->relever->store('public/Nouveau');
-        // }
-        $phoneFinale = '';
-        $phoneComplet = '221'.$request->phone;
-        if (strlen($request->phone) == 12 ) {
-            $phoneFinale = $request->phone;
-        }elseif (strlen($request->phone) == 9) {
-            $phoneFinale = $phoneComplet;
+        if (lien_front()->lien_front == 1) {
+            $validator = $this->validate($request , [
+                'genre' => 'required',
+                'niveau' => 'required',
+                'nom' => 'required|string',
+                'prenom' => 'required|string',
+                'email' => 'required|email|unique:etudiants',
+                'phone' => 'required|unique:etudiants|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+                'commune' => 'required|numeric',
+                'immeuble' => 'required|numeric',
+                'filliere' => 'required|numeric',
+                // 'extrait' => 'required|mimes:PDF,pdf',
+                // 'certificat' => 'required|mimes:pdf,PDF',
+                'image' => 'required|dimensions:min_width=50,min_height=100|image | mimes:jpeg,png,jpg,gif,ijf',
+                // 'photocopie' => 'required|mimes:pdf,PDF',
+                // 'relever' => 'required|mimes:pdf,PDF',
+            ]);
+            // dd($request->ccode);
+            $add_ancien = new Etudiant;
+            define('ANCIENETE',2);
+            $imageName = '';
+            // $extraitName = '';
+            // $photocopieName = '';
+            // $certificatName = '';
+            // $releverName = '';
+            $countCodification = '';
+            if ($request->hasFile('image')) {
+                $imageName = $request->image->store('public/Ancien');
+            }
+            // if ($request->hasFile('extrait')) {
+            //     $extraitName = $request->extrait->store('public/Ancien');
+            // }
+            // if ($request->hasFile('certificat')) {
+            //     $certificatName = $request->certificat->store('public/Ancien');
+            // }
+            // if ($request->hasFile('photocopie')) {
+            //     $photocopieName = $request->photocopie->store('public/Ancien');
+            // }
+            //  if ($request->hasFile('relever')) {
+            //     $releverName = $request->relever->store('public/Nouveau');
+            // }
+            $phoneFinale = '';
+            $phoneComplet = '221'.$request->phone;
+            if (strlen($request->phone) == 12 ) {
+                $phoneFinale = $request->phone;
+            }elseif (strlen($request->phone) == 9) {
+                $phoneFinale = $phoneComplet;
+            }else {
+                Toastr::error('votre numero de telephone est invalid', 'Error Telepone', ["positionClass" => "toast-top-right"]);
+                return back();
+            }
+
+            $add_ancien->genre = $request->genre;
+            $add_ancien->nom = $request->nom;
+            $add_ancien->prenom = $request->prenom;
+            $add_ancien->email = $request->email;
+            $add_ancien->phone = $phoneFinale;
+            $add_ancien->image = $imageName;
+            // $add_ancien->bac = $extraitName;
+            // $add_ancien->certificat = $certificatName;
+            // $add_ancien->photocopie = $photocopieName;
+            // $add_ancien->relever = $releverName;
+            $add_ancien->commune_id = $request->commune;
+            $add_ancien->immeuble_id = $request->immeuble;
+            $add_ancien->status = 0;
+            $add_ancien->codification_count = $request->niveau;
+            $add_ancien->faculty_id = $request->filliere;
+            $add_ancien->ancienete = ANCIENETE;
+            $add_ancien->save();
+
+            // Teste sms
+            
+            return redirect()->route('index',$add_ancien)->with([
+                "success" => "success",
+                "name" => "$add_ancien->prenom $add_ancien->nom"
+            ]);
         }else {
-            Toastr::error('votre numero de telephone est invalid', 'Error Telepone', ["positionClass" => "toast-top-right"]);
+            Toastr::warning('L\'access de cette page est desctiver', 'Access Desactiver', ["positionClass" => "toast-top-right"]);
             return back();
         }
-
-        $add_ancien->genre = $request->genre;
-        $add_ancien->nom = $request->nom;
-        $add_ancien->prenom = $request->prenom;
-        $add_ancien->email = $request->email;
-        $add_ancien->phone = $phoneFinale;
-        $add_ancien->image = $imageName;
-        // $add_ancien->bac = $extraitName;
-        // $add_ancien->certificat = $certificatName;
-        // $add_ancien->photocopie = $photocopieName;
-        // $add_ancien->relever = $releverName;
-        $add_ancien->commune_id = $request->commune;
-        $add_ancien->immeuble_id = $request->immeuble;
-        $add_ancien->status = 0;
-        $add_ancien->codification_count = $request->niveau;
-        $add_ancien->faculty_id = $request->filliere;
-        $add_ancien->ancienete = ANCIENETE;
-        $add_ancien->save();
-
-        // Teste sms
-        
-        return redirect()->route('index',$add_ancien)->with([
-            "success" => "success",
-            "name" => "$add_ancien->prenom $add_ancien->nom"
-        ]);
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Model\Admin\Partenaire;
 use App\Model\Admin\Post;
 use App\Model\Admin\Tag;
 use App\Model\User\Temoignage;
+use App\Model\User\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,14 @@ if(!function_exists('all_info')){
     {
         $info = Info::first();
         return $info;
+    }
+}
+
+if(!function_exists('lien_front')){
+    function lien_front()
+    {
+        $user_lien_front = User::first();
+        return $user_lien_front;
     }
 }
 

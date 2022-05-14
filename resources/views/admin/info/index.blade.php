@@ -116,31 +116,53 @@
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Autorisation de codification cote etudiant</h4>
+                      <h5 class="modal-title text-left">Autorisation de codification cote etudiant</h5>
                     </div>
                     <form action="{{ route('admin.autorisation',$autorisation->id) }}" method="POST">
                     @csrf
                     {{method_field('PUT')}}
-                    <div class="modal-body">
-                      <p>
+                    <div class="modal-body text-left">
                         <input type="hidden" name="option" value="2">
+                      <p>
+                            <h5 class="text-bold">Liens de la page de codification</h5>
                         <div class="row">
                           <div class="checkbox">
                             <div class="col-lg-6">
-                            <label class="col-form-label text-md-right" for="role"> 
-                              <input type="radio" name="lien" value="{{ old('lien') ?? 1 }}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 1) checked @endif > Activer le lien de codification </label>
+                              <label class="col-form-label text-md-right btn btn-xs btn-success" for="role"> 
+                              <input type="radio" name="lien" value="{{ old('lien') ?? 1 }}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 1) checked @endif > Activer </label>
                             </div>
                             <div class="col-lg-6">
-                            <label class="col-form-label text-md-right" for="role"> 
-                              <input type="radio" name="lien" value="{{ old('lien') ?? 2 }}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 2) checked @endif > Desactiver le lien de codification </label>
+                              <label class="col-form-label text-md-right btn btn-xs btn-primary" for="role"> 
+                              <input type="radio" name="lien" value="{{ old('lien') ?? 2 }}" class="@error('lien') is-invalid @enderror" id="lien" @if($autorisation->lien == 2) checked @endif > Desactiver </label>
                             </div>
                           </div>
-                      </div>
-                            @error('lien')
-                              <span class="invalid-feedback text-center text-danger" role="alert">
-                                  <strong class="message_error">{{ $message }}</strong>
-                              </span>
-                            @enderror
+                        </div>
+                        @error('lien')
+                          <span class="invalid-feedback text-center text-danger" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
+
+                      <p>
+                            <h5 class="text-bold">Liens de la page des inscriptions</h5>
+                        <div class="row">
+                          <div class="checkbox">
+                            <div class="col-lg-6">
+                              <label class="col-form-label text-md-right btn btn-xs btn-success" for="role"> 
+                              <input type="radio" name="lien_front" value="{{ old('lien_front') ?? 1 }}" class="@error('lien_front') is-invalid @enderror" id="lien_front" @if($autorisation->lien_front == 1) checked @endif > Activer </label>
+                            </div>
+                            <div class="col-lg-6">
+                              <label class="col-form-label text-md-right btn btn-xs btn-primary" for="role"> 
+                              <input type="radio" name="lien_front" value="{{ old('lien_front') ?? 2 }}" class="@error('lien_front') is-invalid @enderror" id="lien_front" @if($autorisation->lien_front == 2) checked @endif > Desactiver </label>
+                            </div>
+                          </div>
+                        </div>
+                        @error('lien_front')
+                          <span class="invalid-feedback text-center text-danger" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
                       </p>
                     </div>
                     <div class="modal-footer">

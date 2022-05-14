@@ -99,6 +99,7 @@
 				</div>
 				@endforeach											
 			</div>
+				<div class="text-center">{{$facultes->links()}}</div>
 		</div>	
 	</section>
 	<!-- End feature Area -->

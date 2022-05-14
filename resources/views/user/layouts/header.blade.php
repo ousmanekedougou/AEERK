@@ -28,13 +28,14 @@
 				<ul class="nav-menu">
 					<li class="{{ set_active_roote('index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> Accueil</a></li>
 					<li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-address-card fa_ajout"></i> A propos</a></li>
-					
-					<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Inscription</a>
-						<ul>
-							<li><a href="{{ route('nouveau.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Nouveau</a></li>
-							<li><a href="{{ route('ancien.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
-						</ul>
-					</li>
+					@if(lien_front()->lien_front == 1 )
+						<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Inscription</a>
+							<ul>
+								<li><a href="{{ route('nouveau.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Nouveau</a></li>
+								<li><a href="{{ route('ancien.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
+							</ul>
+						</li>
+					@endif
 					
 					
 					<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça marche</a></li>

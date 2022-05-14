@@ -63,7 +63,7 @@
 					<h1 class="text-uppercase text-center" style="width: 100%;">
 					PORTAILLE DE L'AEERK DE KEDOUGOU
 					</h1>
-					<h3 class="text-uppercase text-white">Toujours aus services des etudiants</h3>
+					<h3 class="text-uppercase text-white">Toujours aux services des etudiants</h3>
 					<p class="pt-10 pb-10 text-white text-center text-uppercase text-bold">
 						(Association des eleves et etudiants ressortissants de kedougou)
 					</p>

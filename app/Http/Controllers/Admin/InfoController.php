@@ -243,6 +243,7 @@ class InfoController extends Controller
         }elseif ($request->option == 2) {
             $update_lient = User::where('id',$id)->first();
             $update_lient->lien = $request->lien;
+            $update_lient->lien_front = $request->lien_front;
             $update_lient->save();
             Toastr::success('Le status de votre lien a ete modifier', 'Modification Lien', ["positionClass" => "toast-top-right"]);
             return back();

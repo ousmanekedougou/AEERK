@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class BibliothequeController extends Controller
 {
     public function index(){
-        $facultes = Faculty::all();
+        $facultes = Faculty::paginate(12);
         return view('user.bibliotheque.index',compact('facultes'));
     }
 
