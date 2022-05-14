@@ -526,7 +526,7 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title text-center">Vous allez rejeter les documente de {{$show_ancien->prenom}} {{$show_ancien->nom}}</h4>
+            <h4 class="modal-title text-center">Vous allez rejeter les documents de {{$show_ancien->prenom}} {{$show_ancien->nom}}</h4>
           </div>
           <h5 class="text-center">Veuillez decrire ici les motifs du rejet de ces documents</h5>
           <form action="{{ route('admin.valider_ancien',$show_ancien->id) }}" method="post" enctype="multipart/form-data">

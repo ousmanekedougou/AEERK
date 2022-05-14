@@ -26,6 +26,7 @@
                       <th>S.No</th>
                       <th>Nom</th>
                       <th>Nombre</th>
+                      <th>Par Terre</th>
                       <th>Status</th>
                       <th>Pour</th>
                       <th>Genre</th>
@@ -40,6 +41,7 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $chm->nom }}</td>
                             <td >{{ $chm->nombre }}</td>
+                            <td >{{ $chm->terre }}</td>
                             <td>
                               @if($chm->is_pleine == 1)
                                 <span class="badge btn btn-danger btn-xs"> Chambre Pleine </span>
@@ -138,7 +140,7 @@
                 <div class="modal-body">
                   <p><input type="hidden" value="{{ $immeuble->id }}" name="immeuble"></p>
                 <p>
-                  <label for="slug">Nom de la chambre</label>
+                  <label for="name">Nom de la chambre</label>
                   <input type="text"  value="{{ old('name')}}" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="">
                     @error('name')
                       <span class="invalid-feedback" role="alert">
@@ -165,56 +167,78 @@
                     </div>
                   </p>
                   --}}
-                  <p>
-                    <label for="slug">Nombre de place</label>
-                    <input type="number"  value="{{ old('nombre')}}" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="">
-                    @error('nombre')
-                      <span class="invalid-feedback" role="alert">
-                          <strong class="message_error">{{ $message }}</strong>
-                      </span>
-                    @enderror
-                  </p>
-                  <p>
-                    <div class="row">
-                      <div class="radio">
-                            <div class="col-lg-2">
-                              <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id=""> Femme </label>
-                              @error('genre')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong class="message_error">{{ $message }}</strong>
-                                </span>
-                              @enderror
-                            </div>
-                            <div class="col-lg-2">
-                              <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id=""> Homme </label>
-                              @error('genre')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong class="message_error">{{ $message }}</strong>
-                                </span>
-                              @enderror
-                            </div>
-                        </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p>
+                        <label for="nombre">Nombre de place normale</label>
+                        <input type="number"  value="{{ old('nombre')}}" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="">
+                        @error('nombre')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
                     </div>
-                  </p>
-                   <p>
-                      <div class="row">
-                        <div class="radio pull-left">
-                          <label style="margin-right:5px;">
-                              <input type="radio" value="{{ old('status') ?? 0 }}" class="@error('status') is-invalid @enderror"  name="status"  > 
-                                Master 1 et moins
-                          </label>
-                          <label style="margin-left:5px;">
-                            <input type="radio" value="{{ old('status') ?? 1 }}" class="@error('status') is-invalid @enderror"  name="status"   > 
-                              Masters 2
-                          </label>
-                          @error('status')
-                            <span class="invalid-feedback" role="alert">
-                                <strong class="message_error">{{ $message }}</strong>
-                            </span>
-                          @enderror
-                      </div>
-                      </div>
-                    </p>
+                    <div class="col-lg-6">
+                      <p>
+                        <label for="terre">Nombre de place par terre</label>
+                        <input type="number"  value="{{ old('terre')}}" class="form-control @error('terre') is-invalid @enderror" id="terre" name="terre" placeholder="">
+                        @error('terre')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p>
+                        <label style="margin-top: 5px;">Genre</label>
+                        <div class="row" style="padding-left:15px;margin-top:-20px;">
+                          <div class="radio pull-left">
+                            <label class="col-form-label text-md-right" for="genre" style="margin-right:5px;"> 
+                              <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id=""> Femme </label>
+                            @error('genre')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="message_error">{{ $message }}</strong>
+                              </span>
+                            @enderror
+                            <label class="col-form-label text-md-right" for="genre" style="margin-right:5px;"> 
+                              <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id=""> Homme </label>
+                            @error('genre')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="message_error">{{ $message }}</strong>
+                              </span>
+                            @enderror
+                          </div>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p>
+                        <label class="margin-top: 5px;">Pour qui</label>
+                        <div class="row" style="padding-left:15px;margin-top:-20px;">
+                          <div class="radio pull-left">
+                            <label style="margin-right:5px;">
+                                <input type="radio" value="{{ old('status') ?? 0 }}" class="@error('status') is-invalid @enderror"  name="status"  > 
+                                  Master 1 et moins
+                            </label>
+                            <label style="margin-left:5px;">
+                              <input type="radio" value="{{ old('status') ?? 1 }}" class="@error('status') is-invalid @enderror"  name="status"   > 
+                                Masters 2
+                            </label>
+                            @error('status')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="message_error">{{ $message }}</strong>
+                              </span>
+                            @enderror
+                          </div>
+                        </div>
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
@@ -254,62 +278,78 @@
                         </span>
                       @enderror
                     </p>
-                    <p>
-                    <label for="slug">Nombre de place</label>
-                    <input type="number"  value="{{ old('nombre') ?? $modal_chambre->nombre }}" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="">
-                      @error('nombre')
-                        <span class="invalid-feedback" role="alert">
-                            <strong class="message_error">{{ $message }}</strong>
-                        </span>
-                      @enderror
-                    </p>
-                    <p>
-                      <label for="slug">Le genre de la chambre</label>
-                      <div class="row">
-                        <div class="radio">
-                              <div class="col-lg-2">
-                                <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 1) {{ 'checked' }} @endif> Femme </label>
-                                @error('genre')
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong class="message_error">{{ $message }}</strong>
-                                  </span>
-                                @enderror
-                              </div>
-                              <div class="col-lg-2">
-                                <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 2) {{ 'checked' }} @endif> Homme </label>
-                                @error('genre')
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong class="message_error">{{ $message }}</strong>
-                                  </span>
-                                @enderror
-                              </div>
-                          </div>
-                      </div>
-                    </p>
-                    
-                    <p>
-                      <div class="row">
-                        <div class="radio pull-left">
-                        <label style="margin-right:5px;">
-                          
-                            <input type="radio" name="status" value="{{ old('status') ?? 0 }}" class="@error('status') is-invalid @enderror" 
-                            @if ($modal_chambre->status == 0) {{ 'checked' }} @endif > 
-                              Masters 1 et moins
-                        </label>
-                        <label style="margin-left:5px;">
-                          
-                          <input type="radio"  name="status" value="{{ old('status') ?? 1 }}" class="@error('status') is-invalid @enderror" 
-                          @if ($modal_chambre->status == 1) {{ 'checked' }} @endif > 
-                            Masters 2
-                        </label>
-                        @error('status')
+                    <div class="row">
+                    <div class="col-lg-6">
+                      <p>
+                        <label for="nombre">Nombre de place normale</label>
+                        <input type="number"  value="{{ old('nombre') ?? $modal_chambre->nombre }}" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="">
+                        @error('nombre')
                           <span class="invalid-feedback" role="alert">
                               <strong class="message_error">{{ $message }}</strong>
                           </span>
                         @enderror
-                      </div>
-                      </div>
-                    </p>
+                      </p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p>
+                        <label for="terre">Nombre de place par terre</label>
+                        <input type="number"  value="{{ old('terre') ?? $modal_chambre->terre}}" class="form-control @error('terre') is-invalid @enderror" id="terre" name="terre" placeholder="">
+                        @error('terre')
+                          <span class="invalid-feedback" role="alert">
+                              <strong class="message_error">{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <p>
+                        <label style="margin-top: 5px;">Genre</label>
+                        <div class="row" style="padding-left:15px;margin-top:-20px;">
+                          <div class="radio pull-left">
+                            <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 1 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 1) {{ 'checked' }} @endif> Femme </label>
+                            @error('genre')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="message_error">{{ $message }}</strong>
+                              </span>
+                            @enderror
+                            <label class="col-form-label text-md-right" for="role"> <input type="radio" name="genre" value="{{ old('genre') ?? 2 }}" class="@error('genre') is-invalid @enderror" id="" @if ($modal_chambre->genre == 2) {{ 'checked' }} @endif> Homme </label>
+                            @error('genre')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="message_error">{{ $message }}</strong>
+                              </span>
+                            @enderror
+                          </div>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p>
+                        <label class="margin-top: 5px;">Pour qui</label>
+                        <div class="row" style="padding-left:15px;margin-top:-20px;">
+                          <div class="radio pull-left">
+                            <label style="margin-right:5px;">
+                                <input type="radio" name="status" value="{{ old('status') ?? 0 }}" class="@error('status') is-invalid @enderror" 
+                                  @if ($modal_chambre->status == 0) {{ 'checked' }} @endif > 
+                                    Masters 1 et moins
+                            </label>
+                            <label style="margin-left:5px;">
+                              <input type="radio"  name="status" value="{{ old('status') ?? 1 }}" class="@error('status') is-invalid @enderror" 
+                                @if ($modal_chambre->status == 1) {{ 'checked' }} @endif > 
+                                Masters 2
+                            </label>
+                            @error('status')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="message_error">{{ $message }}</strong>
+                              </span>
+                            @enderror
+                          </div>
+                        </div>
+                      </p>
+                    </div>
+                  </div>
                     
                   </div>
                   <div class="modal-footer">

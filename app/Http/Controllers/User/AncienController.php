@@ -135,10 +135,12 @@ class AncienController extends Controller
 
             // Teste sms
             
-            return redirect()->route('index',$add_ancien)->with([
-                "success" => "success",
-                "name" => "$add_ancien->prenom $add_ancien->nom"
-            ]);
+            // return redirect()->route('index',$add_ancien)->with([
+            //     "success" => "success",
+            //     "name" => "$add_ancien->prenom $add_ancien->nom"
+            // ]);
+            Toastr::success('Salut '.$add_ancien->prenom.' '.$add_ancien->nom.' votre inscription a ete enregistre avec success', 'Inscription Reussie', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('index');
         }else {
             Toastr::warning('L\'access de cette page est desctiver', 'Access Desactiver', ["positionClass" => "toast-top-right"]);
             return back();

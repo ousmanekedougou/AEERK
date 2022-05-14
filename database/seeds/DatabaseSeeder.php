@@ -204,7 +204,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1D2',
@@ -213,7 +214,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1D3',
@@ -222,7 +224,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
              Chambre::create([
                 'nom' => '1G1',
@@ -231,7 +234,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '1G2',
@@ -240,7 +244,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             // Fin Immeuble 43 premier
 
@@ -252,7 +257,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2D2',
@@ -261,7 +267,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2D3',
@@ -270,7 +277,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2G1',
@@ -279,7 +287,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2G2',
@@ -288,7 +297,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             // Fin Immeuble 43 deuxieme
 
@@ -300,7 +310,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3D2',
@@ -309,7 +320,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3D3',
@@ -318,7 +330,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3G1',
@@ -327,7 +340,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3G2',
@@ -336,7 +350,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             // Fin Immeuble 43 troisieme
 
@@ -348,7 +363,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4D2',
@@ -357,7 +373,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4G1',
@@ -366,7 +383,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4G2',
@@ -375,7 +393,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             // Fin Immeuble 43 quatrieme
 
@@ -386,7 +405,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4           
             ]);
             Chambre::create([
                 'nom' => 'Rez salle 2',
@@ -395,7 +415,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Rez salle 3',
@@ -404,7 +425,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 1
+                'immeuble_id' => 1,
+                'terre' => 4
             ]);
 
             //Immeuble 43 Rez de socces
@@ -423,7 +445,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
              Chambre::create([
                 'nom' => 'RD2',
@@ -432,7 +455,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
              Chambre::create([
                 'nom' => 'RD3',
@@ -441,7 +465,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4           
             ]);
             // Immeuble 39 fin Re de socce
 
@@ -453,7 +478,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '1D2',
@@ -462,7 +488,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1D3',
@@ -471,7 +498,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1D4',
@@ -480,7 +508,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 1D',
@@ -489,7 +518,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
              Chambre::create([
                 'nom' => '1G1',
@@ -498,7 +528,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '1G2',
@@ -507,7 +538,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1G3',
@@ -516,7 +548,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1G4',
@@ -525,7 +558,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 1G',
@@ -534,7 +568,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             // fin immeuble 39 premier
             
@@ -546,7 +581,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '2D2',
@@ -555,7 +591,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2D3',
@@ -564,7 +601,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2D4',
@@ -573,7 +611,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 2D',
@@ -582,7 +621,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
              Chambre::create([
                 'nom' => '2G1',
@@ -591,7 +631,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '2G2',
@@ -600,7 +641,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2G3',
@@ -609,7 +651,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2G4',
@@ -618,7 +661,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 2G',
@@ -627,7 +671,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             // Fin immeuble 39 deuxieme
 
@@ -639,7 +684,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '3D2',
@@ -648,7 +694,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3D3',
@@ -657,7 +704,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3D4',
@@ -666,7 +714,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 3D',
@@ -675,7 +724,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
              Chambre::create([
                 'nom' => '3G1',
@@ -684,8 +734,9 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
-            ]);
+                'immeuble_id' => 2,
+                'terre' => 4            
+                ]);
             Chambre::create([
                 'nom' => '3G2',
                 'nombre' => 4,
@@ -693,7 +744,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3G3',
@@ -702,7 +754,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3G4',
@@ -711,7 +764,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 3G',
@@ -720,7 +774,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             // fin immeuble 39 troisieme
 
@@ -732,7 +787,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '4D2',
@@ -741,7 +797,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4D3',
@@ -750,7 +807,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4D4',
@@ -759,7 +817,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 4D',
@@ -768,7 +827,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
              Chambre::create([
                 'nom' => '4G1',
@@ -777,7 +837,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '4G2',
@@ -786,7 +847,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4G3',
@@ -795,7 +857,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4G4',
@@ -804,7 +867,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 4G',
@@ -813,7 +877,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             // fin immeuble 39 quatrieme
             
@@ -825,7 +890,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '5D2',
@@ -834,7 +900,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '5D3',
@@ -843,7 +910,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'Cuisine 5D',
@@ -852,7 +920,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 2
+                'immeuble_id' => 2,
+                'terre' => 4
             ]);
             // fin immeuble 39 cinquieme
 
@@ -868,7 +937,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => 'RA2',
@@ -877,7 +947,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'RA3',
@@ -886,16 +957,18 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
-             Chambre::create([
+            Chambre::create([
                 'nom' => 'RB1',
                 'nombre' => 8,
                 'genre' => 2,
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => 'RB2',
@@ -904,7 +977,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => 'RB3',
@@ -913,7 +987,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             // fin immeuble Zone A re de cosse
 
@@ -926,7 +1001,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1A2',
@@ -935,7 +1011,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1A3',
@@ -944,16 +1021,18 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
-             Chambre::create([
+            Chambre::create([
                 'nom' => '1B1',
                 'nombre' => 8,
                 'genre' => 2,
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '1B2',
@@ -962,7 +1041,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '1B3',
@@ -971,19 +1051,21 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             // fin immeuble Zone A premier
 
                // Immeuble Zone A deuxieme
-             Chambre::create([
+            Chambre::create([
                 'nom' => '2A1',
                 'nombre' => 8,
                 'genre' => 1,
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '2A2',
@@ -992,7 +1074,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2A3',
@@ -1001,16 +1084,18 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
-             Chambre::create([
+            Chambre::create([
                 'nom' => '2B1',
                 'nombre' => 8,
                 'genre' => 1,
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '2B2',
@@ -1019,7 +1104,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '2B3',
@@ -1028,7 +1114,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             // fin immeuble Zone A deuxieme
 
@@ -1041,7 +1128,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3A2',
@@ -1050,7 +1138,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3A3',
@@ -1059,16 +1148,18 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
-             Chambre::create([
+            Chambre::create([
                 'nom' => '3B1',
                 'nombre' => 8,
                 'genre' => 2,
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '3B2',
@@ -1077,7 +1168,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '3B3',
@@ -1086,7 +1178,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             // fin immeuble Zone A troisieme
 
@@ -1098,7 +1191,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4A2',
@@ -1107,7 +1201,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4A3',
@@ -1116,16 +1211,18 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
-             Chambre::create([
+            Chambre::create([
                 'nom' => '4B1',
                 'nombre' => 8,
                 'genre' => 2,
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             Chambre::create([
                 'nom' => '4B2',
@@ -1134,7 +1231,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '4B3',
@@ -1143,7 +1241,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             // fin immeuble Zone A quatrieme
 
@@ -1155,7 +1254,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '5A2',
@@ -1164,7 +1264,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
             Chambre::create([
                 'nom' => '5A3',
@@ -1173,7 +1274,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4
             ]);
              Chambre::create([
                 'nom' => '5A4',
@@ -1182,7 +1284,8 @@ class DatabaseSeeder extends Seeder
                 'status' => 0,
                 'is_pleine' => 0,
                 'position' => 0,
-                'immeuble_id' => 3
+                'immeuble_id' => 3,
+                'terre' => 4            
             ]);
             // fin immeuble Zone A cinquieme
 

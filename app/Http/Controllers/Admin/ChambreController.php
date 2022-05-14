@@ -50,6 +50,7 @@ class ChambreController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'nombre' => 'required|numeric',
+            'terre' => 'required|numeric',
             'genre' => 'required',
             'status' => 'required',
         ]);
@@ -58,6 +59,7 @@ class ChambreController extends Controller
         $add_chambre->nombre = $request->nombre;
         $add_chambre->status = $request->status;
         $add_chambre->genre = $request->genre;
+        $add_chambre->terre = $request->terre;
         $add_chambre->immeuble_id = $request->immeuble;
         $add_chambre->save();
         Toastr::success('Votre chambre a ete ajoute', 'Ajout Chambre', ["positionClass" => "toast-top-right"]);
@@ -102,6 +104,7 @@ class ChambreController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'nombre' => 'required|numeric',
+            'terre' => 'required|numeric',
             'genre' => 'required',
             'status' => 'required',
         ]);
@@ -124,6 +127,7 @@ class ChambreController extends Controller
         $update_chambre->is_pleine = $is_peline;
         $update_chambre->immeuble_id = $request->immeuble;
         $update_chambre->status = $request->status;
+        $update_chambre->terre = $request->terre;
         
         $update_chambre->save();
         Toastr::success('Votre chambre a ete modifier', 'Modification Chambre', ["positionClass" => "toast-top-right"]);

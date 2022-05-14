@@ -22,6 +22,7 @@ class CreateChambresTable extends Migration
             $table->boolean('is_pleine')->default(false);
             $table->integer('position')->default(false);
             $table->integer('immeuble_id');
+            $table->integer('terre');
             $table->timestamps();
         });
     }
