@@ -504,30 +504,36 @@
                 <form action="{{ route('admin.codifier_nouveau',$show_nouveau->id) }}" method="post">
                   @csrf
                   {{method_field('PUT')}}
-                  <div class="modal-body">
+                  <div class="modal-body text-center">
                     <p>
                     <h3 class="text-center">{{ $show_nouveau->immeuble->name }}</h3>
+                      @if($show_nouveau->immeuble->is_pleine == 0)
+                        <span class="btn btn-success btn-xs text-bold">Place disponible un lit </span>
+                      @else
+                        <span class="btn btn-warning btn-xs text-bold">Place disponible par terre</span>
+                        <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-update-immeuble-{{ $show_nouveau->id }}">Changer immeuble <i class="fa fa-edit"></i></a></a>
+                      @endif
                     {{--<input type="hidden" name="immeuble" value="{{ $immeuble->id }}">--}}
-                      {{--
-                      <div class="form-group">
-                        <label>Chambres</label>
-                        <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
-                          @foreach($immeuble->chambres  as $chm)
-                            @if($show_nouveau->genre == $chm->genre)
-                              @if($chm->is_pleine == 0)
-                                <option value="{{$chm->id}}">{{$chm->nom}}</option>
-                              @endif
+                    {{--
+                    <div class="form-group">
+                      <label>Chambres</label>
+                      <select value="{{ old('chambre_id') }}" class="form-control @error('chambre_id') is-invalid @enderror" name="chambre_id" style="width: 100%;">
+                        @foreach($immeuble->chambres  as $chm)
+                          @if($show_nouveau->genre == $chm->genre)
+                            @if($chm->is_pleine == 0)
+                              <option value="{{$chm->id}}">{{$chm->nom}}</option>
                             @endif
-                          @endforeach
-                        
-                        </select>
-                        @error('chambre_id')
-                          <span class="invalid-feedback" role="alert">
-                            <strong class="message_error text-danger">{{ $message }}</strong>
-                          </span>
-                        @enderror
-                      </div>
-                      --}}
+                          @endif
+                        @endforeach
+                      
+                      </select>
+                      @error('chambre_id')
+                        <span class="invalid-feedback" role="alert">
+                          <strong class="message_error text-danger">{{ $message }}</strong>
+                        </span>
+                      @enderror
+                    </div>
+                    --}}
                     </p>
 
                     <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
@@ -546,39 +552,76 @@
 <!-- Fin Des Modal Pour Les Codification -->
 
 
-        <div class="modal fade" id="modalSms">
+ <!-- Le formulaire de changement d'immeuble -->
+      <div class="modal fade" id="modal-update-immeuble-{{ $show_nouveau->id }}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Text detailler des documents a modifier </h4>
               </div>
-              <form action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post" enctype="multipart/form-data">
-              @csrf
-              {{ method_field('PUT') }}
-              <input type="hidden" value="2" name="status" class="flat-red">
-              <div class="modal-body">
-                <p>
-                <textarea id="editor1" name="body" value="{{ old('body')}}" class="form-control @error('body') textarea is-invalid @enderror" id="body" placeholder=""
-                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                  @error('body')
-                    <span class="invalid-feedback" role="alert">
-                        <strong class="message_error">{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </p>
-              </div>
+                <form action="{{ route('admin.nouveau.update_immeuble',$show_nouveau->id) }}" method="post">
+                  @csrf
+                  {{method_field('PUT')}}
+                  <div class="modal-body text-center">
+                      <h3 class="modal-title">{{ $show_nouveau->immeuble->name }}</h3>
+                      <span class="btn btn-xs btn-success">Des lits disponible</span>
+                      <br>
+                    <p style="margin-top: 5px;">
+                      <select value="{{ old('update_immeble') }}" class="form-control @error('update_immeble') is-invalid @enderror" name="update_immeble" style="width: 100%;">
+                        @foreach($update_immeubles as $update_imb)
+                            <option value="{{$update_imb->id}}">{{$update_imb->name}}</option>
+                        @endforeach
+                      </select>
+                    </p>
+                    <button type="submit" class="btn btn-primary btn-block">Modifier immeuble</button>
+                  </div>
+                </form>
               <div class="modal-footer">
-                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-primary">Modifier</button>
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
+             
               </div>
             </div>
             </form>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
+      </div>
+
+
+    <div class="modal fade" id="modalSms">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Text detailler des documents a modifier </h4>
+          </div>
+          <form action="{{ route('admin.valider_nouveau',$show_nouveau->id) }}" method="post" enctype="multipart/form-data">
+          @csrf
+          {{ method_field('PUT') }}
+          <input type="hidden" value="2" name="status" class="flat-red">
+          <div class="modal-body">
+            <p>
+            <textarea id="editor1" name="body" value="{{ old('body')}}" class="form-control @error('body') textarea is-invalid @enderror" id="body" placeholder=""
+              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              @error('body')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="message_error">{{ $message }}</strong>
+                </span>
+              @enderror
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+          </div>
         </div>
+        </form>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
 
 
          <!-- Application des modification -->

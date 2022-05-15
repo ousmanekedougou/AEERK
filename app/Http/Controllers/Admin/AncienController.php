@@ -38,7 +38,9 @@ class AncienController extends Controller
         $ancienCount = Etudiant::where('codifier', '=', 0)->where('ancienete', '=', 2)->get();
         $ancien_sms = Etudiant::where('status', '!=', 0)->where('ancienete', '=', 2)->where('codifier', '=', 0)->get();
 
-        return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms','ancienCount'));
+        $update_immeubles = Immeuble::where('is_pleine',0)->get();
+
+        return view('admin.ancien.index',compact('ancien_bac','immeubles','ancien_sms','ancienCount','update_immeubles'));
     }
 
     /**
@@ -168,10 +170,10 @@ class AncienController extends Controller
         $show_ancien = Etudiant::where('id',$id)->first();
         $immeuble = Immeuble::where('status',2)->where('id',$show_ancien->immeuble_id)->first();
         $immeubles = Immeuble::where('status',2)->get();
-
         $puliques = Faculty::where('for',0)->get();
         $prives = Faculty::where('for',1)->get();
-        return view('admin.ancien.show',compact('show_ancien','departement','immeuble','immeubles','puliques','prives'));
+        $update_immeubles = Immeuble::where('is_pleine',0)->get();
+        return view('admin.ancien.show',compact('show_ancien','departement','immeuble','immeubles','puliques','prives','update_immeubles'));
     }
 
     /**
@@ -326,16 +328,19 @@ class AncienController extends Controller
                 }
 
                 $chambre_imb_p = Chambre::where('id',$chambre->id)->where('is_pleine',1)->get();
-                if($chambre_imb_p->count() == $immeuble->chambres->count){
+                if($chambre_imb_p->count() == $immeuble->chambres->count()){
+                    
                     Immeuble::where('id',$immeuble->id)->update([
                         'is_pleine' => 1
                     ]);
 
-                    Chambre::where('id',$chambre_imb_p->id)->where('terre','>',0)->update([
-                        'nombre' => $chambre_imb_p->nombre + $chambre_imb_p->terre,
-                        'is_pleine' => 0,
-                        'terre' => 0
-                    ]);
+                    foreach ($chambre_imb_p as $ch_imb_teree) {
+                        Chambre::where('id',$ch_imb_teree->id)->where('terre','>',0)->update([
+                            'nombre' => $ch_imb_teree->nombre + $ch_imb_teree->terre,
+                            'is_pleine' => 0,
+                            'terre' => 0
+                        ]);
+                    }
                 }
 
                 // // Message sms
@@ -372,6 +377,18 @@ class AncienController extends Controller
             Toastr::error('Il n\'existe plus de chambre pour cette etudiant','Chambre Etudiant', ["positionClass" => "toast-top-right"]);
             return back();
         }
+    }
+
+    public function update_immeuble(Request $request,$id){
+        $validator = $this->validate($request,[
+            'update_immeble' => 'required|numeric'
+        ]);
+        Etudiant::where('id',$id)->update([
+            'immeuble_id' => $request->update_immeble
+        ]);
+
+        Toastr::success('Votre immeuble a ete modifier','Modification Immeuble', ["positionClass" => "toast-top-right"]);
+        return back();
     }
 
 

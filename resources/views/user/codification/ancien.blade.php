@@ -27,7 +27,18 @@
 										<h3 class="text-center" style="margin-bottom:10px;width:100%">Mr {{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@endif
 								</div>
-									<p class="text-center"> Vous allez codifier a {{$immeubles->name }} </p>
+									<p class="text-center" style="font-weight: bold;color:black;"> Vous allez codifier a {{$immeubles->name }}</p>
+									<p class="text-center">
+										@if($immeubles->is_pleine == 1)
+										<span class="text-primary" style="font-weight:bold;">Place disponible par terre</span><br>
+										<a  
+											onclick="document.getElementById('myModal-{{$ancien->id}}');"
+										 	class="genric-btn primary-border circle arrow small mt-2">Choisisse un autre immeuble <span class="lnr lnr-arrow-right"></span>
+										</a>
+										@else
+										<span class="text-success" style="font-weight:bold;">Place disponible un lit</span>
+										@endif
+									</p>
 									<form class="form-area contact-form text-right" action="{{ route('codifier_ancien',$ancien->id) }}" method="post">
 										@csrf
 										{{method_field('PUT')}}
@@ -61,6 +72,40 @@
 			</section>
 			<!-- End contact-page Area -->
 
+
+			<div id="myModal-{{$ancien->id}}" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Note d'information pour les codifications</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<p class="text-bold">
+								Chers étudiants,<br>
+								L'AEERK (Association Des Eléves Et Etudiants Ressortissants De Kédougou) lance sa phase d'inscription pour les codifications.
+							</p>
+							<p>
+								Pour plus d'information sur les modalités de codification veuillez cliquer sur <a href="{{ route('systeme.index') }}">les informations demander</a>.
+								<br> Si toute fois vous avez assimiler ce procéssus vous pouvez vous inscrire selon votre status en cliquant sur les liens ci-dessous
+							</p>
+						
+						</div>
+						<div class="modal-footer text-center">
+							<div style="display: flex;width:100%">
+								<p style="width: 50%;">
+								<a href="{{ route('nouveau.index') }}" class="">Inscription Nouveaux</a>
+								</p>
+								
+								<p style="width: 50%;">
+								<a href="{{ route('ancien.index') }}" class="">Inscription Anciens</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 		
 
 

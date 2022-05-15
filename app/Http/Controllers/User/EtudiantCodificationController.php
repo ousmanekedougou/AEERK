@@ -83,7 +83,7 @@ class EtudiantCodificationController extends Controller
             $status = $request->status;
             $nouveau = Etudiant::where(['email' => $request->email,'phone' => $phoneFinale,'codifier' => 0,'ancienete' => 1,'status' => 1,'prix' => 0])->first();
             if($nouveau){
-                if ($nouveau->codification_count < 5 ) {
+                if ($nouveau->codification_count < 6 ) {
                     $immeubles = Immeuble::where('status',1)->first();
                     return view('user.codification.nouveau',compact('nouveau','immeubles'));
                 }else {
@@ -100,7 +100,7 @@ class EtudiantCodificationController extends Controller
             $status = $request->status;
             $ancien = Etudiant::where(['email' => $request->email,'phone' => $phoneFinale ,'codifier' => 0,'ancienete' => 2,'status' => 1,'prix' => 0])->first();
             if($ancien){
-                if ($ancien->codification_count < 5 ) {
+                if ($ancien->codification_count < 6 ) {
                     $immeubles = Immeuble::where('status',2)->where('id',$ancien->immeuble_id)->first();
                     if ($immeubles) {
                         return view('user.codification.ancien',compact('ancien','immeubles'));
@@ -163,7 +163,7 @@ class EtudiantCodificationController extends Controller
         if($chambre){
             $nouveau = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_nouveau->genre)->get();
             if($nouveau->count() < $chambre->nombre){
-                if ($codifier_nouveau->codification_count < 5) {
+                if ($codifier_nouveau->codification_count < 6) {
                     $invoice = new CheckoutInvoice();
                     $invoice->addItem("AEERK CODIFICATION", 1,$prix->prix_nouveau, $prix->prix_nouveau, "Codifier en toute securite");
                     $invoice->setTotalAmount($prix->prix_nouveau);
@@ -283,6 +283,36 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->payment_methode = 'En ligne';
     $codifier_ancien->codification_token = str_replace('/','',Hash::make(Str::random(40).'etudiant'.$codifier_ancien->email));
     $codifier_ancien->save();
+
+    //le debut du code ajouter
+    $chambre = Chambre::where('id',$invoice->getCustomData("chambre_id"))->where('is_pleine',1)->first();
+
+    $chambre_ancien_count = Etudiant::where('chambre_id',$invoice->getCustomData("chambre_id"))
+    ->where('genre',$codifier_ancien->genre)->get();
+    
+    if ($chambre->nombre == $chambre_ancien_count->count()) {
+        Chambre::where('id',$chambre->id)->update([
+            'is_pleine' => 1
+        ]);
+    }
+    
+    $chambre_imb_p = Chambre::where('id',$chambre->id)->where('is_pleine',1)->get();
+    $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
+    if($chambre_imb_p->count() == $immeuble->chambres->count()){
+        
+        Immeuble::where('id',$immeuble->id)->update([
+            'is_pleine' => 1
+        ]);
+
+        foreach ($chambre_imb_p as $ch_imb_teree) {
+            Chambre::where('id',$ch_imb_teree->id)->where('terre','>',0)->update([
+                'nombre' => $ch_imb_teree->nombre + $ch_imb_teree->terre,
+                'is_pleine' => 0,
+                'terre' => 0
+            ]);
+        }
+    }
+    // la fin du code ajouter
 
     Mail::to($codifier_ancien->email)
     ->send(new MessageEmailAeerk($codifier_ancien));

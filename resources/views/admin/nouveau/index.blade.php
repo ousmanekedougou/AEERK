@@ -182,23 +182,61 @@
                         <p>  <b><i class="fa fa-building"></i></b>  <a class="pull-center text-muted text-bold tex-italic"> {{ $nouveau->immeuble->name }}</a></p>
                       </div>
               </div>
-              {{--
-              @foreach($immeubles as $imb) 
-                @if($imb->id == $nouveau->immeuble->id)
-                  <form action="{{ route('admin.codifier_nouveau',$nouveau->id) }}" method="post">
-                    @csrf
-                    {{method_field('PUT')}}
-                    <div class="modal-body">
-                      <p>
-                      <h3 class="text-center">{{ $nouveau->immeuble->name }}</h3>
-                      </p>
+                <form action="{{ route('admin.codifier_nouveau',$nouveau->id) }}" method="post">
+                  @csrf
+                  {{method_field('PUT')}}
+                  <div class="modal-body text-center">
+                    <p>
+                    <h3 class="text-center">{{ $nouveau->immeuble->name }}</h3>
+                      @if($nouveau->immeuble->is_pleine == 0)
+                        <span class="btn btn-success btn-xs text-bold">Place disponible un lit </span>
+                      @else
+                        <span class="btn btn-warning btn-xs text-bold">Place disponible par terre</span>
+                        <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$nouveau->id}}" data-name="{{$nouveau->name}}" data-target="#modal-update-immeuble-{{ $nouveau->id }}">Changer immeuble <i class="fa fa-edit"></i></a></a>
+                      @endif
+                    </p>
 
-                      <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
-                    </div>
-                  </form>
-                @endif
-              @endforeach
-              --}}
+                    <button type="submit" class="btn btn-primary btn-block">Enregistre la codification</button>
+                  </div>
+                </form>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
+             
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+    @endforeach
+
+  <!-- Le formulaire de changement d'immeuble -->
+    @foreach($nouveau_bac as $nouveau)
+      <div class="modal fade" id="modal-update-immeuble-{{ $nouveau->id }}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+              </div>
+                <form action="{{ route('admin.nouveau.update_immeuble',$nouveau->id) }}" method="post">
+                  @csrf
+                  {{method_field('PUT')}}
+                  <div class="modal-body text-center">
+                       <h3 class="modal-title">{{ $nouveau->immeuble->name }}</h3>
+                      <span class="btn btn-xs btn-success">Des lits disponible</span>
+                      <br>
+                    <p style="margin-top: 5px;">
+                      <select value="{{ old('update_immeble') }}" class="form-control @error('update_immeble') is-invalid @enderror" name="update_immeble" style="width: 100%;">
+                        @foreach($update_immeubles as $update_imb)
+                            <option value="{{$update_imb->id}}">{{$update_imb->name}}</option>
+                        @endforeach
+                      </select>
+                    </p>
+                    <button type="submit" class="btn btn-primary btn-block">Modifier immeuble</button>
+                  </div>
+                </form>
               <div class="modal-footer">
                 <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
              

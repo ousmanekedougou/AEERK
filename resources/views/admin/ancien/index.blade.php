@@ -192,9 +192,15 @@
                   <form action="{{ route('admin.codifier_ancien',$ancien->id) }}" method="post">
                     @csrf
                     {{method_field('PUT')}}
-                    <div class="modal-body">
-                      <p>
+                    <div class="modal-body text-center">
+                      <p class="text-center">
                       <h3 class="text-center">{{ $ancien->immeuble->name }}</h3>
+                        @if($ancien->immeuble->is_pleine == 0)
+                          <span class="btn btn-success btn-xs text-bold">Place disponible un lit </span>
+                        @else
+                          <span class="btn btn-warning btn-xs text-bold">Place disponible par terre</span>
+                          <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$ancien->id}}" data-name="{{$ancien->name}}" data-target="#modal-update-immeuble-{{ $ancien->id }}">Changer immeuble <i class="fa fa-edit"></i></a></a>
+                        @endif
                       {{--<input type="hidden" name="immeuble" value="{{ $immeubles->id }}">--}}
                         {{--
                         <div class="form-group">
@@ -235,6 +241,44 @@
       </div>
     @endforeach
 <!-- Fin du modal pour la codification des anciens -->
+
+ <!-- Le formulaire de changement d'immeuble -->
+    @foreach($ancien_bac as $ancien)
+      <div class="modal fade" id="modal-update-immeuble-{{ $ancien->id }}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+              </div>
+                <form action="{{ route('admin.ancien.update_immeuble',$ancien->id) }}" method="post">
+                  @csrf
+                  {{method_field('PUT')}}
+                  <div class="modal-body text-center">
+                      <h3 class="modal-title">{{ $ancien->immeuble->name }}</h3>
+                      <span class="btn btn-xs btn-success">Des lits disponible</span>
+                      <br>
+                    <p style="margin-top: 5px;">
+                      <select value="{{ old('update_immeble') }}" class="form-control @error('update_immeble') is-invalid @enderror" name="update_immeble" style="width: 100%;">
+                        @foreach($update_immeubles as $update_imb)
+                            <option value="{{$update_imb->id}}">{{$update_imb->name}}</option>
+                        @endforeach
+                      </select>
+                    </p>
+                    <button type="submit" class="btn btn-primary btn-block">Modifier immeuble</button>
+                  </div>
+                </form>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-default pull-left" data-dismiss="modal">Fermer La Fenetre</button>
+             
+              </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+    @endforeach
 
 @endsection
 
