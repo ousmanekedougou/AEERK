@@ -23,7 +23,7 @@
 								<div class="row">
 									@if($ancien->genre == 1)
 										<h3 class="text-center" style="margin-bottom:10px;width:100%">Mme {{ $ancien->prenom .' '. $ancien->nom}}</h3>
-									@else 
+									@elseif($ancien->genre == 2) 
 										<h3 class="text-center" style="margin-bottom:10px;width:100%">Mr {{ $ancien->prenom .' '. $ancien->nom}}</h3>
 									@endif
 								</div>
@@ -35,10 +35,15 @@
 											onclick="document.getElementById('myModal-{{$ancien->id}}');"
 										 	class="genric-btn primary-border circle arrow small mt-2">Choisisse un autre immeuble <span class="lnr lnr-arrow-right"></span>
 										</a>
-										@else
-										<span class="text-success" style="font-weight:bold;">Place disponible un lit</span>
+										@elseelseif($immeubles->is_pleine == 2)
+										<span class="text-info" style="font-weight:bold;">Plus de place disponible</span><br>
+										<a  
+											onclick="document.getElementById('myModal-{{$ancien->id}}');"
+										 	class="genric-btn primary-border circle arrow small mt-2">Choisisse un autre immeuble <span class="lnr lnr-arrow-right"></span>
+										</a>
 										@endif
 									</p>
+									@if($immeubles->is_pleine != 2)
 									<form class="form-area contact-form text-right" action="{{ route('codifier_ancien',$ancien->id) }}" method="post">
 										@csrf
 										{{method_field('PUT')}}
@@ -64,7 +69,8 @@
 											{{-- <div class="alert-msg" style="text-align: left;"></div>  --}}
 											<button class="genric-btn primary my-4 btn-block" type="submit">Valider la codification</button>											
 										</div>
-									</form>	
+									</form>
+									@endif	
 						</div>
 					<div class="col-lg-3"></div>
 					</div>

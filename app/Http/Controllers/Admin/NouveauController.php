@@ -486,13 +486,20 @@ class NouveauController extends Controller
                             'is_pleine' => 1
                         ]);
 
-                        foreach ($chambre_imb_p as $ch_imb_teree) {
-                            Chambre::where('id',$ch_imb_teree->id)->where('terre','>',0)->update([
-                                'nombre' => $ch_imb_teree->nombre + $ch_imb_teree->terre,
+                        foreach ($chambre_imb_p as $ch_imb_terre) {
+                            Chambre::where('id',$ch_imb_terre->id)->where('terre','>',0)->update([
+                                'nombre' => $ch_imb_terre->nombre + $ch_imb_terre->terre,
                                 'is_pleine' => 0,
                                 'terre' => 0
                             ]);
                         }
+                    }
+
+                    $chambre_imb_p = Chambre::where('id',$chambre->id)->where('is_pleine',1)->where('terre',0)->get();
+                    if($chambre_imb_p->count() == $immeuble->chambres->count()){
+                        Immeuble::where('id',$immeuble->id)->update([
+                            'is_pleine' => 2
+                        ]);
                     }
 
                     // // Message sms

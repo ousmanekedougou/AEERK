@@ -509,8 +509,11 @@
                     <h3 class="text-center">{{ $show_nouveau->immeuble->name }}</h3>
                       @if($show_nouveau->immeuble->is_pleine == 0)
                         <span class="btn btn-success btn-xs text-bold">Place disponible un lit </span>
-                      @else
+                      @elseif($show_nouveau->immeuble->is_pleine == 1)
                         <span class="btn btn-warning btn-xs text-bold">Place disponible par terre</span>
+                        <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-update-immeuble-{{ $show_nouveau->id }}">Changer immeuble <i class="fa fa-edit"></i></a></a>
+                      @elseif($show_nouveau->immeuble->is_pleine == 2)
+                        <span class="btn btn-info btn-xs text-bold">Plus de place disponible</span>
                         <a data-toggle="modal" class="btn btn-success btn-xs text-center" data-id="{{$show_nouveau->id}}" data-name="{{$show_nouveau->name}}" data-target="#modal-update-immeuble-{{ $show_nouveau->id }}">Changer immeuble <i class="fa fa-edit"></i></a></a>
                       @endif
                     {{--<input type="hidden" name="immeuble" value="{{ $immeuble->id }}">--}}

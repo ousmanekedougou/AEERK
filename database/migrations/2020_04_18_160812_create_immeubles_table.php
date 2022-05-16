@@ -19,7 +19,7 @@ class CreateImmeublesTable extends Migration
             $table->string('address')->nullable();
             $table->string('image')->nullable();
             $table->integer('status')->default(0);
-            $table->boolean('is_pleine')->default(0);
+            $table->integer('is_pleine')->default(0);
             $table->timestamps();
         });
     }

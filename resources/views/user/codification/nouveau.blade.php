@@ -51,7 +51,7 @@
 									<div class="text-center">
 										@if($nouveau->genre == 1)
 										<h3 class="text-center" style="margin-bottom:20px;margin-top:8px;width:100%">Mme {{ $nouveau->prenom .' '. $nouveau->nom}}</h3>
-										@else 
+										@elseif($nouveau->genre == 2) 
 										<h3 class="text-center" style="margin-bottom:20px;margin-top:8px;width:100%">Mr {{ $nouveau->prenom .' '. $nouveau->nom}}</h3>
 										@endif
 									</div>
