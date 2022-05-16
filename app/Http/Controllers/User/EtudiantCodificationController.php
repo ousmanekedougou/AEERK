@@ -285,19 +285,19 @@ if ($invoice->confirm($token)) {
     $codifier_ancien->save();
 
     //le debut du code ajouter
-    $chambre = Chambre::where('id',$invoice->getCustomData("chambre_id"))->where('is_pleine',1)->first();
+    $chambre_is_pleine = Chambre::where('id',$invoice->getCustomData("chambre_id"))->where('is_pleine',0)->first();
 
     $chambre_ancien_count = Etudiant::where('chambre_id',$invoice->getCustomData("chambre_id"))
     ->where('genre',$codifier_ancien->genre)->get();
     
-    if ($chambre->nombre == $chambre_ancien_count->count()) {
-        Chambre::where('id',$chambre->id)->update([
+    if ($chambre_is_pleine->nombre == $chambre_ancien_count->count()) {
+        Chambre::where('id',$chambre_is_pleine->id)->update([
             'is_pleine' => 1
         ]);
     }
     
-    $chambre_imb_p = Chambre::where('id',$chambre->id)->where('is_pleine',1)->get();
-    $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
+    $chambre_imb_p = Chambre::where('id',$invoice->getCustomData("chambre_id"))->where('is_pleine',1)->get();
+    $immeuble = Immeuble::where('id',$codifier_ancien->immeuble_id)->first();
     if($chambre_imb_p->count() == $immeuble->chambres->count()){
         
         Immeuble::where('id',$immeuble->id)->update([
@@ -313,16 +313,16 @@ if ($invoice->confirm($token)) {
         }
     }
 
-    $chambre_imb_p = Chambre::where('id',$chambre->id)->where('is_pleine',1)->where('terre',0)->get();
+    $chambre_imb_p = Chambre::where('id',$invoice->getCustomData("chambre_id"))->where('is_pleine',1)->where('terre',0)->get();
     if($chambre_imb_p->count() == $immeuble->chambres->count()){
-    Immeuble::where('id',$immeuble->id)->update([
-        'is_pleine' => 2
-    ]);
+        Immeuble::where('id',$immeuble->id)->update([
+            'is_pleine' => 2
+        ]);
     }
     // la fin du code ajouter
 
-    Mail::to($codifier_ancien->email)
-    ->send(new MessageEmailAeerk($codifier_ancien));
+    // Mail::to($codifier_ancien->email)
+    // ->send(new MessageEmailAeerk($codifier_ancien));
     Auth::logout();
     Toastr::success('Vous avez bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
     return redirect()->route('index')->with([

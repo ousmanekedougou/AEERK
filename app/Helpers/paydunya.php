@@ -10,29 +10,30 @@ use Paydunya\Checkout\Store;
 // Setup::setMode(config('aeerk.aeerk_mode_key'));
 
 
-Setup::setMasterKey("AqF7wDeD-Tony-Tlrq-kyEU-RCjmhsDfiF0Y");
-Setup::setPublicKey("test_public_ew18NxL74bQYgwQOjYOYBGwz1f4");
-Setup::setPrivateKey("test_private_DWrBMRN6xx2WxLEa2oNpYh30B92");
-Setup::setToken("bNVfoueHjgHFdmgOYNb4");
-Setup::setMode("test");  // Optionnel. Utilisez cette option pour les paiements tests.
+Setup::setMasterKey("00J5ElPL-WRPr-o15z-3kcj-F1sNwX9AqXCR");
+Setup::setPublicKey("test_public_Le38qc2XyAdNVGvEO5RvdxbcElt");
+Setup::setPrivateKey("test_private_867eS9f5caorDp5a11wTga10ZOc");
+Setup::setToken("NgEnnqDStUiBm5W1JDGJ");
+// Optionnel. Utilisez cette option pour les paiements tests.
+Setup::setMode("test");  
 
 //Configuration des informations de votre service/entreprise
-Store::setName("AEERK"); // Seul le nom est requis
+Store::setName("Aeerk-Money"); // Seul le nom est requis
 Store::setTagline("Codification");
-Store::setPhoneNumber("781956168");
+Store::setPhoneNumber("770000000");
 Store::setPostalAddress("Median Rue 39x30");
 
 
 
 Store::setWebsiteUrl("http://localhost:8000/");
-Store::setLogoUrl("http://localhost:8000//logo.png");
+Store::setLogoUrl("http://localhost:8000/logo.png");
 Store::setCallbackUrl("http://localhost:8000/reponse");
 Store::setReturnUrl("http://localhost:8000/reponse");
 Store::setCancelUrl("http://localhost:8000/paymentAnnuler");
 
 
-// Store::setWebsiteUrl("http://aeerk.herokuapp.com/");
-// Store::setLogoUrl("http://localhost:8000//logo.png");
-// Store::setCallbackUrl("http://aeerk.herokuapp.com/reponse");
-// Store::setReturnUrl("http://aeerk.herokuapp.com/reponse");
-// Store::setCancelUrl("http://aeerk.herokuapp.com/paymentAnnuler");
+// Store::setWebsiteUrl("https://www.aeerk-sn.com/");
+// Store::setLogoUrl("https://www.aeerk-sn.com/logo.png");
+// Store::setCallbackUrl("https://www.aeerk-sn.com/reponse");
+// Store::setReturnUrl("https://www.aeerk-sn.com/reponse");
+// Store::setCancelUrl("https://www.aeerk-sn.com/paymentAnnuler");

@@ -35,7 +35,7 @@
 											onclick="document.getElementById('myModal-{{$ancien->id}}');"
 										 	class="genric-btn primary-border circle arrow small mt-2">Choisisse un autre immeuble <span class="lnr lnr-arrow-right"></span>
 										</a>
-										@elseelseif($immeubles->is_pleine == 2)
+										@elseif($immeubles->is_pleine == 2)
 										<span class="text-info" style="font-weight:bold;">Plus de place disponible</span><br>
 										<a  
 											onclick="document.getElementById('myModal-{{$ancien->id}}');"
