@@ -3,19 +3,19 @@ namespace App\Helpers;
 use Paydunya\Setup;
 use Paydunya\Checkout\Store;
 
-Setup::setMasterKey(env('AEERK_MASTER_KEY'));
-Setup::setPublicKey(env('AEERK_PUBLIC_KEY'));
-Setup::setPrivateKey(env('AEERK_PRIVATE_KEY'));
-Setup::setToken(env('AEERK_TOKEN_KEY'));
-Setup::setMode(env('AEERK_MODE_KEY'));
+// Setup::setMasterKey(env('AEERK_MASTER_KEY'));
+// Setup::setPublicKey(env('AEERK_PUBLIC_KEY'));
+// Setup::setPrivateKey(env('AEERK_PRIVATE_KEY'));
+// Setup::setToken(env('AEERK_TOKEN_KEY'));
+// Setup::setMode(env('AEERK_MODE_KEY'));
 
 
-// Setup::setMasterKey("00J5ElPL-WRPr-o15z-3kcj-F1sNwX9AqXCR");
-// Setup::setPublicKey("test_public_Le38qc2XyAdNVGvEO5RvdxbcElt");
-// Setup::setPrivateKey("test_private_867eS9f5caorDp5a11wTga10ZOc");
-// Setup::setToken("NgEnnqDStUiBm5W1JDGJ");
-// // Optionnel. Utilisez cette option pour les paiements tests.
-// Setup::setMode("test");  
+Setup::setMasterKey("00J5ElPL-WRPr-o15z-3kcj-F1sNwX9AqXCR");
+Setup::setPublicKey("test_public_Le38qc2XyAdNVGvEO5RvdxbcElt");
+Setup::setPrivateKey("test_private_867eS9f5caorDp5a11wTga10ZOc");
+Setup::setToken("NgEnnqDStUiBm5W1JDGJ");
+// Optionnel. Utilisez cette option pour les paiements tests.
+Setup::setMode("test");  
 
 
 //Configuration des informations de votre service/entreprise
