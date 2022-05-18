@@ -26,15 +26,15 @@ Store::setPostalAddress("Median Rue 39x30");
 
 
 
-Store::setWebsiteUrl("http://localhost:8000/");
-Store::setLogoUrl("http://localhost:8000/logo.png");
-Store::setCallbackUrl("http://localhost:8000/reponse");
-Store::setReturnUrl("http://localhost:8000/reponse");
-Store::setCancelUrl("http://localhost:8000/paymentAnnuler");
+// Store::setWebsiteUrl("http://localhost:8000/");
+// Store::setLogoUrl("http://localhost:8000/logo.png");
+// Store::setCallbackUrl("http://localhost:8000/reponse");
+// Store::setReturnUrl("http://localhost:8000/reponse");
+// Store::setCancelUrl("http://localhost:8000/paymentAnnuler");
 
 
-// Store::setWebsiteUrl("https://www.aeerk-sn.com/");
-// Store::setLogoUrl("https://www.aeerk-sn.com/logo.png");
-// Store::setCallbackUrl("https://www.aeerk-sn.com/reponse");
-// Store::setReturnUrl("https://www.aeerk-sn.com/reponse");
-// Store::setCancelUrl("https://www.aeerk-sn.com/paymentAnnuler");
+Store::setWebsiteUrl("https://www.aeerk-sn.com/");
+Store::setLogoUrl("https://www.aeerk-sn.com/logo.png");
+Store::setCallbackUrl("https://www.aeerk-sn.com/reponse");
+Store::setReturnUrl("https://www.aeerk-sn.com/reponse");
+Store::setCancelUrl("https://www.aeerk-sn.com/paymentAnnuler");
