@@ -147,7 +147,7 @@
   <div class="row container">
         <!-- pre-header end -->
     <!-- header -->
-    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" style="margin-bottom: -50px;">
 
         <tr>
             <td align="center">
@@ -164,9 +164,9 @@
 
                                 <tr>
                                     <td align="center" height="70" style="height:70px;">
-                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;text-decoration:none">
-                                        <!-- <h3 style="text-align: center;">AEERK KEDOUGOU</h3> -->
-                                        <img border="0" style="display: block; width: 250px;height:auto" src="{{asset('user/img/accueil.png')}}" alt="" />
+                                        <a href="https://www.aeerk-sn.com/" target="banlk" style="display: block; border-style: none !important; border: 0 !important;text-decoration:none">
+                                        <h3 style="text-align: center;font-weight: bold;font-size: 30px;">AEERK KEDOUGOU</h3>
+                                        {{--<img border="0" style="display: block; width: 250px;height:auto" src="{{asset('user/img/accueil.png')}}" alt="" />--}}
                                         </a>
                                     </td>
                                 </tr>
