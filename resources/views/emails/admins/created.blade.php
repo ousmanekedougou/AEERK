@@ -241,12 +241,12 @@
                                                 Nous vous informons que vos documents déposés pour la codification ont étés accéptés. <br>
                                             </p>
                                             <p style="line-height: 24px;margin-bottom:15px;">
-                                            Nous vous invitons a aller jetter un coup d'oeil sur la page de documentation <a href="http://localhost:8000/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure de codification en ligne.
+                                            Nous vous invitons a aller jetter un coup d'oeil sur la page de <a href="https://www.aeerk-sn.com/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure de codification en ligne.
                                             </p>
                                             <p style="line-height: 24px;margin-bottom:15px;">
                                                 <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivantes pour se connécter.
                                                 <br>
-                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="http://localhost:8000/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
+                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="https://www.aeerk-sn.com/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
                                                 <br>
                                                 <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>{{$user->email}} 
                                                 <br>
@@ -295,7 +295,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;width: 400px;">
-                                                        <a href="http://localhost:8000/createPdf/{{ $msg->id }}/{{ $msg->codification_token }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
+                                                        <a href="https://www.aeerk-sn.com/createPdf/{{ $msg->id }}/{{ $msg->codification_token }}" style="color: #ffffff; text-decoration: none;">Tèlècharger le règlement</a>
                                                     </div>
                                                 </td>
                                             </tr>
