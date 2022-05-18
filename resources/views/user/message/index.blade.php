@@ -69,7 +69,7 @@
             
           </div>
           <div class="modal-footer text-center">
-            <a href="http://localhost:8000/createPdf/{{session('id')}}/{{session('codification_token')}}" style="width:100%;background-color:white;color:black;border-radius:8px;padding:10px;">
+            <a href="https://www.aeerk-sn.com/createPdf/{{session('id')}}/{{session('codification_token')}}" style="width:100%;background-color:white;color:black;border-radius:8px;padding:10px;">
              <i class="fa fa-download"></i>  Télécharger votre reçue et le réglement
             </a>
           </div>

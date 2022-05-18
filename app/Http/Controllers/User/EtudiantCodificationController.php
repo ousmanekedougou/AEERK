@@ -321,8 +321,8 @@ if ($invoice->confirm($token)) {
     }
     // la fin du code ajouter
 
-    // Mail::to($codifier_ancien->email)
-    // ->send(new MessageEmailAeerk($codifier_ancien));
+    Mail::to($codifier_ancien->email)
+    ->send(new MessageEmailAeerk($codifier_ancien));
     Auth::logout();
     Toastr::success('Vous avez bien ete codifier','Codification reussie', ["positionClass" => "toast-top-right"]);
     return redirect()->route('index')->with([
