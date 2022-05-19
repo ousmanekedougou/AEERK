@@ -38,3 +38,5 @@ Store::setLogoUrl("https://www.aeerk-sn.com/logo.png");
 Store::setCallbackUrl("https://www.aeerk-sn.com/reponse");
 Store::setReturnUrl("https://www.aeerk-sn.com/reponse");
 Store::setCancelUrl("https://www.aeerk-sn.com/paymentAnnuler");
+
+

@@ -41,7 +41,7 @@ class ContactMessageCreated extends Mailable
         $email = $this->email;
         $subject = $this->subject;
         $msg = $this->msg;
-        return $this->from($this->email)->markdown('emails.messages.created',compact(
+        return $this->from($email)->markdown('emails.messages.created',compact(
             'name','email','subject','msg'
         ));
     }
