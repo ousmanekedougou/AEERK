@@ -17,15 +17,14 @@
             margin: 0;
             padding: 0;
             -webkit-font-smoothing: antialiased;
-            mso-margin-top-alt: 0px;
+            /* mso-margin-top-alt: 0px;
             mso-margin-bottom-alt: 0px;
-            mso-padding-alt: 0px 0px 0px 0px;
+            mso-padding-alt: 0px 0px 0px 0px; */
             
         }
 
         .container{
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-            margin:20px 350px 10px 350px;
         }
 
         p,
@@ -146,45 +145,6 @@
     <!-- pre-header -->
    
   <div class="row container">
-        <!-- pre-header end -->
-    <!-- header -->
-    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
-
-        <tr>
-            <td align="center">
-                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
-                    <tr>
-                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="center">
-
-                            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-
-                                <tr>
-                                    <td align="center" height="70" style="height:70px;">
-                                        <a href="" style="display: block; border-style: none !important; border: 0 !important;text-decoration: none;">
-                                        <h3 style="text-align: center;">AEERK KEDOUGOU</h3>
-                                        <!-- <img width="100" border="0" style="display: block; width: 100px;" src="https://mdbootstrap.com/img/logo/mdb-email.png" alt="" /> -->
-                                        </a>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                    </tr>
-
-                </table>
-            </td>
-        </tr>
-    </table>
-    <!-- end header -->
 
     <!-- big image section -->
 
@@ -199,11 +159,7 @@
                             class="main-header">
                             <!-- section text ======-->
 
-                            <div style="line-height: 35px">
-
-                                {{$name}}
-
-                            </div>
+                            <!-- <div style="line-height: 35px">Message du Bureau</div> -->
                         </td>
                     </tr>
 
@@ -231,13 +187,18 @@
                                 <tr>
                                     <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                         <!-- section text ======-->
+                                            <h3 style="text-align: center;">De {{ $name }}</h3>
+                                        <p style="line-height: 24px; margin-bottom:15px;">
+                                            <span style="font-weight: bold;">Objet</span> : {{$subject}} 
+                                        </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            Objet : {{ $subject }} <br>
+                                            <span style="font-weight: bold;">Message :</span> <br>
+
                                             {{$msg}}
+
                                         </p>
                                         <p style="line-height: 24px">
-                                            Cordialement,</br>
-                                            Le President de la commission sociale
+                                            Merci,</br>
                                         </p>
 
                                     </td>
@@ -270,3 +231,5 @@
 </body>
 
 </html>
+
+

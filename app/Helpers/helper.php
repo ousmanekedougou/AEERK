@@ -111,7 +111,7 @@ if(!function_exists('all_immeuble')){
 if(!function_exists('envoiemail')){
     function envoiemail()
     {
-        $email = 'ousmanelaravel@gmail.com';
+        $email = 'aeerk.sn@gmail.com';
         return $email;
     }
 }

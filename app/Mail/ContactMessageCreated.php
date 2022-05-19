@@ -17,6 +17,9 @@ class ContactMessageCreated extends Mailable
      * @return void
      */
 
+    public $name;
+    public $email;
+    public $subject;
     public $msg;
 
     public function __construct($name,$email,$subject,$msg)

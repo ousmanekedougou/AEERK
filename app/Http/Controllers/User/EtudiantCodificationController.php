@@ -42,7 +42,7 @@ class EtudiantCodificationController extends Controller
             $ancien = 2;
             return view('user.codification.index',compact('nouveau','ancien'));
         }else {
-            Toastr::error('Cette page n\'est pas disponible', 'Indisponible', ["positionClass" => "toast-top-right"]);
+            Toastr::warning('L\'access de cette page est desctiver', 'Access Desactiver', ["positionClass" => "toast-top-right"]);
             return redirect()->route('index');
         }
             
@@ -206,46 +206,53 @@ class EtudiantCodificationController extends Controller
 
     public function codifier_ancien(Request $request,$id)
     {
-        $prix = Solde::select('prix_ancien')->first();
-        $codifier_ancien = Etudiant::where('id',$id)->first();
-        $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
-        $chambre = '';
-        if ($codifier_ancien->codification_count < 5) {
-            $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',0)->first();
-        }else {
-            $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',1)->first();
-        }
-        if($chambre){
-            $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
-            if($ancien->count() < $chambre->nombre){
-                $invoice = new CheckoutInvoice();
-                $invoice->addItem("AEERK CODIFICATION", 1,$prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
-                $invoice->setTotalAmount($prix->prix_ancien);
-                $invoice->addCustomData("id", $id);
-                $invoice->addCustomData("chambre_id", $chambre->id);
-                $invoice->addCustomData("email", $codifier_ancien->email);
-                $invoice->addCustomData("phone", $codifier_ancien->phone);
-                $invoice->addCustomData("codifier", $codifier_ancien->codifier);
-                $invoice->addChannels(['wave-senegal']);
+        $codifier_ancien = Etudiant::where('id',$id)->where('codifier',0)->where('status',1)->first();
+        if ($codifier_ancien) {
+            $prix = Solde::select('prix_ancien')->first();
+            $immeuble = Immeuble::where('status',2)->where('id',$codifier_ancien->immeuble_id)->first();
+            $chambre = '';
+            if ($codifier_ancien->codification_count < 5) {
+                $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',0)->first();
+            }else {
+                $chambre = Chambre::where('immeuble_id',$immeuble->id)->where('genre',$codifier_ancien->genre)->where('is_pleine',0)->where('status',1)->first();
+            }
+            if($chambre){
+                $ancien = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
+                if($ancien->count() < $chambre->nombre){
+                    $invoice = new CheckoutInvoice();
+                    $invoice->addItem("AEERK CODIFICATION", 1,$prix->prix_ancien, $prix->prix_ancien, "Codifier en toute securite");
+                    $invoice->setTotalAmount($prix->prix_ancien);
+                    $invoice->addCustomData("id", $id);
+                    $invoice->addCustomData("chambre_id", $chambre->id);
+                    $invoice->addCustomData("email", $codifier_ancien->email);
+                    $invoice->addCustomData("phone", $codifier_ancien->phone);
+                    $invoice->addCustomData("codifier", $codifier_ancien->codifier);
+                    $invoice->addChannels(['wave-senegal']);
 
-                $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
-                if ($chambre->nombre == $chambre_ancien_count->count()) {
-                    Chambre::where('id',$chambre->id)->update([
-                    'is_pleine' => 1
-                    ]);
-                }
+                    $chambre_ancien_count = Etudiant::where('chambre_id',$chambre->id)->where('genre',$codifier_ancien->genre)->get();
+                    if ($chambre->nombre == $chambre_ancien_count->count()) {
+                        Chambre::where('id',$chambre->id)->update([
+                        'is_pleine' => 1
+                        ]);
+                    }
 
-                if($invoice->create()) {
-                    return redirect(url($invoice->getInvoiceUrl()));
-                }else{
-                    dd($invoice->response_text);
+                    if($invoice->create()) {
+                        return redirect(url($invoice->getInvoiceUrl()));
+                    }else{
+                        dd($invoice->response_text);
+                    }
                 }
+            }else {
+                Auth::logout();
+                Toastr::error('Pas de chambre disponible pour cet immeuble','Error Chambre', ["positionClass" => "toast-top-right"]);
+                return redirect()->route('index');
             }
         }else {
             Auth::logout();
-            Toastr::error('Pas de chambre disponible pour cet immeuble','Error Chambre', ["positionClass" => "toast-top-right"]);
+            Toastr::error('Vous etes deja codifier','Codification effectuer', ["positionClass" => "toast-top-right"]);
             return redirect()->route('index');
         }
+        
     }
 
 public function reponse(){

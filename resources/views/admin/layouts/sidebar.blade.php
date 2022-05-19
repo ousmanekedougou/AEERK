@@ -35,6 +35,7 @@
             <li class=""><a href="{{route('admin.temoignage.index')}}"><i class="fa fa-circle-o"></i> Temoignage</a></li>
           </ul>
         </li>
+        {{--
         <li class="treeview">
           <a href="#">
             <i class="fa fa-envelope"></i>
@@ -48,6 +49,7 @@
             <li><a href="{{ route('admin.contact.create') }}"><i class="fa fa-circle-o"></i> Composer</a></li>
           </ul>
         </li>
+        --}}
         @endif
 
         

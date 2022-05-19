@@ -39,9 +39,13 @@
 						<div class="col-lg-8">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Se Connecter</h4>
+									<h4 class="text-white">Informations à lire</h4>
+									
 								</div>
 								<div class="desc-wrap">
+									<p class="" style="color:black;">
+										veillez entrer l'adresse email et le mot de passe que vous avez reçu dans votre compte gmail. <br>
+									</p>
 									<div class="row ">
 						
 										<div class="col-lg-2 d-flex flex-column address-wrap">
@@ -51,17 +55,17 @@
 											<form action="{{ route('login') }}" method="post">
 												{{ csrf_field() }}
 												<div class="input-group-icon mt-10">
-													<label for="" style="font-weight: bold;">Entrez l'adresse email</label>
-															<input type="email" name="email" id="email" class=" form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
+													<label for="" style="font-weight: bold;float:left;color:black;">Entrez l'adresse email</label>
+													<input type="email" name="email" id="email" class=" form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Entrez l'adresse email" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
 													@error('email')
 													<span class="invalid-feedback" role="alert">
 														<strong class="text-danger">{{ $message }}</strong>
 													</span>
 													@enderror
 												</div>
-												<div class="input-group-icon mt-10">
-													<label for="" style="font-weight: bold;">Entrez le mot de passe</label>
-																		<input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
+												<div class="mt-10">
+													<label for="" style="font-weight: bold;float:left;color:black;">Entrez le mot de passe</label>
+													<input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="Entrez le mot de passe" onfocus="this.placeholder = ''" onblur="this.placeholder = ''" required class="single-input">
 													@error('password')
 														<span class="invalid-feedback" role="alert">
 															<strong class="text-danger">{{ $message }}</strong>

@@ -48,21 +48,10 @@
 			<!-- End banner Area -->
 
 				<!-- Start feature Area -->
-			<section class="feature-area">
+			<section class="feature-area" style="margin-bottom: -70px;">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-2">
-							<!-- <div class="single-feature">
-								<div class="title">
-									<h4>Codification</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-									</p>
-									<a href="#">Voire</a>									
-								</div>
-							</div> -->
 						</div>
 						<div class="col-lg-8">
 							<div class="single-feature">
@@ -71,33 +60,20 @@
 								</div>
 								<div class="desc-wrap">
 									<p>
-										For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
-									</p>
-									<a href="#">Voire</a>									
+										Sur cette étape vous allez donner vos informations personnelle a savoire l'adress email et le numero de téléphone de votre inscription
+										après avoir choisi votre status
+									</p>								
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-2">
-							<!-- <div class="single-feature">
-								<div class="title">
-									<h4>Etudes & Bourse</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
-									</p>
-									<a href="#">Voire</a>									
-								</div>
-							</div> -->
 						</div>												
 					</div>
 				</div>	
 			</section>
 			<!-- End feature Area -->
-
-			@include('flashy::message')
 			<!-- Start contact-page Area -->
-			<section class=" contact-page-area section-gap">
+			<section class=" contact-page-area section-gap" style="margin-top:-100px;">
 				<div class="container">
 					<div class="row">
 					<div class="col-lg-4"></div>
