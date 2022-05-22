@@ -20,7 +20,7 @@
 						<h1 class="text-white">
 							Mise a jour de vos documents	
 						</h1>	
-						<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('ancien.index') }}"> Ancien</a></p>
+						<p class="text-white link-nav"><a href="/">Accueil </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('ancien.index') }}"> Ancien</a></p>
 					</div>	
 				</div>
 			</div>
@@ -38,10 +38,10 @@
 						</div>
 						<div class="desc-wrap">
 							<p>
-								Usage of the Internet is becoming more common due to rapid advancement
-								of technology.
+								Cette page est reserve pour la modification des documents des etudiants anciens enregistre. <br>
+								Si toute fois vous etes un anciens et que vous n'etiez pas inscrit cliquer sur le lien s'inscrire ci-dessous pour vous inscrire comme ancien.
 							</p>
-							<a href="{{ route('ancien.create') }}">S'inscrire ici</a>									
+							<a style="text-decoration: underline;" href="{{ route('ancien.create') }}">Cliquez ici pour s'inscrire comme ancien</a>									
 						</div>
 					</div>
 				</div>

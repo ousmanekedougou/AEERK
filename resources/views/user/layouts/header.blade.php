@@ -29,10 +29,10 @@
 					<li class="{{ set_active_roote('index') }}"><a href="/"><i class="fa fa-home fa_ajout"></i> Accueil</a></li>
 					<li class="{{ set_active_roote('about.index') }}"><a href="{{ route('about.index') }}"><i class="fa fa-address-card fa_ajout"></i> A propos</a></li>
 					@if(lien_front()->lien_front == 1 )
-						<li class="menu-has-children"><a href=""><i class="fa fa-flag fa_ajout"></i> Inscription</a>
+						<li class="menu-has-children"><a href="#"><i class="fa fa-flag fa_ajout"></i> Inscription</a>
 							<ul>
 								<li><a href="{{ route('nouveau.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Nouveau</a></li>
-								<li><a href="{{ route('ancien.index') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
+								<li><a href="{{ route('ancien.create') }}"><i class="fa fa-graduation-cap"></i> Inscription Ancien</a></li>
 							</ul>
 						</li>
 					@endif
@@ -40,7 +40,7 @@
 					
 					<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça marche</a></li>
 					<li class="{{ set_active_roote('bibliotheque.index') }}"><a href="{{ route('bibliotheque.index') }}"><i class="fa fa-book fa_ajout"></i> Bibliothèque</a></li>
-					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-blog fa_ajout"></i>Actualites</a></li>
+					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-hacker-news fa_ajout"></i> Actualités</a></li>
 					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>
 				</ul>
 			</nav><!-- #nav-menu-container -->		    		

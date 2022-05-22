@@ -22,35 +22,34 @@
 								<h1 class="text-white">
 									Inscription des Anciens		
 								</h1>	
-								<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('ancien.index') }}"> Anciens</a></p>
+								<p class="text-white link-nav"><a href="/">Accueil </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('ancien.create') }}"> Anciens</a></p>
 							</div>	
 						</div>
 					</div>
 				</section>
 			<!-- End banner Area -->	
 
-
+			{{--
 			<section class="feature-area pb-30" >
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="single-feature">
 								<div class="title">
-									<h4>Learn Online Courses</h4>
+									<h4>Note d'information</h4>
 								</div>
 								<div class="desc-wrap">
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement
 										of technology.
-									</p>
-									<a href="#">Join Now</a>									
+									</p>									
 								</div>
 							</div>
 						</div>												
 					</div>
 				</div>	
 			</section>
-      
+			--}}
 
       		<section class="feature-area pb-120">
 				<div class="container">
