@@ -20,6 +20,7 @@ class CreateTeamTable extends Migration
             $table->string('phone');
             $table->string('poste_id');
             $table->string('image');
+            $table->text('profile');
             $table->timestamps();
         });
     }

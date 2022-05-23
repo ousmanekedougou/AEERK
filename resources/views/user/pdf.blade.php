@@ -301,7 +301,7 @@ footer {
       <div id="thanks">Mérci,</div>
       <div id="notices" class="notices">
         <div class="president">Le président <br> <br> Younoussa Diallo <br></div>
-        <div class="notice secretaire">Le secrétaire</div>
+        <div class="notice secretaire">Le secrétaire <br> <br> Fodé Cissokho</div>
       </div>
     </main>
 

@@ -55,6 +55,7 @@ class TeamController extends Controller
             'phone' => 'required|numeric',
             'image' => 'required|image',
             'poste' => 'required|numeric',
+            'profile' => 'required|string'
         ]);
         if($request->hasFile('image')){
             $imageName = $request->image->store('public/Personnel');
@@ -66,6 +67,7 @@ class TeamController extends Controller
         $add_personnel->phone = $request->phone;
         $add_personnel->poste_id = $request->poste;
         $add_personnel->image = $imageName;
+        $add_personnel->profile = $request->profile;
         $add_personnel->save();
         Toastr::success('Votre personnel a ete ajouter','Ajout Personnelle', ["positionClass" => "toast-top-right"]);
         return back();
@@ -115,6 +117,7 @@ class TeamController extends Controller
             $imageName = $update_personnel->image;
         }
         $update_personnel->image = $imageName;
+         $update_personnel->profile = $request->profile;
         $update_personnel->save();
         Toastr::success('Votre personnel a ete modifier','Modification Personnelle', ["positionClass" => "toast-top-right"]);
         return back();
@@ -136,3 +139,5 @@ class TeamController extends Controller
         return back();
     }
 }
+
+

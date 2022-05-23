@@ -198,6 +198,10 @@
 							<p>
 								Poste : {{$team->poste->name}} 
 							</p>
+							<p>
+								<span class="text-bold" style="font-weight:600;">Profile:</span> <br>
+								{!! $team->profile !!}
+							</p>
 						</div>
 					</div>	
 					@endforeach																				

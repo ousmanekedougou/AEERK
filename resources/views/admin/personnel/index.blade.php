@@ -95,83 +95,88 @@
                 <h4 class="modal-title">Ajouter un personnelle</h4>
               </div>
               <div class="modal-body">
-                <p>
+                <div class="box-body">
 
-              <div class="box-body">
+                  <!-- debu du row -->
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <form role="form" action="{{route('admin.team.store')}}" method="post" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group">
+                        <label for="adress">Nom et Prenom</label>
+                        <input type="text" id="nom" class="form-control @error('nom') is-invalid @enderror" name="nom" value="{{ old('nom') }}" required autocomplete="nom">
+                          @error('nom')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="text-danger">{{ $message }}</strong>
+                              </span>
+                          @enderror
+                      </div>
 
-              <!-- debu du row -->
-              <div class="row">
-                <div class="col-lg-6">
-                <form role="form" action="{{route('admin.team.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-              <div class="form-group">
-                    <label for="adress">Nom et Prenom</label>
-                    <input type="text" id="nom" class="form-control @error('nom') is-invalid @enderror" name="nom" value="{{ old('nom') }}" required autocomplete="nom">
-                      @error('nom')
+                      <div class="form-group">
+                        <label for="email">Adresse E-mail</label>
+                        <input type="email" name='email' class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" required autocomplete="email" id="exampleInputEmail1" placeholder="">
+                        @error('email')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="text-danger">{{ $message }}</strong>
+                              </span>
+                          @enderror
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="pone">Numero de Telephone</label>
+                        <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong class="text-danger">{{ $message }}</strong>
+                            </span>
+                        @enderror
+                      </div>
+                    
+                      <div class="form-group">
+                        <label for="boit">image</label>
+                        <input type="file" name="image"  id="image" class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}" required autocomplete="image" id="exampleInputFile" placeholder="">
+                        @error('image')
                           <span class="invalid-feedback" role="alert">
                               <strong class="text-danger">{{ $message }}</strong>
                           </span>
-                      @enderror
-                  </div>
-
-                <div class="form-group">
-                    <label for="email">Adresse E-mail</label>
-                    <input type="email" name='email' class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" required autocomplete="email" id="exampleInputEmail1" placeholder="">
-                    @error('email')
-                          <span class="invalid-feedback" role="alert">
-                              <strong class="text-danger">{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-               </div>
-
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label for="pone">Numero de Telephone</label>
-                    <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
-                    @error('phone')
-                        <span class="invalid-feedback" role="alert">
-                            <strong class="text-danger">{{ $message }}</strong>
-                        </span>
-                    @enderror
-                  </div>
-                
-                  <div class="form-group">
-                      <label for="boit">image</label>
-                      <input type="file" name="image"  id="image" class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}" required autocomplete="image" id="exampleInputFile" placeholder="">
-                      @error('image')
-                        <span class="invalid-feedback" role="alert">
-                            <strong class="text-danger">{{ $message }}</strong>
-                        </span>
-                    @enderror
+                        @enderror
+                      </div>
                     </div>
                   </div>
-                </div>
-              <!-- fin du row -->
-              <div class="row">
-                <br>
-                <h4>Choisire le poste selon la commission</h4>
-                  @foreach($commission as $com)
-                <div class="col-lg-3">
-                      <label for=""  class="text-white">{{$com->name}}</label>
-                      <br>  
-                    @foreach($com->postes as $com_poste)
-                      <label class="" for="poste"> <input type="radio" name="poste" class="@error('poste') is-invalid @enderror" value="{{$com_poste->id ?? old('image') }}" id=""> {{ $com_poste->name }} </label>
-                      @error('poste')
+                  <!-- fin du row -->
+                  <div class="row">
+                    <p>
+                      <label for="">Profile du membre</label>
+                      <textarea id="editor1" class="textarea @error('profile') is-invalid @enderror" value="{{ old('profile')}}" name="profile" placeholder=""
+                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                      @error('profile')
                         <span class="invalid-feedback" role="alert">
-                            <strong class="text-danger">{{ $message }}</strong>
+                          <strong class="message_error text-danger">{{ $message }}</strong>
                         </span>
-                    @enderror
-                      @endforeach
+                      @enderror
+                    </p>
+                    <br>
+                    <h4>Choisire le poste selon la commission</h4>
+                    @foreach($commission as $com)
+                      <div class="col-lg-3">
+                            <label for=""  class="text-white">{{$com->name}}</label>
+                            <br>  
+                          @foreach($com->postes as $com_poste)
+                            <label class="" for="poste"> <input type="radio" name="poste" class="@error('poste') is-invalid @enderror" value="{{$com_poste->id ?? old('image') }}" id=""> {{ $com_poste->name }} </label>
+                            @error('poste')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong class="text-danger">{{ $message }}</strong>
+                              </span>
+                          @enderror
+                            @endforeach
+                      </div>
+                    @endforeach
+                  </div>
+
                 </div>
-                  @endforeach
-              </div>
-
-              </div>
-              <!-- /.box-body -->
-
-
-                </p>
+                <!-- /.box-body -->
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary pull-left">Enregistrer</button>
@@ -204,12 +209,12 @@
               <div class="box-body">
 
               <!-- debu du row -->
+            <form role="form" action="{{route('admin.team.update',$team->id)}}" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-lg-6">
-                <form role="form" action="{{route('admin.team.update',$team->id)}}" method="post" enctype="multipart/form-data">
-                @csrf
-                {{ method_field('PUT') }}
-              <div class="form-group">
+                  @csrf
+                  {{ method_field('PUT') }}
+                  <div class="form-group">
                     <label for="adress">Nom et Prenom</label>
                     <input type="text" id="nom" class="form-control @error('nom') is-invalid @enderror" name="nom" value="{{ $team->nom ?? old('nom') }}" autocomplete="nom">
                       @error('nom')
@@ -219,7 +224,7 @@
                       @enderror
                   </div>
 
-                <div class="form-group">
+                  <div class="form-group">
                     <label for="email">Adresse E-mail</label>
                     <input type="email" name='email' class="form-control @error('email') is-invalid @enderror" id="email" value="{{$team->email ?? old('email') }}" autocomplete="email" id="exampleInputEmail1" placeholder="">
                     @error('email')
@@ -228,7 +233,7 @@
                           </span>
                       @enderror
                   </div>
-               </div>
+                </div>
 
                 <div class="col-lg-6">
                   <div class="form-group">
@@ -242,18 +247,28 @@
                   </div>
                 
                   <div class="form-group">
-                      <label for="boit">image</label>
-                      <input type="file" name="image"  id="image" class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}" autocomplete="image" id="exampleInputFile" placeholder="">
-                      @error('image')
-                        <span class="invalid-feedback" role="alert">
-                            <strong class="text-danger">{{ $message }}</strong>
-                        </span>
+                    <label for="boit">image</label>
+                    <input type="file" name="image"  id="image" class="form-control @error('image') is-invalid @enderror" value="{{ old('image') }}" autocomplete="image" id="exampleInputFile" placeholder="">
+                    @error('image')
+                      <span class="invalid-feedback" role="alert">
+                          <strong class="text-danger">{{ $message }}</strong>
+                      </span>
                     @enderror
-                    </div>
                   </div>
                 </div>
+              </div>
               <!-- fin du row -->
               <div class="row">
+                <p>
+                  <label for="">Profile du membre</label>
+                  <textarea id="editor1" class="textarea @error('profile') is-invalid @enderror" value="{{ old('profile')}}" name="profile" placeholder=""
+                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $team->profile !!}</textarea>
+                  @error('profile')
+                    <span class="invalid-feedback" role="alert">
+                      <strong class="message_error text-danger">{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </p>
                 <br>
                 <h4>Choisire le poste selon la commission</h4>
                   @foreach($commission as $com)
