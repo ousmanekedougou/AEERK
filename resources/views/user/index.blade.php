@@ -50,7 +50,7 @@
 				padding: 5px;
 			}
 		}
-
+		.search-course-area{background:url('user/img/img_5.jpg') center;background-size:cover}
 	</style>
 @endsection
 @section('main-content')
@@ -202,14 +202,14 @@
 							<div class="row details-content text-white">
 								<div class="col single-detials">
 									<span class="lnr lnr-graduation-hat"></span>
-									<a href=""><h4>Expert Instructors</h4></a>		
+									<a href="#"><h4>Expert Instructors</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
 								</div>
 								<div class="col single-detials">
 									<span class="lnr lnr-license"></span>
-									<a href=""><h4>Certification</h4></a>		
+									<a href="#"><h4>Certification</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
@@ -316,5 +316,4 @@
     });
 </script>
 @endsection
-
 

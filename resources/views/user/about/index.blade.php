@@ -8,7 +8,7 @@
     .fa-thumbs-up:hover{
         color:red;
     }
-	.banner-area{background:url('user/img/about-us.jpg') right;background-size:cover}
+	.banner-area{background:url('user/img/img_10.jpg') right;background-size:cover}
   </style>
 @endsection
  @section('main-content')
@@ -19,7 +19,7 @@
 		<div class="container">				
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="about-content col-lg-12">
-					<h1 class="text-white">
+					<h1 class="text-white text-uppercase">
 						A Propos de AEERK				
 					</h1>	
 					<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('about.index') }}"> A Propos</a></p>

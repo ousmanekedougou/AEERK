@@ -6,7 +6,7 @@
     .fa-thumbs-up:hover{
         color:red;
     }
-	.banner-area{background:url('user/img/etudiants-kdg.jpg') right;background-size:cover}
+	.banner-area{background:url('user/img/img_6.jpg') right;background-size:cover}
   </style>
   	{{--<link rel="stylesheet" href="{{asset('user/build/css/demo.css')}}">--}}
   	<link rel="stylesheet" href="{{asset('user/build/css/intlTelInput.min.css')}}">
@@ -27,29 +27,7 @@
 					</div>
 				</div>
 			</section>
-      <!-- End banner Area -->	
-
-	<section class="feature-area pb-30">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="single-feature">
-						<div class="title">
-							<h4>Note d'information</h4>
-						</div>
-						<div class="desc-wrap">
-							<p>
-								Usage of the Internet is becoming more common due to rapid advancement
-								of technology.
-							</p>
-							<a href="#">Join Now</a>									
-						</div>
-					</div>
-				</div>									
-			</div>
-		</div>	
-	</section>
-      
+      <!-- End banner Area -->
 
       		<section class="feature-area pb-120">
 				<div class="container">
