@@ -194,22 +194,24 @@
 			<div class="row justify-content-between align-items-center">
 				<div class="col-lg-8 col-md-8 search-course-left">
 							<h1 class="text-white">
-								AEERK une association educative !
+								Aeerk une association éducative !
 							</h1>
+							<h5 class="text-center text-white">“Notre voix commune, Notre succés commun”</h5>
+							<br>
 							<p class="text-white">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+								AEERK est la voix de l'éducation des étudiants et éléves de la region de kédougou et a joué un rôle important dans l'espace de l'éducation au cours des 14 dernières années en tant que rassembleur, créateur de connaissances et forum de dialogue educatives.
 							</p>
 							<div class="row details-content text-white">
 								<div class="col single-detials">
-									<span class="lnr lnr-graduation-hat"></span>
-									<a href="#"><h4>Expert Instructors</h4></a>		
+									{{--<span class="lnr lnr-graduation-hat"></span>--}}
+									<a href="#"><h4>Un accompagnement pédagogique</h4></a>		
 									<p>
-										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+										Aujourd'hui, de nombreux lycéens ne savent toujours pas comment s'organiser après le baccalauréat. Submergés par le travail, la pression et la recherche des études supérieures idéales, ils ne savant plus où ni quoi chercher en priorité.Savoir comment s'organiser n'est pas une chose facile, en éffet de nombreuses choses sont à prendre en compte.Dans ce sens aussi l'association se charge de l'intégration des ses nouveux bacheliers
 									</p>						
 								</div>
 								<div class="col single-detials">
-									<span class="lnr lnr-license"></span>
-									<a href="#"><h4>Certification</h4></a>		
+									{{--<span class="lnr lnr-license"></span>--}}
+									<a href="#"><h4>Un accompagnement social</h4></a>		
 									<p>
 										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
 									</p>						
