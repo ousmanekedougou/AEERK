@@ -4,10 +4,10 @@
 			<div class="row">
 				<div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
 					<ul>
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+						<li><a href=""><i class="fa fa-facebook"></i></a></li>
+						<li><a href=""><i class="fa fa-twitter"></i></a></li>
+						<li><a href=""><i class="fa fa-instagram"></i></a></li>
+						<li><a href=""><i class="fa fa-youtube"></i></a></li>
 					</ul>			
 				</div>
 				<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
@@ -39,6 +39,8 @@
 					
 					
 					<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça marche</a></li>
+					<li class="{{ set_active_roote('emplois.index') }}"><a href="{{ route('emplois.index') }}"><i class="fa fa-cog fa_ajout"></i> Emplois & Stages</a></li>
+
 					<li class="{{ set_active_roote('bibliotheque.index') }}"><a href="{{ route('bibliotheque.index') }}"><i class="fa fa-book fa_ajout"></i> Bibliothèque</a></li>
 					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-hacker-news fa_ajout"></i> Actualités</a></li>
 					<li class="{{ set_active_roote('contact.index') }}"><a href="{{ route('contact.index') }}"><i class="fa fa-address-book fa_ajout"></i> Contact</a></li>

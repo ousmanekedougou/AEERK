@@ -57,15 +57,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-5 no-padding info-area-left">
-					<img class="img-fluid" src="{{asset('user/img/about-img.jpg')}}" alt="">
+					<img class="img-fluid" src="{{asset('user/img/presi.jpg')}}" alt="" style="width: 400px;height:400px;">
 				</div>
 				<div class="col-lg-7 info-area-right">
-					<h1 class="text-center">Mot Du President</h1>
-					<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
-					<p class="text-justify">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.</p>
-					
+					<h3 class="text-left pt-2">Younoussa Diallo</h3>
+					<h5 class="pt-3">Actuelle president de l'AEERK</h5>
+					<p class="text-justify pt-3">
+						Chers camarades élèves et étudiants de la région de Kédougou, je tiens à vous souhaiter la bienvenue sur notre site internet qui désormais nous permet d’être informer des activités de l’AEERK, de nous documenter, de pouvoir s’orienter et de s’intégrer dans le monde universitaire.
+					</p>
 					<p class="text-justify">
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+						La création de ce site entre effectivement dans le cadre de la politique de numérisation de la structure et pour se faire nous demandons à tout membre de l’AEERK de s’approprier du site et de s’en servir positivement.
+					</p> 
+					<p class="text-justify">
+						Cordialement Younoussa DIALLO président de l’Association des Élèves et Étudiants Ressortissants de Kédougou (AEERK)
 					</p>
 				</div>
 			</div>
@@ -84,8 +88,7 @@
 						</div>
 						<div class="desc-wrap">
 							<p>
-								Usage of the Internet is becoming more common due to rapid advancement
-								of technology.
+								L’Association Étudiante (AEERK) a pour mission de se donner des moyens humains de rassemblement, de représentation, de revendication et d’offres de sérvices par et pour les éleves et étudiants de la région de kédougou.
 							</p>
 							<a href="#">Join Now</a>									
 						</div>
@@ -98,7 +101,7 @@
 						</div>
 						<div class="desc-wrap">
 							<p>
-								For many of us, our very first experience of learning about the celestial bodies begins when we saw our first.
+								L’AEERK a pour vision de s’assurer de répondre à l’épanouissement et aux aspirations académiques, culturels, sociaux, spirituels, environnementaux et économiques des éleves et étudiants de la région de kédougou.
 							</p>
 							<a href="#">Join Now</a>									
 						</div>
@@ -111,7 +114,8 @@
 						</div>
 						<div class="desc-wrap">
 							<p>
-								If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.
+								Objectif de l'AEERK <br>
+								Elle s'est fixée comme objectif d'inciter les lycéens issus de milieux modestes à oser se lancer dans des études post-bac, en les poussant à approfondir prioritairement les matières scientifiques
 							</p>
 							<a href="#">Join Now</a>									
 						</div>
@@ -130,7 +134,22 @@
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-12">
 					<blockquote class="generic-blockquote text-justify">
-						“Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks such as Party Gaming and PlayTech left the United States. Overnight, online casino players found themselves being chased by the Federal government. But, after a fortnight, the online casino industry came up with a solution and new online casinos started taking root. These began to operate under a different business umbrella, and by doing that, rendered the transfer of money to and from them legal. A major part of this was enlisting electronic banking systems that would accept this new clarification and start doing business with me. Listed in this article are the electronic banking” 
+					
+
+						<p>
+							L’Association Étudiante de la region de kedougou (AEERK) vous propose une foule d’activités, dont, des activités organisées pour les étudiants par des étudiants.
+						</p>
+						
+						<p>
+							L’AEER organise tout au long de l’année académique des activités culturelles ,sportives et sociales en toute genre qui sont de nature à profiter à l’ensemble de ses membres et accentuent l’esprit d’appartenance à l’Association Étudiante.
+						</p>
+						<p>
+							L’AEERK donne l’occasion aux eleves et etudiants membres de se rencontrer, de s’exprimer librement, de se divertir et de faire valoir leurs talents.
+						</p>
+						<p>
+							Elle est au cœur d’une vie étudiante trépidante avec une variété d’activités socioculturelles entre autres des rencontres sociales, des réunions amicales, des activités de groupe.
+						</p>
+ 
 					</blockquote>
 				</div>
 			</div>		
