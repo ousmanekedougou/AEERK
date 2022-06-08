@@ -7,6 +7,7 @@ use App\Model\Admin\Immeuble;
 use App\Model\Admin\Partenaire;
 use App\Model\Admin\Post;
 use App\Model\Admin\Tag;
+use App\Model\User\Domaine;
 use App\Model\User\Temoignage;
 use App\Model\User\User;
 use Illuminate\Support\Facades\Auth;
@@ -121,5 +122,13 @@ if(!function_exists('admin')){
     {
         $admin = Auth::guard('admin')->user();
         return $admin;
+    }
+}
+
+if(!function_exists('domaine')){
+     function domaine()
+    {
+        $domaine = Domaine::all();
+        return $domaine;
     }
 }

@@ -14,7 +14,8 @@ class CreateSpecialitiesTable extends Migration
     public function up()
     {
         Schema::create('specialities', function (Blueprint $table) {
-            $table->id();$table->string('name');
+            $table->id();
+            $table->string('name');
             $table->string('slug');
             $table->integer('domaine_id');
             $table->timestamps();

@@ -29,6 +29,7 @@
 
         // Les routes des recrutements
         Route::resource('/emplois','JobController');
+        Route::get('/emplois/add/{slug}','JobController@add')->name('emplois.add');
         
     });
 
@@ -101,6 +102,7 @@
         Route::resource('/comission', 'Admin\ComissionController');
         Route::resource('/posteCommission', 'Admin\PosteCommissionController');
         Route::resource('/admin', 'Admin\AdminController');
+        Route::get('/employer', 'Admin\AdminController@employer_index')->name('employer.index');
         Route::resource('/ancien', 'Admin\AncienController');
 
         Route::get('/ancien/{id}/update_ancien', 'Admin\AncienController@update_ancien')->name('update_ancien');
@@ -116,10 +118,22 @@
         Route::put('nouveau/update_immeuble/{id}', 'Admin\NouveauController@update_immeuble')->name('nouveau.update_immeuble');
         // fin des option de uesr
 
+        // la partie des recrutement par les entreprise
+        Route::resource('/domaine', 'Admin\DomaineController');
+        Route::post('/domaine/post', 'Admin\DomaineController@post')->name('domaine.post');
+        Route::put('/domaine/update_post/{id}', 'Admin\DomaineController@update_post')->name('domaine.update_post');
+        Route::delete('/domaine/delete/{id}', 'Admin\DomaineController@delete')->name('domaine.delete');
+        Route::delete('/domaine/delete_emploi/{id}', 'Admin\DomaineController@delete_emploi')->name('domaine.delete_emploi');
+        Route::get('/domaine/emploi/{id}', 'Admin\DomaineController@emploi')->name('domaine.emploi');
+        
+        Route::resource('/emplois', 'Admin\EmploiController');
+        Route::get('/emplois/emploi/{id}', 'Admin\EmploiController@emploi')->name('emplois.emploi');
+        Route::get('/emplois/stage/{id}', 'Admin\EmploiController@stage')->name('emplois.stage');
+
         // login admin
-        Route::get('/login','Admin\Auth\LoginController@showLoginForm')->name('admin.login');
-        Route::post('/login','Admin\Auth\LoginController@login')->name('admin.login');
-        Route::post('/logout','Admin\Auth\LoginController@logout')->name('admin.logout');
+            Route::get('/login','Admin\Auth\LoginController@showLoginForm')->name('admin.login');
+            Route::post('/login','Admin\Auth\LoginController@login')->name('admin.login');
+            Route::post('/logout','Admin\Auth\LoginController@logout')->name('admin.logout');
         // fin des login admin
 
 

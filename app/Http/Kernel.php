@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'isCodifier' => \App\Http\Middleware\IsCodifier::class,
         'isEduc' => \App\Http\Middleware\IsEduc::class,
         'isPost' => \App\Http\Middleware\IsPost::class,
+        'isEmployer' => \App\Http\Middleware\IsEmployer::class,
     ];
 }

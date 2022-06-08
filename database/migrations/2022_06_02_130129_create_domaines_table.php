@@ -17,6 +17,8 @@ class CreateDomainesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('image');
+            $table->longText('body');
             $table->timestamps();
         });
     }

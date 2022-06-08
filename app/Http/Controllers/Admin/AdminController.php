@@ -25,7 +25,13 @@ class AdminController extends Controller
 
     }
     
-    public function index()
+    public function employer_index()
+    {
+        $admins = Admin::where('is_admin',6)->get();
+        return view('admin.employer.index',compact('admins'));
+    }
+
+      public function index()
     {
         $admins = Admin::where('is_admin','<',5)->get();
         $commission = Commission::all();
@@ -72,7 +78,7 @@ class AdminController extends Controller
         $admin->status = 1;
         $admin->save();
         Toastr::success('Votre administrateur a ete ajoute', 'Ajout Admin', ["positionClass" => "toast-top-right"]);
-        return redirect()->route('admin.admin.index');
+        return back();
     }
 
     /**
@@ -114,7 +120,7 @@ class AdminController extends Controller
             $update_admin->status = $request->status;
             $update_admin->save();
             Toastr::success('Votre administrateur a ete modifier', 'Modification Admin', ["positionClass" => "toast-top-right"]);
-            return redirect()->route('admin.admin.index');
+            return back();
         }
 
         /**
@@ -125,7 +131,7 @@ class AdminController extends Controller
          */
         public function destroy($id)
         {
-            $admin_delete = Admin::where('id',$id)->delete();
+            $admin_delete = Admin::where('id',$id)->first();
             $imgdel = $admin_delete->image;
             Storage::delete($imgdel); 
             $admin_delete->delete();

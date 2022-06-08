@@ -28,7 +28,7 @@ class CreateJobsTable extends Migration
             $table->string('cni');
             $table->string('cv');
             $table->boolean('status')->default(false);
-            $table->integer('token_number')->unique()->nullable();
+            $table->string('token_number')->unique()->nullable();
             $table->integer('code')->unique()->nullable();
             $table->timestamps();
         });

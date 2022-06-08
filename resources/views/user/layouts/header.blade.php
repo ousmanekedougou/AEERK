@@ -36,10 +36,8 @@
 							</ul>
 						</li>
 					@endif
-					
-					
 					<li class="{{ set_active_roote('systeme.index') }}"><a href="{{ route('systeme.index') }}"><i class="fa fa-cog fa_ajout"></i> Comment ça marche</a></li>
-					{{--<li class="{{ set_active_roote('emplois.index') }}"><a href="{{ route('emplois.index') }}"><i class="fa fa-cog fa_ajout"></i> Emplois & Stages</a></li>--}}
+					<li class="{{ set_active_roote('emplois.index') }}"><a href="{{ route('emplois.index') }}"><i class="fa fa-cog fa_ajout"></i> Emplois & Stages</a></li>
 
 					<li class="{{ set_active_roote('bibliotheque.index') }}"><a href="{{ route('bibliotheque.index') }}"><i class="fa fa-book fa_ajout"></i> Bibliothèque</a></li>
 					<li class="{{ set_active_roote('article.index') }}"><a href="{{ route('article.index') }}"><i class="fa fa-hacker-news fa_ajout"></i> Actualités</a></li>

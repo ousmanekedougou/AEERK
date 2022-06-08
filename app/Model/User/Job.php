@@ -3,7 +3,7 @@
 namespace App\Model\User;
 use App\Model\User\Speciality;
 use App\Model\User\Niveau;
-use App\Model\User\Commune;
+use App\Model\Admin\Commune;
 use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model

@@ -11,4 +11,8 @@ class Speciality extends Model
    public function domaine(){
        return $this->belongsTo(Domaine::class);
    }
+
+    public function jobs(){
+       return $this->hasMany(Job::class);
+   }
 }

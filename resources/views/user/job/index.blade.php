@@ -37,14 +37,13 @@
 				<div class="col-lg-12">
 					<div class="single-feature">
 						<div class="title">
-							<h4>Qui sommes nous ?</h4>
+							<h4>Tous les profiles</h4>
 						</div>
 						<div class="desc-wrap">
 							<p>
 								Usage of the Internet is becoming more common due to rapid advancement
 								of technology.
-							</p>
-							<a href="#">Join Now</a>									
+							</p>									
 						</div>
 					</div>
 				</div>												
@@ -59,59 +58,27 @@
     <!-- Start top-category-widget Area -->
 		<section class="top-category-widget-area pb-90 ">
 			<div class="container">
-				<div class="row">		
+				<div class="row">
+					@foreach($domaines as $domaine)		
 					<div class="col-lg-4">
 						<div class="single-cat-widget">
 							<div class="content relative">
 								<div class="overlay overlay-bg"></div>
 								<div>
 									<div class="thumb">
-										<img class="content-image img-fluid d-block mx-auto" src="{{asset('user/img/blog/economie.jpeg')}}" style="width: 360px;height:220px;" alt="">
+										<img class="content-image img-fluid d-block mx-auto" src="{{ Storage::url($domaine->image) }}" style="width: 100%;height:auto;" alt="">
 									</div>
 									<div class="content-details">
-										<h4 class="content-title mx-auto text-uppercase">Informatique</h4>
+										<h4 class="content-title mx-auto text-uppercase">{{$domaine->name}}</h4>
 										<span></span>								        
-										<p>Le Sénégal est l'une des économies les plus performantes d'Afrique subsaharienne. </p>
-										<a href="http://" target="_blank" rel="noopener noreferrer">S'inscrire</a>
+										<p>Plus de {{$domaine->specialities->count()}} specialite sur ce domaine </p>
+										<a href="{{ route('emplois.show',$domaine->slug) }}" class="genric-btn primary-border circle arrow text-bold mb-4">Chercher votre profile</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4">
-						<div class="single-cat-widget">
-							<div class="content relative">
-								<div class="overlay overlay-bg"></div>
-								<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto" src="{{asset('user/img/blog/politique.jpg')}}" style="width: 360px;height:220px;" alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Gestion</h4>
-									<span></span>								        
-									<p>Le Sénégal est une république à régime présidentiel multipartite où le Président exerce la charge de chef de l'État et le Premier ministre, la fonction de chef du gouvernement.</p>
-								</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="single-cat-widget">
-							<div class="content relative">
-								<div class="overlay overlay-bg"></div>
-								<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto" src="{{asset('user/img/blog/education.jpg')}}" style="width: 360px;height:220px;" alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Economie</h4>
-									<span></span>
-									<p>Au Sénégal, l'éducation formelle est structurée en six sous-secteurs à l'intérieur desquels interviennent une offre d'enseignement publique et privée.</p>
-								</div>
-								</a>
-							</div>
-						</div>
-					</div>												
+					@endforeach											
 				</div>
 			</div>	
 		</section>

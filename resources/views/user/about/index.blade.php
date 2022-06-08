@@ -22,7 +22,7 @@
 					<h1 class="text-white text-uppercase">
 						A Propos de AEERK				
 					</h1>	
-					<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('about.index') }}"> A Propos</a></p>
+					<p class="text-white link-nav"><a href="/">Acceuil </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('about.index') }}"> A Propos</a></p>
 				</div>	
 			</div>
 		</div>
@@ -42,8 +42,7 @@
 							<p>
 								Usage of the Internet is becoming more common due to rapid advancement
 								of technology.
-							</p>
-							<a href="#">Join Now</a>									
+							</p>									
 						</div>
 					</div>
 				</div>												
@@ -56,7 +55,7 @@
 	<section class="feature-area pb-120">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-5 no-padding info-area-left">
+				<div class="col-lg-5 no-padding info-area-left text-center">
 					<img class="img-fluid" src="{{asset('user/img/presi.jpg')}}" alt="" style="width: 400px;height:400px;">
 				</div>
 				<div class="col-lg-7 info-area-right">
@@ -89,8 +88,7 @@
 						<div class="desc-wrap">
 							<p>
 								L’Association Étudiante (AEERK) a pour mission de se donner des moyens humains de rassemblement, de représentation, de revendication et d’offres de sérvices par et pour les éleves et étudiants de la région de kédougou.
-							</p>
-							<a href="#">Join Now</a>									
+							</p>									
 						</div>
 					</div>
 				</div>
@@ -102,8 +100,7 @@
 						<div class="desc-wrap">
 							<p>
 								L’AEERK a pour vision de s’assurer de répondre à l’épanouissement et aux aspirations académiques, culturels, sociaux, spirituels, environnementaux et économiques des éleves et étudiants de la région de kédougou.
-							</p>
-							<a href="#">Join Now</a>									
+							</p>								
 						</div>
 					</div>
 				</div>
@@ -116,8 +113,7 @@
 							<p>
 								Objectif de l'AEERK <br>
 								Elle s'est fixée comme objectif d'inciter les lycéens issus de milieux modestes à oser se lancer dans des études post-bac, en les poussant à approfondir prioritairement les matières scientifiques
-							</p>
-							<a href="#">Join Now</a>									
+							</p>									
 						</div>
 					</div>
 				</div>												

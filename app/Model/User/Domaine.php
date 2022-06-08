@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\User\Speciality;
 class Domaine extends Model
 {
-    protected $fllable = ['name','slug'];
+    protected $fillable = ['name','slug','image','body'];
 
     public function specialities(){
         return $this->hasMany(Speciality::class);
