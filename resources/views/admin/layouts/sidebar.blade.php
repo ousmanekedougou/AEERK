@@ -32,7 +32,9 @@
             <li><a href="{{ route ('admin.info.index') }}"><i class="fa fa-circle-o text-red"></i> <span>Paramettre</span></a></li>
             <li><a href="{{ route ('admin.team.index') }}"><i class="fa fa-circle-o"></i> <span>Personnelle</span></a></li>
             <li><a href="{{ route ('admin.admin.index') }}"><i class="fa fa-circle-o"></i>Admins</a></li>
+            {{--
             <li><a href="{{ route ('admin.employer.index') }}"><i class="fa fa-circle-o"></i>Employeur</a></li>
+            --}}
             <li class=""><a href="{{route('admin.temoignage.index')}}"><i class="fa fa-circle-o"></i> Temoignage</a></li>
           </ul>
         </li>
@@ -165,10 +167,14 @@
             <ul class="treeview-menu">
               <li><a href="{{ route('admin.filliere.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Université Publiques</span></a></li>
               <li><a href="{{ route('admin.filliere.create') }}"><i class="fa fa-circle-o text-primary"></i> <span>Université Privés</span></a></li>
+              {{--
               <li><a href="{{ route('admin.domaine.index') }}"><i class="fa fa-circle-o text-primary"></i> <span>Domaine & Specialite</span></a></li>
+              --}}
             </ul>
           </li>
         @endif
+
+
         @if (admin()->is_admin == 6 || admin()->is_admin == 5)
           <li class="header text-uppercase">Tous les domaines {{domaine()->count()}} </li>
           @foreach(domaine() as $domaine)

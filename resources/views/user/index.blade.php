@@ -89,7 +89,13 @@
 						</div>
 						<div class="desc-wrap">
 							<p class="text-justify">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem placeat necessitatibus impedit itaque doloremque laudantium iusto sequi veritatis inventore a hic nulla dolore aperiam aut, fugit reprehenderit earum esse temporibus expedita doloribus alias cum autem ad sint. Dolores labore saepe quidem sed aspernatur numquam illum 
+								L'association des Eleves et Etudiants ressortissant de Kedougou (A.E.E.R.K) est une structure fidele aux principes fondamentaux prôné par la République et figurant dans le préambule de la constitution du Sénégal.
+								<br>
+								Une association a vocation purement intélléctuélle, elle oeuvre pour le développement économique et social de la région de kedougou.Elle est apolotique et ne peut traiter auccune question relative a la religion,l'éthnie où la race ni la politique.
+								<br>
+								Ce statut, par soucis d'adaptation aux réalités actuélle a été modifieé mais reste fidéles aux statut fondateurs de l'A.E.E.R.K 
+								<br>
+								Cette association est reconnue en 2003 par l'autorité Etatique compétente décentralisé, et a toujours pour mission l'amélioration des condition de vie et de travail des éléves et étudiants de Kédougou    
 							</p>									
 						</div>
 					</div>

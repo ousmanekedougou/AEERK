@@ -6,7 +6,7 @@
       <div class="pull-right hidden-xs">
       <b>Version</b> {{ Carbon\carbon::now()->year }}
       </div>
-      <strong>Copyright &copy; 2021-{{ Carbon\carbon::now()->year }} Designed by  AEERK.</strong> 
+      <strong>Copyright &copy; 2021-{{ Carbon\carbon::now()->year }} Designed by kédWeb.</strong> 
     </footer>
 
 

@@ -332,9 +332,9 @@
 
       </div>
     @endif
-
+    {{--
     @if (admin()->is_admin == 1 || admin()->is_admin == 5 || admin()->is_admin == 6) 
-     <h3 class="text-center btn btn-info btn-block text-bold">Selectionnez vos etudiants selon votre besoin</h3>
+      <h3 class="text-center btn btn-info btn-block text-bold">Selectionnez vos etudiants selon votre besoin</h3>
       <br>
       <div class="row">
         <div class="col-lg-6 col-xs-6">
@@ -402,7 +402,7 @@
         @endforeach
       </div>
     @endif
-
+    --}}
     </section>
     <!-- /.content -->
   </div>
