@@ -86,7 +86,7 @@ if(!function_exists('set_active_roote')){
 if(!function_exists('all_temoignage')){
     function all_temoignage()
     {
-        $temoignage = Temoignage::where('status',1)->get();
+        $temoignage = Temoignage::all();
         return $temoignage;
     }
 }
