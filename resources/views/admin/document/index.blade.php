@@ -37,7 +37,7 @@
                         <td><a href="{{ route('admin.document.show',$document->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i> Voir</a>
                         <a href="" class="btn btn-xs btn-success" data-toggle="modal" data-id="{{$document->id}}" data-name="{{$document->name}}" data-target="#modal-documentAdd-{{ $document->id }}"><i class="fa fa-plus"></i> Ajouter</a></td>
                         <td>
-                          <a style="margin-right:5px;" data-toggle="modal" data-id="{{$document->id}}" data-name="{{$document->name}}" data-target="#modal-default-{{ $document->id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                          {{--<a style="margin-right:5px;" data-toggle="modal" data-id="{{$document->id}}" data-name="{{$document->name}}" data-target="#modal-default-{{ $document->id }}"><i class="glyphicon glyphicon-edit"></i></a>--}}
                         
                           <a data-toggle="modal" data-target="#modal-default-immeuble-{{$document->id}}" ><i class="glyphicon glyphicon-trash text-danger"></i></a>
                         <div class="modal fade" id="modal-default-immeuble-{{$document->id}}">
@@ -46,7 +46,7 @@
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Suppression d'immeuble</h4>
+                                <h4 class="modal-title">Suppression de filliere</h4>
                               </div>
                               <div class="modal-body">
                                 <p>
