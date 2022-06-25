@@ -24,7 +24,7 @@
       
         Route::resource('/systeme','SystemeController');
         Route::get('/bibliotheque','BibliothequeController@index')->name('bibliotheque.index');
-        Route::get('/bibliotheque/faculty/{id}','BibliothequeController@show')->name('bibliotheque.show');
+        Route::get('/bibliotheque/faculty/{slug}','BibliothequeController@show')->name('bibliotheque.show');
         Route::post('/bibliotheque/search','BibliothequeController@search')->name('bibliotheque.search');
 
         // Les routes des recrutements
