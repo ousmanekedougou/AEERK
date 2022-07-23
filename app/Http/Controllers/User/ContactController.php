@@ -46,17 +46,17 @@ class ContactController extends Controller
             'message' => 'required|string'
         ]);
          
-        $user = User::select('sendmail')->first();
-        Mail::to($user->sendmail)
-            ->send(new ContactMessageCreated($request->nom,$request->email,$request->subject,$request->message));
+        // $user = User::select('sendmail')->first();
+        // Mail::to($user->sendmail)
+        //     ->send(new ContactMessageCreated($request->nom,$request->email,$request->subject,$request->message));
         
-        // Contact::create([
-        //     'nom' => $request->nom,
-        //     'email' => $request->email,
-        //     'subject' => $request->subject,
-        //     'message' => $request->message,
-        //     'status' => 0
-        // ]);
+        Contact::create([
+            'nom' => $request->nom,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'status' => 0
+        ]);
         
         Toastr::success('Votre Message a ete evoyer', 'Contact Message', ["positionClass" => "toast-top-right"]);
         return redirect()->route('index');
