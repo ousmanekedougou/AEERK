@@ -232,11 +232,12 @@
 											</div>
 										</div>
 									</div>
-									{{--
 									<br>
+									{{--
 									<p class="text-italic text-primary text-bold">
-										Les documents suivants tel que l'attestation du baccalaurea et le certificat d'inscription et le relever de note ne sont obligatoire que pour les etudiant qui ont obtenu le bac en 2015
+										Les documents suivants tel que l'attestation du baccalaurea , le certificat d'inscription et le relever de note ne sont obligatoire que pour les etudiant qui ont obtenu le bac en 2015
 									</p>
+									--}}
 									<div class="row">
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
@@ -251,7 +252,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6 col-lg-6">
 											<div class="mt-10">
-												<label class="label_form" for="">Votre Certificat D'inscription</label>
+												<label class="label_form" for="">Certificat D'inscription de {{ Carbon\carbon::now()->year - 1 }} - {{ Carbon\carbon::now()->year }}</label>
 												<input type="file" name="certificat" value="{{ old('certificat') }}" class="form-control @error('certificat') is-invalid @enderror"  placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('certificat')
 													<span class="invalid-feedback" role="alert">
@@ -265,7 +266,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
-											<label class="label_form" for="">Votre relever de note de l'annee 2021</label>
+											<label class="label_form" for="">Votre relever de note de {{ Carbon\carbon::now()->year - 2 }} - {{ Carbon\carbon::now()->year - 1 }}</label>
 												<input type="file" name="relever" value="{{ old('relever') }}" class="form-control @error('relever') is-invalid @enderror" placeholder="Votre Numero de telephone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 												@error('relever')
 													<span class="invalid-feedback" role="alert">
@@ -286,7 +287,6 @@
 											</div>
 										</div>
 									</div>
-									--}}
 									<div class="mt-10">
 										<input type="submit" value="Enregistrez l'inscription" class="btn btn-primary btn-block ">
 									</div>
