@@ -129,14 +129,26 @@ footer {
 #company img{
   margin-left: -20px;
 }
- .btn{
-      border: 1px solid blue;
-      border-radius: 4px;
-      padding: 10px;
-      color: white;
-      background-color: blue;
-      margin: 10px;
-      margin-top: 20px;
+.btn{
+  border: 1px solid #4cae4c;
+  border-radius: 4px;
+  padding: 10px;
+  color:#fff;background-color:#5cb85c;border-color:#4cae4c;
+  margin: 10px;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.btn:focus{
+  color:#fff;
+  background-color:#449d44;
+  border-color:#255625
+}
+
+.btn:hover{
+  color:#fff;
+  background-color:#449d44;
+  border-color:#398439
   }
   @media print {
       #print_Button{
@@ -157,6 +169,7 @@ footer {
   }
   .notices{
     margin-bottom: 50px;
+    font-size: 13px;
   }
   </style>
   </head>
@@ -173,11 +186,11 @@ footer {
         </div>
         <div id="company">
             {{-- <img src="{{$pic}}" width="147" height="30"> --}}
-            <img src="{{ asset('user/img/accueil.png') }}" width="147" height="30">
+            <img src="{{ asset('user/img/accueil.png') }}" width="138" height="30">
             <div>{{$info->email}}</div>
             <div>{{$info->phone}}</div>
             <div>Rue 39x30</div>
-            <div><button  class="btn btn-success btn-xs" style="margin-top:10px" id="print_Button" onclick="printDiv()"><i class="fa fa-print">Telecharger le recu</i></button> </div>
+            <div><button  class="btn" id="print_Button" onclick="printDiv()"><i class="fa fa-print">Télécharger le reçu</i></button> </div>
         </div>
       </header>
       <div id="details" class="clearfix">
@@ -244,7 +257,7 @@ footer {
           <h4 class="text-center">Section 2 : CONDITIONS</h4>
           <h5>Article 2 :</h5>
           <p class="text-justify">
-              La duré du logement d ‘un membre est fixée à quatre (04) ans d’études supérieures.
+              La duré du logement d'un membre est fixée à quatre (04) ans d’études supérieures.
           </p>
           <p class="text-justify">
             Cependant une exception est faite :
@@ -301,7 +314,7 @@ footer {
       <div id="thanks">Mérci,</div>
       <div id="notices" class="notices">
         <div class="president">Le président <br> <br> Younoussa Diallo <br></div>
-        <div class="notice secretaire">Le secrétaire <br> <br> Fodé Cissokho</div>
+        <div class="notice secretaire" style="font-size: 13px;">Le secrétaire <br> <br> Fodé Cissokho <br></div>
       </div>
     </main>
 

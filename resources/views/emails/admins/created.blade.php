@@ -241,20 +241,25 @@
                                                 Nous vous informons que vos documents déposés pour la codification ont étés accéptés. <br>
                                             </p>
                                             <p style="line-height: 24px;margin-bottom:15px;">
-                                            Nous vous invitons a aller jetter un coup d'oeil sur la page de <a href="https://www.aeerk-sn.com/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure de codification en ligne.
+                                                La date des codifications vous sera communiqué.
                                             </p>
-                                            <p style="line-height: 24px;margin-bottom:15px;">
-                                                <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivantes pour se connécter.
-                                                <br>
-                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="https://www.aeerk-sn.com/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
-                                                <br>
-                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>{{$user->email}} 
-                                                <br>
-                                                <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>{{$user->text_dechifre}}
-                                            </p>
-                                            <p style="line-height: 24px;margin-bottom:15px;">
-                                                Et si vous n'aviez pas compris la procedure approchez vous au pres du bureau pour effectuer la codification en presentielle.
-                                            </p>
+                                            {{--
+                                                <p style="line-height: 24px;margin-bottom:15px;">
+                                                Nous vous invitons a aller jetter un coup d'oeil sur la page de <a href="https://www.aeerk-sn.com/systeme" target="_blank" rel="noopener noreferrer">Documentation</a> de la plateforme pour comprendre la procedure de codification en ligne.
+                                                </p>
+                                                <p style="line-height: 24px;margin-bottom:15px;">
+                                                    <span style="font-weight:bold;text-decoration:underline;color:blue">NB : </span>Si toute fois vous avez choisi la codification en ligne,vous serez rediriger sur une page de connexion dont les coordonnes sont les suivantes pour se connécter.
+                                                    <br>
+                                                    <span style="font-weight:bold;text-decoration:underline;color:blue">Lien : </span>Cliquer sur <a href="https://www.aeerk-sn.com/login" target="_blank" rel="noopener noreferrer">Codifier</a>.
+                                                    <br>
+                                                    <span style="font-weight:bold;text-decoration:underline;color:blue">Email : </span>{{$user->email}} 
+                                                    <br>
+                                                    <span style="font-weight:bold;text-decoration:underline;color:blue">Mot de passe : </span>{{$user->text_dechifre}}
+                                                </p>
+                                                <p style="line-height: 24px;margin-bottom:15px;">
+                                                    Et si vous n'aviez pas compris la procedure approchez vous au pres du bureau pour effectuer la codification en presentielle.
+                                                </p>
+                                            --}}
                                         @elseif($msg->status == 2 && $msg->codifier != 1 && $msg->prix == 0)
                                             <p style="line-height: 24px;margin-bottom:15px;">
                                                 Le bureau de l'AEERK vous rémércie de votre compréhesion pour cette attente de vérification. <br>

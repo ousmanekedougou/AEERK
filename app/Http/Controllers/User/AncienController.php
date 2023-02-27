@@ -29,7 +29,7 @@ class AncienController extends Controller
             $puliques = Faculty::where('for',0)->get();
             $prives = Faculty::where('for',1)->get();
             $immeuble = Immeuble::where('status',2)->get();
-            return view('user.ancien.index',compact('departement','immeuble','puliques','prives'));
+            return view('front-end.ancien.index',compact('departement','immeuble','puliques','prives'));
         }else {
             Toastr::warning('L\'access de cette page est desctiver', 'Access Desactiver', ["positionClass" => "toast-top-right"]);
             return back();

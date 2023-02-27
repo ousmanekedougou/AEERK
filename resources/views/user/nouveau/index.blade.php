@@ -46,7 +46,7 @@
 										<div class="col-md-6">
 											<div class="row">
 												<div class="mt-10">
-													<label class="label_form" style="margin-left: 15px;" for="">Votre Civilite</label>
+													<label class="label_form" style="margin-left: px;" for="">Votre Civilite</label>
 													<div class="col-sm-4 d-flex justify-content-between">
 														<div class="switch-wrap d-flex justify-content-between">
 															<p class="label_form">Femme</p>
@@ -188,7 +188,6 @@
 										
 									
 									</div>
-									{{--
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mt-10">
@@ -238,7 +237,7 @@
 											</div>
 										</div>
 									</div>
-									--}}
+									
 									<div class="mt-10">
 										<input type="submit" value="Enregistrez l'inscription" class="btn btn-primary btn-block">
 									</div>
