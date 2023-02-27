@@ -26,7 +26,7 @@ class NouveauController extends Controller
         $departement = Departement::all();
         $puliques = Faculty::where('for',0)->get();
         $prives = Faculty::where('for',1)->get();
-        return view('front-end.nouveau.index',compact('departement','puliques','prives'));
+        return view('user.nouveau.index',compact('departement','puliques','prives'));
         }else {
             Toastr::warning('L\'access de cette page est desctiver', 'Access Desactiver', ["positionClass" => "toast-top-right"]);
             return back();
