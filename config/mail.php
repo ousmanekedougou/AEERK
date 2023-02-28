@@ -96,13 +96,13 @@ return [
     |
     */
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'ousmanelaravel@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'aeerk.sn@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'AEERK'),
     ],
     /*
     'from' => [
-        'address' =>  'ousmanelaravel@gmail.com',
-        'name' =>  'ousmanelaravel@gmail.com',
+        'address' =>  'aeerk.sn@gmail.com',
+        'name' =>  'aeerk.sn@gmail.com',
     ],
     */
 
