@@ -3,7 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>{{$etudiant->prenom}}_{{$etudiant->nom}}_{{ $etudiant->phone }}</title>
-  <style>
+<style>
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 @font-face {
   font-family: SourceSansPro;
   src: url(SourceSansPro-Regular.ttf);
@@ -23,14 +28,15 @@ a {
 
 body {
   position: relative;
-  width: 21cm;  
-  height: 29.7cm; 
+  width: 100%;  
+  height: auto; 
   margin: 0 auto; 
   color: #555555;
   background: #FFFFFF; 
   font-family: Arial, sans-serif; 
   font-size: 16px; 
   font-family: SourceSansPro;
+  padding: 5%;
 }
 
 header {
@@ -158,9 +164,6 @@ footer {
   h2{
     font-size: 21px;
   }
-  h4{
-    text-align: center;
-  }
   .president{
     float: left;
   }
@@ -240,75 +243,96 @@ footer {
     </div>
     <main>
       <div class="container">
-          <h1 style="text-align: center;">LE REGLEMENT INTERIEURE : A.E.E.R.K</h1>
+          <h2 style="text-align: center;">LE REGLEMENT INTERIEURE : A.E.E.R.K</h2>
+          <br>
           <p class="text-justify">
               Conformément aux règles du code pénal Sénégalais et des différentes règles propres à chaque association valablement formée : L’Association des Élèves et Étudiants Ressortissants de Kédougou adopte comme code de conduite le texte suivant.
           </p>
-          <h2>PREMIERE PARTIE : Les REGLES RELATIVES AUX MEMBRES DE L’AEERK</h2>
-          <h3 class="text-center">Titre : LA CODIFICATION</h3>
-          <h4 class="text-center">Section 1 :L’ORGANE</h4>
-          <h5>Article 1 :</h5>
-          <p class="text-justify">
-              L’organe chargé de la codification est la commission sociale. Elle est assistée par quelques membres du bureau à la demande de son président.
-          </p>
-          <p class="text-justify">
-              En cas de crise définie par le bureau (force majeure, incapacité de la commission) le bureau choisit une commission ad hoc qui sera chargée de la codification.
-          </p>
-          <h4 class="text-center">Section 2 : CONDITIONS</h4>
-          <h5>Article 2 :</h5>
-          <p class="text-justify">
-              La duré du logement d'un membre est fixée à quatre (04) ans d’études supérieures.
-          </p>
-          <p class="text-justify">
-            Cependant une exception est faite :
-            Aux étudiants n’ayant repris qu’une seule fois dans un cycle, qui peuvent avoir une année de dérogation.
-          </p>
-          <p class="text-justify">
-            Aux membres du bureau élus par l’assemblée générale peut également bénéficier d’une exception.
-          </p>
-          <h5>Article 3 :</h5>
-          <p class="text-justify">
-            Pour être codifié il faut remplir les conditions suivantes :
-            Être natif de <span class="text-bold">Kédougou</span> <br>
-            Avoir des parents <span class="text-bold">Kédovin</span> <br>
-            Avoir fait au moins des études de la sixième à la terminale à <span class="text-bold">Kédougou</span> <br>
-            Disposer d'une carte de membre de l'A.E.E.R.K
-          </p>
-
-          <h4 class="text-center">Section 3 : MODALITES</h4>
-          <h5>Article 4 :</h5>
-          <p class="text-justify">La codification se fait strictement par ordre de mérite.</p>
-          <h5>Article 5 :</h5>
-          <p class="text-justify">Les nouveaux bacheliers inscrits sont prioritaires.</p>
-          <h5>Article 6 :</h5>
-          <p class="text-justify">La carte membre est exigée lors de la codification.</p>
-
-          <h4 class="text-center">Titre 2 :</h4>
+          <br> <br>
+          <h2 style="text-align: center;">I) Les REGLES RELATIVES AUX MEMBRES DE L’AEERK</h2> <br> <br>
+          <h3 style="text-align: center;">Titre : LA CODIFICATION</h3>
+          <br>
+          <h4>Section 1 :L’ORGANE</h4>
+          <br>
+            <h5>Article 1 :</h5>
+            <br>
+            <p class="text-justify">
+                L’organe chargé de la codification est la commission sociale. Elle est assistée par quelques membres du bureau à la demande de son président.
+            </p>
+            <p class="text-justify">
+                En cas de crise définie par le bureau (force majeure, incapacité de la commission) le bureau choisit une commission ad hoc qui sera chargée de la codification.
+            </p>
+            <br>
+            <h4>Section 2 : CONDITIONS</h4>
+            <br>
+            <h5>Article 2 :</h5>
+            <p class="text-justify">
+                La duré du logement d'un membre est fixée à quatre (04) ans d’études supérieures.
+            </p>
+            <p class="text-justify">
+              Cependant une exception est faite :
+              Aux étudiants n’ayant repris qu’une seule fois dans un cycle, qui peuvent avoir une année de dérogation.
+            </p>
+            <p class="text-justify">
+              Aux membres du bureau élus par l’assemblée générale peut également bénéficier d’une exception.
+            </p>
+            <br>
+            <h5>Article 3 :</h5>
+            <p class="text-justify">
+              Pour être codifié il faut remplir les conditions suivantes :
+              Être natif de <span class="text-bold">Kédougou</span> <br>
+              Avoir des parents <span class="text-bold">Kédovin</span> <br>
+              Avoir fait au moins des études de la sixième à la terminale à <span class="text-bold">Kédougou</span> <br>
+              Disposer d'une carte de membre de l'A.E.E.R.K
+            </p>
+            <br>
+          <h4>Section 3 : MODALITES</h4>
+          <br>
+            <h5>Article 4 :</h5>
+            <br>
+            <p class="text-justify">La codification se fait strictement par ordre de mérite.</p>
+            <h5>Article 5 :</h5>
+            <br>
+            <p class="text-justify">Les nouveaux bacheliers inscrits sont prioritaires.</p>
+            <br>
+            <h5>Article 6 :</h5>
+            <p class="text-justify">La carte membre est exigée lors de la codification.</p>
+          <br>
+          <h3 style="text-align: center;">Titre 2 :</h3> <br>
           <h5>Article 7 :</h5>
             <p class="text-justify">
               Les droits à la codification sont fixées à 30000f payables au jour de la codification .Les droits à la codification sont prévus pour une durée de dix (10) mois à partir du mois de janvier. <br>
               Cependant des logements provisoires, jusqu’au mois de décembre, peuvent être accordés à tout étudiant remplissant les conditions exigées pour la fin de l’année en cours.
             </p>
+            <br>
             <h5>Article 8 :</h5>
             <p class="text-justify">La codification et l’occupation du lit sont personnelles. Tout hébergement est interdit.</p>
+            <br>
             <h5>Article 9 :</h5>
             <p class="text-justify">Le respect du matériel est obligatoire sous peine de sanction.</p>
+            <br>
             <h5>Article 10 :</h5>
             <p class="text-justify">Le nom respect du bon  voisinage (tapage nocturne, vol, bagarre) est strictement interdit. </p>
+            <br>
             <h5>Article 11 :</h5>
             <p class="text-justify">Au-delà de 23 heures, les visites sont interdites.</p>
 
 
-
-          <h2>DEUXIEME PARTIE : LES REGLES RELATIVES AUX MEMBRES DU BUREAU</h2>
+            <br> <br>
+          <h2 style="text-align: center;">II) LES REGLES RELATIVES AUX MEMBRES DU BUREAU</h2> <br>
           <h5>Article 12 :</h5>
           <p class="text-justify">Tout membre du bureau est tenu de respecter scrupuleusement le dit règlement intérieur.</p>
-          <h4 class="text-center">Titre 1 : DES REUNIONS</h4>
+          <br>
+          <h4 style="text-align: center;">Titre 3 : DES REUNIONS</h4>
+          <br>
           <h5>Article 13 :</h5>
+          <br>
           <p class="text-justify">Le bureau peut être convoqué en session ordinaire comme en session          extraordinaire.
             Il peut se réunir en session ordinaire au moins deux fois par mois, en principe le week-end
           </p>
+          <br>
           <h5>Article 14 :</h5>
+          <br>
           <p class="text-justify">Il peut aussi se réunir en session extraordinaire </p>
       </div>
       <div id="thanks">Mérci,</div>
