@@ -426,8 +426,8 @@ class NouveauController extends Controller
             $nouveau->status = $request->status;
             $nouveau->textmail = $request->body;
             $nouveau->save();
-            // Mail::to($nouveau->email)
-            // ->send(new AeerkEmailMessage($nouveau));
+            Mail::to($nouveau->email)
+            ->send(new AeerkEmailMessage($nouveau));
             //Doit se faire par sms
             Toastr::success('Votre etudiant a ete ommis','Ommission Etudiant', ["positionClass" => "toast-top-right"]);
             return back();

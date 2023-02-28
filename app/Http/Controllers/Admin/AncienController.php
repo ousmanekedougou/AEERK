@@ -265,8 +265,8 @@ class AncienController extends Controller
         if($request->status == 1){
             $ancien->status = $request->status;
             $ancien->save();
-            // Mail::to($ancien->email)
-            // ->send(new MessageEmailAeerk($ancien));
+            Mail::to($ancien->email)
+            ->send(new MessageEmailAeerk($ancien));
             Toastr::success('Votre etudaint a ete valider', 'Verification Etudiant', ["positionClass" => "toast-top-right"]);
             return back();
         }elseif($request->status == 2){
@@ -276,8 +276,8 @@ class AncienController extends Controller
             $ancien->status = $request->status;
             $ancien->textmail = $request->body;
             $ancien->save();
-            // Mail::to($ancien->email)
-            // ->send(new MessageEmailAeerk($ancien));
+            Mail::to($ancien->email)
+            ->send(new MessageEmailAeerk($ancien));
             Toastr::success('Votre etudaint a ete ommis', 'Verification Etudiant', ["positionClass" => "toast-top-right"]);
             return back();
         }
@@ -393,7 +393,6 @@ class AncienController extends Controller
         Etudiant::where('id',$id)->update([
             'immeuble_id' => $request->update_immeble
         ]);
-
         Toastr::success('Votre immeuble a ete modifier','Modification Immeuble', ["positionClass" => "toast-top-right"]);
         return back();
     }
